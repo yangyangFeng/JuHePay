@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
+		74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */; };
+		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
+		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
+		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
+		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
+		74F6723D1FD529D60074090D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723B1FD529D50074090D /* Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74C49E7F1FD4FE0200F0501B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C49E621FD4FE0100F0501B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74C49E691FD4FE0100F0501B;
+			remoteInfo = AggregatePay;
+		};
+		74C49E8A1FD4FE0200F0501B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C49E621FD4FE0100F0501B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74C49E691FD4FE0100F0501B;
+			remoteInfo = AggregatePay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		74C49E771FD4FE0100F0501B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		74C49E7E1FD4FE0200F0501B /* AggregatePayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AggregatePayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatePayTests.swift; sourceTree = "<group>"; };
+		74C49E841FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C49E891FD4FE0200F0501B /* AggregatePayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AggregatePayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatePayUITests.swift; sourceTree = "<group>"; };
+		74C49E8F1FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74F6723B1FD529D50074090D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
+		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74C49E671FD4FE0100F0501B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E7B1FD4FE0200F0501B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E861FD4FE0200F0501B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		74C49E611FD4FE0100F0501B = {
+			isa = PBXGroup;
+			children = (
+				74C49E6C1FD4FE0100F0501B /* AggregatePay */,
+				74C49E811FD4FE0200F0501B /* AggregatePayTests */,
+				74C49E8C1FD4FE0200F0501B /* AggregatePayUITests */,
+				74C49E6B1FD4FE0100F0501B /* Products */,
+				D798C481348F2D1B404B59FD /* Pods */,
+				E49EA639919700797AC8BF39 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		74C49E6B1FD4FE0100F0501B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74C49E6A1FD4FE0100F0501B /* AggregatePay.app */,
+				74C49E7E1FD4FE0200F0501B /* AggregatePayTests.xctest */,
+				74C49E891FD4FE0200F0501B /* AggregatePayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74C49E6C1FD4FE0100F0501B /* AggregatePay */ = {
+			isa = PBXGroup;
+			children = (
+				74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */,
+				74C49E9C1FD51BB300F0501B /* Common */,
+				74C49E9B1FD51BB300F0501B /* Lib */,
+				74F6723A1FD529D50074090D /* Assets.xcassets */,
+				74F6723B1FD529D50074090D /* Info.plist */,
+				74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */,
+			);
+			path = AggregatePay;
+			sourceTree = "<group>";
+		};
+		74C49E811FD4FE0200F0501B /* AggregatePayTests */ = {
+			isa = PBXGroup;
+			children = (
+				74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */,
+				74C49E841FD4FE0200F0501B /* Info.plist */,
+			);
+			path = AggregatePayTests;
+			sourceTree = "<group>";
+		};
+		74C49E8C1FD4FE0200F0501B /* AggregatePayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */,
+				74C49E8F1FD4FE0200F0501B /* Info.plist */,
+			);
+			path = AggregatePayUITests;
+			sourceTree = "<group>";
+		};
+		74C49E9B1FD51BB300F0501B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		74C49E9C1FD51BB300F0501B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D798C481348F2D1B404B59FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */,
+				FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E49EA639919700797AC8BF39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74C49E691FD4FE0100F0501B /* AggregatePay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74C49E921FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePay" */;
+			buildPhases = (
+				04D54464876DDF126AAC9DA0 /* [CP] Check Pods Manifest.lock */,
+				74C49E661FD4FE0100F0501B /* Sources */,
+				74C49E671FD4FE0100F0501B /* Frameworks */,
+				74C49E681FD4FE0100F0501B /* Resources */,
+				E3D1465E94EF78325483D08B /* [CP] Embed Pods Frameworks */,
+				A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AggregatePay;
+			productName = AggregatePay;
+			productReference = 74C49E6A1FD4FE0100F0501B /* AggregatePay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74C49E7D1FD4FE0200F0501B /* AggregatePayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74C49E951FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePayTests" */;
+			buildPhases = (
+				74C49E7A1FD4FE0200F0501B /* Sources */,
+				74C49E7B1FD4FE0200F0501B /* Frameworks */,
+				74C49E7C1FD4FE0200F0501B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74C49E801FD4FE0200F0501B /* PBXTargetDependency */,
+			);
+			name = AggregatePayTests;
+			productName = AggregatePayTests;
+			productReference = 74C49E7E1FD4FE0200F0501B /* AggregatePayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74C49E881FD4FE0200F0501B /* AggregatePayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74C49E981FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePayUITests" */;
+			buildPhases = (
+				74C49E851FD4FE0200F0501B /* Sources */,
+				74C49E861FD4FE0200F0501B /* Frameworks */,
+				74C49E871FD4FE0200F0501B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74C49E8B1FD4FE0200F0501B /* PBXTargetDependency */,
+			);
+			name = AggregatePayUITests;
+			productName = AggregatePayUITests;
+			productReference = 74C49E891FD4FE0200F0501B /* AggregatePayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74C49E621FD4FE0100F0501B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = bingtianyu;
+				TargetAttributes = {
+					74C49E691FD4FE0100F0501B = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					74C49E7D1FD4FE0200F0501B = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 74C49E691FD4FE0100F0501B;
+					};
+					74C49E881FD4FE0200F0501B = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 74C49E691FD4FE0100F0501B;
+					};
+				};
+			};
+			buildConfigurationList = 74C49E651FD4FE0100F0501B /* Build configuration list for PBXProject "AggregatePay" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74C49E611FD4FE0100F0501B;
+			productRefGroup = 74C49E6B1FD4FE0100F0501B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74C49E691FD4FE0100F0501B /* AggregatePay */,
+				74C49E7D1FD4FE0200F0501B /* AggregatePayTests */,
+				74C49E881FD4FE0200F0501B /* AggregatePayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74C49E681FD4FE0100F0501B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
+				74F6723D1FD529D60074090D /* Info.plist in Resources */,
+				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E7C1FD4FE0200F0501B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E871FD4FE0200F0501B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04D54464876DDF126AAC9DA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3D1465E94EF78325483D08B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74C49E661FD4FE0100F0501B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E7A1FD4FE0200F0501B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74C49E851FD4FE0200F0501B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74C49E801FD4FE0200F0501B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74C49E691FD4FE0100F0501B /* AggregatePay */;
+			targetProxy = 74C49E7F1FD4FE0200F0501B /* PBXContainerItemProxy */;
+		};
+		74C49E8B1FD4FE0200F0501B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74C49E691FD4FE0100F0501B /* AggregatePay */;
+			targetProxy = 74C49E8A1FD4FE0200F0501B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74C49E771FD4FE0100F0501B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		74C49E901FD4FE0200F0501B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74C49E911FD4FE0200F0501B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74C49E931FD4FE0200F0501B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = AggregatePay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74C49E941FD4FE0200F0501B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = AggregatePay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		74C49E961FD4FE0200F0501B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				INFOPLIST_FILE = AggregatePayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AggregatePay.app/AggregatePay";
+			};
+			name = Debug;
+		};
+		74C49E971FD4FE0200F0501B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				INFOPLIST_FILE = AggregatePayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AggregatePay.app/AggregatePay";
+			};
+			name = Release;
+		};
+		74C49E991FD4FE0200F0501B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				INFOPLIST_FILE = AggregatePayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AggregatePay;
+			};
+			name = Debug;
+		};
+		74C49E9A1FD4FE0200F0501B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				INFOPLIST_FILE = AggregatePayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AggregatePay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74C49E651FD4FE0100F0501B /* Build configuration list for PBXProject "AggregatePay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C49E901FD4FE0200F0501B /* Debug */,
+				74C49E911FD4FE0200F0501B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74C49E921FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C49E931FD4FE0200F0501B /* Debug */,
+				74C49E941FD4FE0200F0501B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74C49E951FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C49E961FD4FE0200F0501B /* Debug */,
+				74C49E971FD4FE0200F0501B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74C49E981FD4FE0200F0501B /* Build configuration list for PBXNativeTarget "AggregatePayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74C49E991FD4FE0200F0501B /* Debug */,
+				74C49E9A1FD4FE0200F0501B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74C49E621FD4FE0100F0501B /* Project object */;
+}
