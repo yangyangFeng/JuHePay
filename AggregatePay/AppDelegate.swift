@@ -7,22 +7,71 @@
 //
 
 import UIKit
-
+import ESTabBarController_swift
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        window?.rootViewController = UIViewController()
+        
+        
+        window?.rootViewController = createTabBarController()
         
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }
 
+    func createTabBarController() -> UITabBarController {
+        let tabBarController = ESTabBarController()
+        
+        tabBarController.delegate = self
+        tabBarController.title = "Irregularity"
+        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
+        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
+        tabBarController.shouldHijackHandler = {
+            tabbarController, viewController, index in
+            if index == 2 {
+                return true
+            }
+            return false
+        }
+        tabBarController.didHijackHandler = {
+            [weak tabBarController] tabbarController, viewController, index in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+                let takePhotoAction = UIAlertAction(title: "Take a photo", style: .default, handler: nil)
+                alertController.addAction(takePhotoAction)
+                let selectFromAlbumAction = UIAlertAction(title: "Select from album", style: .default, handler: nil)
+                alertController.addAction(selectFromAlbumAction)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                tabBarController?.present(alertController, animated: true, completion: nil)
+            }
+        }
+        let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home3 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home4 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        
+        
+        home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home_1"))
+        home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Find", image: UIImage(named: "find"), selectedImage: UIImage(named: "find_1"))
+        home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(), title: nil, image: UIImage(named: "photo_verybig"), selectedImage: UIImage(named: "photo_verybig"))
+        home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Favor", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
+        home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Me", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"))
+
+        tabBarController.tabBar.shadowImage = nil
+        tabBarController.viewControllers = [home,home1,home2,home3,home4]
+        
+        return tabBarController
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

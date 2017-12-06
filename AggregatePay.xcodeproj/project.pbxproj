@@ -15,6 +15,11 @@
 		74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6441FD7DF470065A5F3 /* Info.plist */; };
 		74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6471FD7E0D00065A5F3 /* .gitkeep */; };
 		74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */; };
+		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
+		74D5F6511FD7F28C0065A5F3 /* APHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6501FD7F28C0065A5F3 /* APHomeViewController.swift */; };
+		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
+		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
+		74D5F65A1FD7FD1C0065A5F3 /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,11 @@
 		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74D5F6471FD7E0D00065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
+		74D5F6501FD7F28C0065A5F3 /* APHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeViewController.swift; sourceTree = "<group>"; };
+		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
+		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
+		74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTabBarItemContentView.swift; sourceTree = "<group>"; };
 		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
 		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +164,7 @@
 		74D5F6431FD7DF070065A5F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74D5F6521FD7F2EF0065A5F3 /* Temp */,
 				74F6723A1FD529D50074090D /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -170,9 +181,37 @@
 		74D5F6491FD7E0EE0065A5F3 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				74D5F64F1FD7F1D20065A5F3 /* Home */,
+				74D5F64C1FD7F1280065A5F3 /* Base */,
 				74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */,
 			);
 			path = Business;
+			sourceTree = "<group>";
+		};
+		74D5F64C1FD7F1280065A5F3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */,
+				74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */,
+				74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		74D5F64F1FD7F1D20065A5F3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F6501FD7F28C0065A5F3 /* APHomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		74D5F6521FD7F2EF0065A5F3 /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */,
+			);
+			path = Temp;
 			sourceTree = "<group>";
 		};
 		D798C481348F2D1B404B59FD /* Pods */ = {
@@ -306,6 +345,7 @@
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
+				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +419,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
+				74D5F6511FD7F28C0065A5F3 /* APHomeViewController.swift in Sources */,
+				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
+				74D5F65A1FD7FD1C0065A5F3 /* APTabBarItemContentView.swift in Sources */,
 				74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
