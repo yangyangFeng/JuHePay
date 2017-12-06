@@ -12,8 +12,10 @@
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
+		74D5F63F1FD7DE700065A5F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F63C1FD7DE6F0065A5F3 /* .gitignore */; };
+		74D5F6421FD7DEBF0065A5F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6411FD7DEBF0065A5F3 /* .gitignore */; };
+		74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6441FD7DF470065A5F3 /* Info.plist */; };
 		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
-		74F6723D1FD529D60074090D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723B1FD529D50074090D /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +46,11 @@
 		74C49E891FD4FE0200F0501B /* AggregatePayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AggregatePayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatePayUITests.swift; sourceTree = "<group>"; };
 		74C49E8F1FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D5F63C1FD7DE6F0065A5F3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		74D5F6411FD7DEBF0065A5F3 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		74F6723B1FD529D50074090D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
 		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,11 +107,12 @@
 			isa = PBXGroup;
 			children = (
 				74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */,
-				74C49E9C1FD51BB300F0501B /* Common */,
-				74C49E9B1FD51BB300F0501B /* Lib */,
-				74F6723A1FD529D50074090D /* Assets.xcassets */,
-				74F6723B1FD529D50074090D /* Info.plist */,
+				74D5F6401FD7DEBF0065A5F3 /* Utils */,
+				74D5F63B1FD7DE6F0065A5F3 /* Lib */,
+				74D5F6431FD7DF070065A5F3 /* Resources */,
+				74D5F63D1FD7DE700065A5F3 /* ConfigurationFiles */,
 				74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */,
+				74D5F6441FD7DF470065A5F3 /* Info.plist */,
 			);
 			path = AggregatePay;
 			sourceTree = "<group>";
@@ -129,18 +135,36 @@
 			path = AggregatePayUITests;
 			sourceTree = "<group>";
 		};
-		74C49E9B1FD51BB300F0501B /* Lib */ = {
+		74D5F63B1FD7DE6F0065A5F3 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				74D5F63C1FD7DE6F0065A5F3 /* .gitignore */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		74C49E9C1FD51BB300F0501B /* Common */ = {
+		74D5F63D1FD7DE700065A5F3 /* ConfigurationFiles */ = {
 			isa = PBXGroup;
 			children = (
+				74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */,
 			);
-			path = Common;
+			path = ConfigurationFiles;
+			sourceTree = "<group>";
+		};
+		74D5F6401FD7DEBF0065A5F3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F6411FD7DEBF0065A5F3 /* .gitignore */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		74D5F6431FD7DF070065A5F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74F6723A1FD529D50074090D /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D798C481348F2D1B404B59FD /* Pods */ = {
@@ -270,8 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74D5F6421FD7DEBF0065A5F3 /* .gitignore in Resources */,
+				74D5F63F1FD7DE700065A5F3 /* .gitignore in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
-				74F6723D1FD529D60074090D /* Info.plist in Resources */,
+				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
