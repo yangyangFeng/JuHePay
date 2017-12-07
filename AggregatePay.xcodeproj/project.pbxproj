@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
+		1A6DBA891FD8D7AD00E7D692 /* APNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */; };
+		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 		74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDateTools.swift; sourceTree = "<group>"; };
+		1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNetworking.swift; sourceTree = "<group>"; };
+		1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCommon.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A6DBA841FD8D7AD00E7D692 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */,
+			);
+			path = DateTools;
+			sourceTree = "<group>";
+		};
+		1A6DBA861FD8D7AD00E7D692 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		74C49E611FD4FE0100F0501B = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +171,7 @@
 		74D5F63D1FD7DE700065A5F3 /* ConfigurationFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */,
 				74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */,
 			);
 			path = ConfigurationFiles;
@@ -157,6 +180,8 @@
 		74D5F6401FD7DEBF0065A5F3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1A6DBA841FD8D7AD00E7D692 /* DateTools */,
+				1A6DBA861FD8D7AD00E7D692 /* Networking */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -422,7 +447,10 @@
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				74D5F6511FD7F28C0065A5F3 /* APHomeViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
+				1A6DBA891FD8D7AD00E7D692 /* APNetworking.swift in Sources */,
 				74D5F65A1FD7FD1C0065A5F3 /* APTabBarItemContentView.swift in Sources */,
+				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
+				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

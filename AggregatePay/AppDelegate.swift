@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 import ESTabBarController_swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
@@ -14,9 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        attributeIQKeyboardManager()
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        
-        
         
         window?.rootViewController = createTabBarController()
         
@@ -71,6 +71,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         return tabBarController
     }
+    
+    func attributeIQKeyboardManager() {
+        IQKeyboardManager.sharedManager().enable = true
+        //控制点击背景是否收起键盘
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        //控制键盘上的工具条文字颜色是否用户自定义
+        IQKeyboardManager.sharedManager().shouldShowTextFieldPlaceholder = true
+        //将右边Done改成完成
+        IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "完成"
+        // 控制是否显示键盘上的工具条
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        //最新版的设置键盘的returnKey的关键字 ,
+        //可以点击键盘上的next键，自动跳转到下一个输入框，最后一个输入框点击完成，自动收起键盘
+        IQKeyboardManager.sharedManager().toolbarManageBehaviour = .byPosition
+    }
+
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
