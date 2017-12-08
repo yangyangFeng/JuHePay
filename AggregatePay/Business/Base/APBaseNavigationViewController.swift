@@ -8,20 +8,46 @@
 
 import UIKit
 
-class APBaseNavigationViewController: UINavigationController {
+class APBaseNavigationViewController: UINavigationController ,UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.interactivePopGestureRecognizer?.delegate = self as UIGestureRecognizerDelegate
+        
         // Do any additional setup after loading the view.
     }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.viewControllers.count <= 1 {
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithshouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.viewControllers.count <= 1 {
+            return false
+        }
+        else
+        {
+            return true
+        }
     }
     
-
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.viewControllers.count <= 1 {
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

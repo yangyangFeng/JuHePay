@@ -15,6 +15,8 @@ PODS:
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
   - SnapKit (4.0.0)
+  - SwiftTheme (0.4.1)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -28,6 +30,8 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - SnapKit (~> 4.0.0)
+  - SwiftTheme
+  - Toast-Swift (~> 3.0.1)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -42,7 +46,9 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: a3d73e2cd346b0ffd7a88b95e43145ea7cc295b1
+PODFILE CHECKSUM: 3f29f9fa20af7e2504219f3b3d181bcd4de3b6aa
 
 COCOAPODS: 1.2.1

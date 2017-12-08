@@ -9,29 +9,45 @@
 import UIKit
 import IQKeyboardManagerSwift
 import ESTabBarController_swift
+import SwiftTheme
+import Toast_Swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        /**********************键盘管理*************************/
         attributeIQKeyboardManager()
+        /**********************主题配置*************************/
+        APP_Theme.switchThemeTo(theme: APP_Theme.Normal)
+        
+        /**********************Toast配置*************************/
+        ToastManager.shared.duration = 1.5
+        ToastManager.shared.position = .center
+        
+        
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
         window?.rootViewController = createTabBarController()
         
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
+        
         return true
     }
 
     func createTabBarController() -> UITabBarController {
+        ThemeManager.setTheme(index: 0)
         let tabBarController = ESTabBarController()
         
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
-        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
-        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
+//        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
+//        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
+        tabBarController.tabBar.theme_barTintColor = ["#A1B","#213"]
+        tabBarController.tabBar.theme_tintColor = ["#A1B","#213"]
+        
         tabBarController.shouldHijackHandler = {
             tabbarController, viewController, index in
             if index == 2 {
@@ -57,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home3 = APBaseNavigationViewController(rootViewController: APHomeViewController())
-        let home4 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home4 = APBaseNavigationViewController(rootViewController: APMineViewController())
         
         
         home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home_1"))
