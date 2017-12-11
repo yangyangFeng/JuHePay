@@ -33,6 +33,7 @@
 		1A6DBA891FD8D7AD00E7D692 /* APNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */; };
 		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
 		1A6DBAAF1FD8E35F00E7D692 /* APHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBAAD1FD8E35F00E7D692 /* APHomeViewController.swift */; };
+		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		1ABDA9471FDE769D00FE6097 /* CPSingletonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA9461FDE769D00FE6097 /* CPSingletonTest.swift */; };
 		1ABDA94C1FDE7B3200FE6097 /* APModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA9491FDE7B3200FE6097 /* APModifyViewController.swift */; };
 		1ABDA94E1FDE7B5200FE6097 /* APRepeatPasswordFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA94D1FDE7B5200FE6097 /* APRepeatPasswordFormsCell.swift */; };
@@ -49,7 +50,12 @@
 		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
 		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
-		74D5F65A1FD7FD1C0065A5F3 /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
+		74D5F65E1FD91DFF0065A5F3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F65D1FD91DFF0065A5F3 /* UIColorExtension.swift */; };
+		74D5F6611FD9221D0065A5F3 /* APMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6601FD9221D0065A5F3 /* APMineViewController.swift */; };
+		74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */; };
+		74D5F6671FD94C100065A5F3 /* AP_ThemeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */; };
+		74D5F6751FD954FE0065A5F3 /* APServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6741FD954FE0065A5F3 /* APServiceViewController.swift */; };
+		74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */; };
 		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +127,13 @@
 		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
 		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTabBarItemContentView.swift; sourceTree = "<group>"; };
+		74D5F65D1FD91DFF0065A5F3 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		74D5F6601FD9221D0065A5F3 /* APMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineViewController.swift; sourceTree = "<group>"; };
+		74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APTheme_Normal.plist; sourceTree = "<group>"; };
+		74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AP_ThemeConfig.swift; sourceTree = "<group>"; };
+		74D5F6741FD954FE0065A5F3 /* APServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APServiceViewController.swift; sourceTree = "<group>"; };
+		74D5F67E1FD95C660065A5F3 /* VHLNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHLNavigation.h; sourceTree = "<group>"; };
+		74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHLNavigation.m; sourceTree = "<group>"; };
 		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
 		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
@@ -514,6 +527,8 @@
 			isa = PBXGroup;
 			children = (
 				74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */,
+				74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */,
+				74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */,
 			);
 			path = ConfigurationFiles;
 			sourceTree = "<group>";
@@ -524,6 +539,7 @@
 				1ABDA9521FDE80E200FE6097 /* ObjectCTool */,
 				1A0A662C1FDE64A8004D59C0 /* Category */,
 				1A0A65D61FDE3A62004D59C0 /* Views */,
+				74D5F65C1FD91DFF0065A5F3 /* Extensions */,
 				1A6DBA841FD8D7AD00E7D692 /* DateTools */,
 				1A6DBA861FD8D7AD00E7D692 /* Networking */,
 			);
@@ -542,6 +558,7 @@
 		74D5F6461FD7E0D00065A5F3 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				74D5F67D1FD95C660065A5F3 /* VHLNavigation */,
 				74D5F6471FD7E0D00065A5F3 /* .gitkeep */,
 			);
 			path = Lib;
@@ -551,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0A65F91FDE5AA1004D59C0 /* System */,
+				74D5F65F1FD921D50065A5F3 /* Mine */,
 				74D5F64F1FD7F1D20065A5F3 /* Home */,
 				74D5F64C1FD7F1280065A5F3 /* Base */,
 				74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */,
@@ -584,6 +602,32 @@
 				74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */,
 			);
 			path = Temp;
+			sourceTree = "<group>";
+		};
+		74D5F65C1FD91DFF0065A5F3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F65D1FD91DFF0065A5F3 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		74D5F65F1FD921D50065A5F3 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F6601FD9221D0065A5F3 /* APMineViewController.swift */,
+				74D5F6741FD954FE0065A5F3 /* APServiceViewController.swift */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		74D5F67D1FD95C660065A5F3 /* VHLNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				74D5F67E1FD95C660065A5F3 /* VHLNavigation.h */,
+				74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */,
+			);
+			path = VHLNavigation;
 			sourceTree = "<group>";
 		};
 		D798C481348F2D1B404B59FD /* Pods */ = {
@@ -713,6 +757,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */,
@@ -791,9 +836,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */,
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
 				1A0A662B1FDE6289004D59C0 /* APBaseTextFormsCell.swift in Sources */,
+				74D5F6751FD954FE0065A5F3 /* APServiceViewController.swift in Sources */,
+				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1A0A66101FDE5AA1004D59C0 /* APLoginViewController.swift in Sources */,
@@ -802,11 +850,12 @@
 				1A0A65D51FDE3A56004D59C0 /* APCollectionKeyboardView.swift in Sources */,
 				1A6DBA891FD8D7AD00E7D692 /* APNetworking.swift in Sources */,
 				1A0A65DE1FDE3A62004D59C0 /* APKeyboardCompositionView.swift in Sources */,
-				74D5F65A1FD7FD1C0065A5F3 /* APTabBarItemContentView.swift in Sources */,
 				1A0A660E1FDE5AA1004D59C0 /* APSystemBaseViewController.swift in Sources */,
 				1A0A66111FDE5AA1004D59C0 /* APLoginToolBarView.swift in Sources */,
 				1A0A65DD1FDE3A62004D59C0 /* APKeyboardInputRulesTemplate.swift in Sources */,
 				1ABDA94C1FDE7B3200FE6097 /* APModifyViewController.swift in Sources */,
+				74D5F6611FD9221D0065A5F3 /* APMineViewController.swift in Sources */,
+				74D5F65E1FD91DFF0065A5F3 /* UIColorExtension.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
 				1A0A66371FDE717C004D59C0 /* APPhoneNumberFormsCell.swift in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
@@ -816,6 +865,7 @@
 				1ABDA9471FDE769D00FE6097 /* CPSingletonTest.swift in Sources */,
 				1A0A66351FDE70E2004D59C0 /* APForgetViewController.swift in Sources */,
 				1A0A65DF1FDE3A62004D59C0 /* APKeyboardView.swift in Sources */,
+				74D5F6671FD94C100065A5F3 /* AP_ThemeConfig.swift in Sources */,
 				74C49E6E1FD4FE0100F0501B /* AppDelegate.swift in Sources */,
 				1A0A66141FDE5AA1004D59C0 /* APInviteCodeFormsCell.swift in Sources */,
 				1ABDA9561FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m in Sources */,
