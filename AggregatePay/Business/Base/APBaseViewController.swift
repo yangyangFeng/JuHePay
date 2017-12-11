@@ -15,6 +15,8 @@ class APBaseViewController: UIViewController {
         
         self.navigationController?.navigationBar.isTranslucent = false
         
+        self.vhl_setNavBarShadowImageHidden(true)
+        
         ap_setStatusBarStyle(UIStatusBarStyle.default)
         // Do any additional setup after loading the view.
     }
