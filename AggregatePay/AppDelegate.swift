@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import IQKeyboardManagerSwift
 import ESTabBarController_swift
 @UIApplicationMain
@@ -43,28 +44,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             [weak tabBarController] tabbarController, viewController, index in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
-                let takePhotoAction = UIAlertAction(title: "Take a photo", style: .default, handler: nil)
+                let alertController = UIAlertController.init(title: nil,
+                                                             message: nil,
+                                                             preferredStyle: .actionSheet)
+                let takePhotoAction = UIAlertAction(title: "Take a photo",
+                                                    style: .default,
+                                                    handler: nil)
                 alertController.addAction(takePhotoAction)
-                let selectFromAlbumAction = UIAlertAction(title: "Select from album", style: .default, handler: nil)
+                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
+                                                          style: .default,
+                                                          handler: nil)
                 alertController.addAction(selectFromAlbumAction)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                let cancelAction = UIAlertAction(title: "Cancel",
+                                                 style: .cancel,
+                                                 handler: nil)
                 alertController.addAction(cancelAction)
                 tabBarController?.present(alertController, animated: true, completion: nil)
             }
         }
-        let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home = APHomeViewController()
         let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home3 = APBaseNavigationViewController(rootViewController: APHomeViewController())
-        let home4 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home4 = APBaseNavigationViewController(rootViewController: APLoginViewController())
         
         
-        home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home_1"))
-        home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Find", image: UIImage(named: "find"), selectedImage: UIImage(named: "find_1"))
-        home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(), title: nil, image: UIImage(named: "photo_verybig"), selectedImage: UIImage(named: "photo_verybig"))
-        home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Favor", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
-        home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(), title: "Me", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"))
+        home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                            title: "Home",
+                                            image: UIImage(named: "home"),
+                                            selectedImage: UIImage(named: "home_1"))
+        home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Find",
+                                             image: UIImage(named: "find"),
+                                             selectedImage: UIImage(named: "find_1"))
+        home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(),
+                                             title: nil,
+                                             image: UIImage(named: "photo_verybig"),
+                                             selectedImage: UIImage(named: "photo_verybig"))
+        home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Favor",
+                                             image: UIImage(named: "favor"),
+                                             selectedImage: UIImage(named: "favor_1"))
+        home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Me",
+                                             image: UIImage(named: "me"),
+                                             selectedImage: UIImage(named: "me_1"))
 
         tabBarController.tabBar.shadowImage = nil
         tabBarController.viewControllers = [home,home1,home2,home3,home4]
@@ -77,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         //控制点击背景是否收起键盘
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         //控制键盘上的工具条文字颜色是否用户自定义
-        IQKeyboardManager.sharedManager().shouldShowTextFieldPlaceholder = true
+        IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = true
         //将右边Done改成完成
         IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "完成"
         // 控制是否显示键盘上的工具条

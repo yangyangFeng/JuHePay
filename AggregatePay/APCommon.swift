@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import SnapKit
-import IQKeyboardManagerSwift
 
 class APCommon: NSObject {
 
-    
-    
     //请求地址
     static var http_url = "http://192.168.1.240:29111"
     

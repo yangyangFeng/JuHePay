@@ -9,6 +9,6 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-//#import "MJRefresh.h"
+#import "CPCheckAuthInputInfoTool.h"
 
 #endif /* BridgingHeader_h */
