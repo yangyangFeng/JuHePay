@@ -8,20 +8,23 @@
 
 import UIKit
 
-class APMineStaticListView: UIView, UITableViewDelegate {
+class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
 
-//    let tableView : UITableView
+    let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        tableView = UITableView(frame: CGRect.zero, style: .plain)
-//        tableView.delegate = self
-////        tableView.dataSource = self
-//        tableView.tableFooterView = UIView()
-//        tableView.separatorStyle = .none
-//
-//        addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
+        tableView.register(APMineStaticListCell.self, forCellReuseIdentifier: "APMineStaticListCell")
+        
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,5 +55,20 @@ class APMineStaticListView: UIView, UITableViewDelegate {
         {
             return 40
         }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "Mine_tableViewCell_line")
+            cell.contentView.backgroundColor = UIColor.groupTableViewBackground
+            return cell
+        }
+        else
+        {
+            let cell = APMineStaticListCell.cellWithTableView(tableView)
+            
+            return cell!
+        }
+        
     }
 }
