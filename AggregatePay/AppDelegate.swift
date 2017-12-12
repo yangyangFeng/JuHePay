@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 //            }
             return false
         }
-
         tabBarController.didHijackHandler = {
             [weak tabBarController] tabbarController, viewController, index in
             
