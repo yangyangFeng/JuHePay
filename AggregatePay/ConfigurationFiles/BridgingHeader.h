@@ -12,5 +12,5 @@
 
 #import "CPCheckAuthInputInfoTool.h"
 #import "VHLNavigation.h"
-
+#import "UIImage+QH.h"
 #endif /* BridgingHeader_h */

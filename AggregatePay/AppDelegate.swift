@@ -40,22 +40,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     func createTabBarController() -> UITabBarController {
         ThemeManager.setTheme(index: 0)
-        let tabBarController = ESTabBarController()
+        let tabBarController = APBaseTabBarViewController()
         
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
 //        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
 //        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
-        tabBarController.tabBar.theme_barTintColor = ["#A1B","#213"]
-        tabBarController.tabBar.theme_tintColor = ["#A1B","#213"]
+        tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.theme_barTintColor = ["#373737","#213"]
+        tabBarController.tabBar.theme_tintColor = ["#373737","#213"]
+        
         
         tabBarController.shouldHijackHandler = {
             tabbarController, viewController, index in
-            if index == 2 {
-                return true
-            }
+//            if index == 2 {
+//                return true
+//            }
             return false
         }
+
         tabBarController.didHijackHandler = {
             [weak tabBarController] tabbarController, viewController, index in
             
@@ -79,9 +82,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         }
         let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
+
         let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
-        let home3 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home3 = APBaseNavigationViewController(rootViewController: APMineViewController())
 
         let home4 = APBaseNavigationViewController(rootViewController: APLoginViewController())
 
@@ -89,26 +93,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                             title: "Home",
-                                            image: UIImage(named: "home"),
-                                            selectedImage: UIImage(named: "home_1"))
+                                            image: UIImage(named: "Home_TbaBar_钱包_N"),
+                                            selectedImage: UIImage(named: "Home_TbaBar_钱包_H"))
         home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Find",
-                                             image: UIImage(named: "find"),
-                                             selectedImage: UIImage(named: "find_1"))
+                                             image: UIImage(named: "Home_TbaBar_推广_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_推广_H"))
         home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(),
                                              title: nil,
-                                             image: UIImage(named: "photo_verybig"),
-                                             selectedImage: UIImage(named: "photo_verybig"))
+                                             image: UIImage(named: "Home_TbaBar_收款_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_收款_H"))
         home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Favor",
-                                             image: UIImage(named: "favor"),
-                                             selectedImage: UIImage(named: "favor_1"))
+                                             image: UIImage(named: "Home_TbaBar_收益_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_收益_H"))
         home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Me",
-                                             image: UIImage(named: "me"),
-                                             selectedImage: UIImage(named: "me_1"))
+                                             image: UIImage(named: "Home_TbaBar_我的_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_我的_H"))
 
         tabBarController.tabBar.shadowImage = nil
+            //UIImage(size: CGSize(width : 1000,height : 4), pureColor: UIColor(hex6: 0x323232) , alpha: 1)
         tabBarController.viewControllers = [home,home1,home2,home3,home4]
         
         return tabBarController
