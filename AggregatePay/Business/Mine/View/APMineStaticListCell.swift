@@ -17,6 +17,19 @@ class APMineStaticListCell: UITableViewCell {
     let arrow = UIImageView()
     let telButton = UIButton(type: UIButtonType.custom)
     
+    static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
+        let identifier = "APMineStaticListCell"
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        
+        guard let newCell = cell else {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
+            return cell
+        }
+        return newCell
+    }
+    
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,16 +39,20 @@ class APMineStaticListCell: UITableViewCell {
         title.font = UIFont.systemFont(ofSize: 14)
         title.theme_textColor = ["#484848"]
         title.textAlignment = .left
+        title.text = "我的钱包"
         
         telButton.theme_setTitleColor(["#999999"], forState: UIControlState.normal)
         telButton.setTitle(Service_tel, for: UIControlState.normal)
         telButton.titleLabel?.textAlignment = .right
+        
+        telButton.addTarget(self, action: #selector(telButtonAction), for: UIControlEvents.touchUpInside)
         
         arrow.theme_image = ["Mine_head_arrow"]
         
         contentView.addSubview(title)
         contentView.addSubview(telButton)
         contentView.addSubview(leftIcon)
+        contentView.addSubview(arrow)
         contentView.addSubview(bottomLine)
         
         leftIcon.snp.makeConstraints { (make) in
@@ -57,6 +74,17 @@ class APMineStaticListCell: UITableViewCell {
             make.right.equalTo(-30)
             make.centerY.equalTo(contentView.snp.centerY).offset(0)
         }
+        bottomLine.snp.makeConstraints { (make) in
+            make.bottom.equalTo(0)
+            make.height.equalTo(2.5)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
+        }
+    }
+    
+    @objc func telButtonAction()
+    {
+        print("拨打电话")
     }
     
     required init?(coder aDecoder: NSCoder) {

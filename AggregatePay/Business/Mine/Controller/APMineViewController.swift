@@ -28,6 +28,10 @@ class APMineViewController: APBaseViewController {
         return view
     }()
     
+    lazy var staticListView: APMineStaticListView = {
+        let view = APMineStaticListView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,12 +69,16 @@ class APMineViewController: APBaseViewController {
         
   
         view.addSubview(headView)
+        view.addSubview(staticListView)
         headView.snp.makeConstraints { (make) in
             make.top.equalTo(-vhl_navigationBarAndStatusBarHeight());
             make.left.right.equalTo(0)
             make.height.equalTo(208)
         }
-        
+        staticListView.snp.makeConstraints { (make) in
+            make.top.equalTo(headView.snp.bottom).offset(0)
+            make.left.right.bottom.equalTo(0)
+        }
         // Do any additional setup after loading the view.
         
         
