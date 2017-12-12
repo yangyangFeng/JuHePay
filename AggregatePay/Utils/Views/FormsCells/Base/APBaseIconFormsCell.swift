@@ -18,7 +18,7 @@ class APBaseIconFormsCell: APBaseFormsCell {
     override init() {
         super.init()
         bottomLine.backgroundColor = UIColor.green
-        icon.backgroundColor = UIColor.red
+        icon.backgroundColor = UIColor.clear
         
         addSubview(icon)
         
@@ -26,7 +26,7 @@ class APBaseIconFormsCell: APBaseFormsCell {
             maker.left.equalTo(self.snp.left)
             maker.top.equalTo(self.snp.top)
             maker.bottom.equalTo(bottomLine.snp.top)
-            maker.width.equalTo(40)
+            maker.width.equalTo(1)
         }
     }
     

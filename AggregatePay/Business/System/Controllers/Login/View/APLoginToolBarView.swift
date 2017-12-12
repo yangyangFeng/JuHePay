@@ -26,6 +26,9 @@ class APLoginToolBarView: UIView {
         memory.titleLabel?.textAlignment = .left
         memory.setTitle(_ : "记住密码", for: .normal)
         memory.setTitleColor(_ : UIColor.black, for: .normal)
+//        theme_tintColor
+//        memory.theme_setImage(<#T##picker: ThemeImagePicker?##ThemeImagePicker?#>, forState: .normal)
+//        memory.setImage(UIImage(named:"icon1"), for: )
         memory.addTarget(self,
                          action: #selector(clickMemory),
                          for: .touchUpInside)

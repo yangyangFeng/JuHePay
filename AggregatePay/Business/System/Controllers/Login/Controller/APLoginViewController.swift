@@ -70,6 +70,7 @@ class APLoginViewController: APSystemBaseViewController, APLoginToolBarViewDeleg
     
     // 点击注册按钮
     @objc func clickRegisterVC() {
+        
         let registerVC: APRegisterViewController = APRegisterViewController()
         self.navigationController?.pushViewController(registerVC, animated: true)
     }

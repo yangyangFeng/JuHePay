@@ -12,7 +12,8 @@ class APBaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.groupTableViewBackground
+        
+        view.backgroundColor = UIColor.white
         
         self.navigationController?.navigationBar.isTranslucent = false
         
