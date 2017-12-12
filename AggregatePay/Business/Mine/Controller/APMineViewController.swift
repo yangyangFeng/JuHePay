@@ -23,12 +23,20 @@ class APMineViewController: APBaseViewController {
         return temp
     }()
     
+    lazy var headView: APMineHeaderView = {
+        let view = APMineHeaderView()
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.vhl_setNavBackgroundColor(UIColor.white)
         
+        self.vhl_setNavBarTitleColor(UIColor(hex6: 0xc8a556))
         
+        self.vhl_setNavBarBackgroundAlpha(0.0)
+        
+//        self.ap_setNavigationBarHidden(true)
         
 //        ThemeManager.setTheme(plistName: "APTheme_Normal", path: .mainBundle)
         
@@ -36,28 +44,32 @@ class APMineViewController: APBaseViewController {
         
         title = "我的"
         
-        view.addSubview(btn)
+//        view.addSubview(btn)
         
-        UIApplication.shared.theme_setStatusBarStyle([.lightContent,.default], animated: true)
-        let shadow = NSShadow()
-        shadow.shadowOffset = CGSize(width: 0, height: 0)
+//        UIApplication.shared.theme_setStatusBarStyle([.lightContent,.default], animated: true)
+//        let shadow = NSShadow()
+//        shadow.shadowOffset = CGSize(width: 0, height: 0)
+//
+//
+//        let titleAttributes = APGlobalPicker.barTextColors.map { (hexString) in
+//            return [
+//                NSAttributedStringKey.foregroundColor: UIColor(rgba: hexString),
+//            ]
+//        }
         
-   
-        let titleAttributes = APGlobalPicker.barTextColors.map { (hexString) in
-            return [
-                NSAttributedStringKey.foregroundColor: UIColor(rgba: hexString),
-            ]
+        
+//        self.navigationController?.navigationBar.theme_barTintColor = ["#FFF","#000"]
+//        self.navigationController?.navigationBar.theme_tintColor = ["#000","#FFF"]
+//
+//        self.navigationController?.navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
+        
+  
+        view.addSubview(headView)
+        headView.snp.makeConstraints { (make) in
+            make.top.equalTo(-vhl_navigationBarAndStatusBarHeight());
+            make.left.right.equalTo(0)
+            make.height.equalTo(208)
         }
-        
-        
-        self.navigationController?.navigationBar.theme_barTintColor = ["#FFF","#000"]
-        self.navigationController?.navigationBar.theme_tintColor = ["#000","#FFF"]
-        
-        self.navigationController?.navigationBar.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
-        
-        btn.theme_backgroundColor = ["#FFF","#ABB"]
-        
-        
         
         // Do any additional setup after loading the view.
         
