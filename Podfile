@@ -13,7 +13,6 @@ target 'AggregatePay' do
     #=========================================================
 
 pod 'Bugly'
-pod 'IQKeyboardManager'
 pod 'MJRefresh'
 pod 'MJExtension'
 pod 'SDWebImage'
@@ -21,6 +20,13 @@ pod 'KVOController'
 pod 'SnapKit', '~> 4.0.0'
 pod 'Alamofire', '~> 4.5'
 pod 'AlamofireObjectMapper', '~> 5.0'
+pod 'ESTabBarController-swift', '~> 2.5’
+pod 'EFQRCode', '~> 1.2.7' # 二维码
+pod 'IQKeyboardManagerSwift', '~> 5.0.6' # 键盘
+pod 'SwiftTheme', '~> 0.4.1' #主题切换
+pod 'Toast-Swift', '~> 3.0.1'
+pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5'
+pod 'JPush', '~> 3.0.7'
 end
 
 

@@ -7,22 +7,132 @@
 //
 
 import UIKit
-
+import SnapKit
+import IQKeyboardManagerSwift
+import ESTabBarController_swift
+import SwiftTheme
+import Toast_Swift
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        /**********************键盘管理*************************/
+        attributeIQKeyboardManager()
+        /**********************主题配置*************************/
+        APP_Theme.switchThemeTo(theme: APP_Theme.Normal)
+        
+        /**********************Toast配置*************************/
+        ToastManager.shared.duration = 1.5
+        ToastManager.shared.position = .center
+        
+        
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        window?.rootViewController = UIViewController()
+        window?.rootViewController = createTabBarController()
         
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
+        
         return true
     }
 
+    func createTabBarController() -> UITabBarController {
+        ThemeManager.setTheme(index: 0)
+        let tabBarController = APBaseTabBarViewController()
+        
+        tabBarController.delegate = self
+        tabBarController.title = "Irregularity"
+//        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
+//        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
+        tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.theme_barTintColor = ["#373737","#213"]
+        tabBarController.tabBar.theme_tintColor = ["#373737","#213"]
+        
+        
+        tabBarController.shouldHijackHandler = {
+            tabbarController, viewController, index in
+//            if index == 2 {
+//                return true
+//            }
+            return false
+        }
+//        tabBarController.didHijackHandler = {
+//            [weak tabBarController] tabbarController, viewController, index in
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                let alertController = UIAlertController.init(title: nil,
+//                                                             message: nil,
+//                                                             preferredStyle: .actionSheet)
+//                let takePhotoAction = UIAlertAction(title: "Take a photo",
+//                                                    style: .default,
+//                                                    handler: nil)
+//                alertController.addAction(takePhotoAction)
+//                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
+//                                                          style: .default,
+//                                                          handler: nil)
+//                alertController.addAction(selectFromAlbumAction)
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel,
+//                                                 handler: nil)
+//                alertController.addAction(cancelAction)
+//                tabBarController?.present(alertController, animated: true, completion: nil)
+//            }
+//        }
+        let home = APHomeViewController()
+        let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let home3 = APBaseNavigationViewController(rootViewController: APMineViewController())
+
+        let home4 = APBaseNavigationViewController(rootViewController: APLoginViewController())
+
+        
+        
+        home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                            title: "Home",
+                                            image: UIImage(named: "Home_TbaBar_钱包_N"),
+                                            selectedImage: UIImage(named: "Home_TbaBar_钱包_H"))
+        home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Find",
+                                             image: UIImage(named: "Home_TbaBar_推广_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_推广_H"))
+        home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(),
+                                             title: nil,
+                                             image: UIImage(named: "Home_TbaBar_收款_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_收款_H"))
+        home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Favor",
+                                             image: UIImage(named: "Home_TbaBar_收益_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_收益_H"))
+        home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+                                             title: "Me",
+                                             image: UIImage(named: "Home_TbaBar_我的_N"),
+                                             selectedImage: UIImage(named: "Home_TbaBar_我的_H"))
+
+        tabBarController.tabBar.shadowImage = nil
+            //UIImage(size: CGSize(width : 1000,height : 4), pureColor: UIColor(hex6: 0x323232) , alpha: 1)
+        tabBarController.viewControllers = [home,home1,home2,home3,home4]
+        
+        return tabBarController
+    }
+    
+    func attributeIQKeyboardManager() {
+        IQKeyboardManager.sharedManager().enable = true
+        //控制点击背景是否收起键盘
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        //控制键盘上的工具条文字颜色是否用户自定义
+        IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = true
+        //将右边Done改成完成
+        IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = "完成"
+        // 控制是否显示键盘上的工具条
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        //最新版的设置键盘的returnKey的关键字 ,
+        //可以点击键盘上的next键，自动跳转到下一个输入框，最后一个输入框点击完成，自动收起键盘
+        IQKeyboardManager.sharedManager().toolbarManageBehaviour = .byPosition
+    }
+
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
