@@ -54,8 +54,9 @@ class APKeyboardInputRulesTemplate: NSObject {
             else {
                 let deRange = amountStr.range(of: APDecimalPoint)
                 let backNumber: Substring = amountStr.suffix(from: deRange!.upperBound) as Substring
-                if (backNumber.count >= 2) {
-                    //小数点后面最多保留两位
+                
+                //小数点后面最多保留两位
+                if (backNumber.count >= 2 || (backNumber.count >= 1 && num == "00")) {
                     isThrough = false
                 }
             }

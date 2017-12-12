@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 tabBarController?.present(alertController, animated: true, completion: nil)
             }
         }
-        let home = APHomeViewController()
+        let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home3 = APBaseNavigationViewController(rootViewController: APHomeViewController())

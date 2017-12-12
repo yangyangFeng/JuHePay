@@ -1,5 +1,5 @@
 //
-//  APOldPasswordFormsCell.swift
+//  APPhoneNumberFormsCell.swift
 //  AggregatePay
 //
 //  Created by BlackAnt on 2017/12/11.
@@ -8,16 +8,15 @@
 
 import UIKit
 
-class APRepeatPasswordFormsCell: APTitleTextFormsCell {
+class APForgetSmsCodeCell: APTextFormsCell {
 
     override init() {
         super.init()
-        title.text = "确认密码:"
-        topLine.backgroundColor = UIColor.clear
+        textField.keyboardType = UIKeyboardType.numberPad
+        textField.placeholder = "请输入短信验证码"
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

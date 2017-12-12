@@ -1,5 +1,5 @@
 //
-//  APNewPasswordFormsCell.swift
+//  APMobileFormsCell.swift
 //  AggregatePay
 //
 //  Created by BlackAnt on 2017/12/11.
@@ -8,15 +8,16 @@
 
 import UIKit
 
-class APNewPasswordFormsCell: APTitleTextFormsCell {
-
+class APForgetAccountCell: APSendSMSCodeFormsCell {
+    
     override init() {
         super.init()
-        title.text = "新密码:"
+        textField.placeholder = "请输入注册手机号"
+        sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
