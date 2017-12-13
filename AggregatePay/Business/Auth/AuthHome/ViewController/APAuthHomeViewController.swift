@@ -9,27 +9,44 @@
 import UIKit
 
 class APAuthHomeViewController: APBaseViewController {
-
+    
+    var dataSource:Array<Any>?
+    
+    lazy var authHomeView: APAuthHomeView = {
+        let view = APAuthHomeView()
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dataSource = loadAuthStatus()
+        setUpUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setUpUI() {
+        
+        view.addSubview(authHomeView)
+        authHomeView.snp.makeConstraints { (make) in
+           make.top.equalTo(-vhl_navigationBarAndStatusBarHeight());
+           make.left.right.bottom.equalTo(authHomeView.superview!)
+        }
+        authHomeView.dataSource = dataSource!
+        authHomeView.tableView .reloadData()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadAuthStatus() -> Array<Any> {
+        let titles = ["实名认证", "结算卡认证", "安全认证"]
+        var dataSource: Array<Any> = []
+        
+        for title in titles {
+            let model = APAuthHomeModel()
+            model.authName = title
+            model.authStatus = 1
+            dataSource.append(model)
+        }
+        return dataSource
     }
-    */
 
 }

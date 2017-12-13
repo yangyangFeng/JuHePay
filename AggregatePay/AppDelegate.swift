@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home3 = APBaseNavigationViewController(rootViewController: APMineViewController())
 
-        let home4 = APBaseNavigationViewController(rootViewController: APLoginViewController())
+        let home4 = APBaseNavigationViewController(rootViewController: APMineViewController())
 
         
         
