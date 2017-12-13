@@ -1,19 +1,18 @@
 //
-//  APPhoneNumberFormsCell.swift
+//  APLoginPasswordCell.swift
 //  AggregatePay
 //
-//  Created by BlackAnt on 2017/12/11.
+//  Created by BlackAnt on 2017/12/12.
 //  Copyright © 2017年 bingtianyu. All rights reserved.
 //
 
 import UIKit
 
-class APPhoneNumberFormsCell: APTitleTextFormsCell {
+class APLoginPasswordCell: APPasswordFormsCell {
 
     override init() {
         super.init()
-        title.text = "验证码:"
-        topLine.backgroundColor = UIColor.clear
+        textField.placeholder = "请输入密码"
     }
     
     required init?(coder aDecoder: NSCoder) {

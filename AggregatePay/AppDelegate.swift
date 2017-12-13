@@ -58,29 +58,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 //            }
             return false
         }
-//        tabBarController.didHijackHandler = {
-//            [weak tabBarController] tabbarController, viewController, index in
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                let alertController = UIAlertController.init(title: nil,
-//                                                             message: nil,
-//                                                             preferredStyle: .actionSheet)
-//                let takePhotoAction = UIAlertAction(title: "Take a photo",
-//                                                    style: .default,
-//                                                    handler: nil)
-//                alertController.addAction(takePhotoAction)
-//                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
-//                                                          style: .default,
-//                                                          handler: nil)
-//                alertController.addAction(selectFromAlbumAction)
-//                let cancelAction = UIAlertAction(title: "Cancel",
-//                                                 style: .cancel,
-//                                                 handler: nil)
-//                alertController.addAction(cancelAction)
-//                tabBarController?.present(alertController, animated: true, completion: nil)
-//            }
-//        }
-        let home = APHomeViewController()
+        tabBarController.didHijackHandler = {
+            [weak tabBarController] tabbarController, viewController, index in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                let alertController = UIAlertController.init(title: nil,
+                                                             message: nil,
+                                                             preferredStyle: .actionSheet)
+                let takePhotoAction = UIAlertAction(title: "Take a photo",
+                                                    style: .default,
+                                                    handler: nil)
+                alertController.addAction(takePhotoAction)
+                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
+                                                          style: .default,
+                                                          handler: nil)
+                alertController.addAction(selectFromAlbumAction)
+                let cancelAction = UIAlertAction(title: "Cancel",
+                                                 style: .cancel,
+                                                 handler: nil)
+                alertController.addAction(cancelAction)
+                tabBarController?.present(alertController, animated: true, completion: nil)
+            }
+        }
+        let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
+
         let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
         let home3 = APBaseNavigationViewController(rootViewController: APMineViewController())

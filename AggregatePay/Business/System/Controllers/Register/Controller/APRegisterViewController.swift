@@ -21,50 +21,95 @@ import UIKit
  */
 class APRegisterViewController: APSystemBaseViewController {
     
-    var accountFormsCell: APAccountFormsCell = APAccountFormsCell()
-    var smsCodeFormsCell: APSMSCodeFormsCell = APSMSCodeFormsCell()
-    var passwordFormsCell: APPasswordFormsCell = APPasswordFormsCell()
-    var inviteCodeFormsCell: APInviteCodeFormsCell = APInviteCodeFormsCell()
-    var registerToolBarView: APRegisterToolBarView = APRegisterToolBarView()
+    var registerAccountCell: APRegisterAccountCell = APRegisterAccountCell()
+    var registerSmsCodeCell: APRegisterSmsCodeCell = APRegisterSmsCodeCell()
+    var registerPasswordCell: APRegisterPasswordCell = APRegisterPasswordCell()
+    var registerInviteCodeCell: APRegisterInviteCell = APRegisterInviteCell()
+    var registerAgreedCell: APRegisterAgreedCell = APRegisterAgreedCell()
+    var registerSubmitCell: APRegisterSubmitCell = APRegisterSubmitCell()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "商户注册"
         
-        view.addSubview(accountFormsCell)
-        view.addSubview(smsCodeFormsCell)
-        view.addSubview(passwordFormsCell)
-        view.addSubview(inviteCodeFormsCell)
-        view.addSubview(registerToolBarView)
+        registerAccountCell.identify = "registerAccountID"
+        registerSmsCodeCell.identify = "registerSmsCodeID"
+        registerPasswordCell.identify = "registerPasswordID"
+        registerInviteCodeCell.identify = "registerInviteCodeID"
+        registerAgreedCell.identify = "registerAgreedID"
+        registerSubmitCell.identify = "registerSubmitID"
+     
+        view.addSubview(registerAccountCell)
+        view.addSubview(registerSmsCodeCell)
+        view.addSubview(registerPasswordCell)
+        view.addSubview(registerInviteCodeCell)
+        view.addSubview(registerAgreedCell)
+        view.addSubview(registerSubmitCell)
         
-        accountFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top).offset(topOffset)
+        registerAccountCell.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset )
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
-        smsCodeFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(accountFormsCell.snp.bottom)
+        
+        registerSmsCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(registerAccountCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
-        passwordFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(smsCodeFormsCell.snp.bottom)
+        
+        registerPasswordCell.snp.makeConstraints { (make) in
+            make.top.equalTo(registerSmsCodeCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
-        inviteCodeFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(passwordFormsCell.snp.bottom)
+        
+        registerInviteCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(registerPasswordCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
-        registerToolBarView.snp.makeConstraints { (make) in
-            make.top.equalTo(inviteCodeFormsCell.snp.bottom)
+        
+        registerAgreedCell.snp.makeConstraints { (make) in
+            make.top.equalTo(registerInviteCodeCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
+        }
+        
+        registerSubmitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(registerAgreedCell.snp.bottom).offset(20)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
+            make.height.equalTo(35)
+        }
+        
+        registerAccountCell.textBlock = { (key, value) in
+            print("registerAccountCell:\(key) ___ value:\(value)")
+        }
+        
+        registerSmsCodeCell.textBlock = { (key, value) in
+            print("registerSmsCodeCell:\(key) ___ value:\(value)")
+        }
+        
+        registerPasswordCell.textBlock = { (key, value) in
+            print("registerPasswordCell:\(key) ___ value:\(value)")
+        }
+        
+        registerInviteCodeCell.textBlock = { (key, value) in
+            print("registerInviteCodeCell:\(key) ___ value:\(value)")
+        }
+        
+        registerAgreedCell.buttonBlock = { (key, value) in
+            print("registerAgreedCell:\(key) ___ value:\(value)")
+        }
+        
+        registerSubmitCell.buttonBlock = { (key, value) in
+            print("registerSubmitCell:\(key) ___ value:\(value)")
         }
     }
 }

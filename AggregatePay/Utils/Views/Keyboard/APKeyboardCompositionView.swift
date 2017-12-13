@@ -29,7 +29,7 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
             make.top.equalTo(self.snp.top)
-            make.height.equalTo(100)
+            make.height.equalTo(self.snp.height).multipliedBy(0.25)
         }
         keyboardView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.snp.left)

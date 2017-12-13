@@ -14,63 +14,70 @@ import UIKit
 class APForgetViewController: APSystemBaseViewController {
     
     var prompt: UILabel = UILabel()
-    var mobileFormsCell: APSMSTextFormsCell = APSMSTextFormsCell()
-    var phoneNumberFormsCell: APPhoneNumberFormsCell = APPhoneNumberFormsCell()
-    var modify: UIButton = UIButton()
+    var forgetAccountCell: APForgetAccountCell = APForgetAccountCell()
+    var forgetSmsCodeCell: APForgetSmsCodeCell = APForgetSmsCodeCell()
+    var forgetSubmitCell: APForgetSubmitCell = APForgetSubmitCell()
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "找回密码"
+        prompt.theme_textColor = ["#d09326"]
+        prompt.theme_backgroundColor = ["#fff4d9"]
+        prompt.font = UIFont.systemFont(ofSize: 10)
+        prompt.text = "    为了保障您的账户安全，请输入注册手机号码进行验证。"
         
-        prompt.text = "为了保障您的账户安全，请输入注册手机号码进行验证。"
-        
-        modify.titleLabel?.textAlignment = .center
-        modify.setTitle(_ : "提交", for: .normal)
-        modify.setTitleColor(_ : UIColor.black, for: .normal)
-        modify.addTarget(self,
-                         action: #selector(clickModifyVC),
-                         for: .touchUpInside)
+        forgetAccountCell.identify = "forgetAccountID"
+        forgetSmsCodeCell.identify = "forgetSmsCodeID"
+        forgetSubmitCell.identify = "forgetSubmitID"
         
         view.addSubview(prompt)
-        view.addSubview(mobileFormsCell)
-        view.addSubview(phoneNumberFormsCell)
-        view.addSubview(modify)
+        view.addSubview(forgetAccountCell)
+        view.addSubview(forgetSmsCodeCell)
+        view.addSubview(forgetSubmitCell)
         
         prompt.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top)
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
-            make.height.equalTo(30)
+            make.height.equalTo(25)
         }
         
-        mobileFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(prompt.snp.bottom)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
+        forgetAccountCell.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(40)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        phoneNumberFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(mobileFormsCell.snp.bottom)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
+        forgetSmsCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(forgetAccountCell.snp.bottom)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        modify.snp.makeConstraints { (make) in
-            make.top.equalTo(phoneNumberFormsCell.snp.bottom).offset(30)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
-            make.height.equalTo(cellHeight)
+        forgetSubmitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(forgetSmsCodeCell.snp.bottom).offset(40)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
+            make.height.equalTo(35)
+        }
+        
+        forgetAccountCell.textBlock = { (key, value) in
+            print("forgetAccountCell:\(key) ___ value:\(value)")
+        }
+        
+        forgetSmsCodeCell.textBlock = { (key, value) in
+            print("forgetSmsCodeCell:\(key) ___ value:\(value)")
+        }
+        
+        forgetSubmitCell.buttonBlock = { (key, value) in
+            print("forgetSubmitCell:\(key) ___ value:\(value)")
+            let modifyVC: APModifyViewController = APModifyViewController()
+            self.navigationController?.pushViewController(modifyVC, animated: true)
         }
     }
-
-    // 点击注册按钮
-    @objc func clickModifyVC() {
-        let modifyVC: APModifyViewController = APModifyViewController()
-        self.navigationController?.pushViewController(modifyVC, animated: true)
-    }
+   
 
 }
 
