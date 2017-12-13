@@ -10,6 +10,8 @@
 		1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A65D21FDE3A56004D59C0 /* APCollectionDisplayView.swift */; };
 		1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A65D81FDE3A62004D59C0 /* APDisplayView.swift */; };
 		1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */; };
+		1A1FF0981FE0EE450092471F /* APCollectionCommpositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */; };
+		1A1FF09B1FE0F3AA0092471F /* APHomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */; };
 		1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */; };
 		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
 		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
@@ -49,6 +51,8 @@
 		1AA80FC11FDFF8180021B046 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F65D1FD91DFF0065A5F3 /* UIColorExtension.swift */; };
 		1AA80FC21FDFF8180021B046 /* APNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */; };
 		1AA80FC31FDFF8180021B046 /* AP_ThemeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */; };
+		1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C71FE0FAA600193B30 /* APHomeMenuButtonView.swift */; };
+		1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */; };
 		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
@@ -120,6 +124,8 @@
 		1A0A65DA1FDE3A62004D59C0 /* APKeyboardCompositionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKeyboardCompositionView.swift; sourceTree = "<group>"; };
 		1A0A65DB1FDE3A62004D59C0 /* APKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKeyboardView.swift; sourceTree = "<group>"; };
 		1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseFormsCell.swift; sourceTree = "<group>"; };
+		1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APCollectionCommpositionView.swift; path = ../../../../../../../../../.Trash/APCollectionCommpositionView.swift; sourceTree = "<group>"; };
+		1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuView.swift; sourceTree = "<group>"; };
 		1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APFormsCell.swift; sourceTree = "<group>"; };
 		1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDateTools.swift; sourceTree = "<group>"; };
 		1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNetworking.swift; sourceTree = "<group>"; };
@@ -152,6 +158,8 @@
 		1AA80FB21FDFDF1C0021B046 /* APSubmitFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSubmitFormsCell.swift; sourceTree = "<group>"; };
 		1AA80FB31FDFDF1C0021B046 /* APTextFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTextFormsCell.swift; sourceTree = "<group>"; };
 		1AA80FB91FDFEFC20021B046 /* APKeyboardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKeyboardButtonView.swift; sourceTree = "<group>"; };
+		1AB253C71FE0FAA600193B30 /* APHomeMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuButtonView.swift; sourceTree = "<group>"; };
+		1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuModel.swift; sourceTree = "<group>"; };
 		1ABDA9541FDE80E200FE6097 /* CPCheckAuthInputInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCheckAuthInputInfoTool.h; sourceTree = "<group>"; };
 		1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCheckAuthInputInfoTool.m; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +250,7 @@
 		1A0A65D11FDE3A56004D59C0 /* KeyboardView */ = {
 			isa = PBXGroup;
 			children = (
+				1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */,
 				1A0A65D21FDE3A56004D59C0 /* APCollectionDisplayView.swift */,
 				1A0A65D31FDE3A56004D59C0 /* APCollectionKeyboardView.swift */,
 			);
@@ -323,6 +332,16 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		1A1FF0991FE0F3800092471F /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */,
+				1AB253C71FE0FAA600193B30 /* APHomeMenuButtonView.swift */,
+				1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
 		1A6DBA841FD8D7AD00E7D692 /* DateTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +361,7 @@
 		1A6DBAAB1FD8E35F00E7D692 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1A1FF0991FE0F3800092471F /* MenuView */,
 				1A0A65D11FDE3A56004D59C0 /* KeyboardView */,
 			);
 			path = View;
@@ -924,6 +944,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
 				1AA80FBE1FDFF8180021B046 /* APHomeViewController.swift in Sources */,
 				1AA80FBF1FDFF8180021B046 /* APCollectionKeyboardView.swift in Sources */,
 				1AA80FC01FDFF8180021B046 /* APKeyboardCompositionView.swift in Sources */,
@@ -939,6 +960,7 @@
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
+				1A1FF0981FE0EE450092471F /* APCollectionCommpositionView.swift in Sources */,
 				1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
@@ -951,6 +973,7 @@
 				1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */,
 				1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */,
 				1AA80FA71FDFDE660021B046 /* APModifyViewController.swift in Sources */,
+				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
 				1AA80FAB1FDFDE660021B046 /* APForgetAccountCell.swift in Sources */,
 				1AA80F9E1FDFDE660021B046 /* APRegisterSmsCodeCell.swift in Sources */,
 				1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */,
@@ -990,6 +1013,7 @@
 				7487E17B1FDFE131000E3EBE /* UISearchBarExtensions.swift in Sources */,
 				7487E1861FDFE131000E3EBE /* UIStoryboardExtensions.swift in Sources */,
 				7487E1821FDFE131000E3EBE /* UIDatePickerExtensions.swift in Sources */,
+				1A1FF09B1FE0F3AA0092471F /* APHomeMenuView.swift in Sources */,
 				7487E1851FDFE131000E3EBE /* UINavigationBarExtensions.swift in Sources */,
 				74EC34371FDF8948003ABF70 /* APMineHeaderView.swift in Sources */,
 				7487E18E1FDFE131000E3EBE /* UILabelExtensions.swift in Sources */,

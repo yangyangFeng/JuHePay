@@ -37,7 +37,7 @@ class APModifyViewController: APSystemBaseViewController {
             make.top.equalTo(modifyPasswordCell.snp.bottom).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(35)
+            make.height.equalTo(subimtHeight)
         }
         
         modifyPasswordCell.textBlock = { (key, value) in

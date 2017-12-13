@@ -85,7 +85,7 @@ class APRegisterViewController: APSystemBaseViewController {
             make.top.equalTo(registerAgreedCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(35)
+            make.height.equalTo(subimtHeight)
         }
         
         registerAccountCell.textBlock = { (key, value) in

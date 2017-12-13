@@ -14,6 +14,7 @@ class APSystemBaseViewController: APBaseViewController {
     let leftOffset: Float = 30
     let rightOffset: Float = -30
     let cellHeight: Float = 44
+    let subimtHeight: Float = 44
     
     override func viewDidLoad() {
         super.viewDidLoad()

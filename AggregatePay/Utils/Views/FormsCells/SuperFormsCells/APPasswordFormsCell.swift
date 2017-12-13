@@ -12,7 +12,7 @@ class APPasswordFormsCell: APFormsCell {
 
     var textField: UITextField = UITextField()
     //点击可切换显示/隐藏密码，默认隐藏。
-    var edit: UIButton = UIButton()
+    let edit: UIButton = UIButton()
     
     override init() {
         super.init()

@@ -73,7 +73,7 @@ class APLoginViewController: APSystemBaseViewController {
             make.top.equalTo(loginMemoryCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(35)
+            make.height.equalTo(subimtHeight)
         }
         loginToolView.snp.makeConstraints { (make) in
             make.top.equalTo(loginSubmitCell.snp.bottom).offset(20)
