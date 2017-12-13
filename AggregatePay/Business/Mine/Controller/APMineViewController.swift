@@ -13,7 +13,21 @@ import SwiftTheme
 
 
 
-class APMineViewController: APBaseViewController {
+class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
+    func tableViewDidSelectIndex(_ title: String, controller: String) {
+        print(controller)
+        // -1.动态获取命名空间
+        let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+        let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
+        guard let controllerType = controllerClass as? UIViewController.Type else {
+            print("类型转换失败")
+            return
+        }
+        let nextC = controllerType.init()
+        nextC.title = title
+        navigationController?.pushViewController(nextC)
+    }
+    
 
     lazy var btn: UIButton = {
         let temp = UIButton(type: UIButtonType.system)
@@ -30,6 +44,7 @@ class APMineViewController: APBaseViewController {
     
     lazy var staticListView: APMineStaticListView = {
         let view = APMineStaticListView()
+        view.delegate = self
         return view
     }()
     
@@ -40,6 +55,7 @@ class APMineViewController: APBaseViewController {
         
         self.vhl_setNavBarBackgroundAlpha(0.0)
         
+        self.ap_setStatusBarStyle(.lightContent)
 //        self.ap_setNavigationBarHidden(true)
         
 //        ThemeManager.setTheme(plistName: "APTheme_Normal", path: .mainBundle)

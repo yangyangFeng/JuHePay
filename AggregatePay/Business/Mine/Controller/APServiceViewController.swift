@@ -21,6 +21,7 @@ class APServiceViewController: APBaseViewController {
         temp.frame = CGRect(x: 130, y: 100, width: 100, height: 100)
         return temp
     }()
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
