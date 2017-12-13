@@ -13,27 +13,39 @@ import UIKit
  */
 class APModifyViewController: APSystemBaseViewController {
     
-    var newPasswordFormsCell: APNewPasswordFormsCell = APNewPasswordFormsCell()
-    var repeatPasswordFormsCell: APRepeatPasswordFormsCell = APRepeatPasswordFormsCell()
+    var modifyPasswordCell: APModifyPasswordCell = APModifyPasswordCell()
+    var modifySubmitCell: APModifySubmitCell = APModifySubmitCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "找回密码"
         
-        view.addSubview(newPasswordFormsCell)
-        view.addSubview(repeatPasswordFormsCell)
+        modifyPasswordCell.identify = "modifyPasswordID"
+        modifySubmitCell.identify = "modifySubmitID"
         
-        newPasswordFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top).offset(30)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
+        view.addSubview(modifyPasswordCell)
+        view.addSubview(modifySubmitCell)
+        
+        modifyPasswordCell.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(40)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        repeatPasswordFormsCell.snp.makeConstraints { (make) in
-            make.top.equalTo(newPasswordFormsCell.snp.bottom)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
-            make.height.equalTo(cellHeight)
+        modifySubmitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(modifyPasswordCell.snp.bottom).offset(40)
+            make.left.equalTo(view.snp.left).offset(leftOffset)
+            make.right.equalTo(view.snp.right).offset(rightOffset)
+            make.height.equalTo(35)
+        }
+        
+        modifyPasswordCell.textBlock = { (key, value) in
+            print("modifyPasswordCell:\(key) ___ value:\(value)")
+        }
+        
+        modifySubmitCell.buttonBlock = { (key, value) in
+            print("modifySubmitCell:\(key) ___ value:\(value)")
         }
     }
 

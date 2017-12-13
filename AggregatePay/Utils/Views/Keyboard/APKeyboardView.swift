@@ -30,6 +30,7 @@ class APKeyboardView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.brown
+        self.layer.contents = UIImage(named: "keyboard_bg")?.cgImage
         //定义键盘键名称（？号是占位符, !表示确定, -表示删除）
         let keys = ["1" ,"2" ,"3" ,"-",
                     "4" ,"5" ,"6" ,"!" ,
@@ -92,23 +93,31 @@ class APKeyboardView: UIView {
     public func buttonAttribute(title: String) ->UIButton {
         //？号是占位符, !表示确定, -表示删除
         let button = UIButton(type: .custom)
+        button.transform = .init(scaleX: 0.85, y: 0.85)
+        button.backgroundColor = .clear
         button.titleLabel?.font = UIFont(name:"Arial-BoldItalicMT", size:30)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 0.5
+        button.theme_setTitleColor(["#8a8067"], forState: .normal)
+        button.theme_setTitleColor(["#8a8067"], forState: .selected)
         if (title == "!") {
+            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .normal)
+            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .selected)
             button.setTitle("确定", for: .normal)
             button.addTarget(self,
                              action: #selector(didKeyboardConfirmItem),
                              for: UIControlEvents.touchUpInside)
         }
         else if (title == "-") {
-            button.setTitle("删除", for: .normal)
+            button.theme_setImage(["keyboard_delete_icon"], forState: .normal)
+            button.theme_setImage(["keyboard_delete_icon"], forState: .selected)
+            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .normal)
+            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .selected)
             button.addTarget(self,
                              action: #selector(didKeyboardDeleteItem),
                              for: UIControlEvents.touchUpInside)
         }
         else {
+            button.theme_setBackgroundImage(["keyboard_num_bg"], forState: .normal)
+            button.theme_setBackgroundImage(["keyboard_num_bg"], forState: .selected)
             button.setTitle(title, for: .normal)
             button.addTarget(self,
                              action: #selector(didKeyboardNumItem(_:)),

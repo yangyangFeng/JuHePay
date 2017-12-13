@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import KVOController
 
 class APSystemBaseViewController: APBaseViewController {
 
-    let leftOffset: Float = 40
-    let rightOffset: Float = -40
-    let topOffset: Float = 100
+    let leftOffset: Float = 30
+    let rightOffset: Float = -30
     let cellHeight: Float = 44
     
     override func viewDidLoad() {
