@@ -53,6 +53,8 @@
 		1AA80FC31FDFF8180021B046 /* AP_ThemeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */; };
 		1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C71FE0FAA600193B30 /* APHomeMenuButtonView.swift */; };
 		1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */; };
+		1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253CD1FE1337900193B30 /* APAlertController.swift */; };
+		1AB253D01FE1391900193B30 /* APAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253CF1FE1391900193B30 /* APAlert.swift */; };
 		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 		238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E0B1FE0C6320024D23F /* .gitkeep */; };
@@ -168,6 +170,8 @@
 		1AA80FB91FDFEFC20021B046 /* APKeyboardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKeyboardButtonView.swift; sourceTree = "<group>"; };
 		1AB253C71FE0FAA600193B30 /* APHomeMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuButtonView.swift; sourceTree = "<group>"; };
 		1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuModel.swift; sourceTree = "<group>"; };
+		1AB253CD1FE1337900193B30 /* APAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAlertController.swift; sourceTree = "<group>"; };
+		1AB253CF1FE1391900193B30 /* APAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAlert.swift; sourceTree = "<group>"; };
 		1ABDA9541FDE80E200FE6097 /* CPCheckAuthInputInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCheckAuthInputInfoTool.h; sourceTree = "<group>"; };
 		1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCheckAuthInputInfoTool.m; sourceTree = "<group>"; };
 		238D0E0B1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 		1A0A65D61FDE3A62004D59C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1AB253CC1FE1336200193B30 /* AlertController */,
 				1A0A65E01FDE3B8F004D59C0 /* FormsCells */,
 				1A0A65D71FDE3A62004D59C0 /* Keyboard */,
 			);
@@ -527,6 +532,15 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1AB253CC1FE1336200193B30 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253CD1FE1337900193B30 /* APAlertController.swift */,
+				1AB253CF1FE1391900193B30 /* APAlert.swift */,
+			);
+			path = AlertController;
 			sourceTree = "<group>";
 		};
 		1ABDA9521FDE80E200FE6097 /* ObjectCTool */ = {
@@ -1175,9 +1189,11 @@
 				7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */,
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
+				1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */,
 				7487E18B1FDFE131000E3EBE /* UIViewExtensions.swift in Sources */,
 				238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */,
 				7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */,
+				1AB253D01FE1391900193B30 /* APAlert.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				1AA80FBA1FDFEFC20021B046 /* APKeyboardButtonView.swift in Sources */,

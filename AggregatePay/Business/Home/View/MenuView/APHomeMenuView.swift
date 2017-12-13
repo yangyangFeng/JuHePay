@@ -130,7 +130,7 @@ class APHomeMenuView: UIView {
     public func defaultSelectIndex(index: Int) {
         let item: APHomeMenuButtonView = buttonArray[index]
         if item.model?.wayIconImage == "" {
-            let message: String = "暂不支持\(String(describing: item.model?.title))支付方式"
+            let message: String = "暂不支持"+(item.model?.title)!+"支付方式"
             delegate?.selectHomeMenuItemFaile(message: message)
             return
         }
