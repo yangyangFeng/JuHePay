@@ -1,3 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'ssh://git@git.cnepay.net:8999/ios/cnepayspecs.git'
+
 platform :ios, '8.0'
 use_frameworks!
 
@@ -27,6 +30,7 @@ pod 'SwiftTheme', '~> 0.4.1' #主题切换
 pod 'Toast-Swift', '~> 3.0.1'
 pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5'
 pod 'JPush', '~> 3.0.7'
+pod 'OCRSDK'
 end
 
 

@@ -55,6 +55,15 @@
 		1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */; };
 		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
+		238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E0B1FE0C6320024D23F /* .gitkeep */; };
+		238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E101FE0C6320024D23F /* .gitkeep */; };
+		238D0E201FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E151FE0C6320024D23F /* .gitkeep */; };
+		238D0E221FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E1A1FE0C6320024D23F /* .gitkeep */; };
+		238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */; };
+		238D0E261FE0C6EE0024D23F /* APSecurityAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */; };
+		238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */; };
+		238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */; };
+		238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -85,7 +94,6 @@
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
 		74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6441FD7DF470065A5F3 /* Info.plist */; };
 		74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6471FD7E0D00065A5F3 /* .gitkeep */; };
-		74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */; };
 		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
 		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
@@ -162,6 +170,15 @@
 		1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuModel.swift; sourceTree = "<group>"; };
 		1ABDA9541FDE80E200FE6097 /* CPCheckAuthInputInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCheckAuthInputInfoTool.h; sourceTree = "<group>"; };
 		1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCheckAuthInputInfoTool.m; sourceTree = "<group>"; };
+		238D0E0B1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		238D0E101FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		238D0E151FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		238D0E1A1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
+		238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSecurityAuthViewController.swift; sourceTree = "<group>"; };
+		238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRealNameAuthViewController.swift; sourceTree = "<group>"; };
+		238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
+		238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthHomeViewController.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
@@ -200,7 +217,6 @@
 		74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74D5F6471FD7E0D00065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
 		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
 		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -379,7 +395,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		1AA80F781FDFDE650021B046 /* Register */ = {
@@ -506,6 +522,13 @@
 			path = SuperFormsCells;
 			sourceTree = "<group>";
 		};
+		1AB253CB1FE125F000193B30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1ABDA9521FDE80E200FE6097 /* ObjectCTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +545,135 @@
 				1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */,
 			);
 			path = CPAuthTool;
+			sourceTree = "<group>";
+		};
+		238D0E061FE0C6320024D23F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E2C1FE0D5B60024D23F /* AuthHome */,
+				238D0E071FE0C6320024D23F /* SettlementCardAuth */,
+				238D0E0C1FE0C6320024D23F /* RealNameAuth */,
+				238D0E111FE0C6320024D23F /* SecurityAuth */,
+				238D0E161FE0C6320024D23F /* Base */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		238D0E071FE0C6320024D23F /* SettlementCardAuth */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E081FE0C6320024D23F /* Controller */,
+				238D0E0A1FE0C6320024D23F /* View */,
+			);
+			path = SettlementCardAuth;
+			sourceTree = "<group>";
+		};
+		238D0E081FE0C6320024D23F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		238D0E0A1FE0C6320024D23F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E0B1FE0C6320024D23F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		238D0E0C1FE0C6320024D23F /* RealNameAuth */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E0D1FE0C6320024D23F /* Controller */,
+				238D0E0F1FE0C6320024D23F /* View */,
+			);
+			path = RealNameAuth;
+			sourceTree = "<group>";
+		};
+		238D0E0D1FE0C6320024D23F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		238D0E0F1FE0C6320024D23F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E101FE0C6320024D23F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		238D0E111FE0C6320024D23F /* SecurityAuth */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E121FE0C6320024D23F /* Controller */,
+				238D0E141FE0C6320024D23F /* View */,
+			);
+			path = SecurityAuth;
+			sourceTree = "<group>";
+		};
+		238D0E121FE0C6320024D23F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		238D0E141FE0C6320024D23F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E151FE0C6320024D23F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		238D0E161FE0C6320024D23F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E171FE0C6320024D23F /* Controller */,
+				238D0E191FE0C6320024D23F /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		238D0E171FE0C6320024D23F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		238D0E191FE0C6320024D23F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E1A1FE0C6320024D23F /* .gitkeep */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		238D0E2C1FE0D5B60024D23F /* AuthHome */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253CB1FE125F000193B30 /* View */,
+				238D0E2E1FE0D5B60024D23F /* ViewController */,
+			);
+			path = AuthHome;
+			sourceTree = "<group>";
+		};
+		238D0E2E1FE0D5B60024D23F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		74C49E611FD4FE0100F0501B = {
@@ -623,11 +775,11 @@
 		74D5F6491FD7E0EE0065A5F3 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				238D0E061FE0C6320024D23F /* Auth */,
 				1A0A65F91FDE5AA1004D59C0 /* System */,
 				74D5F65F1FD921D50065A5F3 /* Mine */,
 				74D5F64F1FD7F1D20065A5F3 /* Home */,
 				74D5F64C1FD7F1280065A5F3 /* Base */,
-				74D5F64A1FD7E0EE0065A5F3 /* .gitkeep */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -820,13 +972,14 @@
 		74C49E621FD4FE0100F0501B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AP;
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = bingtianyu;
 				TargetAttributes = {
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					74C49E7D1FD4FE0200F0501B = {
 						CreatedOnToolsVersion = 9.0;
@@ -867,11 +1020,14 @@
 			files = (
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
+				238D0E201FE0C6320024D23F /* .gitkeep in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
-				74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
+				238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */,
+				238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */,
+				238D0E221FE0C6320024D23F /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,9 +1054,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AggregatePay-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -928,9 +1087,38 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/OCRSDK/OCRSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftTheme/SwiftTheme.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFQRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCRSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTheme.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -961,6 +1149,7 @@
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
 				1A1FF0981FE0EE450092471F /* APCollectionCommpositionView.swift in Sources */,
+				238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */,
 				1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
@@ -969,6 +1158,7 @@
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
+				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */,
 				1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */,
@@ -986,6 +1176,7 @@
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
 				7487E18B1FDFE131000E3EBE /* UIViewExtensions.swift in Sources */,
+				238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */,
 				7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
@@ -1007,6 +1198,7 @@
 				1AA80FA11FDFDE660021B046 /* APLoginAccountCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
+				238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
 				7487E1841FDFE131000E3EBE /* UITextViewExtensions.swift in Sources */,
@@ -1020,6 +1212,7 @@
 				74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */,
 				7487E1881FDFE131000E3EBE /* UITabBarExtensions.swift in Sources */,
 				74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */,
+				238D0E261FE0C6EE0024D23F /* APSecurityAuthViewController.swift in Sources */,
 				7487E1801FDFE131000E3EBE /* UISegmentedControlExtensions.swift in Sources */,
 				7487E18F1FDFE131000E3EBE /* UICollectionViewExtensions.swift in Sources */,
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
@@ -1182,14 +1375,16 @@
 			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.AggregatePay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "28e454ca-a71c-481a-bfce-6abfad992415";
+				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1201,14 +1396,17 @@
 			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.AggregatePay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "adafce5c-d01b-40ff-800e-1bda5483d089";
+				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Distribution;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
