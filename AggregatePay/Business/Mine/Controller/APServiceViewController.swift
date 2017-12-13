@@ -36,23 +36,18 @@ class APServiceViewController: APBaseViewController {
         
         view.addSubview(btn)
         
-
-        
     }
 
     @objc func action()
     {
-//        if ThemeManager.currentThemeIndex == 0 {
-//            ThemeManager.setTheme(index: 1)
-//            view.makeToast("这是一个吐司")
-//        }
-//        else
-//        {
-//            ThemeManager.setTheme(index: 0)
-//        }
-//        view.makeToast("这是一个吐司")
+
         self.view.makeToastActivity(.center)
         
+        CPHD_OCRTool.presentScanBankCard(from: self, complete: { (model) in
+            print(model?.cardNum)
+        }) { (error) in
+            
+        }
         
     }
     

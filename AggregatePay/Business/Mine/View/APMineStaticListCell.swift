@@ -30,7 +30,6 @@ class APMineStaticListCell: UITableViewCell {
     }
     
     
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let bottomLine = UIView()
@@ -44,6 +43,7 @@ class APMineStaticListCell: UITableViewCell {
         telButton.theme_setTitleColor(["#999999"], forState: UIControlState.normal)
         telButton.setTitle(Service_tel, for: UIControlState.normal)
         telButton.titleLabel?.textAlignment = .right
+        telButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         
         telButton.addTarget(self, action: #selector(telButtonAction), for: UIControlEvents.touchUpInside)
         
@@ -84,9 +84,9 @@ class APMineStaticListCell: UITableViewCell {
     
     @objc func telButtonAction()
     {
-        let alertC = UIAlertController(title: "提示", message: ("是否要拨打" + (telButton.titleLabel?.text)!), defaultActionButtonTitle: "取消", tintColor: UIColor.black)
+        let alertC = UIAlertController(title: "", message: ("是否要拨打" + (telButton.titleLabel?.text)!), defaultActionButtonTitle: "取消", tintColor: UIColor(hex6: 0x7f5e12))
         
-        alertC.addAction(UIAlertAction.init(title: "拨打", style: UIAlertActionStyle.cancel, handler: { (alert) in
+        alertC.addAction(UIAlertAction.init(title: "拨打", style: UIAlertActionStyle.default, handler: { (alert) in
             
             let phoneUrl : NSURL = NSURL(string: "tel:" + (self.telButton.titleLabel?.text)!)!
             UIApplication.shared.openURL(phoneUrl as URL)

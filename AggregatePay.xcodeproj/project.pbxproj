@@ -81,6 +81,37 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
+		7487E1D71FE1003B000E3EBE /* camera_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1A91FE1003B000E3EBE /* camera_line.png */; };
+		7487E1D81FE1003B000E3EBE /* camera_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */; };
+		7487E1D91FE1003B000E3EBE /* camera_line_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AB1FE1003B000E3EBE /* camera_line_h.png */; };
+		7487E1DA1FE1003B000E3EBE /* camera_line_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */; };
+		7487E1DB1FE1003B000E3EBE /* close_cha.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AD1FE1003B000E3EBE /* close_cha.png */; };
+		7487E1DC1FE1003B000E3EBE /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */; };
+		7487E1DD1FE1003B000E3EBE /* close_cha_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AF1FE1003B000E3EBE /* close_cha_h.png */; };
+		7487E1DE1FE1003B000E3EBE /* close_cha_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */; };
+		7487E1DF1FE1003B000E3EBE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */; };
+		7487E1E01FE1003B000E3EBE /* flashing_auto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B21FE1003B000E3EBE /* flashing_auto.png */; };
+		7487E1E11FE1003B000E3EBE /* flashing_auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */; };
+		7487E1E21FE1003B000E3EBE /* flashing_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B41FE1003B000E3EBE /* flashing_off.png */; };
+		7487E1E31FE1003B000E3EBE /* flashing_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */; };
+		7487E1E41FE1003B000E3EBE /* flashing_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B61FE1003B000E3EBE /* flashing_on.png */; };
+		7487E1E51FE1003B000E3EBE /* flashing_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */; };
+		7487E1E61FE1003B000E3EBE /* shot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B81FE1003B000E3EBE /* shot.png */; };
+		7487E1E71FE1003B000E3EBE /* shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B91FE1003B000E3EBE /* shot@2x.png */; };
+		7487E1E81FE1003B000E3EBE /* shot_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BA1FE1003B000E3EBE /* shot_h.png */; };
+		7487E1E91FE1003B000E3EBE /* shot_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */; };
+		7487E1EA1FE1003B000E3EBE /* switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BC1FE1003B000E3EBE /* switch_camera.png */; };
+		7487E1EB1FE1003B000E3EBE /* switch_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */; };
+		7487E1EC1FE1003B000E3EBE /* switch_camera_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */; };
+		7487E1ED1FE1003B000E3EBE /* switch_camera_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */; };
+		7487E1EE1FE1003B000E3EBE /* touch_focus.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C01FE1003B000E3EBE /* touch_focus.png */; };
+		7487E1EF1FE1003B000E3EBE /* touch_focus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */; };
+		7487E1F01FE1003B000E3EBE /* touch_focus_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C21FE1003B000E3EBE /* touch_focus_x.png */; };
+		7487E1F11FE1003B000E3EBE /* touch_focus_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */; };
+		7487E1F21FE1003B000E3EBE /* SCCaptureCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */; };
+		7487E1F31FE1003B000E3EBE /* libIOSOCRLIB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7487E1D01FE1003B000E3EBE /* libIOSOCRLIB.a */; };
+		7487E1F41FE1003B000E3EBE /* CPHD_OCRTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1D31FE1003B000E3EBE /* CPHD_OCRTool.m */; };
+		7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -190,6 +221,48 @@
 		7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAboutUsViewController.swift; sourceTree = "<group>"; };
 		7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProblemsViewController.swift; sourceTree = "<group>"; };
 		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
+		7487E1A91FE1003B000E3EBE /* camera_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_line.png; sourceTree = "<group>"; };
+		7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_line@2x.png"; sourceTree = "<group>"; };
+		7487E1AB1FE1003B000E3EBE /* camera_line_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_line_h.png; sourceTree = "<group>"; };
+		7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_line_h@2x.png"; sourceTree = "<group>"; };
+		7487E1AD1FE1003B000E3EBE /* close_cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_cha.png; sourceTree = "<group>"; };
+		7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
+		7487E1AF1FE1003B000E3EBE /* close_cha_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_cha_h.png; sourceTree = "<group>"; };
+		7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha_h@2x.png"; sourceTree = "<group>"; };
+		7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7487E1B21FE1003B000E3EBE /* flashing_auto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_auto.png; sourceTree = "<group>"; };
+		7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_auto@2x.png"; sourceTree = "<group>"; };
+		7487E1B41FE1003B000E3EBE /* flashing_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_off.png; sourceTree = "<group>"; };
+		7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_off@2x.png"; sourceTree = "<group>"; };
+		7487E1B61FE1003B000E3EBE /* flashing_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_on.png; sourceTree = "<group>"; };
+		7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_on@2x.png"; sourceTree = "<group>"; };
+		7487E1B81FE1003B000E3EBE /* shot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot.png; sourceTree = "<group>"; };
+		7487E1B91FE1003B000E3EBE /* shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot@2x.png"; sourceTree = "<group>"; };
+		7487E1BA1FE1003B000E3EBE /* shot_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_h.png; sourceTree = "<group>"; };
+		7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot_h@2x.png"; sourceTree = "<group>"; };
+		7487E1BC1FE1003B000E3EBE /* switch_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera.png; sourceTree = "<group>"; };
+		7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera@2x.png"; sourceTree = "<group>"; };
+		7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera_h.png; sourceTree = "<group>"; };
+		7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera_h@2x.png"; sourceTree = "<group>"; };
+		7487E1C01FE1003B000E3EBE /* touch_focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_focus.png; sourceTree = "<group>"; };
+		7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch_focus@2x.png"; sourceTree = "<group>"; };
+		7487E1C21FE1003B000E3EBE /* touch_focus_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_focus_x.png; sourceTree = "<group>"; };
+		7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch_focus_x@2x.png"; sourceTree = "<group>"; };
+		7487E1C51FE1003B000E3EBE /* CameraBankDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraBankDrawView.h; sourceTree = "<group>"; };
+		7487E1C61FE1003B000E3EBE /* Globaltypedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globaltypedef.h; sourceTree = "<group>"; };
+		7487E1C71FE1003B000E3EBE /* IOSOCRAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSOCRAPI.h; sourceTree = "<group>"; };
+		7487E1C81FE1003B000E3EBE /* SCCaptureCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCaptureCameraController.h; sourceTree = "<group>"; };
+		7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
+		7487E1CA1FE1003B000E3EBE /* SCCaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCaptureSessionManager.h; sourceTree = "<group>"; };
+		7487E1CB1FE1003B000E3EBE /* SCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCommon.h; sourceTree = "<group>"; };
+		7487E1CC1FE1003B000E3EBE /* SCDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDefines.h; sourceTree = "<group>"; };
+		7487E1CD1FE1003B000E3EBE /* SCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavigationController.h; sourceTree = "<group>"; };
+		7487E1CE1FE1003B000E3EBE /* ScranResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScranResultViewController.h; sourceTree = "<group>"; };
+		7487E1CF1FE1003B000E3EBE /* SCSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSlider.h; sourceTree = "<group>"; };
+		7487E1D01FE1003B000E3EBE /* libIOSOCRLIB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOSOCRLIB.a; sourceTree = "<group>"; };
+		7487E1D21FE1003B000E3EBE /* CPHD_OCRTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHD_OCRTool.h; sourceTree = "<group>"; };
+		7487E1D31FE1003B000E3EBE /* CPHD_OCRTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHD_OCRTool.m; sourceTree = "<group>"; };
+		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74C49E771FD4FE0100F0501B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -229,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */,
+				7487E1F31FE1003B000E3EBE /* libIOSOCRLIB.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +573,7 @@
 		1ABDA9521FDE80E200FE6097 /* ObjectCTool */ = {
 			isa = PBXGroup;
 			children = (
+				7487E19F1FE1003B000E3EBE /* OCR */,
 				74EC342A1FDF7BD3003ABF70 /* Category */,
 				1ABDA9531FDE80E200FE6097 /* CPAuthTool */,
 			);
@@ -512,6 +587,94 @@
 				1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */,
 			);
 			path = CPAuthTool;
+			sourceTree = "<group>";
+		};
+		7487E19F1FE1003B000E3EBE /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1A61FE1003B000E3EBE /* OCRSDK */,
+				7487E1D11FE1003B000E3EBE /* Tool */,
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+		7487E1A61FE1003B000E3EBE /* OCRSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1A71FE1003B000E3EBE /* images */,
+				7487E1C41FE1003B000E3EBE /* include */,
+				7487E1D01FE1003B000E3EBE /* libIOSOCRLIB.a */,
+			);
+			path = OCRSDK;
+			sourceTree = "<group>";
+		};
+		7487E1A71FE1003B000E3EBE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1A81FE1003B000E3EBE /* SCCamera */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7487E1A81FE1003B000E3EBE /* SCCamera */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1A91FE1003B000E3EBE /* camera_line.png */,
+				7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */,
+				7487E1AB1FE1003B000E3EBE /* camera_line_h.png */,
+				7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */,
+				7487E1AD1FE1003B000E3EBE /* close_cha.png */,
+				7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */,
+				7487E1AF1FE1003B000E3EBE /* close_cha_h.png */,
+				7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */,
+				7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */,
+				7487E1B21FE1003B000E3EBE /* flashing_auto.png */,
+				7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */,
+				7487E1B41FE1003B000E3EBE /* flashing_off.png */,
+				7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */,
+				7487E1B61FE1003B000E3EBE /* flashing_on.png */,
+				7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */,
+				7487E1B81FE1003B000E3EBE /* shot.png */,
+				7487E1B91FE1003B000E3EBE /* shot@2x.png */,
+				7487E1BA1FE1003B000E3EBE /* shot_h.png */,
+				7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */,
+				7487E1BC1FE1003B000E3EBE /* switch_camera.png */,
+				7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */,
+				7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */,
+				7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */,
+				7487E1C01FE1003B000E3EBE /* touch_focus.png */,
+				7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */,
+				7487E1C21FE1003B000E3EBE /* touch_focus_x.png */,
+				7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */,
+			);
+			path = SCCamera;
+			sourceTree = "<group>";
+		};
+		7487E1C41FE1003B000E3EBE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1C51FE1003B000E3EBE /* CameraBankDrawView.h */,
+				7487E1C61FE1003B000E3EBE /* Globaltypedef.h */,
+				7487E1C71FE1003B000E3EBE /* IOSOCRAPI.h */,
+				7487E1C81FE1003B000E3EBE /* SCCaptureCameraController.h */,
+				7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */,
+				7487E1CA1FE1003B000E3EBE /* SCCaptureSessionManager.h */,
+				7487E1CB1FE1003B000E3EBE /* SCCommon.h */,
+				7487E1CC1FE1003B000E3EBE /* SCDefines.h */,
+				7487E1CD1FE1003B000E3EBE /* SCNavigationController.h */,
+				7487E1CE1FE1003B000E3EBE /* ScranResultViewController.h */,
+				7487E1CF1FE1003B000E3EBE /* SCSlider.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7487E1D11FE1003B000E3EBE /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				7487E1D21FE1003B000E3EBE /* CPHD_OCRTool.h */,
+				7487E1D31FE1003B000E3EBE /* CPHD_OCRTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		74C49E611FD4FE0100F0501B = {
@@ -728,6 +891,7 @@
 			children = (
 				74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */,
 				7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */,
+				7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */,
 				7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */,
 			);
 			path = View;
@@ -860,14 +1024,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7487E1E31FE1003B000E3EBE /* flashing_off@2x.png in Resources */,
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
+				7487E1DA1FE1003B000E3EBE /* camera_line_h@2x.png in Resources */,
+				7487E1EF1FE1003B000E3EBE /* touch_focus@2x.png in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
+				7487E1E21FE1003B000E3EBE /* flashing_off.png in Resources */,
+				7487E1E61FE1003B000E3EBE /* shot.png in Resources */,
+				7487E1E91FE1003B000E3EBE /* shot_h@2x.png in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
+				7487E1E11FE1003B000E3EBE /* flashing_auto@2x.png in Resources */,
+				7487E1D71FE1003B000E3EBE /* camera_line.png in Resources */,
+				7487E1E81FE1003B000E3EBE /* shot_h.png in Resources */,
+				7487E1E71FE1003B000E3EBE /* shot@2x.png in Resources */,
 				74D5F64B1FD7E0EF0065A5F3 /* .gitkeep in Resources */,
+				7487E1D81FE1003B000E3EBE /* camera_line@2x.png in Resources */,
+				7487E1D91FE1003B000E3EBE /* camera_line_h.png in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
+				7487E1F01FE1003B000E3EBE /* touch_focus_x.png in Resources */,
+				7487E1DD1FE1003B000E3EBE /* close_cha_h.png in Resources */,
+				7487E1DF1FE1003B000E3EBE /* Default-568h@2x.png in Resources */,
+				7487E1E51FE1003B000E3EBE /* flashing_on@2x.png in Resources */,
+				7487E1ED1FE1003B000E3EBE /* switch_camera_h@2x.png in Resources */,
+				7487E1DC1FE1003B000E3EBE /* close_cha@2x.png in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
+				7487E1DE1FE1003B000E3EBE /* close_cha_h@2x.png in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
+				7487E1EC1FE1003B000E3EBE /* switch_camera_h.png in Resources */,
+				7487E1EA1FE1003B000E3EBE /* switch_camera.png in Resources */,
+				7487E1EB1FE1003B000E3EBE /* switch_camera@2x.png in Resources */,
+				7487E1F11FE1003B000E3EBE /* touch_focus_x@2x.png in Resources */,
+				7487E1EE1FE1003B000E3EBE /* touch_focus.png in Resources */,
+				7487E1E01FE1003B000E3EBE /* flashing_auto.png in Resources */,
+				7487E1E41FE1003B000E3EBE /* flashing_on.png in Resources */,
+				7487E1DB1FE1003B000E3EBE /* close_cha.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +1157,7 @@
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */,
+				7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */,
 				1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */,
 				1AA80FA71FDFDE660021B046 /* APModifyViewController.swift in Sources */,
 				1AA80FAB1FDFDE660021B046 /* APForgetAccountCell.swift in Sources */,
@@ -999,6 +1191,7 @@
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
 				1AA80FA91FDFDE660021B046 /* APModifySubmitCell.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
+				7487E1F21FE1003B000E3EBE /* SCCaptureCameraController.m in Sources */,
 				1AA80FA31FDFDE660021B046 /* APLoginPasswordCell.swift in Sources */,
 				1AA80FA11FDFDE660021B046 /* APLoginAccountCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
@@ -1016,6 +1209,7 @@
 				74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */,
 				7487E1881FDFE131000E3EBE /* UITabBarExtensions.swift in Sources */,
 				74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */,
+				7487E1F41FE1003B000E3EBE /* CPHD_OCRTool.m in Sources */,
 				7487E1801FDFE131000E3EBE /* UISegmentedControlExtensions.swift in Sources */,
 				7487E18F1FDFE131000E3EBE /* UICollectionViewExtensions.swift in Sources */,
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
@@ -1181,9 +1375,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
+				);
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/OCRSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
@@ -1200,9 +1403,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
+				);
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/OCRSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
