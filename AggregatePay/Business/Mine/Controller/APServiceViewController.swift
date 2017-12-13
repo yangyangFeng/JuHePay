@@ -43,11 +43,7 @@ class APServiceViewController: APBaseViewController {
 
         self.view.makeToastActivity(.center)
         
-        CPHD_OCRTool.presentScanBankCard(from: self, complete: { (model) in
-            print(model?.cardNum)
-        }) { (error) in
-            
-        }
+ 
         
     }
     

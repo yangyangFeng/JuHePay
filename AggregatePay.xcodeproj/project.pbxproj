@@ -10,7 +10,6 @@
 		1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A65D21FDE3A56004D59C0 /* APCollectionDisplayView.swift */; };
 		1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A65D81FDE3A62004D59C0 /* APDisplayView.swift */; };
 		1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */; };
-		1A1FF0981FE0EE450092471F /* APCollectionCommpositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */; };
 		1A1FF09B1FE0F3AA0092471F /* APHomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */; };
 		1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */; };
 		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
@@ -96,34 +95,6 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
-		7487E1D71FE1003B000E3EBE /* camera_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1A91FE1003B000E3EBE /* camera_line.png */; };
-		7487E1D81FE1003B000E3EBE /* camera_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */; };
-		7487E1D91FE1003B000E3EBE /* camera_line_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AB1FE1003B000E3EBE /* camera_line_h.png */; };
-		7487E1DA1FE1003B000E3EBE /* camera_line_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */; };
-		7487E1DB1FE1003B000E3EBE /* close_cha.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AD1FE1003B000E3EBE /* close_cha.png */; };
-		7487E1DC1FE1003B000E3EBE /* close_cha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */; };
-		7487E1DD1FE1003B000E3EBE /* close_cha_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1AF1FE1003B000E3EBE /* close_cha_h.png */; };
-		7487E1DE1FE1003B000E3EBE /* close_cha_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */; };
-		7487E1DF1FE1003B000E3EBE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */; };
-		7487E1E01FE1003B000E3EBE /* flashing_auto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B21FE1003B000E3EBE /* flashing_auto.png */; };
-		7487E1E11FE1003B000E3EBE /* flashing_auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */; };
-		7487E1E21FE1003B000E3EBE /* flashing_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B41FE1003B000E3EBE /* flashing_off.png */; };
-		7487E1E31FE1003B000E3EBE /* flashing_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */; };
-		7487E1E41FE1003B000E3EBE /* flashing_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B61FE1003B000E3EBE /* flashing_on.png */; };
-		7487E1E51FE1003B000E3EBE /* flashing_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */; };
-		7487E1E61FE1003B000E3EBE /* shot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B81FE1003B000E3EBE /* shot.png */; };
-		7487E1E71FE1003B000E3EBE /* shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1B91FE1003B000E3EBE /* shot@2x.png */; };
-		7487E1E81FE1003B000E3EBE /* shot_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BA1FE1003B000E3EBE /* shot_h.png */; };
-		7487E1E91FE1003B000E3EBE /* shot_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */; };
-		7487E1EA1FE1003B000E3EBE /* switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BC1FE1003B000E3EBE /* switch_camera.png */; };
-		7487E1EB1FE1003B000E3EBE /* switch_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */; };
-		7487E1EC1FE1003B000E3EBE /* switch_camera_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */; };
-		7487E1ED1FE1003B000E3EBE /* switch_camera_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */; };
-		7487E1EE1FE1003B000E3EBE /* touch_focus.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C01FE1003B000E3EBE /* touch_focus.png */; };
-		7487E1EF1FE1003B000E3EBE /* touch_focus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */; };
-		7487E1F01FE1003B000E3EBE /* touch_focus_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C21FE1003B000E3EBE /* touch_focus_x.png */; };
-		7487E1F11FE1003B000E3EBE /* touch_focus_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */; };
-		7487E1F21FE1003B000E3EBE /* SCCaptureCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */; };
 		7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
@@ -168,7 +139,6 @@
 		1A0A65DA1FDE3A62004D59C0 /* APKeyboardCompositionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKeyboardCompositionView.swift; sourceTree = "<group>"; };
 		1A0A65DB1FDE3A62004D59C0 /* APKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKeyboardView.swift; sourceTree = "<group>"; };
 		1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseFormsCell.swift; sourceTree = "<group>"; };
-		1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APCollectionCommpositionView.swift; path = ../../../../../../../../../.Trash/APCollectionCommpositionView.swift; sourceTree = "<group>"; };
 		1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuView.swift; sourceTree = "<group>"; };
 		1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APFormsCell.swift; sourceTree = "<group>"; };
 		1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDateTools.swift; sourceTree = "<group>"; };
@@ -248,35 +218,6 @@
 		7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAboutUsViewController.swift; sourceTree = "<group>"; };
 		7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProblemsViewController.swift; sourceTree = "<group>"; };
 		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
-		7487E1A91FE1003B000E3EBE /* camera_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_line.png; sourceTree = "<group>"; };
-		7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_line@2x.png"; sourceTree = "<group>"; };
-		7487E1AB1FE1003B000E3EBE /* camera_line_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_line_h.png; sourceTree = "<group>"; };
-		7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_line_h@2x.png"; sourceTree = "<group>"; };
-		7487E1AD1FE1003B000E3EBE /* close_cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_cha.png; sourceTree = "<group>"; };
-		7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha@2x.png"; sourceTree = "<group>"; };
-		7487E1AF1FE1003B000E3EBE /* close_cha_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_cha_h.png; sourceTree = "<group>"; };
-		7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_cha_h@2x.png"; sourceTree = "<group>"; };
-		7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		7487E1B21FE1003B000E3EBE /* flashing_auto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_auto.png; sourceTree = "<group>"; };
-		7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_auto@2x.png"; sourceTree = "<group>"; };
-		7487E1B41FE1003B000E3EBE /* flashing_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_off.png; sourceTree = "<group>"; };
-		7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_off@2x.png"; sourceTree = "<group>"; };
-		7487E1B61FE1003B000E3EBE /* flashing_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashing_on.png; sourceTree = "<group>"; };
-		7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashing_on@2x.png"; sourceTree = "<group>"; };
-		7487E1B81FE1003B000E3EBE /* shot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot.png; sourceTree = "<group>"; };
-		7487E1B91FE1003B000E3EBE /* shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot@2x.png"; sourceTree = "<group>"; };
-		7487E1BA1FE1003B000E3EBE /* shot_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_h.png; sourceTree = "<group>"; };
-		7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot_h@2x.png"; sourceTree = "<group>"; };
-		7487E1BC1FE1003B000E3EBE /* switch_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera.png; sourceTree = "<group>"; };
-		7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera@2x.png"; sourceTree = "<group>"; };
-		7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera_h.png; sourceTree = "<group>"; };
-		7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_camera_h@2x.png"; sourceTree = "<group>"; };
-		7487E1C01FE1003B000E3EBE /* touch_focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_focus.png; sourceTree = "<group>"; };
-		7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch_focus@2x.png"; sourceTree = "<group>"; };
-		7487E1C21FE1003B000E3EBE /* touch_focus_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_focus_x.png; sourceTree = "<group>"; };
-		7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch_focus_x@2x.png"; sourceTree = "<group>"; };
-		7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
-		7487E1D01FE1003B000E3EBE /* libIOSOCRLIB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOSOCRLIB.a; sourceTree = "<group>"; };
 		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -339,7 +280,6 @@
 		1A0A65D11FDE3A56004D59C0 /* KeyboardView */ = {
 			isa = PBXGroup;
 			children = (
-				1A1FF0971FE0EE450092471F /* APCollectionCommpositionView.swift */,
 				1A0A65D21FDE3A56004D59C0 /* APCollectionDisplayView.swift */,
 				1A0A65D31FDE3A56004D59C0 /* APCollectionKeyboardView.swift */,
 			);
@@ -762,35 +702,6 @@
 		74288DCF1FE16AAD00519A04 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				7487E1C91FE1003B000E3EBE /* SCCaptureCameraController.m */,
-				7487E1D01FE1003B000E3EBE /* libIOSOCRLIB.a */,
-				7487E1B51FE1003B000E3EBE /* flashing_off@2x.png */,
-				7487E1AC1FE1003B000E3EBE /* camera_line_h@2x.png */,
-				7487E1C11FE1003B000E3EBE /* touch_focus@2x.png */,
-				7487E1B41FE1003B000E3EBE /* flashing_off.png */,
-				7487E1B81FE1003B000E3EBE /* shot.png */,
-				7487E1BB1FE1003B000E3EBE /* shot_h@2x.png */,
-				7487E1B31FE1003B000E3EBE /* flashing_auto@2x.png */,
-				7487E1A91FE1003B000E3EBE /* camera_line.png */,
-				7487E1BA1FE1003B000E3EBE /* shot_h.png */,
-				7487E1B91FE1003B000E3EBE /* shot@2x.png */,
-				7487E1AA1FE1003B000E3EBE /* camera_line@2x.png */,
-				7487E1AB1FE1003B000E3EBE /* camera_line_h.png */,
-				7487E1C21FE1003B000E3EBE /* touch_focus_x.png */,
-				7487E1AF1FE1003B000E3EBE /* close_cha_h.png */,
-				7487E1B11FE1003B000E3EBE /* Default-568h@2x.png */,
-				7487E1B71FE1003B000E3EBE /* flashing_on@2x.png */,
-				7487E1BF1FE1003B000E3EBE /* switch_camera_h@2x.png */,
-				7487E1AE1FE1003B000E3EBE /* close_cha@2x.png */,
-				7487E1B01FE1003B000E3EBE /* close_cha_h@2x.png */,
-				7487E1BE1FE1003B000E3EBE /* switch_camera_h.png */,
-				7487E1BC1FE1003B000E3EBE /* switch_camera.png */,
-				7487E1BD1FE1003B000E3EBE /* switch_camera@2x.png */,
-				7487E1C31FE1003B000E3EBE /* touch_focus_x@2x.png */,
-				7487E1C01FE1003B000E3EBE /* touch_focus.png */,
-				7487E1B21FE1003B000E3EBE /* flashing_auto.png */,
-				7487E1B61FE1003B000E3EBE /* flashing_on.png */,
-				7487E1AD1FE1003B000E3EBE /* close_cha.png */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1144,42 +1055,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7487E1E31FE1003B000E3EBE /* flashing_off@2x.png in Resources */,
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
-				7487E1DA1FE1003B000E3EBE /* camera_line_h@2x.png in Resources */,
-				7487E1EF1FE1003B000E3EBE /* touch_focus@2x.png in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
-				7487E1E21FE1003B000E3EBE /* flashing_off.png in Resources */,
-				7487E1E61FE1003B000E3EBE /* shot.png in Resources */,
-				7487E1E91FE1003B000E3EBE /* shot_h@2x.png in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
-				7487E1E11FE1003B000E3EBE /* flashing_auto@2x.png in Resources */,
-				7487E1D71FE1003B000E3EBE /* camera_line.png in Resources */,
-				7487E1E81FE1003B000E3EBE /* shot_h.png in Resources */,
-				7487E1E71FE1003B000E3EBE /* shot@2x.png in Resources */,
-				7487E1D81FE1003B000E3EBE /* camera_line@2x.png in Resources */,
-				7487E1D91FE1003B000E3EBE /* camera_line_h.png in Resources */,
 				238D0E201FE0C6320024D23F /* .gitkeep in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
-				7487E1F01FE1003B000E3EBE /* touch_focus_x.png in Resources */,
-				7487E1DD1FE1003B000E3EBE /* close_cha_h.png in Resources */,
-				7487E1DF1FE1003B000E3EBE /* Default-568h@2x.png in Resources */,
-				7487E1E51FE1003B000E3EBE /* flashing_on@2x.png in Resources */,
-				7487E1ED1FE1003B000E3EBE /* switch_camera_h@2x.png in Resources */,
-				7487E1DC1FE1003B000E3EBE /* close_cha@2x.png in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
-				7487E1DE1FE1003B000E3EBE /* close_cha_h@2x.png in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
-				7487E1EC1FE1003B000E3EBE /* switch_camera_h.png in Resources */,
-				7487E1EA1FE1003B000E3EBE /* switch_camera.png in Resources */,
-				7487E1EB1FE1003B000E3EBE /* switch_camera@2x.png in Resources */,
-				7487E1F11FE1003B000E3EBE /* touch_focus_x@2x.png in Resources */,
-				7487E1EE1FE1003B000E3EBE /* touch_focus.png in Resources */,
-				7487E1E01FE1003B000E3EBE /* flashing_auto.png in Resources */,
-				7487E1E41FE1003B000E3EBE /* flashing_on.png in Resources */,
-				7487E1DB1FE1003B000E3EBE /* close_cha.png in Resources */,
 				238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */,
 				238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */,
 				238D0E221FE0C6320024D23F /* .gitkeep in Resources */,
@@ -1303,7 +1187,6 @@
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
-				1A1FF0981FE0EE450092471F /* APCollectionCommpositionView.swift in Sources */,
 				238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */,
 				1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
@@ -1355,7 +1238,6 @@
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
 				1AA80FA91FDFDE660021B046 /* APModifySubmitCell.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
-				7487E1F21FE1003B000E3EBE /* SCCaptureCameraController.m in Sources */,
 				1AA80FA31FDFDE660021B046 /* APLoginPasswordCell.swift in Sources */,
 				1AA80FA11FDFDE660021B046 /* APLoginAccountCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
