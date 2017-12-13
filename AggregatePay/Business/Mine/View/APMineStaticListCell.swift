@@ -12,10 +12,10 @@ let Service_tel = "400-666-888"
 
 class APMineStaticListCell: UITableViewCell {
 
-    let leftIcon = UIImageView()
-    let title = UILabel()
-    let arrow = UIImageView()
-    let telButton = UIButton(type: UIButtonType.custom)
+    public let leftIcon = UIImageView()
+    public let title = UILabel()
+    public let arrow = UIImageView()
+    public let telButton = UIButton(type: UIButtonType.custom)
     
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
         let identifier = "APMineStaticListCell"
@@ -28,7 +28,6 @@ class APMineStaticListCell: UITableViewCell {
         }
         return newCell
     }
-    
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -44,6 +43,7 @@ class APMineStaticListCell: UITableViewCell {
         telButton.theme_setTitleColor(["#999999"], forState: UIControlState.normal)
         telButton.setTitle(Service_tel, for: UIControlState.normal)
         telButton.titleLabel?.textAlignment = .right
+        telButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         
         telButton.addTarget(self, action: #selector(telButtonAction), for: UIControlEvents.touchUpInside)
         
@@ -61,7 +61,7 @@ class APMineStaticListCell: UITableViewCell {
             make.left.equalTo(22)
         }
         title.snp.makeConstraints { (make) in
-            make.centerY.equalTo(leftIcon.snp.right).offset(0)
+            make.centerY.equalTo(leftIcon.snp.centerY).offset(0)
             make.left.equalTo(leftIcon.snp.right).offset(10)
         }
         arrow.snp.makeConstraints { (make) in
@@ -84,7 +84,14 @@ class APMineStaticListCell: UITableViewCell {
     
     @objc func telButtonAction()
     {
-        print("拨打电话")
+        let alertC = UIAlertController(title: "", message: ("是否要拨打" + (telButton.titleLabel?.text)!), defaultActionButtonTitle: "取消", tintColor: UIColor(hex6: 0x7f5e12))
+        
+        alertC.addAction(UIAlertAction.init(title: "拨打", style: UIAlertActionStyle.default, handler: { (alert) in
+            
+            let phoneUrl : NSURL = NSURL(string: "tel:" + (self.telButton.titleLabel?.text)!)!
+            UIApplication.shared.openURL(phoneUrl as URL)
+        }))
+        alertC.show()
     }
     
     required init?(coder aDecoder: NSCoder) {

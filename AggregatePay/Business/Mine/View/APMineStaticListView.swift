@@ -8,18 +8,36 @@
 
 import UIKit
 
+let AP_groupTableViewBackground = "#EBEBF1"
+
+
+protocol APMineStaticListViewDelegate : NSObjectProtocol {
+    func tableViewDidSelectIndex(_ title : String, controller : String)
+}
+
 class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
 
+    weak var delegate : APMineStaticListViewDelegate?
+    
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
+    var listDataSource : NSArray = {
+        let path = Bundle.main.path(forResource: "Mine_List_Config", ofType: "plist")
+        var arr : NSArray = NSArray(contentsOfFile: path!)!
+        return arr
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        theme_backgroundColor = [AP_groupTableViewBackground]
+        tableView.theme_backgroundColor = ["#FFF"]
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.register(APMineStaticListCell.self, forCellReuseIdentifier: "APMineStaticListCell")
+        tableView.bounces = false
         
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -42,7 +60,7 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         }
         else
         {
-            return 5
+            return listDataSource.count
         }
     }
     
@@ -61,14 +79,46 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             let cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "Mine_tableViewCell_line")
             cell.contentView.backgroundColor = UIColor.groupTableViewBackground
+            cell.selectionStyle = .none
             return cell
         }
         else
         {
-            let cell = APMineStaticListCell.cellWithTableView(tableView)
+            let cell : APMineStaticListCell = APMineStaticListCell.cellWithTableView(tableView) as! APMineStaticListCell
+            cell.selectionStyle = .none
             
-            return cell!
+            let item : NSDictionary = listDataSource[indexPath.row] as! NSDictionary
+            
+            let title = item.object(forKey: "title")
+            cell.title.text = title as? String
+            
+            let icon = item.object(forKey: "icon")
+            cell.leftIcon.theme_image = [icon as! String]
+            
+            if cell.title.text == "客服"
+            {
+                cell.telButton.isHidden = false
+                cell.telButton.setTitle("400-666-888", for: UIControlState.normal)
+            }
+            else
+            {
+                cell.telButton.isHidden = true
+            }
+            
+            return cell
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        guard let _delegate = delegate else {
+            print("未设置Delegate")
+            return
+        }
+        let item : NSDictionary = listDataSource[indexPath.row] as! NSDictionary
+        let controller = item.object(forKey: "controller")
+        let title = item.object(forKey: "title")
+        _delegate.tableViewDidSelectIndex(title as! String, controller: controller as! String)
     }
 }

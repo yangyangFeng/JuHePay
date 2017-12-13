@@ -15,14 +15,14 @@ private let lastThemeIndexKey = "AP_LastThemeIndex"
 
 /// 全局颜色配置
 enum APGlobalPicker {
-    static let navgationBarBackGroundColors = ["#000", "#FFF", "#FFF", "#FFF"]
+    static let navgationBarBackGroundColors = ["#000", "#FFF"]
     
-    static let backgroundColor: ThemeColorPicker = ["#fff", "#fff", "#fff", "#292b38"]
-    static let textColor: ThemeColorPicker = ["#000", "#000", "#000", "#ECF0F1"]
+    static let backgroundColor: ThemeColorPicker = ["#fff", "#fff"]
+    static let textColor: ThemeColorPicker = ["#000", "#000"]
     
-    static let barTextColors = ["#000", "#FFF", "#FFF", "#FFF"]
+    static let barTextColors = ["#c8a556", "#FFF"]
     static let barTextColor = ThemeColorPicker.pickerWithColors(barTextColors)
-    static let barTintColor: ThemeColorPicker = ["#EB4F38", "#F4C600", "#56ABE4", "#01040D"]
+    static let barTintColor: ThemeColorPicker = ["#EB4F38", "#F4C600"]
 }
 
 

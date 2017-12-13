@@ -13,9 +13,10 @@ class APBaseNavigationViewController: UINavigationController ,UIGestureRecognize
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.theme_backgroundColor = ["#FFF"]
+        
         self.interactivePopGestureRecognizer?.delegate = self as UIGestureRecognizerDelegate
         
-        // Do any additional setup after loading the view.
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
