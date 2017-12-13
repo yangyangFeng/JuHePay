@@ -12,7 +12,6 @@ class APRegisterPasswordCell: APPasswordFormsCell {
 
     override init() {
         super.init()
-        edit.isHidden = true
         textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
     }
     
