@@ -13,6 +13,7 @@ class APRegisterInviteCell: APTextFormsCell {
     override init() {
         super.init()
         textField.placeholder = "请输入邀请码"
+        textField.keyboardType = UIKeyboardType.asciiCapable
     }
     
     required init?(coder aDecoder: NSCoder) {
