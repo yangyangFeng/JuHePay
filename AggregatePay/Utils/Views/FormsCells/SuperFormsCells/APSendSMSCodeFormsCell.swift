@@ -5,13 +5,10 @@
 //  Created by BlackAnt on 2017/12/6.
 //  Copyright © 2017年 cne. All rights reserved.
 //
-/**
- *  样式：
- *  [图标|输入框|发送验证码]
- */
+
 import UIKit
 
-class APSendSMSCodeFormsCell: APFormsCell {
+class APSendSMSCodeFormsCell: APFormsCell, UITextFieldDelegate {
 
     var textField: UITextField = UITextField()
     var sendSmsCodeButton: UIButton = UIButton()
@@ -24,6 +21,7 @@ class APSendSMSCodeFormsCell: APFormsCell {
         sendSmsCodeButton.theme_setTitleColor(["#d09326"], forState: .normal)
         sendSmsCodeButton.theme_setTitleColor(["#d09326"], forState: .selected)
         
+        textField.delegate = self
         textField.placeholder = "请输入11位手机号码"
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.keyboardType = UIKeyboardType.numberPad
@@ -54,4 +52,10 @@ class APSendSMSCodeFormsCell: APFormsCell {
         textBlock?(identify, textField.text!)
     }
 
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        let text = textField.text! as NSString
+        return limitTextCount(text: text, range: range, string: string)
+    }
 }

@@ -12,9 +12,12 @@ class APRegisterAccountCell: APSendSMSCodeFormsCell {
     
     override init() {
         super.init()
-        textField.placeholder = "请输入11位手机号码"
-        textField.keyboardType = UIKeyboardType.numberPad
+        predicateInputRegx(inputRegx: "^1[0-9]{0,10}$")
+        
         sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
+        
+        textField.keyboardType = UIKeyboardType.numberPad
+        textField.placeholder = "请输入11位手机号码"
     }
     
     required init?(coder aDecoder: NSCoder) {

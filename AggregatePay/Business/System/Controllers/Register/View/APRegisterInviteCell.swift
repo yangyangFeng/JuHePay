@@ -12,8 +12,9 @@ class APRegisterInviteCell: APTextFormsCell {
 
     override init() {
         super.init()
-        textField.placeholder = "请输入邀请码"
+        predicateInputRegx(inputRegx: "^[A-Za-z0-9-_]{0,6}$")
         textField.keyboardType = UIKeyboardType.asciiCapable
+        textField.placeholder = "请输入邀请码"
     }
     
     required init?(coder aDecoder: NSCoder) {

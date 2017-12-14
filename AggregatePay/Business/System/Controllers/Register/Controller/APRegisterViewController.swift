@@ -21,30 +21,46 @@ import UIKit
  */
 class APRegisterViewController: APSystemBaseViewController {
     
-    var registerAccountCell: APRegisterAccountCell = APRegisterAccountCell()
-    var registerSmsCodeCell: APRegisterSmsCodeCell = APRegisterSmsCodeCell()
-    var registerPasswordCell: APRegisterPasswordCell = APRegisterPasswordCell()
-    var registerInviteCodeCell: APRegisterInviteCell = APRegisterInviteCell()
-    var registerAgreedCell: APRegisterAgreedCell = APRegisterAgreedCell()
-    var registerSubmitCell: APRegisterSubmitCell = APRegisterSubmitCell()
+    //MARK: ------------- 全局属性
+    
+    let registerAccountCell: APRegisterAccountCell = APRegisterAccountCell()
+    let registerSmsCodeCell: APRegisterSmsCodeCell = APRegisterSmsCodeCell()
+    let registerPasswordCell: APRegisterPasswordCell = APRegisterPasswordCell()
+    let registerInviteCodeCell: APRegisterInviteCell = APRegisterInviteCell()
+    let registerAgreedCell: APRegisterAgreedCell = APRegisterAgreedCell()
+    let registerSubmitCell: APRegisterSubmitCell = APRegisterSubmitCell()
+    let registerRequest: APRegisterRequest = APRegisterRequest()
+    
+    //MARK: ------------- 生命周期
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
+        registerSystemConfig()
+        registerCreateSubViews()
+        registerLayoutSubViews()
+        registerTargetCallBacks()
+        registerRegisterObserve()
+    }
+    
+    //MARK: ------------- 私有方法
+    
+    private func registerSystemConfig() {
         self.title = "商户注册"
         
-        registerAccountCell.identify = "registerAccountID"
-        registerSmsCodeCell.identify = "registerSmsCodeID"
-        registerPasswordCell.identify = "registerPasswordID"
-        registerInviteCodeCell.identify = "registerInviteCodeID"
-        registerAgreedCell.identify = "registerAgreedID"
-        registerSubmitCell.identify = "registerSubmitID"
-     
+    }
+    
+    private func registerCreateSubViews() {
+        
         view.addSubview(registerAccountCell)
         view.addSubview(registerSmsCodeCell)
         view.addSubview(registerPasswordCell)
         view.addSubview(registerInviteCodeCell)
         view.addSubview(registerAgreedCell)
         view.addSubview(registerSubmitCell)
+    }
+    
+    private func registerLayoutSubViews() {
         
         registerAccountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
@@ -87,29 +103,60 @@ class APRegisterViewController: APSystemBaseViewController {
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(subimtHeight)
         }
+    }
+    
+    private func registerTargetCallBacks() {
         
         registerAccountCell.textBlock = { (key, value) in
-            print("registerAccountCell:\(key) ___ value:\(value)")
+            self.registerRequest.mobile = value
         }
         
         registerSmsCodeCell.textBlock = { (key, value) in
-            print("registerSmsCodeCell:\(key) ___ value:\(value)")
+            self.registerRequest.smsCode = value
         }
         
         registerPasswordCell.textBlock = { (key, value) in
-            print("registerPasswordCell:\(key) ___ value:\(value)")
+            self.registerRequest.password = value
         }
         
         registerInviteCodeCell.textBlock = { (key, value) in
-            print("registerInviteCodeCell:\(key) ___ value:\(value)")
+            self.registerRequest.inviteCode = value
         }
         
         registerAgreedCell.buttonBlock = { (key, value) in
-            print("registerAgreedCell:\(key) ___ value:\(value)")
+            let button: UIButton = value as! UIButton
+            self.registerRequest.isAgreed = button.isSelected
         }
         
         registerSubmitCell.buttonBlock = { (key, value) in
-            print("registerSubmitCell:\(key) ___ value:\(value)")
+            
+        }
+    }
+    
+    private func registerRegisterObserve() {
+    
+        self.kvoController.observe(self.registerRequest,
+                                   keyPaths: ["mobile",
+                                              "password",
+                                              "inviteCode",
+                                              "smsCode",
+                                              "isAgreed"],
+                                   options: [.new, .initial])
+        { (observer, object, change) in
+            let registerModel = object as! APRegisterRequest
+            print("\(registerModel.isAgreed)")
+            if (registerModel.mobile.characters.count >= 11 &&
+                registerModel.password.characters.count >= 6 &&
+                registerModel.inviteCode.characters.count >= 6 &&
+                registerModel.smsCode.characters.count >= 4 &&
+                registerModel.isAgreed) {
+                print("is did submit button")
+                self.registerSubmitCell.isEnabled = true
+            }
+            else {
+                print("not is did submit button")
+                self.registerSubmitCell.isEnabled = false
+            }
         }
     }
 }

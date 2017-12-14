@@ -13,26 +13,21 @@ import UIKit
  */
 class APPromoteViewController: APBaseViewController {
 
+    
+    var button: APRequestButton = APRequestButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.vhl_setNavBackgroundColor(UIColor.init(hex6: 0x373737))
-        // Do any additional setup after loading the view.
+        self.view.addSubview(button)
+        button.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.top.equalTo(view.snp.top)
+            make.height.equalTo(view.snp.height).multipliedBy(0.3)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

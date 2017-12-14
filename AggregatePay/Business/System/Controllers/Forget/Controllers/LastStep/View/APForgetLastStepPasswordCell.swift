@@ -8,11 +8,11 @@
 
 import UIKit
 
-class APModifyPasswordCell: APPasswordFormsCell {
+class APForgetLastStepPasswordCell: APPasswordFormsCell {
 
     override init() {
         super.init()
-        edit.isHidden = true
+        predicateInputRegx(inputRegx: "^[A-Za-z0-9-_]{0,20}$")
         textField.placeholder = "请设置密码(6-16位字母、数字或下划线)"
     }
     

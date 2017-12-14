@@ -36,7 +36,6 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
             make.top.equalTo(homeMenuView.snp.bottom)
             make.bottom.equalTo(view.snp.bottom)
         }
-        homeMenuView.defaultSelectIndex(index: 0)
     }
     
     //MARK: ------- APHomeMenuViewDelegate
@@ -48,9 +47,8 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     func selectHomeMenuItemFaile(message: String) {
 //        view.makeToast(message, duration: 3.0, position: .bottom)
         APAlert.show(message: message, confirmTitle: "确定", canceTitle: "取消", confirm: { (action) in
-//            let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-//            self.present(loginVC, animated: true, completion: nil)
-            self.navigationController?.pushViewController(APPromoteViewController())
+            let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+            self.present(loginVC, animated: true, completion: nil)
         }) { (action) in
             
         }

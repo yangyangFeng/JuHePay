@@ -20,39 +20,56 @@ import UIKit
  */
 class APLoginViewController: APSystemBaseViewController {
     
-    var logo: UIImageView = UIImageView()
-    var loginAccountCell: APLoginAccountCell = APLoginAccountCell()
-    var loginPasswordCell: APLoginPasswordCell = APLoginPasswordCell()
-    var loginMemoryCell: APLoginMemoryCell = APLoginMemoryCell()
-    var loginSubmitCell: APLoginSubmitCell = APLoginSubmitCell()
-    var loginToolView: APLoginToolView = APLoginToolView()
-
+    //MARK: ------------- 全局属性
+    
+    let logoImageView: UIImageView = UIImageView()
+    let loginAccountCell: APLoginAccountCell = APLoginAccountCell()
+    let loginPasswordCell: APLoginPasswordCell = APLoginPasswordCell()
+    let loginMemoryCell: APLoginMemoryCell = APLoginMemoryCell()
+    let loginSubmitCell: APLoginSubmitCell = APLoginSubmitCell()
+    let loginToolView: APLoginToolView = APLoginToolView()
+    let loginRequest: APLoginRequest = APLoginRequest()
+    
+    //MARK: ------------- 生命周期
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        self.title = "商户登录"
-        logo.backgroundColor = UIColor.red
-
-        loginAccountCell.identify = "loginAccountID"
-        loginPasswordCell.identify = "loginPasswordID"
-        loginMemoryCell.identify = "loginMemoryID"
-        loginSubmitCell.identify = "loginSubmitID"
+        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
+        loginSystemConfig()
+        loginCreateSubViews()
+        loginLayoutSubViews()
+        loginTargetCallBacks()
+        loginRegisterObserve()
+    }
+    
+    //MARK: ------------- 私有方法
+    
+    private func loginSystemConfig() {
         
-        view.addSubview(logo)
+        self.title = "商户登录"
+        self.logoImageView.backgroundColor = UIColor.red
+    }
+    
+    private func loginCreateSubViews() {
+        
+        view.addSubview(logoImageView)
         view.addSubview(loginAccountCell)
         view.addSubview(loginPasswordCell)
         view.addSubview(loginMemoryCell)
         view.addSubview(loginSubmitCell)
         view.addSubview(loginToolView)
+    }
+    
+    private func loginLayoutSubViews() {
         
-        logo.snp.makeConstraints { (make) in
+        logoImageView.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
             make.centerX.equalTo(view.snp.centerX)
             make.size.equalTo(CGSize(width: 76, height: 76))
         }
         
         loginAccountCell.snp.makeConstraints { (make) in
-            make.top.equalTo(logo.snp.bottom).offset(40)
+            make.top.equalTo(logoImageView.snp.bottom).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
@@ -82,20 +99,24 @@ class APLoginViewController: APSystemBaseViewController {
             make.height.equalTo(25)
         }
         
+    }
+    
+    private func loginTargetCallBacks() {
+        
         loginAccountCell.textBlock = { (key, value) in
-            print("key:\(key) ___ value:\(value)")
+            self.loginRequest.mobile = value
         }
         
         loginPasswordCell.textBlock = { (key, value) in
-            print("key:\(key) ___ value:\(value)")
+            self.loginRequest.password = value
         }
         
         loginMemoryCell.buttonBlock = { (key, value) in
             print("loginMemoryCell:\(key) ___ value:\(value)")
         }
         
+        
         loginSubmitCell.buttonBlock = { (key, value) in
-            print("loginSubmitCell:\(key) ___ value:\(value)")
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -107,8 +128,25 @@ class APLoginViewController: APSystemBaseViewController {
         
         loginToolView.gotoForgetBlock = {(param) in
             print("loginToolView.gotoForgetBlock:--param:\(param)")
-            let registerVC: APForgetViewController = APForgetViewController()
+            let registerVC: APForgetFirstStepViewController = APForgetFirstStepViewController()
             self.navigationController?.pushViewController(registerVC, animated: true)
+        }
+    }
+    
+    private func loginRegisterObserve() {
+        
+        self.kvoController.observe(self.loginRequest,
+                                   keyPaths: ["mobile", "password"],
+                                   options: [.new, .initial])
+        { (observer, object, change) in
+            let loginModel = object as! APLoginRequest
+            if  loginModel.mobile.characters.count >= 11 &&
+                loginModel.password.characters.count >= 6{
+                self.loginSubmitCell.isEnabled = true
+            }
+            else {
+                self.loginSubmitCell.isEnabled = false
+            }
         }
     }
    
