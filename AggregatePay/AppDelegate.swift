@@ -101,7 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                                              selectedImage: UIImage(named: "Home_TbaBar_我的_H"))
 
         tabBarController.tabBar.shadowImage = nil
-        
         tabBarController.viewControllers = [wallet,promote,home,earnings,mine]
         tabBarController.selectedIndex = 2
         return tabBarController

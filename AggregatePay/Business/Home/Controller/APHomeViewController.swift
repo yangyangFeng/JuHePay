@@ -46,11 +46,10 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     
     func selectHomeMenuItemFaile(message: String) {
 //        view.makeToast(message, duration: 3.0, position: .bottom)
-        APAlert.show(message: message,
-                     confirmTitle: "确定",
-                     canceTitle: "取消",
-                     confirm: { (action) in
-            
+        APAlert.show(message: message, confirmTitle: "确定", canceTitle: "取消", confirm: { (action) in
+//            let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+//            self.present(loginVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(APPromoteViewController())
         }) { (action) in
             
         }

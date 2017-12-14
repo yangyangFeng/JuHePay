@@ -15,7 +15,9 @@ class APPromoteViewController: APBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.vhl_setNavBarTitleColor(UIColor(hex6: 0xc8a556))
+        
+        self.vhl_setNavBarBackgroundAlpha(0.0)
         // Do any additional setup after loading the view.
     }
 

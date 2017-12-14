@@ -96,6 +96,7 @@ class APLoginViewController: APSystemBaseViewController {
         
         loginSubmitCell.buttonBlock = { (key, value) in
             print("loginSubmitCell:\(key) ___ value:\(value)")
+            self.dismiss(animated: true, completion: nil)
         }
         
         loginToolView.gotoRegisterBlock = {(param) in
