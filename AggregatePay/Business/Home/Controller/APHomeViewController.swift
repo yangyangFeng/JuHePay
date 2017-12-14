@@ -16,6 +16,7 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "收款"
+        self.edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
         
         homeMenuView.delegate = self
