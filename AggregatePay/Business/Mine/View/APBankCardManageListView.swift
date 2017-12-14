@@ -11,7 +11,7 @@ import UIKit
 let K_Width = UIScreen.main.bounds.size.width
 let K_Height = UIScreen.main.bounds.size.height
 
-class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelegate {
+class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelegate, BWSwipeRevealCellDelegate {
 
     lazy var tableView: UITableView = {
         var view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
@@ -20,6 +20,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         view.tableFooterView = UIView()
         view.backgroundColor = UIColor.black
         view.register(APBankCardCell.self, forCellReuseIdentifier: "APBankCardCell")
+        view.separatorStyle = .none
         return view
     }()
     
@@ -37,16 +38,27 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = APBankCardCell.cellWithTableView(tableView)
+//        let swipeCell : BWSwipeRevealCell = cell as! BWSwipeRevealCell
+//        swipeCell.delegate = self as BWSwipeRevealCellDelegate
+//        swipeCell.threshold = 70
         return cell!
         
     }
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    
+    func swipeCellActivatedAction(_ cell: BWSwipeCell, isActionLeft: Bool) {
+        print("Swipe Cell Activated Action")
+        let indexPath: IndexPath = tableView.indexPath(for: cell)!
+        
+//        self.removeObjectAtIndexPath(indexPath)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-    }
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,8 +78,8 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
             make.height.equalTo(40)
         }
         tableView.snp.makeConstraints { (make) in
-//            make.top.equalTo(segmentView.snp.bottom).offset(0)
-            make.left.right.bottom.top.equalTo(0)
+            make.top.equalTo(segmentView.snp.bottom).offset(0)
+            make.left.right.bottom.equalTo(0)
         }
     }
     
@@ -176,7 +188,8 @@ class APBankCardManageSegmentButton: UIView {
     }
 }
 
-class APBankCardCell: UITableViewCell {
+//#makr - 
+class APBankCardCell: APSwipeTableViewCell {
     
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
         let identifier = "APBankCardCell"
@@ -196,6 +209,15 @@ class APBankCardCell: UITableViewCell {
         contentView.backgroundColor = UIColor.clear
         backgroundColor = UIColor.clear
         
+//        self.revealDirection = .right
+//
+//        self.panElasticityFactor = 0.5
+//
+//        self.type = .slidingDoor
+//
+//        self.bgViewRightImage = UIImage(named:"BankCard_Del")!.withRenderingMode(.alwaysOriginal)
+//        self.bgViewRightColor = UIColor.black
+        
         let bgImageView = UIImageView.init(image: UIImage.init(named: "BankCardBG"))
         
         let delButton = UIButton(type: .system)
@@ -203,12 +225,17 @@ class APBankCardCell: UITableViewCell {
         delButton.setBackgroundImage(UIImage.init(named: "BankCard_Del"), for: UIControlState.normal)
         delButton.addTarget(self, action: #selector(buttonDidAction), for: UIControlEvents.touchUpInside)
         
-        let bgView = UIView()
+        swipeContentView.addSubview(bgImageView)
+        contentView.addSubview(delButton)
+//        let bgView = UIView()
         
-        bgView.backgroundColor = UIColor.clear
-        bgView.addSubview(delButton)
-        contentView.addSubview(bgView)
-        contentView.addSubview(bgImageView)
+//        bgView.backgroundColor = UIColor.clear
+//        bgView.addSubview(delButton)
+//        contentView.addSubview(bgView)
+//        contentView.addSubview(bgImageView)
+//        self.backView?.addSubview(delButton)
+        
+        
         
         bgImageView.snp.makeConstraints { (make) in
             make.top.equalTo(10)
@@ -216,14 +243,10 @@ class APBankCardCell: UITableViewCell {
             make.right.equalTo(-20)
             make.bottom.equalTo(0)
         }
-        bgView.snp.makeConstraints { (make) in
-            make.left.equalTo(K_Width)
-            make.top.bottom.equalTo(0)
-            make.width.equalTo(K_Width)
-        }
+
         delButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(bgView.snp.centerY).offset(0)
-            make.left.equalTo(0)
+            make.centerY.equalTo((delButton.superview?.snp.centerY)!).offset(0)
+            make.left.equalTo(self.swipeContentView.snp.right).offset(0)
             make.width.height.equalTo(50)
         }
         
@@ -244,8 +267,11 @@ class APBankCardCell: UITableViewCell {
     @objc func buttonDidAction()
     {
         print("删除")
+        resetFrame()
     }
  
+
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

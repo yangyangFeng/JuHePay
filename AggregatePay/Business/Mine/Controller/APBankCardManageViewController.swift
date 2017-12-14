@@ -25,7 +25,7 @@ class APBankCardManageViewController: APBaseViewController {
         view.addSubview(bankCardView)
         bankCardView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(0)
-            make.top.equalTo(64)
+            make.top.equalTo(self.vhl_navigationBarAndStatusBarHeight())
         }
         // Do any additional setup after loading the view.
     }
