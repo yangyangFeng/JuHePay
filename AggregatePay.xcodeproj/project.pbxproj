@@ -65,6 +65,11 @@
 		238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */; };
 		238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */; };
 		238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */; };
+		745BDAB01FE21E10003A6912 /* BWSwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAAE1FE21E10003A6912 /* BWSwipeCell.swift */; };
+		745BDAB11FE21E10003A6912 /* BWSwipeRevealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAAF1FE21E10003A6912 /* BWSwipeRevealCell.swift */; };
+		745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */; };
+		745BDAB71FE27E0C003A6912 /* SwipyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB51FE27E0C003A6912 /* SwipyCell.swift */; };
+		745BDAB81FE27E0C003A6912 /* SwipyCellTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB61FE27E0C003A6912 /* SwipyCellTypes.swift */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -188,6 +193,11 @@
 		238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
 		238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthHomeViewController.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		745BDAAE1FE21E10003A6912 /* BWSwipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeCell.swift; sourceTree = "<group>"; };
+		745BDAAF1FE21E10003A6912 /* BWSwipeRevealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWSwipeRevealCell.swift; sourceTree = "<group>"; };
+		745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSwipeTableViewCell.swift; sourceTree = "<group>"; };
+		745BDAB51FE27E0C003A6912 /* SwipyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipyCell.swift; sourceTree = "<group>"; };
+		745BDAB61FE27E0C003A6912 /* SwipyCellTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipyCellTypes.swift; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -706,6 +716,18 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		745BDAAD1FE21E10003A6912 /* SwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				745BDAB51FE27E0C003A6912 /* SwipyCell.swift */,
+				745BDAB61FE27E0C003A6912 /* SwipyCellTypes.swift */,
+				745BDAAE1FE21E10003A6912 /* BWSwipeCell.swift */,
+				745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */,
+				745BDAAF1FE21E10003A6912 /* BWSwipeRevealCell.swift */,
+			);
+			path = SwipeCell;
+			sourceTree = "<group>";
+		};
 		74C49E611FD4FE0100F0501B = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +941,7 @@
 		74EC34331FDF892C003ABF70 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				745BDAAD1FE21E10003A6912 /* SwipeCell */,
 				74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */,
 				7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */,
 				7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */,
@@ -1172,8 +1195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
+				745BDAB01FE21E10003A6912 /* BWSwipeCell.swift in Sources */,
 				1AA80FBE1FDFF8180021B046 /* APHomeViewController.swift in Sources */,
 				1AA80FBF1FDFF8180021B046 /* APCollectionKeyboardView.swift in Sources */,
+				745BDAB11FE21E10003A6912 /* BWSwipeRevealCell.swift in Sources */,
 				1AA80FC01FDFF8180021B046 /* APKeyboardCompositionView.swift in Sources */,
 				1AA80FC11FDFF8180021B046 /* UIColorExtension.swift in Sources */,
 				1AA80FC21FDFF8180021B046 /* APNetworking.swift in Sources */,
@@ -1230,8 +1255,10 @@
 				1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */,
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
+				745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */,
 				1AA80F9A1FDFDE660021B046 /* APRegisterAccountCell.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
+				745BDAB81FE27E0C003A6912 /* SwipyCellTypes.swift in Sources */,
 				1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */,
 				1AA80FA21FDFDE660021B046 /* APLoginMemoryCell.swift in Sources */,
 				1AA80FAC1FDFDE660021B046 /* APForgetSmsCodeCell.swift in Sources */,
@@ -1247,6 +1274,7 @@
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
 				7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */,
 				7487E1841FDFE131000E3EBE /* UITextViewExtensions.swift in Sources */,
+				745BDAB71FE27E0C003A6912 /* SwipyCell.swift in Sources */,
 				7487E17B1FDFE131000E3EBE /* UISearchBarExtensions.swift in Sources */,
 				7487E1861FDFE131000E3EBE /* UIStoryboardExtensions.swift in Sources */,
 				7487E1821FDFE131000E3EBE /* UIDatePickerExtensions.swift in Sources */,
