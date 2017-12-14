@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APModifySubmitCell: APSubmitFormsCell {
+class APForgetLastSubmitCell: APSubmitFormsCell {
 
     override init() {
         super.init()

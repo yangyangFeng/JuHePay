@@ -36,7 +36,8 @@ class APSelectBoxFormsCell: APBaseFormsCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func clickButton(_ button: UIButton) {
+    @objc func clickButton(_ buttonParam: UIButton) {
+        button.isSelected = !buttonParam.isSelected
         buttonBlock?(identify, button)
     }
 }

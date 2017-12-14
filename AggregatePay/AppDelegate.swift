@@ -15,11 +15,13 @@ import Toast_Swift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
-    var window: UIWindow?
+    public var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         /**********************键盘管理*************************/
         attributeIQKeyboardManager()
+        
         /**********************主题配置*************************/
         APP_Theme.switchThemeTo(theme: APP_Theme.Normal)
         
@@ -29,33 +31,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        
         window?.rootViewController = createTabBarController()
-        
         window?.makeKeyAndVisible()
-        // Override point for customization after application launch.
         
         return true
     }
 
     func createTabBarController() -> UITabBarController {
+        
         ThemeManager.setTheme(index: 0)
         let tabBarController = APBaseTabBarViewController()
-        
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
-//        tabBarController.tabBar.shadowImage = UIImage(named: "transparent")
-//        tabBarController.tabBar.backgroundImage = UIImage(named: "background_dark")
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.theme_barTintColor = ["#373737","#213"]
         tabBarController.tabBar.theme_tintColor = ["#373737","#213"]
         
-        
         tabBarController.shouldHijackHandler = {
             tabbarController, viewController, index in
-//            if index == 2 {
-//                return true
-//            }
             return false
         }
         tabBarController.didHijackHandler = {
@@ -80,41 +73,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
                 tabBarController?.present(alertController, animated: true, completion: nil)
             }
         }
+        let wallet = APBaseNavigationViewController(rootViewController: APWalletViewController())
+        let promote = APBaseNavigationViewController(rootViewController: APPromoteViewController())
         let home = APBaseNavigationViewController(rootViewController: APHomeViewController())
+        let earnings = APBaseNavigationViewController(rootViewController: APEarningsViewController())
+        let mine = APBaseNavigationViewController(rootViewController: APMineViewController())
 
-        let home1 = APBaseNavigationViewController(rootViewController: APHomeViewController())
-        let home2 = APBaseNavigationViewController(rootViewController: APHomeViewController())
-        let home3 = APBaseNavigationViewController(rootViewController: APMineViewController())
-
-        let home4 = APBaseNavigationViewController(rootViewController: APLoginViewController())
-
-        
-        
-        home.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+        wallet.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                             title: "Home",
                                             image: UIImage(named: "Home_TbaBar_钱包_N"),
                                             selectedImage: UIImage(named: "Home_TbaBar_钱包_H"))
-        home1.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+        promote.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Find",
                                              image: UIImage(named: "Home_TbaBar_推广_N"),
                                              selectedImage: UIImage(named: "Home_TbaBar_推广_H"))
-        home2.tabBarItem = ESTabBarItem.init(APIrregularityContentView(),
+        home.tabBarItem = ESTabBarItem.init(APIrregularityContentView(),
                                              title: nil,
                                              image: UIImage(named: "Home_TbaBar_收款_N"),
                                              selectedImage: UIImage(named: "Home_TbaBar_收款_H"))
-        home3.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+        earnings.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Favor",
                                              image: UIImage(named: "Home_TbaBar_收益_N"),
                                              selectedImage: UIImage(named: "Home_TbaBar_收益_H"))
-        home4.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
+        mine.tabBarItem = ESTabBarItem.init(APTabBarItemContentView(),
                                              title: "Me",
                                              image: UIImage(named: "Home_TbaBar_我的_N"),
                                              selectedImage: UIImage(named: "Home_TbaBar_我的_H"))
 
         tabBarController.tabBar.shadowImage = nil
-            //UIImage(size: CGSize(width : 1000,height : 4), pureColor: UIColor(hex6: 0x323232) , alpha: 1)
-        tabBarController.viewControllers = [home,home1,home2,home3,home4]
-        
+        tabBarController.viewControllers = [wallet,promote,home,earnings,mine]
+        tabBarController.selectedIndex = 2
         return tabBarController
     }
     

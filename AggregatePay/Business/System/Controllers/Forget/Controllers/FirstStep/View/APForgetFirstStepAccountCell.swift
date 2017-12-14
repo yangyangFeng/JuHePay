@@ -8,12 +8,13 @@
 
 import UIKit
 
-class APForgetAccountCell: APSendSMSCodeFormsCell {
+class APForgetFirstStepAccountCell: APSendSMSCodeFormsCell {
     
     override init() {
         super.init()
-        textField.placeholder = "请输入注册手机号"
+        predicateInputRegx(inputRegx: "^1[0-9]{0,10}$")
         sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
+        textField.placeholder = "请输入注册手机号"
     }
     
     required init?(coder aDecoder: NSCoder) {

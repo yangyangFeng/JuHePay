@@ -12,6 +12,7 @@ class APRegisterPasswordCell: APPasswordFormsCell {
 
     override init() {
         super.init()
+        predicateInputRegx(inputRegx: "^[A-Za-z0-9-_]{0,20}$")
         textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
     }
     

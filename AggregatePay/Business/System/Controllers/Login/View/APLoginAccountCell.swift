@@ -12,6 +12,7 @@ class APLoginAccountCell: APTextFormsCell {
 
     override init() {
         super.init()
+        predicateInputRegx(inputRegx: "^1[0-9]{0,10}$")
         textField.keyboardType = UIKeyboardType.numberPad
         textField.placeholder = "请输入11位手机号码"
     }
