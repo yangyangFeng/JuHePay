@@ -25,7 +25,7 @@ class APLoginToolView: UIView {
         
         centerLine.theme_backgroundColor = ["#e6c893"]
         
-        forget.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        forget.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         forget.setTitle(_ : "忘记密码", for: .normal)
         
         forget.theme_setTitleColor(["#d09326"], forState: .normal)
@@ -34,7 +34,7 @@ class APLoginToolView: UIView {
                          action: #selector(clickForgetButton(_:)),
                          for: UIControlEvents.touchUpInside)
         
-        register.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        register.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         register.setTitle(_ : "立即注册", for: .normal)
         register.theme_setTitleColor(["#d09326"], forState: .normal)
         register.theme_setTitleColor(["#d09326"], forState: .selected)

@@ -11,37 +11,34 @@ import UIKit
 /**
  * 忘记密码
  */
-class APForgetViewController: APSystemBaseViewController {
+class APForgetFirstStepViewController: APForgetViewController {
     
-    var prompt: UILabel = UILabel()
-    var forgetAccountCell: APForgetAccountCell = APForgetAccountCell()
-    var forgetSmsCodeCell: APForgetSmsCodeCell = APForgetSmsCodeCell()
-    var forgetSubmitCell: APForgetSubmitCell = APForgetSubmitCell()
+    //MARK: ------------- 全局属性
+    
+    var forgetAccountCell: APForgetFirstStepAccountCell = APForgetFirstStepAccountCell()
+    var forgetSmsCodeCell: APForgetFirstStepSmsCodeCell = APForgetFirstStepSmsCodeCell()
+    var forgetSubmitCell: APForgetFirstStepSubmitCell = APForgetFirstStepSubmitCell()
 
+    //MARK: ------------- 生命周期
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "找回密码"
-        prompt.theme_textColor = ["#d09326"]
-        prompt.theme_backgroundColor = ["#fff4d9"]
-        prompt.font = UIFont.systemFont(ofSize: 10)
-        prompt.text = "    为了保障您的账户安全，请输入注册手机号码进行验证。"
-        
-        forgetAccountCell.identify = "forgetAccountID"
-        forgetSmsCodeCell.identify = "forgetSmsCodeID"
-        forgetSubmitCell.identify = "forgetSubmitID"
-        
-        view.addSubview(prompt)
+        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
+        forgetFirstStepCreateSubViews()
+        forgetFirstStepLayoutSubViews()
+        forgetFirstStepTargetCallBacks()
+        forgetFirstStepRegisterObserve()
+    }
+    
+    //MARK: ------------- 私有方法
+    
+    private func forgetFirstStepCreateSubViews() {
         view.addSubview(forgetAccountCell)
         view.addSubview(forgetSmsCodeCell)
         view.addSubview(forgetSubmitCell)
-        
-        prompt.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top)
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
-            make.height.equalTo(25)
-        }
-        
+    }
+    
+    private func forgetFirstStepLayoutSubViews() {
         forgetAccountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
@@ -63,19 +60,25 @@ class APForgetViewController: APSystemBaseViewController {
             make.height.equalTo(subimtHeight)
         }
         
+    }
+    
+    private func forgetFirstStepTargetCallBacks() {
         forgetAccountCell.textBlock = { (key, value) in
-            print("forgetAccountCell:\(key) ___ value:\(value)")
+            APForgetViewController.forgetRequest.mobile = value
         }
         
         forgetSmsCodeCell.textBlock = { (key, value) in
-            print("forgetSmsCodeCell:\(key) ___ value:\(value)")
+            APForgetViewController.forgetRequest.smsCode = value
         }
         
         forgetSubmitCell.buttonBlock = { (key, value) in
-            print("forgetSubmitCell:\(key) ___ value:\(value)")
-            let modifyVC: APModifyViewController = APModifyViewController()
-            self.navigationController?.pushViewController(modifyVC, animated: true)
+            let LastStepVC: APForgetViewController = APForgetLastStepViewController()
+            self.navigationController?.pushViewController(LastStepVC, animated: true)
         }
+    }
+    
+    private func forgetFirstStepRegisterObserve() {
+        
     }
    
 

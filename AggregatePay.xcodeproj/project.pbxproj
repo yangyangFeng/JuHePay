@@ -11,7 +11,19 @@
 		1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A65D81FDE3A62004D59C0 /* APDisplayView.swift */; };
 		1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */; };
 		1A1FF09B1FE0F3AA0092471F /* APHomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */; };
+		1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A354ACE1FE25722006061AE /* APRegisterRequest.swift */; };
 		1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */; };
+		1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC01FE284F7005E0912 /* APForgetFirstStepViewController.swift */; };
+		1A479ECE1FE284F7005E0912 /* APForgetFirstStepAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC21FE284F7005E0912 /* APForgetFirstStepAccountCell.swift */; };
+		1A479ECF1FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC31FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift */; };
+		1A479ED01FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC41FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift */; };
+		1A479ED11FE284F7005E0912 /* APForgetLastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC71FE284F7005E0912 /* APForgetLastStepViewController.swift */; };
+		1A479ED21FE284F7005E0912 /* APForgetLastStepPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479EC91FE284F7005E0912 /* APForgetLastStepPasswordCell.swift */; };
+		1A479ED31FE284F7005E0912 /* APForgetLastStepSubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479ECA1FE284F7005E0912 /* APForgetLastStepSubmitCell.swift */; };
+		1A479ED41FE284F7005E0912 /* APForgetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A479ECC1FE284F7005E0912 /* APForgetRequest.swift */; };
+		1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A55F5231FE28EF7001F3196 /* APForgetViewController.swift */; };
+		1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */; };
+		1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */; };
 		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
 		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
 		1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F7A1FDFDE650021B046 /* APRegisterViewController.swift */; };
@@ -28,13 +40,6 @@
 		1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F891FDFDE650021B046 /* APLoginSubmitCell.swift */; };
 		1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F8A1FDFDE650021B046 /* APLoginToolView.swift */; };
 		1AA80FA61FDFDE660021B046 /* APSystemBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F8B1FDFDE650021B046 /* APSystemBaseViewController.swift */; };
-		1AA80FA71FDFDE660021B046 /* APModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F8E1FDFDE660021B046 /* APModifyViewController.swift */; };
-		1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F901FDFDE660021B046 /* APModifyPasswordCell.swift */; };
-		1AA80FA91FDFDE660021B046 /* APModifySubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F911FDFDE660021B046 /* APModifySubmitCell.swift */; };
-		1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F941FDFDE660021B046 /* APForgetViewController.swift */; };
-		1AA80FAB1FDFDE660021B046 /* APForgetAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F961FDFDE660021B046 /* APForgetAccountCell.swift */; };
-		1AA80FAC1FDFDE660021B046 /* APForgetSmsCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F971FDFDE660021B046 /* APForgetSmsCodeCell.swift */; };
-		1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80F981FDFDE660021B046 /* APForgetSubmitCell.swift */; };
 		1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80FAF1FDFDF1C0021B046 /* APPasswordFormsCell.swift */; };
 		1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80FB01FDFDF1C0021B046 /* APSelectBoxFormsCell.swift */; };
 		1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA80FB11FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift */; };
@@ -54,7 +59,13 @@
 		1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */; };
 		1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253CD1FE1337900193B30 /* APAlertController.swift */; };
 		1AB253D01FE1391900193B30 /* APAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253CF1FE1391900193B30 /* APAlert.swift */; };
+		1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253DF1FE1436A00193B30 /* APEarningsViewController.swift */; };
+		1AB253E71FE1436B00193B30 /* APPromoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253E21FE1436A00193B30 /* APPromoteViewController.swift */; };
+		1AB253E81FE1436B00193B30 /* APWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB253E51FE1436B00193B30 /* APWalletViewController.swift */; };
 		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
+		1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */; };
+		1AF205571FE21C4C00C7BD1E /* APRequestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */; };
+		1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 		238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E0B1FE0C6320024D23F /* .gitkeep */; };
 		238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E101FE0C6320024D23F /* .gitkeep */; };
@@ -95,7 +106,6 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
-		7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -140,7 +150,17 @@
 		1A0A65DB1FDE3A62004D59C0 /* APKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKeyboardView.swift; sourceTree = "<group>"; };
 		1A0A66221FDE626E004D59C0 /* APBaseFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBaseFormsCell.swift; sourceTree = "<group>"; };
 		1A1FF09A1FE0F3A90092471F /* APHomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuView.swift; sourceTree = "<group>"; };
+		1A354ACE1FE25722006061AE /* APRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRegisterRequest.swift; sourceTree = "<group>"; };
 		1A37ED0A1FDFC15400797F28 /* APFormsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APFormsCell.swift; sourceTree = "<group>"; };
+		1A479EC01FE284F7005E0912 /* APForgetFirstStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetFirstStepViewController.swift; sourceTree = "<group>"; };
+		1A479EC21FE284F7005E0912 /* APForgetFirstStepAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetFirstStepAccountCell.swift; sourceTree = "<group>"; };
+		1A479EC31FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetFirstStepSmsCodeCell.swift; sourceTree = "<group>"; };
+		1A479EC41FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetFirstStepSubmitCell.swift; sourceTree = "<group>"; };
+		1A479EC71FE284F7005E0912 /* APForgetLastStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetLastStepViewController.swift; sourceTree = "<group>"; };
+		1A479EC91FE284F7005E0912 /* APForgetLastStepPasswordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetLastStepPasswordCell.swift; sourceTree = "<group>"; };
+		1A479ECA1FE284F7005E0912 /* APForgetLastStepSubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetLastStepSubmitCell.swift; sourceTree = "<group>"; };
+		1A479ECC1FE284F7005E0912 /* APForgetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetRequest.swift; sourceTree = "<group>"; };
+		1A55F5231FE28EF7001F3196 /* APForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APForgetViewController.swift; sourceTree = "<group>"; };
 		1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APDateTools.swift; sourceTree = "<group>"; };
 		1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNetworking.swift; sourceTree = "<group>"; };
 		1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCommon.swift; sourceTree = "<group>"; };
@@ -159,13 +179,6 @@
 		1AA80F891FDFDE650021B046 /* APLoginSubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLoginSubmitCell.swift; sourceTree = "<group>"; };
 		1AA80F8A1FDFDE650021B046 /* APLoginToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLoginToolView.swift; sourceTree = "<group>"; };
 		1AA80F8B1FDFDE650021B046 /* APSystemBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSystemBaseViewController.swift; sourceTree = "<group>"; };
-		1AA80F8E1FDFDE660021B046 /* APModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APModifyViewController.swift; sourceTree = "<group>"; };
-		1AA80F901FDFDE660021B046 /* APModifyPasswordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APModifyPasswordCell.swift; sourceTree = "<group>"; };
-		1AA80F911FDFDE660021B046 /* APModifySubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APModifySubmitCell.swift; sourceTree = "<group>"; };
-		1AA80F941FDFDE660021B046 /* APForgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetViewController.swift; sourceTree = "<group>"; };
-		1AA80F961FDFDE660021B046 /* APForgetAccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetAccountCell.swift; sourceTree = "<group>"; };
-		1AA80F971FDFDE660021B046 /* APForgetSmsCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetSmsCodeCell.swift; sourceTree = "<group>"; };
-		1AA80F981FDFDE660021B046 /* APForgetSubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForgetSubmitCell.swift; sourceTree = "<group>"; };
 		1AA80FAF1FDFDF1C0021B046 /* APPasswordFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPasswordFormsCell.swift; sourceTree = "<group>"; };
 		1AA80FB01FDFDF1C0021B046 /* APSelectBoxFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSelectBoxFormsCell.swift; sourceTree = "<group>"; };
 		1AA80FB11FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSendSMSCodeFormsCell.swift; sourceTree = "<group>"; };
@@ -176,8 +189,14 @@
 		1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APHomeMenuModel.swift; sourceTree = "<group>"; };
 		1AB253CD1FE1337900193B30 /* APAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAlertController.swift; sourceTree = "<group>"; };
 		1AB253CF1FE1391900193B30 /* APAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAlert.swift; sourceTree = "<group>"; };
+		1AB253DF1FE1436A00193B30 /* APEarningsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEarningsViewController.swift; sourceTree = "<group>"; };
+		1AB253E21FE1436A00193B30 /* APPromoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPromoteViewController.swift; sourceTree = "<group>"; };
+		1AB253E51FE1436B00193B30 /* APWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APWalletViewController.swift; sourceTree = "<group>"; };
 		1ABDA9541FDE80E200FE6097 /* CPCheckAuthInputInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCheckAuthInputInfoTool.h; sourceTree = "<group>"; };
 		1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCheckAuthInputInfoTool.m; sourceTree = "<group>"; };
+		1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Home_Menu_Config.plist; sourceTree = "<group>"; };
+		1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRequestButton.swift; sourceTree = "<group>"; };
+		1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginRequest.swift; sourceTree = "<group>"; };
 		238D0E0B1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		238D0E101FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		238D0E151FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -289,6 +308,7 @@
 		1A0A65D61FDE3A62004D59C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1AF205531FE21C3900C7BD1E /* CustomButton */,
 				1AB253CC1FE1336200193B30 /* AlertController */,
 				1A0A65E01FDE3B8F004D59C0 /* FormsCells */,
 				1A0A65D71FDE3A62004D59C0 /* Keyboard */,
@@ -331,9 +351,8 @@
 			isa = PBXGroup;
 			children = (
 				1AA80F8B1FDFDE650021B046 /* APSystemBaseViewController.swift */,
-				1AA80F921FDFDE660021B046 /* Forget */,
+				1A479EBC1FE284F7005E0912 /* Forget */,
 				1AA80F821FDFDE650021B046 /* Login */,
-				1AA80F8C1FDFDE660021B046 /* Modify */,
 				1AA80F781FDFDE650021B046 /* Register */,
 			);
 			path = Controllers;
@@ -370,6 +389,94 @@
 				1AB253C91FE109B500193B30 /* APHomeMenuModel.swift */,
 			);
 			path = MenuView;
+			sourceTree = "<group>";
+		};
+		1A354ACD1FE25709006061AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A354ACE1FE25722006061AE /* APRegisterRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A479EBC1FE284F7005E0912 /* Forget */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EBD1FE284F7005E0912 /* Controllers */,
+				1A479ECB1FE284F7005E0912 /* Model */,
+			);
+			path = Forget;
+			sourceTree = "<group>";
+		};
+		1A479EBD1FE284F7005E0912 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EBE1FE284F7005E0912 /* FirstStep */,
+				1A479EC51FE284F7005E0912 /* LastStep */,
+				1A55F5231FE28EF7001F3196 /* APForgetViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1A479EBE1FE284F7005E0912 /* FirstStep */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EBF1FE284F7005E0912 /* Controller */,
+				1A479EC11FE284F7005E0912 /* View */,
+			);
+			path = FirstStep;
+			sourceTree = "<group>";
+		};
+		1A479EBF1FE284F7005E0912 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EC01FE284F7005E0912 /* APForgetFirstStepViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1A479EC11FE284F7005E0912 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EC21FE284F7005E0912 /* APForgetFirstStepAccountCell.swift */,
+				1A479EC31FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift */,
+				1A479EC41FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A479EC51FE284F7005E0912 /* LastStep */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EC61FE284F7005E0912 /* Controller */,
+				1A479EC81FE284F7005E0912 /* View */,
+			);
+			path = LastStep;
+			sourceTree = "<group>";
+		};
+		1A479EC61FE284F7005E0912 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EC71FE284F7005E0912 /* APForgetLastStepViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1A479EC81FE284F7005E0912 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A479EC91FE284F7005E0912 /* APForgetLastStepPasswordCell.swift */,
+				1A479ECA1FE284F7005E0912 /* APForgetLastStepSubmitCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A479ECB1FE284F7005E0912 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A479ECC1FE284F7005E0912 /* APForgetRequest.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1A6DBA841FD8D7AD00E7D692 /* DateTools */ = {
@@ -415,6 +522,7 @@
 		1AA80F781FDFDE650021B046 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				1A354ACD1FE25709006061AE /* Model */,
 				1AA80F791FDFDE650021B046 /* Controller */,
 				1AA80F7B1FDFDE650021B046 /* View */,
 			);
@@ -445,6 +553,7 @@
 		1AA80F821FDFDE650021B046 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1AF205581FE22AB600C7BD1E /* Model */,
 				1AA80F831FDFDE650021B046 /* Controller */,
 				1AA80F851FDFDE650021B046 /* View */,
 			);
@@ -467,59 +576,6 @@
 				1AA80F881FDFDE650021B046 /* APLoginPasswordCell.swift */,
 				1AA80F891FDFDE650021B046 /* APLoginSubmitCell.swift */,
 				1AA80F8A1FDFDE650021B046 /* APLoginToolView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AA80F8C1FDFDE660021B046 /* Modify */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F8D1FDFDE660021B046 /* Controller */,
-				1AA80F8F1FDFDE660021B046 /* View */,
-			);
-			path = Modify;
-			sourceTree = "<group>";
-		};
-		1AA80F8D1FDFDE660021B046 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F8E1FDFDE660021B046 /* APModifyViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AA80F8F1FDFDE660021B046 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F901FDFDE660021B046 /* APModifyPasswordCell.swift */,
-				1AA80F911FDFDE660021B046 /* APModifySubmitCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AA80F921FDFDE660021B046 /* Forget */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F931FDFDE660021B046 /* Controller */,
-				1AA80F951FDFDE660021B046 /* View */,
-			);
-			path = Forget;
-			sourceTree = "<group>";
-		};
-		1AA80F931FDFDE660021B046 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F941FDFDE660021B046 /* APForgetViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AA80F951FDFDE660021B046 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AA80F961FDFDE660021B046 /* APForgetAccountCell.swift */,
-				1AA80F971FDFDE660021B046 /* APForgetSmsCodeCell.swift */,
-				1AA80F981FDFDE660021B046 /* APForgetSubmitCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -552,6 +608,54 @@
 			path = AlertController;
 			sourceTree = "<group>";
 		};
+		1AB253DD1FE1436A00193B30 /* Earnings */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253DE1FE1436A00193B30 /* Controller */,
+			);
+			path = Earnings;
+			sourceTree = "<group>";
+		};
+		1AB253DE1FE1436A00193B30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253DF1FE1436A00193B30 /* APEarningsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AB253E01FE1436A00193B30 /* Promote */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253E11FE1436A00193B30 /* Controller */,
+			);
+			path = Promote;
+			sourceTree = "<group>";
+		};
+		1AB253E11FE1436A00193B30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253E21FE1436A00193B30 /* APPromoteViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AB253E31FE1436B00193B30 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253E41FE1436B00193B30 /* Controller */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		1AB253E41FE1436B00193B30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AB253E51FE1436B00193B30 /* APWalletViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		1ABDA9521FDE80E200FE6097 /* ObjectCTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +672,38 @@
 				1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */,
 			);
 			path = CPAuthTool;
+			sourceTree = "<group>";
+		};
+		1AF205531FE21C3900C7BD1E /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				1AF205541FE21C3900C7BD1E /* RequestButton */,
+				1AF205551FE21C3900C7BD1E /* SmsCodeButton */,
+			);
+			path = CustomButton;
+			sourceTree = "<group>";
+		};
+		1AF205541FE21C3900C7BD1E /* RequestButton */ = {
+			isa = PBXGroup;
+			children = (
+				1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */,
+			);
+			path = RequestButton;
+			sourceTree = "<group>";
+		};
+		1AF205551FE21C3900C7BD1E /* SmsCodeButton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SmsCodeButton;
+			sourceTree = "<group>";
+		};
+		1AF205581FE22AB600C7BD1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		238D0E061FE0C6320024D23F /* Auth */ = {
@@ -766,6 +902,7 @@
 		74D5F63D1FD7DE700065A5F3 /* ConfigurationFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */,
 				74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */,
 				74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */,
 				74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */,
@@ -807,6 +944,9 @@
 		74D5F6491FD7E0EE0065A5F3 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				1AB253DD1FE1436A00193B30 /* Earnings */,
+				1AB253E01FE1436A00193B30 /* Promote */,
+				1AB253E31FE1436B00193B30 /* Wallet */,
 				238D0E061FE0C6320024D23F /* Auth */,
 				1A0A65F91FDE5AA1004D59C0 /* System */,
 				74D5F65F1FD921D50065A5F3 /* Mine */,
@@ -1061,6 +1201,7 @@
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				238D0E201FE0C6320024D23F /* .gitkeep in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
+				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
@@ -1171,7 +1312,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */,
+				1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */,
+				1AB253E81FE1436B00193B30 /* APWalletViewController.swift in Sources */,
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
+				1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */,
 				1AA80FBE1FDFF8180021B046 /* APHomeViewController.swift in Sources */,
 				1AA80FBF1FDFF8180021B046 /* APCollectionKeyboardView.swift in Sources */,
 				1AA80FC01FDFF8180021B046 /* APKeyboardCompositionView.swift in Sources */,
@@ -1179,7 +1324,9 @@
 				1AA80FC21FDFF8180021B046 /* APNetworking.swift in Sources */,
 				1AA80FC31FDFF8180021B046 /* AP_ThemeConfig.swift in Sources */,
 				1AA80FBD1FDFF7D80021B046 /* AppDelegate.swift in Sources */,
+				1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */,
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
+				1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */,
 				1AA80FBB1FDFF4C10021B046 /* APKeyboardInputRulesTemplate.swift in Sources */,
 				1AA80F9D1FDFDE660021B046 /* APRegisterPasswordCell.swift in Sources */,
 				1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */,
@@ -1188,9 +1335,10 @@
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
 				238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */,
-				1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */,
+				1A479ECE1FE284F7005E0912 /* APForgetFirstStepAccountCell.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
+				1A479ED41FE284F7005E0912 /* APForgetRequest.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AA80F9C1FDFDE660021B046 /* APRegisterInviteCell.swift in Sources */,
@@ -1198,23 +1346,24 @@
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
+				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
-				1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */,
-				7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */,
-				1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */,
-				1AA80FA71FDFDE660021B046 /* APModifyViewController.swift in Sources */,
 				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
-				1AA80FAB1FDFDE660021B046 /* APForgetAccountCell.swift in Sources */,
 				1AA80F9E1FDFDE660021B046 /* APRegisterSmsCodeCell.swift in Sources */,
 				7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */,
 				1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */,
 				7487E18A1FDFE131000E3EBE /* UIImageExtensions.swift in Sources */,
+				1A479ECF1FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift in Sources */,
 				7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */,
+				1A479ED01FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift in Sources */,
 				74EC34351FDF892C003ABF70 /* APServiceViewController.swift in Sources */,
 				7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */,
+				1AB253E71FE1436B00193B30 /* APPromoteViewController.swift in Sources */,
 				74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */,
 				7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */,
+				1A479ED31FE284F7005E0912 /* APForgetLastStepSubmitCell.swift in Sources */,
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
+				1A479ED11FE284F7005E0912 /* APForgetLastStepViewController.swift in Sources */,
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
 				1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */,
 				7487E18B1FDFE131000E3EBE /* UIViewExtensions.swift in Sources */,
@@ -1231,12 +1380,11 @@
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
 				1AA80F9A1FDFDE660021B046 /* APRegisterAccountCell.swift in Sources */,
+				1A479ED21FE284F7005E0912 /* APForgetLastStepPasswordCell.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
 				1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */,
 				1AA80FA21FDFDE660021B046 /* APLoginMemoryCell.swift in Sources */,
-				1AA80FAC1FDFDE660021B046 /* APForgetSmsCodeCell.swift in Sources */,
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
-				1AA80FA91FDFDE660021B046 /* APModifySubmitCell.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
 				1AA80FA31FDFDE660021B046 /* APLoginPasswordCell.swift in Sources */,
 				1AA80FA11FDFDE660021B046 /* APLoginAccountCell.swift in Sources */,
@@ -1244,9 +1392,11 @@
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
 				238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
+				1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */,
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
 				7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */,
 				7487E1841FDFE131000E3EBE /* UITextViewExtensions.swift in Sources */,
+				1AF205571FE21C4C00C7BD1E /* APRequestButton.swift in Sources */,
 				7487E17B1FDFE131000E3EBE /* UISearchBarExtensions.swift in Sources */,
 				7487E1861FDFE131000E3EBE /* UIStoryboardExtensions.swift in Sources */,
 				7487E1821FDFE131000E3EBE /* UIDatePickerExtensions.swift in Sources */,

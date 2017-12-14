@@ -12,6 +12,7 @@ class APRegisterSmsCodeCell: APTextFormsCell {
 
     override init() {
         super.init()
+        predicateInputRegx(inputRegx: "^[0-9]{0,4}$")
         textField.keyboardType = UIKeyboardType.numberPad
         textField.placeholder = "请输入短信验证码"
     }

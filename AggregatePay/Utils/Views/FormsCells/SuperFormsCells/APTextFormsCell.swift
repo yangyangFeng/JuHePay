@@ -6,19 +6,15 @@
 //  Copyright © 2017年 cne. All rights reserved.
 //
 
-
-/**
- *  样式：
- *  [图标|输入框]
- */
 import UIKit
 
-class APTextFormsCell: APFormsCell {
+class APTextFormsCell: APFormsCell, UITextFieldDelegate {
 
     var textField: UITextField = UITextField()
 
     override init() {
         super.init()
+        textField.delegate = self
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
         addSubview(textField)
@@ -38,6 +34,11 @@ class APTextFormsCell: APFormsCell {
         textBlock?(identify, textField.text!)
     }
     
-    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        let text = textField.text! as NSString
+        return limitTextCount(text: text, range: range, string: string)
+    }
 
 }

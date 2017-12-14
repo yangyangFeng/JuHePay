@@ -9,8 +9,21 @@
 import UIKit
 
 class APSubmitFormsCell: APBaseFormsCell {
+    
+    var button: APRequestButton = APRequestButton()
 
-    var button: UIButton = UIButton()
+    var isLoading: Bool = false {
+        willSet {
+            button.isLoading = newValue
+        }
+    }
+    
+    var isEnabled: Bool = false {
+        willSet {
+            button.isEnabled = newValue
+        }
+    }
+
     
     override init() {
         super.init()
@@ -25,7 +38,6 @@ class APSubmitFormsCell: APBaseFormsCell {
         button.theme_setTitleColor(["#422f02"], forState: .normal)
         button.theme_setTitleColor(["#422f02"], forState: .selected)
         button.theme_setTitleColor(["#626262"], forState: .disabled)
-        
         button.addTarget(self,
                          action: #selector(clickButton(_:)),
                          for: UIControlEvents.touchUpInside)
@@ -35,7 +47,7 @@ class APSubmitFormsCell: APBaseFormsCell {
             maker.left.right.top.bottom.equalTo(self)
         }
         
-        
+        isEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {
