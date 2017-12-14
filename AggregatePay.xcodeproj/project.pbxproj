@@ -93,6 +93,12 @@
 		7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1761FDFE130000E3EBE /* UIViewControllerExtensions.swift */; };
 		7487E18E1FDFE131000E3EBE /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1771FDFE130000E3EBE /* UILabelExtensions.swift */; };
 		7487E18F1FDFE131000E3EBE /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1781FDFE131000E3EBE /* UICollectionViewExtensions.swift */; };
+		7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7487E1941FE0C778000E3EBE /* Mine_List_Config.plist */; };
+		7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1961FE0DE6A000E3EBE /* APSetViewController.swift */; };
+		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
+		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
+		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
+		7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -213,6 +219,12 @@
 		7487E1761FDFE130000E3EBE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7487E1771FDFE130000E3EBE /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		7487E1781FDFE131000E3EBE /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
+		7487E1941FE0C778000E3EBE /* Mine_List_Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mine_List_Config.plist; sourceTree = "<group>"; };
+		7487E1961FE0DE6A000E3EBE /* APSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSetViewController.swift; sourceTree = "<group>"; };
+		7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAboutUsViewController.swift; sourceTree = "<group>"; };
+		7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProblemsViewController.swift; sourceTree = "<group>"; };
+		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
+		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74C49E771FD4FE0100F0501B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -741,6 +753,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		74288DCF1FE16AAD00519A04 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		74C49E611FD4FE0100F0501B = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +769,7 @@
 				74C49E6B1FD4FE0100F0501B /* Products */,
 				D798C481348F2D1B404B59FD /* Pods */,
 				E49EA639919700797AC8BF39 /* Frameworks */,
+				74288DCF1FE16AAD00519A04 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -803,6 +823,7 @@
 				74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */,
 				74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */,
 				74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */,
+				7487E1941FE0C778000E3EBE /* Mine_List_Config.plist */,
 			);
 			path = ConfigurationFiles;
 			sourceTree = "<group>";
@@ -944,6 +965,10 @@
 			children = (
 				74EC34311FDF892C003ABF70 /* APMineViewController.swift */,
 				74EC34321FDF892C003ABF70 /* APServiceViewController.swift */,
+				7487E1961FE0DE6A000E3EBE /* APSetViewController.swift */,
+				7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */,
+				7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */,
+				7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -953,6 +978,7 @@
 			children = (
 				74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */,
 				7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */,
+				7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */,
 				7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */,
 			);
 			path = View;
@@ -1047,7 +1073,7 @@
 				TargetAttributes = {
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					74C49E7D1FD4FE0200F0501B = {
 						CreatedOnToolsVersion = 9.0;
@@ -1087,7 +1113,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
+				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
+				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				238D0E201FE0C6320024D23F /* .gitkeep in Resources */,
 				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
@@ -1221,6 +1249,7 @@
 				238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */,
 				1AA80FAA1FDFDE660021B046 /* APForgetViewController.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
+				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AA80F9C1FDFDE660021B046 /* APRegisterInviteCell.swift in Sources */,
@@ -1230,11 +1259,13 @@
 				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1AA80FAD1FDFDE660021B046 /* APForgetSubmitCell.swift in Sources */,
+				7487E1F61FE1249C000E3EBE /* APBankCardManageListView.swift in Sources */,
 				1AA80FA81FDFDE660021B046 /* APModifyPasswordCell.swift in Sources */,
 				1AA80FA71FDFDE660021B046 /* APModifyViewController.swift in Sources */,
 				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
 				1AA80FAB1FDFDE660021B046 /* APForgetAccountCell.swift in Sources */,
 				1AA80F9E1FDFDE660021B046 /* APRegisterSmsCodeCell.swift in Sources */,
+				7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */,
 				1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */,
 				7487E18A1FDFE131000E3EBE /* UIImageExtensions.swift in Sources */,
 				7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */,
@@ -1257,6 +1288,7 @@
 				1AA80F9B1FDFDE660021B046 /* APRegisterAgreedCell.swift in Sources */,
 				1AA80F9F1FDFDE660021B046 /* APRegisterSubmitCell.swift in Sources */,
 				1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */,
+				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
 				1AA80F9A1FDFDE660021B046 /* APRegisterAccountCell.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
@@ -1273,6 +1305,7 @@
 				238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
+				7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */,
 				7487E1841FDFE131000E3EBE /* UITextViewExtensions.swift in Sources */,
 				7487E17B1FDFE131000E3EBE /* UISearchBarExtensions.swift in Sources */,
 				7487E1861FDFE131000E3EBE /* UIStoryboardExtensions.swift in Sources */,
@@ -1447,16 +1480,22 @@
 			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
+				);
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28e454ca-a71c-481a-bfce-6abfad992415";
-				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Development;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1468,17 +1507,22 @@
 			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
+					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
+				);
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "adafce5c-d01b-40ff-800e-1bda5483d089";
-				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -21,6 +21,7 @@ class APServiceViewController: APBaseViewController {
         temp.frame = CGRect(x: 130, y: 100, width: 100, height: 100)
         return temp
     }()
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +36,14 @@ class APServiceViewController: APBaseViewController {
         
         view.addSubview(btn)
         
-
-        
     }
 
     @objc func action()
     {
-//        if ThemeManager.currentThemeIndex == 0 {
-//            ThemeManager.setTheme(index: 1)
-//            view.makeToast("这是一个吐司")
-//        }
-//        else
-//        {
-//            ThemeManager.setTheme(index: 0)
-//        }
-//        view.makeToast("这是一个吐司")
+
         self.view.makeToastActivity(.center)
         
+ 
         
     }
     
