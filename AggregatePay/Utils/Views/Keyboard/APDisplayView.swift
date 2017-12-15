@@ -88,7 +88,7 @@ class APDisplayView: UIView {
     private func setDisplayAmountIconAttribute() {
         displayAmountIcon.backgroundColor = UIColor.clear
         displayAmountIcon.contentMode = .scaleAspectFit
-        displayAmountIcon.theme_image = ["keyboard_ money_icon"]
+        displayAmountIcon.theme_image = ["keyboard_money_icon"]
     }
     
     private func setDisplayPromptAttribute() {

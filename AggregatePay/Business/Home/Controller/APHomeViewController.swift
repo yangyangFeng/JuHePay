@@ -9,18 +9,23 @@
 import UIKit
 
 class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
+
+    lazy var homeMenuView: APHomeMenuView = {
+        let view = APHomeMenuView(delegate: self)
+        return view
+    }()
     
-    var homeMenuView: APHomeMenuView = APHomeMenuView()
-    var keyboardCompositionView: APKeyboardCompositionView = APKeyboardCompositionView()
+    lazy var keyboardCompositionView: APKeyboardCompositionView = {
+        let view = APKeyboardCompositionView()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "收款"
-        self.edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
+        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
-        
-        homeMenuView.delegate = self
-        
+
         view.addSubview(homeMenuView)
         view.addSubview(keyboardCompositionView)
         
@@ -45,10 +50,12 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     }
     
     func selectHomeMenuItemFaile(message: String) {
-//        view.makeToast(message, duration: 3.0, position: .bottom)
-        APAlert.show(message: message, confirmTitle: "确定", canceTitle: "取消", confirm: { (action) in
-            let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-            self.present(loginVC, animated: true, completion: nil)
+        APAlert.show(message: message,
+                     confirmTitle: "确定",
+                     canceTitle: "取消",
+                     confirm: { (action) in
+                        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+                        self.present(loginVC, animated: true, completion: nil)
         }) { (action) in
             
         }

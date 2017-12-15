@@ -28,6 +28,7 @@ class APForgetLastStepViewController: APForgetViewController {
         forgetLastStepLayoutSubViews()
         forgetLastStepTargetCallBacks()
         forgetLastStepRegisterObserve()
+        APForgetViewController.forgetRequest.password = ""
     }
     
     //MARK: ------------- 私有方法

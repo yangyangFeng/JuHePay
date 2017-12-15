@@ -1,28 +1,23 @@
 //
-//  APWalletViewController.swift
+//  APBillDetailsViewController.swift
 //  AggregatePay
 //
-//  Created by BlackAnt on 2017/12/13.
+//  Created by BlackAnt on 2017/12/15.
 //  Copyright © 2017年 bingtianyu. All rights reserved.
 //
 
 import UIKit
 
-/**
- * 钱包
- */
-class APWalletViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    let headerView: APWalletHeaderView = APWalletHeaderView()
+class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: ---- 生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "钱包"
-        vhl_setNavBarBackgroundAlpha(0.0)
-        
+        title = "交易详情"
+        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
+        
         view.addSubview(headerView)
         view.addSubview(tableView)
         
@@ -30,7 +25,7 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.top.equalTo(view.snp.top)
-            make.height.equalTo(view.snp.height).multipliedBy(0.35)
+            make.height.equalTo(view.snp.height).multipliedBy(0.25)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
@@ -40,26 +35,38 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
         }
     }
     
+    //MARK: ---- 子类重载
+    
+    func numberRow(tableView: UITableView) -> Int {
+        return 0
+    }
+    
+    func cellAttribute(billDetailCell: APBillDetailCell, indexPath: IndexPath) {
+        
+    }
+    
     //MARK: ---- 代理
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return numberRow(tableView: tableView)
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let walletCell: APWalletCell = APWalletCell.cellWithTableView(tableView) as! APWalletCell
-        walletCell.titleLabel.text = "钱包明细"
-        walletCell.iconImageView.theme_image = ["wallet_detail_cell_icon"]
-        walletCell.arronImageView.theme_image = ["wallet_arron_right_icon"]
-        return walletCell
+        let billDetailCell: APBillDetailCell = APBillDetailCell.cellWithTableView(tableView) as! APBillDetailCell
+        if  indexPath.row%2 == 0 {
+            billDetailCell.backgroundColor = UIColor.white
+            billDetailCell.contentView.backgroundColor = UIColor.white
+        }
+        else {
+            billDetailCell.theme_backgroundColor = ["#fafafa"]
+            billDetailCell.contentView.theme_backgroundColor = ["#fafafa"]
+        }
+        cellAttribute(billDetailCell: billDetailCell, indexPath: indexPath)
+        return billDetailCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 56
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(APWalletDetailViewController(), animated: true)
+        return 44
     }
 
     //MARK: ---- 懒加载
@@ -71,10 +78,22 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
         view.separatorStyle = .none
         view.tableFooterView = UIView()
         view.theme_backgroundColor = ["#fafafa"]
-        view.register(APWalletCell.self, forCellReuseIdentifier: "APWalletCell")
+        view.register(APBillDetailCell.self, forCellReuseIdentifier: "APBillDetailCell")
         return view
     }()
-
     
-    
+    lazy var headerView: APBillDetailHeaderView = {
+        let view = APBillDetailHeaderView()
+        return view
+    }()
 }
+
+
+
+
+
+
+
+
+
+
