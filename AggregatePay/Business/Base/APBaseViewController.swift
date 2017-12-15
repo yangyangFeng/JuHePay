@@ -13,7 +13,7 @@ class APBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.init(hex6: 0xf0f0f0)
         
         self.navigationController?.navigationBar.isTranslucent = false
         

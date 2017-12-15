@@ -10,13 +10,23 @@ import UIKit
 
 class APAuthHomeCell: UITableViewCell {
     
-   private let authNameLabel = UILabel()
-   private let authStatusLabel = UILabel()
+   fileprivate let authNameLabel = UILabel()
+   fileprivate let authStatusLabel = UILabel()
+    
+    var auth: APAuth? {
+        didSet {
+            if let auth = auth {
+                authNameLabel.text = auth.name
+                authStatusLabel.text = auth.desc
+            }
+        }
+    }
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setUpUI()
+        layoutViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,32 +45,26 @@ class APAuthHomeCell: UITableViewCell {
         return newCell as? APAuthHomeCell
     }
     
-    func setUpUI() {
+    // MARK: -- UI
+    func layoutViews() {
         
         accessoryView = UIImageView.init(image: UIImage.init(named: "auth_authHome_accessory"))
         
-        authNameLabel.font = UIFont.systemFont(ofSize: 14)
+        authNameLabel.font = UIFont.systemFont(ofSize: 16)
         authNameLabel.theme_textColor = ["#484848"]
-        authStatusLabel.font = UIFont.systemFont(ofSize: 12)
+        authStatusLabel.font = UIFont.systemFont(ofSize: 14)
         authStatusLabel.theme_textColor = ["#d09326"]
         
         contentView.addSubview(authNameLabel)
         contentView.addSubview(authStatusLabel)
         
         authNameLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(authNameLabel.superview!)
-            make.left.equalTo(authNameLabel.superview!).offset(15)
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(15)
         }
         authStatusLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(authStatusLabel.superview!)
-            make.right.equalTo(authStatusLabel.superview!).offset(-34)
-        }
-    }
-    
-    var authHomeModel: APAuthHomeModel? {
-        didSet{
-            authNameLabel.text = authHomeModel?.authName
-            authStatusLabel.text = String(describing: authHomeModel?.authStatus)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-34)
         }
     }
 }

@@ -60,7 +60,7 @@ class APForgetViewController: APSystemBaseViewController {
             make.top.equalTo(forgetSmsCodeCell.snp.bottom).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(35)
+            make.height.equalTo(subimtHeight)
         }
         
         forgetAccountCell.textBlock = { (key, value) in

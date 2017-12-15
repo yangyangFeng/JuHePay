@@ -25,26 +25,33 @@ let APDecimalPoint: String = "."
 
 class APKeyboardView: UIView {
     
+    var backgroundView: UIView = UIView()
     var keyboardDelegate: APKeyboardViewDelegate?
     
     init() {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = UIColor.brown
         self.layer.contents = UIImage(named: "keyboard_bg")?.cgImage
+        self.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.snp.left).offset(5)
+            make.right.equalTo(self.snp.right).offset(-5)
+            make.top.equalTo(self.snp.top).offset(5)
+            make.bottom.equalTo(self.snp.bottom).offset(-5)
+        }
         //定义键盘键名称（？号是占位符, !表示确定, -表示删除）
         let keys = ["1" ,"2" ,"3" ,"-",
                     "4" ,"5" ,"6" ,"!" ,
                     "7" ,"8" ,"9" ,"?" ,
                     "00","0" ,APDecimalPoint ,"?" ]
-        var buttonArray = [UIButton]()
+        var buttonArray = [APKeyboardButtonView]()
         for i in 0..<4 {
             for j in 0..<4 {
                 let indexOfKeys = i * 4 + j
                 let key = keys[indexOfKeys]
                 //键盘样式
                 let button = buttonAttribute(title: key)
-                
-                self.addSubview(button)
+                button.transform = .init(scaleX: 0.95, y: 0.95)
+                backgroundView.addSubview(button)
                 buttonArray.append(button)
                 if (key == "?") {
                     button.removeFromSuperview()
@@ -52,13 +59,13 @@ class APKeyboardView: UIView {
                 }
                 button.snp.makeConstraints({ (make) in
                     //添加宽度约束
-                    make.width.equalTo(self.snp.width).multipliedBy(0.25)
+                    make.width.equalTo(backgroundView.snp.width).multipliedBy(0.25)
                     //添加高度约束
                     if (key == "!") {
-                        make.height.equalTo(self.snp.height).multipliedBy(0.75)
+                        make.height.equalTo(backgroundView.snp.height).multipliedBy(0.75)
                     }
                     else {
-                        make.height.equalTo(self.snp.height).multipliedBy(0.25)
+                        make.height.equalTo(backgroundView.snp.height).multipliedBy(0.25)
                     }
                     
                     //添加垂直位置约束
@@ -71,13 +78,13 @@ class APKeyboardView: UIView {
                     //添加水平位置约束
                     switch (j) {
                     case 0:
-                        make.left.equalTo(self.snp.left)
+                        make.left.equalTo(backgroundView.snp.left)
                     case 1:
-                        make.right.equalTo(self.snp.centerX)
+                        make.right.equalTo(backgroundView.snp.centerX)
                     case 2:
-                        make.left.equalTo(self.snp.centerX)
+                        make.left.equalTo(backgroundView.snp.centerX)
                     case 3:
-                        make.right.equalTo(self.snp.right)
+                        make.right.equalTo(backgroundView.snp.right)
                     default:
                         break
                     }
@@ -90,38 +97,24 @@ class APKeyboardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func buttonAttribute(title: String) ->UIButton {
+    public func buttonAttribute(title: String) ->APKeyboardButtonView {
         //？号是占位符, !表示确定, -表示删除
-        let button = UIButton(type: .custom)
-        button.transform = .init(scaleX: 0.85, y: 0.85)
-        button.backgroundColor = .clear
-        button.titleLabel?.font = UIFont(name:"Arial-BoldItalicMT", size:30)
-        button.theme_setTitleColor(["#8a8067"], forState: .normal)
-        button.theme_setTitleColor(["#8a8067"], forState: .selected)
+        let button = APKeyboardButtonView()
         if (title == "!") {
-            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .normal)
-            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .selected)
-            button.setTitle("确定", for: .normal)
-            button.addTarget(self,
-                             action: #selector(didKeyboardConfirmItem),
-                             for: UIControlEvents.touchUpInside)
+            //设置圆角边框
+            button.titleText = ""
+            button.backgroundImage.theme_image = ["keyboard_confirm_bg"]
+            button.addTarget(self, action: #selector(didKeyboardConfirmItem))
         }
         else if (title == "-") {
-            button.theme_setImage(["keyboard_delete_icon"], forState: .normal)
-            button.theme_setImage(["keyboard_delete_icon"], forState: .selected)
-            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .normal)
-            button.theme_setBackgroundImage(["keyboard_other_bg"], forState: .selected)
-            button.addTarget(self,
-                             action: #selector(didKeyboardDeleteItem),
-                             for: UIControlEvents.touchUpInside)
+            button.titleText = ""
+            button.backgroundImage.theme_image = ["keyboard_delete_bg"]
+            button.addTarget(self, action: #selector(didKeyboardDeleteItem))
         }
         else {
-            button.theme_setBackgroundImage(["keyboard_num_bg"], forState: .normal)
-            button.theme_setBackgroundImage(["keyboard_num_bg"], forState: .selected)
-            button.setTitle(title, for: .normal)
-            button.addTarget(self,
-                             action: #selector(didKeyboardNumItem(_:)),
-                             for: UIControlEvents.touchUpInside)
+            button.titleText = title
+            button.backgroundImage.theme_image = ["keyboard_num_bg"]
+            button.addTarget(self, action: #selector(didKeyboardNumItem(_:)))
         }
         return button
     }

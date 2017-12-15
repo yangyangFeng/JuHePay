@@ -10,43 +10,70 @@ import UIKit
 
 class APAuthHomeViewController: APBaseViewController {
     
-    var dataSource:Array<Any>?
+    fileprivate var auths = APAuth.allAuths()
     
-    lazy var authHomeView: APAuthHomeView = {
-        let view = APAuthHomeView()
-        return view
-    }()
-    
+    let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        dataSource = loadAuthStatus()
-        setUpUI()
-    }
-
-    func setUpUI() {
-        
-        view.addSubview(authHomeView)
-        authHomeView.snp.makeConstraints { (make) in
-           make.top.equalTo(-vhl_navigationBarAndStatusBarHeight());
-           make.left.right.bottom.equalTo(authHomeView.superview!)
-        }
-        authHomeView.dataSource = dataSource!
-        authHomeView.tableView .reloadData()
+        layoutViews()
     }
     
-    func loadAuthStatus() -> Array<Any> {
-        let titles = ["实名认证", "结算卡认证", "安全认证"]
-        var dataSource: Array<Any> = []
-        
-        for title in titles {
-            let model = APAuthHomeModel()
-            model.authName = title
-            model.authStatus = 1
-            dataSource.append(model)
-        }
-        return dataSource
-    }
+    // MARK: -- Data
+}
 
+extension APAuthHomeViewController {
+    //MARK: -- UI
+    func layoutViews() {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.separatorColor = UIColor.init(hex6: 0xf0f0f0)
+        
+        // MARK:这样设置可以让tableView分割线顶头
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorStyle = .singleLine
+        tableView.register(APAuthHomeCell.self, forCellReuseIdentifier: NSStringFromClass(APAuthHomeCell.self))
+        tableView.layer.borderColor = UIColor.init(hex6: 0xf0f0f0).cgColor
+        tableView.layer.borderWidth = 1
+        tableView.backgroundColor = UIColor.clear
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 56
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(16)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+}
+
+// MARK: -- UITableViewDelegate & UITableViewDataSource
+
+extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return auths.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = APAuthHomeCell.cellWithTableView(tableView)
+        cell?.auth = auths[indexPath.row]
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView .deselectRow(at: indexPath, animated: false)
+        let auth = auths[indexPath.row]
+        switch auth.type {
+        case .realName:
+            navigationController?.pushViewController(APRealNameAuthViewController())
+        case .settleCard:
+            navigationController?.pushViewController(APSettlementCardAuthViewController())
+        case .Security:
+            navigationController?.pushViewController(APSecurityAuthViewController())
+        }
+    }
 }

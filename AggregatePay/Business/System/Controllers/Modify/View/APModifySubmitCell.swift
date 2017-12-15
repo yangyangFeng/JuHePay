@@ -12,9 +12,7 @@ class APModifySubmitCell: APSubmitFormsCell {
 
     override init() {
         super.init()
-        button.theme_setBackgroundImage(["login_nor_button"], forState: .normal)
-        button.theme_setBackgroundImage(["login_sel_button"], forState: .selected)
-        button.theme_setBackgroundImage(["login_en_button"], forState: .disabled)
+        button.setTitle("下一步", for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {
