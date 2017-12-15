@@ -22,7 +22,7 @@ public enum AP_SwipeCellState {
 }
 
 class APSwipeTableViewCell: UITableViewCell {
-
+    
     var AP_type : AP_SwipeCellType = .right
     
     var AP_gestureState : AP_SwipeCellState = .normal
@@ -96,9 +96,6 @@ class APSwipeTableViewCell: UITableViewCell {
             
             panOffset = translation.x < 0 ? -swipeWidth : swipeWidth
         }
-        
-
-        
         switch panGestureRecognizer.state {
         case .began:
             

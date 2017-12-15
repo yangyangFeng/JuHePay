@@ -11,6 +11,14 @@
 		<string>Mine_static_银行卡管理</string>
 	</dict>
 	<dict>
+		<key>controller</key>
+		<string>APApproveViewController</string>
+		<key>title</key>
+		<string>身份认证</string>
+		<key>icon</key>
+		<string>Mine_static_身份认证</string>
+	</dict>
+	<dict>
 		<key>title</key>
 		<string>常见问题</string>
 		<key>controller</key>
