@@ -38,12 +38,11 @@ extension APAuthHomeViewController {
         tableView.layer.borderColor = UIColor.init(hex6: 0xf0f0f0).cgColor
         tableView.layer.borderWidth = 1
         tableView.backgroundColor = UIColor.clear
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 56
+        tableView.rowHeight = 56
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(100)
             make.left.right.bottom.equalToSuperview()
         }
     }
@@ -69,11 +68,11 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
         let auth = auths[indexPath.row]
         switch auth.type {
         case .realName:
-            navigationController?.pushViewController(APRealNameAuthViewController())
+            navigationController?.pushViewController(APRealNameAuthViewController(), animated: true)
         case .settleCard:
-            navigationController?.pushViewController(APSettlementCardAuthViewController())
+            navigationController?.pushViewController(APSettlementCardAuthViewController(), animated: true)
         case .Security:
-            navigationController?.pushViewController(APSecurityAuthViewController())
+            navigationController?.pushViewController(APSecurityAuthViewController(), animated: true)
         }
     }
 }

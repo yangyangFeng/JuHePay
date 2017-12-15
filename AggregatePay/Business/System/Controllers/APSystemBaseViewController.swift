@@ -19,8 +19,13 @@ class APSystemBaseViewController: APBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
+        vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
     }
 
+    override func AP_navigationLeftItemImage() -> UIImage {
+        let image = UIImage.init(named: "sys_nav_back_icon")
+        return image!.withRenderingMode(.alwaysTemplate)
+    }
     
 
 }

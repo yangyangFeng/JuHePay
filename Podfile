@@ -30,6 +30,7 @@ pod 'Toast-Swift', '~> 3.0.1'
 pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5'
 pod 'JPush', '~> 3.0.7'
 pod 'OCRSDK'
+
 end
 
 

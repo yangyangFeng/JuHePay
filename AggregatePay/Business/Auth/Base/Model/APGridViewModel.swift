@@ -9,6 +9,17 @@
 import UIKit
 
 class APGridViewModel: NSObject {
+    var headMessage: String?
+    var bottomMessage: String?
+    var gridNormalImageName: String?
+    var gridUploadedImageName: String?
+    var gridLoadFailureImageName: String?
+    
+    
+    
+    
+    
+    
     
     
 }

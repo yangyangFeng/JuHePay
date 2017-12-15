@@ -14,37 +14,13 @@ protocol APHomeMenuViewDelegate: NSObjectProtocol {
 }
 
 class APHomeMenuView: UIView {
-    let titles = ["银联快捷",
-                  "微信扫码",
-                  "支付宝扫码",
-                  "云闪付",
-                  "QQ钱包",
-                  "京东钱包",
-                  "银联扫码",
-                  "百度钱包" ]
     
-    let norImages = ["home_yl_nor_icon",
-                     "home_wx_nor_icon",
-                     "home_zfb_nor_icon",
-                     "home_ysf_nor_icon",
-                     "home_qq_nor_icon",
-                     "home_jd_nor_icon",
-                     "home_ylsm_icon",
-                     "home_bd_nor_icon"]
+    private var listDataSource : NSArray = {
+        let path = Bundle.main.path(forResource: "Home_Menu_Config", ofType: "plist")
+        var arr : NSArray = NSArray(contentsOfFile: path!)!
+        return arr
+    }()
     
-    let selImages = ["home_yl_sel_icon",
-                     "home_wx_sel_icon",
-                     "home_zfb_sel_icon",
-                     "", "", "", "", ""]
-    
-    let wayIconImages = ["home_yl_way_icon",
-                         "home_wx_way_icon",
-                         "home_zfb_way_icon",
-                         "", "", "", "", ""]
-    
-    /**
-     * 选择选中指定的Item
-     */
     private var selectIndex: Int = 0 {
         willSet {
             let item: APHomeMenuButtonView = buttonArray[newValue]
@@ -108,18 +84,23 @@ class APHomeMenuView: UIView {
                 })
             }
         }
+        defaultSelectIndex(index: 0)
     }
     
     private func getHomeMenuButtonView(index: Int) -> APHomeMenuButtonView {
+        
+        let dataSource : NSDictionary = listDataSource[index] as! NSDictionary
+        
         let itemModel = APHomeMenuModel()
-        itemModel.title = titles[index]
-        itemModel.norImage = norImages[index]
-        itemModel.selImage = selImages[index]
-        itemModel.wayIconImage = wayIconImages[index]
+        itemModel.title = dataSource.object(forKey: "title") as! String
+        itemModel.norImage = dataSource.object(forKey: "norImage") as! String
+        itemModel.selImage = dataSource.object(forKey: "selImage") as! String
+        itemModel.wayIconImage = dataSource.object(forKey: "wayIconImage") as! String
         
         let item = APHomeMenuButtonView(itemModel: itemModel)
-        item.button.tag = index
         item.addTarget(self, action: #selector(didItem(_:)))
+        item.button.tag = index
+        
         return item
     }
     

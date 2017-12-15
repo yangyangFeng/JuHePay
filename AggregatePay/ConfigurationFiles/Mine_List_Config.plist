@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>controller</key>
+		<string>APBankCardManageViewController</string>
+		<key>title</key>
+		<string>银行卡管理</string>
+		<key>icon</key>
+		<string>Mine_static_银行卡管理</string>
+	</dict>
+	<dict>
+		<key>controller</key>
+		<string>APAuthHomeViewController</string>
+		<key>title</key>
+		<string>身份认证</string>
+		<key>icon</key>
+		<string>Mine_static_身份认证</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>常见问题</string>
+		<key>controller</key>
+		<string>APCommonProblemsViewController</string>
+		<key>icon</key>
+		<string>Mine_static_常见问题</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>关于我们</string>
+		<key>controller</key>
+		<string>APAboutUsViewController</string>
+		<key>icon</key>
+		<string>Mine_static_关于我们</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>设置</string>
+		<key>icon</key>
+		<string>Mine_static_设置</string>
+		<key>controller</key>
+		<string>APMineViewController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>客服</string>
+		<key>controller</key>
+		<string>APServiceViewController</string>
+		<key>icon</key>
+		<string>Mine_static_客服</string>
+	</dict>
+</array>
+</plist>

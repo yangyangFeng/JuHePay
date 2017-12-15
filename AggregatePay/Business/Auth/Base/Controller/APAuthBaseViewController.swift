@@ -14,9 +14,9 @@ class APAuthBaseViewController: APBaseViewController {
     let authHeadMessage: UILabel = UILabel()
     let scrollView: UIScrollView = UIScrollView()
     let containerView: UIView = UIView()
-    var layout: UICollectionViewLayout = UICollectionViewLayout.init()
-    var gridViews: UICollectionView = UICollectionView.init(frame: CGRect.init())
-    
+    var gridViews: UICollectionView?
+    var layout: UICollectionViewFlowLayout?
+    var gridCount: Int?
     
     var authSubmitCell: APAuthSubmitCell = APAuthSubmitCell()
     
@@ -46,7 +46,7 @@ extension APAuthBaseViewController {
         view.addSubview(scrollView)
         view.addSubview(authSubmitCell)
         scrollView.addSubview(containerView)
-        containerView.addSubview(gridViews)
+        containerView.addSubview(gridViews!)
         
         authProcess.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
@@ -68,7 +68,7 @@ extension APAuthBaseViewController {
             make.width.equalToSuperview()
         }
         
-        gridViews.snp.makeConstraints { (make) in
+        gridViews?.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         
@@ -90,9 +90,13 @@ extension APAuthBaseViewController {
     }
     
     func layoutCollectionView() {
-        gridViews.delegate = self
-        gridViews.dataSource = self
-        gridViews.collectionViewLayout = layout
+        
+        layout = UICollectionViewFlowLayout.init()
+        gridViews = UICollectionView.init(frame: CGRect.init(), collectionViewLayout: layout!)
+        gridViews?.delegate = self
+        gridViews?.dataSource = self
+        gridViews?.register(APPhotoGridViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(APPhotoGridViewCell.self))
+        
     }
 }
 
@@ -100,10 +104,15 @@ extension APAuthBaseViewController {
 extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        guard let _ = gridCount else {
+            return 0
+        }
+        return gridCount!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell.init()
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(APPhotoGridViewCell.self), for: indexPath) as! APPhotoGridViewCell
+        return cell
     }
 }

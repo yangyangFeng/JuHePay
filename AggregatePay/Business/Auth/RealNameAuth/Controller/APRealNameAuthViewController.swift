@@ -9,31 +9,31 @@
 import UIKit
 
 class APRealNameAuthViewController: APAuthBaseViewController {
-
+    
     override func viewDidLoad() {
+        gridCount = 4
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+}
+
+extension APRealNameAuthViewController {
+    func layoutViews() {
+//        let idCardFrontView = APPhotoGridViewCell()
+//        let idCardBackView = APPhotoGridViewCell()
+//        let holdIdCardView = APPhotoGridViewCell()
+//        let exampleView = APPhotoGridViewCell()
+        
     }
+}
+
+extension APRealNameAuthViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         return APPhotoGridViewCell()
     }
-
-}
-
-extension APRealNameAuthViewController {
-    func layoutViews() {
-        let idCardFrontView = APPhotoGridViewCell()
-        let idCardBackView = APPhotoGridViewCell()
-        let holdIdCardView = APPhotoGridViewCell()
-        let exampleView = APPhotoGridViewCell()
-        
-    }
+    
+    
 }
