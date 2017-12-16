@@ -15,8 +15,18 @@ class APForgetLastStepViewController: APForgetViewController {
     
     //MARK: ------------- 全局属性
     
-    let forgetLastPasswordCell: APForgetLastStepPasswordCell = APForgetLastStepPasswordCell()
-    let forgetLastSubmitCell: APForgetLastSubmitCell = APForgetLastSubmitCell()
+    let forgetLastPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.textField.placeholder = "请设置密码(6-16位字母、数字或下划线)"
+        return view
+    }()
+    
+    let forgetLastSubmitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("下一步", for: .normal)
+        return view
+    }()
     
     //MARK: ------------- 生命周期
     
@@ -66,6 +76,8 @@ class APForgetLastStepViewController: APForgetViewController {
     
     private func forgetLastStepRegisterObserve() {
         
+        weak var weakSelf = self
+        
         self.kvoController.observe(APForgetViewController.forgetRequest,
                                    keyPaths: ["mobile",
                                               "password",
@@ -76,10 +88,10 @@ class APForgetLastStepViewController: APForgetViewController {
             if  forgetModel.mobile.characters.count >= 11 &&
                 forgetModel.password.characters.count >= 6 &&
                 forgetModel.smsCode.characters.count >= 4 {
-                self.forgetLastSubmitCell.isEnabled = true
+                weakSelf?.forgetLastSubmitCell.isEnabled = true
             }
             else {
-                self.forgetLastSubmitCell.isEnabled = false
+                weakSelf?.forgetLastSubmitCell.isEnabled = false
             }
         }
     }

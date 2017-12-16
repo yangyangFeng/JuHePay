@@ -19,30 +19,55 @@ class APDisplayView: UIView {
     let inputRulesTemplate: APKeyboardInputRulesTemplate = APKeyboardInputRulesTemplate()
     
     //图标
-    var displayWayIcon: UIImageView = UIImageView()
+    lazy var displayWayIcon: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.clear
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
     
     //提示
-    var displayPrompt: UILabel = UILabel()
+    lazy var displayPrompt: UILabel = {
+        let view = UILabel()
+        view.text = "请输入收款金额"
+        view.textAlignment = .left
+        view.font = UIFont.systemFont(ofSize: 12)
+        view.theme_textColor = ["#4c370b"]
+        return view
+    }()
     
     //金额图标
-    var displayAmountIcon: UIImageView = UIImageView()
+    lazy var displayAmountIcon: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.clear
+        view.contentMode = .scaleAspectFit
+        view.theme_image = ["keyboard_money_icon"]
+        return view
+    }()
     
     //显示数字
-    var displayNum: UITextField = UITextField()
+    lazy var displayNum: UITextField = {
+        let view = UITextField()
+        view.placeholder = "0.0"
+        view.minimumFontSize = 14
+        view.textAlignment = .left
+        view.textColor = UIColor.init(rgba: "#45340F")
+        view.isUserInteractionEnabled = false
+        view.adjustsFontSizeToFitWidth = true
+        view.font = UIFont.systemFont(ofSize: 36)
+        view.setValue(UIFont.systemFont(ofSize: 36),
+                      forKeyPath: "_placeholderLabel.font")
+        view.setValue(UIColor.init(rgba: "#45340F"),
+                      forKeyPath: "_placeholderLabel.textColor")
+        return view
+        
+    }()
     
-    //是否有小数点：默认false
-    var isPointNum: Bool = false
     
- 
     init() {
         super.init(frame: CGRect.zero)
     
         self.layer.contents = UIImage(named: "keyboard_display_bg")?.cgImage
-        
-        setDisplayWayIconAttribute()
-        setDisplayPromptAttribute()
-        setDisplayAmountIconAttribute()
-        setDisplayNumAttribute()
         
         addSubview(displayWayIcon)
         addSubview(displayPrompt)
@@ -79,39 +104,6 @@ class APDisplayView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setDisplayWayIconAttribute() {
-        displayWayIcon.backgroundColor = UIColor.clear
-        displayWayIcon.contentMode = .scaleAspectFit
-    }
-    
-    private func setDisplayAmountIconAttribute() {
-        displayAmountIcon.backgroundColor = UIColor.clear
-        displayAmountIcon.contentMode = .scaleAspectFit
-        displayAmountIcon.theme_image = ["keyboard_money_icon"]
-    }
-    
-    private func setDisplayPromptAttribute() {
-        displayPrompt.text = "请输入收款金额"
-        displayPrompt.textAlignment = .left
-        displayPrompt.font = UIFont.systemFont(ofSize: 12)
-        displayPrompt.theme_textColor = ["#4c370b"]
-    }
-    
-    private func setDisplayNumAttribute() {
-        displayNum.placeholder = "0.0"
-        displayNum.minimumFontSize = 14
-        displayNum.textAlignment = .left
-        displayNum.textColor = UIColor.init(rgba: "#45340F")
-        displayNum.isUserInteractionEnabled = false
-        displayNum.adjustsFontSizeToFitWidth = true
-        displayNum.font = UIFont.systemFont(ofSize: 36)
-        displayNum.setValue(UIFont.systemFont(ofSize: 36),
-                            forKeyPath: "_placeholderLabel.font")
-        displayNum.setValue(UIColor.init(rgba: "#45340F"),
-                            forKeyPath: "_placeholderLabel.textColor")
-    }
-    
     
     /**
      * 输入

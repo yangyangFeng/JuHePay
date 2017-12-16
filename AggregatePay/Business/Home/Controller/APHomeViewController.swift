@@ -8,8 +8,8 @@
 
 import UIKit
 
-class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
-
+class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyboardCompositionViewDelegate {
+    
     lazy var homeMenuView: APHomeMenuView = {
         let view = APHomeMenuView(delegate: self)
         return view
@@ -17,6 +17,7 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     
     lazy var keyboardCompositionView: APKeyboardCompositionView = {
         let view = APKeyboardCompositionView()
+        view.delegate = self
         return view
     }()
     
@@ -43,6 +44,12 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
         }
     }
     
+    //MARK: ------- APKeyboardCompositionViewDelegate
+    
+    func didKeyboardConfirm(param: String) {
+        self.navigationController?.pushViewController(APCollectionPlaceViewController(), animated: true)
+    }
+    
     //MARK: ------- APHomeMenuViewDelegate
     
     func selectHomeMenuItemSuccess(itemModel: APHomeMenuModel) {
@@ -50,15 +57,7 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate {
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        APAlert.show(message: message,
-                     confirmTitle: "确定",
-                     canceTitle: "取消",
-                     confirm: { (action) in
-                        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-                        self.present(loginVC, animated: true, completion: nil)
-        }) { (action) in
-            
-        }
+        self.navigationController?.pushViewController(APLoginViewController(), animated: true)
     }
   
 
