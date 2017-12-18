@@ -26,7 +26,7 @@ class APAboutUsViewController: APBaseViewController {
         logoIcon.snp.makeConstraints { (make) in
             make.width.height.equalTo(92)
             make.centerX.equalTo(view.snp.centerX).offset(0)
-            make.top.equalTo(vhl_navigationBarAndStatusBarHeight() + 58)
+            make.top.equalTo(58)
         }
         title.snp.makeConstraints { (make) in
             make.top.equalTo(logoIcon.snp.bottom).offset(10)

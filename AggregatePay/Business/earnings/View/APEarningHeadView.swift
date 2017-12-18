@@ -10,11 +10,14 @@ import UIKit
 
 class APEarningHeadView: UIView {
 
+    weak var delegate : AP_TableViewDidSelectProtocol?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        let bgImageView = UIImageView.init(image: UIImage.init(named: "Earning_head_bg"))
-        
+        let image = UIImage.init(named: "Earning_head_bg")
+        let newImage = image?.cropped(to: CGRect.init(x: 0, y: (image?.size.height)!*(64/204), width: (image?.size.width)!, height: (image?.size.height)!*(1-64/204)))
+        let bgImageView = UIImageView.init(image: newImage)
+        bgImageView.contentMode = .scaleAspectFill
         
         let topLabel = UILabel()
         topLabel.text = "累计收益(元)"
@@ -47,7 +50,7 @@ class APEarningHeadView: UIView {
         addSubview(arrowIcon)
         
         bgImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(-64)
+            make.top.equalTo(0)
             make.left.right.bottom.equalTo(0)
         }
         topLabel.snp.makeConstraints { (make) in
@@ -74,8 +77,20 @@ class APEarningHeadView: UIView {
             make.right.equalTo(-19)
             make.centerY.equalTo((arrowIcon.superview?.snp.centerY)!).offset(0)
         }
+        
+        let clickControl = UIControl()
+        clickControl.addTarget(self, action: #selector(clickAction), for: UIControlEvents.touchUpInside)
+        addSubview(clickControl)
+        clickControl.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
+        }
     }
 
+    @objc func clickAction()
+    {
+        delegate?.AP_Action_Click?()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
