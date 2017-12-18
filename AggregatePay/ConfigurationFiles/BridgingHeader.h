@@ -11,6 +11,7 @@
 
 
 #import "CPCheckAuthInputInfoTool.h"
+#import "CPSecurityManager.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
 
