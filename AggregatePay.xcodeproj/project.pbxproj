@@ -82,6 +82,7 @@
 		238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */; };
 		745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */; };
 		745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */; };
+		745BDABD1FE4CF78003A6912 /* APEarningHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDABC1FE4CF78003A6912 /* APEarningHeadView.swift */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -219,6 +220,7 @@
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APApproveViewController.swift; sourceTree = "<group>"; };
+		745BDABC1FE4CF78003A6912 /* APEarningHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEarningHeadView.swift; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 		1AB253DD1FE1436A00193B30 /* Earnings */ = {
 			isa = PBXGroup;
 			children = (
+				745BDABB1FE4CF07003A6912 /* View */,
 				1AB253DE1FE1436A00193B30 /* Controller */,
 			);
 			path = Earnings;
@@ -1031,6 +1034,15 @@
 			);
 			path = SwipeCell;
 			sourceTree = "<group>";
+		};
+		745BDABB1FE4CF07003A6912 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				745BDABC1FE4CF78003A6912 /* APEarningHeadView.swift */,
+			);
+			name = View;
+			path = AggregatePay/Business/earnings/View;
+			sourceTree = SOURCE_ROOT;
 		};
 		74C49E611FD4FE0100F0501B = {
 			isa = PBXGroup;
@@ -1541,6 +1553,7 @@
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
+				745BDABD1FE4CF78003A6912 /* APEarningHeadView.swift in Sources */,
 				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,

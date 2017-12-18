@@ -51,7 +51,7 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+//        self.hidesBottomBarWhenPushed = false
         
         self.vhl_setNavBarBackgroundAlpha(0.0)
         

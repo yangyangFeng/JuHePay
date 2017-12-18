@@ -25,8 +25,10 @@ class APBaseViewController: UIViewController {
         initNavigationBar()
         
         initNavigationItem()
+        
+//        self.hidesBottomBarWhenPushed = true
     }
-
+    
     func initNavigationItem()
     {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)]
