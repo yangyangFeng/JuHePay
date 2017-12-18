@@ -23,15 +23,38 @@ class APLoginViewController: APSystemBaseViewController {
     //MARK: ------------- 全局属性
     
     let logoImageView: UIImageView = UIImageView()
-    let loginAccountCell: APLoginAccountCell = APLoginAccountCell()
-    let loginPasswordCell: APLoginPasswordCell = APLoginPasswordCell()
-    let loginMemoryCell: APLoginMemoryCell = APLoginMemoryCell()
-    let loginSubmitCell: APLoginSubmitCell = APLoginSubmitCell()
     let loginToolView: APLoginToolView = APLoginToolView()
     let loginRequest: APLoginRequest = APLoginRequest()
     
-    //MARK: ------------- 生命周期
+    lazy var loginAccountCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = "^1[0-9]{0,10}$"
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入11位手机号码"
+        return view
+    }()
     
+    lazy var loginPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.textField.placeholder = "请输入密码"
+        return view
+    }()
+    
+    lazy var loginMemoryCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 记住密码", for: .normal)
+        return view
+    }()
+    
+    lazy var loginSubmitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("登录", for: .normal)
+        return view
+    }()
+    
+    //MARK: ------------- 生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
@@ -74,24 +97,28 @@ class APLoginViewController: APSystemBaseViewController {
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
+        
         loginPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(loginAccountCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
+        
         loginMemoryCell.snp.makeConstraints { (make) in
             make.top.equalTo(loginPasswordCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
+        
         loginSubmitCell.snp.makeConstraints { (make) in
             make.top.equalTo(loginMemoryCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(subimtHeight)
         }
+        
         loginToolView.snp.makeConstraints { (make) in
             make.top.equalTo(loginSubmitCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
@@ -103,12 +130,14 @@ class APLoginViewController: APSystemBaseViewController {
     
     private func loginTargetCallBacks() {
         
+        weak var weakSelf = self
+        
         loginAccountCell.textBlock = { (key, value) in
-            self.loginRequest.mobile = value
+            weakSelf?.loginRequest.mobile = value
         }
         
         loginPasswordCell.textBlock = { (key, value) in
-            self.loginRequest.password = value
+            weakSelf?.loginRequest.password = value
         }
         
         loginMemoryCell.buttonBlock = { (key, value) in
@@ -117,24 +146,24 @@ class APLoginViewController: APSystemBaseViewController {
         
         
         loginSubmitCell.buttonBlock = { (key, value) in
-            self.dismiss(animated: true, completion: nil)
+            weakSelf?.dismiss(animated: true, completion: nil)
         }
         
         loginToolView.gotoRegisterBlock = {(param) in
             print("loginToolView.gotoRegisterBlock:--param:\(param)")
             let registerVC: APRegisterViewController = APRegisterViewController()
-            self.navigationController?.pushViewController(registerVC, animated: true)
+            weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
         
         loginToolView.gotoForgetBlock = {(param) in
             print("loginToolView.gotoForgetBlock:--param:\(param)")
             let registerVC: APForgetFirstStepViewController = APForgetFirstStepViewController()
-            self.navigationController?.pushViewController(registerVC, animated: true)
+            weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
     }
     
     private func loginRegisterObserve() {
-        
+        weak var weakSelf = self
         self.kvoController.observe(self.loginRequest,
                                    keyPaths: ["mobile", "password"],
                                    options: [.new, .initial])
@@ -142,10 +171,10 @@ class APLoginViewController: APSystemBaseViewController {
             let loginModel = object as! APLoginRequest
             if  loginModel.mobile.characters.count >= 11 &&
                 loginModel.password.characters.count >= 6{
-                self.loginSubmitCell.isEnabled = true
+                weakSelf?.loginSubmitCell.isEnabled = true
             }
             else {
-                self.loginSubmitCell.isEnabled = false
+                weakSelf?.loginSubmitCell.isEnabled = false
             }
         }
     }

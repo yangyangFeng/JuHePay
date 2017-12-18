@@ -8,24 +8,30 @@
 
 import UIKit
 
-class APSendSMSCodeFormsCell: APFormsCell, UITextFieldDelegate {
+class APSendSMSCodeFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
-    var textField: UITextField = UITextField()
-    var sendSmsCodeButton: UIButton = UIButton()
+    lazy var textField: UITextField = {
+        let view = UITextField()
+        view.delegate = self
+        view.placeholder = "请输入11位手机号码"
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.keyboardType = UIKeyboardType.numberPad
+        view.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
+        return view
+    }()
+    
+    lazy var sendSmsCodeButton: UIButton = {
+        let view = UIButton()
+        view.contentHorizontalAlignment = .right
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        view.theme_setTitleColor(["#d09326"], forState: .normal)
+        view.theme_setTitleColor(["#d09326"], forState: .selected)
+        return view
+    }()
     
     override init() {
         super.init()
-        
-        sendSmsCodeButton.contentHorizontalAlignment = .right
-        sendSmsCodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        sendSmsCodeButton.theme_setTitleColor(["#d09326"], forState: .normal)
-        sendSmsCodeButton.theme_setTitleColor(["#d09326"], forState: .selected)
-        
-        textField.delegate = self
-        textField.placeholder = "请输入11位手机号码"
-        textField.font = UIFont.systemFont(ofSize: 14)
-        textField.keyboardType = UIKeyboardType.numberPad
-        textField.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
+        bottomLine.theme_backgroundColor = ["#f4f4f4"]
         
         addSubview(textField)
         addSubview(sendSmsCodeButton)
@@ -47,7 +53,7 @@ class APSendSMSCodeFormsCell: APFormsCell, UITextFieldDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func textChange(_ textField:UITextField) {
         textBlock?(identify, textField.text!)
     }

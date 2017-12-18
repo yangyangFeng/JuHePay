@@ -16,31 +16,34 @@ class APLoginToolView: UIView {
     var gotoRegisterBlock: APLoginToolViewGotoRegisterButtonBlock?
     var gotoForgetBlock: APLoginToolViewGoToForgetButtonBlock?
 
-    var centerLine:UIImageView = UIImageView()
-    var forget: UIButton = UIButton()
-    var register: UIButton = UIButton()
+    lazy var centerLine:UIImageView = {
+        let view = UIImageView()
+        view.theme_backgroundColor = ["#e6c893"]
+        return view
+    }()
+    
+    lazy var forget: UIButton = {
+        let view = UIButton()
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        view.setTitle(_ : "忘记密码", for: .normal)
+        view.theme_setTitleColor(["#d09326"], forState: .normal)
+        view.theme_setTitleColor(["#d09326"], forState: .selected)
+        view.addTarget(self, action: #selector(clickForgetButton(_:)), for: UIControlEvents.touchUpInside)
+        return view
+    }()
+    
+    var register: UIButton = {
+        let view = UIButton()
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        view.setTitle(_ : "立即注册", for: .normal)
+        view.theme_setTitleColor(["#d09326"], forState: .normal)
+        view.theme_setTitleColor(["#d09326"], forState: .selected)
+        view.addTarget(self, action: #selector(clickRegisterButton(_:)), for: UIControlEvents.touchUpInside)
+        return view
+    }()
     
     init() {
         super.init(frame: CGRect.zero)
-        
-        centerLine.theme_backgroundColor = ["#e6c893"]
-        
-        forget.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        forget.setTitle(_ : "忘记密码", for: .normal)
-        
-        forget.theme_setTitleColor(["#d09326"], forState: .normal)
-        forget.theme_setTitleColor(["#d09326"], forState: .selected)
-        forget.addTarget(self,
-                         action: #selector(clickForgetButton(_:)),
-                         for: UIControlEvents.touchUpInside)
-        
-        register.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        register.setTitle(_ : "立即注册", for: .normal)
-        register.theme_setTitleColor(["#d09326"], forState: .normal)
-        register.theme_setTitleColor(["#d09326"], forState: .selected)
-        register.addTarget(self,
-                           action: #selector(clickRegisterButton(_:)),
-                           for: UIControlEvents.touchUpInside)
         
         self.addSubview(centerLine)
         self.addSubview(forget)

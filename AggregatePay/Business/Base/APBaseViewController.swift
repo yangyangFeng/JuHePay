@@ -10,6 +10,10 @@ import UIKit
 import SwiftTheme
 
 class APBaseViewController: UIViewController {
+    
+    deinit {
+        print("被释放")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

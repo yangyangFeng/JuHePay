@@ -15,70 +15,109 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     //MARK: ------------- 全局属性
     
-    var forgetAccountCell: APForgetFirstStepAccountCell = APForgetFirstStepAccountCell()
-    var forgetSmsCodeCell: APForgetFirstStepSmsCodeCell = APForgetFirstStepSmsCodeCell()
-    var forgetSubmitCell: APForgetFirstStepSubmitCell = APForgetFirstStepSubmitCell()
+    var forgetFirstStepAccountCell: APSendSMSCodeFormsCell = {
+        let view = APSendSMSCodeFormsCell()
+        view.inputRegx = "^1[0-9]{0,10}$"
+        view.sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
+        view.textField.placeholder = "请输入注册手机号"
+        return view
+    }()
+    
+    var forgetFirstStepSmsCodeCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = "^[0-9]{0,4}$"
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入短信验证码"
+        return view
+    }()
+    
+    var forgetFirstStepSubmitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("提交", for: .normal)
+        return view
+    }()
 
     //MARK: ------------- 生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
         forgetFirstStepCreateSubViews()
         forgetFirstStepLayoutSubViews()
         forgetFirstStepTargetCallBacks()
         forgetFirstStepRegisterObserve()
+        APForgetViewController.forgetRequest.mobile = ""
+        APForgetViewController.forgetRequest.smsCode = ""
     }
     
     //MARK: ------------- 私有方法
     
     private func forgetFirstStepCreateSubViews() {
-        view.addSubview(forgetAccountCell)
-        view.addSubview(forgetSmsCodeCell)
-        view.addSubview(forgetSubmitCell)
+        view.addSubview(forgetFirstStepAccountCell)
+        view.addSubview(forgetFirstStepSmsCodeCell)
+        view.addSubview(forgetFirstStepSubmitCell)
     }
     
     private func forgetFirstStepLayoutSubViews() {
-        forgetAccountCell.snp.makeConstraints { (make) in
+        forgetFirstStepAccountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        forgetSmsCodeCell.snp.makeConstraints { (make) in
-            make.top.equalTo(forgetAccountCell.snp.bottom)
+        forgetFirstStepSmsCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(forgetFirstStepAccountCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        forgetSubmitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(forgetSmsCodeCell.snp.bottom).offset(40)
+        forgetFirstStepSubmitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(forgetFirstStepSmsCodeCell.snp.bottom).offset(40)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(subimtHeight)
         }
-        
     }
     
     private func forgetFirstStepTargetCallBacks() {
-        forgetAccountCell.textBlock = { (key, value) in
+        
+        weak var weakSelf = self
+        
+        forgetFirstStepAccountCell.textBlock = { (key, value) in
             APForgetViewController.forgetRequest.mobile = value
         }
         
-        forgetSmsCodeCell.textBlock = { (key, value) in
+        forgetFirstStepSmsCodeCell.textBlock = { (key, value) in
             APForgetViewController.forgetRequest.smsCode = value
         }
         
-        forgetSubmitCell.buttonBlock = { (key, value) in
+        forgetFirstStepSubmitCell.buttonBlock = { (key, value) in
             let LastStepVC: APForgetViewController = APForgetLastStepViewController()
-            self.navigationController?.pushViewController(LastStepVC, animated: true)
+            weakSelf?.navigationController?.pushViewController(LastStepVC, animated: true)
         }
     }
     
     private func forgetFirstStepRegisterObserve() {
         
+        weak var weakSelf = self
+        
+        self.kvoController.observe(APForgetViewController.forgetRequest,
+                                   keyPaths: ["mobile",
+                                              "smsCode"],
+                                   options: [.new, .initial])
+        { (observer, object, change) in
+            let forgetModel = object as! APForgetRequest
+            if  forgetModel.mobile.characters.count >= 11 &&
+                forgetModel.smsCode.characters.count >= 4 {
+                weakSelf?.forgetFirstStepSubmitCell.isEnabled = true
+            }
+            else {
+                weakSelf?.forgetFirstStepSubmitCell.isEnabled = false
+            }
+        }
     }
    
 
