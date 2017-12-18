@@ -12,6 +12,13 @@ import UIKit
  * 1、组合键盘视图和显示框视图的布局
  * 2、控制键盘和显示框之间的传递关系（MVC-C）
  */
+
+protocol APKeyboardCompositionViewDelegate: NSObjectProtocol {
+    func didKeyboardConfirm(param: String)
+}
+
+typealias APDidKeyboardConfirmItem = (_ param: String) -> Void
+
 class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     
     //键盘区域
@@ -20,13 +27,22 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     //显示区
     var displayView: APDisplayView?
     
+    //代理
+    var delegate: APKeyboardCompositionViewDelegate?
+    
     init() {
         super.init(frame: CGRect.zero)
+        
+        //可扩展（子类可以重写两个方法）
         keyboardView = getKeyboardView()
         displayView = getDisplayView()
+
+        //用于键盘按键的代理
         keyboardView!.keyboardDelegate = self
+        
         addSubview(keyboardView!)
         addSubview(displayView!)
+        
         displayView?.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
@@ -44,7 +60,6 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     /**
      * 返回键盘视图（允许继承APKeyboardView后自定义样式）
@@ -78,10 +93,9 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     }
     
     func didKeyboardConfirmItem() {
-        print("confirm: \(displayView!.outputDisplayNumValue())")
+        let numStr: String = (displayView?.displayNum.text)!
+        delegate?.didKeyboardConfirm(param: numStr)
     }
-    
-
 }
 
 

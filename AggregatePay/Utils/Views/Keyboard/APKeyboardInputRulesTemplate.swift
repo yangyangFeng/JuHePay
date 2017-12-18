@@ -119,5 +119,4 @@ class APKeyboardInputRulesTemplate: NSObject {
             return amount
         }
     }
-
 }

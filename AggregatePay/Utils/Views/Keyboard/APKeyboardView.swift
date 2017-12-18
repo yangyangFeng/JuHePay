@@ -18,14 +18,13 @@ protocol APKeyboardViewDelegate : NSObjectProtocol {
     func didKeyboardNumItem(num: String)
     func didKeyboardDeleteItem()
     func didKeyboardConfirmItem()
-    
 }
 
 let APDecimalPoint: String = "."
 
 class APKeyboardView: UIView {
     
-    var backgroundView: UIView = UIView()
+    let backgroundView: UIView = UIView()
     var keyboardDelegate: APKeyboardViewDelegate?
     
     init() {
@@ -43,7 +42,7 @@ class APKeyboardView: UIView {
                     "4" ,"5" ,"6" ,"!" ,
                     "7" ,"8" ,"9" ,"?" ,
                     "00","0" ,APDecimalPoint ,"?" ]
-        var buttonArray = [APKeyboardButtonView]()
+        var buttonArray = [APKeyboardButton]()
         for i in 0..<4 {
             for j in 0..<4 {
                 let indexOfKeys = i * 4 + j
@@ -97,33 +96,44 @@ class APKeyboardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func buttonAttribute(title: String) ->APKeyboardButtonView {
+    public func buttonAttribute(title: String) ->APKeyboardButton {
         //？号是占位符, !表示确定, -表示删除
-        let button = APKeyboardButtonView()
+        let button = APKeyboardButton()
         if (title == "!") {
             //设置圆角边框
             button.titleText = ""
             button.backgroundImage.theme_image = ["keyboard_confirm_bg"]
-            button.addTarget(self, action: #selector(didKeyboardConfirmItem))
+            button.backgroundNorImage = "keyboard_confirm_bg"
+            button.backgroundSelImage = "keyboard_confirm_bg"
+            button.actionBlock =  { (value) in
+                self.didKeyboardConfirmItem()
+            }
         }
         else if (title == "-") {
             button.titleText = ""
             button.backgroundImage.theme_image = ["keyboard_delete_bg"]
-            button.addTarget(self, action: #selector(didKeyboardDeleteItem))
+            button.backgroundNorImage = "keyboard_delete_bg"
+            button.backgroundSelImage = "keyboard_delete_bg"
+            button.actionBlock =  { (value) in
+                self.didKeyboardDeleteItem()
+            }
         }
         else {
             button.titleText = title
             button.backgroundImage.theme_image = ["keyboard_num_bg"]
-            button.addTarget(self, action: #selector(didKeyboardNumItem(_:)))
+            button.backgroundNorImage = "keyboard_num_bg"
+            button.backgroundSelImage = "keyboard_num_sel_bg"
+            button.actionBlock =  { (value) in
+                self.didKeyboardNumItem(num: value)
+            }
         }
         return button
     }
     
     //MARK: ----- action
     
-    @objc func didKeyboardNumItem(_ button: UIButton) {
-        let numStr: String = (button.title(for: .normal))!
-        keyboardDelegate?.didKeyboardNumItem(num: numStr)
+    @objc func didKeyboardNumItem(num: String) {
+        keyboardDelegate?.didKeyboardNumItem(num: num)
     }
     
     @objc func didKeyboardDeleteItem() {
@@ -133,9 +143,69 @@ class APKeyboardView: UIView {
     @objc func didKeyboardConfirmItem() {
         keyboardDelegate?.didKeyboardConfirmItem()
     }
-    
 }
 
+
+//MARK: ---- APKeyboardButton
+
+typealias APKeyboardItemBlock = (_ value: String) -> Void
+
+class APKeyboardButton: UIView {
+    
+    var backgroundNorImage: String = ""
+    var backgroundSelImage: String = ""
+    
+    var actionBlock: APKeyboardItemBlock?
+    
+    lazy var backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont(name:"Arial-BoldItalicMT", size:30)
+        view.theme_textColor = ["#8a8067"]
+        view.textAlignment = .center
+        return view
+    }()
+    
+    var titleText: String = "" {
+        willSet {
+            titleLabel.text = newValue
+        }
+    }
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        self.addSubview(backgroundImage)
+        self.addSubview(titleLabel)
+        
+        backgroundImage.snp.makeConstraints { (make) in
+            make.left.right.bottom.top.equalTo(self)
+        }
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.right.bottom.top.equalTo(self)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.backgroundImage.theme_image = [backgroundSelImage]
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.backgroundImage.theme_image = [backgroundNorImage]
+        let value: String = titleLabel.text!
+        actionBlock!(value)
+    }
+    
+}
 
 
 
