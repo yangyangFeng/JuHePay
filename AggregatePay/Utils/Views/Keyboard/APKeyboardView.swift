@@ -100,34 +100,44 @@ class APKeyboardView: UIView {
         //？号是占位符, !表示确定, -表示删除
         let button = APKeyboardButton()
         if (title == "!") {
-            //设置圆角边框
             button.titleText = ""
-            button.backgroundImage.theme_image = ["keyboard_confirm_bg"]
-            button.backgroundNorImage = "keyboard_confirm_bg"
-            button.backgroundSelImage = "keyboard_confirm_bg"
+            confirmButtonAttribute(button: button)
             button.actionBlock =  { (value) in
                 self.didKeyboardConfirmItem()
             }
         }
         else if (title == "-") {
             button.titleText = ""
-            button.backgroundImage.theme_image = ["keyboard_delete_bg"]
-            button.backgroundNorImage = "keyboard_delete_bg"
-            button.backgroundSelImage = "keyboard_delete_bg"
+            deleteButtonAttribute(button: button)
             button.actionBlock =  { (value) in
                 self.didKeyboardDeleteItem()
             }
         }
         else {
             button.titleText = title
-            button.backgroundImage.theme_image = ["keyboard_num_bg"]
-            button.backgroundNorImage = "keyboard_num_bg"
-            button.backgroundSelImage = "keyboard_num_sel_bg"
+            numButtonAttribute(button: button)
             button.actionBlock =  { (value) in
                 self.didKeyboardNumItem(num: value)
             }
         }
         return button
+    }
+    
+    //MARK: ---- 接口扩展
+    
+    /** 设置数字按键的属性(子类提供) */
+    func numButtonAttribute(button: APKeyboardButton) {
+        
+    }
+    
+    /** 设置删除按键的属性(子类提供) */
+    func deleteButtonAttribute(button: APKeyboardButton) {
+        
+    }
+    
+    /** 设置确认按键的属性(子类提供) */
+    func confirmButtonAttribute(button: APKeyboardButton) {
+
     }
     
     //MARK: ----- action

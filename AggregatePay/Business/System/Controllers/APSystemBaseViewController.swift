@@ -16,10 +16,20 @@ class APSystemBaseViewController: APBaseViewController {
     let cellHeight: Float = 44
     let subimtHeight: Float = 44
     
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
+                                   style: UIBarButtonItemStyle.done,
+                                   target: self,
+                                   action: #selector(dismissGoHome))
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
 
     override func AP_navigationLeftItemImage() -> UIImage {
@@ -27,5 +37,7 @@ class APSystemBaseViewController: APBaseViewController {
         return image!.withRenderingMode(.alwaysTemplate)
     }
     
-
+    @objc func dismissGoHome() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

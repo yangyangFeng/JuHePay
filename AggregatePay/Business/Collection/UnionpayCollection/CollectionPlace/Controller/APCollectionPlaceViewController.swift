@@ -45,7 +45,7 @@ class APCollectionPlaceViewController: APBaseViewController, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(APPayEssentialViewController(), animated: true)
+        self.navigationController?.pushViewController(APPayElementViewController(), animated: true)
     }
     
     //MARK: ---- 懒加载

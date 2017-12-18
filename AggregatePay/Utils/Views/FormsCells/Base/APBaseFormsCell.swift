@@ -37,8 +37,10 @@ class APBaseFormsCell: UIView {
     init() {
         super.init(frame: CGRect.zero)
         
+        
         topLine.backgroundColor = UIColor.clear
         bottomLine.theme_backgroundColor = ["#f4f4f4"]
+        
 
         addSubview(topLine)
         addSubview(bottomLine)
@@ -53,7 +55,7 @@ class APBaseFormsCell: UIView {
         bottomLine.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
-            maker.bottom.equalTo(self.snp.bottom).offset(-0.5)
+            maker.bottom.equalTo(self.snp.bottom)
             maker.height.equalTo(1)
         }
     }
