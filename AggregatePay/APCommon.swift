@@ -16,7 +16,6 @@ class APCommon: NSObject {
     enum APPort: String {
         case login = "/login.action"
     }
-
 }
 
 let AP_TableViewBackgroundColor = "#F5F5F5"

@@ -12,7 +12,7 @@
 	</dict>
 	<dict>
 		<key>controller</key>
-		<string>APApproveViewController</string>
+		<string>APAuthHomeViewController</string>
 		<key>title</key>
 		<string>身份认证</string>
 		<key>icon</key>

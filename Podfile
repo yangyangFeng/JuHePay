@@ -17,7 +17,6 @@ target 'AggregatePay' do
 
 pod 'Bugly'
 pod 'MJRefresh'
-pod 'MJExtension'
 pod 'SDWebImage'
 pod 'KVOController'
 pod 'SnapKit', '~> 4.0.0'

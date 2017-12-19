@@ -85,16 +85,34 @@
 		1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */; };
 		1AF205571FE21C4C00C7BD1E /* APRequestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */; };
 		1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */; };
-		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
-		238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E0B1FE0C6320024D23F /* .gitkeep */; };
-		238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E101FE0C6320024D23F /* .gitkeep */; };
-		238D0E201FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E151FE0C6320024D23F /* .gitkeep */; };
-		238D0E221FE0C6320024D23F /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 238D0E1A1FE0C6320024D23F /* .gitkeep */; };
-		238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */; };
-		238D0E261FE0C6EE0024D23F /* APSecurityAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */; };
-		238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */; };
-		238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */; };
-		238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */; };
+		2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */; };
+		2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */; };
+		2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C01FE8F1590013AB88 /* APBank.swift */; };
+		2374A9E81FE8F1590013AB88 /* APSingleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C21FE8F1590013AB88 /* APSingleLabelCell.swift */; };
+		2374A9E91FE8F1590013AB88 /* APSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C31FE8F1590013AB88 /* APSearchBarView.swift */; };
+		2374A9EC1FE8F1590013AB88 /* APRealNameAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C81FE8F1590013AB88 /* APRealNameAuthViewController.swift */; };
+		2374A9ED1FE8F1590013AB88 /* APAuth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2374A9CB1FE8F1590013AB88 /* APAuth.plist */; };
+		2374A9EE1FE8F1590013AB88 /* APAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9CD1FE8F1590013AB88 /* APAuth.swift */; };
+		2374A9EF1FE8F1590013AB88 /* APAuthHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9CF1FE8F1590013AB88 /* APAuthHomeCell.swift */; };
+		2374A9F01FE8F1590013AB88 /* APAuthHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9D11FE8F1590013AB88 /* APAuthHomeViewController.swift */; };
+		2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9D31FE8F1590013AB88 /* APAuthHelper.swift */; };
+		2374A9F31FE8F1590013AB88 /* APSecurityAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9D71FE8F1590013AB88 /* APSecurityAuthViewController.swift */; };
+		2374A9F51FE8F1590013AB88 /* APAuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9DB1FE8F1590013AB88 /* APAuthBaseViewController.swift */; };
+		2374A9F61FE8F1590013AB88 /* APGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9DD1FE8F1590013AB88 /* APGridViewModel.swift */; };
+		2374A9F71FE8F1590013AB88 /* APAuthBaseTextFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9DF1FE8F1590013AB88 /* APAuthBaseTextFormCell.swift */; };
+		2374A9F81FE8F1590013AB88 /* APAuthSubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9E01FE8F1590013AB88 /* APAuthSubmitCell.swift */; };
+		2374A9F91FE8F1590013AB88 /* APPhotoGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9E11FE8F1590013AB88 /* APPhotoGridViewCell.swift */; };
+		2374A9FA1FE8F1590013AB88 /* APAuthOCRTextFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9E21FE8F1590013AB88 /* APAuthOCRTextFormCell.swift */; };
+		2374A9FF1FE8FCE90013AB88 /* APIdCardNoFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9FD1FE8FCE90013AB88 /* APIdCardNoFormCell.swift */; };
+		2374AA001FE8FCE90013AB88 /* APRealNameFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9FE1FE8FCE90013AB88 /* APRealNameFormCell.swift */; };
+		2374AA051FE8FE740013AB88 /* APBankCardNoFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA031FE8FE740013AB88 /* APBankCardNoFormCell.swift */; };
+		2374AA061FE8FE740013AB88 /* APBankNameFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA041FE8FE740013AB88 /* APBankNameFormCell.swift */; };
+		2374AA0B1FE8FE9B0013AB88 /* APAuthPhoneNumFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA091FE8FE9B0013AB88 /* APAuthPhoneNumFormCell.swift */; };
+		2374AA0C1FE8FE9B0013AB88 /* APCreditCardFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA0A1FE8FE9B0013AB88 /* APCreditCardFormCell.swift */; };
+		2374AA0E1FE909420013AB88 /* APRealNameAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA0D1FE909420013AB88 /* APRealNameAuthRequest.swift */; };
+		2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */; };
+		2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */; };
+		2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E361FE10D690024D23F /* APBaseTableView.swift */; };
 		745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */; };
 		745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */; };
 		74674AED1FE7B282004AA1B5 /* APReturnBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */; };
@@ -141,8 +159,6 @@
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
-		74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6441FD7DF470065A5F3 /* Info.plist */; };
-		74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6471FD7E0D00065A5F3 /* .gitkeep */; };
 		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
 		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
@@ -154,6 +170,7 @@
 		74EC34351FDF892C003ABF70 /* APServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC34321FDF892C003ABF70 /* APServiceViewController.swift */; };
 		74EC34371FDF8948003ABF70 /* APMineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */; };
 		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
+		F40B8D54ED6153E4962FE4C4 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,15 +271,43 @@
 		1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Home_Menu_Config.plist; sourceTree = "<group>"; };
 		1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRequestButton.swift; sourceTree = "<group>"; };
 		1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginRequest.swift; sourceTree = "<group>"; };
-		238D0E0B1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		238D0E101FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		238D0E151FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		238D0E1A1FE0C6320024D23F /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
-		238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSecurityAuthViewController.swift; sourceTree = "<group>"; };
-		238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRealNameAuthViewController.swift; sourceTree = "<group>"; };
-		238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
-		238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthHomeViewController.swift; sourceTree = "<group>"; };
+		23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
+		2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
+		2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBankSearchViewController.swift; sourceTree = "<group>"; };
+		2374A9C01FE8F1590013AB88 /* APBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBank.swift; sourceTree = "<group>"; };
+		2374A9C21FE8F1590013AB88 /* APSingleLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSingleLabelCell.swift; sourceTree = "<group>"; };
+		2374A9C31FE8F1590013AB88 /* APSearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
+		2374A9C81FE8F1590013AB88 /* APRealNameAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRealNameAuthViewController.swift; sourceTree = "<group>"; };
+		2374A9CB1FE8F1590013AB88 /* APAuth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APAuth.plist; sourceTree = "<group>"; };
+		2374A9CD1FE8F1590013AB88 /* APAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuth.swift; sourceTree = "<group>"; };
+		2374A9CF1FE8F1590013AB88 /* APAuthHomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHomeCell.swift; sourceTree = "<group>"; };
+		2374A9D11FE8F1590013AB88 /* APAuthHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHomeViewController.swift; sourceTree = "<group>"; };
+		2374A9D31FE8F1590013AB88 /* APAuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHelper.swift; sourceTree = "<group>"; };
+		2374A9D71FE8F1590013AB88 /* APSecurityAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSecurityAuthViewController.swift; sourceTree = "<group>"; };
+		2374A9DB1FE8F1590013AB88 /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
+		2374A9DD1FE8F1590013AB88 /* APGridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APGridViewModel.swift; sourceTree = "<group>"; };
+		2374A9DF1FE8F1590013AB88 /* APAuthBaseTextFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthBaseTextFormCell.swift; sourceTree = "<group>"; };
+		2374A9E01FE8F1590013AB88 /* APAuthSubmitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthSubmitCell.swift; sourceTree = "<group>"; };
+		2374A9E11FE8F1590013AB88 /* APPhotoGridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPhotoGridViewCell.swift; sourceTree = "<group>"; };
+		2374A9E21FE8F1590013AB88 /* APAuthOCRTextFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthOCRTextFormCell.swift; sourceTree = "<group>"; };
+		2374A9FD1FE8FCE90013AB88 /* APIdCardNoFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIdCardNoFormCell.swift; sourceTree = "<group>"; };
+		2374A9FE1FE8FCE90013AB88 /* APRealNameFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRealNameFormCell.swift; sourceTree = "<group>"; };
+		2374AA031FE8FE740013AB88 /* APBankCardNoFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBankCardNoFormCell.swift; sourceTree = "<group>"; };
+		2374AA041FE8FE740013AB88 /* APBankNameFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBankNameFormCell.swift; sourceTree = "<group>"; };
+		2374AA091FE8FE9B0013AB88 /* APAuthPhoneNumFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthPhoneNumFormCell.swift; sourceTree = "<group>"; };
+		2374AA0A1FE8FE9B0013AB88 /* APCreditCardFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCreditCardFormCell.swift; sourceTree = "<group>"; };
+		2374AA0D1FE909420013AB88 /* APRealNameAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRealNameAuthRequest.swift; sourceTree = "<group>"; };
+		2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettleCardAuthRequest.swift; sourceTree = "<group>"; };
+		2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSecurityAuthRequest.swift; sourceTree = "<group>"; };
+		238D0E361FE10D690024D23F /* APBaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseTableView.swift; sourceTree = "<group>"; };
+		23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardNoFormCell.swift; sourceTree = "<group>"; };
+		23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankNameFormCell.swift; sourceTree = "<group>"; };
+		23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCreditCardFormCell.swift; sourceTree = "<group>"; };
+		23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
+		23D0AD921FE3BB3500617E63 /* APAuth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APAuth.plist; sourceTree = "<group>"; };
+		23D0AD941FE3BB3500617E63 /* APAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuth.swift; sourceTree = "<group>"; };
+		23D0AD9A1FE3BB3500617E63 /* APAuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHelper.swift; sourceTree = "<group>"; };
+		23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APApproveViewController.swift; sourceTree = "<group>"; };
@@ -320,7 +365,6 @@
 		74C49E8F1FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74D5F6471FD7E0D00065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
 		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
 		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -346,7 +390,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */,
+				F40B8D54ED6153E4962FE4C4 /* Pods_AggregatePay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,13 +929,6 @@
 			path = SuperFormsCells;
 			sourceTree = "<group>";
 		};
-		1AB253CB1FE125F000193B30 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1AB253CC1FE1336200193B30 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,138 +1096,260 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		238D0E061FE0C6320024D23F /* Auth */ = {
+		2374A9B61FE8F1590013AB88 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E2C1FE0D5B60024D23F /* AuthHome */,
-				238D0E071FE0C6320024D23F /* SettlementCardAuth */,
-				238D0E0C1FE0C6320024D23F /* RealNameAuth */,
-				238D0E111FE0C6320024D23F /* SecurityAuth */,
-				238D0E161FE0C6320024D23F /* Base */,
+				2374A9C91FE8F1590013AB88 /* AuthHome */,
+				2374A9B71FE8F1590013AB88 /* SettlementCardAuth */,
+				2374A9BC1FE8F1590013AB88 /* BankSearch */,
+				2374A9C41FE8F1590013AB88 /* RealNameAuth */,
+				2374A9D41FE8F1590013AB88 /* SecurityAuth */,
+				2374A9D91FE8F1590013AB88 /* Base */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		238D0E071FE0C6320024D23F /* SettlementCardAuth */ = {
+		2374A9B71FE8F1590013AB88 /* SettlementCardAuth */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E081FE0C6320024D23F /* Controller */,
-				238D0E0A1FE0C6320024D23F /* View */,
+				2374AA011FE8FE740013AB88 /* Model */,
+				2374AA021FE8FE740013AB88 /* View */,
+				2374A9B91FE8F1590013AB88 /* Controller */,
 			);
 			path = SettlementCardAuth;
 			sourceTree = "<group>";
 		};
-		238D0E081FE0C6320024D23F /* Controller */ = {
+		2374A9B91FE8F1590013AB88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E2A1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift */,
+				2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		238D0E0A1FE0C6320024D23F /* View */ = {
+		2374A9BC1FE8F1590013AB88 /* BankSearch */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E0B1FE0C6320024D23F /* .gitkeep */,
+				2374A9BD1FE8F1590013AB88 /* Controller */,
+				2374A9BF1FE8F1590013AB88 /* Model */,
+				2374A9C11FE8F1590013AB88 /* View */,
+			);
+			path = BankSearch;
+			sourceTree = "<group>";
+		};
+		2374A9BD1FE8F1590013AB88 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2374A9BF1FE8F1590013AB88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9C01FE8F1590013AB88 /* APBank.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2374A9C11FE8F1590013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9C21FE8F1590013AB88 /* APSingleLabelCell.swift */,
+				2374A9C31FE8F1590013AB88 /* APSearchBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		238D0E0C1FE0C6320024D23F /* RealNameAuth */ = {
+		2374A9C41FE8F1590013AB88 /* RealNameAuth */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E0D1FE0C6320024D23F /* Controller */,
-				238D0E0F1FE0C6320024D23F /* View */,
+				2374A9FB1FE8FCE90013AB88 /* Model */,
+				2374A9FC1FE8FCE90013AB88 /* View */,
+				2374A9C71FE8F1590013AB88 /* Controller */,
 			);
 			path = RealNameAuth;
 			sourceTree = "<group>";
 		};
-		238D0E0D1FE0C6320024D23F /* Controller */ = {
+		2374A9C71FE8F1590013AB88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E281FE0C7260024D23F /* APRealNameAuthViewController.swift */,
+				2374A9C81FE8F1590013AB88 /* APRealNameAuthViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		238D0E0F1FE0C6320024D23F /* View */ = {
+		2374A9C91FE8F1590013AB88 /* AuthHome */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E101FE0C6320024D23F /* .gitkeep */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		238D0E111FE0C6320024D23F /* SecurityAuth */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E121FE0C6320024D23F /* Controller */,
-				238D0E141FE0C6320024D23F /* View */,
-			);
-			path = SecurityAuth;
-			sourceTree = "<group>";
-		};
-		238D0E121FE0C6320024D23F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E251FE0C6EE0024D23F /* APSecurityAuthViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		238D0E141FE0C6320024D23F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E151FE0C6320024D23F /* .gitkeep */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		238D0E161FE0C6320024D23F /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E171FE0C6320024D23F /* Controller */,
-				238D0E191FE0C6320024D23F /* View */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		238D0E171FE0C6320024D23F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E231FE0C6B90024D23F /* APAuthBaseViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		238D0E191FE0C6320024D23F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				238D0E1A1FE0C6320024D23F /* .gitkeep */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		238D0E2C1FE0D5B60024D23F /* AuthHome */ = {
-			isa = PBXGroup;
-			children = (
-				1AB253CB1FE125F000193B30 /* View */,
-				238D0E2E1FE0D5B60024D23F /* ViewController */,
+				2374A9CA1FE8F1590013AB88 /* resources */,
+				2374A9CC1FE8F1590013AB88 /* model */,
+				2374A9CE1FE8F1590013AB88 /* View */,
+				2374A9D01FE8F1590013AB88 /* ViewController */,
+				2374A9D21FE8F1590013AB88 /* Tool */,
 			);
 			path = AuthHome;
 			sourceTree = "<group>";
 		};
-		238D0E2E1FE0D5B60024D23F /* ViewController */ = {
+		2374A9CA1FE8F1590013AB88 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				238D0E2F1FE0D5CC0024D23F /* APAuthHomeViewController.swift */,
+				2374A9CB1FE8F1590013AB88 /* APAuth.plist */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		2374A9CC1FE8F1590013AB88 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9CD1FE8F1590013AB88 /* APAuth.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		2374A9CE1FE8F1590013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9CF1FE8F1590013AB88 /* APAuthHomeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2374A9D01FE8F1590013AB88 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9D11FE8F1590013AB88 /* APAuthHomeViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		2374A9D21FE8F1590013AB88 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9D31FE8F1590013AB88 /* APAuthHelper.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		2374A9D41FE8F1590013AB88 /* SecurityAuth */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA071FE8FE9B0013AB88 /* Model */,
+				2374AA081FE8FE9B0013AB88 /* View */,
+				2374A9D61FE8F1590013AB88 /* Controller */,
+			);
+			path = SecurityAuth;
+			sourceTree = "<group>";
+		};
+		2374A9D61FE8F1590013AB88 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9D71FE8F1590013AB88 /* APSecurityAuthViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2374A9D91FE8F1590013AB88 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9DA1FE8F1590013AB88 /* Controller */,
+				2374A9DC1FE8F1590013AB88 /* Model */,
+				2374A9DE1FE8F1590013AB88 /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2374A9DA1FE8F1590013AB88 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9DB1FE8F1590013AB88 /* APAuthBaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2374A9DC1FE8F1590013AB88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9DD1FE8F1590013AB88 /* APGridViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2374A9DE1FE8F1590013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9DF1FE8F1590013AB88 /* APAuthBaseTextFormCell.swift */,
+				2374A9E01FE8F1590013AB88 /* APAuthSubmitCell.swift */,
+				2374A9E11FE8F1590013AB88 /* APPhotoGridViewCell.swift */,
+				2374A9E21FE8F1590013AB88 /* APAuthOCRTextFormCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2374A9FB1FE8FCE90013AB88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA0D1FE909420013AB88 /* APRealNameAuthRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2374A9FC1FE8FCE90013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374A9FD1FE8FCE90013AB88 /* APIdCardNoFormCell.swift */,
+				2374A9FE1FE8FCE90013AB88 /* APRealNameFormCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2374AA011FE8FE740013AB88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2374AA021FE8FE740013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA031FE8FE740013AB88 /* APBankCardNoFormCell.swift */,
+				2374AA041FE8FE740013AB88 /* APBankNameFormCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2374AA071FE8FE9B0013AB88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2374AA081FE8FE9B0013AB88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2374AA091FE8FE9B0013AB88 /* APAuthPhoneNumFormCell.swift */,
+				2374AA0A1FE8FE9B0013AB88 /* APCreditCardFormCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		74288DCF1FE16AAD00519A04 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
+				23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */,
+				23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */,
+				23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */,
+				23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */,
+				23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */,
+				23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */,
+				23D0AD9A1FE3BB3500617E63 /* APAuthHelper.swift */,
+				23D0AD941FE3BB3500617E63 /* APAuth.swift */,
+				23D0AD921FE3BB3500617E63 /* APAuth.plist */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1354,7 +1513,6 @@
 			children = (
 				1AA3D5011FE7D3B5003263E3 /* BBRSACryptor */,
 				74D5F67D1FD95C660065A5F3 /* VHLNavigation */,
-				74D5F6471FD7E0D00065A5F3 /* .gitkeep */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1362,13 +1520,13 @@
 		74D5F6491FD7E0EE0065A5F3 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				2374A9B61FE8F1590013AB88 /* Auth */,
 				747668461FE9102700715E72 /* Commons */,
 				1A2E32861FE541D20029AE9A /* Wallet */,
 				1AE456171FE4F49E005D9999 /* Collection */,
 				1A3A68BF1FE3A47B00865340 /* BillDetail */,
 				1AB253DD1FE1436A00193B30 /* Earnings */,
 				1AB253E01FE1436A00193B30 /* Promote */,
-				238D0E061FE0C6320024D23F /* Auth */,
 				1A0A65F91FDE5AA1004D59C0 /* System */,
 				74D5F65F1FD921D50065A5F3 /* Mine */,
 				74D5F64F1FD7F1D20065A5F3 /* Home */,
@@ -1384,6 +1542,7 @@
 				74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */,
 				74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */,
 				74EC342E1FDF805E003ABF70 /* APBaseTabBarViewController.swift */,
+				238D0E361FE10D690024D23F /* APBaseTableView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1578,7 +1737,7 @@
 				TargetAttributes = {
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					74C49E7D1FD4FE0200F0501B = {
 						CreatedOnToolsVersion = 9.0;
@@ -1617,18 +1776,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
+				2374A9ED1FE8F1590013AB88 /* APAuth.plist in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
-				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
-				238D0E201FE0C6320024D23F /* .gitkeep in Resources */,
-				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
-				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
-				238D0E1E1FE0C6320024D23F /* .gitkeep in Resources */,
-				238D0E1C1FE0C6320024D23F /* .gitkeep in Resources */,
-				238D0E221FE0C6320024D23F /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1664,7 +1817,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
@@ -1693,12 +1846,15 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/EmptyKit/EmptyKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMBase64/GTMBase64.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/OCRSDK/OCRSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/PGPickerView/PGPickerView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftTheme/SwiftTheme.framework",
@@ -1710,12 +1866,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMBase64.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCRSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGDatePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGPickerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTheme.framework",
@@ -1733,8 +1892,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */,
 				1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */,
 				1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */,
+				2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */,
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
 				1A2E32961FE541D20029AE9A /* APWalletHeaderView.swift in Sources */,
 				1AA3D5421FE7DE45003263E3 /* CPSecurityManager.m in Sources */,
@@ -1750,18 +1911,21 @@
 				7476684D1FE9102800715E72 /* APSegmentControl.swift in Sources */,
 				1AA80FBD1FDFF7D80021B046 /* AppDelegate.swift in Sources */,
 				1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */,
+				2374A9EC1FE8F1590013AB88 /* APRealNameAuthViewController.swift in Sources */,
 				1AA3D5381FE7DD2C003263E3 /* CPCipherAES.m in Sources */,
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
+				2374AA0E1FE909420013AB88 /* APRealNameAuthRequest.swift in Sources */,
 				1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */,
 				1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */,
 				1AA3D5371FE7DD2C003263E3 /* CPBase64.m in Sources */,
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
 				747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */,
+				2374A9F31FE8F1590013AB88 /* APSecurityAuthViewController.swift in Sources */,
+				2374A9F61FE8F1590013AB88 /* APGridViewModel.swift in Sources */,
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
 				745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
-				238D0E2B1FE0C74C0024D23F /* APSettlementCardAuthViewController.swift in Sources */,
 				1A2E32941FE541D20029AE9A /* APWalletViewController.swift in Sources */,
 				7476684C1FE9102800715E72 /* APCommonProtocol.swift in Sources */,
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
@@ -1772,24 +1936,34 @@
 				1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */,
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
+				2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
-				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
+				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
+				2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */,
 				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
 				7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */,
 				1A030D921FE7745B007146C1 /* APQRCodeCollectionViewController.swift in Sources */,
 				1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */,
+				2374A9F71FE8F1590013AB88 /* APAuthBaseTextFormCell.swift in Sources */,
 				7487E18A1FDFE131000E3EBE /* UIImageExtensions.swift in Sources */,
+				2374A9F81FE8F1590013AB88 /* APAuthSubmitCell.swift in Sources */,
 				7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */,
 				74EC34351FDF892C003ABF70 /* APServiceViewController.swift in Sources */,
+				2374A9FA1FE8F1590013AB88 /* APAuthOCRTextFormCell.swift in Sources */,
 				1AA3D53A1FE7DD2C003263E3 /* CPRSACryptor.m in Sources */,
 				7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */,
+				2374A9F91FE8F1590013AB88 /* APPhotoGridViewCell.swift in Sources */,
 				1AB253E71FE1436B00193B30 /* APPromoteViewController.swift in Sources */,
 				74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */,
 				1A030D961FE787B7007146C1 /* APCollectionCompositionView.swift in Sources */,
 				1A030D871FE76C8D007146C1 /* APPayElementHeaderView.swift in Sources */,
+				2374A9E81FE8F1590013AB88 /* APSingleLabelCell.swift in Sources */,
 				1A030D861FE76C8D007146C1 /* APPayElementViewController.swift in Sources */,
+				2374AA061FE8FE740013AB88 /* APBankNameFormCell.swift in Sources */,
+				2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */,
+				2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */,
 				7476684B1FE9102800715E72 /* APArrowButton.swift in Sources */,
 				7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */,
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
@@ -1799,17 +1973,19 @@
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
 				1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */,
 				1A030D721FE76123007146C1 /* APCollectionResultCell.swift in Sources */,
+				2374AA001FE8FCE90013AB88 /* APRealNameFormCell.swift in Sources */,
 				7487E18B1FDFE131000E3EBE /* UIViewExtensions.swift in Sources */,
 				1A3A68C71FE3A51E00865340 /* APTradingDetailViewController.swift in Sources */,
 				747668451FE8F69D00715E72 /* APReturnBillListView.swift in Sources */,
-				238D0E291FE0C7260024D23F /* APRealNameAuthViewController.swift in Sources */,
 				7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */,
 				1AB253D01FE1391900193B30 /* APAlertManager.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
 				1A030D8E1FE76E55007146C1 /* APQRCodeSelectMerchantCell.swift in Sources */,
+				2374A9F01FE8F1590013AB88 /* APAuthHomeViewController.swift in Sources */,
 				1A2E32931FE541D20029AE9A /* APWalletDetailListCell.swift in Sources */,
 				1A030D741FE7624D007146C1 /* APCollectionSuccessViewController.swift in Sources */,
 				1A97EDD21FE52DAB008B5357 /* APVersionUpgradeManager.swift in Sources */,
+				2374A9F51FE8F1590013AB88 /* APAuthBaseViewController.swift in Sources */,
 				1AA3D5061FE7D3B5003263E3 /* BBRSACryptor..mm in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				1AA80FA61FDFDE660021B046 /* APSystemBaseViewController.swift in Sources */,
@@ -1822,13 +1998,15 @@
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
+				2374A9EE1FE8F1590013AB88 /* APAuth.swift in Sources */,
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
-				238D0E301FE0D5CC0024D23F /* APAuthHomeViewController.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
+				2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */,
 				1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */,
 				1A3A68CB1FE3A54200865340 /* APWithdrawDetailViewController.swift in Sources */,
 				1A97EDD91FE5342F008B5357 /* APSelectCreditCardViewController.swift in Sources */,
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
+				2374AA0B1FE8FE9B0013AB88 /* APAuthPhoneNumFormCell.swift in Sources */,
 				7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */,
 				1A030D701FE76109007146C1 /* APCollectionResultViewController.swift in Sources */,
 				7487E1841FDFE131000E3EBE /* UITextViewExtensions.swift in Sources */,
@@ -1844,6 +2022,7 @@
 				7487E1821FDFE131000E3EBE /* UIDatePickerExtensions.swift in Sources */,
 				1A030D8C1FE76E1C007146C1 /* APQRCodeTraAmountCell.swift in Sources */,
 				1A3A68CE1FE3A6F800865340 /* APBillDetailHeaderView.swift in Sources */,
+				2374AA051FE8FE740013AB88 /* APBankCardNoFormCell.swift in Sources */,
 				1AA3D5071FE7D3B5003263E3 /* CPRSAEncrpTool.m in Sources */,
 				1A2E32921FE541D20029AE9A /* APWalletDetailListViewController.swift in Sources */,
 				747668431FE8F66C00715E72 /* APReturnBillSearchBar.swift in Sources */,
@@ -1855,13 +2034,16 @@
 				74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */,
 				7487E1881FDFE131000E3EBE /* UITabBarExtensions.swift in Sources */,
 				74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */,
-				238D0E261FE0C6EE0024D23F /* APSecurityAuthViewController.swift in Sources */,
 				1A030D7D1FE76C85007146C1 /* APQRCodePayElementViewController.swift in Sources */,
 				1A97EDDB1FE534F3008B5357 /* APSelectCreditCardCell.swift in Sources */,
 				1AC89A521FE3B3D20045A2AF /* APBillDetailCell.swift in Sources */,
+				2374AA0C1FE8FE9B0013AB88 /* APCreditCardFormCell.swift in Sources */,
 				7487E1801FDFE131000E3EBE /* UISegmentedControlExtensions.swift in Sources */,
+				2374A9FF1FE8FCE90013AB88 /* APIdCardNoFormCell.swift in Sources */,
 				7487E18F1FDFE131000E3EBE /* UICollectionViewExtensions.swift in Sources */,
+				2374A9EF1FE8F1590013AB88 /* APAuthHomeCell.swift in Sources */,
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
+				2374A9E91FE8F1590013AB88 /* APSearchBarView.swift in Sources */,
 				1AE456161FE4BCAD005D9999 /* APVersionUpgradeController.swift in Sources */,
 				1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */,
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
@@ -2027,14 +2209,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2044,8 +2222,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "28e454ca-a71c-481a-bfce-6abfad992415";
+				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -2059,14 +2237,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -20,8 +20,8 @@ class APBaseViewController: UIViewController {
         /*view四周均不延伸*/
         edgesForExtendedLayout = []
         
-        view.backgroundColor = UIColor.white
-    
+        view.backgroundColor = UIColor.init(hex6: 0xf0f0f0)
+
         ap_setStatusBarStyle(UIStatusBarStyle.default)
         
         initNavigationBar()

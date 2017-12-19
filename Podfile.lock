@@ -13,7 +13,6 @@ PODS:
   - JPush (3.0.7):
     - JCore (~> 1.1.6)
   - KVOController (1.2.0)
-  - MJExtension (3.0.13)
   - MJRefresh (3.1.15.1)
   - ObjectMapper (3.1.0)
   - OCRSDK (0.1.7):
@@ -48,7 +47,6 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift (~> 5.0.6)
   - JPush (~> 3.0.7)
   - KVOController
-  - MJExtension
   - MJRefresh
   - OCRSDK
   - OpenSSL-Universal (~> 1.0.2.11)
@@ -71,7 +69,6 @@ SPEC CHECKSUMS:
   JCore: 18fc8725124f26e55625eaf224659b3a999dcf63
   JPush: 111b79b8a0169ab8fd4c486dac3ed166ed69293e
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
-  MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OCRSDK: 633a176d5ddb920b99c9e3a5fe0f071f07f39277
@@ -84,6 +81,6 @@ SPEC CHECKSUMS:
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 2581b48325e375853403579461299dbb406bfaa8
+PODFILE CHECKSUM: b1499a93c0aa52cb094cf383726e8091efb45393
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
