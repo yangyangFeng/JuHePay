@@ -5,6 +5,7 @@ PODS:
     - ObjectMapper (~> 3.0)
   - Bugly (2.5.0)
   - EFQRCode (1.2.7)
+  - EmptyKit (4.0.0)
   - ESTabBarController-swift (2.5)
   - GTMBase64 (1.0.0)
   - IQKeyboardManagerSwift (5.0.6)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper (~> 5.0)
   - Bugly
   - EFQRCode (~> 1.2.7)
+  - EmptyKit (~> 4.0.0)
   - ESTabBarController-swift (~> 2.5)
   - GTMBase64 (~> 1.0.0)
   - IQKeyboardManagerSwift (~> 5.0.6)
@@ -62,6 +64,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   Bugly: 00c8701f2bebab4887771ba43afbf51334009742
   EFQRCode: f283d7ce75a7780756a5e2a9c39077292d6e7596
+  EmptyKit: cc455a9348e3b84e28fffb709d65340637e4f02f
   ESTabBarController-swift: 8daa432f2a9be8ebd25101dc46c84472fd760512
   GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
@@ -81,6 +84,6 @@ SPEC CHECKSUMS:
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 60d3caba0b97dbe61d6068a943172850f747cb4d
+PODFILE CHECKSUM: 2581b48325e375853403579461299dbb406bfaa8
 
 COCOAPODS: 1.2.1
