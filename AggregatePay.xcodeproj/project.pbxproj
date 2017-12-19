@@ -68,10 +68,21 @@
 		1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */; };
 		1FAD098B1ABDE288C6DCC676 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 		2350596B1FE1307800FBBFE5 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		23548BEF1FE8ACD6006ED146 /* APSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */; };
+		238A0C0E1FE6BDF900F66644 /* APRealNameFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A0C0D1FE6BDF900F66644 /* APRealNameFormCell.swift */; };
+		238A0C101FE6BEC600F66644 /* APIdCardNoFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A0C0F1FE6BEC600F66644 /* APIdCardNoFormCell.swift */; };
 		2394DE371FE3BF4D003BF4AC /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */; };
 		2394DE381FE3BF4D003BF4AC /* APAuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */; };
 		2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E361FE10D690024D23F /* APBaseTableView.swift */; };
-		2394DE3C1FE3D324003BF4AC /* APPhotoGridViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DE3B1FE3D324003BF4AC /* APPhotoGridViewLayout.swift */; };
+		23BA29A91FE76A180031F58C /* APAuthBaseTextFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29A81FE76A180031F58C /* APAuthBaseTextFormCell.swift */; };
+		23BA29AC1FE79EBF0031F58C /* APBankCardNoFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */; };
+		23BA29AE1FE79ED50031F58C /* APBankNameFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */; };
+		23BA29B11FE7AF860031F58C /* APAuthPhoneNumFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29B01FE7AF860031F58C /* APAuthPhoneNumFormCell.swift */; };
+		23BA29B51FE7AFFB0031F58C /* APCreditCardFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */; };
+		23BA29B71FE7B0620031F58C /* APAuthOCRTextFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29B61FE7B0620031F58C /* APAuthOCRTextFormCell.swift */; };
+		23BA29BD1FE7BD7B0031F58C /* APBankSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29BC1FE7BD7B0031F58C /* APBankSearchViewController.swift */; };
+		23BA29BF1FE7BD880031F58C /* APBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29BE1FE7BD880031F58C /* APBank.swift */; };
+		23BA29C11FE7BEA40031F58C /* APSingleLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA29C01FE7BEA40031F58C /* APSingleLabelCell.swift */; };
 		23D0ADAA1FE3BB3500617E63 /* APRealNameAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AD8D1FE3BB3500617E63 /* APRealNameAuthViewController.swift */; };
 		23D0ADAC1FE3BB3500617E63 /* APAuth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23D0AD921FE3BB3500617E63 /* APAuth.plist */; };
 		23D0ADAD1FE3BB3500617E63 /* APAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0AD941FE3BB3500617E63 /* APAuth.swift */; };
@@ -117,8 +128,6 @@
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
-		74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6441FD7DF470065A5F3 /* Info.plist */; };
-		74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6471FD7E0D00065A5F3 /* .gitkeep */; };
 		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
 		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
@@ -205,8 +214,19 @@
 		1AF205501FE213FD00C7BD1E /* Home_Menu_Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Home_Menu_Config.plist; sourceTree = "<group>"; };
 		1AF205561FE21C4C00C7BD1E /* APRequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRequestButton.swift; sourceTree = "<group>"; };
 		1AF205591FE22ACB00C7BD1E /* APLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginRequest.swift; sourceTree = "<group>"; };
+		23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
+		238A0C0D1FE6BDF900F66644 /* APRealNameFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRealNameFormCell.swift; sourceTree = "<group>"; };
+		238A0C0F1FE6BEC600F66644 /* APIdCardNoFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIdCardNoFormCell.swift; sourceTree = "<group>"; };
 		238D0E361FE10D690024D23F /* APBaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseTableView.swift; sourceTree = "<group>"; };
-		2394DE3B1FE3D324003BF4AC /* APPhotoGridViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPhotoGridViewLayout.swift; sourceTree = "<group>"; };
+		23BA29A81FE76A180031F58C /* APAuthBaseTextFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthBaseTextFormCell.swift; sourceTree = "<group>"; };
+		23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardNoFormCell.swift; sourceTree = "<group>"; };
+		23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankNameFormCell.swift; sourceTree = "<group>"; };
+		23BA29B01FE7AF860031F58C /* APAuthPhoneNumFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthPhoneNumFormCell.swift; sourceTree = "<group>"; };
+		23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCreditCardFormCell.swift; sourceTree = "<group>"; };
+		23BA29B61FE7B0620031F58C /* APAuthOCRTextFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthOCRTextFormCell.swift; sourceTree = "<group>"; };
+		23BA29BC1FE7BD7B0031F58C /* APBankSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankSearchViewController.swift; sourceTree = "<group>"; };
+		23BA29BE1FE7BD880031F58C /* APBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBank.swift; sourceTree = "<group>"; };
+		23BA29C01FE7BEA40031F58C /* APSingleLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSingleLabelCell.swift; sourceTree = "<group>"; };
 		23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
 		23D0AD8D1FE3BB3500617E63 /* APRealNameAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRealNameAuthViewController.swift; sourceTree = "<group>"; };
 		23D0AD921FE3BB3500617E63 /* APAuth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APAuth.plist; sourceTree = "<group>"; };
@@ -264,7 +284,6 @@
 		74C49E8F1FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74D5F6471FD7E0D00065A5F3 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
 		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
 		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -714,12 +733,48 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		23BA29B81FE7BCB50031F58C /* BankSearch */ = {
+			isa = PBXGroup;
+			children = (
+				23BA29B91FE7BCB50031F58C /* Controller */,
+				23BA29BA1FE7BCB50031F58C /* Model */,
+				23BA29BB1FE7BCB50031F58C /* View */,
+			);
+			path = BankSearch;
+			sourceTree = "<group>";
+		};
+		23BA29B91FE7BCB50031F58C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23BA29BC1FE7BD7B0031F58C /* APBankSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23BA29BA1FE7BCB50031F58C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23BA29BE1FE7BD880031F58C /* APBank.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		23BA29BB1FE7BCB50031F58C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23BA29C01FE7BEA40031F58C /* APSingleLabelCell.swift */,
+				23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		23D0AD851FE3BB3500617E63 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				23D0AD901FE3BB3500617E63 /* AuthHome */,
+				23BA29B81FE7BCB50031F58C /* BankSearch */,
 				23D0AD861FE3BB3500617E63 /* SettlementCardAuth */,
 				23D0AD8B1FE3BB3500617E63 /* RealNameAuth */,
-				23D0AD901FE3BB3500617E63 /* AuthHome */,
 				23D0AD9B1FE3BB3500617E63 /* SecurityAuth */,
 				23D0ADA01FE3BB3500617E63 /* Base */,
 			);
@@ -746,8 +801,10 @@
 		23D0AD891FE3BB3500617E63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */,
+				23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */,
 			);
-			path = View;
+			name = View;
 			sourceTree = "<group>";
 		};
 		23D0AD8B1FE3BB3500617E63 /* RealNameAuth */ = {
@@ -770,6 +827,8 @@
 		23D0AD8E1FE3BB3500617E63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				238A0C0D1FE6BDF900F66644 /* APRealNameFormCell.swift */,
+				238A0C0F1FE6BEC600F66644 /* APIdCardNoFormCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -846,6 +905,8 @@
 		23D0AD9E1FE3BB3500617E63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				23BA29B01FE7AF860031F58C /* APAuthPhoneNumFormCell.swift */,
+				23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -880,8 +941,9 @@
 			isa = PBXGroup;
 			children = (
 				23D0ADA61FE3BB3500617E63 /* APAuthSubmitCell.swift */,
+				23BA29A81FE76A180031F58C /* APAuthBaseTextFormCell.swift */,
+				23BA29B61FE7B0620031F58C /* APAuthOCRTextFormCell.swift */,
 				23D0ADA71FE3BB3500617E63 /* APPhotoGridViewCell.swift */,
-				2394DE3B1FE3D324003BF4AC /* APPhotoGridViewLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -995,7 +1057,6 @@
 			isa = PBXGroup;
 			children = (
 				74D5F67D1FD95C660065A5F3 /* VHLNavigation */,
-				74D5F6471FD7E0D00065A5F3 /* .gitkeep */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1218,7 +1279,7 @@
 				TargetAttributes = {
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					74C49E7D1FD4FE0200F0501B = {
 						CreatedOnToolsVersion = 9.0;
@@ -1260,10 +1321,7 @@
 				74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
-				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
-				74D5F6481FD7E0D00065A5F3 /* .gitkeep in Resources */,
 				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
-				74D5F6451FD7DF480065A5F3 /* Info.plist in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 				23D0ADAC1FE3BB3500617E63 /* APAuth.plist in Resources */,
 				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
@@ -1376,6 +1434,7 @@
 				1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */,
 				1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */,
 				1AB253E81FE1436B00193B30 /* APWalletViewController.swift in Sources */,
+				238A0C0E1FE6BDF900F66644 /* APRealNameFormCell.swift in Sources */,
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
 				1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */,
 				1AA80FBE1FDFF8180021B046 /* APHomeViewController.swift in Sources */,
@@ -1386,6 +1445,7 @@
 				1AA80FC31FDFF8180021B046 /* AP_ThemeConfig.swift in Sources */,
 				1AA80FBD1FDFF7D80021B046 /* AppDelegate.swift in Sources */,
 				1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */,
+				23BA29B71FE7B0620031F58C /* APAuthOCRTextFormCell.swift in Sources */,
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
 				1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */,
 				1AA80FBB1FDFF4C10021B046 /* APKeyboardInputRulesTemplate.swift in Sources */,
@@ -1394,25 +1454,32 @@
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
 				1AA80F991FDFDE660021B046 /* APRegisterViewController.swift in Sources */,
+				23BA29AE1FE79ED50031F58C /* APBankNameFormCell.swift in Sources */,
 				745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */,
+				23548BEF1FE8ACD6006ED146 /* APSearchBarView.swift in Sources */,
 				1A0A66281FDE626E004D59C0 /* APBaseFormsCell.swift in Sources */,
 				1A479ECE1FE284F7005E0912 /* APForgetFirstStepAccountCell.swift in Sources */,
 				1AA80FA41FDFDE660021B046 /* APLoginSubmitCell.swift in Sources */,
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
+				23BA29B51FE7AFFB0031F58C /* APCreditCardFormCell.swift in Sources */,
 				1A479ED41FE284F7005E0912 /* APForgetRequest.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AA80F9C1FDFDE660021B046 /* APRegisterInviteCell.swift in Sources */,
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
+				23BA29B11FE7AF860031F58C /* APAuthPhoneNumFormCell.swift in Sources */,
+				23BA29BD1FE7BD7B0031F58C /* APBankSearchViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
+				23BA29AC1FE79EBF0031F58C /* APBankCardNoFormCell.swift in Sources */,
 				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
 				1AA80F9E1FDFDE660021B046 /* APRegisterSmsCodeCell.swift in Sources */,
 				7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */,
 				1AA80FB61FDFDF1C0021B046 /* APSendSMSCodeFormsCell.swift in Sources */,
 				7487E18A1FDFE131000E3EBE /* UIImageExtensions.swift in Sources */,
+				238A0C101FE6BEC600F66644 /* APIdCardNoFormCell.swift in Sources */,
 				1A479ECF1FE284F7005E0912 /* APForgetFirstStepSmsCodeCell.swift in Sources */,
 				7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */,
 				1A479ED01FE284F7005E0912 /* APForgetFirstStepSubmitCell.swift in Sources */,
@@ -1431,8 +1498,8 @@
 				7487E18B1FDFE131000E3EBE /* UIViewExtensions.swift in Sources */,
 				7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */,
 				1AB253D01FE1391900193B30 /* APAlert.swift in Sources */,
+				23BA29C11FE7BEA40031F58C /* APSingleLabelCell.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
-				2394DE3C1FE3D324003BF4AC /* APPhotoGridViewLayout.swift in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				1AA80FBA1FDFEFC20021B046 /* APKeyboardButtonView.swift in Sources */,
 				23D0ADB11FE3BB3500617E63 /* APSecurityAuthViewController.swift in Sources */,
@@ -1447,6 +1514,7 @@
 				1AA80F9A1FDFDE660021B046 /* APRegisterAccountCell.swift in Sources */,
 				23D0ADB41FE3BB3500617E63 /* APGridViewModel.swift in Sources */,
 				1A479ED21FE284F7005E0912 /* APForgetLastStepPasswordCell.swift in Sources */,
+				23BA29A91FE76A180031F58C /* APAuthBaseTextFormCell.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
 				1A37ED0B1FDFC15400797F28 /* APFormsCell.swift in Sources */,
 				1AA80FA21FDFDE660021B046 /* APLoginMemoryCell.swift in Sources */,
@@ -1457,6 +1525,7 @@
 				1AA80FA11FDFDE660021B046 /* APLoginAccountCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
+				23BA29BF1FE7BD880031F58C /* APBank.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
 				1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */,
 				7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */,
@@ -1639,21 +1708,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "28e454ca-a71c-481a-bfce-6abfad992415";
+				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1666,14 +1731,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_BankCardLib",
-					"$(PROJECT_DIR)/AggregatePay/Utils/ObjectCTool/OCR/FrameWork/HX_IdentifierCardLIb",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AggregatePay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -16,5 +16,5 @@ class APCommon: NSObject {
     enum APPort: String {
         case login = "/login.action"
     }
-
 }
+

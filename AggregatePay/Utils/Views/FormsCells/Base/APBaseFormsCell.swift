@@ -36,7 +36,7 @@ class APBaseFormsCell: UIView {
         
         let returnText = text.replacingCharacters(in: range, with: string)
         var shouldReturn = true
-        if string.characters.count > 0 && string != "\n" {
+        if string.count > 0 && string != "\n" {
             shouldReturn = (self.predicate?.evaluate(with: returnText))!
         }
         return shouldReturn

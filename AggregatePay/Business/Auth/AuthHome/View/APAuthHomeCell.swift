@@ -46,7 +46,7 @@ class APAuthHomeCell: UITableViewCell {
     }
     
     // MARK: -- UI
-    func layoutViews() {
+   private func layoutViews() {
         
         accessoryView = UIImageView.init(image: UIImage.init(named: "auth_authHome_accessory"))
         

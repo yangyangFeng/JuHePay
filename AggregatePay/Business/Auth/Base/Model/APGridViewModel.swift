@@ -8,18 +8,13 @@
 
 import UIKit
 
+enum GridState {
+    case normal, uploaded, downLoaded, failure, other
+}
 class APGridViewModel: NSObject {
     var headMessage: String?
     var bottomMessage: String?
-    var gridNormalImageName: String?
-    var gridUploadedImageName: String?
-    var gridLoadFailureImageName: String?
-    
-    
-    
-    
-    
-    
-    
-    
+    var imageName: String?
+    var gridState: GridState = .normal
+
 }

@@ -10,9 +10,18 @@ import UIKit
 
 class APPhotoGridViewCell: UICollectionViewCell {
 
-    let gridHeadLabel: UILabel = UILabel()
-    let gridBottomLabel: UILabel = UILabel()
-    let gridButton: UIButton = UIButton()
+   fileprivate let gridHeadLabel: UILabel = UILabel()
+   fileprivate let gridBottomLabel: UILabel = UILabel()
+   fileprivate let gridButton: UIButton = UIButton()
+    
+    var model: APGridViewModel? {
+        didSet {
+            gridHeadLabel.text = model?.headMessage
+            gridBottomLabel.text = model?.bottomMessage
+            gridButton.setBackgroundImage(UIImage.init(named: (model?.imageName)!), for: .normal)
+        }
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,22 +38,25 @@ class APPhotoGridViewCell: UICollectionViewCell {
     // MARK: -- UI
     func layoutViews() {
         
+        backgroundColor = UIColor.white
         gridHeadLabel.textColor = UIColor.init(hex6: 0x7a7a7a)
         gridHeadLabel.font = UIFont.systemFont(ofSize: 13)
         gridBottomLabel.textColor = UIColor.init(hex6: 0x7a7a7a)
         gridBottomLabel.font = UIFont.systemFont(ofSize: 13)
         
-        addSubview(gridHeadLabel)
-        addSubview(gridButton)
-        addSubview(gridBottomLabel)
+        contentView.addSubview(gridHeadLabel)
+        contentView.addSubview(gridButton)
+        contentView.addSubview(gridBottomLabel)
         
         gridHeadLabel.snp.makeConstraints { (make) in
             make.top.centerX.equalToSuperview()
+            make.height.equalTo(0)
         }
         gridButton.snp.makeConstraints { (make) in
             make.top.equalTo(gridHeadLabel.snp.bottom).offset(10)
-            make.right.left.equalToSuperview()
-            make.height.equalTo(80)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(127)
+            make.height.equalTo(83)
         }
         gridBottomLabel.snp.makeConstraints { (make) in
             make.top.equalTo(gridButton.snp.bottom).offset(10)

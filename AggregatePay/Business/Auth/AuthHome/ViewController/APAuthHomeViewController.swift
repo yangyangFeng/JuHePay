@@ -24,7 +24,7 @@ class APAuthHomeViewController: APBaseViewController {
 
 extension APAuthHomeViewController {
     //MARK: -- UI
-    func layoutViews() {
+  private func layoutViews() {
         
         tableView.delegate = self
         tableView.dataSource = self
