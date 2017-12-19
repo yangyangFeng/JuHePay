@@ -19,6 +19,7 @@ class APDateTools: NSObject {
     enum APDateFormat : String {
         case dateFormatDefault = "yyyy-MM-dd HH:mm:ss"
         case deteFormatA = "yyyyMMddHHmmss"
+        case deteFormatB = "yyyy/MM/dd"
     }
     
     /**

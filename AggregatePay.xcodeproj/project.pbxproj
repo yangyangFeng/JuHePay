@@ -105,6 +105,7 @@
 		747008241FE78A1E00D6A923 /* APSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008231FE78A1E00D6A923 /* APSegmentControl.swift */; };
 		747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */; };
 		747008281FE7901B00D6A923 /* APCommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008271FE7901B00D6A923 /* APCommonProtocol.swift */; };
+		747668381FE8B43A00715E72 /* APArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747668371FE8B43A00715E72 /* APArrowButton.swift */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -271,6 +272,7 @@
 		747008231FE78A1E00D6A923 /* APSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSegmentControl.swift; sourceTree = "<group>"; };
 		747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APAgentDetailViewController.swift; path = AggregatePay/Business/earnings/Controller/APAgentDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		747008271FE7901B00D6A923 /* APCommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProtocol.swift; sourceTree = "<group>"; };
+		747668371FE8B43A00715E72 /* APArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APArrowButton.swift; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -961,11 +963,8 @@
 		1AE456171FE4F49E005D9999 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-
 				747008221FE789FC00D6A923 /* CommonControls */,
-
 				1A030D661FE75E2F007146C1 /* CollectionResult */,
-
 				1AE456201FE4F653005D9999 /* QRCodeCollection */,
 				1AE4561C1FE4F653005D9999 /* UnionpayCollection */,
 			);
@@ -1218,6 +1217,7 @@
 			children = (
 				747008231FE78A1E00D6A923 /* APSegmentControl.swift */,
 				747008271FE7901B00D6A923 /* APCommonProtocol.swift */,
+				747668371FE8B43A00715E72 /* APArrowButton.swift */,
 			);
 			path = CommonControls;
 			sourceTree = "<group>";
@@ -1737,6 +1737,7 @@
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				745BDABD1FE4CF78003A6912 /* APEarningHeadView.swift in Sources */,
 				74674AEF1FE7B2AC004AA1B5 /* APReturnBillSearchBar.swift in Sources */,
+				747668381FE8B43A00715E72 /* APArrowButton.swift in Sources */,
 				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
 				747008241FE78A1E00D6A923 /* APSegmentControl.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
