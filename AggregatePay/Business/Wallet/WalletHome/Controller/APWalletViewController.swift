@@ -20,8 +20,7 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包"
-        vhl_setNavBarBackgroundAlpha(0.0)
-        
+        vhl_setNavBarBackgroundAlpha(0)
         view.theme_backgroundColor = ["#fafafa"]
         view.addSubview(headerView)
         view.addSubview(tableView)
@@ -30,7 +29,7 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.top.equalTo(view.snp.top)
-            make.height.equalTo(view.snp.height).multipliedBy(0.35)
+            make.height.equalTo(204)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
