@@ -10,7 +10,7 @@ import UIKit
 
 class APSelectBoxFormsCell: APBaseFormsCell {
 
-    var button: UIButton = {
+    lazy var button: UIButton = {
         let view = UIButton()
         view.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         view.theme_setTitleColor(["#d09326"], forState: .normal)

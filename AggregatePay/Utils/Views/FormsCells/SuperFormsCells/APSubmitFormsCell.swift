@@ -10,7 +10,7 @@ import UIKit
 
 class APSubmitFormsCell: APBaseFormsCell {
     
-    var button: APRequestButton = {
+   lazy var button: APRequestButton = {
         let view = APRequestButton()
         view.isEnabled = true
         view.layer.cornerRadius = 44/2
