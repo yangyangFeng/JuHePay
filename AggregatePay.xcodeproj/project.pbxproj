@@ -126,6 +126,7 @@
 		7476684C1FE9102800715E72 /* APCommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747668491FE9102700715E72 /* APCommonProtocol.swift */; };
 		7476684D1FE9102800715E72 /* APSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476684A1FE9102700715E72 /* APSegmentControl.swift */; };
 		747668651FE9213700715E72 /* APEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747668641FE9213700715E72 /* APEmptyView.swift */; };
+		7476686A1FE9414000715E72 /* APRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 747668691FE9414000715E72 /* APRefreshHeader.m */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -321,6 +322,8 @@
 		747668491FE9102700715E72 /* APCommonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCommonProtocol.swift; sourceTree = "<group>"; };
 		7476684A1FE9102700715E72 /* APSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSegmentControl.swift; sourceTree = "<group>"; };
 		747668641FE9213700715E72 /* APEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEmptyView.swift; sourceTree = "<group>"; };
+		747668681FE9414000715E72 /* APRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRefreshHeader.h; sourceTree = "<group>"; };
+		747668691FE9414000715E72 /* APRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRefreshHeader.m; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -975,6 +978,7 @@
 		1ABDA9521FDE80E200FE6097 /* ObjectCTool */ = {
 			isa = PBXGroup;
 			children = (
+				747668671FE9414000715E72 /* Refresh */,
 				1AA3D52B1FE7DD2C003263E3 /* SecurityTool */,
 				74EC342A1FDF7BD3003ABF70 /* Category */,
 				1ABDA9531FDE80E200FE6097 /* CPAuthTool */,
@@ -1415,6 +1419,15 @@
 				7476684A1FE9102700715E72 /* APSegmentControl.swift */,
 			);
 			path = CommonControls;
+			sourceTree = "<group>";
+		};
+		747668671FE9414000715E72 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				747668681FE9414000715E72 /* APRefreshHeader.h */,
+				747668691FE9414000715E72 /* APRefreshHeader.m */,
+			);
+			path = Refresh;
 			sourceTree = "<group>";
 		};
 		74C49E611FD4FE0100F0501B = {
@@ -1930,6 +1943,7 @@
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
 				1A479ED41FE284F7005E0912 /* APForgetRequest.swift in Sources */,
 				1A030D8A1FE76C8D007146C1 /* APPayElementToolBarView.swift in Sources */,
+				7476686A1FE9414000715E72 /* APRefreshHeader.m in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */,

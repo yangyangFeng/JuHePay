@@ -15,7 +15,7 @@ class APReturnBillListView: UIView,UITableViewDataSource,UITableViewDelegate {
         let headview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 10))
         view.tableHeaderView = headview
         view.tableFooterView = UIView()
-        view.AP_setupEmpty()
+//        view.AP_setupEmpty()
         view.dataSource = self
         view.delegate = self
         return view
