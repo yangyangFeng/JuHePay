@@ -32,7 +32,7 @@ class APLoginToolView: UIView {
         return view
     }()
     
-    var register: UIButton = {
+    lazy var register: UIButton = {
         let view = UIButton()
         view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         view.setTitle(_ : "立即注册", for: .normal)
