@@ -22,9 +22,18 @@ class APLoginViewController: APSystemBaseViewController {
     
     //MARK: ------------- 全局属性
     
-    let logoImageView: UIImageView = UIImageView()
-    let loginToolView: APLoginToolView = APLoginToolView()
     let loginRequest: APLoginRequest = APLoginRequest()
+    
+    lazy var loginToolView: APLoginToolView = {
+        let view = APLoginToolView()
+        return view
+    }()
+    
+    lazy var logoImageView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.red
+        return view
+    }()
     
     lazy var loginAccountCell: APTextFormsCell = {
         let view = APTextFormsCell()
@@ -36,7 +45,7 @@ class APLoginViewController: APSystemBaseViewController {
     
     lazy var loginPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = "^[A-Za-z0-9-_]{0,16}$"
         view.textField.placeholder = "请输入密码"
         return view
     }()
@@ -57,23 +66,26 @@ class APLoginViewController: APSystemBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
-        loginSystemConfig()
-        loginCreateSubViews()
-        loginLayoutSubViews()
-        loginTargetCallBacks()
-        loginRegisterObserve()
+        self.title = "商户登录"
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
+        
+        //获取缓存的数据
+        let account: String = APUserDefaultCache.ap_get(key: .mobile)
+        let password: String = APUserDefaultCache.ap_get(key: .password)
+        if account != "" && password != "" {
+            self.loginMemoryCell.button.isSelected = true
+            self.loginAccountCell.textField.text = account
+            self.loginPasswordCell.textField.text = password
+            self.loginRequest.mobile = account
+            self.loginRequest.password = password
+        }
     }
     
     //MARK: ------------- 私有方法
-    
-    private func loginSystemConfig() {
-        
-        self.title = "商户登录"
-        self.logoImageView.backgroundColor = UIColor.red
-    }
-    
-    private func loginCreateSubViews() {
+
+    private func createSubviews() {
         
         view.addSubview(logoImageView)
         view.addSubview(loginAccountCell)
@@ -81,9 +93,6 @@ class APLoginViewController: APSystemBaseViewController {
         view.addSubview(loginMemoryCell)
         view.addSubview(loginSubmitCell)
         view.addSubview(loginToolView)
-    }
-    
-    private func loginLayoutSubViews() {
         
         logoImageView.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
@@ -125,10 +134,9 @@ class APLoginViewController: APSystemBaseViewController {
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(25)
         }
-        
     }
     
-    private func loginTargetCallBacks() {
+    private func registerCallBacks() {
         
         weak var weakSelf = self
         
@@ -140,32 +148,48 @@ class APLoginViewController: APSystemBaseViewController {
             weakSelf?.loginRequest.password = value
         }
         
-        loginMemoryCell.buttonBlock = { (key, value) in
-            print("loginMemoryCell:\(key) ___ value:\(value)")
-        }
-        
-        
         loginSubmitCell.buttonBlock = { (key, value) in
+            //判断手机号的输入格式
+            if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(weakSelf?.loginRequest.mobile) {
+                weakSelf?.view.makeToast("手机号输入格式不正确")
+                return
+            }
+            //判断是否需要记住密码(利用UserDefaultCache进行缓存)
+            if (weakSelf?.loginMemoryCell.button.isSelected)! {
+                let mobile = weakSelf?.loginRequest.mobile
+                let password = weakSelf?.loginRequest.password
+                APUserDefaultCache.ap_set(value: mobile!, key: .mobile)
+                APUserDefaultCache.ap_set(value: password!, key: .password)
+            }
+            else {
+                APUserDefaultCache.ap_set(value: "", key: .mobile)
+                APUserDefaultCache.ap_set(value: "", key: .password)
+            }
+            APLoginHttpTool.post(paramReqeust: (weakSelf?.loginRequest)!, success: { (result) in
+                
+            }, faile: { (error) in
+                
+            })
+            
             weakSelf?.dismiss(animated: true, completion: nil)
         }
         
-        loginToolView.gotoRegisterBlock = {(param) in
-            print("loginToolView.gotoRegisterBlock:--param:\(param)")
-            let registerVC: APRegisterViewController = APRegisterViewController()
+        loginToolView.gotoForgetBlock = {(param) in
+            let registerVC: APForgetFirstStepViewController = APForgetFirstStepViewController()
             weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
         
-        loginToolView.gotoForgetBlock = {(param) in
-            print("loginToolView.gotoForgetBlock:--param:\(param)")
-            let registerVC: APForgetFirstStepViewController = APForgetFirstStepViewController()
+        loginToolView.gotoRegisterBlock = {(param) in
+            let registerVC: APRegisterViewController = APRegisterViewController()
             weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
     }
     
-    private func loginRegisterObserve() {
+    private func registerObserve() {
         weak var weakSelf = self
         self.kvoController.observe(self.loginRequest,
-                                   keyPaths: ["mobile", "password"],
+                                   keyPaths: ["mobile",
+                                              "password"],
                                    options: [.new, .initial])
         { (observer, object, change) in
             let loginModel = object as! APLoginRequest

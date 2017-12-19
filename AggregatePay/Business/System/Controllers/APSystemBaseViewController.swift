@@ -14,7 +14,7 @@ class APSystemBaseViewController: APBaseViewController {
     let leftOffset: Float = 30
     let rightOffset: Float = -30
     let cellHeight: Float = 44
-    let subimtHeight: Float = 44
+    let subimtHeight: Float = 41
     
     lazy var leftBarButtonItem: UIBarButtonItem = {
         let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),

@@ -109,7 +109,7 @@ class APVersionUpgradeController: UIViewController {
 
 class APVersionUpgradeView: UIView {
     
-    var title: UILabel = {
+   lazy var title: UILabel = {
         let view = UILabel()
         view.text = "发现新版本"
         view.textAlignment = .center
@@ -118,7 +118,7 @@ class APVersionUpgradeView: UIView {
         view.backgroundColor = UIColor.clear
         return view
     }()
-    var version: UILabel = {
+    lazy var version: UILabel = {
         let view = UILabel()
         view.textAlignment = .center
         view.theme_textColor = ["#ffc96f"]
@@ -126,7 +126,7 @@ class APVersionUpgradeView: UIView {
         view.backgroundColor = UIColor.clear
         return view
     }()
-    var text: UITextView = {
+    lazy var text: UITextView = {
         let view = UITextView()
         view.textAlignment = .left
         view.theme_textColor = ["#fff0ce"]

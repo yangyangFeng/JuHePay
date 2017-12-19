@@ -9,7 +9,7 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-
+#import <MJExtension/MJExtension.h>
 #import "CPCheckAuthInputInfoTool.h"
 #import "CPSecurityManager.h"
 #import "VHLNavigation.h"

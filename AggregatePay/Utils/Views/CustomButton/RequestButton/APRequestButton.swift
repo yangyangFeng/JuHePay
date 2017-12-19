@@ -10,6 +10,10 @@ import UIKit
 
 class APRequestButton: UIButton {
     
+    deinit {
+        print("APRequestButton ------- 已释放")
+    }
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     var isLoading = false {

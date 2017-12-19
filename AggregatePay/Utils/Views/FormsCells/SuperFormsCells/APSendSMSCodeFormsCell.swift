@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias APSendSmsCodeBlock = (_ key: String,_ value: Any) -> Void
+
 class APSendSMSCodeFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
     lazy var textField: UITextField = {
@@ -20,14 +22,17 @@ class APSendSMSCodeFormsCell: APBaseFormsCell, UITextFieldDelegate {
         return view
     }()
     
-    lazy var sendSmsCodeButton: UIButton = {
-        let view = UIButton()
+    lazy var sendSmsCodeButton: APSmsCodeButton = {
+        let view = APSmsCodeButton()
         view.contentHorizontalAlignment = .right
         view.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         view.theme_setTitleColor(["#d09326"], forState: .normal)
         view.theme_setTitleColor(["#d09326"], forState: .selected)
+        view.addTarget(self, action: #selector(sendSmsCodeButton(_:)), for: UIControlEvents.touchUpInside)
         return view
     }()
+    
+    var sendSmsCodeBlock: APSendSmsCodeBlock?
     
     override init() {
         super.init()
@@ -56,6 +61,10 @@ class APSendSMSCodeFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
     @objc func textChange(_ textField:UITextField) {
         textBlock?(identify, textField.text!)
+    }
+    
+    @objc func sendSmsCodeButton(_ button: APSmsCodeButton) {
+        sendSmsCodeBlock?(identify, button)
     }
 
     func textField(_ textField: UITextField,
