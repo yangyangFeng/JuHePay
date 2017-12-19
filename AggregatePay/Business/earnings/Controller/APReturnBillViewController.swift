@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//import APRefreshHeader
 class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProtocol {
 
     override func viewDidLoad() {
@@ -32,6 +32,9 @@ class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProt
             make.height.equalTo(104)
         }
         let listView = APReturnBillListView()
+        listView.tableView.mj_header = APRefreshHeader.init(refreshingBlock: {
+            listView.tableView.mj_header.endRefreshing()
+        })
         listView.delegate = self
         view.addSubview(listView)
         listView.snp.makeConstraints { (make) in
