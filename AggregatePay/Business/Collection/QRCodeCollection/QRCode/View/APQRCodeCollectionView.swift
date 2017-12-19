@@ -40,7 +40,7 @@ class APQRCodeCollectionView: UIView {
     lazy var qrCodeImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.red
         return view
     }()
     
@@ -76,26 +76,29 @@ class APQRCodeCollectionView: UIView {
             maker.left.right.top.bottom.equalTo(navBarView)
         }
         
+      
+        qrCodeImageView.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.snp.centerX)
+            maker.centerY.equalTo(self.snp.centerY).offset(30)
+            maker.width.equalTo(self.snp.width).multipliedBy(0.8)
+            maker.height.equalTo(self.snp.width).multipliedBy(0.8)
+        }
+        
         merchantTitleLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
-            maker.top.equalTo(navBarView.snp.bottom).offset(10)
-            maker.height.equalTo(30)
+            maker.top.equalTo(navBarView.snp.bottom)
+            maker.bottom.equalTo(qrCodeImageView.snp.top)
         }
         
         dateLimitLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
-            maker.bottom.equalTo(self.snp.bottom).offset(-20)
-            maker.height.equalTo(20)
+            maker.top.equalTo(qrCodeImageView.snp.bottom)
+            maker.bottom.equalTo(self.snp.bottom)
         }
         
-        qrCodeImageView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.snp.left).offset(20)
-            maker.right.equalTo(self.snp.right).offset(-20)
-            maker.top.equalTo(merchantTitleLabel.snp.bottom).offset(10)
-            maker.bottom.equalTo(dateLimitLabel.snp.top).offset(-10)
-        }
+        
         
     }
     
