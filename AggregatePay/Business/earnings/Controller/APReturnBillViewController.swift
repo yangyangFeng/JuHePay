@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProtocol {
 
 
@@ -35,6 +34,9 @@ class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProt
         }
 
         let listView = APReturnBillListView()
+        listView.tableView.mj_header = APRefreshHeader.init(refreshingBlock: {
+            listView.tableView.mj_header.endRefreshing()
+        })
         listView.delegate = self
         view.addSubview(listView)
         listView.snp.makeConstraints { (make) in

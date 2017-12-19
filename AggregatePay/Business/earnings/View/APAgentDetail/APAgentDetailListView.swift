@@ -24,7 +24,6 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
         return cell!
     }
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         
