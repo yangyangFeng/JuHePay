@@ -134,7 +134,6 @@
 		7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1651FDFE12A000E3EBE /* UITextFieldExtensions.swift */; };
 		7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1661FDFE12A000E3EBE /* UIAlertControllerExtensions.swift */; };
 		7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1671FDFE12B000E3EBE /* UINavigationControllerExtensions.swift */; };
-		7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1681FDFE12B000E3EBE /* UIImageViewExtensions.swift */; };
 		7487E1801FDFE131000E3EBE /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1691FDFE12C000E3EBE /* UISegmentedControlExtensions.swift */; };
 		7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E16A1FDFE12C000E3EBE /* UIButtonExtensions.swift */; };
 		7487E1821FDFE131000E3EBE /* UIDatePickerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E16B1FDFE12C000E3EBE /* UIDatePickerExtensions.swift */; };
@@ -1937,8 +1936,6 @@
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */,
-				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
-				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */,
