@@ -10,9 +10,6 @@ import UIKit
 
 class APCommon: NSObject {
 
-    
-    
-    
 
 }
 

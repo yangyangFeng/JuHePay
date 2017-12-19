@@ -24,6 +24,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         view.backgroundColor = UIColor.black
         view.register(APBankCardCell.self, forCellReuseIdentifier: "APBankCardCell")
         view.separatorStyle = .none
+        view.AP_setupEmpty()
         return view
     }()
     
@@ -82,12 +83,16 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         segmentView.segmentBlock =  { index in
             if index == 0 {
                 self.rows = 5
+                self.tableView.beginUpdates()
                 self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.left)
+                self.tableView.endUpdates()
             }
             else
             {
-                self.rows = 1
+                self.rows = 0
+                self.tableView.beginUpdates()
                 self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.right)
+                self.tableView.endUpdates()
             }
         }
         
