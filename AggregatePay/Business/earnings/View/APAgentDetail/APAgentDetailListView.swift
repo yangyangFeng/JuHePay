@@ -15,7 +15,7 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,6 +34,7 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.AP_setupEmpty()
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
