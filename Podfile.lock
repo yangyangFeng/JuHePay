@@ -25,6 +25,9 @@ PODS:
   - OCRSDK/UI (0.1.7):
     - OCRSDK/CoreSDK
   - OpenSSL-Universal (1.0.2.11)
+  - PGDatePicker (1.5.9):
+    - PGPickerView
+  - PGPickerView (1.2.1)
   - SDWebImage (4.2.2):
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
@@ -47,6 +50,7 @@ DEPENDENCIES:
   - MJRefresh
   - OCRSDK
   - OpenSSL-Universal (~> 1.0.2.11)
+  - PGDatePicker (>= 1.5.4)
   - SDWebImage
   - SnapKit (~> 4.0.0)
   - SwiftTheme (~> 0.4.1)
@@ -69,12 +73,14 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OCRSDK: 633a176d5ddb920b99c9e3a5fe0f071f07f39277
   OpenSSL-Universal: bcea8d73aec478029029164f9f0695b57cb94309
+  PGDatePicker: 00505c5180a92adf1e0465805b0cb49baf42a367
+  PGPickerView: cb49c6b3e2a39148bef9f666fa58bb349e0c3b85
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 8d225358e58c0f19e827db0e310cc9a28ba284af
+PODFILE CHECKSUM: 60d3caba0b97dbe61d6068a943172850f747cb4d
 
 COCOAPODS: 1.2.1

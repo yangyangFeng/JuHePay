@@ -72,13 +72,13 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 //
 //    }
-    
+    var segmentView : APSegmentControl!
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
         
         
-        let segmentView = APBankCardManageSegmentButton()
+        segmentView = APSegmentControl.init(["信用卡管理","结算卡管理"], frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 40))
         segmentView.segmentBlock =  { index in
             if index == 0 {
                 self.rows = 5
@@ -89,8 +89,6 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
                 self.rows = 1
                 self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.right)
             }
-            
-           
         }
         
         addSubview(segmentView)
@@ -106,113 +104,17 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-typealias AP_SegmentBlock = (_ index : Int)->Void
-
-class APBankCardManageSegmentButton: UIView {
-    var buttonLeft = UIButton(type: UIButtonType.custom)
-    var buttonRight = UIButton(type: UIButtonType.custom)
-    let bottomLine = UIView()
-    var segmentBlock : AP_SegmentBlock?
-   
-    
-    override init(frame: CGRect) {
-//        super.init()
-        super.init(frame: frame)
-        theme_backgroundColor = ["#373737"]
-        bottomLine.theme_backgroundColor = ["#c8a556"]
-        
-        buttonLeft.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        
-        buttonLeft.theme_setTitleColor(["#c8a556"], forState: .selected)
-        buttonLeft.theme_setTitleColor(["#999999"], forState: .normal)
-        buttonLeft.setTitle("信用卡管理", for: UIControlState.normal)
-        buttonLeft.theme_backgroundColor = ["#373737"]
-        buttonLeft.addTarget(self, action: #selector(leftButtonDidAction), for: UIControlEvents.touchUpInside)
-        
-        buttonRight.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        
-        buttonRight.theme_setTitleColor(["#c8a556"], forState: .selected)
-        buttonRight.theme_setTitleColor(["#999999"], forState: .normal)
-        buttonRight.setTitle("结算卡管理", for: UIControlState.normal)
-        buttonRight.theme_backgroundColor = ["#373737"]
-        buttonRight.addTarget(self, action: #selector(rightButtonDidAction), for: UIControlEvents.touchUpInside)
-        
-        addSubview(buttonLeft)
-        addSubview(buttonRight)
-        addSubview(bottomLine)
-        
-        bottomLine.snp.makeConstraints { (make) in
-            make.bottom.left.equalTo(0)
-            make.height.equalTo(2)
-            make.width.equalTo(snp.width).multipliedBy(0.5)
-        }
-        buttonLeft.snp.makeConstraints { (make) in
-            make.top.left.bottom.equalTo(0)
-            make.width.equalTo(snp.width).multipliedBy(0.5)
-        }
-        buttonRight.snp.makeConstraints { (make) in
-            make.top.right.bottom.equalTo(0)
-            make.width.equalTo(snp.width).multipliedBy(0.5)
-        }
-    }
-    
-    @objc func leftButtonDidAction()
-    {
-        if buttonLeft.isSelected == true {
-            return
-        }
-        buttonRight.isSelected = false
-        buttonLeft.isSelected = true
-        if let block = segmentBlock {
-            block(0)
-            UIView.animate(withDuration: 0.15, animations: {
-                self.bottomLine.snp.updateConstraints({ (make) in
-                    make.bottom.left.equalTo(0)
-                    make.height.equalTo(2)
-                    make.width.equalTo(self.snp.width).multipliedBy(0.5)
-                })
-                self.layoutIfNeeded()
-                
-            }, completion: { (state) in
-                
-            })
-        }
-    }
-    
-    @objc func rightButtonDidAction()
-    {
-        if buttonRight.isSelected == true {
-            return
-        }
-        buttonRight.isSelected = true
-        buttonLeft.isSelected = false
-        if let block = segmentBlock {
-            
-            block(1)
-            UIView.animate(withDuration: 0.15, animations: {
-                self.bottomLine.snp.updateConstraints({ (make) in
-                    make.bottom.equalTo(0)
-                    make.height.equalTo(2)
-                    make.width.equalTo(self.snp.width).multipliedBy(0.5)
-                    make.left.equalTo(K_Width/2.0)
-                })
-                self.layoutIfNeeded()
-                
-            }, completion: { (state) in
-                
-            })
-        }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        segmentView.layoutIfNeeded()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
 protocol APBankCardCellDelegate : NSObjectProtocol{
     func swipeCellDelButtonAction(_ cell : UITableViewCell)
 }

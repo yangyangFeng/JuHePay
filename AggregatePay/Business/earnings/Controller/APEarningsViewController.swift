@@ -10,7 +10,7 @@ import UIKit
 /**
  * 收益
  */
-class APEarningsViewController: APBaseViewController {
+class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,26 +21,35 @@ class APEarningsViewController: APBaseViewController {
         // Do any additional setup after loading the view.
     }
 
+    func AP_Action_Click()
+    {
+        let returnBillC = APReturnBillViewController()
+        navigationController?.pushViewController(returnBillC)
+    }
+    
+    func AP_TableViewDidSelect(_ indexPath: IndexPath, obj: Any) {
+        let title = obj
+        let agentDetailC = APAgentDetailViewController()
+        agentDetailC.title = title as? String
+        navigationController?.pushViewController(agentDetailC)
+    }
+    
     func initSubviews()
     {
-//        self.vhl_setNavBarBackgroundImage(UIImage.init(named: "Earning_head_bg"))
-        self.vhl_setNavBarBackgroundAlpha(0)
+        let image = UIImage.init(named: "Earning_head_bg")
+        let newImage = image?.cropped(to: CGRect.init(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!*64/204))
+        self.vhl_setNavBarBackgroundImage(newImage)
         
-        let navImageView = UIImageView.init(image: UIImage.init(named: "Earning_head_bg"))
-
-        view.addSubview(navImageView)
-        navImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(vhl_navigationBarAndStatusBarHeight())
-            make.height.equalTo(140)
-            make.left.right.equalTo(0)
-        }
+        let headView = APEarningHeadView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 140))
+        headView.delegate = self
         
-        let headView = APEarningHeadView()
-        view.addSubview(headView)
-        headView.snp.makeConstraints { (make) in
-            make.top.equalTo(vhl_navigationBarAndStatusBarHeight())
-            make.left.right.equalTo(0)
-            make.height.equalTo(140)
+        let listView = APEarningListView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: K_Height-64))
+        listView.delegate = self
+        listView.tableView.tableHeaderView = headView
+        view.addSubview(listView)
+        
+        listView.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
         }
         
     }
