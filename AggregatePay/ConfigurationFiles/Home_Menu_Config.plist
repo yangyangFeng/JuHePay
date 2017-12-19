@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>payWay</key>
+		<string>0</string>
 		<key>title</key>
 		<string>银联快捷</string>
 		<key>norImage</key>
@@ -13,6 +15,8 @@
 		<string>home_yl_way_icon</string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string>1</string>
 		<key>title</key>
 		<string>微信扫码</string>
 		<key>norImage</key>
@@ -23,6 +27,8 @@
 		<string>home_wx_way_icon</string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string>1</string>
 		<key>title</key>
 		<string>支付宝扫码</string>
 		<key>norImage</key>
@@ -33,6 +39,8 @@
 		<string>home_zfb_way_icon</string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string></string>
 		<key>title</key>
 		<string>云闪付</string>
 		<key>norImage</key>
@@ -43,6 +51,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string></string>
 		<key>title</key>
 		<string>QQ钱包</string>
 		<key>norImage</key>
@@ -53,6 +63,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string></string>
 		<key>title</key>
 		<string>京东钱包</string>
 		<key>norImage</key>
@@ -63,6 +75,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string></string>
 		<key>title</key>
 		<string>银联扫码</string>
 		<key>norImage</key>
@@ -73,6 +87,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payWay</key>
+		<string></string>
 		<key>title</key>
 		<string>百度钱包</string>
 		<key>norImage</key>

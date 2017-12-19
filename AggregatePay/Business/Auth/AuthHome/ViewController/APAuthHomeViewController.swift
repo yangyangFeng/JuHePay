@@ -42,7 +42,7 @@ extension APAuthHomeViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(20)
             make.left.right.bottom.equalToSuperview()
         }
     }

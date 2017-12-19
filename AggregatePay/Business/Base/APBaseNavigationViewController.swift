@@ -19,6 +19,7 @@ class APBaseNavigationViewController: UINavigationController ,UIGestureRecognize
         
     }
     
+    
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if self.viewControllers.count <= 1 {
             return false
@@ -49,6 +50,18 @@ class APBaseNavigationViewController: UINavigationController ,UIGestureRecognize
         }
     }
     
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if self.viewControllers.count == 1 {
+            viewController.hidesBottomBarWhenPushed = true
+        }
+        super.pushViewController(viewController, animated: animated)
+    }
+    
+    override func popViewController(animated: Bool) -> UIViewController? {
+        let viewController = super.popViewController(animated: animated)
+
+        return viewController
+    }
     /*
     // MARK: - Navigation
 

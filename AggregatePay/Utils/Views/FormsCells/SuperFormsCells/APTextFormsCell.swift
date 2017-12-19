@@ -8,15 +8,23 @@
 
 import UIKit
 
-class APTextFormsCell: APFormsCell, UITextFieldDelegate {
+class APTextFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
-    var textField: UITextField = UITextField()
+    lazy var textField: UITextField = {
+        let view = UITextField()
+        view.delegate = self
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.setValue(UIFont.systemFont(ofSize: 36),
+                      forKeyPath: "_placeholderLabel.font")
+        view.setValue(UIColor.red,
+                      forKeyPath: "_placeholderLabel.textColor")
+        view.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
+        return view
+    }()
 
     override init() {
         super.init()
-        textField.delegate = self
-        textField.font = UIFont.systemFont(ofSize: 14)
-        textField.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
+        bottomLine.theme_backgroundColor = ["#f4f4f4"]
         addSubview(textField)
         textField.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
@@ -25,7 +33,7 @@ class APTextFormsCell: APFormsCell, UITextFieldDelegate {
             maker.bottom.equalTo(bottomLine.snp.top)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

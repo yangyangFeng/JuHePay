@@ -38,13 +38,14 @@ class APHomeMenuView: UIView {
     
     private let contentView: UIView = UIView()
     
-    var delegate: APHomeMenuViewDelegate?
+    var mDelegate: APHomeMenuViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    init() {
+    init(delegate: APHomeMenuViewDelegate?) {
         super.init(frame: CGRect.zero)
+        mDelegate = delegate
         self.layer.contents = UIImage(named: "home_menu_bg")?.cgImage
         self.addSubview(contentView)
         contentView.snp.makeConstraints { (make) in
@@ -96,6 +97,7 @@ class APHomeMenuView: UIView {
         itemModel.norImage = dataSource.object(forKey: "norImage") as! String
         itemModel.selImage = dataSource.object(forKey: "selImage") as! String
         itemModel.wayIconImage = dataSource.object(forKey: "wayIconImage") as! String
+        itemModel.payWay = dataSource.object(forKey: "payWay") as! String
         
         let item = APHomeMenuButtonView(itemModel: itemModel)
         item.addTarget(self, action: #selector(didItem(_:)))
@@ -112,11 +114,11 @@ class APHomeMenuView: UIView {
         let item: APHomeMenuButtonView = buttonArray[index]
         if item.model?.wayIconImage == "" {
             let message: String = "暂不支持"+(item.model?.title)!+"支付方式"
-            delegate?.selectHomeMenuItemFaile(message: message)
+            mDelegate?.selectHomeMenuItemFaile(message: message)
             return
         }
         selectIndex = index
-        delegate?.selectHomeMenuItemSuccess(itemModel: item.model!)
+        mDelegate?.selectHomeMenuItemSuccess(itemModel: item.model!)
     }
     
 }

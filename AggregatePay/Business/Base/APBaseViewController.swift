@@ -10,9 +10,15 @@ import UIKit
 import SwiftTheme
 
 class APBaseViewController: UIViewController {
+    
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*view四周均不延伸*/
+        edgesForExtendedLayout = []
         
         view.backgroundColor = UIColor.init(hex6: 0xf0f0f0)
 
@@ -21,8 +27,9 @@ class APBaseViewController: UIViewController {
         initNavigationBar()
         
         initNavigationItem()
+        
     }
-
+    
     func initNavigationItem()
     {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)]

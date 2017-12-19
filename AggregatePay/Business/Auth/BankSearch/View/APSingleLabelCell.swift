@@ -17,6 +17,7 @@ class APSingleLabelCell: UITableViewCell {
         
         label.textColor = UIColor.init(hex6: 0x484848)
         label.font = UIFont.systemFont(ofSize: 14)
+        label.adjustsFontSizeToFitWidth = true
         contentView.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()

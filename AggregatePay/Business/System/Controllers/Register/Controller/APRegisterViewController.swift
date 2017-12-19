@@ -23,13 +23,51 @@ class APRegisterViewController: APSystemBaseViewController {
     
     //MARK: ------------- 全局属性
     
-    let registerAccountCell: APRegisterAccountCell = APRegisterAccountCell()
-    let registerSmsCodeCell: APRegisterSmsCodeCell = APRegisterSmsCodeCell()
-    let registerPasswordCell: APRegisterPasswordCell = APRegisterPasswordCell()
-    let registerInviteCodeCell: APRegisterInviteCell = APRegisterInviteCell()
-    let registerAgreedCell: APRegisterAgreedCell = APRegisterAgreedCell()
-    let registerSubmitCell: APRegisterSubmitCell = APRegisterSubmitCell()
     let registerRequest: APRegisterRequest = APRegisterRequest()
+    
+    lazy var registerAccountCell: APSendSMSCodeFormsCell = {
+        let view = APSendSMSCodeFormsCell()
+        view.inputRegx = "^1[0-9]{0,10}$"
+        view.sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入11位手机号码"
+        return view
+    }()
+    
+    lazy var registerSmsCodeCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = "^[0-9]{0,4}$"
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入短信验证码"
+        return view
+    }()
+    
+    lazy var registerPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
+        return view
+    }()
+    
+    lazy var registerInviteCodeCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = "^[A-Za-z0-9-_]{0,6}$"
+        view.textField.keyboardType = UIKeyboardType.asciiCapable
+        view.textField.placeholder = "请输入邀请码"
+        return view
+    }()
+    
+    lazy var registerAgreedCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 我已阅读并接受《XXX用户协议》", for: .normal)
+        return view
+    }()
+    
+    lazy var registerSubmitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("下一步", for: .normal)
+        return view
+    }()
     
     //MARK: ------------- 生命周期
 
@@ -107,25 +145,27 @@ class APRegisterViewController: APSystemBaseViewController {
     
     private func registerTargetCallBacks() {
         
+        weak var weakSelf = self
+        
         registerAccountCell.textBlock = { (key, value) in
-            self.registerRequest.mobile = value
+            weakSelf?.registerRequest.mobile = value
         }
         
         registerSmsCodeCell.textBlock = { (key, value) in
-            self.registerRequest.smsCode = value
+            weakSelf?.registerRequest.smsCode = value
         }
         
         registerPasswordCell.textBlock = { (key, value) in
-            self.registerRequest.password = value
+            weakSelf?.registerRequest.password = value
         }
         
         registerInviteCodeCell.textBlock = { (key, value) in
-            self.registerRequest.inviteCode = value
+            weakSelf?.registerRequest.inviteCode = value
         }
         
         registerAgreedCell.buttonBlock = { (key, value) in
             let button: UIButton = value as! UIButton
-            self.registerRequest.isAgreed = button.isSelected
+            weakSelf?.registerRequest.isAgreed = button.isSelected
         }
         
         registerSubmitCell.buttonBlock = { (key, value) in
@@ -134,6 +174,8 @@ class APRegisterViewController: APSystemBaseViewController {
     }
     
     private func registerRegisterObserve() {
+        
+        weak var weakSelf = self
     
         self.kvoController.observe(self.registerRequest,
                                    keyPaths: ["mobile",
@@ -144,18 +186,15 @@ class APRegisterViewController: APSystemBaseViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let registerModel = object as! APRegisterRequest
-            print("\(registerModel.isAgreed)")
             if (registerModel.mobile.characters.count >= 11 &&
                 registerModel.password.characters.count >= 6 &&
                 registerModel.inviteCode.characters.count >= 6 &&
                 registerModel.smsCode.characters.count >= 4 &&
                 registerModel.isAgreed) {
-                print("is did submit button")
-                self.registerSubmitCell.isEnabled = true
+                weakSelf?.registerSubmitCell.isEnabled = true
             }
             else {
-                print("not is did submit button")
-                self.registerSubmitCell.isEnabled = false
+                weakSelf?.registerSubmitCell.isEnabled = false
             }
         }
     }

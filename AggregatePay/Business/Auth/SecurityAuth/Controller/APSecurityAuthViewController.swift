@@ -10,10 +10,37 @@ import UIKit
 
 class APSecurityAuthViewController: APAuthBaseViewController {
 
+    let nameFormCell = APRealNameFormCell()
+    let idCardFormCell = APIdCardNoFormCell()
+    let creditCardFormCell = APBankCardNoFormCell()
+    let phoneNumFormCell = APAuthPhoneNumFormCell()
+    
+    lazy var authParam: APSecurityAuthRequest = {
+        let authParam = APSecurityAuthRequest()
+        return authParam
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         layoutViews()
+        userInputCallBacks()
+    }
+    
+    func userInputCallBacks() {
+        weak var weakSelf = self
+        nameFormCell.textBlock = {(key, value) in
+            weakSelf?.authParam.name = value
+        }
+        idCardFormCell.textBlock = {(key, value) in
+            weakSelf?.authParam.identityCard = value
+        }
+        creditCardFormCell.textBlock = {(key, value) in
+            weakSelf?.authParam.accountNo = value
+        }
+        phoneNumFormCell.textBlock = {(key, value) in
+            weakSelf?.authParam.photoNumber = value
+        }
     }
 }
 
@@ -23,11 +50,6 @@ extension APSecurityAuthViewController {
     fileprivate func layoutViews() {
         
         authHeadMessage.text = "结算银行卡为收款到账的银行卡，必须为储蓄卡。"
-        
-        let nameFormCell = APRealNameFormCell()
-        let idCardFormCell = APIdCardNoFormCell()
-        let creditCardFormCell = APBankCardNoFormCell()
-        let phoneNumFormCell = APAuthPhoneNumFormCell()
         
         formCellView.addSubview(nameFormCell)
         formCellView.addSubview(idCardFormCell)

@@ -18,3 +18,4 @@ class APCommon: NSObject {
     }
 }
 
+let AP_TableViewBackgroundColor = "#F5F5F5"

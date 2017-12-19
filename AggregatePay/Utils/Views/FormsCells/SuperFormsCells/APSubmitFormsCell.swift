@@ -10,7 +10,21 @@ import UIKit
 
 class APSubmitFormsCell: APBaseFormsCell {
     
-    var button: APRequestButton = APRequestButton()
+   lazy var button: APRequestButton = {
+        let view = APRequestButton()
+        view.isEnabled = true
+        view.layer.cornerRadius = 44/2
+        view.layer.masksToBounds = true
+        view.titleLabel?.textAlignment = .center
+        view.theme_setBackgroundImage(["login_nor_button_bg"], forState: .normal)
+        view.theme_setBackgroundImage(["login_nor_button_bg"], forState: .selected)
+        view.theme_setBackgroundImage(["login_en_button_bg"], forState: .disabled)
+        view.theme_setTitleColor(["#422f02"], forState: .normal)
+        view.theme_setTitleColor(["#422f02"], forState: .selected)
+        view.theme_setTitleColor(["#626262"], forState: .disabled)
+        view.addTarget(self, action: #selector(clickButton(_:)), for: UIControlEvents.touchUpInside)
+        return view
+    }()
 
     var isLoading: Bool = false {
         willSet {
@@ -24,30 +38,12 @@ class APSubmitFormsCell: APBaseFormsCell {
         }
     }
 
-    
     override init() {
         super.init()
-        
-        button.isEnabled = true
-        button.layer.cornerRadius = 44/2
-        button.layer.masksToBounds = true
-        button.titleLabel?.textAlignment = .center
-        button.theme_setBackgroundImage(["login_nor_button_bg"], forState: .normal)
-        button.theme_setBackgroundImage(["login_nor_button_bg"], forState: .selected)
-        button.theme_setBackgroundImage(["login_en_button_bg"], forState: .disabled)
-        button.theme_setTitleColor(["#422f02"], forState: .normal)
-        button.theme_setTitleColor(["#422f02"], forState: .selected)
-        button.theme_setTitleColor(["#626262"], forState: .disabled)
-        button.addTarget(self,
-                         action: #selector(clickButton(_:)),
-                         for: UIControlEvents.touchUpInside)
         self.addSubview(button)
-        
         button.snp.makeConstraints { (maker) in
             maker.left.right.top.bottom.equalTo(self)
         }
-        
-        isEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {

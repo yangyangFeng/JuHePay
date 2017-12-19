@@ -26,7 +26,7 @@ class APAuthBaseTextFormCell: APTextFormsCell {
         }
     
         textField.snp.remakeConstraints{ (make) in
-            make.left.equalTo(titleLabel.snp.right).offset(20)
+            make.left.equalToSuperview().offset(100)
             make.right.top.bottom.equalToSuperview()
         }
         

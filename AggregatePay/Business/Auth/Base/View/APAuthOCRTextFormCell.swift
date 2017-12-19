@@ -18,7 +18,7 @@ class APAuthOCRTextFormCell: APAuthBaseTextFormCell {
         addSubview(scanButton)
         scanButton.snp.makeConstraints { (make) in
             make.top.right.bottom.equalToSuperview()
-            make.width.equalTo(100)
+            make.width.equalTo(80)
         }
     }
     

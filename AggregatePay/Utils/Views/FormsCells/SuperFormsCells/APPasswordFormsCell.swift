@@ -8,27 +8,31 @@
 
 import UIKit
 
-class APPasswordFormsCell: APFormsCell, UITextFieldDelegate {
+class APPasswordFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
-    var textField: UITextField = UITextField()
-    //点击可切换显示/隐藏密码，默认隐藏。
-    let button: UIButton = UIButton()
+    lazy var textField: UITextField = {
+        let view = UITextField()
+        view.delegate = self
+        view.isSecureTextEntry = true
+        view.clearButtonMode = .whileEditing
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.keyboardType = UIKeyboardType.asciiCapable
+        view.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
+        return view
+    }()
+
+    lazy var button: UIButton = {
+        let view = UIButton()
+        view.theme_setImage(["sys_eye_nor_icon"], forState: .normal)
+        view.theme_setImage(["sys_eye_sel_icon"], forState: .selected)
+        view.addTarget(self, action: #selector(clickEdit(_:)), for: UIControlEvents.touchUpInside)
+        return view
+    }()
     
     override init() {
         super.init()
-        textField.delegate = self
-        textField.isSecureTextEntry = true
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont.systemFont(ofSize: 14)
-        textField.keyboardType = UIKeyboardType.asciiCapable
-        textField.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
-        
-        button.theme_setImage(["sys_eye_nor_icon"], forState: .normal)
-        button.theme_setImage(["sys_eye_sel_icon"], forState: .selected)
-        button.addTarget(self,
-                         action: #selector(clickEdit(_:)),
-                         for: UIControlEvents.touchUpInside)
-        
+        bottomLine.theme_backgroundColor = ["#f4f4f4"]
+
         addSubview(button)
         addSubview(textField)
 

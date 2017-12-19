@@ -7,40 +7,77 @@
 //
 
 import UIKit
+import OCRSDK
 
 class APRealNameAuthViewController: APAuthBaseViewController {
+    
+    let realNameCell = APRealNameFormCell()
+    let idCardNoCell = APIdCardNoFormCell()
+    
+    lazy var authParam: APRealNameAuthRequest = {
+        let authParam = APRealNameAuthRequest()
+        return authParam
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         layoutViews()
+        userInputCallBacks()
+    }
+    
+    func userInputCallBacks() {
+        
+        weak var weakSelf = self
+        realNameCell.textBlock = { (key, value) in
+            weakSelf?.authParam.name = value
+        }
+        idCardNoCell.textBlock = {(key, value) in
+            weakSelf?.authParam.idNumber = value
+        }
     }
 }
 
 extension APRealNameAuthViewController {
+    
     func layoutViews() {
         
         authHeadMessage.text = "请将身份证放在识别扫描框内，确保证件完整拍摄、无污损、无光斑。"
         
+        weak var weakSelf = self
         let idCardFront = APGridViewModel()
         idCardFront.bottomMessage = "身份证正面"
-        idCardFront.imageName = "auth_idCardFront_normal"
+        idCardFront.placeHolderImageName = "auth_idCardFront_normal"
+        idCardFront.tapedHandle = {
+            CPHD_OCRTool .presentScanIdentify(from: weakSelf, isFront: true, complete: { (identifyInfo) in
+                
+            }, error: nil)
+        }
         gridViewModels.append(idCardFront)
+        
         
         let idCardResver = APGridViewModel()
         idCardResver.bottomMessage = "身份证反面"
-        idCardResver.imageName = "auth_idCardResver_normal"
+        idCardResver.placeHolderImageName = "auth_idCardResver_normal"
+        idCardResver.tapedHandle = {
+            CPHD_OCRTool .presentScanIdentify(from: weakSelf, isFront: false, complete: { (identifyInfo) in
+                
+            }, error: nil)
+        }
         gridViewModels.append(idCardResver)
         
         let holdIdCard = APGridViewModel()
         holdIdCard.bottomMessage = "手持身份证半身照片"
-        holdIdCard.imageName = "auth_holdIdCard_normal"
+        holdIdCard.placeHolderImageName = "auth_holdIdCard_normal"
+        holdIdCard.tapedHandle = {
+           
+        }
         gridViewModels.append(holdIdCard)
         
         let example = APGridViewModel()
         example.bottomMessage = "示例"
         example.gridState = .other
-        example.imageName = "auth_example"
+        example.placeHolderImageName = "auth_example"
         gridViewModels.append(example)
         
         collectionView?.snp.remakeConstraints { (make) in
@@ -52,8 +89,6 @@ extension APRealNameAuthViewController {
             make.height.equalTo(103)
         })
         
-        let realNameCell: APRealNameFormCell = APRealNameFormCell()
-        let idCardNoCell: APIdCardNoFormCell = APIdCardNoFormCell()
         realNameCell.backgroundColor = UIColor.white
         idCardNoCell.backgroundColor = UIColor.white
         formCellView.addSubview(realNameCell)
@@ -68,7 +103,7 @@ extension APRealNameAuthViewController {
             make.right.left.height.equalTo(realNameCell)
         }
         
-        inputTipLabel.snp.updateConstraints { (make) in
+        inputTipView.snp.updateConstraints { (make) in
             make.height.equalTo(20)
         }
         containerView.snp.makeConstraints { (make) in

@@ -51,7 +51,7 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+//        self.hidesBottomBarWhenPushed = false
         
         self.vhl_setNavBarBackgroundAlpha(0.0)
         
@@ -67,7 +67,7 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
         view.addSubview(headView)
         view.addSubview(staticListView)
         headView.snp.makeConstraints { (make) in
-            make.top.equalTo(0);
+            make.top.equalTo(-64);
             make.left.right.equalTo(0)
             make.height.equalTo(208)
         }

@@ -34,30 +34,45 @@ class APSearchBarView: UIView, UITextFieldDelegate {
         
         let imageView = UIImageView()
         imageView.theme_image = ["auth_search_image"]
+        imageView.contentMode = .center
+        let imageViewBgView = UIView()
+        imageViewBgView.backgroundColor = UIColor.clear
         
         textField.backgroundColor = UIColor.white
         textField.layer.theme_borderColor = ["efefef"]
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
-        textField.leftView = imageView
+        textField.leftView = imageViewBgView
+        textField.leftViewMode = .always
+        textField.leftView?.width = 40
+        textField.leftView?.height = 30
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.setPlaceHolderTextColor(UIColor.init(hex6: 0x999999))
         
         let searchButton = UIButton()
         searchButton.theme_setBackgroundImage(["auth_search_button"], forState: .normal)
         searchButton .addTarget(self, action: #selector(search), for: UIControlEvents.touchUpInside)
         
+        imageViewBgView.addSubview(imageView)
         addSubview(textField)
         addSubview(searchButton)
         
+        
+        imageView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         searchButton.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(9)
+            make.right.equalToSuperview().offset(-10)
             make.bottom.top.equalToSuperview()
-            make.width.equalTo(50)
         }
         textField.snp.makeConstraints { (make) in
-            make.right.equalTo(searchButton.snp.left).offset(10)
-            make.top.bottom.left.equalToSuperview()
-            
+            make.right.equalTo(searchButton.snp.left).offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.top.bottom.equalToSuperview()
         }
+        
+        searchButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
     
     @objc func search() {

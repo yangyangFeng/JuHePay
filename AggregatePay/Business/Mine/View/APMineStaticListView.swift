@@ -8,9 +8,6 @@
 
 import UIKit
 
-let AP_groupTableViewBackground = "#EBEBF1"
-
-
 protocol APMineStaticListViewDelegate : NSObjectProtocol {
     func tableViewDidSelectIndex(_ title : String, controller : String)
 }
@@ -29,7 +26,7 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        theme_backgroundColor = [AP_groupTableViewBackground]
+        theme_backgroundColor = [AP_TableViewBackgroundColor]
         tableView.theme_backgroundColor = ["#FFF"]
         
         tableView.delegate = self

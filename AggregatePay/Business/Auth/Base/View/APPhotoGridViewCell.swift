@@ -18,10 +18,13 @@ class APPhotoGridViewCell: UICollectionViewCell {
         didSet {
             gridHeadLabel.text = model?.headMessage
             gridBottomLabel.text = model?.bottomMessage
-            gridButton.setBackgroundImage(UIImage.init(named: (model?.imageName)!), for: .normal)
+            gridButton.setBackgroundImage(UIImage.init(named: (model?.placeHolderImageName)!), for: .normal)
+            if let image = model?.image {
+                gridButton.setBackgroundImage(UIImage.init(), for: .normal)
+                gridButton.setImage(image, for: .normal)
+            }
         }
     }
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,8 +35,6 @@ class APPhotoGridViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     // MARK: -- UI
     func layoutViews() {
