@@ -12,11 +12,13 @@ import SwiftTheme
 class APBaseViewController: UIViewController {
     
     deinit {
-        print("被释放")
+        print( String(describing: self.classForCoder) + "已释放")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*view四周均不延伸*/
+        edgesForExtendedLayout = []
         
         view.backgroundColor = UIColor.white
     
@@ -26,7 +28,6 @@ class APBaseViewController: UIViewController {
         
         initNavigationItem()
         
-//        self.hidesBottomBarWhenPushed = true
     }
     
     func initNavigationItem()

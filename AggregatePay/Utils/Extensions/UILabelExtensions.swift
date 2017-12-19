@@ -29,5 +29,17 @@ public extension UILabel {
 		label.sizeToFit()
 		return label.frame.height
 	}
+    
+    /// SwifterSwift: Required height for a label
+    public var requiredWidth: CGFloat {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: CGFloat.greatestFiniteMagnitude, height: frame.width))
+        label.numberOfLines = 1
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.attributedText = attributedText
+        label.sizeToFit()
+        return label.frame.width
+    }
 }
 #endif
