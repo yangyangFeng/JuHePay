@@ -15,8 +15,8 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
         return view
     }()
     
-    lazy var keyboardCompositionView: APKeyboardCompositionView = {
-        let view = APKeyboardCompositionView()
+    lazy var keyboardCompositionView: APCollectionCompositionView = {
+        let view = APCollectionCompositionView()
         view.delegate = self
         return view
     }()
@@ -46,18 +46,36 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     
     //MARK: ------- APKeyboardCompositionViewDelegate
     
-    func didKeyboardConfirm(param: String) {
-        self.navigationController?.pushViewController(APCollectionPlaceViewController(), animated: true)
+    func didKeyboardConfirm(param: Any) {
+        let params = param as! NSDictionary
+        let totalAmount: String = params.object(forKey: "totalAmount") as! String
+        let menuModel: APHomeMenuModel = params.object(forKey: "menuModel") as! APHomeMenuModel
+        print(totalAmount)
+        print(menuModel)
+        if menuModel.payWay == "0" {
+            let placeVC = APCollectionPlaceViewController()
+            self.navigationController?.pushViewController(placeVC,
+                                                          animated: true)
+        }
+        else {
+            let qrCodePayElementVC = APQRCodePayElementViewController()
+            self.navigationController?.pushViewController(qrCodePayElementVC,
+                                                          animated: true)
+        }
     }
     
     //MARK: ------- APHomeMenuViewDelegate
     
     func selectHomeMenuItemSuccess(itemModel: APHomeMenuModel) {
-        keyboardCompositionView.setDisplayWayTypeImage(string: itemModel.wayIconImage)
+        keyboardCompositionView.menuModel = itemModel
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        self.navigationController?.pushViewController(APLoginViewController(), animated: true)
+        weak var weakSelf = self
+        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+        self.present(loginVC, animated: true) {
+            weakSelf?.keyboardCompositionView.isLogin = true
+        }
     }
   
 

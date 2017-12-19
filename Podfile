@@ -32,6 +32,10 @@ pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5'
 pod 'JPush', '~> 3.0.7'
 pod 'OCRSDK'
 pod 'PGDatePicker', '>= 1.5.4'
+pod 'GTMBase64', '~> 1.0.0'
+pod 'OpenSSL-Universal', '~> 1.0.2.11'
+
+
 end
 
 

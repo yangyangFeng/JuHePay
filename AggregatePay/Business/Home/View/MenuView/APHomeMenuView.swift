@@ -97,6 +97,7 @@ class APHomeMenuView: UIView {
         itemModel.norImage = dataSource.object(forKey: "norImage") as! String
         itemModel.selImage = dataSource.object(forKey: "selImage") as! String
         itemModel.wayIconImage = dataSource.object(forKey: "wayIconImage") as! String
+        itemModel.payWay = dataSource.object(forKey: "payWay") as! String
         
         let item = APHomeMenuButtonView(itemModel: itemModel)
         item.addTarget(self, action: #selector(didItem(_:)))

@@ -27,6 +27,7 @@ class APWalletCell: UITableViewCell {
     lazy var arronImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+        view.theme_image = ["wallet_arron_right_icon"]
         return view
     }()
     

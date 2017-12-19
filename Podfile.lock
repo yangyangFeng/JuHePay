@@ -6,6 +6,7 @@ PODS:
   - Bugly (2.5.0)
   - EFQRCode (1.2.7)
   - ESTabBarController-swift (2.5)
+  - GTMBase64 (1.0.0)
   - IQKeyboardManagerSwift (5.0.6)
   - JCore (1.1.6)
   - JPush (3.0.7):
@@ -23,6 +24,7 @@ PODS:
     - OCRSDK/UI
   - OCRSDK/UI (0.1.7):
     - OCRSDK/CoreSDK
+  - OpenSSL-Universal (1.0.2.11)
   - PGDatePicker (1.5.9):
     - PGPickerView
   - PGPickerView (1.2.1)
@@ -40,12 +42,14 @@ DEPENDENCIES:
   - Bugly
   - EFQRCode (~> 1.2.7)
   - ESTabBarController-swift (~> 2.5)
+  - GTMBase64 (~> 1.0.0)
   - IQKeyboardManagerSwift (~> 5.0.6)
   - JPush (~> 3.0.7)
   - KVOController
   - MJExtension
   - MJRefresh
   - OCRSDK
+  - OpenSSL-Universal (~> 1.0.2.11)
   - PGDatePicker (>= 1.5.4)
   - SDWebImage
   - SnapKit (~> 4.0.0)
@@ -59,6 +63,7 @@ SPEC CHECKSUMS:
   Bugly: 00c8701f2bebab4887771ba43afbf51334009742
   EFQRCode: f283d7ce75a7780756a5e2a9c39077292d6e7596
   ESTabBarController-swift: 8daa432f2a9be8ebd25101dc46c84472fd760512
+  GTMBase64: 0da7372e95f5171f3f652db38cde6716f8eb5e24
   IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
   JCore: 18fc8725124f26e55625eaf224659b3a999dcf63
   JPush: 111b79b8a0169ab8fd4c486dac3ed166ed69293e
@@ -67,6 +72,7 @@ SPEC CHECKSUMS:
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OCRSDK: 633a176d5ddb920b99c9e3a5fe0f071f07f39277
+  OpenSSL-Universal: bcea8d73aec478029029164f9f0695b57cb94309
   PGDatePicker: 00505c5180a92adf1e0465805b0cb49baf42a367
   PGPickerView: cb49c6b3e2a39148bef9f666fa58bb349e0c3b85
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
@@ -75,6 +81,6 @@ SPEC CHECKSUMS:
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: d98ee8a1100765cd8a3a347b99a53a4a71ad3514
+PODFILE CHECKSUM: 60d3caba0b97dbe61d6068a943172850f747cb4d
 
 COCOAPODS: 1.2.1

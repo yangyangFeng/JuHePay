@@ -50,7 +50,6 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
         let walletCell: APWalletCell = APWalletCell.cellWithTableView(tableView) as! APWalletCell
         walletCell.titleLabel.text = "钱包明细"
         walletCell.iconImageView.theme_image = ["wallet_detail_cell_icon"]
-        walletCell.arronImageView.theme_image = ["wallet_arron_right_icon"]
         return walletCell
     }
     

@@ -14,12 +14,18 @@ import UIKit
  */
 
 protocol APKeyboardCompositionViewDelegate: NSObjectProtocol {
-    func didKeyboardConfirm(param: String)
+    func didKeyboardConfirm(param: Any)
 }
 
 typealias APDidKeyboardConfirmItem = (_ param: String) -> Void
 
 class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
+    
+    //输入规则
+    private let inputRules: APKeyboardInputRules = APKeyboardInputRules()
+    
+    //代理
+    var delegate: APKeyboardCompositionViewDelegate?
     
     //键盘区域
     var keyboardView: APKeyboardView?
@@ -27,17 +33,12 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     //显示区
     var displayView: APDisplayView?
     
-    //代理
-    var delegate: APKeyboardCompositionViewDelegate?
-    
     init() {
         super.init(frame: CGRect.zero)
         
-        //可扩展（子类可以重写两个方法）
         keyboardView = getKeyboardView()
         displayView = getDisplayView()
-
-        //用于键盘按键的代理
+        
         keyboardView!.keyboardDelegate = self
         
         addSubview(keyboardView!)
@@ -61,48 +62,168 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     * 返回键盘视图（允许继承APKeyboardView后自定义样式）
-     */
-    public func getKeyboardView() -> APKeyboardView {
+    //MARK: ---- 接口扩展
+    
+    /** 返回键盘视图（允许继承APKeyboardView后自定义样式） */
+    func getKeyboardView() -> APKeyboardView {
         return APKeyboardView()
     }
     
-    /**
-     * 返回显示视图（允许继承APDisplayView后自定义样式）
-     */
-    public func getDisplayView() -> APDisplayView {
+    /** 返回显示视图（允许继承APDisplayView后自定义样式） */
+    func getDisplayView() -> APDisplayView {
         return APDisplayView()
     }
     
-    /**
-     * 设置当前选中的支付方式的图标
-     */
-    public func setDisplayWayTypeImage(string: String) {
-        displayView!.displayWayIcon.theme_image = [string]
+    /** 键盘触发提交按钮时传递的参数（子类提供）*/
+    func confirmParam() -> Any {
+        return ""
     }
     
-    //MARK: APKeyboardViewDelegate(键盘代理方法)
+    //MARK: ---- APKeyboardViewDelegate(键盘代理方法)
     
+    /** 键盘点击数字按钮 */
     func didKeyboardNumItem(num: String) {
-        _ = displayView!.inputDisplayNumValue(num: num)
+        //获取当前屏显的金额总数
+        let display: String = (displayView?.outputDisplayNumValue())!
+        //进行输入规则验证
+        let resultStr = inputRules.inputRules(display: display, num: num)
+        //把验证后的返回结果传入到屏显示图进行显示
+        displayView!.inputDisplayNumValue(num: resultStr)
     }
 
+    /** 键盘点击删除按钮 */
     func didKeyboardDeleteItem() {
-       _ = displayView!.deleteDisplayNumValue()
+        //获取当前屏显的金额总数
+        let display: String = (displayView?.outputDisplayNumValue())!
+        //进行删除规则验证
+        let resultStr = inputRules.deleteRules(display: display)
+        //把验证后的返回结果传入到屏显示图进行删除
+        displayView!.deleteDisplayNumValue(num: resultStr)
     }
     
+    /** 键盘点击确定按钮 */
     func didKeyboardConfirmItem() {
-        let numStr: String = (displayView?.displayNum.text)!
-        delegate?.didKeyboardConfirm(param: numStr)
+        //获取点击确认按钮时需要传递给控制器的参数（子类提供）
+        let param: Any = confirmParam()
+        //通过代理把参数传递给相应的控制器
+        delegate?.didKeyboardConfirm(param: param)
     }
 }
 
+//MARK:  ----- APKeyboardInputRules(键盘输入规则)
 
-
-
-
-
+/**
+ * 键盘输入规则
+ * 后期优化方案（利用队列数据结构进行规则优化）
+ */
+class APKeyboardInputRules: NSObject {
+    
+    //最大金额1百万
+    let maxAmount: Float = 1000000.00
+    //最小金额1元
+    let minAmount: Float = 1.00
+    
+    /**
+     * 金额限制规则
+     * 1、金额不得大于maxAmount
+     */
+    private func isMaxAmountRules(display: String, num: String) -> Bool {
+        var isThrough: Bool = true
+        let amountStr: String = display
+        let isExist :Bool = amountStr.contains(APDecimalPoint)
+        if (num != APDecimalPoint && !isExist) {
+            let amountSum: Float = Float(amountStr+num)!
+            if (amountSum > maxAmount && num != APDecimalPoint) {
+                //1、金额不得大于maxAmount
+                isThrough = false
+            }
+        }
+        return isThrough
+    }
+    
+    /**
+     * 小数点的规则
+     * 1、小数点不能重复键入
+     * 2、小数点后面最多保留两位
+     */
+    private func isDecimalRules(display: String, num: String) -> Bool {
+        var isThrough: Bool = true
+        let amountStr: String = display
+        let isExist :Bool = amountStr.contains(APDecimalPoint)
+        if (isExist)  {
+            if num == APDecimalPoint {
+                //1、小数点不能重复键入
+                isThrough = false
+            }
+            else {
+                let deRange = amountStr.range(of: APDecimalPoint)
+                let backNumber: Substring = amountStr.suffix(from: deRange!.upperBound) as Substring
+                
+                //小数点后面最多保留两位
+                if (backNumber.count >= 2 || (backNumber.count >= 1 && num == "00")) {
+                    isThrough = false
+                }
+            }
+        }
+        return isThrough
+    }
+    
+    
+    /**
+     * 输入规则
+     * 1、如果首次输入是'.'、'00'、'0'则显示框显示'0.'
+     * 2、如果不是首次输入
+     *    前验证:(总金额==0、输入数字!='.'、当前金额!='0.'或'0.0')
+     *    后验证:(当前金额=='0'并且输入数字!='.'则替换显示框内容为输入的数字，反之正常拼接)
+     */
+    public func inputRules(display: String, num: String) -> String {
+        
+        if !self.isMaxAmountRules(display: display, num: num) {
+            return display
+        }
+        
+        if !self.isDecimalRules(display: display, num: num) {
+            return display
+        }
+        
+        var amount: String = display
+        if (amount == "") {
+            amount = num
+            if num == "." || num == "00" || num == "0" {
+                amount = "0."
+            }
+        }
+        else {
+            let amountNum: Float = Float(amount + num)!
+            if amountNum == 0 && num != APDecimalPoint && (amount != "0." || amount != "0.0"){
+                amount = String(amountNum)
+            }
+            else if amount == "0" && num != APDecimalPoint {
+                amount = num
+            }
+            else {
+                amount += num
+            }
+        }
+        return amount
+    }
+    
+    /**
+     * 删除规则
+     * 1、如果金额长度<=零则表示全部删除成功
+     * 2、否则删除金额字符串最后一位数字
+     */
+    public func deleteRules(display: String) -> String {
+        var amount: String = display
+        if amount.count <= 0 {
+            return amount
+        }
+        else {
+            amount.remove(at: amount.index(before: amount.endIndex))
+            return amount
+        }
+    }
+}
 
 
 
