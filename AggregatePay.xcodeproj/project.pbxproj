@@ -48,9 +48,11 @@
 		1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */; };
 		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
 		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
-		1A97EDD21FE52DAB008B5357 /* APVersionUpgradeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97EDD11FE52DAB008B5357 /* APVersionUpgradeManager.swift */; };
 		1A97EDD91FE5342F008B5357 /* APSelectCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97EDD71FE5342F008B5357 /* APSelectCreditCardViewController.swift */; };
 		1A97EDDB1FE534F3008B5357 /* APSelectCreditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A97EDDA1FE534F3008B5357 /* APSelectCreditCardCell.swift */; };
+		1AA17DF31FEA11CC006E59F0 /* APModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DF21FEA11CC006E59F0 /* APModifyRequest.swift */; };
+		1AA17DF81FEA26B5006E59F0 /* APEvaluateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DF71FEA26B5006E59F0 /* APEvaluateExtensions.swift */; };
+		1AA17DFB1FEA28B0006E59F0 /* APQRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DFA1FEA28B0006E59F0 /* APQRCodeTool.swift */; };
 		1AA1E44D1FE9278D00E3F3A8 /* APLoginHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA1E44C1FE9278D00E3F3A8 /* APLoginHttpTool.swift */; };
 		1AA3D5061FE7D3B5003263E3 /* BBRSACryptor..mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3D5021FE7D3B5003263E3 /* BBRSACryptor..mm */; };
 		1AA3D5071FE7D3B5003263E3 /* CPRSAEncrpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3D5051FE7D3B5003263E3 /* CPRSAEncrpTool.m */; };
@@ -84,12 +86,12 @@
 		1AB5BDF91FE90B0A00D54667 /* APBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5BDF81FE90B0A00D54667 /* APBaseRequest.swift */; };
 		1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */; };
 		1AC1B42B1FE8D5AE0042A77E /* APRegisterSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1B42A1FE8D5AE0042A77E /* APRegisterSuccessViewController.swift */; };
-		1AC1B42F1FE8D6200042A77E /* APModifySuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1B42E1FE8D6200042A77E /* APModifySuccessViewController.swift */; };
 		1AC1B4351FE8EE700042A77E /* APUserDefaultCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1B4341FE8EE700042A77E /* APUserDefaultCache.swift */; };
 		1AC89A521FE3B3D20045A2AF /* APBillDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89A511FE3B3D20045A2AF /* APBillDetailCell.swift */; };
 		1AD7C5011FE9F34600686C01 /* APSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5001FE9F34600686C01 /* APSettingViewController.swift */; };
 		1AD7C5031FE9F3A700686C01 /* APSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5021FE9F3A700686C01 /* APSettingCell.swift */; };
-		1AD7C5061FE9FC8D00686C01 /* APSystemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5051FE9FC8D00686C01 /* APSystemConfig.swift */; };
+		1AD7C5091FEA053000686C01 /* APModifySuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5081FEA053000686C01 /* APModifySuccessViewController.swift */; };
+		1AD7C50B1FEA057600686C01 /* APForgetSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C50A1FEA057600686C01 /* APForgetSuccessViewController.swift */; };
 		1AE456161FE4BCAD005D9999 /* APVersionUpgradeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE456151FE4BCAD005D9999 /* APVersionUpgradeController.swift */; };
 		1AE456281FE4F6C8005D9999 /* APCollectionPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE456261FE4F6C7005D9999 /* APCollectionPlaceViewController.swift */; };
 		1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE456291FE4F6E0005D9999 /* APCollectionPlaceCell.swift */; };
@@ -246,9 +248,11 @@
 		1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNetworking.swift; sourceTree = "<group>"; };
 		1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCommon.swift; sourceTree = "<group>"; };
 		1A6DBAAD1FD8E35F00E7D692 /* APHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APHomeViewController.swift; sourceTree = "<group>"; };
-		1A97EDD11FE52DAB008B5357 /* APVersionUpgradeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVersionUpgradeManager.swift; sourceTree = "<group>"; };
 		1A97EDD71FE5342F008B5357 /* APSelectCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSelectCreditCardViewController.swift; sourceTree = "<group>"; };
 		1A97EDDA1FE534F3008B5357 /* APSelectCreditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSelectCreditCardCell.swift; sourceTree = "<group>"; };
+		1AA17DF21FEA11CC006E59F0 /* APModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APModifyRequest.swift; sourceTree = "<group>"; };
+		1AA17DF71FEA26B5006E59F0 /* APEvaluateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEvaluateExtensions.swift; sourceTree = "<group>"; };
+		1AA17DFA1FEA28B0006E59F0 /* APQRCodeTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APQRCodeTool.swift; sourceTree = "<group>"; };
 		1AA1E44C1FE9278D00E3F3A8 /* APLoginHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginHttpTool.swift; sourceTree = "<group>"; };
 		1AA3D5021FE7D3B5003263E3 /* BBRSACryptor..mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BBRSACryptor..mm; sourceTree = "<group>"; };
 		1AA3D5031FE7D3B5003263E3 /* BBRSACryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRSACryptor.h; sourceTree = "<group>"; };
@@ -281,12 +285,12 @@
 		1ABDA9541FDE80E200FE6097 /* CPCheckAuthInputInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCheckAuthInputInfoTool.h; sourceTree = "<group>"; };
 		1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCheckAuthInputInfoTool.m; sourceTree = "<group>"; };
 		1AC1B42A1FE8D5AE0042A77E /* APRegisterSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRegisterSuccessViewController.swift; sourceTree = "<group>"; };
-		1AC1B42E1FE8D6200042A77E /* APModifySuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APModifySuccessViewController.swift; sourceTree = "<group>"; };
 		1AC1B4341FE8EE700042A77E /* APUserDefaultCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APUserDefaultCache.swift; sourceTree = "<group>"; };
 		1AC89A511FE3B3D20045A2AF /* APBillDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBillDetailCell.swift; sourceTree = "<group>"; };
 		1AD7C5001FE9F34600686C01 /* APSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingViewController.swift; sourceTree = "<group>"; };
 		1AD7C5021FE9F3A700686C01 /* APSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingCell.swift; sourceTree = "<group>"; };
-		1AD7C5051FE9FC8D00686C01 /* APSystemConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSystemConfig.swift; sourceTree = "<group>"; };
+		1AD7C5081FEA053000686C01 /* APModifySuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APModifySuccessViewController.swift; sourceTree = "<group>"; };
+		1AD7C50A1FEA057600686C01 /* APForgetSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APForgetSuccessViewController.swift; sourceTree = "<group>"; };
 		1AE456151FE4BCAD005D9999 /* APVersionUpgradeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APVersionUpgradeController.swift; sourceTree = "<group>"; };
 		1AE456261FE4F6C7005D9999 /* APCollectionPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCollectionPlaceViewController.swift; sourceTree = "<group>"; };
 		1AE456291FE4F6E0005D9999 /* APCollectionPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCollectionPlaceCell.swift; sourceTree = "<group>"; };
@@ -592,7 +596,6 @@
 		1A0A65F91FDE5AA1004D59C0 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				1AD7C5041FE9FC7400686C01 /* Config */,
 				1A0A65FA1FDE5AA1004D59C0 /* Controllers */,
 			);
 			path = System;
@@ -623,6 +626,7 @@
 		1A1FDA5C1FE8B7D800E6F808 /* Modify */ = {
 			isa = PBXGroup;
 			children = (
+				1AA17DF11FEA11B6006E59F0 /* Model */,
 				1A1FDA5D1FE8B7D800E6F808 /* Controller */,
 			);
 			path = Modify;
@@ -649,7 +653,8 @@
 			isa = PBXGroup;
 			children = (
 				1AC1B42A1FE8D5AE0042A77E /* APRegisterSuccessViewController.swift */,
-				1AC1B42E1FE8D6200042A77E /* APModifySuccessViewController.swift */,
+				1AD7C5081FEA053000686C01 /* APModifySuccessViewController.swift */,
+				1AD7C50A1FEA057600686C01 /* APForgetSuccessViewController.swift */,
 			);
 			path = Success;
 			sourceTree = "<group>";
@@ -903,6 +908,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1AA17DF11FEA11B6006E59F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AA17DF21FEA11CC006E59F0 /* APModifyRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AA17DF41FEA1410006E59F0 /* EvaluateTool */ = {
+			isa = PBXGroup;
+			children = (
+				1AA17DF71FEA26B5006E59F0 /* APEvaluateExtensions.swift */,
+			);
+			path = EvaluateTool;
+			sourceTree = "<group>";
+		};
+		1AA17DF91FEA289F006E59F0 /* QRCodeTool */ = {
+			isa = PBXGroup;
+			children = (
+				1AA17DFA1FEA28B0006E59F0 /* APQRCodeTool.swift */,
+			);
+			path = QRCodeTool;
+			sourceTree = "<group>";
+		};
 		1AA1E44B1FE9277900E3F3A8 /* HttpTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1106,19 +1135,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1AD7C5041FE9FC7400686C01 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				1AD7C5051FE9FC8D00686C01 /* APSystemConfig.swift */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		1AE456121FE4B724005D9999 /* VersionController */ = {
 			isa = PBXGroup;
 			children = (
 				1AE456151FE4BCAD005D9999 /* APVersionUpgradeController.swift */,
-				1A97EDD11FE52DAB008B5357 /* APVersionUpgradeManager.swift */,
 			);
 			path = VersionController;
 			sourceTree = "<group>";
@@ -1622,6 +1642,8 @@
 		74D5F6401FD7DEBF0065A5F3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1AA17DF91FEA289F006E59F0 /* QRCodeTool */,
+				1AA17DF41FEA1410006E59F0 /* EvaluateTool */,
 				1AC1B4331FE8EE340042A77E /* CacheTools */,
 				1ABDA9521FDE80E200FE6097 /* ObjectCTool */,
 				1A0A65D61FDE3A62004D59C0 /* Views */,
@@ -2026,7 +2048,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */,
-				1AD7C5061FE9FC8D00686C01 /* APSystemConfig.swift in Sources */,
 				1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */,
 				1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */,
 				2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */,
@@ -2055,7 +2076,6 @@
 				1AA3D5371FE7DD2C003263E3 /* CPBase64.m in Sources */,
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
-				1AC1B42F1FE8D6200042A77E /* APModifySuccessViewController.swift in Sources */,
 				747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */,
 				2374A9F31FE8F1590013AB88 /* APSecurityAuthViewController.swift in Sources */,
 				2374A9F61FE8F1590013AB88 /* APGridViewModel.swift in Sources */,
@@ -2073,11 +2093,13 @@
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */,
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
+				1AA17DFB1FEA28B0006E59F0 /* APQRCodeTool.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1AD7C5011FE9F34600686C01 /* APSettingViewController.swift in Sources */,
+				1AD7C5091FEA053000686C01 /* APModifySuccessViewController.swift in Sources */,
 				2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */,
 				1AB253C81FE0FAA600193B30 /* APHomeMenuButtonView.swift in Sources */,
 				7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */,
@@ -2089,8 +2111,10 @@
 				7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */,
 				74EC34351FDF892C003ABF70 /* APServiceViewController.swift in Sources */,
 				2374A9FA1FE8F1590013AB88 /* APAuthOCRTextFormCell.swift in Sources */,
+				1AA17DF81FEA26B5006E59F0 /* APEvaluateExtensions.swift in Sources */,
 				1AA3D53A1FE7DD2C003263E3 /* CPRSACryptor.m in Sources */,
 				7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */,
+				1AA17DF31FEA11CC006E59F0 /* APModifyRequest.swift in Sources */,
 				2374A9F91FE8F1590013AB88 /* APPhotoGridViewCell.swift in Sources */,
 				1AB253E71FE1436B00193B30 /* APPromoteViewController.swift in Sources */,
 				74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */,
@@ -2123,13 +2147,13 @@
 				2374A9F01FE8F1590013AB88 /* APAuthHomeViewController.swift in Sources */,
 				1A2E32931FE541D20029AE9A /* APWalletDetailListCell.swift in Sources */,
 				1A030D741FE7624D007146C1 /* APCollectionSuccessViewController.swift in Sources */,
-				1A97EDD21FE52DAB008B5357 /* APVersionUpgradeManager.swift in Sources */,
 				2374A9F51FE8F1590013AB88 /* APAuthBaseViewController.swift in Sources */,
 				1AA3D5061FE7D3B5003263E3 /* BBRSACryptor..mm in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				1AA80FA61FDFDE660021B046 /* APSystemBaseViewController.swift in Sources */,
 				1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */,
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
+				1AD7C50B1FEA057600686C01 /* APForgetSuccessViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
 				745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,

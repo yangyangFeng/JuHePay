@@ -23,12 +23,6 @@ class APSettingViewController: APBaseViewController, UITableViewDelegate, UITabl
         return arr
     }()
     
-    lazy var viewControllers : NSArray = {
-        var arr : NSArray = NSArray(array: [APModifyViewController(),
-                                            APForgetFirstStepViewController()])
-        return arr
-    }()
-    
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
         view.delegate = self;
@@ -66,8 +60,15 @@ class APSettingViewController: APBaseViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc: APBaseViewController = viewControllers.object(at: indexPath.row) as! APBaseViewController
-        navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row == 0 {
+            navigationController?.pushViewController(APModifyViewController(),
+                                                     animated: true)
+        }
+        else if indexPath.row == 1 {
+            navigationController?.pushViewController(APForgetFirstStepViewController(),
+                                                     animated: true)
+        }
+        
     }
     
     
@@ -75,3 +76,14 @@ class APSettingViewController: APBaseViewController, UITableViewDelegate, UITabl
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
