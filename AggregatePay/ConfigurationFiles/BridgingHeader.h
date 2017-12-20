@@ -13,6 +13,5 @@
 #import "CPSecurityManager.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
-#import "APRefreshHeader.h"
 
 #endif /* BridgingHeader_h */

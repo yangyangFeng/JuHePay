@@ -38,7 +38,16 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
-        
+        tableView.mj_footer = APRefreshFooter(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 2), execute: {
+                tableView.mj_footer.resetNoMoreData()
+            })
+        })
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 2), execute: {
+                tableView.mj_header.endRefreshing()
+            })
+        })
         tableView.theme_backgroundColor = ["#fff"]
         theme_backgroundColor = ["#fff"]
     }
