@@ -16,7 +16,7 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
         super.viewDidLoad()
 
         title = "收益"
-        
+        vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
         initSubviews()
         // Do any additional setup after loading the view.
     }

@@ -27,11 +27,15 @@ class APUserStatusTool: NSObject {
         case successAuth  = 4  //成功
     }
     
+    /** 当前登录用户的实名状态 */
+    static func authStatus() -> APAuthStatus {
+        return .defaulAuth
+    }
+    
     /** 当前用户登录状态 */
-    lazy var userStatus: APUserStatus = {
-        
-        let authStatus: APAuthStatus = APUserStatusTool.sharedInstance.authStatus
-        let isLogin: Bool = APUserStatusTool.sharedInstance.isLogin
+    static func userStatus() -> APUserStatus {
+        let authStatus: APAuthStatus = APUserStatusTool.authStatus()
+        let isLogin: Bool = APUserStatusTool.isLogin()
         
         if isLogin && (authStatus == .successAuth) {
             return .strongpUser
@@ -40,20 +44,13 @@ class APUserStatusTool: NSObject {
             return .weakUser
         }
         return .touristsUser
-    }()
-    
-    /** 当前登录用户的实名状态 */
-    var authStatus: APAuthStatus = .defaulAuth
-    
+    }
 
     /** 用户是否登录过true:登录过、false:未登录过 */
-    lazy var isLogin: Bool = {
+    static func isLogin() -> Bool {
         let isMobile = APUserDefaultCache.AP_get(key: .mobile)
         let isPassword = APUserDefaultCache.AP_get(key: .password)
         return isMobile != "" && isPassword != ""
-    }()
-    
-    
-    
+    }
     
 }

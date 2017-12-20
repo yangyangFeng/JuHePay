@@ -40,7 +40,7 @@ class APCollectionDisplayView: APDisplayView {
     //显示数字
     lazy var displayNum: UITextField = {
         let view = UITextField()
-        view.placeholder = "0.0"
+        view.placeholder = "0.00"
         view.minimumFontSize = 14
         view.textAlignment = .left
         view.textColor = UIColor.init(rgba: "#45340F")
@@ -49,7 +49,7 @@ class APCollectionDisplayView: APDisplayView {
         view.font = UIFont.systemFont(ofSize: 36)
         view.setValue(UIFont.systemFont(ofSize: 36),
                       forKeyPath: "_placeholderLabel.font")
-        view.setValue(UIColor.init(rgba: "#45340F"),
+        view.setValue(UIColor.init(rgba: "#C7BEAA"),
                       forKeyPath: "_placeholderLabel.textColor")
         return view
         

@@ -175,7 +175,7 @@ class APKeyboardButton: UIView {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name:"Arial-BoldItalicMT", size:30)
+        view.font = UIFont.systemFont(ofSize: 24)
         view.theme_textColor = ["#8a8067"]
         view.textAlignment = .center
         return view

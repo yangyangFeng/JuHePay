@@ -32,6 +32,7 @@ class APForgetLastStepViewController: APForgetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         APForgetViewController.forgetRequest.password = ""
+        prompt.text = ""
         createSubviews()
         registerCallBacks()
         registerObserve()

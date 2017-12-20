@@ -14,8 +14,9 @@ class APSystemBaseViewController: APBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
-        vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
+        vhl_setNavBackgroundColor(UIColor.white)
     }
 
     override func AP_navigationLeftItemImage() -> UIImage {

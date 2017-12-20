@@ -22,9 +22,22 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     }()
     
     lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = APBarButtonItem.ap_barButtonItem(title: "账单", action: #selector(dismissGoHome))
+        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(dismissGoHome))
         return view
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        switch APUserStatusTool.userStatus() {
+        case .touristsUser:
+            keyboardCompositionView.isLogin = false
+        case .weakUser:
+            keyboardCompositionView.isLogin = true
+        case .strongpUser:
+            keyboardCompositionView.isLogin = true
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

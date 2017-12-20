@@ -16,7 +16,7 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
     let headerView: APWalletHeaderView = APWalletHeaderView()
     
     lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = APBarButtonItem.ap_barButtonItem(title: "账单", action: #selector(dismissGoHome))
+        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(dismissGoHome))
         return view
     }()
     

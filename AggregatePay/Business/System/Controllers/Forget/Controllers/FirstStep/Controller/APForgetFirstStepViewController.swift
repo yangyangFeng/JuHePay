@@ -126,7 +126,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     private func evaluate() -> Bool {
         
         if !APForgetViewController.forgetRequest.mobile.evaluate(regx: .mobile) {
-            self.view.makeToast("手机号输入格式不正确")
+            self.view.makeToast("手机号输入错误，请重新填写")
             return false
         }
         return true
