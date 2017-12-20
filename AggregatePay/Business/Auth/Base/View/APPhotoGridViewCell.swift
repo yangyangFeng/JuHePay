@@ -44,6 +44,7 @@ class APPhotoGridViewCell: UICollectionViewCell {
         gridHeadLabel.font = UIFont.systemFont(ofSize: 13)
         gridBottomLabel.textColor = UIColor.init(hex6: 0x7a7a7a)
         gridBottomLabel.font = UIFont.systemFont(ofSize: 13)
+        gridButton.isEnabled = false
         
         contentView.addSubview(gridHeadLabel)
         contentView.addSubview(gridButton)
