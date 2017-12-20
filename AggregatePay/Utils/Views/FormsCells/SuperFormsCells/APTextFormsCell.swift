@@ -14,6 +14,10 @@ class APTextFormsCell: APBaseFormsCell, UITextFieldDelegate {
         let view = UITextField()
         view.delegate = self
         view.font = UIFont.systemFont(ofSize: 14)
+        view.setValue(UIFont.systemFont(ofSize: 36),
+                      forKeyPath: "_placeholderLabel.font")
+        view.setValue(UIColor.red,
+                      forKeyPath: "_placeholderLabel.textColor")
         view.addTarget(self, action: #selector(textChange(_:)), for: .allEditingEvents)
         return view
     }()

@@ -17,7 +17,6 @@ target 'AggregatePay' do
 
 pod 'Bugly'
 pod 'MJRefresh'
-pod 'MJExtension'
 pod 'SDWebImage'
 pod 'KVOController'
 pod 'SnapKit', '~> 4.0.0'
@@ -35,6 +34,7 @@ pod 'PGDatePicker', '>= 1.5.4'
 pod 'GTMBase64', '~> 1.0.0'
 pod 'OpenSSL-Universal', '~> 1.0.2.11'
 pod 'EmptyKit', '~> 4.0.0'
+
 
 end
 

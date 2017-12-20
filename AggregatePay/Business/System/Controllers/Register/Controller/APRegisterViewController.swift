@@ -22,161 +22,159 @@ import UIKit
 class APRegisterViewController: APSystemBaseViewController {
     
     //MARK: ------------- 全局属性
-    
     let registerRequest: APRegisterRequest = APRegisterRequest()
     
-    lazy var registerAccountCell: APSendSMSCodeFormsCell = {
+    lazy var accountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
-        view.inputRegx = "^1[0-9]{0,10}$"
+        view.inputRegx = .mobile
         view.sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入11位手机号码"
         return view
     }()
     
-    lazy var registerSmsCodeCell: APTextFormsCell = {
+    lazy var smsCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[0-9]{0,4}$"
+        view.inputRegx = .smsCode
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入短信验证码"
         return view
     }()
     
-    lazy var registerPasswordCell: APPasswordFormsCell = {
+    lazy var passwordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
         return view
     }()
     
-    lazy var registerInviteCodeCell: APTextFormsCell = {
+    lazy var inviteCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,6}$"
+        view.inputRegx = .inviteCode
         view.textField.keyboardType = UIKeyboardType.asciiCapable
         view.textField.placeholder = "请输入邀请码"
         return view
     }()
     
-    lazy var registerAgreedCell: APSelectBoxFormsCell = {
+    lazy var agreedCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
         view.button.setTitle(_ : " 我已阅读并接受《XXX用户协议》", for: .normal)
         return view
     }()
     
-    lazy var registerSubmitCell: APSubmitFormsCell = {
+    lazy var submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
         view.button.setTitle("下一步", for: .normal)
         return view
     }()
     
     //MARK: ------------- 生命周期
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.accountCell.sendSmsCodeButton.isCounting = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
-        registerSystemConfig()
-        registerCreateSubViews()
-        registerLayoutSubViews()
-        registerTargetCallBacks()
-        registerRegisterObserve()
-    }
-    
-    //MARK: ------------- 私有方法
-    
-    private func registerSystemConfig() {
         self.title = "商户注册"
-        
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
     }
     
-    private func registerCreateSubViews() {
+    private func createSubviews() {
         
-        view.addSubview(registerAccountCell)
-        view.addSubview(registerSmsCodeCell)
-        view.addSubview(registerPasswordCell)
-        view.addSubview(registerInviteCodeCell)
-        view.addSubview(registerAgreedCell)
-        view.addSubview(registerSubmitCell)
-    }
-    
-    private func registerLayoutSubViews() {
+        view.addSubview(accountCell)
+        view.addSubview(smsCodeCell)
+        view.addSubview(passwordCell)
+        view.addSubview(inviteCodeCell)
+        view.addSubview(agreedCell)
+        view.addSubview(submitCell)
         
-        registerAccountCell.snp.makeConstraints { (make) in
+        accountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset )
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        registerSmsCodeCell.snp.makeConstraints { (make) in
-            make.top.equalTo(registerAccountCell.snp.bottom)
+        smsCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(accountCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        registerPasswordCell.snp.makeConstraints { (make) in
-            make.top.equalTo(registerSmsCodeCell.snp.bottom)
+        passwordCell.snp.makeConstraints { (make) in
+            make.top.equalTo(smsCodeCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        registerInviteCodeCell.snp.makeConstraints { (make) in
-            make.top.equalTo(registerPasswordCell.snp.bottom)
+        inviteCodeCell.snp.makeConstraints { (make) in
+            make.top.equalTo(passwordCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        registerAgreedCell.snp.makeConstraints { (make) in
-            make.top.equalTo(registerInviteCodeCell.snp.bottom)
+        agreedCell.snp.makeConstraints { (make) in
+            make.top.equalTo(inviteCodeCell.snp.bottom)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(cellHeight)
         }
         
-        registerSubmitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(registerAgreedCell.snp.bottom).offset(20)
+        submitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(agreedCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(subimtHeight)
         }
     }
     
-    private func registerTargetCallBacks() {
+    private func registerCallBacks() {
         
         weak var weakSelf = self
         
-        registerAccountCell.textBlock = { (key, value) in
+        accountCell.textBlock = { (key, value) in
             weakSelf?.registerRequest.mobile = value
         }
         
-        registerSmsCodeCell.textBlock = { (key, value) in
+        smsCodeCell.textBlock = { (key, value) in
             weakSelf?.registerRequest.smsCode = value
         }
         
-        registerPasswordCell.textBlock = { (key, value) in
+        passwordCell.textBlock = { (key, value) in
             weakSelf?.registerRequest.password = value
         }
         
-        registerInviteCodeCell.textBlock = { (key, value) in
+        inviteCodeCell.textBlock = { (key, value) in
             weakSelf?.registerRequest.inviteCode = value
         }
         
-        registerAgreedCell.buttonBlock = { (key, value) in
+        agreedCell.buttonBlock = { (key, value) in
             let button: UIButton = value as! UIButton
             weakSelf?.registerRequest.isAgreed = button.isSelected
         }
         
-        registerSubmitCell.buttonBlock = { (key, value) in
-            
+        accountCell.sendSmsCodeBlock = { (key, value) in
+            weakSelf?.accountCell.sendSmsCodeButton.isCounting = true
+        }
+        
+        submitCell.buttonBlock = { (key, value) in
+            let isEvaluate: Bool = (weakSelf?.evaluate())!
+            if isEvaluate {
+                weakSelf?.startRegisterHttpRequest()
+            }
         }
     }
     
-    private func registerRegisterObserve() {
+    private func registerObserve() {
         
         weak var weakSelf = self
-    
+        
         self.kvoController.observe(self.registerRequest,
                                    keyPaths: ["mobile",
                                               "password",
@@ -191,13 +189,33 @@ class APRegisterViewController: APSystemBaseViewController {
                 registerModel.inviteCode.characters.count >= 6 &&
                 registerModel.smsCode.characters.count >= 4 &&
                 registerModel.isAgreed) {
-                weakSelf?.registerSubmitCell.isEnabled = true
+                weakSelf?.submitCell.isEnabled = true
             }
             else {
-                weakSelf?.registerSubmitCell.isEnabled = false
+                weakSelf?.submitCell.isEnabled = false
             }
         }
     }
+    
+    private func evaluate() -> Bool {
+
+        if !self.registerRequest.mobile.evaluate(regx: .mobile) {
+            self.view.makeToast("手机号输入格式不正确")
+            return false
+        }
+        
+        if !self.registerRequest.password.evaluate(regx: .password) {
+            self.view.makeToast("请输入6至16位密码")
+            return false
+        }
+        return true
+    }
+    
+    private func startRegisterHttpRequest() {
+        self.navigationController?.pushViewController(APRegisterSuccessViewController())
+    }
+
+  
 }
 
 

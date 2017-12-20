@@ -169,7 +169,7 @@ class APPayElementViewController: APBaseViewController {
         let view = APPayElementTextCell()
         view.titleLabel.text = "信用卡卡号"
         view.textCell.textField.placeholder = "请输入信用卡号"
-        view.textCell.inputRegx = "^\\d{0,24}$"        
+        view.textCell.inputRegx = .bankCard         
         return view
     }()
 
@@ -178,7 +178,7 @@ class APPayElementViewController: APBaseViewController {
         let view = APPayElementTextCell()
         view.titleLabel.text = "CVN2"
         view.textCell.textField.placeholder = "信用卡背面后三位数字"
-        view.textCell.inputRegx = "^[0-9]{0,3}$"
+        view.textCell.inputRegx = .cvn2
         return view
     }()
     
@@ -195,7 +195,7 @@ class APPayElementViewController: APBaseViewController {
         let view = APPayElementTextCell()
         view.titleLabel.text = "预留手机号"
         view.textCell.textField.placeholder = "请输入银行预留手机号"
-        view.textCell.inputRegx = "^1[0-9]{0,10}$"
+        view.textCell.inputRegx = .mobile
         return view
     }()
     
@@ -204,7 +204,7 @@ class APPayElementViewController: APBaseViewController {
         let view = APPayElementSmsCodeCell()
         view.titleLabel.text = "验证码"
         view.smsCodeCell.textField.placeholder = "请填写验证码"
-        view.smsCodeCell.inputRegx = "^[0-9]{0,4}$"
+        view.smsCodeCell.inputRegx = .smsCode
         return view
     }()
     

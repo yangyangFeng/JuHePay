@@ -17,7 +17,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     var forgetFirstStepAccountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
-        view.inputRegx = "^1[0-9]{0,10}$"
+        view.inputRegx = .mobile
         view.sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
         view.textField.placeholder = "请输入注册手机号"
         return view
@@ -25,7 +25,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     var forgetFirstStepSmsCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[0-9]{0,4}$"
+        view.inputRegx = .smsCode
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入短信验证码"
         return view
@@ -38,6 +38,11 @@ class APForgetFirstStepViewController: APForgetViewController {
     }()
 
     //MARK: ------------- 生命周期
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.forgetFirstStepAccountCell.sendSmsCodeButton.isCounting = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +99,16 @@ class APForgetFirstStepViewController: APForgetViewController {
             APForgetViewController.forgetRequest.smsCode = value
         }
         
+        forgetFirstStepAccountCell.sendSmsCodeBlock = { (key, value) in
+            weakSelf?.forgetFirstStepAccountCell.sendSmsCodeButton.isCounting = true
+        }
+        
         forgetFirstStepSubmitCell.buttonBlock = { (key, value) in
+            //验证手机号是否合法
+            if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(APForgetViewController.forgetRequest.mobile) {
+                weakSelf?.view.makeToast("手机号输入错误，请重新填写")
+                return
+            }
             let LastStepVC: APForgetViewController = APForgetLastStepViewController()
             weakSelf?.navigationController?.pushViewController(LastStepVC, animated: true)
         }

@@ -17,7 +17,7 @@ class APForgetLastStepViewController: APForgetViewController {
     
     let forgetLastPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请设置密码(6-16位字母、数字或下划线)"
         return view
     }()

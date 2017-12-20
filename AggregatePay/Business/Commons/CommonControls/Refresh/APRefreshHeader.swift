@@ -39,7 +39,8 @@ class APRefreshHeader: MJRefreshStateHeader {
     
     lazy var AP_imageView: UIImageView = {
         let view = UIImageView.init(image: UIImage.init(named: "AP_Loading"))
-        view.size = CGSize.init(width: (view.image?.size.width)!*AP_RefreshConfig.headerImageScale, height: view.size.height*AP_RefreshConfig.headerImageScale)
+        view.size = CGSize.init(width: 18, height: 18)
+            //CGSize.init(width: (view.image?.size.width)!*AP_RefreshConfig.headerImageScale, height: view.size.height*AP_RefreshConfig.headerImageScale)
         view.backgroundColor = UIColor.clear
         return view
     }()
@@ -51,26 +52,33 @@ class APRefreshHeader: MJRefreshStateHeader {
         get{
             super.stateLabel.font = UIFont.systemFont(ofSize: 12)
             super.stateLabel.textColor = UIColor.init(hex6: AP_RefreshConfig.titleColor)
+            super.stateLabel.text = "下拉可以刷新"
             return super.stateLabel
         }
     }
     
     override func prepare() {
         super.prepare()
-        mj_h = AP_RefreshConfig.headerHeight
-        
-        lastUpdatedTimeLabel.isHidden = true
-        addSubview(AP_imageView)
-        
         
         setTitle("下拉可以刷新", for: .idle)
         setTitle("松开立即刷新", for: .pulling)
         setTitle("加载中.....", for: .refreshing)
+        
+        mj_h = AP_RefreshConfig.headerHeight
+        
+        lastUpdatedTimeLabel.isHidden = true
+        addSubview(AP_imageView)
+        AP_imageView.snp.makeConstraints { (make) in
+            make.centerY.equalTo(snp.centerY).offset(0)
+            make.centerX.equalTo(snp.centerX).offset(-stateLabel.requiredWidth/2.0-7-(AP_imageView.image?.size.width)!/2.0)
+        }
+        print(stateLabel.requiredWidth)
     }
     
     override func placeSubviews() {
         super.placeSubviews()
-        AP_imageView.center = CGPoint.init(x: (K_Width - stateLabel.mj_textWith() - (AP_imageView.width))/2.0 - 7, y: mj_h/2.0)
+//        AP_imageView.center = CGPoint.init(x: (K_Width - stateLabel.requiredWidth - (AP_imageView.width))/2.0 - 7, y: mj_h/2.0)
+//        print(AP_imageView.center)
     }
     
     override func scrollViewContentOffsetDidChange(_ change: [AnyHashable : Any]!) {
