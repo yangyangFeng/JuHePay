@@ -10,6 +10,13 @@ import UIKit
 
 //MARK:  APVersionUpgradeController
 
+extension APVersionUpgradeController {
+    
+    static func show(version: String, text: String) {
+        APVersionUpgradeController().show(version: version, text: text)
+    }
+}
+
 class APVersionUpgradeController: UIViewController {
     
     lazy var versionUpgradeView: APVersionUpgradeView = {

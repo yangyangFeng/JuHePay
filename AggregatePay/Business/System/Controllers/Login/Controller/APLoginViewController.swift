@@ -164,29 +164,11 @@ class APLoginViewController: APSystemBaseViewController {
         }
         
         loginSubmitCell.buttonBlock = { (key, value) in
-            //判断手机号的输入格式
-            if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(weakSelf?.loginRequest.mobile) {
-                weakSelf?.view.makeToast("手机号输入格式不正确")
-                return
+            let isEvaluate: Bool = (weakSelf?.evaluate())!
+            if isEvaluate {
+                weakSelf?.startLoginHttpRequest()
+                weakSelf?.dismiss(animated: true, completion: nil)
             }
-            //判断是否需要记住密码(利用UserDefaultCache进行缓存)
-            if (weakSelf?.loginMemoryCell.button.isSelected)! {
-                let mobile = weakSelf?.loginRequest.mobile
-                let password = weakSelf?.loginRequest.password
-                APUserDefaultCache.ap_set(value: mobile!, key: .mobile)
-                APUserDefaultCache.ap_set(value: password!, key: .password)
-            }
-            else {
-                APUserDefaultCache.ap_set(value: "", key: .mobile)
-                APUserDefaultCache.ap_set(value: "", key: .password)
-            }
-            APLoginHttpTool.post(paramReqeust: (weakSelf?.loginRequest)!, success: { (result) in
-                
-            }, faile: { (error) in
-                
-            })
-            
-            weakSelf?.dismiss(animated: true, completion: nil)
         }
         
         loginToolView.gotoForgetBlock = {(param) in
@@ -216,6 +198,41 @@ class APLoginViewController: APSystemBaseViewController {
                 weakSelf?.loginSubmitCell.isEnabled = false
             }
         }
+    }
+    
+    
+    /**
+     * 输入验证
+     */
+    private func evaluate() -> Bool {
+        //判断手机号的输入格式
+        let mobile: String = self.loginRequest.mobile
+        if !mobile.evaluate(regx: .mobile) {
+            self.view.makeToast("手机号输入格式不正确")
+            return false
+        }
+        return true
+    }
+    
+    /**
+     * 开始登录网络请求
+     */
+    private func startLoginHttpRequest() {
+        APLoginHttpTool.post(paramReqeust: self.loginRequest, success: { (result) in
+            //判断是否需要记住密码(利用UserDefaultCache进行缓存)
+            if  self.loginMemoryCell.button.isSelected {
+                let mobile = self.loginRequest.mobile
+                let password = self.loginRequest.password
+                APUserDefaultCache.ap_set(value: mobile, key: .mobile)
+                APUserDefaultCache.ap_set(value: password, key: .password)
+            }
+            else {
+                APUserDefaultCache.ap_set(value: "", key: .mobile)
+                APUserDefaultCache.ap_set(value: "", key: .password)
+            }
+        }, faile: { (error) in
+            
+        })
     }
    
 }
