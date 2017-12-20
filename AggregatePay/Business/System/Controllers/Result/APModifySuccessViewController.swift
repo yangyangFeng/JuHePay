@@ -10,14 +10,7 @@ import UIKit
 
 typealias APModifySuccessBlock = () -> Void
 
-extension APModifySuccessViewController {
-    
-    static func show(block: @escaping APModifySuccessBlock) {
-        APModifySuccessViewController().show(block: block)
-    }
-}
-
-class APModifySuccessViewController: UIViewController {
+class APModifySuccessViewController: APBaseViewController {
     
     var strongSelf: APModifySuccessViewController?
     var modifySuccessBlock: APModifySuccessBlock?

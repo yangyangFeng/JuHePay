@@ -50,7 +50,7 @@ class APModifyViewController: APBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "修改密码"
+        title = "修改密码"
         view.backgroundColor = UIColor.white
         createSubviews()
         registerCallBacks()
@@ -75,22 +75,17 @@ class APModifyViewController: APBaseViewController {
 
         newPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(oldPasswordCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
-            make.height.equalTo(41)
+            make.left.right.height.equalTo(oldPasswordCell)
         }
 
         repeatPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(newPasswordCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
-            make.height.equalTo(41)
+            make.left.right.height.equalTo(oldPasswordCell)
         }
 
         submitCell.snp.makeConstraints { (make) in
             make.top.equalTo(repeatPasswordCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+            make.left.right.equalTo(oldPasswordCell)
             make.height.equalTo(41)
         }
     }
@@ -141,29 +136,27 @@ class APModifyViewController: APBaseViewController {
     }
     
     private func evaluate() -> Bool {
-        
-        let oldPassword = self.modiryRequest.oldPassword
-        let newPassword = self.modiryRequest.newPassword
-        let repeatPassword = self.modiryRequest.repeatPassword
-        
-        if !oldPassword.evaluate(regx: .password) {
-            self.view.makeToast("旧密码输入错误")
+
+        if !modiryRequest.oldPassword.evaluate(regx: .password) {
+            view.makeToast("旧密码输入错误")
             return false
         }
-        if !newPassword.evaluate(regx: .password) {
-            self.view.makeToast("密码格式不正确")
+        if !modiryRequest.newPassword.evaluate(regx: .password) {
+            view.makeToast("密码格式不正确")
             return false
         }
-        if newPassword != repeatPassword{
-            self.view.makeToast("再次输入密码不正确")
+        if modiryRequest.newPassword != self.modiryRequest.repeatPassword{
+            view.makeToast("再次输入密码不正确")
             return false
         }
         return true
     }
     
     private func startModifyHttpRequest() {
-        APModifySuccessViewController.show {
-            self.navigationController?.popToRootViewController(animated: true)
+        weak var weakSelf = self
+        modifySuccessShow {
+            weakSelf?.navigationController?.popToRootViewController(animated: false)
+            weakSelf?.ap_selectTabBar(atIndex: 2)
         }
     }
 

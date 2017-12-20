@@ -10,19 +10,19 @@ import UIKit
 
 class APUserDefaultCache: NSObject {
     
-    enum APKey: String {
-        case session = "session"
+    enum APUserDefaultKey: String {
         case mobile = "mobile"
         case password = "password"
+        case session = "session"
     }
     
-    static func ap_set(value: String, key: APKey) {
+    static func AP_set(value: String, key: APUserDefaultKey) {
         let userDefault = UserDefaults.standard
         userDefault.set(value, forKey: key.rawValue)
         userDefault.synchronize()
     }
     
-    static func ap_get(key: APKey) -> String {
+    static func AP_get(key: APUserDefaultKey) -> String {
         let userDefault = UserDefaults.standard
         guard let value = userDefault.object(forKey: key.rawValue) else {
             return ""
@@ -30,7 +30,7 @@ class APUserDefaultCache: NSObject {
         return value as! String
     }
     
-    static func ap_remove(key: APKey) {
+    static func AP_remove(key: APUserDefaultKey) {
         let userDefault = UserDefaults.standard
         userDefault.removeObject(forKey: key.rawValue)
     }

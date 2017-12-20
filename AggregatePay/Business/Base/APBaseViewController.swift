@@ -27,7 +27,7 @@ class APBaseViewController: UIViewController {
         initNavigationBar()
         
         initNavigationItem()
-        
+
     }
     
     func initNavigationItem()
@@ -77,6 +77,12 @@ class APBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func ap_selectTabBar(atIndex: Int) {
+
+        let app: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        app.tabBarController.selectedIndex = atIndex
+    }
+    
     /// 设置当前控制器状态栏style
     ///
     /// - Parameter style:
@@ -111,6 +117,5 @@ class APBaseViewController: UIViewController {
     func ap_setNavigationBarHidden(_ hidden : Bool){
         self.vhl_setNavBarHidden(hidden)
     }
-    
-    
+
 }

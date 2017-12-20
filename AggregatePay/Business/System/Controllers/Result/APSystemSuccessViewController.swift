@@ -8,7 +8,10 @@
 
 import UIKit
 
-class APSystemResultViewController: APBaseViewController {
+typealias APSystemSuccessBlock = () -> Void
+
+
+class APSystemSuccessViewController: APBaseViewController {
 
     lazy var resultImageView: UIImageView = {
         let view = UIImageView()
@@ -22,9 +25,14 @@ class APSystemResultViewController: APBaseViewController {
         return view
     }()
     
+    var systemBlock: APSystemSuccessBlock?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        vhl_setNavBarBackgroundAlpha(0.0)
+        vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
+        edgesForExtendedLayout =  UIRectEdge.top
+        view.backgroundColor = UIColor.white
         view.addSubview(resultImageView)
         view.addSubview(submitCell)
         
@@ -41,6 +49,16 @@ class APSystemResultViewController: APBaseViewController {
             make.right.equalTo(view.snp.right).offset(-30)
             make.height.equalTo(41)
         }
+        
+        weak var weakSelf = self
+        submitCell.buttonBlock = {(key, value) in
+            weakSelf?.systemBlock!()
+        }
+    }
+    
+    func show(image: String ,block: @escaping APSystemSuccessBlock) {
+        resultImageView.theme_image = [image]
+        systemBlock = block
     }
 
 }

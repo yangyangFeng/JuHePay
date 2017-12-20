@@ -71,12 +71,12 @@ class APRegisterViewController: APSystemBaseViewController {
     //MARK: ------------- 生命周期
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.accountCell.sendSmsCodeButton.isCounting = false
+        accountCell.sendSmsCodeButton.isCounting = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "商户注册"
+        title = "商户注册"
         createSubviews()
         registerCallBacks()
         registerObserve()
@@ -93,44 +93,35 @@ class APRegisterViewController: APSystemBaseViewController {
         
         accountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
-            make.left.equalTo(view.snp.left).offset(leftOffset )
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.height.equalTo(44)
         }
         
         smsCodeCell.snp.makeConstraints { (make) in
             make.top.equalTo(accountCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.right.height.equalTo(accountCell)
         }
         
         passwordCell.snp.makeConstraints { (make) in
             make.top.equalTo(smsCodeCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.right.height.equalTo(accountCell)
         }
         
         inviteCodeCell.snp.makeConstraints { (make) in
             make.top.equalTo(passwordCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.right.height.equalTo(accountCell)
         }
         
         agreedCell.snp.makeConstraints { (make) in
             make.top.equalTo(inviteCodeCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.right.height.equalTo(accountCell)
         }
         
         submitCell.snp.makeConstraints { (make) in
             make.top.equalTo(agreedCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(subimtHeight)
+            make.left.right.equalTo(agreedCell)
+            make.height.equalTo(41)
         }
     }
     
@@ -160,7 +151,7 @@ class APRegisterViewController: APSystemBaseViewController {
         }
         
         accountCell.sendSmsCodeBlock = { (key, value) in
-            weakSelf?.accountCell.sendSmsCodeButton.isCounting = true
+            weakSelf?.startSendSmsCodeHttpRequest()
         }
         
         submitCell.buttonBlock = { (key, value) in
@@ -199,20 +190,28 @@ class APRegisterViewController: APSystemBaseViewController {
     
     private func evaluate() -> Bool {
 
-        if !self.registerRequest.mobile.evaluate(regx: .mobile) {
-            self.view.makeToast("手机号输入格式不正确")
+        if !registerRequest.mobile.evaluate(regx: .mobile) {
+            view.makeToast("手机号输入格式不正确")
             return false
         }
         
-        if !self.registerRequest.password.evaluate(regx: .password) {
-            self.view.makeToast("请输入6至16位密码")
+        if !registerRequest.password.evaluate(regx: .password) {
+            view.makeToast("请输入6至16位密码")
             return false
         }
+        
         return true
     }
     
+    private func startSendSmsCodeHttpRequest() {
+        accountCell.sendSmsCodeButton.isCounting = true
+    }
+    
     private func startRegisterHttpRequest() {
-        self.navigationController?.pushViewController(APRegisterSuccessViewController())
+        weak var weakSelf = self
+        registerSuccessShow {
+            weakSelf?.navigationController?.popToRootViewController(animated: true)
+        }
     }
 
   
