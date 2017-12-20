@@ -109,6 +109,7 @@
 		7476684D1FE9102800715E72 /* APSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476684A1FE9102700715E72 /* APSegmentControl.swift */; };
 		747668651FE9213700715E72 /* APEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747668641FE9213700715E72 /* APEmptyView.swift */; };
 		7476686A1FE9414000715E72 /* APRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 747668691FE9414000715E72 /* APRefreshHeader.m */; };
+		7476686C1FE9F78E00715E72 /* APLoadingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */; };
 		7487E0F71FDFB9AE000E3EBE /* APMineStaticListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */; };
 		7487E0F91FDFBBDC000E3EBE /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
 		7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */; };
@@ -280,6 +281,7 @@
 		747668641FE9213700715E72 /* APEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEmptyView.swift; sourceTree = "<group>"; };
 		747668681FE9414000715E72 /* APRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRefreshHeader.h; sourceTree = "<group>"; };
 		747668691FE9414000715E72 /* APRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRefreshHeader.m; sourceTree = "<group>"; };
+		7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoadingUtils.swift; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 				747668481FE9102700715E72 /* APArrowButton.swift */,
 				747668491FE9102700715E72 /* APCommonProtocol.swift */,
 				7476684A1FE9102700715E72 /* APSegmentControl.swift */,
+				7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */,
 			);
 			path = CommonControls;
 			sourceTree = "<group>";
@@ -1785,6 +1788,7 @@
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */,
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
+				7476686C1FE9F78E00715E72 /* APLoadingUtils.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				7487E17F1FDFE131000E3EBE /* UIImageViewExtensions.swift in Sources */,
 				238D0E241FE0C6B90024D23F /* APAuthBaseViewController.swift in Sources */,
