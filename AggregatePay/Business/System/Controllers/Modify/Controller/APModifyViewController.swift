@@ -8,27 +8,35 @@
 
 import UIKit
 
-class APModifyViewController: APSystemBaseViewController {
+class APModifyViewController: APBaseViewController {
+    
+    let leftOffset: Float = 30
+    let rightOffset: Float = -30
+    let cellHeight: Float = 44
+    let subimtHeight: Float = 41
+    
     
     //MARK: ------------- 全局属性
     
     lazy var oldPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请输入旧密码"
+        view.button.isHidden = true
         return view
     }()
     
     lazy var oncePasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请输入新密码(6-16位字母、数字或下划线)"
+        view.button.isHidden = true
         return view
     }()
     
     lazy var twicePasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请再次输入新密码"
         return view
     }()
@@ -43,27 +51,20 @@ class APModifyViewController: APSystemBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        modifySystemConfig()
-        modifyCreateSubViews()
-        modifyLayoutSubViews()
-        modifyTargetCallBacks()
-        modifyRegisterObserve()
+        self.title = "修改密码"
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
     }
    
     //MARK: ------------- 私有方法
     
-    private func modifySystemConfig() {
-        self.title = "修改密码"
-    }
-    
-    private func modifyCreateSubViews() {
+    private func  createSubviews() {
         view.addSubview(oldPasswordCell)
         view.addSubview(oncePasswordCell)
         view.addSubview(twicePasswordCell)
         view.addSubview(submitCell)
-    }
-    
-    private func modifyLayoutSubViews() {
+        
         oldPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
             make.left.equalTo(view.snp.left).offset(leftOffset)
@@ -91,10 +92,9 @@ class APModifyViewController: APSystemBaseViewController {
             make.right.equalTo(view.snp.right).offset(rightOffset)
             make.height.equalTo(subimtHeight)
         }
-    }
-    
-    private func modifyTargetCallBacks() {
         
+    }
+    private func registerCallBacks() {
         weak var weakSelf = self
         
         oldPasswordCell.textBlock = { (key, value) in
@@ -113,9 +113,9 @@ class APModifyViewController: APSystemBaseViewController {
         }
     }
     
-    private func modifyRegisterObserve() {
+    private func registerObserve() {
         
     }
-
+    
 
 }

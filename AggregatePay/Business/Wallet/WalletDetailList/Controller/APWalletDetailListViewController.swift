@@ -13,6 +13,18 @@ import UIKit
  */
 class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        view.delegate = self;
+        view.dataSource = self;
+        view.separatorStyle = .none
+        view.tableFooterView = UIView()
+        view.theme_backgroundColor = ["#fafafa"]
+        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包明细"
@@ -47,18 +59,6 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
         navigationController?.pushViewController(APProfitsDetailViewController(), animated: true)
     }
     
-    //MARK: ---- 懒加载
-    
-    lazy var tableView: UITableView = {
-        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
-        view.delegate = self;
-        view.dataSource = self;
-        view.separatorStyle = .none
-        view.tableFooterView = UIView()
-        view.theme_backgroundColor = ["#fafafa"]
-        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
-        return view
-    }()
     
 
 }
