@@ -510,6 +510,24 @@ public extension UIView {
 		anchorCenterXToSuperview()
 		anchorCenterYToSuperview()
 	}
+    public func AP_addRotatingAnimation(_ layer : CALayer)
+    {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.duration = 0.5
+        animation.fromValue = 0
+        animation.toValue = Double.pi * Double(2.0)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.beginTime = CACurrentMediaTime()
+        animation.repeatCount = HUGE
+        animation.isRemovedOnCompletion = false
+        layer.speed = 1.0
+        layer.add(animation, forKey: "transformZ")
+    }
+    
+    public func AP_removeRotatingAnimation()
+    {
+        layer.removeAnimation(forKey: "transformZ")
+    }
 	
 }
 #endif
