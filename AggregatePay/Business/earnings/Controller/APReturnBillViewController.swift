@@ -7,12 +7,13 @@
 //
 
 import UIKit
-//import APRefreshHeader
+
 class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProtocol {
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "账单"
         
         initSubviews()
@@ -31,6 +32,7 @@ class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProt
             make.left.right.equalTo(0)
             make.height.equalTo(104)
         }
+
         let listView = APReturnBillListView()
         listView.tableView.mj_header = APRefreshHeader.init(refreshingBlock: {
             listView.tableView.mj_header.endRefreshing()
@@ -47,4 +49,5 @@ class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProt
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }

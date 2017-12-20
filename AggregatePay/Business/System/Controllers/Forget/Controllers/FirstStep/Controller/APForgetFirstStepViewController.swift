@@ -39,6 +39,11 @@ class APForgetFirstStepViewController: APForgetViewController {
 
     //MARK: ------------- 生命周期
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.forgetFirstStepAccountCell.sendSmsCodeButton.isCounting = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +99,16 @@ class APForgetFirstStepViewController: APForgetViewController {
             APForgetViewController.forgetRequest.smsCode = value
         }
         
+        forgetFirstStepAccountCell.sendSmsCodeBlock = { (key, value) in
+            weakSelf?.forgetFirstStepAccountCell.sendSmsCodeButton.isCounting = true
+        }
+        
         forgetFirstStepSubmitCell.buttonBlock = { (key, value) in
+            //验证手机号是否合法
+            if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(APForgetViewController.forgetRequest.mobile) {
+                weakSelf?.view.makeToast("手机号输入错误，请重新填写")
+                return
+            }
             let LastStepVC: APForgetViewController = APForgetLastStepViewController()
             weakSelf?.navigationController?.pushViewController(LastStepVC, animated: true)
         }

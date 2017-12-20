@@ -10,7 +10,7 @@ import UIKit
 
 class APSubmitFormsCell: APBaseFormsCell {
     
-   lazy var button: APRequestButton = {
+    lazy var button: APRequestButton = {
         let view = APRequestButton()
         view.isEnabled = true
         view.layer.cornerRadius = 44/2
@@ -40,6 +40,7 @@ class APSubmitFormsCell: APBaseFormsCell {
 
     override init() {
         super.init()
+        bottomLine.backgroundColor = UIColor.clear
         self.addSubview(button)
         button.snp.makeConstraints { (maker) in
             maker.left.right.top.bottom.equalTo(self)

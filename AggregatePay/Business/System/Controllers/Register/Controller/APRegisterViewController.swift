@@ -22,7 +22,6 @@ import UIKit
 class APRegisterViewController: APSystemBaseViewController {
     
     //MARK: ------------- 全局属性
-    
     let registerRequest: APRegisterRequest = APRegisterRequest()
     
     lazy var registerAccountCell: APSendSMSCodeFormsCell = {
@@ -44,7 +43,7 @@ class APRegisterViewController: APSystemBaseViewController {
     
     lazy var registerPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,20}$"
+        view.inputRegx = "^[A-Za-z0-9-_]{0,16}$"
         view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
         return view
     }()
@@ -70,7 +69,12 @@ class APRegisterViewController: APSystemBaseViewController {
     }()
     
     //MARK: ------------- 生命周期
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.registerAccountCell.sendSmsCodeButton.isCounting = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
@@ -85,7 +89,6 @@ class APRegisterViewController: APSystemBaseViewController {
     
     private func registerSystemConfig() {
         self.title = "商户注册"
-        
     }
     
     private func registerCreateSubViews() {
@@ -168,8 +171,22 @@ class APRegisterViewController: APSystemBaseViewController {
             weakSelf?.registerRequest.isAgreed = button.isSelected
         }
         
+        registerAccountCell.sendSmsCodeBlock = { (key, value) in
+            weakSelf?.registerAccountCell.sendSmsCodeButton.isCounting = true
+        }
+        
         registerSubmitCell.buttonBlock = { (key, value) in
-            
+            //验证手机号是否合法
+            if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(weakSelf?.registerRequest.mobile) {
+                weakSelf?.view.makeToast("手机号输入格式不正确")
+                return
+            }
+            //验证手机号是否合法
+            if !CPCheckAuthInputInfoTool.evaluatePassword(weakSelf?.registerRequest.password) {
+                weakSelf?.view.makeToast("请输入6至16位密码")
+                return
+            }
+            weakSelf?.navigationController?.pushViewController(APRegisterSuccessViewController())
         }
     }
     
