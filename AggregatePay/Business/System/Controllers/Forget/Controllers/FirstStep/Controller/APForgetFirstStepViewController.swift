@@ -17,7 +17,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     var forgetFirstStepAccountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
-        view.inputRegx = "^1[0-9]{0,10}$"
+        view.inputRegx = .mobile
         view.sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
         view.textField.placeholder = "请输入注册手机号"
         return view
@@ -25,7 +25,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     var forgetFirstStepSmsCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[0-9]{0,4}$"
+        view.inputRegx = .smsCode
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入短信验证码"
         return view

@@ -28,11 +28,11 @@ class APProfitsDetailViewController: APBillDetailViewController {
         billDetailCell.contentLabel.text = data
     }
     
-    var titles : NSArray = {
+    lazy var titles : NSArray = {
         var arr : NSArray = NSArray(array: ["交易时间", "交易金额", "交易流水号", "交易类型"])
         return arr
     }()
-    var datas : NSArray = {
+    lazy var datas : NSArray = {
         var arr : NSArray = NSArray(array: ["2017/11/03  11:12:22", "6.20", "108523", "下级分润"])
         return arr
     }()

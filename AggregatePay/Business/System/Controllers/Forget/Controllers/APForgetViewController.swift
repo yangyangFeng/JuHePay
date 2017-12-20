@@ -16,6 +16,7 @@ class APForgetViewController: APSystemBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "找回密码"
+
         prompt.theme_textColor = ["#d09326"]
         prompt.theme_backgroundColor = ["#fff4d9"]
         prompt.font = UIFont.systemFont(ofSize: 10)

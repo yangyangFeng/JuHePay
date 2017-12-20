@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APSystemResultViewController: APSystemBaseViewController {
+class APSystemResultViewController: APBaseViewController {
 
     lazy var resultImageView: UIImageView = {
         let view = UIImageView()
@@ -37,9 +37,9 @@ class APSystemResultViewController: APSystemBaseViewController {
         
         submitCell.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.snp.bottom).offset(-100)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(subimtHeight)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.height.equalTo(41)
         }
     }
 

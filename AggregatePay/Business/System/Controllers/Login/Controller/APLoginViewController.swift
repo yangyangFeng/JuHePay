@@ -37,7 +37,7 @@ class APLoginViewController: APSystemBaseViewController {
     
     lazy var loginAccountCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^1[0-9]{0,10}$"
+        view.inputRegx = .mobile
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入11位手机号码"
         return view
@@ -45,7 +45,7 @@ class APLoginViewController: APSystemBaseViewController {
     
     lazy var loginPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,16}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请输入密码"
         return view
     }()
@@ -62,11 +62,20 @@ class APLoginViewController: APSystemBaseViewController {
         return view
     }()
     
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
+                                   style: UIBarButtonItemStyle.done,
+                                   target: self,
+                                   action: #selector(dismissGoHome))
+        return view
+    }()
+    
     //MARK: ------------- 生命周期
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商户登录"
+        navigationItem.leftBarButtonItem = leftBarButtonItem
         createSubviews()
         registerCallBacks()
         registerObserve()
@@ -81,6 +90,12 @@ class APLoginViewController: APSystemBaseViewController {
             self.loginRequest.mobile = account
             self.loginRequest.password = password
         }
+    }
+    
+    //MARK: -------------- 按钮触发
+    
+    @objc func dismissGoHome() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: ------------- 私有方法

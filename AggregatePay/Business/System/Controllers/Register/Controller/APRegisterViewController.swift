@@ -26,7 +26,7 @@ class APRegisterViewController: APSystemBaseViewController {
     
     lazy var registerAccountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
-        view.inputRegx = "^1[0-9]{0,10}$"
+        view.inputRegx = .mobile
         view.sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入11位手机号码"
@@ -35,7 +35,7 @@ class APRegisterViewController: APSystemBaseViewController {
     
     lazy var registerSmsCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[0-9]{0,4}$"
+        view.inputRegx = .smsCode
         view.textField.keyboardType = UIKeyboardType.numberPad
         view.textField.placeholder = "请输入短信验证码"
         return view
@@ -43,14 +43,14 @@ class APRegisterViewController: APSystemBaseViewController {
     
     lazy var registerPasswordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,16}$"
+        view.inputRegx = .password
         view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
         return view
     }()
     
     lazy var registerInviteCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
-        view.inputRegx = "^[A-Za-z0-9-_]{0,6}$"
+        view.inputRegx = .inviteCode
         view.textField.keyboardType = UIKeyboardType.asciiCapable
         view.textField.placeholder = "请输入邀请码"
         return view
