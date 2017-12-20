@@ -67,7 +67,7 @@ class APCollectionDisplayView: APDisplayView {
         addSubview(displayNum)
         
         displayWayIcon.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.snp.left).offset(10)
+            make.left.equalTo(self.snp.left).offset(20)
             make.top.equalTo(self.snp.top).offset(10)
             make.height.equalTo(self.snp.height).multipliedBy(0.25)
             make.width.equalTo(self.snp.height).multipliedBy(0.25)

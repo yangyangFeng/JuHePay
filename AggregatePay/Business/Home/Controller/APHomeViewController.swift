@@ -21,10 +21,16 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
         return view
     }()
     
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = APBarButtonItem.ap_barButtonItem(title: "账单", action: #selector(dismissGoHome))
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "收款"
-        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
         vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
 
         view.addSubview(homeMenuView)
@@ -44,14 +50,18 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
         }
     }
     
+    //MARK: -------------- 按钮触发
+    
+    @objc func dismissGoHome() {
+        
+    }
+    
     //MARK: ------- APKeyboardCompositionViewDelegate
     
     func didKeyboardConfirm(param: Any) {
         let params = param as! NSDictionary
-        let totalAmount: String = params.object(forKey: "totalAmount") as! String
+//        let totalAmount: String = params.object(forKey: "totalAmount") as! String
         let menuModel: APHomeMenuModel = params.object(forKey: "menuModel") as! APHomeMenuModel
-        print(totalAmount)
-        print(menuModel)
         if menuModel.payWay == "0" {
             let placeVC = APCollectionPlaceViewController()
             self.navigationController?.pushViewController(placeVC,
@@ -71,12 +81,10 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        weak var weakSelf = self
         let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        self.present(loginVC, animated: true) {
-            weakSelf?.keyboardCompositionView.isLogin = true
-        }
+        self.present(loginVC, animated: true)
     }
   
 
 }
+

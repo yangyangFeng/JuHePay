@@ -24,7 +24,7 @@ class APLoginViewController: APSystemBaseViewController {
     
     let loginRequest: APLoginRequest = APLoginRequest()
     
-    lazy var loginToolView: APLoginToolView = {
+    lazy var toolView: APLoginToolView = {
         let view = APLoginToolView()
         return view
     }()
@@ -35,7 +35,7 @@ class APLoginViewController: APSystemBaseViewController {
         return view
     }()
     
-    lazy var loginAccountCell: APTextFormsCell = {
+    lazy var accountCell: APTextFormsCell = {
         let view = APTextFormsCell()
         view.inputRegx = .mobile
         view.textField.keyboardType = UIKeyboardType.numberPad
@@ -43,20 +43,20 @@ class APLoginViewController: APSystemBaseViewController {
         return view
     }()
     
-    lazy var loginPasswordCell: APPasswordFormsCell = {
+    lazy var passwordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
         view.inputRegx = .password
         view.textField.placeholder = "请输入密码"
         return view
     }()
     
-    lazy var loginMemoryCell: APSelectBoxFormsCell = {
+    lazy var memoryCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
         view.button.setTitle(_ : " 记住密码", for: .normal)
         return view
     }()
     
-    lazy var loginSubmitCell: APSubmitFormsCell = {
+    lazy var submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
         view.button.setTitle("登录", for: .normal)
         return view
@@ -81,12 +81,12 @@ class APLoginViewController: APSystemBaseViewController {
         registerObserve()
         
         //获取缓存的数据
-        let account: String = APUserDefaultCache.ap_get(key: .mobile)
-        let password: String = APUserDefaultCache.ap_get(key: .password)
+        let account: String = APUserDefaultCache.AP_get(key: .mobile)
+        let password: String = APUserDefaultCache.AP_get(key: .password)
         if account != "" && password != "" {
-            self.loginMemoryCell.button.isSelected = true
-            self.loginAccountCell.textField.text = account
-            self.loginPasswordCell.textField.text = password
+            self.memoryCell.button.isSelected = true
+            self.accountCell.textField.text = account
+            self.passwordCell.textField.text = password
             self.loginRequest.mobile = account
             self.loginRequest.password = password
         }
@@ -103,11 +103,11 @@ class APLoginViewController: APSystemBaseViewController {
     private func createSubviews() {
         
         view.addSubview(logoImageView)
-        view.addSubview(loginAccountCell)
-        view.addSubview(loginPasswordCell)
-        view.addSubview(loginMemoryCell)
-        view.addSubview(loginSubmitCell)
-        view.addSubview(loginToolView)
+        view.addSubview(accountCell)
+        view.addSubview(passwordCell)
+        view.addSubview(memoryCell)
+        view.addSubview(submitCell)
+        view.addSubview(toolView)
         
         logoImageView.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
@@ -115,38 +115,32 @@ class APLoginViewController: APSystemBaseViewController {
             make.size.equalTo(CGSize(width: 76, height: 76))
         }
         
-        loginAccountCell.snp.makeConstraints { (make) in
+        accountCell.snp.makeConstraints { (make) in
             make.top.equalTo(logoImageView.snp.bottom).offset(40)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.height.equalTo(44)
         }
         
-        loginPasswordCell.snp.makeConstraints { (make) in
-            make.top.equalTo(loginAccountCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+        passwordCell.snp.makeConstraints { (make) in
+            make.top.equalTo(accountCell.snp.bottom)
+            make.left.right.height.equalTo(accountCell)
         }
         
-        loginMemoryCell.snp.makeConstraints { (make) in
-            make.top.equalTo(loginPasswordCell.snp.bottom)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+        memoryCell.snp.makeConstraints { (make) in
+            make.top.equalTo(passwordCell.snp.bottom)
+            make.left.right.height.equalTo(accountCell)
         }
         
-        loginSubmitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(loginMemoryCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(subimtHeight)
+        submitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(memoryCell.snp.bottom).offset(20)
+            make.left.right.equalTo(accountCell)
+            make.height.equalTo(41)
         }
         
-        loginToolView.snp.makeConstraints { (make) in
-            make.top.equalTo(loginSubmitCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
+        toolView.snp.makeConstraints { (make) in
+            make.top.equalTo(submitCell.snp.bottom).offset(20)
+            make.left.right.equalTo(submitCell)
             make.height.equalTo(25)
         }
     }
@@ -155,15 +149,15 @@ class APLoginViewController: APSystemBaseViewController {
         
         weak var weakSelf = self
         
-        loginAccountCell.textBlock = { (key, value) in
+        accountCell.textBlock = { (key, value) in
             weakSelf?.loginRequest.mobile = value
         }
         
-        loginPasswordCell.textBlock = { (key, value) in
+        passwordCell.textBlock = { (key, value) in
             weakSelf?.loginRequest.password = value
         }
         
-        loginSubmitCell.buttonBlock = { (key, value) in
+        submitCell.buttonBlock = { (key, value) in
             let isEvaluate: Bool = (weakSelf?.evaluate())!
             if isEvaluate {
                 weakSelf?.startLoginHttpRequest()
@@ -171,12 +165,12 @@ class APLoginViewController: APSystemBaseViewController {
             }
         }
         
-        loginToolView.gotoForgetBlock = {(param) in
+        toolView.gotoForgetBlock = {(param) in
             let registerVC: APForgetFirstStepViewController = APForgetFirstStepViewController()
             weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
         
-        loginToolView.gotoRegisterBlock = {(param) in
+        toolView.gotoRegisterBlock = {(param) in
             let registerVC: APRegisterViewController = APRegisterViewController()
             weakSelf?.navigationController?.pushViewController(registerVC, animated: true)
         }
@@ -192,20 +186,15 @@ class APLoginViewController: APSystemBaseViewController {
             let loginModel = object as! APLoginRequest
             if  loginModel.mobile.characters.count >= 11 &&
                 loginModel.password.characters.count >= 6{
-                weakSelf?.loginSubmitCell.isEnabled = true
+                weakSelf?.submitCell.isEnabled = true
             }
             else {
-                weakSelf?.loginSubmitCell.isEnabled = false
+                weakSelf?.submitCell.isEnabled = false
             }
         }
     }
     
-    
-    /**
-     * 输入验证
-     */
     private func evaluate() -> Bool {
-        //判断手机号的输入格式
         let mobile: String = self.loginRequest.mobile
         if !mobile.evaluate(regx: .mobile) {
             self.view.makeToast("手机号输入格式不正确")
@@ -214,25 +203,22 @@ class APLoginViewController: APSystemBaseViewController {
         return true
     }
     
-    /**
-     * 开始登录网络请求
-     */
     private func startLoginHttpRequest() {
-        APLoginHttpTool.post(paramReqeust: self.loginRequest, success: { (result) in
-            //判断是否需要记住密码(利用UserDefaultCache进行缓存)
-            if  self.loginMemoryCell.button.isSelected {
-                let mobile = self.loginRequest.mobile
-                let password = self.loginRequest.password
-                APUserDefaultCache.ap_set(value: mobile, key: .mobile)
-                APUserDefaultCache.ap_set(value: password, key: .password)
-            }
-            else {
-                APUserDefaultCache.ap_set(value: "", key: .mobile)
-                APUserDefaultCache.ap_set(value: "", key: .password)
-            }
-        }, faile: { (error) in
-            
-        })
+        startCacheData()
+    }
+    
+    private func startCacheData() {
+        //判断是否需要记住密码(利用UserDefaultCache进行缓存)
+        if  memoryCell.button.isSelected {
+            let mobile = loginRequest.mobile
+            let password = loginRequest.password
+            APUserDefaultCache.AP_set(value: mobile, key: .mobile)
+            APUserDefaultCache.AP_set(value: password, key: .password)
+        }
+        else {
+            APUserDefaultCache.AP_set(value: "", key: .mobile)
+            APUserDefaultCache.AP_set(value: "", key: .password)
+        }
     }
    
 }

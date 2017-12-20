@@ -16,6 +16,8 @@ import Toast_Swift
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
+    
+    let tabBarController = APBaseTabBarViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -40,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func createTabBarController() -> UITabBarController {
         
         ThemeManager.setTheme(index: 0)
-        let tabBarController = APBaseTabBarViewController()
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
         tabBarController.tabBar.isTranslucent = false
@@ -105,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBarController.selectedIndex = 2
         return tabBarController
     }
+    
     
     func attributeIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true
