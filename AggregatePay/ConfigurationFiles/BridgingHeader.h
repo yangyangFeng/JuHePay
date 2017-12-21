@@ -13,5 +13,6 @@
 #import "CPSecurityManager.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
+#import <WechatOpenSDK/WXApi.h>
 
 #endif /* BridgingHeader_h */

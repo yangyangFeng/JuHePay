@@ -35,6 +35,7 @@ PODS:
   - SwiftTheme (0.4.1)
   - Toast-Swift (3.0.1)
   - UMengAnalytics-NO-IDFA (4.2.5)
+  - WechatOpenSDK (1.8.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - SwiftTheme (~> 0.4.1)
   - Toast-Swift (~> 3.0.1)
   - UMengAnalytics-NO-IDFA (~> 4.2.5)
+  - WechatOpenSDK
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -80,7 +82,8 @@ SPEC CHECKSUMS:
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+  WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: 889a6482f3c1fa49022cd34ef2c0e22666dcb8bc
+PODFILE CHECKSUM: 2fe02dc232d4177a14310a48fb6fdb3d5f61776c
 
 COCOAPODS: 1.2.1

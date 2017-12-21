@@ -12,11 +12,11 @@ import IQKeyboardManagerSwift
 import ESTabBarController_swift
 import SwiftTheme
 import Toast_Swift
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
-    
     let tabBarController = APBaseTabBarViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         /**********************Toast配置*************************/
         ToastManager.shared.duration = 1.5
         ToastManager.shared.position = .center
+        
+        /**********************微信分享配置*************************/
+        APSharedTools.sharedInstance.register(key: "")
         
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -123,6 +126,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         IQKeyboardManager.sharedManager().toolbarManageBehaviour = .byPosition
     }
 
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        return APSharedTools.sharedInstance.openURl(url: url)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return APSharedTools.sharedInstance.openURl(url: url)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
