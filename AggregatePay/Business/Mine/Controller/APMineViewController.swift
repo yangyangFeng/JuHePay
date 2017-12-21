@@ -25,7 +25,6 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
         }
         let nextC = controllerType.init()
         nextC.title = title
-        
         navigationController?.pushViewController(nextC)
     }
     

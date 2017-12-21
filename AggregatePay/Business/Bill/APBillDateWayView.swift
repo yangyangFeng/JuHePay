@@ -19,14 +19,23 @@ typealias DateOrWayBlock = (_ currentTitle: String,_ index: APBillDateWayViewBtn
 
 class APBillDateWayView: UIView {
 
-    private var startDateLabel = UILabel()
-    private var endDateLabel = UILabel()
-    private var collectionWayLabel = UILabel()
-    private var settleWayLabel = UILabel()
+    var startDateLabel = UILabel()
+    var endDateLabel = UILabel()
+    var collectionWayLabel = UILabel()
+    var settleWayLabel = UILabel()
     var btnClickBlock: DateOrWayBlock?
+    var dealNumLabel = UILabel()
+    var dealAmountLabel = UILabel()
     
+    //MARK:--------点击按钮的回调
     func whenClickBtnBlock(btnBlock: @escaping DateOrWayBlock){
         self.btnClickBlock = btnBlock
+    }
+    
+    //MARK:--------设置 交易笔数 交易金额的 数据的函数
+    func updateDate(dealNum: String,dealAmount: String){
+        self.dealNumLabel.text = dealNum
+        self.dealAmountLabel.text = dealAmount
     }
     
     init() {
@@ -102,7 +111,7 @@ class APBillDateWayView: UIView {
         }
         let wayLabel = UILabel()
         self.collectionWayLabel = wayLabel
-        wayLabel.text = "银联快捷收款"
+        wayLabel.text = "全部"
         wayLabel.textAlignment = NSTextAlignment.center
         wayLabel.adjustsFontSizeToFitWidth = true
         wayLabel.font = UIFont.systemFont(ofSize: 12)
@@ -150,7 +159,7 @@ class APBillDateWayView: UIView {
         }
         let settleLabel = UILabel()
         self.settleWayLabel = settleLabel
-        settleLabel.text = "T+N"
+        settleLabel.text = "全部"
         settleLabel.textAlignment = NSTextAlignment.center
         settleLabel.adjustsFontSizeToFitWidth = true
         settleLabel.font = UIFont.systemFont(ofSize: 12)
@@ -207,7 +216,9 @@ class APBillDateWayView: UIView {
         }
         let factDateStartLabel = UILabel()
         self.startDateLabel = factDateStartLabel
-        factDateStartLabel.text = "2017/12/19"
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy/MM/dd"
+        factDateStartLabel.text = dateformatter.string(from: Date())
         factDateStartLabel.textAlignment = NSTextAlignment.center
         factDateStartLabel.adjustsFontSizeToFitWidth = true
         factDateStartLabel.font = UIFont.systemFont(ofSize: 14)
@@ -255,7 +266,7 @@ class APBillDateWayView: UIView {
         }
         let factDateEndLabel = UILabel()
         self.endDateLabel = factDateEndLabel
-        factDateEndLabel.text = "2017/12/19"
+        factDateEndLabel.text = self.startDateLabel.text
         factDateEndLabel.textAlignment = NSTextAlignment.center
         factDateEndLabel.adjustsFontSizeToFitWidth = true
         factDateEndLabel.font = UIFont.systemFont(ofSize: 14)
@@ -318,6 +329,7 @@ class APBillDateWayView: UIView {
         }
         
         let dealNumLabel = UILabel()
+        self.dealNumLabel = dealNumLabel
         dealNumLabel.text = "45678"
         dealNumLabel.textAlignment = NSTextAlignment.center
         dealNumLabel.font = UIFont.systemFont(ofSize: 14)

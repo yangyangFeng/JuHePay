@@ -29,9 +29,10 @@ class APBillSelectView: UIView {
     func setBtnIndex(index: Int){
         if (index >= 0) && (index <= 3){
             let currentBtn = self.viewWithTag(index+100) as? UIButton
-            self.btnAction(currentBtn!)
-        }else{
-            print("传入的index只能0-3的整数")
+            self.titleAnimate(button: currentBtn!)
+            }else{
+//            print("传入的index只能0-3的整数")
+            fatalError("传入的index只能0-3的整数")
         }
     }
     
@@ -58,8 +59,8 @@ class APBillSelectView: UIView {
             self.addSubview(btn)
             btn.snp.makeConstraints({ (make) in
                 make.top.height.equalTo(self)
-                make.width.equalToSuperview().dividedBy(4)
-                make.left.equalTo(UIScreen.main.bounds.size.width/CGFloat(4)*CGFloat(i))
+                make.width.equalToSuperview().dividedBy(titleArray.count)
+                make.left.equalTo(UIScreen.main.bounds.size.width/CGFloat(titleArray.count)*CGFloat(i))
             })
             
             if i == 0{
@@ -70,14 +71,21 @@ class APBillSelectView: UIView {
                 self.lineView.snp.makeConstraints({ (make) in
                     make.left.bottom.equalToSuperview()
                     make.height.equalTo(2)
-                    make.width.equalToSuperview().dividedBy(4)
+                    make.width.equalToSuperview().dividedBy(titleArray.count)
                 })
             }
         }
     }
     
     @objc func btnAction(_ button: UIButton) {
-        
+        self.titleAnimate(button: button)
+        self.delegate?.clickSelectBtn(index: button.tag - 100)
+        if (self.btnBlock != nil) {
+            self.btnBlock!(button.tag - 100)
+        }
+    }
+    
+    func titleAnimate(button: UIButton) -> Void {
         UIView.animate(withDuration: 0.25) {
             self.previousBtn.setTitleColor(UIColor(hex6: 0x999999), for: .normal)
             button.setTitleColor(UIColor(hex6: 0xc8a556), for: .normal)
@@ -85,14 +93,10 @@ class APBillSelectView: UIView {
                 make.left.equalTo(button)
                 make.bottom.equalToSuperview()
                 make.height.equalTo(2)
-                make.width.equalToSuperview().dividedBy(4)
+                make.width.equalToSuperview().dividedBy(self.titleArray.count)
             }
             self.lineView.layoutIfNeeded()
         }
         self.previousBtn = button
-        self.delegate?.clickSelectBtn(index: button.tag)
-        if (self.btnBlock != nil) {
-            self.btnBlock!(button.tag)
-        }
     }
 }
