@@ -363,6 +363,7 @@
 		7476684A1FE9102700715E72 /* APSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSegmentControl.swift; sourceTree = "<group>"; };
 		747668641FE9213700715E72 /* APEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEmptyView.swift; sourceTree = "<group>"; };
 		7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoadingUtils.swift; sourceTree = "<group>"; };
+		747A1E5B1FEB897100765CA3 /* AggregatePay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AggregatePay.entitlements; sourceTree = "<group>"; };
 		7487E0F61FDFB9AE000E3EBE /* APMineStaticListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListView.swift; sourceTree = "<group>"; };
 		7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineStaticListCell.swift; sourceTree = "<group>"; };
 		7487E1621FDFE129000E3EBE /* UISwitchExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchExtensions.swift; sourceTree = "<group>"; };
@@ -1630,6 +1631,7 @@
 		74C49E6C1FD4FE0100F0501B /* AggregatePay */ = {
 			isa = PBXGroup;
 			children = (
+				747A1E5B1FEB897100765CA3 /* AggregatePay.entitlements */,
 				1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */,
 				74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */,
 				74D5F6491FD7E0EE0065A5F3 /* Business */,
@@ -1929,6 +1931,11 @@
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					74C49E7D1FD4FE0200F0501B = {
 						CreatedOnToolsVersion = 9.0;
@@ -2126,10 +2133,7 @@
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
 				1A479ED41FE284F7005E0912 /* APForgetRequest.swift in Sources */,
 				1A030D8A1FE76C8D007146C1 /* APPayElementToolBarView.swift in Sources */,
-
 				1AAD397E1FEA6C6B00A06226 /* APBarButtonItem.swift in Sources */,
-				7476686A1FE9414000715E72 /* APRefreshHeader.m in Sources */,
-
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
 				1AA1E44D1FE9278D00E3F3A8 /* APLoginHttpTool.swift in Sources */,
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
@@ -2421,6 +2425,7 @@
 			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BYXKWL5C3R;
@@ -2449,6 +2454,7 @@
 			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
