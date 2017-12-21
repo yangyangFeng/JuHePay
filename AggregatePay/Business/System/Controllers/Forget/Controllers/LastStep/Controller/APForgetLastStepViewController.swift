@@ -14,15 +14,14 @@ import UIKit
 class APForgetLastStepViewController: APForgetViewController {
     
     //MARK: ------------- 全局属性
-    
-    let forgetLastPasswordCell: APPasswordFormsCell = {
+    let passwordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
         view.inputRegx = .password
         view.textField.placeholder = "请设置密码(6-16位字母、数字或下划线)"
         return view
     }()
     
-    let forgetLastSubmitCell: APSubmitFormsCell = {
+    let submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
         view.button.setTitle("下一步", for: .normal)
         return view
@@ -32,50 +31,53 @@ class APForgetLastStepViewController: APForgetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //注意：私有方法调用顺序 (系统配置->创建子视图->子视图布局->监听子视图回调->注册通知)
-        forgetLastStepCreateSubViews()
-        forgetLastStepLayoutSubViews()
-        forgetLastStepTargetCallBacks()
-        forgetLastStepRegisterObserve()
         APForgetViewController.forgetRequest.password = ""
+        prompt.text = ""
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
     }
     
     //MARK: ------------- 私有方法
     
-    private func forgetLastStepCreateSubViews() {
-        view.addSubview(forgetLastPasswordCell)
-        view.addSubview(forgetLastSubmitCell)
-    }
-    
-    private func forgetLastStepLayoutSubViews() {
-        forgetLastPasswordCell.snp.makeConstraints { (make) in
+    private func createSubviews() {
+        
+        view.addSubview(passwordCell)
+        view.addSubview(submitCell)
+        
+        passwordCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(40)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(cellHeight)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.height.equalTo(44)
         }
         
-        forgetLastSubmitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(forgetLastPasswordCell.snp.bottom).offset(40)
-            make.left.equalTo(view.snp.left).offset(leftOffset)
-            make.right.equalTo(view.snp.right).offset(rightOffset)
-            make.height.equalTo(subimtHeight)
+        submitCell.snp.makeConstraints { (make) in
+            make.top.equalTo(passwordCell.snp.bottom).offset(40)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view.snp.right).offset(-30)
+            make.height.equalTo(41)
         }
     }
     
-    private func forgetLastStepTargetCallBacks() {
-        forgetLastPasswordCell.textBlock = { (key, value) in
+    private func registerCallBacks() {
+        
+        weak var weakSelf = self
+        
+        passwordCell.textBlock = { (key, value) in
             APForgetViewController.forgetRequest.password = value
         }
         
-        forgetLastSubmitCell.buttonBlock = { (key, value) in
-            
+        submitCell.buttonBlock = { (key, value) in
+            let isEvaluate: Bool = (weakSelf?.evaluate())!
+            if isEvaluate {
+                weakSelf?.startForgetHttpRequest()
+            }
         }
     }
     
-    private func forgetLastStepRegisterObserve() {
-        
+    private func registerObserve() {
+       
         weak var weakSelf = self
         
         self.kvoController.observe(APForgetViewController.forgetRequest,
@@ -88,13 +90,30 @@ class APForgetLastStepViewController: APForgetViewController {
             if  forgetModel.mobile.characters.count >= 11 &&
                 forgetModel.password.characters.count >= 6 &&
                 forgetModel.smsCode.characters.count >= 4 {
-                weakSelf?.forgetLastSubmitCell.isEnabled = true
+                weakSelf?.submitCell.isEnabled = true
             }
             else {
-                weakSelf?.forgetLastSubmitCell.isEnabled = false
+                weakSelf?.submitCell.isEnabled = false
             }
         }
     }
+    
+    private func evaluate() -> Bool {
+       
+        if !APForgetViewController.forgetRequest.password.evaluate(regx: .password) {
+            self.view.makeToast("密码格式错误")
+            return false
+        }
+        return true
+    }
+    
+    private func startForgetHttpRequest() {
+       
+        forgetSuccessShow {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+   
 
 }
 
