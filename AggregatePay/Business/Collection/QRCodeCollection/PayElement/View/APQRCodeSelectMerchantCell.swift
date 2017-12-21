@@ -29,12 +29,24 @@ class APQRCodeSelectMerchantCell: APBaseFormsCell {
         return view
     }()
 
+    lazy var button: UIButton = {
+        let view = UIButton()
+        view.backgroundColor = UIColor.clear
+        view.addTarget(self, action: #selector(clickButton(_:)), for: UIControlEvents.touchUpInside)
+        return view
+    }()
+    
+    @objc func clickButton(_ button: UIButton) {
+        buttonBlock?(identify, button)
+    }
+    
     override init() {
         super.init()
         self.backgroundColor = UIColor.white
         bottomLine.backgroundColor = UIColor.clear
         addSubview(titleLabel)
         addSubview(arronImageView)
+        addSubview(button)
         
         titleLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left).offset(20)
@@ -46,6 +58,10 @@ class APQRCodeSelectMerchantCell: APBaseFormsCell {
             make.right.equalTo(self.snp.right).offset(-10)
             make.centerY.equalTo(self.snp.centerY)
             make.size.equalTo(CGSize(width: 15, height: 15))
+        }
+        
+        button.snp.makeConstraints { (maker) in
+            maker.left.right.bottom.top.equalTo(self)
         }
     }
     

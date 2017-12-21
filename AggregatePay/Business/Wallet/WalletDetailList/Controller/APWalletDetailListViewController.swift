@@ -12,13 +12,14 @@ import UIKit
  * 钱包明细列表
  */
 class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
         view.delegate = self;
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
+        view.AP_setupEmpty()
         view.theme_backgroundColor = ["#fafafa"]
         view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
         return view
@@ -30,7 +31,12 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
         title = "钱包明细"
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
-
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            self.startHttpRequest()
+        })
+        tableView.mj_footer = APRefreshFooter(refreshingBlock: {
+            self.startHttpRequest()
+        })
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
@@ -38,6 +44,12 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
             make.top.equalTo(view.snp.top)
             make.bottom.equalTo(view.snp.bottom)
         }
+    }
+    
+    func startHttpRequest() {
+        tableView.mj_header.endRefreshing()
+        tableView.mj_footer.endRefreshing()
+        tableView.reloadData()
     }
     
     //MARK: ---- 代理
