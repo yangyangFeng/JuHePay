@@ -127,11 +127,15 @@
 		2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */; };
 		2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */; };
 		2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E361FE10D690024D23F /* APBaseTableView.swift */; };
+		74194EED1FEB4F8300565E4F /* APShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEC1FEB4F8300565E4F /* APShareViewController.swift */; };
+		74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEE1FEB4FA800565E4F /* APShareListView.swift */; };
 		745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */; };
 		745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */; };
 		746602AB1FEA5B2E00C3AA76 /* APRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */; };
 		746602AC1FEA5E5200C3AA76 /* APLoadingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */; };
 		746602AD1FEA5E6C00C3AA76 /* APRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */; };
+		746602BB1FEA96A900C3AA76 /* APShareTemplateBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */; };
+		746602BD1FEA9B5E00C3AA76 /* APShareQrImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602BC1FEA9B5D00C3AA76 /* APShareQrImageView.swift */; };
 		74674AED1FE7B282004AA1B5 /* APReturnBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */; };
 		747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */; };
 		747668401FE8F66C00715E72 /* APAgentDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */; };
@@ -339,10 +343,14 @@
 		23D0AD9A1FE3BB3500617E63 /* APAuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHelper.swift; sourceTree = "<group>"; };
 		23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74194EEC1FEB4F8300565E4F /* APShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APShareViewController.swift; path = AggregatePay/Business/promote/Controller/APShareViewController.swift; sourceTree = SOURCE_ROOT; };
+		74194EEE1FEB4FA800565E4F /* APShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareListView.swift; sourceTree = "<group>"; };
 		745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APApproveViewController.swift; sourceTree = "<group>"; };
 		746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshFooter.swift; sourceTree = "<group>"; };
 		746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshHeader.swift; sourceTree = "<group>"; };
+		746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareTemplateBar.swift; sourceTree = "<group>"; };
+		746602BC1FEA9B5D00C3AA76 /* APShareQrImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareQrImageView.swift; sourceTree = "<group>"; };
 		74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APReturnBillViewController.swift; path = AggregatePay/Business/earnings/Controller/APReturnBillViewController.swift; sourceTree = SOURCE_ROOT; };
 		747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APAgentDetailViewController.swift; path = AggregatePay/Business/earnings/Controller/APAgentDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAgentDetailListView.swift; sourceTree = "<group>"; };
@@ -1073,6 +1081,7 @@
 		1AB253E01FE1436A00193B30 /* Promote */ = {
 			isa = PBXGroup;
 			children = (
+				746602B91FEA968300C3AA76 /* View */,
 				1AB253E11FE1436A00193B30 /* Controller */,
 			);
 			path = Promote;
@@ -1082,6 +1091,7 @@
 			isa = PBXGroup;
 			children = (
 				1AB253E21FE1436A00193B30 /* APPromoteViewController.swift */,
+				74194EEC1FEB4F8300565E4F /* APShareViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1535,6 +1545,17 @@
 			);
 			path = Refresh;
 			sourceTree = "<group>";
+		};
+		746602B91FEA968300C3AA76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */,
+				746602BC1FEA9B5D00C3AA76 /* APShareQrImageView.swift */,
+				74194EEE1FEB4FA800565E4F /* APShareListView.swift */,
+			);
+			name = View;
+			path = AggregatePay/Business/promote/View;
+			sourceTree = SOURCE_ROOT;
 		};
 		747668391FE8F66C00715E72 /* APAgentDetail */ = {
 			isa = PBXGroup;
@@ -2118,6 +2139,7 @@
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */,
 				1A479ECD1FE284F7005E0912 /* APForgetFirstStepViewController.swift in Sources */,
+				746602BD1FEA9B5E00C3AA76 /* APShareQrImageView.swift in Sources */,
 				74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */,
 				1AD7C5011FE9F34600686C01 /* APSettingViewController.swift in Sources */,
 				1AD7C5091FEA053000686C01 /* APModifySuccessViewController.swift in Sources */,
@@ -2148,6 +2170,7 @@
 				2374AA061FE8FE740013AB88 /* APBankNameFormCell.swift in Sources */,
 				2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */,
 				2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */,
+				746602BB1FEA96A900C3AA76 /* APShareTemplateBar.swift in Sources */,
 				7476684B1FE9102800715E72 /* APArrowButton.swift in Sources */,
 				7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */,
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
@@ -2223,6 +2246,7 @@
 				7487E1881FDFE131000E3EBE /* UITabBarExtensions.swift in Sources */,
 				74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */,
 				1A030D7D1FE76C85007146C1 /* APQRCodePayElementViewController.swift in Sources */,
+				74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */,
 				1A97EDDB1FE534F3008B5357 /* APSelectCreditCardCell.swift in Sources */,
 				1AC89A521FE3B3D20045A2AF /* APBillDetailCell.swift in Sources */,
 				2374AA0C1FE8FE9B0013AB88 /* APCreditCardFormCell.swift in Sources */,
@@ -2230,6 +2254,7 @@
 				2374A9FF1FE8FCE90013AB88 /* APIdCardNoFormCell.swift in Sources */,
 				7487E18F1FDFE131000E3EBE /* UICollectionViewExtensions.swift in Sources */,
 				2374A9EF1FE8F1590013AB88 /* APAuthHomeCell.swift in Sources */,
+				74194EED1FEB4F8300565E4F /* APShareViewController.swift in Sources */,
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
 				2374A9E91FE8F1590013AB88 /* APSearchBarView.swift in Sources */,
 				1AE456161FE4BCAD005D9999 /* APVersionUpgradeController.swift in Sources */,
