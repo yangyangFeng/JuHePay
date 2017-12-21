@@ -39,12 +39,14 @@
 	<string>是否允许聚合支付使用你的麦克风？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许聚合支付使用你的相册？</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>是否允许聚合支付使用你的相册？</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>聚合支付需要获取您的地理位置</string>
+    <string>是否允许聚合支付获取您的地理位置？</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>聚合支付需要获取您的地理位置</string>
+    <string>否允许聚合支付获取您的地理位置？</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>聚合支付需要获取您的地理位置</string>
+    <string>否允许聚合支付获取您的地理位置？</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

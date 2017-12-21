@@ -8,29 +8,31 @@
 
 import UIKit
 
-typealias APSharedParamBlock = (_ param: APSharedParam) -> Void
 typealias APSharedFailedBlock = (_ error: String) -> Void
 typealias APSharedSuccessBlock = () -> Void
 
 
 extension APSharedTools {
     
-    static func shared(param: @escaping APSharedParamBlock,
-                       failure: @escaping APSharedFailedBlock,
-                       success: @escaping APSharedSuccessBlock) {
-
+    
+    static func shared(image: UIImage,
+                       scene: APSharedScene,
+                       success: @escaping APSharedSuccessBlock,
+                       failure: @escaping APSharedFailedBlock) {
         sharedInstance.failedCallBack = failure
         sharedInstance.successCallBack = success
-        let sharedParam = APSharedParam()
-        param(sharedParam)
-        sharedInstance.sendShared(param: sharedParam)
+        sharedInstance.sendShared(image: image, scene: scene)
     }
 }
 
+enum APSharedScene: Int32 {
+    case friend   = 0  /**< 聊天界面    */
+    case circle  = 1  /**< 朋友圈      */
+}
 
 class APSharedTools: NSObject, WXApiDelegate {
     
-   
+    
     static let sharedInstance: APSharedTools = APSharedTools()
     
     var successCallBack: APSharedSuccessBlock?
@@ -40,13 +42,13 @@ class APSharedTools: NSObject, WXApiDelegate {
     let imageObject: WXImageObject = WXImageObject()
     let sendManager: SendMessageToWXReq = SendMessageToWXReq()
     
-    func sendShared(param: APSharedParam) {
+    func sendShared(image: UIImage, scene: APSharedScene) {
         
-        imageObject.imageData = UIImagePNGRepresentation(param.sharedImage!)
-        message.setThumbImage(param.thumbImage)
+        imageObject.imageData = UIImagePNGRepresentation(image)
+        message.setThumbImage(image)
         message.mediaObject = imageObject
         sendManager.bText = false;
-        sendManager.scene = (param.sharedScene?.rawValue)!
+        sendManager.scene = Int32(scene.rawValue)
         sendManager.message = message;
         WXApi.send(sendManager)
     }
@@ -85,19 +87,5 @@ class APSharedTools: NSObject, WXApiDelegate {
             failedCallBack?("分享失败")
         }
     }
-}
-
-
-class APSharedParam: NSObject {
-    
-    //用户状态
-    enum APSharedScene: Int32 {
-        case friend   = 0  /**< 聊天界面    */
-        case circle  = 1  /**< 朋友圈      */
-    }
-    
-    var thumbImage: UIImage?
-    var sharedImage: UIImage?
-    var sharedScene: APSharedScene?
 }
 

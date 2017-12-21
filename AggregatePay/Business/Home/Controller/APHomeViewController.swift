@@ -67,15 +67,7 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     
     @objc func dismissGoHome() {
         
-        APSharedTools.shared(param: { (param) in
-            param.thumbImage = UIImage(named: "")
-            param.sharedImage = UIImage(named: "")
-            param.sharedScene = .friend
-        }, failure: { (errorMsg) in
-            self.view.makeToast(errorMsg)
-        }) {
-            print("...............................")
-        }
+        
         
     }
     
