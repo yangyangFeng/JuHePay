@@ -80,6 +80,14 @@ class APRegisterViewController: APSystemBaseViewController {
         createSubviews()
         registerCallBacks()
         registerObserve()
+        APLocationTools.location(success: { (lat, lng) in
+            APLocationTools.stop()
+            print(lat)
+            print(lng)
+        }) { (error) in
+            print(error)
+        }
+        APLocationTools.start()
     }
     
     private func createSubviews() {

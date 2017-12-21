@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <openssl/rsa.h>
-#import <openssl/pem.h>
+//#import <openssl/rsa.h>
+//#import <openssl/pem.h>
+#import "rsa.h"
+#import "pem.h"
 
 /**
  @abstract  padding type

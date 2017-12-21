@@ -38,11 +38,34 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
             make.bottom.equalTo(-20)
         }
         image.image = shareImage
+        if indexPath.row == 0 {
+            shared(scene: .friend)
+        }
+        else if indexPath.row == 1 {
+            shared(scene: .circle)
+        }
+        else if indexPath.row == 2 {
+            let action: Selector = #selector(image(image:didFinishSavingWithError:contextInfo:))
+            UIImageWriteToSavedPhotosAlbum(shareImage!, self, action, nil)
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
+        if didFinishSavingWithError != nil {
+            self.view.makeToast("保存失败")
+        }
+        else {
+            self.view.makeToast("保存成功")
+        }
+    }
+    
+    func shared(scene: APSharedScene) {
+        APSharedTools.shared(image: shareImage!, scene: scene, success: {
+            self.view.makeToast("分享成功")
+        }) { (errorMsg) in
+            print(errorMsg)
+        }
     }
     
 }
