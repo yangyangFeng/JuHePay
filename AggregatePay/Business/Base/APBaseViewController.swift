@@ -20,14 +20,14 @@ class APBaseViewController: UIViewController {
         /*view四周均不延伸*/
         edgesForExtendedLayout = []
         
-        view.backgroundColor = UIColor.white
-    
+        view.backgroundColor = UIColor.init(hex6: 0xf0f0f0)
+
         ap_setStatusBarStyle(UIStatusBarStyle.default)
         
         initNavigationBar()
         
         initNavigationItem()
-        
+
     }
     
     func initNavigationItem()
@@ -77,6 +77,12 @@ class APBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func ap_selectTabBar(atIndex: Int) {
+
+        let app: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        app.tabBarController.selectedIndex = atIndex
+    }
+    
     /// 设置当前控制器状态栏style
     ///
     /// - Parameter style:
@@ -111,6 +117,5 @@ class APBaseViewController: UIViewController {
     func ap_setNavigationBarHidden(_ hidden : Bool){
         self.vhl_setNavBarHidden(hidden)
     }
-    
-    
+
 }

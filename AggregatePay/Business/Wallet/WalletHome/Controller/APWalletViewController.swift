@@ -15,13 +15,20 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
     
     let headerView: APWalletHeaderView = APWalletHeaderView()
     
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(dismissGoHome))
+        return view
+    }()
+    
     //MARK: ---- 生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包"
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
+        edgesForExtendedLayout =  UIRectEdge.top
         vhl_setNavBarBackgroundAlpha(0.0)
-        
         view.theme_backgroundColor = ["#fafafa"]
         view.addSubview(headerView)
         view.addSubview(tableView)
@@ -30,7 +37,7 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.top.equalTo(view.snp.top)
-            make.height.equalTo(view.snp.height).multipliedBy(0.35)
+            make.height.equalTo(210)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
@@ -38,6 +45,12 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
             make.top.equalTo(headerView.snp.bottom).offset(15)
             make.bottom.equalTo(view.snp.bottom)
         }
+    }
+    
+    //MARK: -------------- 按钮触发
+    
+    @objc func dismissGoHome() {
+        
     }
     
     //MARK: ---- 代理

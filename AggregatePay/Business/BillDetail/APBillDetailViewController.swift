@@ -15,7 +15,6 @@ class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "交易详情"
-        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
         
         view.addSubview(headerView)
@@ -25,7 +24,7 @@ class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UIT
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.top.equalTo(view.snp.top)
-            make.height.equalTo(view.snp.height).multipliedBy(0.25)
+            make.height.equalTo(111)
         }
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)

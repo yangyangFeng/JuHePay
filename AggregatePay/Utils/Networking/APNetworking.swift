@@ -17,6 +17,13 @@ import Alamofire
  */
 class APNetworking: NSObject {
 
+    //请求地址
+    let http_url = "http://192.168.1.240:29111"
+    
+    enum APPort: String {
+        case login = "/login.action"
+    }
+    
     var manger:SessionManager? = nil
     
     static let sharedInstance = APNetworking()
@@ -28,15 +35,20 @@ class APNetworking: NSObject {
      * @param    success: 请求成功回调
      * @param    faile:   请求失败回调
      */
-    static func post(action:APCommon.APPort,
-                     parameters:Dictionary<String, Any>,
+    static func post(action: APPort,
+                     paramReqeust: APBaseRequest,
                      success:@escaping (Dictionary<String, Any>)->Void,
                      faile:@escaping (Error)->Void) {
+
+        let requestHeader:HTTPHeaders = ["Date":"reqTime"]
+        let parameters: Dictionary<String, Any> = Dictionary()
         sharedInstance.request(action: action,
                                method: .post,
+                               headers: requestHeader,
                                parameters: parameters,
                                success: success,
                                faile: faile)
+        
     }
     
     
@@ -48,20 +60,22 @@ class APNetworking: NSObject {
      * @param   success:请求成功回调
      * @param   faile:请求失败回调
      */
-    func request(action:APCommon.APPort,
-                 method:HTTPMethod,
+    func request(action: APPort,
+                 method: HTTPMethod = .get,
+                 headers: HTTPHeaders? = nil,
+                 timeOut: TimeInterval = 60,
                  parameters:Dictionary<String, Any>,
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
-        let httpUrl = APCommon.http_url+action.rawValue
-        let requestHeader:HTTPHeaders = ["Date":""]
+
+        let httpUrl = http_url+action.rawValue
         let config:URLSessionConfiguration = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 60
+        config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
         manger?.request(httpUrl,
                         method:method,
                         parameters: parameters,
-                        headers: requestHeader).responseJSON { response in
+                        headers: headers).responseJSON { response in
                             if (response.result.isSuccess && response.result.error == nil) {
                                 let result: Dictionary<String, Any>? = try?JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                                 success(result!)
@@ -71,14 +85,7 @@ class APNetworking: NSObject {
                             }
         }
     }
-  
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 

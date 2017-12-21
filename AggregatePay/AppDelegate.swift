@@ -16,6 +16,8 @@ import Toast_Swift
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
+    
+    let tabBarController = APBaseTabBarViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -40,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func createTabBarController() -> UITabBarController {
         
         ThemeManager.setTheme(index: 0)
-        let tabBarController = APBaseTabBarViewController()
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
         tabBarController.tabBar.isTranslucent = false
@@ -49,28 +50,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         tabBarController.shouldHijackHandler = {
             tabbarController, viewController, index in
+            if index == 1 {
+                return true
+            }
             return false
         }
         tabBarController.didHijackHandler = {
             [weak tabBarController] tabbarController, viewController, index in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                let alertController = UIAlertController.init(title: nil,
-                                                             message: nil,
-                                                             preferredStyle: .actionSheet)
-                let takePhotoAction = UIAlertAction(title: "Take a photo",
-                                                    style: .default,
-                                                    handler: nil)
-                alertController.addAction(takePhotoAction)
-                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
-                                                          style: .default,
-                                                          handler: nil)
-                alertController.addAction(selectFromAlbumAction)
-                let cancelAction = UIAlertAction(title: "Cancel",
-                                                 style: .cancel,
-                                                 handler: nil)
-                alertController.addAction(cancelAction)
-                tabBarController?.present(alertController, animated: true, completion: nil)
+            if index == 1 {
+                tabbarController.selectedIndex = 2
+                let homeController : UINavigationController = tabbarController.viewControllers![2] as! UINavigationController
+                homeController.pushViewController(APPromoteViewController())
             }
         }
         let wallet = APBaseNavigationViewController(rootViewController: APWalletViewController())
@@ -105,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBarController.selectedIndex = 2
         return tabBarController
     }
+    
     
     func attributeIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true

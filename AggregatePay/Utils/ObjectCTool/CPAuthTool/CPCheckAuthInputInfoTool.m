@@ -24,7 +24,7 @@
 }
 
 + (BOOL) evaluatePassword:(NSString *)password {
-    NSPredicate *passwordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",@"^[a-zA-Z0-9-_]{6,20}$"];
+    NSPredicate *passwordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",@"^[a-zA-Z0-9-_]{6,16}$"];
     return [passwordPredicate evaluateWithObject:password];
 }
 

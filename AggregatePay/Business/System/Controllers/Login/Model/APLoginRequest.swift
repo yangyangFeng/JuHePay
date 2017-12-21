@@ -8,11 +8,11 @@
 
 import UIKit
 
-class APLoginRequest: NSObject {
+class APLoginRequest: APBaseRequest {
     
     //账号(手机号)
     @objc dynamic var mobile: String = ""
     //密码
     @objc dynamic var password: String = ""
-    
+
 }

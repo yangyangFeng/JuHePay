@@ -9,27 +9,15 @@
 import UIKit
 
 import PGDatePicker
-
+//import PGD
 extension APReturnBillSearchBar: PGDatePickerDelegate {
-    
     func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
         print("dateComponents = ", dateComponents)
-        let calendar = NSCalendar.current
-//        datePicker.setDate(calendar.date(from: dateComponents))
-        if datePicker == currentPicker {
-            leftHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        }
-        else
-        {
-            rightHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        }
     }
 }
 
 class APReturnBillSearchBar: UIView {
 
-    var interval : Int = 3 //defaule is 3.
-    
     let bg_imageView : UIImageView = {
         let view = UIImageView.init(image: UIImage.init(named: "ReturnBillHead_BG"))
         return view
@@ -45,97 +33,28 @@ class APReturnBillSearchBar: UIView {
         return view
     }()
     
-    var currentPicker : PGDatePicker?
-    
-    
-    lazy var leftHeadView : APReturnBillSearchHeadView = {
+    let leftHeadView : APReturnBillSearchHeadView = {
         let view = APReturnBillSearchHeadView()
         view.button.button.addTarget(self, action: #selector(startAction), for: UIControlEvents.touchUpInside)
         view.title.text = "开始日期"
-        view.button.title.text = startStr
+        view.button.title.text = "2017/10/03"
         return view
     }()
     
-    lazy var rightHeadView : APReturnBillSearchHeadView = {
+    let rightHeadView : APReturnBillSearchHeadView = {
         let view = APReturnBillSearchHeadView()
         view.button.button.addTarget(self, action: #selector(endAction), for: UIControlEvents.touchUpInside)
         view.title.text = "截止日期"
-        view.button.title.text = endStr
-//        view.button.title.text = "2017/11/03"
+        view.button.title.text = "2017/11/03"
         return view
     }()
     
-    lazy var endStr: String = {
-        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
-        let str : String = APDateTools.stringToDate(date: endDate as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }()
-    
-    lazy var startStr: String = {
-        let str : String = APDateTools.stringToDate(date: startDate(), dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }()
-    
-    
     @objc func startAction()
     {
-        let picker = datePicker()
-        let selectDate = APDateTools.dateToString(string: leftHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.maximumDate = conversionDate(rightHeadView.button.title.text!)
-        picker.setDate(selectDate, animated: false)
-        picker.show()
-        currentPicker = picker
-    }
-    
-    @objc func endAction()
-    {
-        let picker = datePicker()
-        let selectDate = APDateTools.dateToString(string: rightHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.setDate(selectDate, animated: false)
-        picker.show()
-    }
-
-    func conversionDate(_ str : String) -> Date{
-        let calendar = NSCalendar.current
-        let arrs : [String] = str.components(separatedBy: "/")
-        
-        var components = DateComponents()
-        components.year = Int(arrs[0])
-        components.month = Int(arrs[1])
-        components.day = Int(arrs[2])
-        return calendar.date(from: components)!
-    }
-    func conversionString(_ date : Date) -> String
-    {
-        let str : String = APDateTools.stringToDate(date: date as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }
-    
-    func startDate() -> Date {
-        let nowDate = Date.init(timeIntervalSinceNow: 0)
-        let calendar = NSCalendar.current
-        
-        let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
-        
-        var components = DateComponents()
-        components.year = dateComponents.year
-        components.month = (dateComponents.month! - interval)
-        components.day = dateComponents.day
-        components.timeZone = TimeZone(abbreviation: "GMT")
-        let endDate = calendar.date(from: components)
-        return endDate!
-    }
-    
-    func endDate() -> Date {
-        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
-        return endDate
-    }
-    
-    func datePicker() -> PGDatePicker {
         let datePicker = PGDatePicker()
         datePicker.delegate = self
-        
-        //        datePicker.titleLabel.text = "PGDatePicker"
+        datePicker.show()
+//        datePicker.titleLabel.text = "PGDatePicker"
         //设置线条的颜色
         datePicker.lineBackgroundColor = UIColor.clear
         //设置选中行的字体颜色
@@ -157,10 +76,10 @@ class APReturnBillSearchBar: UIView {
         //设置确定按钮的字体大小
         datePicker.confirmButtonFont = UIFont.boldSystemFont(ofSize: 14)
         datePicker.datePickerMode = .date
+    }
+    @objc func endAction()
+    {
         
-        datePicker.minimumDate = startDate()
-        datePicker.maximumDate = endDate()
-        return datePicker
     }
     
     override init(frame: CGRect) {
@@ -229,6 +148,62 @@ class APReturnBillSearchBar: UIView {
     }
 }
 
+class APArrowButton : UIView {
+    
+    var margin : CGFloat = 12
+    
+    let rightArrow : UIImageView = {
+        let view = UIImageView(image: UIImage.init(named: "Mine_head_arrow"))
+        return view
+    }()
+    
+    var title : UILabel = {
+        let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.textColor = UIColor.init(hex6: 0x4c370b)
+        view.textAlignment = .center
+        view.adjustsFontSizeToFitWidth = true
+        return view
+    }()
+    
+    let button : UIButton = {
+        let view = UIButton(type: UIButtonType.custom)
+        return view
+    }()
+    
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(rightArrow)
+        addSubview(title)
+        addSubview(button)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        rightArrow.snp.makeConstraints { (make) in
+            make.width.equalTo(7)
+            make.height.equalTo(12)
+            make.centerY.equalTo(snp.centerY).offset(0)
+            make.right.equalTo(0)
+        }
+        
+        title.snp.makeConstraints { (make) in
+            make.left.equalTo(0)
+            make.centerY.equalTo(snp.centerY).offset(0)
+            make.right.equalTo(rightArrow.snp.left).offset(-margin)
+        }
+        button.snp.makeConstraints { (make) in
+            make.edges.equalTo(0)
+        }
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
 
 class APReturnBillSearchHeadView: UIView {
     let title : UILabel = {
