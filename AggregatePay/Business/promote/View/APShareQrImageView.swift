@@ -45,4 +45,8 @@ class APShareQrImageView: UIView {
         super.init(coder: aDecoder)
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
 }
