@@ -24,7 +24,6 @@ PODS:
     - OCRSDK/UI
   - OCRSDK/UI (0.1.7):
     - OCRSDK/CoreSDK
-  - OpenSSL-Universal (1.0.2.11)
   - PGDatePicker (1.5.9):
     - PGPickerView
   - PGPickerView (1.2.1)
@@ -35,6 +34,7 @@ PODS:
   - SwiftTheme (0.4.1)
   - Toast-Swift (3.0.1)
   - UMengAnalytics-NO-IDFA (4.2.5)
+  - WechatOpenSDK (1.8.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -49,13 +49,13 @@ DEPENDENCIES:
   - KVOController
   - MJRefresh
   - OCRSDK
-  - OpenSSL-Universal (~> 1.0.2.11)
   - PGDatePicker (>= 1.5.4)
   - SDWebImage
   - SnapKit (~> 4.0.0)
   - SwiftTheme (~> 0.4.1)
   - Toast-Swift (~> 3.0.1)
   - UMengAnalytics-NO-IDFA (~> 4.2.5)
+  - WechatOpenSDK (~> 1.8.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -72,7 +72,6 @@ SPEC CHECKSUMS:
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OCRSDK: 633a176d5ddb920b99c9e3a5fe0f071f07f39277
-  OpenSSL-Universal: bcea8d73aec478029029164f9f0695b57cb94309
   PGDatePicker: 00505c5180a92adf1e0465805b0cb49baf42a367
   PGPickerView: cb49c6b3e2a39148bef9f666fa58bb349e0c3b85
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
@@ -80,7 +79,8 @@ SPEC CHECKSUMS:
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+  WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: 889a6482f3c1fa49022cd34ef2c0e22666dcb8bc
+PODFILE CHECKSUM: 43ad9cdf12add365208f78833b4158ce7f0d7681
 
 COCOAPODS: 1.2.1

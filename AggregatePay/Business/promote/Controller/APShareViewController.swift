@@ -28,21 +28,33 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
 
     
     func AP_TableViewDidSelect(_ indexPath: IndexPath, obj: Any) {
-        print( "点击 \(indexPath) + \(obj)")
-        let image = UIImageView()
-        view.addSubview(image)
-        image.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview().offset(0)
-            make.height.equalTo((shareImage?.size.height)!)
-            make.width.equalTo((shareImage?.size.width)!)
-            make.bottom.equalTo(-20)
+        if indexPath.row == 0 {
+            shared(scene: .friend)
         }
-        image.image = shareImage
+        else if indexPath.row == 1 {
+            shared(scene: .circle)
+        }
+        else if indexPath.row == 2 {
+            let action: Selector = #selector(image(image:didFinishSavingWithError:contextInfo:))
+            UIImageWriteToSavedPhotosAlbum(shareImage!, self, action, nil)
+        }    
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
+        if didFinishSavingWithError != nil {
+            self.view.makeToast("保存失败")
+        }
+        else {
+            self.view.makeToast("保存成功")
+        }
+    }
+    
+    func shared(scene: APSharedScene) {
+        APSharedTools.shared(image: shareImage!, scene: scene, success: {
+            self.view.makeToast("分享成功")
+        }) { (errorMsg) in
+            print(errorMsg)
+        }
     }
     
 }
