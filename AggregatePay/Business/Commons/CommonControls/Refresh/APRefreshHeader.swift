@@ -52,7 +52,7 @@ class APRefreshHeader: MJRefreshStateHeader {
         get{
             super.stateLabel.font = UIFont.systemFont(ofSize: 12)
             super.stateLabel.textColor = UIColor.init(hex6: AP_RefreshConfig.titleColor)
-            super.stateLabel.text = "下拉可以刷新"
+            super.stateLabel.text = super.stateLabel.text ?? "下拉可以刷新"
             return super.stateLabel
         }
     }
@@ -60,9 +60,6 @@ class APRefreshHeader: MJRefreshStateHeader {
     override func prepare() {
         super.prepare()
         
-        setTitle("下拉可以刷新", for: .idle)
-        setTitle("松开立即刷新", for: .pulling)
-        setTitle("加载中.....", for: .refreshing)
         
         mj_h = AP_RefreshConfig.headerHeight
         
@@ -72,7 +69,11 @@ class APRefreshHeader: MJRefreshStateHeader {
             make.centerY.equalTo(snp.centerY).offset(0)
             make.centerX.equalTo(snp.centerX).offset(-stateLabel.requiredWidth/2.0-7-(AP_imageView.image?.size.width)!/2.0)
         }
+        
         print(stateLabel.requiredWidth)
+        setTitle("下拉可以刷新", for: .idle)
+        setTitle("松开立即刷新", for: .pulling)
+        setTitle("加载中.....", for: .refreshing)
     }
     
     override func placeSubviews() {

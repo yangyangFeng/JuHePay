@@ -57,7 +57,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
     func AP_Action_Click(_ obj: Any) {
         qrImageView.bgImageView.image = obj as? UIImage
         qrImageView.snp.updateConstraints { (make) in
-            make.width.equalTo((qrImageView.bgImageView.image?.size.width)!)
+            make.width.equalTo(((K_Height - 168 - 21)*(qrImageView.bgImageView.image?.size.width)!/(qrImageView.bgImageView.image?.size.height)!))
         }
     }
 
