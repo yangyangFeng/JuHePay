@@ -22,7 +22,7 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     }()
     
     lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(dismissGoHome))
+        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(pushBillVC))
         return view
     }()
     
@@ -65,10 +65,9 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
     
     //MARK: -------------- 按钮触发
     
-    @objc func dismissGoHome() {
-        
-        
-        
+    @objc func pushBillVC() {
+        let billVC = APBillViewController()
+        navigationController?.pushViewController(billVC, animated: true)
     }
     
     //MARK: ------- APKeyboardCompositionViewDelegate

@@ -103,6 +103,9 @@
 		1AD0692D1FEB8C7C0009E5E9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1AD068DD1FEB8C7C0009E5E9 /* LICENSE */; };
 		1AD0692E1FEB8C7C0009E5E9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD0692B1FEB8C7C0009E5E9 /* libcrypto.a */; };
 		1AD0692F1FEB8C7C0009E5E9 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD0692C1FEB8C7C0009E5E9 /* libssl.a */; };
+		1AD069351FEBAE100009E5E9 /* APSelectMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD069341FEBAE100009E5E9 /* APSelectMerchantViewController.swift */; };
+		1AD069371FEBAE6F0009E5E9 /* APSelectMerchantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD069361FEBAE6F0009E5E9 /* APSelectMerchantCell.swift */; };
+		1AD0693A1FEBAF590009E5E9 /* APMCCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD069391FEBAF590009E5E9 /* APMCCModel.swift */; };
 		1AD7C5011FE9F34600686C01 /* APSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5001FE9F34600686C01 /* APSettingViewController.swift */; };
 		1AD7C5031FE9F3A700686C01 /* APSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5021FE9F3A700686C01 /* APSettingCell.swift */; };
 		1AD7C5091FEA053000686C01 /* APModifySuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7C5081FEA053000686C01 /* APModifySuccessViewController.swift */; };
@@ -392,6 +395,9 @@
 		1AD069291FEB8C7C0009E5E9 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		1AD0692B1FEB8C7C0009E5E9 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		1AD0692C1FEB8C7C0009E5E9 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		1AD069341FEBAE100009E5E9 /* APSelectMerchantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSelectMerchantViewController.swift; sourceTree = "<group>"; };
+		1AD069361FEBAE6F0009E5E9 /* APSelectMerchantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSelectMerchantCell.swift; sourceTree = "<group>"; };
+		1AD069391FEBAF590009E5E9 /* APMCCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMCCModel.swift; sourceTree = "<group>"; };
 		1AD7C5001FE9F34600686C01 /* APSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingViewController.swift; sourceTree = "<group>"; };
 		1AD7C5021FE9F3A700686C01 /* APSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettingCell.swift; sourceTree = "<group>"; };
 		1AD7C5081FEA053000686C01 /* APModifySuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APModifySuccessViewController.swift; sourceTree = "<group>"; };
@@ -1368,6 +1374,40 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		1AD069311FEBADF90009E5E9 /* SelectMerchant */ = {
+			isa = PBXGroup;
+			children = (
+				1AD069381FEBAF330009E5E9 /* Model */,
+				1AD069321FEBADF90009E5E9 /* Controller */,
+				1AD069331FEBADF90009E5E9 /* View */,
+			);
+			path = SelectMerchant;
+			sourceTree = "<group>";
+		};
+		1AD069321FEBADF90009E5E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AD069341FEBAE100009E5E9 /* APSelectMerchantViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AD069331FEBADF90009E5E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD069361FEBAE6F0009E5E9 /* APSelectMerchantCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AD069381FEBAF330009E5E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD069391FEBAF590009E5E9 /* APMCCModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1AD7C4FD1FE9F32D00686C01 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1433,6 +1473,7 @@
 		1AE456201FE4F653005D9999 /* QRCodeCollection */ = {
 			isa = PBXGroup;
 			children = (
+				1AD069311FEBADF90009E5E9 /* SelectMerchant */,
 				1A030D791FE76C85007146C1 /* PayElement */,
 				1AE456221FE4F653005D9999 /* QRCode */,
 			);
@@ -2426,10 +2467,12 @@
 				7487E17E1FDFE131000E3EBE /* UINavigationControllerExtensions.swift in Sources */,
 				1A030D761FE76320007146C1 /* APCollectionFailureViewController.swift in Sources */,
 				747668411FE8F66C00715E72 /* APEarningHeadView.swift in Sources */,
+				1AD0693A1FEBAF590009E5E9 /* APMCCModel.swift in Sources */,
 				1A479ED11FE284F7005E0912 /* APForgetLastStepViewController.swift in Sources */,
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
 				1A1FDA681FE8C61800E6F808 /* APSystemSuccessViewController.swift in Sources */,
 				1AB253CE1FE1337900193B30 /* APAlertController.swift in Sources */,
+				1AD069371FEBAE6F0009E5E9 /* APSelectMerchantCell.swift in Sources */,
 				1A030D721FE76123007146C1 /* APCollectionResultCell.swift in Sources */,
 				2374AA001FE8FCE90013AB88 /* APRealNameFormCell.swift in Sources */,
 				1AD068D61FEB43160009E5E9 /* APSharedTools.swift in Sources */,
@@ -2437,6 +2480,7 @@
 				1A3A68C71FE3A51E00865340 /* APTradingDetailViewController.swift in Sources */,
 				747668451FE8F69D00715E72 /* APReturnBillListView.swift in Sources */,
 				7487E17D1FDFE131000E3EBE /* UIAlertControllerExtensions.swift in Sources */,
+				1AD069351FEBAE100009E5E9 /* APSelectMerchantViewController.swift in Sources */,
 				1AB253D01FE1391900193B30 /* APAlertManager.swift in Sources */,
 				1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */,
 				1A1FDA601FE8B7F300E6F808 /* APModifyViewController.swift in Sources */,

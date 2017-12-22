@@ -10,6 +10,14 @@ import UIKit
 
 class APWalletHeaderView: UIView {
     
+    lazy var contentView:UIView = {
+        let view = UIView()
+        let image = UIImage.init(named: "Earning_head_bg")
+        let newImage = image?.cropped(to: CGRect.init(x: 0, y: (image?.size.height)!*(64/204), width: (image?.size.width)!, height: (image?.size.height)!*(1-64/204)))
+        view.layer.contents = newImage?.cgImage
+        return view
+    }()
+    
     lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14)
@@ -28,7 +36,7 @@ class APWalletHeaderView: UIView {
     
     lazy var amountLabel: UILabel = {
         let view = UILabel()
-        view.text = "0.0"
+        view.text = "88880.0"
         view.textAlignment = .center
         view.theme_textColor = ["#7f5e12"]
         if #available(iOS 8.2, *) {
@@ -40,24 +48,29 @@ class APWalletHeaderView: UIView {
         return view
     }()
 
+   
+    
     init() {
         super.init(frame: CGRect.zero)
-        layer.contents = UIImage(named: "wallet_header_bg")?.cgImage
-        
-        addSubview(titleLabel)
-    
-        addSubview(amountLabel)
-       
-        addSubview(amountIconImageView)
-        
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp.centerY).offset(0)
-            make.centerX.equalTo(self.snp.centerX)
+        backgroundColor = UIColor.clear
+        addSubview(contentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(amountLabel)
+        contentView.addSubview(amountIconImageView)
+
+        contentView.snp.makeConstraints { (make) -> Void in
+            make.left.right.top.equalTo(self)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
         }
         
         amountLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.centerX.equalTo(self.snp.centerX).offset(20)
+            make.top.equalTo(contentView.snp.centerY).offset(-10)
+            make.centerX.equalTo(contentView.snp.centerX).offset(20)
+        }
+        
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(amountLabel.snp.top).offset(-5)
+            make.centerX.equalTo(contentView.snp.centerX)
         }
         
         amountIconImageView.snp.makeConstraints { (make) -> Void in
@@ -71,4 +84,5 @@ class APWalletHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

@@ -92,6 +92,11 @@ class APLoginViewController: APSystemBaseViewController {
         }
     }
     
+    override func AP_navigationLeftItemImage() -> UIImage {
+        let image = UIImage.init(named: "sys_nav_back_icon")
+        return image!.withRenderingMode(.alwaysOriginal)
+    }
+    
     //MARK: -------------- 按钮触发
     
     @objc func dismissGoHome() {
