@@ -28,16 +28,6 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
 
     
     func AP_TableViewDidSelect(_ indexPath: IndexPath, obj: Any) {
-        print( "点击 \(indexPath) + \(obj)")
-        let image = UIImageView()
-        view.addSubview(image)
-        image.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview().offset(0)
-            make.height.equalTo((shareImage?.size.height)!)
-            make.width.equalTo((shareImage?.size.width)!)
-            make.bottom.equalTo(-20)
-        }
-        image.image = shareImage
         if indexPath.row == 0 {
             shared(scene: .friend)
         }
@@ -47,8 +37,7 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
         else if indexPath.row == 2 {
             let action: Selector = #selector(image(image:didFinishSavingWithError:contextInfo:))
             UIImageWriteToSavedPhotosAlbum(shareImage!, self, action, nil)
-        }
-        
+        }    
     }
     
     @objc func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
