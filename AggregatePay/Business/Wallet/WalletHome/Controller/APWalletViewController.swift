@@ -20,6 +20,12 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
         return view
     }()
     
+    lazy var navigationBG: UIImage = {
+        let image = UIImage.init(named: "Earning_head_bg")
+        let newImage = image?.cropped(to: CGRect.init(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!*64/204))
+        return newImage!
+    }()
+    
     //MARK: ---- 生命周期
     
     override func viewDidLoad() {
@@ -27,22 +33,14 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
         title = "钱包"
         navigationItem.leftBarButtonItem = leftBarButtonItem
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
-        edgesForExtendedLayout =  UIRectEdge.top
-        vhl_setNavBarBackgroundAlpha(0.0)
-        view.theme_backgroundColor = ["#fafafa"]
-        view.addSubview(headerView)
-        view.addSubview(tableView)
+        self.vhl_setNavBarBackgroundImage(navigationBG)
         
-        headerView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
-            make.top.equalTo(view.snp.top)
-            make.height.equalTo(210)
-        }
+        view.addSubview(tableView)
+
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
-            make.top.equalTo(headerView.snp.bottom).offset(15)
+            make.top.equalTo(view.snp.top)
             make.bottom.equalTo(view.snp.bottom)
         }
     }
@@ -77,12 +75,14 @@ class APWalletViewController: APBaseViewController, UITableViewDelegate, UITable
     //MARK: ---- 懒加载
     
     lazy var tableView: UITableView = {
+        headerView.frame = CGRect.init(x: 0, y: 0, width: K_Width, height: 160)
         let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
         view.delegate = self;
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
         view.theme_backgroundColor = ["#fafafa"]
+        view.tableHeaderView = headerView
         view.register(APWalletCell.self, forCellReuseIdentifier: "APWalletCell")
         return view
     }()

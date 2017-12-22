@@ -31,11 +31,12 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
         title = "钱包明细"
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
+        weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.startHttpRequest()
+            weakSelf?.startHttpRequest()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            self.startHttpRequest()
+            weakSelf?.startHttpRequest()
         })
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in

@@ -42,9 +42,9 @@ UITableViewDataSource {
             make.top.equalTo(view.snp.top)
             make.bottom.equalTo(view.snp.bottom)
         }
-        
+        weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.startHttpRequest()
+            weakSelf?.startHttpRequest()
         })
     }
     
