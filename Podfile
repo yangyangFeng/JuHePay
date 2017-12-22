@@ -29,7 +29,7 @@ pod 'SwiftTheme', '~> 0.4.1' #主题切换
 pod 'Toast-Swift', '~> 3.0.1'
 pod 'UMengAnalytics-NO-IDFA', '~> 4.2.5'
 pod 'JPush', '~> 3.0.7'
-pod 'OCRSDK'
+#pod 'OCRSDK'
 pod 'PGDatePicker', '>= 1.5.4'
 pod 'GTMBase64', '~> 1.0.0'
 pod 'OpenSSL-Universal', '~> 1.0.2.11'

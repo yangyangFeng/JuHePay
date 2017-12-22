@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OCRSDK
 
 class APAuthBaseViewController: APBaseViewController {
 

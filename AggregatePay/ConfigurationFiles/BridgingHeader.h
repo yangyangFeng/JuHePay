@@ -14,6 +14,10 @@
 #import "CPSecurityManager.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
-//#import "PGDatePicker.h"
+#import "IOSOCRAPI.h"
+#import "CPHD_OCRTool.h"
+#import "SCCaptureSessionManager.h"
+#import "CameraBankDrawView.h"
+#import "APOCRImageTool.h"
 
 #endif /* BridgingHeader_h */

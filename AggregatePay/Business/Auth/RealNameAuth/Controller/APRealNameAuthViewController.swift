@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OCRSDK
 
 class APRealNameAuthViewController: APAuthBaseViewController {
     
@@ -49,12 +48,11 @@ extension APRealNameAuthViewController {
         idCardFront.bottomMessage = "身份证正面"
         idCardFront.placeHolderImageName = "auth_idCardFront_normal"
         idCardFront.tapedHandle = {
-            CPHD_OCRTool .presentScanIdentify(from: weakSelf, isFront: true, complete: { (identifyInfo) in
-                
-            }, error: nil)
+            
+            let viewController = APOCRCameraViewController()
+            weakSelf?.present(viewController, animated: true, completion: nil)
         }
         gridViewModels.append(idCardFront)
-        
         
         let idCardResver = APGridViewModel()
         idCardResver.bottomMessage = "身份证反面"
@@ -70,7 +68,9 @@ extension APRealNameAuthViewController {
         holdIdCard.bottomMessage = "手持身份证半身照片"
         holdIdCard.placeHolderImageName = "auth_holdIdCard_normal"
         holdIdCard.tapedHandle = {
-           
+            
+            let cameraVC = APTakePhotoCameraViewController()
+            weakSelf?.present(cameraVC, animated: true, completion: nil)
         }
         gridViewModels.append(holdIdCard)
         
