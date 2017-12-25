@@ -51,7 +51,7 @@ APKeyboardCompositionViewDelegate {
     
     //MARK: ---- 按钮触发
     @objc func pushBillVC() {
-        let billVC = APBillViewController()
+        let billVC = APSegmentQueryViewController()
         navigationController?.pushViewController(billVC, animated: true)
     }
     

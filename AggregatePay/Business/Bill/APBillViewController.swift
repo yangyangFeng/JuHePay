@@ -17,7 +17,6 @@ UICollectionViewDelegateFlowLayout,
 PGDatePickerDelegate {
 
     var collectionView: UICollectionView?
-    var selectTypeView:APBillSelectView?
     private var scrollerTypeFlag = false
     private var dateWayView: APBillDateWayView?
     private var datePickerView: PGDatePicker?
@@ -57,16 +56,6 @@ PGDatePickerDelegate {
         self.view.backgroundColor = UIColor(hex6: 0xf5f5f5)
         weak var weakSelf = self
         
-        //创建头部的 账单类型
-        let selectView = APBillSelectView.init(titleArray: ["交易查询","分润查询"])
-        self.selectTypeView = selectView
-        selectView.delegate = self
-        self.view.addSubview(selectView)
-        selectView.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(0);
-            make.height.equalTo(40)
-        }
-        
         //日期 收款方式 结算方式的视图
         let wayView = APBillDateWayView.init()
         self.dateWayView = wayView
@@ -74,7 +63,7 @@ PGDatePickerDelegate {
         wayView.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)
             make.height.equalTo(80+10+60)
-            make.top.equalTo(selectView.snp.bottom)
+            make.top.equalTo(view.snp.top)
         }
         
         //数据的 滑动视图
@@ -226,14 +215,4 @@ PGDatePickerDelegate {
         return cell!
     }
     
-    //MARK:UIScrollViewDelegate
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        self.scrollerTypeFlag = false
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if !self.scrollerTypeFlag {
-            self.selectTypeView?.setBtnIndex(index: Int(scrollView.contentOffset.x / UIScreen.main.bounds.size.width) )
-        }
-    }
 }
