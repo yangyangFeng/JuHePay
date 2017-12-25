@@ -12,7 +12,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
 
     let nameFormCell = APRealNameFormCell()
     let idCardFormCell = APIdCardNoFormCell()
-    let creditCardFormCell = APBankCardNoFormCell()
+    let creditCardFormCell = APCreditCardFormCell()
     let phoneNumFormCell = APAuthPhoneNumFormCell()
     
     lazy var authParam: APSecurityAuthRequest = {
@@ -49,7 +49,7 @@ extension APSecurityAuthViewController {
     // MARK: -- UI
     fileprivate func layoutViews() {
         
-        authHeadMessage.text = "结算银行卡为收款到账的银行卡，必须为储蓄卡。"
+        authHeadMessage.text = "为保障您的支付安全,请进行信用卡认证。"
         
         formCellView.addSubview(nameFormCell)
         formCellView.addSubview(idCardFormCell)
