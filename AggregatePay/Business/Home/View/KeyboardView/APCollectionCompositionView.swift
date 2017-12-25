@@ -47,11 +47,7 @@ class APCollectionCompositionView: APKeyboardCompositionView {
     }
 
     override func confirmParam() -> Any {
-        let totalAmount: String = (displayView?.outputDisplayNumValue())!
-        let params: NSMutableDictionary = NSMutableDictionary()
-        params.setValue(totalAmount, forKey: "totalAmount")
-        params.setValue(menuModel, forKey: "menuModel")
-        return params
+        return menuModel as Any
     }
 }
 

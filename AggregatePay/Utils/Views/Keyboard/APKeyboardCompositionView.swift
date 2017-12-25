@@ -14,7 +14,7 @@ import UIKit
  */
 
 protocol APKeyboardCompositionViewDelegate: NSObjectProtocol {
-    func didKeyboardConfirm(param: Any)
+    func didKeyboardConfirm(totalAmount: String, model: Any)
 }
 
 typealias APDidKeyboardConfirmItem = (_ param: String) -> Void
@@ -84,9 +84,9 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     /** 键盘点击数字按钮 */
     func didKeyboardNumItem(num: String) {
         //获取当前屏显的金额总数
-        let display: String = (displayView?.outputDisplayNumValue())!
+        let totalAmount: String = (displayView?.outputDisplayNumValue())!
         //进行输入规则验证
-        let resultStr = inputRules.inputRules(display: display, num: num)
+        let resultStr = inputRules.inputRules(display: totalAmount, num: num)
         //把验证后的返回结果传入到屏显示图进行显示
         displayView!.inputDisplayNumValue(num: resultStr)
     }
@@ -94,19 +94,21 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     /** 键盘点击删除按钮 */
     func didKeyboardDeleteItem() {
         //获取当前屏显的金额总数
-        let display: String = (displayView?.outputDisplayNumValue())!
+        let totalAmount: String = (displayView?.outputDisplayNumValue())!
         //进行删除规则验证
-        let resultStr = inputRules.deleteRules(display: display)
+        let resultStr = inputRules.deleteRules(display: totalAmount)
         //把验证后的返回结果传入到屏显示图进行删除
         displayView!.deleteDisplayNumValue(num: resultStr)
     }
     
     /** 键盘点击确定按钮 */
     func didKeyboardConfirmItem() {
+        //获取当前屏显的金额总数
+        let totalAmount: String = (displayView?.outputDisplayNumValue())!
         //获取点击确认按钮时需要传递给控制器的参数（子类提供）
-        let param: Any = confirmParam()
+        let model: Any = confirmParam()
         //通过代理把参数传递给相应的控制器
-        delegate?.didKeyboardConfirm(param: param)
+        delegate?.didKeyboardConfirm(totalAmount: totalAmount, model: model)
     }
 }
 

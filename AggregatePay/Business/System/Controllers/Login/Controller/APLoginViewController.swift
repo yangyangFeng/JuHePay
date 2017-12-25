@@ -20,57 +20,14 @@ import UIKit
  */
 class APLoginViewController: APSystemBaseViewController {
     
-    //MARK: ------------- 全局属性
-    
     let loginRequest: APLoginRequest = APLoginRequest()
+
+    //MARK: ---- life cycle
     
-    lazy var toolView: APLoginToolView = {
-        let view = APLoginToolView()
-        return view
-    }()
-    
-    lazy var logoImageView: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = UIColor.red
-        return view
-    }()
-    
-    lazy var accountCell: APTextFormsCell = {
-        let view = APTextFormsCell()
-        view.inputRegx = .mobile
-        view.textField.keyboardType = UIKeyboardType.numberPad
-        view.textField.placeholder = "请输入11位手机号码"
-        return view
-    }()
-    
-    lazy var passwordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.placeholder = "请输入密码"
-        return view
-    }()
-    
-    lazy var memoryCell: APSelectBoxFormsCell = {
-        let view = APSelectBoxFormsCell()
-        view.button.setTitle(_ : " 记住密码", for: .normal)
-        return view
-    }()
-    
-    lazy var submitCell: APSubmitFormsCell = {
-        let view = APSubmitFormsCell()
-        view.button.setTitle("登录", for: .normal)
-        return view
-    }()
-    
-    lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
-                                   style: UIBarButtonItemStyle.done,
-                                   target: self,
-                                   action: #selector(dismissGoHome))
-        return view
-    }()
-    
-    //MARK: ------------- 生命周期
+    override func AP_navigationLeftItemImage() -> UIImage {
+        let image = UIImage.init(named: "sys_nav_back_icon")
+        return image!.withRenderingMode(.alwaysOriginal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,21 +49,13 @@ class APLoginViewController: APSystemBaseViewController {
         }
     }
     
-    override func AP_navigationLeftItemImage() -> UIImage {
-        let image = UIImage.init(named: "sys_nav_back_icon")
-        return image!.withRenderingMode(.alwaysOriginal)
-    }
-    
-    //MARK: -------------- 按钮触发
-    
+    //MARK: ----- action
     @objc func dismissGoHome() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    //MARK: ------------- 私有方法
 
+    //MARK: ----- private
     private func createSubviews() {
-        
         view.addSubview(logoImageView)
         view.addSubview(accountCell)
         view.addSubview(passwordCell)
@@ -225,6 +174,53 @@ class APLoginViewController: APSystemBaseViewController {
             APUserDefaultCache.AP_set(value: "", key: .password)
         }
     }
+    
+    //MARK: ---- lazy loading
+    lazy var toolView: APLoginToolView = {
+        let view = APLoginToolView()
+        return view
+    }()
+    
+    lazy var logoImageView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.red
+        return view
+    }()
+    
+    lazy var accountCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = .mobile
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入11位手机号码"
+        return view
+    }()
+    
+    lazy var passwordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.placeholder = "请输入密码"
+        return view
+    }()
+    
+    lazy var memoryCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 记住密码", for: .normal)
+        return view
+    }()
+    
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("登录", for: .normal)
+        return view
+    }()
+    
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
+                                   style: UIBarButtonItemStyle.done,
+                                   target: self,
+                                   action: #selector(dismissGoHome))
+        return view
+    }()
    
 }
 

@@ -10,6 +10,41 @@ import UIKit
 
 class APWalletHeaderView: UIView {
     
+    //MARK: ---- life cycle
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        backgroundColor = UIColor.clear
+        
+        addSubview(contentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(amountLabel)
+        contentView.addSubview(amountIconImageView)
+        
+        contentView.snp.makeConstraints { (make) -> Void in
+            make.left.right.top.equalTo(self)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
+        }
+        amountLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView.snp.centerY).offset(-10)
+            make.centerX.equalTo(contentView.snp.centerX).offset(20)
+        }
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(amountLabel.snp.top).offset(-5)
+            make.centerX.equalTo(contentView.snp.centerX)
+        }
+        amountIconImageView.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(amountLabel.snp.left).offset(-5)
+            make.centerY.equalTo(amountLabel.snp.centerY)
+            make.height.equalTo(amountLabel.snp.height)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: ---- lazy loading
     lazy var contentView:UIView = {
         let view = UIView()
         let image = UIImage.init(named: "Earning_head_bg")
@@ -47,42 +82,5 @@ class APWalletHeaderView: UIView {
         }
         return view
     }()
-
-   
-    
-    init() {
-        super.init(frame: CGRect.zero)
-        backgroundColor = UIColor.clear
-        addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(amountLabel)
-        contentView.addSubview(amountIconImageView)
-
-        contentView.snp.makeConstraints { (make) -> Void in
-            make.left.right.top.equalTo(self)
-            make.bottom.equalTo(self.snp.bottom).offset(-20)
-        }
-        
-        amountLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp.centerY).offset(-10)
-            make.centerX.equalTo(contentView.snp.centerX).offset(20)
-        }
-        
-        titleLabel.snp.makeConstraints { (make) -> Void in
-            make.bottom.equalTo(amountLabel.snp.top).offset(-5)
-            make.centerX.equalTo(contentView.snp.centerX)
-        }
-        
-        amountIconImageView.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(amountLabel.snp.left).offset(-5)
-            make.centerY.equalTo(amountLabel.snp.centerY)
-            make.height.equalTo(amountLabel.snp.height)
-        }
-
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }

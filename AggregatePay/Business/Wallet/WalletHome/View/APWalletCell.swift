@@ -10,44 +10,20 @@ import UIKit
 
 class APWalletCell: UITableViewCell {
     
-    lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 14.0)
-        view.theme_textColor = ["#484848"]
-        view.textAlignment = .left
-        return view
-    }()
-    
-    lazy var iconImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
-    lazy var arronImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.theme_image = ["wallet_arron_right_icon"]
-        return view
-    }()
-    
-    //MARK: ---- 生命周期
-
+    //MARK: ---- life cycle
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
         let identifier = "APWalletCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         guard let newCell = cell else {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
-            
+            cell = UITableViewCell(style: UITableViewCellStyle.default,
+                                   reuseIdentifier: identifier)
             return cell
         }
         return newCell
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.selectionStyle = .none
         self.backgroundColor = UIColor.white
         self.contentView.backgroundColor = UIColor.white
@@ -76,5 +52,27 @@ class APWalletCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: ---- lazy loading
+    lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 14.0)
+        view.theme_textColor = ["#484848"]
+        view.textAlignment = .left
+        return view
+    }()
+    
+    lazy var iconImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    lazy var arronImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.theme_image = ["wallet_arron_right_icon"]
+        return view
+    }()
     
 }
