@@ -12,23 +12,13 @@ import UIKit
  * 二维码的支付要素
  */
 class APQRCodePayElementViewController: APBaseViewController {
+    
+    var selectMccModel:APMCCModel? {
+        willSet {
+            selectMerchantCell.titleLabel.text = newValue?.mccName
+        }
+    }
 
-    lazy var traAmountCell: APQRCodeTraAmountCell = {
-        let view = APQRCodeTraAmountCell()
-        return view
-    }()
-    
-    lazy var selectMerchantCell: APQRCodeSelectMerchantCell = {
-        let view = APQRCodeSelectMerchantCell()
-        return view
-    }()
-    
-    lazy var submitCell: APSubmitFormsCell = {
-        let view = APSubmitFormsCell()
-        view.button.setTitle("确认收款", for: .normal)
-        return view
-    }()
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -62,15 +52,40 @@ class APQRCodePayElementViewController: APBaseViewController {
         }
         
         weak var weakSelf = self
+        selectMerchantCell.buttonBlock = { (key, value) in
+            let selectMerchantVC = APSelectMerchantViewController()
+            selectMerchantVC.selectMccModel = weakSelf?.selectMccModel
+            selectMerchantVC.selectMerchantBlock = {(mccModel) in
+                weakSelf?.selectMccModel = mccModel
+            }
+            weakSelf?.navigationController?.pushViewController(selectMerchantVC, animated: true)
+        }
+        
         submitCell.buttonBlock = { (key, value) in
             let qrCodeVC = APBaseNavigationViewController(rootViewController: APQRCodeCollectionViewController())
             weakSelf?.present(qrCodeVC, animated: true, completion: nil);
         }
     }
     
+   
     
+    //MARK: ---- 懒加载
     
+    lazy var traAmountCell: APQRCodeTraAmountCell = {
+        let view = APQRCodeTraAmountCell()
+        return view
+    }()
     
+    lazy var selectMerchantCell: APQRCodeSelectMerchantCell = {
+        let view = APQRCodeSelectMerchantCell()
+        return view
+    }()
+    
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("确认收款", for: .normal)
+        return view
+    }()
     
 }
 

@@ -30,11 +30,11 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
         
         theme_backgroundColor = [AP_TableViewBackgroundColor]
         tableView.theme_backgroundColor = [AP_TableViewBackgroundColor]
-        
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
+
     }
     
     required init?(coder aDecoder: NSCoder) {

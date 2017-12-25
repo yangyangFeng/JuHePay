@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EFQRCode
 
 /**
  * 生成收款二维码视图控制器
@@ -60,13 +59,10 @@ class APQRCodeCollectionViewController: APBaseViewController {
             maker.top.equalTo(view.snp.top).offset(50)
             maker.bottom.equalTo(qrCodeDescribeLabel.snp.top).offset(-20)
         }
-        
-        if let tryImage = EFQRCode.generate(content: "https://www.baidu.com") {
-            print("Create QRCode image success: \(tryImage)")
-            qrCodeCollectionView.qrCodeImageView.image = UIImage(cgImage: tryImage)
-        }
-        else {
-            print("Create QRCode image failed!")
+        APQRCodeTool.AP_QRCode(content: "http:baidu.com", success: { (image) in
+            qrCodeCollectionView.qrCodeImageView.image = image
+        }) { (error) in
+            print(error)
         }
     }
     

@@ -10,6 +10,8 @@
 @class CameraDrawView;
 @interface APOCRImageTool : NSObject
 
+//#if !TARGET_IPHONE_SIMULATOR
 + (NSDictionary *)handleIDCardData:(UIImage *)image rect:(CGRect)rect drawView:(CameraDrawView *)drawView;
 + (NSDictionary *)handleBankCardData:(UIImage *)image rect:(CGRect)rect drawView:(CameraDrawView *)drawView;
+//#endif
 @end

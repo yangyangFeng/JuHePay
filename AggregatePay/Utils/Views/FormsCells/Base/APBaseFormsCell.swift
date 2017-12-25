@@ -13,6 +13,16 @@ typealias APFormsButtonBlock = (_ key: String,_ value: Any) -> Void
 
 class APBaseFormsCell: UIView {
     
+    enum APInputRegx: String {
+        case defalut = ""
+        case mobile = "^1[0-9]{0,10}$"
+        case password = "^[A-Za-z0-9-_]{0,16}$"
+        case smsCode = "^[0-9]{0,4}$"
+        case inviteCode = "^[A-Za-z0-9-_]{0,6}$"
+        case cvn2 = "^[0-9]{0,3}$"
+        case bankCard = "^\\d{0,24}$"
+    }
+    
    
     lazy var topLine: UIImageView = {
         let view = UIImageView()
@@ -28,9 +38,9 @@ class APBaseFormsCell: UIView {
     var buttonBlock: APFormsButtonBlock?
     var textBlock: APFormsTextBlock?
     var identify: String = ""
-    var inputRegx: String = "" {
+    var inputRegx: APInputRegx = .defalut {
         willSet{
-            predicate = NSPredicate.init(format: "SELF MATCHES %@", newValue)
+            predicate = NSPredicate.init(format: "SELF MATCHES %@", newValue.rawValue)
         }
     }
    

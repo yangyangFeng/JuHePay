@@ -10,12 +10,7 @@ import UIKit
 
 class APCommon: NSObject {
 
-    //请求地址
-    static var http_url = "http://192.168.1.240:29111"
-    
-    enum APPort: String {
-        case login = "/login.action"
-    }
+
 }
 
 let AP_TableViewBackgroundColor = "#F5F5F5"

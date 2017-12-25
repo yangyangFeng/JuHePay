@@ -14,6 +14,9 @@ class APAgentDetailViewController: APBaseViewController {
         super.viewDidLoad()
 
         initSubviews()
+        
+//        view.AP_loadingBegin()
+        view.AP_loadingBegin("阿斯蒂芬好的干是经过和的放假")
         // Do any additional setup after loading the view.
     }
     

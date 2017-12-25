@@ -95,10 +95,11 @@ extension APSettlementCardAuthViewController {
         bankImageModel.bottomMessage = "上传银行卡照片"
         bankImageModel.placeHolderImageName = "auth_bankCard_normal"
         bankImageModel.tapedHandle = {
-            CPHD_OCRTool.presentScanBankCard(from: weakSelf, complete: { (bankInfo) in
-                
-                
-            }, error: nil)
+            let cameraVC = APCameraManagerController()
+            cameraVC.scanCardType = TIDBANK
+            cameraVC.supportCameraMode = .all
+            weakSelf?.present(cameraVC, animated: true, completion: nil)
+            
         }
         gridViewModels.append(bankImageModel)
         

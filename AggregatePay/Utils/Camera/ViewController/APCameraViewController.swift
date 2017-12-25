@@ -21,25 +21,11 @@ protocol APCameraViewControllerDelegate {
 }
 class APCameraViewController: APBaseViewController {
     
-    var  isShow:Bool = false
+   fileprivate var isShow:Bool = false
     
-    let leftViewWidth: CGFloat = 52.0
-    let rightViewWidth: CGFloat = 107.0
-    let padding: CGFloat = 20.0
-    
-    var supportCameraMode: APSupportCameraMode = .takePhoto
-    var currentCameraMode: APCameraMode = .scan
-    public var scanCardType: TCARD_TYPE = TIDCARD2
-    
-    
-    /// 显示相片的区域
-    public var previewRect: CGRect {
-        let layerWidth = SCREENWIDTH - padding - padding
-        let layerHeight = SCREENHEIGHT - leftViewWidth - padding - rightViewWidth
-        let rect = CGRect.init(x: 0, y: 0, width: layerWidth, height: layerHeight)
-        return rect
-    }
-    
+   internal let leftViewWidth: CGFloat = 52.0 * (SCREENHEIGHT / 667)
+   internal let rightViewWidth: CGFloat = 107.0 * (SCREENHEIGHT / 667)
+   internal let padding: CGFloat = 20.0 * (SCREENWIDTH / 667)
     let leftToolView = UIView()
     let rightToolView = UIView()
     /// 图片显示区域
@@ -54,6 +40,31 @@ class APCameraViewController: APBaseViewController {
     
     /// 拍摄模式下确认照片
     let ensureButton = UIButton()
+    var currentCameraMode: APCameraMode = .scan
+    
+    public var supportCameraMode: APSupportCameraMode = .scan {
+        didSet {
+            switch supportCameraMode {
+            case .scan:
+                takePhotoButton.isHidden = true
+                ensureButton.isHidden = true
+            case .takePhoto:
+                scanButton.isHidden = true
+            case .all:
+                break
+            }
+        }
+    }
+    public var scanCardType: TCARD_TYPE = TIDCARD2
+    
+    
+    /// 显示相片的区域
+    public var previewRect: CGRect {
+        let layerWidth = SCREENWIDTH - padding - padding
+        let layerHeight = SCREENHEIGHT - leftViewWidth - padding - rightViewWidth
+        let rect = CGRect.init(x: 0, y: 0, width: layerWidth, height: layerHeight)
+        return rect
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +91,10 @@ class APCameraViewController: APBaseViewController {
     override var prefersStatusBarHidden: Bool {
         return isShow
     }
-    
 }
 
 extension APCameraViewController {
+    
   fileprivate func layoutViews() {
         
         view.backgroundColor = UIColor.darkGray
@@ -230,7 +241,21 @@ extension APCameraViewController {
     ///
     /// - Parameter sender: 模式切换按钮
     @objc func scanAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        if sender == scanButton {
+            if currentCameraMode != .scan {
+                currentCameraMode = .scan
+                scanButton.isSelected =  true
+                takePhotoButton.isSelected = false
+            }
+        } else {
+            if currentCameraMode != .takePhoto {
+                currentCameraMode = .takePhoto
+                takePhotoButton.isSelected = true
+                scanButton.isSelected = false
+            }
+        }
+        let name = NSNotification.Name("SwichCamera")
+        NotificationCenter.default.post(name: name, object: currentCameraMode)
     }
     
     /// 确认拍摄照片

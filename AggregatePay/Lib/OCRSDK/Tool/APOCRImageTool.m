@@ -16,7 +16,7 @@
 #define RIGHT_LINE_EXIST1    (1<<3)//0x1000右边线
 
 @implementation APOCRImageTool
-
+#if !TARGET_IPHONE_SIMULATOR
 + (NSDictionary *)handleIDCardData:(UIImage *)image rect:(CGRect)rect drawView:(CameraDrawView *)drawView{
     
     TREC_LoadImage(image);
@@ -91,4 +91,6 @@
     TBANK_FreeImage();
     return @{@"ret": @(ret), @"isReturnOk": @(isReturnOk)};
 }
+#endif
+
 @end

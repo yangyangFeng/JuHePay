@@ -26,7 +26,7 @@ class APPayElementToolBarView: APBaseFormsCell {
         return view
     }()
     
-    var selectCreditCardButton: UIButton = {
+    lazy var selectCreditCardButton: UIButton = {
         let view = UIButton()
         view.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         view.setTitle(_ : "选择信用卡", for: .normal)

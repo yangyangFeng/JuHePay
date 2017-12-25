@@ -12,11 +12,13 @@ import IQKeyboardManagerSwift
 import ESTabBarController_swift
 import SwiftTheme
 import Toast_Swift
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
     public var isLandscape = false
+    let tabBarController = APBaseTabBarViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -30,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         ToastManager.shared.duration = 1.5
         ToastManager.shared.position = .center
         
+        /**********************微信分享配置*************************/
+        APSharedTools.sharedInstance.register(key: "")
+        
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = createTabBarController()
@@ -41,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func createTabBarController() -> UITabBarController {
         
         ThemeManager.setTheme(index: 0)
-        let tabBarController = APBaseTabBarViewController()
         tabBarController.delegate = self
         tabBarController.title = "Irregularity"
         tabBarController.tabBar.isTranslucent = false
@@ -50,28 +54,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         tabBarController.shouldHijackHandler = {
             tabbarController, viewController, index in
+            if index == 1 {
+                return true
+            }
             return false
         }
         tabBarController.didHijackHandler = {
             [weak tabBarController] tabbarController, viewController, index in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                let alertController = UIAlertController.init(title: nil,
-                                                             message: nil,
-                                                             preferredStyle: .actionSheet)
-                let takePhotoAction = UIAlertAction(title: "Take a photo",
-                                                    style: .default,
-                                                    handler: nil)
-                alertController.addAction(takePhotoAction)
-                let selectFromAlbumAction = UIAlertAction(title: "Select from album",
-                                                          style: .default,
-                                                          handler: nil)
-                alertController.addAction(selectFromAlbumAction)
-                let cancelAction = UIAlertAction(title: "Cancel",
-                                                 style: .cancel,
-                                                 handler: nil)
-                alertController.addAction(cancelAction)
-                tabBarController?.present(alertController, animated: true, completion: nil)
+            if index == 1 {
+                tabbarController.selectedIndex = 2
+                let homeController : UINavigationController = tabbarController.viewControllers![2] as! UINavigationController
+                homeController.pushViewController(APPromoteViewController())
             }
         }
         let wallet = APBaseNavigationViewController(rootViewController: APWalletViewController())
@@ -107,6 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         return tabBarController
     }
     
+    
     func attributeIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true
         //控制点击背景是否收起键盘
@@ -122,6 +117,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         IQKeyboardManager.sharedManager().toolbarManageBehaviour = .byPosition
     }
 
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        return APSharedTools.sharedInstance.openURl(url: url)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return APSharedTools.sharedInstance.openURl(url: url)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

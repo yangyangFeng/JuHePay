@@ -12,13 +12,32 @@ import UIKit
  * 钱包明细列表
  */
 class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        view.delegate = self;
+        view.dataSource = self;
+        view.separatorStyle = .none
+        view.tableFooterView = UIView()
+        view.AP_setupEmpty()
+        view.theme_backgroundColor = ["#fafafa"]
+        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包明细"
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
-
+        weak var weakSelf = self
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            weakSelf?.startHttpRequest()
+        })
+        tableView.mj_footer = APRefreshFooter(refreshingBlock: {
+            weakSelf?.startHttpRequest()
+        })
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
@@ -26,6 +45,12 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
             make.top.equalTo(view.snp.top)
             make.bottom.equalTo(view.snp.bottom)
         }
+    }
+    
+    func startHttpRequest() {
+        tableView.mj_header.endRefreshing()
+        tableView.mj_footer.endRefreshing()
+        tableView.reloadData()
     }
     
     //MARK: ---- 代理
@@ -47,18 +72,6 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
         navigationController?.pushViewController(APProfitsDetailViewController(), animated: true)
     }
     
-    //MARK: ---- 懒加载
-    
-    lazy var tableView: UITableView = {
-        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
-        view.delegate = self;
-        view.dataSource = self;
-        view.separatorStyle = .none
-        view.tableFooterView = UIView()
-        view.theme_backgroundColor = ["#fafafa"]
-        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
-        return view
-    }()
     
 
 }
