@@ -12,7 +12,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
 
     let nameFormCell = APRealNameFormCell()
     let idCardFormCell = APIdCardNoFormCell()
-    let creditCardFormCell = APBankCardNoFormCell()
+    let creditCardFormCell = APCreditCardFormCell()
     let phoneNumFormCell = APAuthPhoneNumFormCell()
     
     lazy var authParam: APSecurityAuthRequest = {

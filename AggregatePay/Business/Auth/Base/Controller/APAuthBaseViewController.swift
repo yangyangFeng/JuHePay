@@ -19,10 +19,17 @@ class APAuthBaseViewController: APBaseViewController {
     let formCellView = UIView()
     var layout: UICollectionViewFlowLayout?
     var gridViewModels = [APGridViewModel]()
+    var currentGridModel: APGridViewModel?
+    
     let authSubmitCell: APAuthSubmitCell = APAuthSubmitCell()
     let inputTipLabel = UILabel()
     let inputTipView = UIView()
     let cellHeight = 146
+    
+    lazy var previewVC: APPhotoPreviewController = {
+        let vc = APPhotoPreviewController()
+        return vc
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,7 +186,24 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let gridModel = gridViewModels[indexPath.row]
-        gridModel.tapedHandle?()
+        currentGridModel = gridModel
+        
+        weak var weakSelf = self
+        
+        switch gridModel.gridState {
+        case .canPreview:
+            previewVC.show(withController: self, image: gridModel.image!)
+            previewVC.photoPreviewHandle = {(isUse) in
+                if !isUse {
+                    weakSelf?.previewVC.dismiss(fromController: weakSelf!)
+                    gridModel.tapedHandle?()
+                }
+            }
+        case .normal:
+            gridModel.tapedHandle?()
+        default:
+            break
+        }
     }
     
     //MARK: --UICollectionViewDelegateFlowLayout

@@ -48,9 +48,11 @@ extension APRealNameAuthViewController {
         idCardFront.bottomMessage = "身份证正面"
         idCardFront.placeHolderImageName = "auth_idCardFront_normal"
         idCardFront.tapedHandle = {
-            
-            let viewController = APOCRCameraViewController()
-            weakSelf?.present(viewController, animated: true, completion: nil)
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = weakSelf
+            cameraVC.scanCardType = TIDCARD2
+            cameraVC.supportCameraMode = .all
+            weakSelf?.present(cameraVC, animated: true, completion: nil)
         }
         gridViewModels.append(idCardFront)
         
@@ -58,9 +60,10 @@ extension APRealNameAuthViewController {
         idCardResver.bottomMessage = "身份证反面"
         idCardResver.placeHolderImageName = "auth_idCardResver_normal"
         idCardResver.tapedHandle = {
-            CPHD_OCRTool .presentScanIdentify(from: weakSelf, isFront: false, complete: { (identifyInfo) in
-                
-            }, error: nil)
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = weakSelf
+            cameraVC.supportCameraMode = .takePhoto
+            weakSelf?.present(cameraVC, animated: true, completion: nil)
         }
         gridViewModels.append(idCardResver)
         
@@ -69,7 +72,9 @@ extension APRealNameAuthViewController {
         holdIdCard.placeHolderImageName = "auth_holdIdCard_normal"
         holdIdCard.tapedHandle = {
             
-            let cameraVC = APTakePhotoCameraViewController()
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = weakSelf
+            cameraVC.supportCameraMode = .takePhoto
             weakSelf?.present(cameraVC, animated: true, completion: nil)
         }
         gridViewModels.append(holdIdCard)
@@ -112,6 +117,28 @@ extension APRealNameAuthViewController {
     }
 }
 
-extension APRealNameAuthViewController {
+extension APRealNameAuthViewController: APCameraViewControllerDelegate {
     
+    func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
+        updateGridImage(image: image)
+    }
+    func ocrCameraIDCardResult(IDCard result: APOCRIDCard) {
+        updateGridImage(image: result.image)
+        if let text = result.name {
+            realNameCell.textField.text = text
+        }
+        if let text = result.number {
+            idCardNoCell.textField.text = text
+        }
+    }
+    
+    func updateGridImage(image: UIImage?) {
+        if let model = currentGridModel {
+            model.image = image
+            collectionView?.performBatchUpdates({
+                let indexPath = IndexPath.init(item: gridViewModels.index(of: model)!, section: 0)
+                collectionView?.reloadItems(at:[indexPath as IndexPath])
+            }, completion: nil)
+        }
+    }
 }

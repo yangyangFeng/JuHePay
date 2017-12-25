@@ -12,16 +12,17 @@ class APPhotoGridViewCell: UICollectionViewCell {
 
    fileprivate let gridHeadLabel: UILabel = UILabel()
    fileprivate let gridBottomLabel: UILabel = UILabel()
-   fileprivate let gridButton: UIButton = UIButton()
+   fileprivate let gridImageView: UIImageView = UIImageView()
     
     var model: APGridViewModel? {
         didSet {
             gridHeadLabel.text = model?.headMessage
             gridBottomLabel.text = model?.bottomMessage
-            gridButton.setBackgroundImage(UIImage.init(named: (model?.placeHolderImageName)!), for: .normal)
+            gridImageView.image = UIImage.init(named: (model?.placeHolderImageName)!)
+            gridImageView.contentMode = .scaleAspectFit
             if let image = model?.image {
-                gridButton.setBackgroundImage(UIImage.init(), for: .normal)
-                gridButton.setImage(image, for: .normal)
+                gridImageView.image = image
+                model?.gridState = .canPreview
             }
         }
     }
@@ -44,24 +45,23 @@ class APPhotoGridViewCell: UICollectionViewCell {
         gridHeadLabel.font = UIFont.systemFont(ofSize: 13)
         gridBottomLabel.textColor = UIColor.init(hex6: 0x7a7a7a)
         gridBottomLabel.font = UIFont.systemFont(ofSize: 13)
-        gridButton.isEnabled = false
         
         contentView.addSubview(gridHeadLabel)
-        contentView.addSubview(gridButton)
+        contentView.addSubview(gridImageView)
         contentView.addSubview(gridBottomLabel)
         
         gridHeadLabel.snp.makeConstraints { (make) in
             make.top.centerX.equalToSuperview()
             make.height.equalTo(0)
         }
-        gridButton.snp.makeConstraints { (make) in
+        gridImageView.snp.makeConstraints { (make) in
             make.top.equalTo(gridHeadLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             make.width.equalTo(127)
             make.height.equalTo(83)
         }
         gridBottomLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(gridButton.snp.bottom).offset(10)
+            make.top.equalTo(gridImageView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
     }

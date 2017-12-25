@@ -16,20 +16,25 @@ enum APCameraMode {
     case scan, takePhoto
 }
 
-protocol APCameraViewControllerDelegate {
-    func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage)
+ @objc protocol APCameraViewControllerDelegate {
+    
+  @objc optional func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage)
+  @objc optional  func ocrCameraBankCardResult(bankCard result: APOCRBankCard)
+  @objc optional func ocrCameraIDCardResult(IDCard result: APOCRIDCard)
 }
 class APCameraViewController: APBaseViewController {
     
    fileprivate var isShow:Bool = false
     
-   internal let leftViewWidth: CGFloat = 52.0 * (SCREENHEIGHT / 667)
-   internal let rightViewWidth: CGFloat = 107.0 * (SCREENHEIGHT / 667)
-   internal let padding: CGFloat = 20.0 * (SCREENWIDTH / 667)
     let leftToolView = UIView()
     let rightToolView = UIView()
     /// 图片显示区域
-    let photoShowView = UIView()
+    lazy var takePhotoCameraView: APTakePhotoCameraView = {
+       let view = APTakePhotoCameraView.init(frame: previewRect)
+       return view
+    }()
+    var scanCardType: TCARD_TYPE!
+    var ocrCameraView: APOCRCameraView?
     
     var delegate: APCameraViewControllerDelegate?
     /// 切换成扫描模式
@@ -40,7 +45,7 @@ class APCameraViewController: APBaseViewController {
     
     /// 拍摄模式下确认照片
     let ensureButton = UIButton()
-    var currentCameraMode: APCameraMode = .scan
+    var currentCameraMode: APCameraMode?
     
     public var supportCameraMode: APSupportCameraMode = .scan {
         didSet {
@@ -48,23 +53,27 @@ class APCameraViewController: APBaseViewController {
             case .scan:
                 takePhotoButton.isHidden = true
                 ensureButton.isHidden = true
+                scanButton.isHidden = true
             case .takePhoto:
+                takePhotoButton.isHidden = true
                 scanButton.isHidden = true
             case .all:
                 break
             }
         }
     }
-    public var scanCardType: TCARD_TYPE = TIDCARD2
-    
-    
     /// 显示相片的区域
-    public var previewRect: CGRect {
-        let layerWidth = SCREENWIDTH - padding - padding
-        let layerHeight = SCREENHEIGHT - leftViewWidth - padding - rightViewWidth
+   lazy public var previewRect: CGRect = {
+        let layerWidth = SCREENWIDTH - camera_Padding - camera_Padding
+        let layerHeight = SCREENHEIGHT - camera_LeftViewWidth - camera_Padding - camera_RightViewWidth
         let rect = CGRect.init(x: 0, y: 0, width: layerWidth, height: layerHeight)
         return rect
-    }
+    }()
+    
+    lazy fileprivate var photoPreviewVC: APPhotoPreviewController = {
+        let vc = APPhotoPreviewController()
+        return vc
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +87,8 @@ class APCameraViewController: APBaseViewController {
             weakSelf?.view.makeToast(msg)
             return
         }
-        
         layoutViews()
+        scanAction(takePhotoButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,9 +127,6 @@ extension APCameraViewController {
         flashButton?.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi / 2))
         flashButton?.addTarget(self, action: #selector(flashButtonAction(_:)), for: .touchUpInside)
         leftToolView.addSubview(flashButton!)
-    
-        photoShowView.backgroundColor = UIColor.clear
-        view.addSubview(photoShowView)
         
         /// 右工具栏
         rightToolView.backgroundColor = UIColor.clear
@@ -150,23 +156,18 @@ extension APCameraViewController {
 //        布局左中右三个模块
         leftToolView.snp.makeConstraints { (make) in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(leftViewWidth)
+            make.height.equalTo(camera_LeftViewWidth)
         }
         rightToolView.snp.makeConstraints { (make) in
             make.right.left.bottom.equalToSuperview()
-            make.height.equalTo(rightViewWidth)
+            make.height.equalTo(camera_RightViewWidth)
         }
-        photoShowView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(padding)
-            make.top.equalTo(leftToolView.snp.bottom).offset(padding)
-            make.right.equalToSuperview().offset(-padding)
-            make.bottom.equalTo(rightToolView.snp.top)
-        }
+
 //        布局左视图
         backButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-padding)
-            make.height.width.equalTo(leftViewWidth)
+            make.right.equalToSuperview().offset(-camera_Padding)
+            make.height.width.equalTo(camera_LeftViewWidth)
         }
         flashButton?.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview().offset(10)
@@ -179,9 +180,9 @@ extension APCameraViewController {
 //        布局右视图
         scanButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-padding)
-            make.width.equalTo(leftViewWidth)
-            make.height.equalTo(leftViewWidth)
+            make.right.equalToSuperview().offset(-camera_Padding)
+            make.width.equalTo(camera_LeftViewWidth)
+            make.height.equalTo(camera_LeftViewWidth)
         }
         takePhotoButton.snp.makeConstraints { (make) in
             make.centerY.width.height.equalTo(scanButton)
@@ -189,9 +190,10 @@ extension APCameraViewController {
         }
         ensureButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(scanButton)
-            make.width.equalTo(80)
-            make.height.equalTo(80)
-            make.right.equalTo(takePhotoButton.snp.left).offset(-padding)
+            make.width.equalTo(camera_EnsureSize)
+            make.height.equalTo(camera_EnsureSize)
+//            make.right.equalTo(takePhotoButton.snp.left).offset(-camera_Padding)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -243,23 +245,104 @@ extension APCameraViewController {
     @objc func scanAction(_ sender: UIButton) {
         if sender == scanButton {
             if currentCameraMode != .scan {
+                takePhotoCameraView.removeFromSuperview()
+                checkoutOCR()
                 currentCameraMode = .scan
                 scanButton.isSelected =  true
                 takePhotoButton.isSelected = false
             }
         } else {
             if currentCameraMode != .takePhoto {
+                ocrCameraView?.removeFromSuperview()
+                checkoutTakePhoto()
                 currentCameraMode = .takePhoto
                 takePhotoButton.isSelected = true
                 scanButton.isSelected = false
             }
         }
-        let name = NSNotification.Name("SwichCamera")
-        NotificationCenter.default.post(name: name, object: currentCameraMode)
     }
     
+   private func checkoutTakePhoto() {
+    
+        weak var weakSelf = self
+        takePhotoCameraView.capturePhoto = {(image) in
+            weakSelf?.preview(withImage: image){(isUse) in
+                if isUse {
+                    weakSelf?.delegate?.cameraViewController?(weakSelf!, didFinishPickingImage: image)
+                    weakSelf?.backAction()
+                }
+            }
+        }
+        view.addSubview(takePhotoCameraView)
+        takePhotoCameraView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(camera_Padding)
+            make.top.equalTo(leftToolView.snp.bottom).offset(camera_Padding)
+            make.right.equalToSuperview().offset(-camera_Padding)
+            make.bottom.equalTo(rightToolView.snp.top)
+        }
+        ensureButton.isHidden = false
+    }
+    
+   private func checkoutOCR() {
+    
+       weak var weakSelf = self
+       ocrCameraView = APOCRCameraView.init(frame: view.frame, scanType: scanCardType)
+        if scanCardType == TIDCARD2 {
+            ocrCameraView?.idCardResult = {(idCard, isSuccess, message) in
+                if !isSuccess {
+                    weakSelf?.view.makeToast(message)
+                    weakSelf?.backAction()
+                } else {
+                    weakSelf?.preview(withImage: idCard.image){ (isUse) in
+                        if isUse {
+                            weakSelf?.delegate?.ocrCameraIDCardResult?(IDCard: idCard)
+                            weakSelf?.backAction()
+                        }
+                    }
+                }
+            }
+        } else {
+            ocrCameraView?.bankCardResult = {(bankCard, isSuccess, message) in
+                if !isSuccess {
+                    weakSelf?.view.makeToast(message)
+                    weakSelf?.backAction()
+                } else {
+                    weakSelf?.preview(withImage: bankCard.bankCardImage){ (isUse) in
+                        weakSelf?.delegate?.ocrCameraBankCardResult?(bankCard: bankCard)
+                        weakSelf?.backAction()
+                    }
+                }
+            }
+            
+       }
+       view.addSubview(ocrCameraView!)
+       ocrCameraView?.snp.makeConstraints { (make) in
+           make.edges.equalToSuperview()
+       }
+       reloadLaysubViews()
+   }
+   private func reloadLaysubViews() {
+       ensureButton.isHidden = true
+       view.bringSubview(toFront: leftToolView)
+       view.bringSubview(toFront: rightToolView)
+     }
+    
+    private func preview(withImage: UIImage?, handle: ((_ isEnsure: Bool) -> Void)?) {
+        if let image = withImage {
+           weak var weakSelf = self
+            photoPreviewVC.show(withController: self, image: image)
+            photoPreviewVC.photoPreviewHandle = {(isUse) in
+                if isUse {
+                    handle?(isUse)
+                } else {
+                    weakSelf?.photoPreviewVC.dismiss(fromController: weakSelf!)
+                }
+            }
+        }
+    }
+ 
     /// 确认拍摄照片
     @objc func ensurePhoto() {
-    
+        takePhotoCameraView.getTakePhoto()
     }
 }

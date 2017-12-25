@@ -9,7 +9,7 @@
 import UIKit
 
 enum GridState {
-    case normal, uploaded, downLoaded, failure, other
+    case normal, canPreview, failure, other
 }
 
 typealias APGridViewTapedHandle = () -> Void

@@ -9,8 +9,8 @@
 import UIKit
 import AVFoundation
 import CoreMotion
-
-class APTakePhotoCameraViewController: APCameraViewController {
+typealias APCapturePhotoBlock = (UIImage) -> Void
+class APTakePhotoCameraView: APBaseCameraView {
     
     /// 执行输入设备和输出设备之间的数据传递
    fileprivate var session: AVCaptureSession!
@@ -26,19 +26,19 @@ class APTakePhotoCameraViewController: APCameraViewController {
     
     /// 管理者对象
     fileprivate var motionManger: CMMotionManager = CMMotionManager()
+    
+    public var capturePhoto: APCapturePhotoBlock?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUpCaptureSession()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        session.startRunning()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
         session.stopRunning()
         if (motionManger.isDeviceMotionActive) {
             motionManger.stopDeviceMotionUpdates()
@@ -71,15 +71,16 @@ class APTakePhotoCameraViewController: APCameraViewController {
         
         previewLayer = AVCaptureVideoPreviewLayer.init(session: session)
         previewLayer.videoGravity = .resizeAspectFill
-        previewLayer.frame = previewRect
-        photoShowView.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.frame
+        layer.addSublayer(previewLayer)
         
         guard let previewLayerConnection = previewLayer.connection else {
-            view.makeToast("相机初始化失败")
+            makeToast("相机初始化失败")
             return
         }
         previewLayerConnection.videoOrientation = .portrait
         previewLayerConnection.videoScaleAndCropFactor = 1
+        session.startRunning()
     }
     
     fileprivate func avOrientationForDeviceOrientation(deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
@@ -92,9 +93,9 @@ class APTakePhotoCameraViewController: APCameraViewController {
         }
     }
     
-    @objc override func ensurePhoto() {
+    public func getTakePhoto() {
         guard let stillImageConnection = imageOutput.connection(with: .video) else {
-            view.makeToast("相机初始化失败")
+            makeToast("相机初始化失败")
             return
         }
         let curDeviceOrientation = UIDevice.current.orientation
@@ -108,7 +109,7 @@ class APTakePhotoCameraViewController: APCameraViewController {
         weak var weakSelf = self
         imageOutput.captureStillImageAsynchronously(from: stillImageConnection) {[unowned self] (imageDataSampleBuffer, error) in
             if let _error = error {
-                weakSelf?.view.makeToast(_error.localizedDescription)
+                weakSelf?.makeToast(_error.localizedDescription)
                 return
             }
             guard let _ = imageDataSampleBuffer else {
@@ -118,12 +119,10 @@ class APTakePhotoCameraViewController: APCameraViewController {
                 if let tempImage = UIImage(data: jpegData, scale: 1) {
                     if let tempCgImage = tempImage.cgImage {
                         let image = UIImage(cgImage: tempCgImage, scale: 0.1, orientation: UIImageOrientation.up)
-                        self.delegate?.cameraViewController(self, didFinishPickingImage: image)
-                        self.dismiss(animated: true, completion: nil)
+                        weakSelf?.capturePhoto?(image)
                     }
                 }
             }
         }
     }
-
 }

@@ -15,6 +15,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
     let bankCardNoFormCell = APBankCardNoFormCell()
     let bankNameFormCell = APBankNameFormCell()
     var bank: APBank?
+    var bankImageModel = APGridViewModel()
     
     lazy var authParam: APSettleCardAuthRequest = {
         let authParam = APSettleCardAuthRequest()
@@ -90,12 +91,12 @@ extension APSettlementCardAuthViewController {
             make.right.left.equalToSuperview()
             make.height.equalTo(50 * 4 + 5)
         }
-        
-        let bankImageModel = APGridViewModel()
+    
         bankImageModel.bottomMessage = "上传银行卡照片"
         bankImageModel.placeHolderImageName = "auth_bankCard_normal"
         bankImageModel.tapedHandle = {
-            let cameraVC = APCameraManagerController()
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = weakSelf
             cameraVC.scanCardType = TIDBANK
             cameraVC.supportCameraMode = .all
             weakSelf?.present(cameraVC, animated: true, completion: nil)
@@ -125,5 +126,19 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
             self.bankNameFormCell.text = bank.bankName
         }
         navigationController?.pushViewController(searchBankVC)
+    }
+}
+
+extension APSettlementCardAuthViewController: APCameraViewControllerDelegate {
+    
+    func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
+        bankImageModel.image = image
+        collectionView?.reloadData()
+    }
+    
+    func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
+        bankCardNoFormCell.textField.text = result.cardNum
+        bankImageModel.image = result.bankCardImage
+        collectionView?.reloadData()
     }
 }
