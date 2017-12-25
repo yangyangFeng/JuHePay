@@ -9,20 +9,25 @@
 import UIKit
 
 class APAlertManager: NSObject {
-    
-    static func show(message: String,
-                     confirmTitle: String,
-                     canceTitle: String,
-                     confirm:@escaping (UIAlertAction) -> Void,
-                     cancel:@escaping (UIAlertAction) -> Void) {
+
+    static func show(param: @escaping (APAlertParam) -> Void,
+                     confirm: @escaping (UIAlertAction) -> Void,
+                     cancel: @escaping (UIAlertAction) -> Void) {
         
+        let alertParam = APAlertParam()
+        param(alertParam)
         let alertController = APAlertController(title: "提示",
-                                                message: message,
+                                                message: alertParam.apMessage,
                                                 preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: canceTitle, style: .cancel) { (action) in
+        
+        let cancelAction = UIAlertAction(title: alertParam.apCanceTitle,
+                                         style: .cancel)
+        { (action) in
             cancel(action)
         }
-        let confirmAction = UIAlertAction(title: confirmTitle, style: .default) { (action) in
+        let confirmAction = UIAlertAction(title: alertParam.apConfirmTitle,
+                                          style: .default)
+        { (action) in
             confirm(action)
         }
         alertController.addAction(cancelAction)
@@ -30,4 +35,11 @@ class APAlertManager: NSObject {
         alertController.show()
     }
 
+}
+
+
+class APAlertParam: NSObject {
+    var apMessage: String?
+    var apCanceTitle: String?
+    var apConfirmTitle: String?
 }

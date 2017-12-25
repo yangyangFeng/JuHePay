@@ -7,50 +7,73 @@
 //
 
 import UIKit
+/**
+ tip2：用户权限矩阵图：
+             1、依据不同的用户属性，首页展示点击权限如下表，“√”表示可以点击，无此标志则无法点击（或需要进行相应弹窗提示）。
+             提示语，
+             未认证通过时：您还未进行身份证认证，请先进行认证。 取消、 去认证。
+             审核中：您的资质在审核中，请耐心等待。  确认
+             未通过：您的身份证认证未通过，请重新填写。 取消、去填写。（进入身份认证界面）
+ 用户说明：
+ 1、游客：未注册用户。
+ 2、弱注册用户：在客户端/H5端，手机号注册成功，未进行身份证认证用户。
+ 3、认证通过：在客户端已注册成功，并成功通过身份认证的用户。
+ 4、统一用户身份说明：同一身份证号仅能同时实名认证一个手机号。
+ */
+
+//用户状态
+enum APUserIdentityStatus: Int {
+    case touristsUser   = 1  //游客用户
+    case weakUser       = 2  //未做实名认证用户
+    case strongUser    = 3  //实名认证通过的用户
+}
+
+//用户权限状态
+enum APUserAuthStatus: Int {
+    case notAuth        = 1  //未认证
+    case auditAuth      = 2  //审核中
+    case successAuth    = 3  //审核成功
+    case fauileAuth     = 4  //审核失败
+}
+
+typealias APUserIdentityStatusBlock = (_ param: APUserIdentityStatus) -> Void
+typealias APUserAuthStatusBlock = (_ param: APUserAuthStatus) -> Void
 
 class APUserStatusTool: NSObject {
     
     static let sharedInstance: APUserStatusTool = APUserStatusTool()
 
-    //用户状态
-    enum APUserStatus: Int {
-        case touristsUser   = 1  //游客用户
-        case weakUser       = 2  //未做实名认证用户
-        case strongpUser    = 3  //实名认证通过的用户
-    }
-    
-    //用户实名状态
-    enum APAuthStatus: Int {
-        case defaulAuth   = 1  //待提交
-        case auditAuth    = 2  //待审核
-        case fauileAuth   = 3  //驳回
-        case successAuth  = 4  //成功
-    }
-    
-    /** 当前登录用户的实名状态 */
-    static func authStatus() -> APAuthStatus {
-        return .defaulAuth
-    }
-    
-    /** 当前用户登录状态 */
-    static func userStatus() -> APUserStatus {
-        let authStatus: APAuthStatus = APUserStatusTool.authStatus()
-        let isLogin: Bool = APUserStatusTool.isLogin()
-        
-        if isLogin && (authStatus == .successAuth) {
-            return .strongpUser
-        }
-        if isLogin && (authStatus != .successAuth) {
-            return .weakUser
-        }
-        return .touristsUser
+    /** 验证用户身份 */
+    static func userIdentityStatusTool(status: APUserIdentityStatusBlock) {
+        status(.strongUser)
     }
 
-    /** 用户是否登录过true:登录过、false:未登录过 */
-    static func isLogin() -> Bool {
-        let isMobile = APUserDefaultCache.AP_get(key: .mobile)
-        let isPassword = APUserDefaultCache.AP_get(key: .password)
-        return isMobile != "" && isPassword != ""
+    /** 验证用户权限状态 */
+    static func userAuthStatusTool(status: APUserAuthStatusBlock) {
+        status(.notAuth)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
