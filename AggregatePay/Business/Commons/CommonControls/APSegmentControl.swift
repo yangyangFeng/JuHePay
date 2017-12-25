@@ -20,6 +20,7 @@ class APSegmentControl: UIView {
     /// 重复点击是否触发回调
     var repeatClick = false
     
+
     private var lastIndex : Int = 0
     
     
@@ -39,7 +40,8 @@ class APSegmentControl: UIView {
             button.theme_setTitleColor(["#c8a556"], forState: .highlighted)
             button.theme_setTitleColor(["#999999"], forState: .normal)
             button.setTitle(titles[i], for: UIControlState.normal)
-            button.theme_backgroundColor = ["#373737"]
+            button.backgroundColor = self.backgroundColor
+            button.theme_backgroundColor = self.theme_backgroundColor
             button.tag = i
             button.addTarget(self, action: #selector(buttonDidAction), for: UIControlEvents.touchUpInside)
             
@@ -60,6 +62,7 @@ class APSegmentControl: UIView {
         }
         
     }
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)

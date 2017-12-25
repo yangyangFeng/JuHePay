@@ -30,12 +30,11 @@ class APBillSelectView: UIView {
         if (index >= 0) && (index <= 3){
             let currentBtn = self.viewWithTag(index+100) as? UIButton
             self.titleAnimate(button: currentBtn!)
-            }else{
-//            print("传入的index只能0-3的整数")
+        }
+        else{
             fatalError("传入的index只能0-3的整数")
         }
     }
-    
     
     init(titleArray: [String]) {
         self.titleArray = titleArray
