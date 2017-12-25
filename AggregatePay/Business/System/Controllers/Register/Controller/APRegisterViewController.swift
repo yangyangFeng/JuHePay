@@ -21,54 +21,9 @@ import UIKit
  */
 class APRegisterViewController: APSystemBaseViewController {
     
-    //MARK: ------------- 全局属性
     let registerRequest: APRegisterRequest = APRegisterRequest()
     
-    lazy var accountCell: APSendSMSCodeFormsCell = {
-        let view = APSendSMSCodeFormsCell()
-        view.inputRegx = .mobile
-        view.sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
-        view.textField.keyboardType = UIKeyboardType.numberPad
-        view.textField.placeholder = "请输入11位手机号码"
-        return view
-    }()
-    
-    lazy var smsCodeCell: APTextFormsCell = {
-        let view = APTextFormsCell()
-        view.inputRegx = .smsCode
-        view.textField.keyboardType = UIKeyboardType.numberPad
-        view.textField.placeholder = "请输入短信验证码"
-        return view
-    }()
-    
-    lazy var passwordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
-        return view
-    }()
-    
-    lazy var inviteCodeCell: APTextFormsCell = {
-        let view = APTextFormsCell()
-        view.inputRegx = .inviteCode
-        view.textField.keyboardType = UIKeyboardType.asciiCapable
-        view.textField.placeholder = "请输入邀请码"
-        return view
-    }()
-    
-    lazy var agreedCell: APSelectBoxFormsCell = {
-        let view = APSelectBoxFormsCell()
-        view.button.setTitle(_ : " 我已阅读并接受《XXX用户协议》", for: .normal)
-        return view
-    }()
-    
-    lazy var submitCell: APSubmitFormsCell = {
-        let view = APSubmitFormsCell()
-        view.button.setTitle("下一步", for: .normal)
-        return view
-    }()
-    
-    //MARK: ------------- 生命周期
+    //MARK: ---- life cycle
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         accountCell.sendSmsCodeButton.isCounting = false
@@ -90,6 +45,7 @@ class APRegisterViewController: APSystemBaseViewController {
         APLocationTools.start()
     }
     
+    //MARK: ---- private
     private func createSubviews() {
         
         view.addSubview(accountCell)
@@ -221,6 +177,52 @@ class APRegisterViewController: APSystemBaseViewController {
             weakSelf?.navigationController?.popToRootViewController(animated: true)
         }
     }
+    
+    //MARK: ---- lazy loading
+    lazy var accountCell: APSendSMSCodeFormsCell = {
+        let view = APSendSMSCodeFormsCell()
+        view.inputRegx = .mobile
+        view.sendSmsCodeButton.setTitle(_ : "发送短信验证码", for: .normal)
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入11位手机号码"
+        return view
+    }()
+    
+    lazy var smsCodeCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = .smsCode
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入短信验证码"
+        return view
+    }()
+    
+    lazy var passwordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.placeholder = "请输入密码(6-16位字母、数字或下划线)"
+        return view
+    }()
+    
+    lazy var inviteCodeCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = .inviteCode
+        view.textField.keyboardType = UIKeyboardType.asciiCapable
+        view.textField.placeholder = "请输入邀请码"
+        return view
+    }()
+    
+    lazy var agreedCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 我已阅读并接受《XXX用户协议》", for: .normal)
+        return view
+    }()
+    
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("下一步", for: .normal)
+        return view
+    }()
+    
 
   
 }

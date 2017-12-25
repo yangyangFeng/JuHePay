@@ -8,34 +8,20 @@
 
 import UIKit
 
-class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyboardCompositionViewDelegate {
-    
-    lazy var homeMenuView: APHomeMenuView = {
-        let view = APHomeMenuView(delegate: self)
-        return view
-    }()
-    
-    lazy var keyboardCompositionView: APCollectionCompositionView = {
-        let view = APCollectionCompositionView()
-        view.delegate = self
-        return view
-    }()
-    
-    lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = APBarButtonItem.ap_barButtonItem(self ,title: "账单", action: #selector(pushBillVC))
-        return view
-    }()
-    
+class APHomeViewController: APBaseViewController,
+APHomeMenuViewDelegate,
+APKeyboardCompositionViewDelegate {
+   
+    //MARK: ---- 声明周期
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        switch APUserStatusTool.userStatus() {
-        case .touristsUser:
-            keyboardCompositionView.isLogin = false
-        case .weakUser:
-            keyboardCompositionView.isLogin = true
-        case .strongpUser:
-            keyboardCompositionView.isLogin = true
+        APUserStatusTool.userIdentityStatusTool { (identityStatus) in
+            if identityStatus == .touristsUser {
+                keyboardCompositionView.isLogin = false
+            }
+            else {
+                keyboardCompositionView.isLogin = true
+            }
         }
     }
 
@@ -63,42 +49,95 @@ class APHomeViewController: APBaseViewController, APHomeMenuViewDelegate, APKeyb
         }
     }
     
-    //MARK: -------------- 按钮触发
-    
+    //MARK: ---- 按钮触发
     @objc func pushBillVC() {
         let billVC = APBillViewController()
         navigationController?.pushViewController(billVC, animated: true)
     }
     
-    //MARK: ------- APKeyboardCompositionViewDelegate
     
-    func didKeyboardConfirm(param: Any) {
-        let params = param as! NSDictionary
-//        let totalAmount: String = params.object(forKey: "totalAmount") as! String
-        let menuModel: APHomeMenuModel = params.object(forKey: "menuModel") as! APHomeMenuModel
-        if menuModel.payWay == "0" {
+    //MARK: ---- jump
+    //jump collection view controller
+    private func pushCollectionVC(totalAmount: String, model: Any) {
+        if totalAmount == "" {
+            view.makeToast("请输入金额")
+            return
+        }
+        let didModel: APHomeMenuModel = model as! APHomeMenuModel
+        if didModel.payWay == "0" {
             let placeVC = APCollectionPlaceViewController()
-            self.navigationController?.pushViewController(placeVC,
-                                                          animated: true)
+            self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {
             let qrCodePayElementVC = APQRCodePayElementViewController()
-            self.navigationController?.pushViewController(qrCodePayElementVC,
-                                                          animated: true)
+            self.navigationController?.pushViewController(qrCodePayElementVC, animated: true)
         }
     }
     
-    //MARK: ------- APHomeMenuViewDelegate
+    //go to auth view controller
+    private func pushAuthVC() {
+        weak var weakSelf = self
+        APAlertManager.show(param: { (param) in
+            param.apMessage = "您还未进行身份证认证，请先进行认证。"
+            param.apConfirmTitle = "去认证"
+            param.apCanceTitle = "取消"
+        }, confirm: { (confirmAction) in
+            let authVC = APAuthHomeViewController()
+            weakSelf?.navigationController?.pushViewController(authVC, animated: true)
+        }) { (cancelAction) in
+            
+        }
+    }
     
+    //Go To Login View Controller
+    private func presentLoginVC() {
+        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+        self.present(loginVC, animated: true)
+
+    }
+    
+    //MARK: ---- delegate
+    //MARK: APKeyboardCompositionViewDelegate
+    func didKeyboardConfirm(totalAmount: String, model: Any) {
+        APUserStatusTool.userIdentityStatusTool { (identityStatus) in
+            if identityStatus == .touristsUser {
+                presentLoginVC()
+            }
+            else if identityStatus == .weakUser {
+                pushAuthVC()
+            }
+            else if identityStatus == .strongUser {
+                pushCollectionVC(totalAmount: totalAmount, model: model)
+            }
+        }
+    }
+    
+    //MARK: APHomeMenuViewDelegate
     func selectHomeMenuItemSuccess(itemModel: APHomeMenuModel) {
         keyboardCompositionView.menuModel = itemModel
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        self.present(loginVC, animated: true)
+        view.makeToast(message)
     }
-  
+    
+    //MARK: ---- lazy  loading
+    lazy var homeMenuView: APHomeMenuView = {
+        let view = APHomeMenuView(delegate: self)
+        return view
+    }()
+    
+    lazy var keyboardCompositionView: APCollectionCompositionView = {
+        let view = APCollectionCompositionView()
+        view.delegate = self
+        return view
+    }()
+    
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = APBarButtonItem.ap_barButtonItem(self , title: "账单", action: #selector(pushBillVC))
+        return view
+    }()
+    
 
 }
 

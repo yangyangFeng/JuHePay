@@ -11,33 +11,30 @@ import UIKit
 /**
  * 钱包明细列表
  */
-class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
+class APWalletDetailViewController: APBaseViewController,
+UITableViewDelegate,
+UITableViewDataSource {
     
-    lazy var tableView: UITableView = {
-        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
-        view.delegate = self;
-        view.dataSource = self;
-        view.separatorStyle = .none
-        view.tableFooterView = UIView()
-        view.AP_setupEmpty()
-        view.theme_backgroundColor = ["#fafafa"]
-        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
-        return view
-    }()
-    
-    
+    //MARK: ---- life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包明细"
-        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
-        view.theme_backgroundColor = ["#fafafa"]
+        createSubViews()
         weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            weakSelf?.startHttpRequest()
+            weakSelf?.tableView.mj_header.endRefreshing()
+            weakSelf?.tableView.mj_footer.endRefreshing()
+            weakSelf?.tableView.reloadData()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            weakSelf?.startHttpRequest()
+            weakSelf?.tableView.mj_header.endRefreshing()
+            weakSelf?.tableView.mj_footer.endRefreshing()
+            weakSelf?.tableView.reloadData()
         })
+    }
+    
+    //MARK: ---- private
+    private func createSubViews() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
@@ -46,17 +43,10 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
             make.bottom.equalTo(view.snp.bottom)
         }
     }
-    
-    func startHttpRequest() {
-        tableView.mj_header.endRefreshing()
-        tableView.mj_footer.endRefreshing()
-        tableView.reloadData()
-    }
-    
-    //MARK: ---- 代理
-    
+   
+    //MARK: ---- delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,6 +62,18 @@ class APWalletDetailViewController: APBaseViewController, UITableViewDelegate, U
         navigationController?.pushViewController(APProfitsDetailViewController(), animated: true)
     }
     
+    //MARK: ---- lazy loading
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        view.delegate = self;
+        view.dataSource = self;
+        view.separatorStyle = .none
+        view.tableFooterView = UIView()
+        view.AP_setupEmpty()
+        view.theme_backgroundColor = ["#fafafa"]
+        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
+        return view
+    }()
     
 
 }
