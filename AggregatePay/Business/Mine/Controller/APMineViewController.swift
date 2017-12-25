@@ -38,43 +38,45 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
     }()
     
     lazy var headView: APMineHeaderView = {
-        let view = APMineHeaderView()
+        let view = APMineHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 208-64))
         return view
     }()
     
     lazy var staticListView: APMineStaticListView = {
         let view = APMineStaticListView()
+        view.tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                view.tableView.mj_header.endRefreshing()
+            })
+            
+        })
         view.delegate = self
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.hidesBottomBarWhenPushed = false
-        
-        self.vhl_setNavBarBackgroundAlpha(0.0)
+        let image = UIImage.init(named: "Mine_head_bg")
+        self.vhl_setNavBarBackgroundImage(image?.cropped(to: 64/208))
         
         self.ap_setStatusBarStyle(.lightContent)
-//        self.ap_setNavigationBarHidden(true)
-        
-//        ThemeManager.setTheme(plistName: "APTheme_Normal", path: .mainBundle)
-        
+
         view.backgroundColor = UIColor.white
         
         title = "我的"
 
-        view.addSubview(headView)
+//        view.addSubview(headView)
         view.addSubview(staticListView)
-        headView.snp.makeConstraints { (make) in
-            make.top.equalTo(-64);
-            make.left.right.equalTo(0)
-            make.height.equalTo(208)
-        }
+//        headView.snp.makeConstraints { (make) in
+//            make.top.equalTo(0);
+//            make.left.right.equalTo(0)
+//            make.height.equalTo(208-64)
+//        }
         staticListView.snp.makeConstraints { (make) in
-            make.top.equalTo(headView.snp.bottom).offset(0)
+            make.top.equalTo(0)
             make.left.right.bottom.equalTo(0)
         }
+        staticListView.tableView.tableHeaderView = headView
         // Do any additional setup after loading the view.
         
         
