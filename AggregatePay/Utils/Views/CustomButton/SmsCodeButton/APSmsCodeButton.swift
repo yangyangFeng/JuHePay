@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum APCountingStatus: Int {
+    case wait    = 1
+    case start   = 2
+    case end     = 3
+}
+
 class APSmsCodeButton: UIButton {
     
     deinit {
@@ -19,14 +25,20 @@ class APSmsCodeButton: UIButton {
         willSet {
             self.setTitle("\(newValue)秒后重发", for: .normal)
             if newValue <= 0 {
+                countingStatus = .end
                 self.setTitle("重新获取验证码", for: .normal)
-                isCounting = false
             }
         }
     }
-    var isCounting = false {
+    
+    var countingStatus: APCountingStatus = .end {
         willSet {
-            if newValue {
+            if newValue == .wait {
+                countDownTimer?.invalidate()
+                countDownTimer = nil
+                self.setTitle("正在发送", for: .normal)
+            }
+            else if newValue == .start {
                 countDownTimer = Timer.scheduledTimer(timeInterval: 1,
                                                       target: self,
                                                       selector: #selector(updateTime(_:)),
@@ -34,12 +46,12 @@ class APSmsCodeButton: UIButton {
                                                       repeats: true)
                 RunLoop.main.add(countDownTimer!, forMode:RunLoopMode.commonModes)
                 remainingSeconds = 60
+                
             }
             else {
                 countDownTimer?.invalidate()
                 countDownTimer = nil
             }
-            self.isEnabled = !newValue
         }
     }
     
@@ -52,7 +64,7 @@ class APSmsCodeButton: UIButton {
     }
     
     @objc func updateTime(_ timer: Timer) {
-        print(".......")
+        print("....updateTime...")
         remainingSeconds -= 1
     }
 }
