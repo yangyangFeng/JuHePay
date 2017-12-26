@@ -15,6 +15,7 @@ class APWalletViewController: APBaseViewController,
 UITableViewDelegate,
 UITableViewDataSource {
     
+    var getUserAccountInfoResquest: APGetUserAccountInfoResquest = APGetUserAccountInfoResquest()
     
     //MARK: ---- life cycle
     override func viewDidLoad() {
@@ -24,6 +25,18 @@ UITableViewDataSource {
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
         navigationItem.leftBarButtonItem = leftBarButtonItem
         createSubViews()
+        getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        APNetworking.get(httpUrl: .manange_httpUrl,
+                         action: .getUserAccountInfo,
+                         params: getUserAccountInfoResquest,
+                         aClass: APGetUserAccountInfoResponse.self,
+                         success: { (baseResp) in
+            let getUserAccountInfoResponse = baseResp as! APGetUserAccountInfoResponse
+            self.headerView.amountLabel.text = getUserAccountInfoResponse.drawAMoney
+        }) { (baseError) in
+            
+        }
+
     }
     
     //MARK: ---- action

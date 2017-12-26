@@ -37,6 +37,7 @@ class APSmsCodeButton: UIButton {
                 countDownTimer?.invalidate()
                 countDownTimer = nil
                 self.setTitle("正在发送", for: .normal)
+                self.isEnabled = false
             }
             else if newValue == .start {
                 countDownTimer = Timer.scheduledTimer(timeInterval: 1,
@@ -46,11 +47,12 @@ class APSmsCodeButton: UIButton {
                                                       repeats: true)
                 RunLoop.main.add(countDownTimer!, forMode:RunLoopMode.commonModes)
                 remainingSeconds = 60
-                
+                self.isEnabled = true
             }
             else {
                 countDownTimer?.invalidate()
                 countDownTimer = nil
+                self.isEnabled = false
             }
         }
     }
