@@ -38,8 +38,8 @@ class APLoginViewController: APSystemBaseViewController {
         registerObserve()
         
         //获取缓存的数据
-        let account: String = APUserDefaultCache.AP_get(key: .mobile)
-        let password: String = APUserDefaultCache.AP_get(key: .password)
+        let account = APUserDefaultCache.AP_get(key: .mobile) as! String
+        let password = APUserDefaultCache.AP_get(key: .password)  as! String
         if account != "" && password != "" {
             self.memoryCell.button.isSelected = true
             self.accountCell.textField.text = account

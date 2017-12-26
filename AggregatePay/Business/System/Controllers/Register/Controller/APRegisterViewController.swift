@@ -35,10 +35,11 @@ class APRegisterViewController: APSystemBaseViewController {
         createSubviews()
         registerCallBacks()
         registerObserve()
+        weak var weakSelf = self
         APLocationTools.location(success: { (lat, lng) in
             APLocationTools.stop()
-            print(lat)
-            print(lng)
+            weakSelf?.registerRequest.position = lng+","+lat
+            print(weakSelf?.registerRequest.position as Any)
         }) { (error) in
             print(error)
         }
@@ -90,23 +91,21 @@ class APRegisterViewController: APSystemBaseViewController {
     }
     
     private func registerCallBacks() {
-        
         weak var weakSelf = self
-        
         accountCell.textBlock = { (key, value) in
-            weakSelf?.registerRequest.mobile = value
+            weakSelf?.registerRequest.mobileNo = value
         }
         
         smsCodeCell.textBlock = { (key, value) in
-            weakSelf?.registerRequest.smsCode = value
+            weakSelf?.registerRequest.idCode = value
         }
         
         passwordCell.textBlock = { (key, value) in
-            weakSelf?.registerRequest.password = value
+            weakSelf?.registerRequest.passwd = value
         }
         
         inviteCodeCell.textBlock = { (key, value) in
-            weakSelf?.registerRequest.inviteCode = value
+            weakSelf?.registerRequest.recommendCode = value
         }
         
         agreedCell.buttonBlock = { (key, value) in
@@ -115,66 +114,11 @@ class APRegisterViewController: APSystemBaseViewController {
         }
         
         accountCell.sendSmsCodeBlock = { (key, value) in
-            weakSelf?.startSendSmsCodeHttpRequest()
+            weakSelf?.sendMessage()
         }
         
         submitCell.buttonBlock = { (key, value) in
-            let isEvaluate: Bool = (weakSelf?.evaluate())!
-            if isEvaluate {
-                weakSelf?.startRegisterHttpRequest()
-            }
-        }
-    }
-    
-    private func registerObserve() {
-        
-        weak var weakSelf = self
-        
-        self.kvoController.observe(self.registerRequest,
-                                   keyPaths: ["mobile",
-                                              "password",
-                                              "inviteCode",
-                                              "smsCode",
-                                              "isAgreed"],
-                                   options: [.new, .initial])
-        { (observer, object, change) in
-            let registerModel = object as! APRegisterRequest
-            if (registerModel.mobile.characters.count >= 11 &&
-                registerModel.password.characters.count >= 6 &&
-                registerModel.inviteCode.characters.count >= 6 &&
-                registerModel.smsCode.characters.count >= 4 &&
-                registerModel.isAgreed) {
-                weakSelf?.submitCell.isEnabled = true
-            }
-            else {
-                weakSelf?.submitCell.isEnabled = false
-            }
-        }
-    }
-    
-    private func evaluate() -> Bool {
-
-        if !registerRequest.mobile.evaluate(regx: .mobile) {
-            view.makeToast("手机号输入格式不正确")
-            return false
-        }
-        
-        if !registerRequest.password.evaluate(regx: .password) {
-            view.makeToast("请输入6至16位密码")
-            return false
-        }
-        
-        return true
-    }
-    
-    private func startSendSmsCodeHttpRequest() {
-        accountCell.sendSmsCodeButton.isCounting = true
-    }
-    
-    private func startRegisterHttpRequest() {
-        weak var weakSelf = self
-        registerSuccessShow {
-            weakSelf?.navigationController?.popToRootViewController(animated: true)
+             weakSelf?.register()
         }
     }
     
@@ -222,15 +166,84 @@ class APRegisterViewController: APSystemBaseViewController {
         view.button.setTitle("下一步", for: .normal)
         return view
     }()
-    
-
   
 }
 
 
-
-
-
+extension APRegisterViewController {
+    
+    private func registerObserve() {
+        weak var weakSelf = self
+        self.kvoController.observe(self.registerRequest,
+                                   keyPaths: ["mobileNo",
+                                              "passwd",
+                                              "recommendCode",
+                                              "idCode",
+                                              "isAgreed"],
+                                   options: [.new, .initial])
+        { (observer, object, change) in
+            let registerModel = object as! APRegisterRequest
+            if (registerModel.mobileNo.characters.count >= 11 &&
+                registerModel.passwd.characters.count >= 6 &&
+                registerModel.recommendCode.characters.count >= 6 &&
+                registerModel.idCode.characters.count >= 4 &&
+                registerModel.isAgreed) {
+                weakSelf?.submitCell.isEnabled = true
+            }
+            else {
+                weakSelf?.submitCell.isEnabled = false
+            }
+        }
+    }
+    
+    func sendMessage() {
+        if  registerRequest.mobileNo.count <= 0 {
+            view.makeToast("请输入手机号")
+            return
+        }
+        if !registerRequest.mobileNo.evaluate(regx: .mobile) {
+            view.makeToast("手机号输入格式不正确")
+            return
+        }
+        accountCell.sendSmsCodeButton.isCounting = true
+        let sendMessageReq = APSendMessageReq()
+        sendMessageReq.mobileNo = registerRequest.mobileNo
+        sendMessageReq.businessType = "1"
+        weak var weakSelf = self
+        APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq, success: { (result) in
+            weakSelf?.view.makeToast("成功")
+        }) { (error) in
+            weakSelf?.view.makeToast("失败")
+        }
+    }
+    
+    private func register() {
+        
+        if  registerRequest.mobileNo.count <= 0 {
+            view.makeToast("请输入手机号")
+            return
+        }
+        
+        if !registerRequest.mobileNo.evaluate(regx: .mobile) {
+            view.makeToast("手机号输入格式不正确")
+            return
+        }
+        
+        if !registerRequest.passwd.evaluate(regx: .password) {
+            view.makeToast("请输入6至16位密码")
+            return
+        }
+        weak var weakSelf = self
+        APSystemHttpTool.register(paramReqeust: self.registerRequest, success: { (baseResp) in
+            weakSelf?.registerSuccessShow {
+                weakSelf?.navigationController?.popToRootViewController(animated: true)
+            }
+        }) { (error) in
+            weakSelf?.view.makeToast("失败")
+        }
+    }
+    
+}
 
 
 

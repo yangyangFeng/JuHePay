@@ -35,14 +35,14 @@ class APLoginHttpTool: NSObject {
         let mirror = Mirror(reflecting: paramReqeust)
         keyValue(mirror: mirror)
         
-        
-        APNetworking.post(action: .login,
-                          paramReqeust: paramReqeust,
-                          success: { (result) in
-                            
-        }) { (error) in
-            
-        }
+//
+//        APNetworking.post(action: .login,
+//                          paramReqeust: paramReqeust,
+//                          success: { (result) in
+//
+//        }) { (error) in
+//
+//        }
     }
     
 }

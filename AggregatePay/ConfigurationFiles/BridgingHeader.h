@@ -10,9 +10,11 @@
 #define BridgingHeader_h
 
 #import "CPCheckAuthInputInfoTool.h"
+#import "APClassRuntimeTool.h"
 #import "CPSecurityManager.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
 #import <WechatOpenSDK/WXApi.h>
+#import <MJExtension/MJExtension.h>
 
 #endif /* BridgingHeader_h */
