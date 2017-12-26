@@ -26,7 +26,7 @@ UITableViewDataSource {
         navigationItem.leftBarButtonItem = leftBarButtonItem
         createSubViews()
         getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-        APNetworking.get(httpUrl: .manange_httpUrl,
+        APNetworking.post(httpUrl: .manange_httpUrl,
                          action: .getUserAccountInfo,
                          params: getUserAccountInfoResquest,
                          aClass: APGetUserAccountInfoResponse.self,
@@ -34,7 +34,7 @@ UITableViewDataSource {
             let getUserAccountInfoResponse = baseResp as! APGetUserAccountInfoResponse
             self.headerView.amountLabel.text = getUserAccountInfoResponse.drawAMoney
         }) { (baseError) in
-            
+            self.view.makeToast(baseError.error)
         }
 
     }

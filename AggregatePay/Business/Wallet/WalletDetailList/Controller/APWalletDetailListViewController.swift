@@ -31,6 +31,9 @@ UITableViewDataSource {
             weakSelf?.tableView.mj_footer.endRefreshing()
             weakSelf?.tableView.reloadData()
         })
+        
+        
+//        queryAccountRecord
     }
     
     //MARK: ---- private

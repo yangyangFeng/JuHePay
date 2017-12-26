@@ -66,7 +66,8 @@ extension APNetworking {
     enum APPort: String {
         case login              = "/user/login" //登录
         case register           = "/user/register" //注册
-        case getUserAccountInfo = "user/getUserAccountInfo"  //钱包余额查询接口(进件前置)
+        case getUserAccountInfo = "/user/getUserAccountInfo"  //钱包余额查询接口(进件前置)
+        case queryAccountRecord = "/query/queryAccountRecord"  //钱包明细
         case sendMessage        = "/manager/sendMessage" //获取验证码 (注册、修改密码）
     }
     
