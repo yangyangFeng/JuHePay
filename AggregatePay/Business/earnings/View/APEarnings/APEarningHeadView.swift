@@ -15,8 +15,7 @@ class APEarningHeadView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let image = UIImage.init(named: "Earning_head_bg")
-        let newImage = image?.cropped(to: CGRect.init(x: 0, y: (image?.size.height)!*(64/204), width: (image?.size.width)!, height: (image?.size.height)!*(1-64/204)))
-        let bgImageView = UIImageView.init(image: newImage)
+        let bgImageView = UIImageView.init(image: image?.cropped(to: -(1-64/204)))
         bgImageView.contentMode = .scaleAspectFill
         
         let topLabel = UILabel()

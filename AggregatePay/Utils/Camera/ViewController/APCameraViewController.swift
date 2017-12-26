@@ -34,7 +34,7 @@ class APCameraViewController: APBaseViewController {
     var scanCardType: TCARD_TYPE!
     var ocrCameraView: APOCRCameraView?
     
-    var delegate: APCameraViewControllerDelegate?
+    weak var delegate: APCameraViewControllerDelegate?
     /// 切换成扫描模式
     var scanButton: UIButton = UIButton()
     
@@ -60,6 +60,7 @@ class APCameraViewController: APBaseViewController {
             }
         }
     }
+    
     /// 显示相片的区域
    lazy public var previewRect: CGRect = {
         let layerWidth = SCREENWIDTH - camera_Padding - camera_Padding
@@ -68,11 +69,7 @@ class APCameraViewController: APBaseViewController {
         return rect
     }()
     
-    lazy fileprivate var photoPreviewVC: APPhotoPreviewController = {
-        let vc = APPhotoPreviewController()
-        return vc
-    }()
-    
+    /// LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -234,7 +231,7 @@ extension APCameraViewController {
                 }
                 
             } catch (let error) {
-                print(error.localizedDescription)
+                view.makeToast(error.localizedDescription)
             }
         }
     }
@@ -329,8 +326,10 @@ extension APCameraViewController {
     
     private func preview(withImage: UIImage?, handle: ((_ isEnsure: Bool) -> Void)?) {
         if let image = withImage {
-            photoPreviewVC.show(fromController: self, image: image)
-            photoPreviewVC.photoPreviewHandle = {(isUse) in
+            
+            let previewManager = APPhotoPreviewManager()
+            previewManager.show(fromController: self, image: image)
+            previewManager.photoPreview.photoPreviewHandle = {(isUse) in
                 if isUse {
                     handle?(isUse)
                 }

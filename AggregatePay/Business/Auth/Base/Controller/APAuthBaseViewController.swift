@@ -25,11 +25,6 @@ class APAuthBaseViewController: APBaseViewController {
     let inputTipView = UIView()
     let cellHeight = 146
     
-    lazy var previewVC: APPhotoPreviewController = {
-        let vc = APPhotoPreviewController()
-        return vc
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -235,9 +230,9 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
         
         switch gridModel.gridState {
         case .canPreview:
-            previewVC.photo = gridModel.image!
-            previewVC.show(fromController: self, image: gridModel.image!)
-            previewVC.photoPreviewHandle = {(isUse) in
+            let previewManager = APPhotoPreviewManager()
+            previewManager.show(fromController: self, image: gridModel.image!)
+            previewManager.photoPreview.photoPreviewHandle = {(isUse) in
                 if !isUse {
                     gridModel.tapedHandle?()
                 }
