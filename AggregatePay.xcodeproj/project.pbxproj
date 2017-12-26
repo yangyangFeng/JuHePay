@@ -10,7 +10,7 @@
 		040020031FE8C34C0071F839 /* APBillSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020001FE8C34C0071F839 /* APBillSelectView.swift */; };
 		040020041FE8C34C0071F839 /* APBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020011FE8C34C0071F839 /* APBillViewController.swift */; };
 		040020051FE8C34C0071F839 /* APBillDateWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020021FE8C34C0071F839 /* APBillDateWayView.swift */; };
-		0400200A1FE931FE0071F839 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		0400200A1FE931FE0071F839 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0400200D1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200C1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift */; };
 		0400200F1FEA39090071F839 /* APBillSettleWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200E1FEA39090071F839 /* APBillSettleWayView.swift */; };
 		040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
@@ -134,7 +134,8 @@
 		234CE0F61FF0C78E008F834E /* SCCaptureCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */; };
 		234CE0F91FF0CFE3008F834E /* APOCRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */; };
 		234CE0FA1FF0CFE3008F834E /* APTakePhotoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */; };
-		234CE0FC1FF0D022008F834E /* APPhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */; };
+		235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */; };
+		235E4DE21FF21D2D00B802ED /* APAuthNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */; };
 		2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */; };
 		2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */; };
 		2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C01FE8F1590013AB88 /* APBank.swift */; };
@@ -459,8 +460,9 @@
 		234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
 		234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APOCRCameraView.swift; sourceTree = "<group>"; };
 		234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTakePhotoCameraView.swift; sourceTree = "<group>"; };
-		234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPhotoPreviewController.swift; sourceTree = "<group>"; };
 		23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
+		235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPhotoPreview.swift; sourceTree = "<group>"; };
+		235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthNaviViewController.swift; sourceTree = "<group>"; };
 		2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
 		2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBankSearchViewController.swift; sourceTree = "<group>"; };
 		2374A9C01FE8F1590013AB88 /* APBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBank.swift; sourceTree = "<group>"; };
@@ -1720,6 +1722,7 @@
 		234CE0EF1FF08E11008F834E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */,
 				234CE0F01FF08E2B008F834E /* APBaseCameraView.swift */,
 				234CE0F21FF09158008F834E /* APCameraCommon.swift */,
 				234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */,
@@ -1896,6 +1899,7 @@
 			isa = PBXGroup;
 			children = (
 				2374A9DB1FE8F1590013AB88 /* APAuthBaseViewController.swift */,
+				235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2029,7 +2033,6 @@
 			children = (
 				23C19FC91FEB59FB006AFE21 /* APCameraViewController.swift */,
 				23C19FCA1FEB59FB006AFE21 /* APLandscapeViewController.swift */,
-				234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2573,7 +2576,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
@@ -2606,6 +2609,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMBase64/GTMBase64.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework",
@@ -2625,6 +2629,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMBase64.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGDatePicker.framework",
@@ -2681,7 +2686,6 @@
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
 				2374AA0E1FE909420013AB88 /* APRealNameAuthRequest.swift in Sources */,
 				1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */,
-				234CE0FC1FF0D022008F834E /* APPhotoPreviewController.swift in Sources */,
 				1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */,
 				1AA3D5371FE7DD2C003263E3 /* CPBase64.m in Sources */,
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
@@ -2800,7 +2804,7 @@
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
 				1A1FDA631FE8BF6200E6F808 /* APSmsCodeButton.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
-				0400200A1FE931FE0071F839 /* BuildFile in Sources */,
+				0400200A1FE931FE0071F839 /* (null) in Sources */,
 				2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */,
 				1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */,
 				1A3A68CB1FE3A54200865340 /* APWithdrawDetailViewController.swift in Sources */,
@@ -2857,7 +2861,9 @@
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
 				2374A9E91FE8F1590013AB88 /* APSearchBarView.swift in Sources */,
 				1AE456161FE4BCAD005D9999 /* APVersionUpgradeController.swift in Sources */,
+				235E4DE21FF21D2D00B802ED /* APAuthNaviViewController.swift in Sources */,
 				1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */,
+				235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */,
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
 				1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */,
 			);

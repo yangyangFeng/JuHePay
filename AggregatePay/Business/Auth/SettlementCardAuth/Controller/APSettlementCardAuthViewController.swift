@@ -47,6 +47,14 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
             weakSelf?.authParam.unionBankNo = (weakSelf?.bank?.bankName)!
         }
     }
+    
+    override func commit() {
+        if let _ = processView() {
+            authNavigation()?.pushViewController(APSecurityAuthViewController(), animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }
 
 extension APSettlementCardAuthViewController {

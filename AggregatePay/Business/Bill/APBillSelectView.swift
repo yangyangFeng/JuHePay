@@ -17,6 +17,7 @@ protocol APBillSelectViewDelegate: NSObjectProtocol {
 class APBillSelectView: UIView {
     
     var titleArray: [String]
+    public var canTouch: Bool = true
     private let lineView = UIView()
     private var previousBtn = UIButton()
     var delegate: APBillSelectViewDelegate?
@@ -77,10 +78,12 @@ class APBillSelectView: UIView {
     }
     
     @objc func btnAction(_ button: UIButton) {
-        self.titleAnimate(button: button)
-        self.delegate?.clickSelectBtn(index: button.tag - 100)
-        if (self.btnBlock != nil) {
-            self.btnBlock!(button.tag - 100)
+        if canTouch {
+            self.titleAnimate(button: button)
+            self.delegate?.clickSelectBtn(index: button.tag - 100)
+            if (self.btnBlock != nil) {
+                self.btnBlock!(button.tag - 100)
+            }
         }
     }
     
