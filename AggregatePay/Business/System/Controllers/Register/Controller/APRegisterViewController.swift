@@ -26,7 +26,7 @@ class APRegisterViewController: APSystemBaseViewController {
     //MARK: ---- life cycle
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        accountCell.sendSmsCodeButton.isCounting = false
+        accountCell.sendSmsCodeButton.countingStatus = .end
     }
     
     override func viewDidLoad() {
@@ -205,21 +205,25 @@ extension APRegisterViewController {
             view.makeToast("手机号输入格式不正确")
             return
         }
-        accountCell.sendSmsCodeButton.isCounting = true
+        
         let sendMessageReq = APSendMessageReq()
         sendMessageReq.mobileNo = registerRequest.mobileNo
         sendMessageReq.businessType = "1"
         weak var weakSelf = self
-        APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq, success: { (result) in
-            weakSelf?.view.makeToast("成功")
-        }) { (error) in
-            weakSelf?.view.makeToast("失败")
+        accountCell.sendSmsCodeButton.countingStatus = .wait
+        APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq,
+                                     success: { (baseResp) in
+            weakSelf?.view.makeToast(baseResp.respMsg)
+            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .start
+        }) { (errorMsg) in
+            weakSelf?.view.makeToast(errorMsg)
+            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .end
         }
     }
     
     private func register() {
         
-        if  registerRequest.mobileNo.count <= 0 {
+        if registerRequest.mobileNo.count <= 0 {
             view.makeToast("请输入手机号")
             return
         }
@@ -234,15 +238,15 @@ extension APRegisterViewController {
             return
         }
         weak var weakSelf = self
-        APSystemHttpTool.register(paramReqeust: self.registerRequest, success: { (baseResp) in
+        APSystemHttpTool.register(paramReqeust: self.registerRequest,
+                                  success: { (baseResp) in
             weakSelf?.registerSuccessShow {
                 weakSelf?.navigationController?.popToRootViewController(animated: true)
             }
-        }) { (error) in
-            weakSelf?.view.makeToast("失败")
+        }) { (errorMsg) in
+            weakSelf?.view.makeToast(errorMsg)
         }
     }
-    
 }
 
 

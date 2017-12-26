@@ -8,11 +8,24 @@
 
 import UIKit
 
-class APLoginRequest: APBaseRequest {
+class APLoginRequest: APBaseRequest, NSCopying {
     
     //账号(手机号)
-    @objc dynamic var mobile: String = ""
+    @objc dynamic var mobileNo: String = ""
     //密码
-    @objc dynamic var password: String = ""
-
+    @objc dynamic var passwd: String = ""
+    //激光推送唯一标识
+    @objc dynamic var registId: String = "4d0729fa2433c8242bb3ce7c"
+    
+    required override init() {
+        
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let model = type(of: self).init()
+        model.mobileNo = self.mobileNo
+        model.passwd = self.passwd
+        model.registId = self.registId
+        return model
+    }
 }

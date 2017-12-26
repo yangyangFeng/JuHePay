@@ -11,9 +11,10 @@ import UIKit
 class APUserDefaultCache: NSObject {
     
     enum APUserDefaultKey: String {
-        case mobile = "mobile"
+        case mobile   = "mobile"
         case password = "password"
-        case cookies = "cookies"
+        case cookie   = "cookie"
+        case userId   = "userId"
     }
     
     static func AP_set(value: Any, key: APUserDefaultKey) {

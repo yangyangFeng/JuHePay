@@ -10,10 +10,7 @@ import UIKit
 import Alamofire
 
 typealias APNetWorkingSuccessBlock = (_ result: APBaseResponse) -> Void
-typealias APNetWorkingFaileBlock = (_ error: Any) -> Void
-
-
-
+typealias APNetWorkingFaileBlock = (_ error: APBaseError) -> Void
 
 /**
  * 网络工具类(常用)
@@ -22,9 +19,6 @@ typealias APNetWorkingFaileBlock = (_ error: Any) -> Void
  *       post请求:
  */
 class APNetworking: NSObject {
-    
-    //请求地址
-    let http_url = "http://172.16.0.101:47800"
     
     var manger:SessionManager? = nil
     
@@ -45,20 +39,34 @@ class APNetworking: NSObject {
                      success:@escaping APNetWorkingSuccessBlock,
                      faile:@escaping APNetWorkingFaileBlock) {
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
+        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
+        var requestHeader: HTTPHeaders?
+        if cookie != "" {
+            requestHeader = ["cookie":cookie]
+        }
         sharedInstance.request(httpUrl: httpUrl,
                                action: action,
                                method: .post,
+                               headers: requestHeader,
                                parameters: parameters,
                                success:{ (result) in
+                                print("response:\(String(describing: result))")
             let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
-            if baseResp.isSuccess != "0" {
+            if baseResp.success != "0" {
                 success(baseResp)
             }
             else {
-                faile(baseResp)
+                let baseError = APClassRuntimeTool.ap_class(APBaseError.self, result: result) as! APBaseError
+                if baseError.status == nil {
+                    baseError.status = baseResp.respCode
+                    baseError.error = baseResp.respMsg
+                }
+                faile(baseError)
             }
         }) { (error) in
-            faile(error)
+            let baseError = APBaseError()
+            baseError.error = error.localizedDescription
+            faile(baseError)
         }
     }
 }
@@ -69,11 +77,9 @@ class APNetworking: NSObject {
 extension APNetworking {
     
     enum APPort: String {
-        case login = "/login"
-        //注册
-        case register = "/user/register"
-        //获取验证码 (注册、修改密码）
-        case sendMessage = "/manager/sendMessage"
+        case login       = "/user/login" //登录
+        case register    = "/user/register" //注册
+        case sendMessage = "/manager/sendMessage" //获取验证码 (注册、修改密码）
     }
     
     
@@ -102,41 +108,38 @@ extension APNetworking {
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
         
-        let httpUrl = http_url+action.rawValue
+        let httpUrl = httpUrl.rawValue+action.rawValue
         print("===============star===============")
         print("method:"+method.rawValue)
         print("url:"+httpUrl)
         print("param:"+String(describing: parameters))
-        print("===============end================")
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
-//        headers.
-//        let cookieJar = APUserDefaultCache.AP_get(key: .cookies)
         manger = SessionManager(configuration: config)
         manger?.request(httpUrl,
                         method:method,
                         parameters: parameters,
                         headers: headers).responseJSON { response in
                             if (response.result.isSuccess && response.result.error == nil) {
-                                self.setCacheCookie(response: response)
+                                self.cacheCookie(response: response)
                                 let result: Dictionary<String, Any>? = try?JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                                print("===============end================")
                                 success(result!)
                             }
                             else{
+                                print("response:\(String(describing: response.result.error?.localizedDescription))")
                                 faile(response.result.error!)
+                                print("===============end================")
                             }
         }
     }
     
-    
-    func setCacheCookie(response: DataResponse<Any>) {
+
+    func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
-        for key in headerFields! {
-            print(key)
-        }
         if let cookie = headerFields!["Set-Cookie"] {
-            APUserDefaultCache.AP_set(value: cookie as Any, key: .cookies)
+            APUserDefaultCache.AP_set(value: cookie as Any, key: .cookie)
         }
     }
    

@@ -23,4 +23,19 @@ class APRegisterRequest: APBaseRequest {
     //经纬度
     @objc dynamic var position: String = ""
     
+    required override init() {
+        
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let model = type(of: self).init()
+        model.mobileNo = self.mobileNo
+        model.passwd = self.passwd
+        model.idCode = self.idCode
+        model.position = self.position
+        model.recommendCode = self.recommendCode
+        model.isAgreed = self.isAgreed
+        return model
+    }
+    
 }

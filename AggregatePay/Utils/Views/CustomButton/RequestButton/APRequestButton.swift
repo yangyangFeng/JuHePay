@@ -22,16 +22,17 @@ class APRequestButton: UIButton {
                 let lastView: UIView = (appDelegate.window?.subviews.last!)!
                 lastView.isUserInteractionEnabled = true
                 activityIndicator.stopAnimating()
-                self.isEnabled = true
+                activityIndicator.isHidden = true
                 self.setTitle(self.currentTitle, for: .disabled)
             }
             else {
                 let lastView: UIView = (appDelegate.window?.subviews.last!)!
                 lastView.isUserInteractionEnabled = false
                 activityIndicator.startAnimating()
-                self.isEnabled = false
+                activityIndicator.isHidden = false
                 self.setTitle("", for: .disabled)
             }
+            self.isEnabled = newValue
         }
     }
     

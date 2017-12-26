@@ -41,7 +41,6 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        accountCell.sendSmsCodeButton.isCounting = false
     }
     
     override func viewDidLoad() {
@@ -133,7 +132,7 @@ class APForgetFirstStepViewController: APForgetViewController {
     }
     
     private func startSendSmsCodeHttpRequest() {
-       accountCell.sendSmsCodeButton.isCounting = true
+       
     }
 
 }

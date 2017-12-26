@@ -12,6 +12,7 @@
 #import "CPCheckAuthInputInfoTool.h"
 #import "APClassRuntimeTool.h"
 #import "CPSecurityManager.h"
+#import "CPMD5EncrpTool.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
 #import "IOSOCRAPI.h"

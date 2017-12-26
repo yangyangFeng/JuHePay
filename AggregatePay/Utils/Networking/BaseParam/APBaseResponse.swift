@@ -13,6 +13,6 @@ class APBaseResponse: NSObject {
     @objc dynamic var respCode: String?
     @objc dynamic var respMsg: String?
     @objc dynamic var respTime: String?
-    @objc dynamic var isSuccess: String?
+    @objc dynamic var success: String?
    
 }
