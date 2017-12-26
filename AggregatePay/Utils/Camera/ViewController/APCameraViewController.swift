@@ -23,9 +23,7 @@ enum APCameraMode {
   @objc optional func ocrCameraIDCardResult(IDCard result: APOCRIDCard)
 }
 class APCameraViewController: APBaseViewController {
-    
-   fileprivate var isShow:Bool = false
-    
+
     let leftToolView = UIView()
     let rightToolView = UIView()
     /// 图片显示区域
@@ -93,13 +91,13 @@ class APCameraViewController: APBaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isShow = true
-        setNeedsStatusBarAppearanceUpdate()
+        UIApplication.shared.isStatusBarHidden = true
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return isShow
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.isStatusBarHidden = false
     }
+
 }
 
 extension APCameraViewController {
@@ -150,6 +148,7 @@ extension APCameraViewController {
 
 //       拍摄状态下确认照片
         ensureButton.setImage(UIImage.init(named: "camera_ensureBtn"), for: .normal)
+        ensureButton.isExclusiveTouch = true
         ensureButton.addTarget(self, action: #selector(ensurePhoto), for: .touchUpInside)
         rightToolView.addSubview(ensureButton)
         
@@ -205,6 +204,7 @@ extension APCameraViewController {
         button.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi / 2))
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         button.contentHorizontalAlignment = .center
+        button.isExclusiveTouch = true
         button.titleEdgeInsets = UIEdgeInsetsMake(((button.imageView?.image?.size.height)! + 15.0), -((button.imageView?.image?.size.width)!), 0.0, 0.0)
         button.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, -((button.titleLabel?.requiredWidth)!))
     }
@@ -329,13 +329,10 @@ extension APCameraViewController {
     
     private func preview(withImage: UIImage?, handle: ((_ isEnsure: Bool) -> Void)?) {
         if let image = withImage {
-           weak var weakSelf = self
-            photoPreviewVC.show(withController: self, image: image)
+            photoPreviewVC.show(fromController: self, image: image)
             photoPreviewVC.photoPreviewHandle = {(isUse) in
                 if isUse {
                     handle?(isUse)
-                } else {
-                    weakSelf?.photoPreviewVC.dismiss(fromController: weakSelf!)
                 }
             }
         }

@@ -10,30 +10,47 @@ import UIKit
 typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
 class APPhotoPreviewController: APBaseViewController {
 
-    public let imageView: UIImageView = UIImageView()
     public var photoPreviewHandle: APPhotoPreviewHandle?
+    public var photo: UIImage? {
+        didSet{
+            let leftImage = UIImage.init(cgImage: (photo?.cgImage!)!, scale: (photo?.scale)!, orientation: .right)
+            imageView.image = leftImage
+        }
+    }
+    fileprivate let imageView: UIImageView = UIImageView()
+    fileprivate var fromViewController: APBaseViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = UIRectEdge()
         layoutSuvViews()
     }
-
-    public func show(withController: UIViewController, image: UIImage) {
-        
-//        withController.navigationController?.isNavigationBarHidden = true
-        let leftImage = UIImage.init(cgImage: image.cgImage!, scale: image.scale, orientation: .right)
-        imageView.image = leftImage
-        withController.addChildViewController(self)
-//        UIApplication.shared.windows.first?.addSubview(view)
-        withController.view .addSubview(view)
-        view.frame = CGRect.init(x: 0, y: 0, width: SCREENWIDTH, height: SCREENHEIGHT)
-        didMove(toParentViewController: withController)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vhl_setNavBarHidden(true)
     }
     
-    public func dismiss(fromController: UIViewController) {
-        
-//        fromController.navigationController?.isNavigationBarHidden = false
-//         view.removeFromSuperview()
-        for vc in fromController.childViewControllers {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        vhl_setNavBarHidden(false)
+    }
+
+    public func show(fromController viewController: APBaseViewController, image: UIImage) {
+        photo = image
+        fromViewController = viewController
+        UIApplication.shared.isStatusBarHidden = true
+        viewController.addChildViewController(self)
+        viewController.view.addSubview(view)
+        view.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        didMove(toParentViewController: viewController)
+    }
+    
+    public func dismiss() {
+        UIApplication.shared.isStatusBarHidden = false
+        for vc in fromViewController.childViewControllers {
             vc.willMove(toParentViewController: nil)
             vc.view.removeFromSuperview()
             vc.removeFromParentViewController()
@@ -91,10 +108,12 @@ extension APPhotoPreviewController {
     }
     
     @objc func ensure() {
+        dismiss()
         photoPreviewHandle?(true)
     }
     
     @objc func rephotograph() {
+        dismiss()
         photoPreviewHandle?(false)
     }
 }

@@ -42,6 +42,15 @@ class APSecurityAuthViewController: APAuthBaseViewController {
             weakSelf?.authParam.photoNumber = value
         }
     }
+    
+    override func commit() {
+        if let _ = processView() {
+            let navi = authNavigation()
+            navi?.finishAuths?()
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }
 
 extension APSecurityAuthViewController {

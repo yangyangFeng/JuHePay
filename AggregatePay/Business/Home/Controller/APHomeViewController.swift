@@ -82,8 +82,20 @@ APKeyboardCompositionViewDelegate {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            weakSelf?.navigationController?.pushViewController(authVC, animated: true)
+            
+            let random = arc4random() % UInt32(10) + UInt32(0)
+            if random % 2 == 0 {
+                
+                let authVC = APAuthHomeViewController()
+                weakSelf?.navigationController?.pushViewController(authVC, animated: true)
+            } else {
+                let authNavi = APAuthNaviViewController(rootViewController: APRealNameAuthViewController())
+                authNavi.finishAuths = {
+                    weakSelf?.navigationController?.dismiss(animated: true, completion: nil)
+                }
+                weakSelf?.present(authNavi, animated: true, completion: nil)
+                
+            }
         }) { (cancelAction) in
             
         }
