@@ -10,7 +10,7 @@
 		040020031FE8C34C0071F839 /* APBillSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020001FE8C34C0071F839 /* APBillSelectView.swift */; };
 		040020041FE8C34C0071F839 /* APBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020011FE8C34C0071F839 /* APBillViewController.swift */; };
 		040020051FE8C34C0071F839 /* APBillDateWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020021FE8C34C0071F839 /* APBillDateWayView.swift */; };
-		0400200A1FE931FE0071F839 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		0400200A1FE931FE0071F839 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		0400200D1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200C1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift */; };
 		0400200F1FEA39090071F839 /* APBillSettleWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200E1FEA39090071F839 /* APBillSettleWayView.swift */; };
 		040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
@@ -218,6 +218,9 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
+		74BE3ED41FF0D04200C77B21 /* APBaseRequestParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3ED31FF0D04200C77B21 /* APBaseRequestParam.swift */; };
+		74BE3ED61FF0D0E900C77B21 /* APSendMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3ED51FF0D0E900C77B21 /* APSendMessageRequest.swift */; };
+		74BE3ED81FF0D17000C77B21 /* APCheckMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3ED71FF0D17000C77B21 /* APCheckMessageRequest.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -565,6 +568,9 @@
 		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
 		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
 		74A30EA31FE7F11F00740C17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		74BE3ED31FF0D04200C77B21 /* APBaseRequestParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseRequestParam.swift; sourceTree = "<group>"; };
+		74BE3ED51FF0D0E900C77B21 /* APSendMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSendMessageRequest.swift; sourceTree = "<group>"; };
+		74BE3ED71FF0D17000C77B21 /* APCheckMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCheckMessageRequest.swift; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74C49E771FD4FE0100F0501B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2138,6 +2144,16 @@
 			path = CommonControls;
 			sourceTree = "<group>";
 		};
+		74BE3ED21FF0CFE300C77B21 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				74BE3ED31FF0D04200C77B21 /* APBaseRequestParam.swift */,
+				74BE3ED51FF0D0E900C77B21 /* APSendMessageRequest.swift */,
+				74BE3ED71FF0D17000C77B21 /* APCheckMessageRequest.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		74C49E611FD4FE0100F0501B = {
 			isa = PBXGroup;
 			children = (
@@ -2264,6 +2280,7 @@
 				74D5F65F1FD921D50065A5F3 /* Mine */,
 				74D5F64F1FD7F1D20065A5F3 /* Home */,
 				74D5F64C1FD7F1280065A5F3 /* Base */,
+				74BE3ED21FF0CFE300C77B21 /* DataModel */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -2640,6 +2657,7 @@
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
 				1A2E32961FE541D20029AE9A /* APWalletHeaderView.swift in Sources */,
 				1AA3D5421FE7DE45003263E3 /* CPSecurityManager.m in Sources */,
+				74BE3ED61FF0D0E900C77B21 /* APSendMessageRequest.swift in Sources */,
 				234CE0F91FF0CFE3008F834E /* APOCRCameraView.swift in Sources */,
 				1AF2055A1FE22ACB00C7BD1E /* APLoginRequest.swift in Sources */,
 				0400200F1FEA39090071F839 /* APBillSettleWayView.swift in Sources */,
@@ -2739,6 +2757,7 @@
 				1A030D761FE76320007146C1 /* APCollectionFailureViewController.swift in Sources */,
 				747668411FE8F66C00715E72 /* APEarningHeadView.swift in Sources */,
 				1AD0693A1FEBAF590009E5E9 /* APMCCModel.swift in Sources */,
+				74BE3ED41FF0D04200C77B21 /* APBaseRequestParam.swift in Sources */,
 				1A479ED11FE284F7005E0912 /* APForgetLastStepViewController.swift in Sources */,
 				7487E1831FDFE131000E3EBE /* UISliderExtensions.swift in Sources */,
 				1A1FDA681FE8C61800E6F808 /* APSystemSuccessViewController.swift in Sources */,
@@ -2759,6 +2778,7 @@
 				1A1FDA601FE8B7F300E6F808 /* APModifyViewController.swift in Sources */,
 				1A030D8E1FE76E55007146C1 /* APQRCodeSelectMerchantCell.swift in Sources */,
 				2374A9F01FE8F1590013AB88 /* APAuthHomeViewController.swift in Sources */,
+				74BE3ED81FF0D17000C77B21 /* APCheckMessageRequest.swift in Sources */,
 				1A2E32931FE541D20029AE9A /* APWalletDetailListCell.swift in Sources */,
 				1A030D741FE7624D007146C1 /* APCollectionSuccessViewController.swift in Sources */,
 				1AB03C481FF1145D0064C6AD /* APClassRuntimeTool.m in Sources */,
@@ -2780,7 +2800,7 @@
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
 				1A1FDA631FE8BF6200E6F808 /* APSmsCodeButton.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
-				0400200A1FE931FE0071F839 /* (null) in Sources */,
+				0400200A1FE931FE0071F839 /* BuildFile in Sources */,
 				2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */,
 				1A55F5241FE28EF7001F3196 /* APForgetViewController.swift in Sources */,
 				1A3A68CB1FE3A54200865340 /* APWithdrawDetailViewController.swift in Sources */,

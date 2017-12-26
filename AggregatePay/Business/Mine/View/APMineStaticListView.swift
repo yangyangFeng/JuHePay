@@ -34,7 +34,7 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.register(APMineStaticListCell.self, forCellReuseIdentifier: "APMineStaticListCell")
-        tableView.bounces = false
+//        tableView.bounces = false
         
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in

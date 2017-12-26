@@ -12,6 +12,8 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
 
     public var shareImage : UIImage?
     
+    private var isSaveImage : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,10 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
             shared(scene: .circle)
         }
         else if indexPath.row == 2 {
+            guard !isSaveImage else{
+                self.view.makeToast("已保存")
+                return
+            }
             let action: Selector = #selector(image(image:didFinishSavingWithError:contextInfo:))
             UIImageWriteToSavedPhotosAlbum(shareImage!, self, action, nil)
         }    
@@ -46,6 +52,7 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
         }
         else {
             self.view.makeToast("保存成功")
+            isSaveImage = true
         }
     }
     

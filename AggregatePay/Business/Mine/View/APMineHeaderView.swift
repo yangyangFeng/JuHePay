@@ -16,7 +16,7 @@ class APMineHeaderView: UIView {
         super.init(frame: frame)
         clipsToBounds = true
         //黑色背景
-        let bgImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_bg"))
+        let bgImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_bg")?.cropped(to: -(208-64)/208))
         //用户背景
         let userBgImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_user_bg"))
         //用户头像
@@ -69,7 +69,7 @@ class APMineHeaderView: UIView {
             make.bottom.equalTo(0)
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.top.equalTo(76)
+            make.top.equalTo(12)
         }
         userIconImageView.snp.makeConstraints { (make) in
             make.top.equalTo(userBgImageView.snp.top).offset(21)

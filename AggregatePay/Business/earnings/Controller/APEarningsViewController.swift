@@ -37,8 +37,7 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
     func initSubviews()
     {
         let image = UIImage.init(named: "Earning_head_bg")
-        let newImage = image?.cropped(to: CGRect.init(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!*64/204))
-        self.vhl_setNavBarBackgroundImage(newImage)
+        self.vhl_setNavBarBackgroundImage(image?.cropped(to: 64/204))
         
         let headView = APEarningHeadView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 140))
         headView.delegate = self

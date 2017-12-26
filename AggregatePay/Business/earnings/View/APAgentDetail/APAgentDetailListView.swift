@@ -39,12 +39,12 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
             make.edges.equalTo(0)
         }
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 2), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 tableView.mj_footer.resetNoMoreData()
             })
         })
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 2), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 tableView.mj_header.endRefreshing()
             })
         })

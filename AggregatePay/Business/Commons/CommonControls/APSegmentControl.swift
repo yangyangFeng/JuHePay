@@ -20,6 +20,7 @@ class APSegmentControl: UIView {
     /// 重复点击是否触发回调
     var repeatClick = false
     
+    var backGroundColor : String = "#373737"
 
     private var lastIndex : Int = 0
     
@@ -40,8 +41,7 @@ class APSegmentControl: UIView {
             button.theme_setTitleColor(["#c8a556"], forState: .highlighted)
             button.theme_setTitleColor(["#999999"], forState: .normal)
             button.setTitle(titles[i], for: UIControlState.normal)
-            button.backgroundColor = self.backgroundColor
-            button.theme_backgroundColor = self.theme_backgroundColor
+            button.theme_backgroundColor = [backGroundColor]
             button.tag = i
             button.addTarget(self, action: #selector(buttonDidAction), for: UIControlEvents.touchUpInside)
             
@@ -63,10 +63,19 @@ class APSegmentControl: UIView {
         
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        theme_backgroundColor = [backGroundColor]
+        for subview in self.subviews {
+            if subview.isKind(of: UIButton.self) {
+                subview.theme_backgroundColor = [backGroundColor]
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        theme_backgroundColor = ["#373737"]
+        theme_backgroundColor = [backGroundColor]
     }
     
     @objc func buttonDidAction(_ button : UIButton)

@@ -15,7 +15,7 @@ class APSegmentQueryViewController: APBaseViewController {
     lazy var segmentView: APSegmentControl = {
         let segmentRect = CGRect.init(x: 0, y: 0, width: K_Width, height: 40)
         let view = APSegmentControl(["交易查询","分润查询"], frame: segmentRect)
-        view.theme_backgroundColor = ["#f5f5f5"]
+        view.backGroundColor = "#f5f5f5"
         return view
     }()
     
@@ -34,18 +34,21 @@ class APSegmentQueryViewController: APBaseViewController {
         
         self.addChildViewController(APTradingQueryViewController())
         self.addChildViewController(APProfitsQueryViewController())
+    
+        for vc in self.childViewControllers{
+            view.addSubview(vc.view)
+            vc.view.snp.makeConstraints { (make) in
+                make.left.right.bottom.equalTo(view)
+                make.top.equalTo(segmentView.snp.bottom)
+            }
+        }
+        
         selectChildVC(atIndex: 0)
     }
     
     func selectChildVC(atIndex: Int) {
-        currentVC?.view.removeFromSuperview()
         let childVC: UIViewController = self.childViewControllers[atIndex]
-        view.addSubview(childVC.view)
-        currentVC = childVC
-        childVC.view.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(view)
-            make.top.equalTo(segmentView.snp.bottom)
-        }
+        view.bringSubview(toFront: childVC.view)
     }
     
 }

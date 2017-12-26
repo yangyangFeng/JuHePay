@@ -70,6 +70,18 @@ public extension UIImage {
 		return UIImage(cgImage: image)
 	}
 	
+    /// 图片裁剪
+    ///
+    /// - Parameter heightScale: 剪裁比例,大于零 从上到下 开始剪裁,小于零 从下到上
+    public func cropped(to heightScale : CGFloat) -> UIImage {
+        if heightScale > 0 {
+            return self.cropped(to: CGRect.init(x: 0, y: 0, width: self.size.width, height: heightScale*self.size.height))
+        }
+        else{
+            return self.cropped(to: CGRect.init(x: 0, y: (1+heightScale)*self.size.height, width: self.size.width, height: -heightScale*self.size.height))
+        }
+    }
+    
 	/// SwifterSwift: UIImage scaled to height with respect to aspect ratio.
 	///
 	/// - Parameters:

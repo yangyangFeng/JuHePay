@@ -13,9 +13,7 @@ import PGDatePicker
 extension APReturnBillSearchBar: PGDatePickerDelegate {
     
     func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
-        print("dateComponents = ", dateComponents)
         let calendar = NSCalendar.current
-//        datePicker.setDate(calendar.date(from: dateComponents))
         if datePicker == currentPicker {
             leftHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
@@ -23,12 +21,16 @@ extension APReturnBillSearchBar: PGDatePickerDelegate {
         {
             rightHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
+        if conversionDate(leftHeadView.button.title.text!) > conversionDate(rightHeadView.button.title.text!){
+            leftHeadView.button.title.text = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
+        }
     }
 }
 
 class APReturnBillSearchBar: UIView {
 
-    var interval : Int = 3 //defaule is 3.
+    var interval : Int = 1 //defaule is 1.
+    var maxInterval : Int = 6 //defaule is 6.
     
     let bg_imageView : UIImageView = {
         let view = UIImageView.init(image: UIImage.init(named: "ReturnBillHead_BG"))
@@ -136,8 +138,9 @@ class APReturnBillSearchBar: UIView {
         return str
     }
     
-    func startDate() -> Date {
-        let nowDate = Date.init(timeIntervalSinceNow: 0)
+    func startDate(_ interval : Int) -> Date {
+        let nowDate = conversionDate(rightHeadView.button.title.text!)
+        //Date.init(timeIntervalSinceNow: 0)
         let calendar = NSCalendar.current
         
         let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
@@ -183,7 +186,7 @@ class APReturnBillSearchBar: UIView {
         datePicker.confirmButtonFont = UIFont.boldSystemFont(ofSize: 14)
         datePicker.datePickerMode = .date
         
-        datePicker.minimumDate = startDate()
+//        datePicker.minimumDate = startDate(interval)
         datePicker.maximumDate = endDate()
         return datePicker
     }
@@ -212,7 +215,7 @@ class APReturnBillSearchBar: UIView {
     }()
     
     lazy var startStr: String = {
-        let str : String = APDateTools.stringToDate(date: startDate(), dateFormat: APDateTools.APDateFormat.deteFormatB)
+        let str : String = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
         return str
     }()
     
@@ -221,6 +224,7 @@ class APReturnBillSearchBar: UIView {
     {
         let picker = datePicker()
         let selectDate = APDateTools.dateToString(string: leftHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        picker.minimumDate = startDate(maxInterval)
         picker.maximumDate = conversionDate(rightHeadView.button.title.text!)
         picker.setDate(selectDate, animated: false)
         picker.show()
