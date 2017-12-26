@@ -17,6 +17,7 @@ import Toast_Swift
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
+    public var isLandscape = false
     let tabBarController = APBaseTabBarViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -147,5 +148,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
 
+}
+
+extension AppDelegate {
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if isLandscape {
+            return .all
+        } else {
+            return .portrait
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if let url = URL.init(string: "com.cnepay.zhonghuizhifu://") {
+            if UIApplication.shared.canOpenURL(url) {
+              return UIApplication.shared.openURL(url)
+            }
+        }
+        return false
+    }
 }
 

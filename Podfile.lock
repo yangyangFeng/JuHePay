@@ -16,15 +16,6 @@ PODS:
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.1)
   - ObjectMapper (3.1.0)
-  - OCRSDK (0.1.7):
-    - OCRSDK/CoreSDK (= 0.1.7)
-    - OCRSDK/OCRTool (= 0.1.7)
-    - OCRSDK/UI (= 0.1.7)
-  - OCRSDK/CoreSDK (0.1.7)
-  - OCRSDK/OCRTool (0.1.7):
-    - OCRSDK/UI
-  - OCRSDK/UI (0.1.7):
-    - OCRSDK/CoreSDK
   - PGDatePicker (1.5.9):
     - PGPickerView
   - PGPickerView (1.2.1)
@@ -50,7 +41,6 @@ DEPENDENCIES:
   - KVOController
   - MJExtension
   - MJRefresh
-  - OCRSDK
   - PGDatePicker (>= 1.5.4)
   - SDWebImage
   - SnapKit (~> 4.0.0)
@@ -74,7 +64,6 @@ SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  OCRSDK: 633a176d5ddb920b99c9e3a5fe0f071f07f39277
   PGDatePicker: 00505c5180a92adf1e0465805b0cb49baf42a367
   PGPickerView: cb49c6b3e2a39148bef9f666fa58bb349e0c3b85
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
@@ -84,6 +73,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: 8dc982e1b2ca832390a6ac002edc518d29a061a3
+PODFILE CHECKSUM: fd21d1667c2e2550b370547e09392a90a22e4a2d
 
 COCOAPODS: 1.2.1

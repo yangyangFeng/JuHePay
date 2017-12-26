@@ -14,3 +14,10 @@ class APCommon: NSObject {
 }
 
 let AP_TableViewBackgroundColor = "#F5F5F5"
+
+/// 获取AppDelegate
+let APPDElEGATE = UIApplication.shared.delegate as! AppDelegate
+
+/// 获取屏幕宽和高
+let SCREENWIDTH = UIScreen.main.bounds.size.width
+let SCREENHEIGHT = UIScreen.main.bounds.size.height

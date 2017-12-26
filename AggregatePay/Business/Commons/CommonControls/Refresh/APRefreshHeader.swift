@@ -67,7 +67,7 @@ class APRefreshHeader: MJRefreshStateHeader {
         addSubview(AP_imageView)
         AP_imageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(snp.centerY).offset(0)
-            make.centerX.equalTo(snp.centerX).offset(-stateLabel.requiredWidth/2.0-7-(AP_imageView.image?.size.width)!/2.0)
+//            make.centerX.equalTo(snp.centerX).offset(-stateLabel.requiredWidth/2.0-7-(AP_imageView.image?.size.width)!/2.0)
         }
         
         print(stateLabel.requiredWidth)
