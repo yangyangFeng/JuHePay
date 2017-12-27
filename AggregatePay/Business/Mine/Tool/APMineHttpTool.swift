@@ -25,8 +25,7 @@ class APMineHttpTool: NSObject {
     static func getBankList(_ param : APBaseRequest,
                             success : @escaping APNetWorkingSuccessBlock,
                             faile : @escaping APNetWorkingFaileBlock){
-        APNetworking.get(httpUrl: APHttpUrl.test_url, action: APHttpService.getCardListByUserId, params: param, aClass: APCardListResponse.self, success: success, failure: faile)
-
+        APNetworking.post(httpUrl: APHttpUrl.test_url, action: APHttpService.getCardListByUserId, params: param, aClass: APCardListResponse.self, success: success, failure: faile)
     }
     
     /// 获取用户信息
@@ -34,7 +33,6 @@ class APMineHttpTool: NSObject {
     static func getUserInfo(_ param : APBaseRequest,
                             success : @escaping APNetWorkingSuccessBlock,
                             faile : @escaping APNetWorkingFaileBlock){
-        APNetworking.get(httpUrl: APHttpUrl.test_url, action: APHttpService.userInfo, params: param, aClass: APUserInfoResponse.self.self, success: success, failure: faile)
-
+        APNetworking.post(httpUrl: APHttpUrl.test_url, action: APHttpService.userInfo, params: param, aClass: APUserInfoResponse.self.self, success: success, failure: faile)
     }
 }

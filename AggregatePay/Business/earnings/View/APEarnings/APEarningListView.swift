@@ -12,10 +12,13 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
 
     var tableView : UITableView!
     
-    let titleArray : [String] = ["王者","黄金","青铜"]
-    
     weak var delegate : AP_TableViewDidSelectProtocol?
     
+    var data : APGetProfitHomeResponse?{
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +55,7 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
         }
         else
         {
-            return 3
+            return data?.getRecommendByUser?.count ?? 0
         }
     }
     
@@ -70,16 +73,24 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
         if indexPath.section == 0 {
             let cell : APEarningListViewHeadCell = APEarningListViewHeadCell.cellWithTableView(tableView)
                 as! APEarningListViewHeadCell
+            if let cellData = data{
+                cell.my_agentsLabel.text = "我推广的人：" + (cellData.recommendCount ?? "0")! + "人"
+            }
+            else{
+                cell.my_agentsLabel.text = "我推广的人：0人"
+            }
+
             cell.selectionStyle = .none
             return cell
         }
         else
         {
             let cell : APEarningListViewCell = APEarningListViewCell.cellWithTableView(tableView) as! APEarningListViewCell
+            let cellData = data?.getRecommendByUser?[indexPath.row]
             
-            cell.leftIcon.image = UIImage.init(named: "Mine_head_user_level_title_" + String((2-indexPath.row)))
-            cell.levelName.text = titleArray[indexPath.row] + "服务商"
-            
+            cell.leftIcon.image = UIImage.init(named: "Mine_head_user_level_title_0" )
+            cell.levelName.text = cellData?.userLevelName
+            cell.subAgents.text = "共有" + (cellData?.userRecommendCount ?? "0")! + "位服务商"
             cell.selectionStyle = .none
             return cell
         }
@@ -87,8 +98,8 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let text : String = titleArray[indexPath.row] + "服务商"
-        delegate?.AP_TableViewDidSelect?(indexPath, obj: text)
+        let cellData = data?.getRecommendByUser?[indexPath.row]
+        delegate?.AP_TableViewDidSelect?(indexPath, obj: cellData!)
     }
 }
 

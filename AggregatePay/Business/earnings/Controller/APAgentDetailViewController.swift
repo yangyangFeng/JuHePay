@@ -10,11 +10,16 @@ import UIKit
 
 class APAgentDetailViewController: APBaseViewController {
 
+    var data : APGetProfitHomeResponse?
+    
+    let listView = APAgentDetailListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initSubviews()
         
+        view.AP_loadingBegin()
         // Do any additional setup after loading the view.
     }
     
@@ -22,7 +27,7 @@ class APAgentDetailViewController: APBaseViewController {
         let segment = APSegmentControl.init(["直接推广", "间接推广"], frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 40))
         segment.theme_backgroundColor = [AP_TableViewBackgroundColor]
         segment.segmentBlock = { index in
-            
+            self.loadData(index)
         }
         
         view.addSubview(segment)
@@ -31,7 +36,6 @@ class APAgentDetailViewController: APBaseViewController {
             make.height.equalTo(40)
         }
         
-        let listView = APAgentDetailListView()
         view.addSubview(listView)
         listView.snp.makeConstraints { (make) in
             make.top.equalTo(segment.snp.bottom).offset(0)
@@ -39,6 +43,25 @@ class APAgentDetailViewController: APBaseViewController {
         }
     }
 
+    func loadData(_ index : Int){
+        let param = APGetUserListRecommendRequest()
+        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        param.type = String(index)
+        param.levelId = data?.levelId
+
+        APEarningsHttpTool.getUserListRecommend(param, success: { (res) in
+            self.listView.tableView.mj_header.endRefreshing()
+            self.view.AP_loadingEnd()
+            let data :APGetUserListRecommendResponse = res as! APGetUserListRecommendResponse
+            self.listView.title = self.title
+            self.listView.dataSource = data.list
+        }) { (error) in
+            self.listView.tableView.mj_header.endRefreshing()
+            self.view.AP_loadingEnd()
+            self.view.makeToast(error.message)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
