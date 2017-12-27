@@ -13,7 +13,7 @@ typealias APCapturePhotoBlock = (UIImage) -> Void
 class APTakePhotoCameraView: APBaseCameraView {
     
     /// 执行输入设备和输出设备之间的数据传递
-   fileprivate var session: AVCaptureSession!
+    public var session: AVCaptureSession!
     
     /// 输入设备
     fileprivate var deviceInput: AVCaptureDeviceInput!
