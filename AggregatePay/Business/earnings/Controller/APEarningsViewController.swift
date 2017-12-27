@@ -19,6 +19,19 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
         initSubviews()
         // Do any additional setup after loading the view.
+        loadData()
+    }
+    
+    func loadData()
+    {
+        let param = APGetProfitHomeRequest()
+        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        param.mobileNo = APUserInfoTool.info.mobileNo
+        APEarningsHttpTool.getProfitHome(param, success: { (res) in
+            
+        }) { (error) in
+            
+        }
     }
 
     func AP_Action_Click()
