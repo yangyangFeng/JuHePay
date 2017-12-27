@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension APHttpService{
+    static let userInfo:String    = "/user/getUserInfo" //用户信息
+    static let getCardListByUserId: String = "/user/getCardListByUserId" //获取银行卡
+    static let aboutInfo: String = "/query/getAboutUsInfo" //关于我们
+}
+
+extension APHttpUrl{
+    static let test_url:String = "http://192.168.4.111:47800"
+}
+
 class APMineHttpTool: NSObject {
     
     /// 获取银行卡列表
@@ -15,26 +25,16 @@ class APMineHttpTool: NSObject {
     static func getBankList(_ param : APBaseRequest,
                             success : @escaping APNetWorkingSuccessBlock,
                             faile : @escaping APNetWorkingFaileBlock){
-        APNetworking.post(httpUrl: .test_url, action: .getCardListByUserId, params: param, aClass: APCardListResponse.self, success: { (response) in
-            print(response)
-            success(response)
-        }) { (error) in
-            print(error)
-            faile(error)
-        }
+        APNetworking.get(httpUrl: APHttpUrl.test_url, action: APHttpService.getCardListByUserId, params: param, aClass: APCardListResponse.self, success: success, failure: faile)
+
     }
     
-    /// 获取银行卡列表
+    /// 获取用户信息
     ///
     static func getUserInfo(_ param : APBaseRequest,
                             success : @escaping APNetWorkingSuccessBlock,
                             faile : @escaping APNetWorkingFaileBlock){
-        APNetworking.post(httpUrl: .test_url, action: .userInfo, params: param, aClass: APUserInfoResponse.self, success: { (response) in
-            print(response)
-            success(response)
-        }) { (error) in
-            print(error)
-            faile(error)
-        }
+        APNetworking.get(httpUrl: APHttpUrl.test_url, action: APHttpService.userInfo, params: param, aClass: APUserInfoResponse.self.self, success: success, failure: faile)
+
     }
 }

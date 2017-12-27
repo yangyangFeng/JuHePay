@@ -20,23 +20,6 @@ class APRequestButton: UIButton {
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    var isLoading = false {
-        willSet {
-            let lastView: UIView = (appDelegate.window?.subviews.last!)!
-            if isLoading {
-                activityIndicator.stopAnimating()
-                self.setTitle(self.currentTitle, for: .disabled)
-            }
-            else {
-                activityIndicator.startAnimating()
-                self.setTitle("", for: .disabled)
-            }
-            lastView.isUserInteractionEnabled = newValue
-            self.isEnabled = newValue
-            self.loadingCompleteBlock?()
-        }
-    }
-    
     var activityIndicator = UIActivityIndicatorView()
 
     init() {
@@ -55,9 +38,23 @@ class APRequestButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func loading(isLoad: Bool, isComplete complete:@escaping APLoadingCompleteBlock) {
-        loadingCompleteBlock = complete
-        isLoading = isLoad
+    public func loading(isLoading: Bool,
+                        isComplete complete: APLoadingCompleteBlock? = nil) {
+        
+        let lastView: UIView = (appDelegate.window?.subviews.last!)!
+        if isLoading {
+            lastView.isUserInteractionEnabled = false
+            activityIndicator.startAnimating()
+            self.isEnabled = false
+            self.setTitle("", for: .disabled)
+        }
+        else {
+            lastView.isUserInteractionEnabled = true
+            activityIndicator.stopAnimating()
+            self.isEnabled = true
+            self.setTitle(self.currentTitle, for: .disabled)
+        }
+        complete?()
     }
 
     

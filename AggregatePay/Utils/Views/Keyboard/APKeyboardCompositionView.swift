@@ -120,8 +120,8 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
  */
 class APKeyboardInputRules: NSObject {
     
-    //最大金额1百万
-    let maxAmount: Float = 1000000.00
+    //最大金额10亿
+    let maxAmount: Float = 10000000000.00
     //最小金额1元
     let minAmount: Float = 1.00
     

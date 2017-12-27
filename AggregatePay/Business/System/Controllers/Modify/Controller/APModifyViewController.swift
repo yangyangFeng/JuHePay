@@ -10,43 +10,8 @@ import UIKit
 
 class APModifyViewController: APBaseViewController {
 
-    //MARK: ------------- 全局属性
+    let updatePasswordRequest: APUpdatePasswordRequest = APUpdatePasswordRequest()
     
-    let modiryRequest: APModifyRequest = APModifyRequest()
-
-    lazy var oldPasswordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.placeholder = "请输入旧密码"
-        view.textField.isSecureTextEntry = false
-        view.textField.clearButtonMode = .never
-        view.button.isHidden = true
-        return view
-    }()
-
-    lazy var newPasswordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.clearButtonMode = .never
-        view.textField.placeholder = "请输入新密码(6-16位字母、数字或下划线)"
-        view.button.isHidden = true
-        return view
-    }()
-
-    lazy var repeatPasswordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.placeholder = "请再次输入新密码"
-        return view
-    }()
-
-    lazy var submitCell: APSubmitFormsCell = {
-        let view = APSubmitFormsCell()
-        view.button.setTitle("提交", for: .normal)
-        return view
-    }()
-    
-    //MARK: ------------- 生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,33 +21,68 @@ class APModifyViewController: APBaseViewController {
         registerCallBacks()
         registerObserve()
     }
-   
-    //MARK: ------------- 私有方法
     
+    //MARK: ---- lazy loading
+    lazy var oldPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.placeholder = "请输入旧密码"
+        view.textField.isSecureTextEntry = false
+        view.textField.clearButtonMode = .never
+        view.button.isHidden = true
+        return view
+    }()
+    
+    lazy var newPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.clearButtonMode = .never
+        view.textField.placeholder = "请输入新密码(6-16位字母、数字或下划线)"
+        view.button.isHidden = true
+        return view
+    }()
+    
+    lazy var repeatPasswordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.placeholder = "请再次输入新密码"
+        return view
+    }()
+    
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("提交", for: .normal)
+        return view
+    }()
+}
+
+extension APModifyViewController {
+    
+    //MARK: ----- private
     private func  createSubviews() {
 
         view.addSubview(oldPasswordCell)
         view.addSubview(newPasswordCell)
         view.addSubview(repeatPasswordCell)
         view.addSubview(submitCell)
-
+        
         oldPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(20)
             make.left.equalTo(view.snp.left).offset(30)
             make.right.equalTo(view.snp.right).offset(-30)
             make.height.equalTo(41)
         }
-
+        
         newPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(oldPasswordCell.snp.bottom)
             make.left.right.height.equalTo(oldPasswordCell)
         }
-
+        
         repeatPasswordCell.snp.makeConstraints { (make) in
             make.top.equalTo(newPasswordCell.snp.bottom)
             make.left.right.height.equalTo(oldPasswordCell)
         }
-
+        
         submitCell.snp.makeConstraints { (make) in
             make.top.equalTo(repeatPasswordCell.snp.bottom).offset(20)
             make.left.right.equalTo(oldPasswordCell)
@@ -93,40 +93,37 @@ class APModifyViewController: APBaseViewController {
     private func registerCallBacks() {
         
         weak var weakSelf = self
-
+        
         oldPasswordCell.textBlock = { (key, value) in
-            weakSelf?.modiryRequest.oldPassword = value
+            weakSelf?.updatePasswordRequest.pwdOld = value
         }
-
+        
         newPasswordCell.textBlock = { (key, value) in
-            weakSelf?.modiryRequest.newPassword = value
+            weakSelf?.updatePasswordRequest.pwd = value
         }
-
+        
         repeatPasswordCell.textBlock = { (key, value) in
-            weakSelf?.modiryRequest.repeatPassword = value
+            weakSelf?.updatePasswordRequest.pwdConfirm = value
         }
-
+        
         submitCell.buttonBlock = { (key, value) in
-            let isEvaluate: Bool = (weakSelf?.evaluate())!
-            if isEvaluate {
-                weakSelf?.startModifyHttpRequest()
-            }
+            weakSelf?.updatePassword()
         }
     }
     
     private func registerObserve() {
         
         weak var weakSelf = self
-        self.kvoController.observe(self.modiryRequest,
-                                   keyPaths: ["oldPassword",
-                                              "newPassword",
-                                              "repeatPassword"],
+        self.kvoController.observe(updatePasswordRequest,
+                                   keyPaths: ["pwdOld",
+                                              "pwd",
+                                              "pwdConfirm"],
                                    options: [.new, .initial])
         { (observer, object, change) in
-            let modiryModel = object as! APModifyRequest
-            if  modiryModel.oldPassword.characters.count >= 6 &&
-                modiryModel.newPassword.characters.count >= 6 &&
-                modiryModel.repeatPassword.characters.count >= 6 {
+            let updatePasswordModel = object as! APUpdatePasswordRequest
+            if  updatePasswordModel.pwdOld.characters.count >= 6 &&
+                updatePasswordModel.pwd.characters.count >= 6 &&
+                updatePasswordModel.pwdConfirm.characters.count >= 6 {
                 weakSelf?.submitCell.isEnabled = true
             }
             else {
@@ -134,31 +131,34 @@ class APModifyViewController: APBaseViewController {
             }
         }
     }
-    
-    private func evaluate() -> Bool {
-
-        if !modiryRequest.oldPassword.evaluate(regx: .password) {
+   
+    private func updatePassword() {
+        if !updatePasswordRequest.pwdOld.evaluate(regx: .password) {
             view.makeToast("旧密码输入错误")
-            return false
+            return
         }
-        if !modiryRequest.newPassword.evaluate(regx: .password) {
+        if !updatePasswordRequest.pwd.evaluate(regx: .password) {
             view.makeToast("密码格式不正确")
-            return false
+            return
         }
-        if modiryRequest.newPassword != self.modiryRequest.repeatPassword{
+        if updatePasswordRequest.pwd != updatePasswordRequest.pwdConfirm{
             view.makeToast("再次输入密码不正确")
-            return false
+            return
         }
-        return true
+        updatePasswordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
+        submitCell.loading(isLoading: true, isComplete: nil)
+        APSystemHttpTool.updatePassword(paramReqeust: updatePasswordRequest, success: { (baseResp) in
+            self.submitCell.loading(isLoading: false, isComplete: {
+                self.modifySuccessShow {
+                    self.navigationController?.popToRootViewController(animated: false)
+                    self.ap_selectTabBar(atIndex: 2)
+                }
+            })
+        }) { (errorMsg) in
+            self.view.makeToast(errorMsg)
+            self.submitCell.loading(isLoading: false, isComplete: nil)
+        }
     }
     
-    private func startModifyHttpRequest() {
-        weak var weakSelf = self
-        modifySuccessShow {
-            weakSelf?.navigationController?.popToRootViewController(animated: false)
-            weakSelf?.ap_selectTabBar(atIndex: 2)
-        }
-    }
-
-
+    
 }

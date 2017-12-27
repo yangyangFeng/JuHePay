@@ -26,7 +26,6 @@ class APSmsCodeButton: UIButton {
             self.setTitle("\(newValue)秒后重发", for: .normal)
             if newValue <= 0 {
                 countingStatus = .end
-                self.setTitle("重新获取验证码", for: .normal)
             }
         }
     }
@@ -47,12 +46,13 @@ class APSmsCodeButton: UIButton {
                                                       repeats: true)
                 RunLoop.main.add(countDownTimer!, forMode:RunLoopMode.commonModes)
                 remainingSeconds = 60
-                self.isEnabled = true
+                self.isEnabled = false
             }
             else {
                 countDownTimer?.invalidate()
                 countDownTimer = nil
-                self.isEnabled = false
+                self.setTitle("重新获取验证码", for: .normal)
+                self.isEnabled = true
             }
         }
     }

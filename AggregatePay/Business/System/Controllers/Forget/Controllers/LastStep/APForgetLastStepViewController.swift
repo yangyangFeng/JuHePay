@@ -11,7 +11,7 @@ import UIKit
 /**
  * 修改密码
  */
-class APForgetLastStepViewController: APForgetViewController {
+class APForgetLastStepViewController: APSystemBaseViewController {
     
     
     let resetPasswordRequest = APResetPasswordRequest()
@@ -20,8 +20,7 @@ class APForgetLastStepViewController: APForgetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prompt.backgroundColor = UIColor.clear
-        prompt.text = ""
+        self.title = "找回密码"
         createSubviews()
         registerCallBacks()
         registerObserve()
@@ -103,15 +102,15 @@ extension APForgetLastStepViewController {
             self.view.makeToast("密码格式错误")
             return
         }
-        resetPasswordRequest.optType = "2"
-        submitCell.isLoading = false
-        APSystemHttpTool.forgetPassword(paramReqeust: resetPasswordRequest, success: { (baseReps) in
-            self.submitCell.isLoading = true
-            self.forgetSuccessShow {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+        submitCell.loading(isLoading: true, isComplete: nil)
+        APSystemHttpTool.resetPassword(paramReqeust: resetPasswordRequest, success: { (baseReps) in
+            self.submitCell.loading(isLoading: false, isComplete: {
+                self.forgetSuccessShow {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            })
         }) { (errorMsg) in
-            self.submitCell.isLoading = true
+            self.submitCell.loading(isLoading: false, isComplete: nil)
             self.view.makeToast(errorMsg)
         }
         

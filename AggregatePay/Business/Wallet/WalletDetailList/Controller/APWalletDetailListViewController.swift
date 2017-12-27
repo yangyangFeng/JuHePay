@@ -77,8 +77,8 @@ extension APWalletDetailViewController {
     private func httpQueryAccountRecord () {
         
         queryAccountRecordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-        APNetworking.get(httpUrl: .manange_httpUrl,
-                          action: .queryAccountRecord,
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
+                          action: APHttpService.queryAccountRecord,
                           params: queryAccountRecordRequest,
                           aClass: APQueryAccountRecordResponse.self,
                           success: { (baseResp) in
@@ -97,10 +97,9 @@ extension APWalletDetailViewController {
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.AP_loadingEnd()
-            self.view.makeToast(baseError.error)
+            self.view.makeToast(baseError.message)
         }
     }
-    
     
     //MARK: ---- delegate
     func tableView(_ tableView: UITableView,

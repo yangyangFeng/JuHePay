@@ -71,7 +71,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
             self.tableView.reloadData()
         }) { (error) in
             self.superview?.AP_loadingEnd()
-            self.makeToast(error.error)
+            self.makeToast(error.message)
         }
     }
     
