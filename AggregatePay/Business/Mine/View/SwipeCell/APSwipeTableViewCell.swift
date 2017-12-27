@@ -95,6 +95,7 @@ class APSwipeTableViewCell: UITableViewCell {
         } else {
             
             panOffset = translation.x < 0 ? -swipeWidth : swipeWidth
+            return
         }
         switch panGestureRecognizer.state {
         case .began:

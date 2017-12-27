@@ -16,7 +16,7 @@ extension UIView{
         showToast(APLoadingView.init(title), duration: TimeInterval(HUGE), point: center, completion: nil)
     }
     func AP_loadingEnd(){
-        hideAllToasts()
+        self.hideAllToasts()
     }
 }
 

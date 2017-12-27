@@ -71,7 +71,7 @@ UITableViewDataSource  {
     private func startHttpMerchantCategory() {
         
         APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
-                         action: APHttpService.merchantCategory,
+                         action: APHttpService.trans_httpUrl,
                          params: merchantCategoryRequest,
                          aClass: APMerchantCategoryResponse.self,
                          success: { (baseResp) in

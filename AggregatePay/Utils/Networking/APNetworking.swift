@@ -63,8 +63,11 @@ class APNetworking: NSObject {
 
 extension APNetworking {
 
+    
+
     func packagingRequest(httpUrl: String = APHttpUrl.trans_httpUrl,
                           action: String,
+
                           method: HTTPMethod = .post,
                           params: APBaseRequest,
                           aClass: Swift.AnyClass,

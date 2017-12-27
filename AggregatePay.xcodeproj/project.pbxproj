@@ -180,8 +180,16 @@
 		23C19FCF1FEB5AA8006AFE21 /* APUserAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C19FCE1FEB5AA8006AFE21 /* APUserAuthorization.swift */; };
 		74194EED1FEB4F8300565E4F /* APShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEC1FEB4F8300565E4F /* APShareViewController.swift */; };
 		74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEE1FEB4FA800565E4F /* APShareListView.swift */; };
+		7452ED091FF3441B0046CE23 /* APEarningsHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */; };
+		7452ED0C1FF347590046CE23 /* APGetProfitHomeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */; };
+		7452ED0E1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */; };
+		7452ED101FF347800046CE23 /* APGetMyProfitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0F1FF347800046CE23 /* APGetMyProfitRequest.swift */; };
+		7452ED121FF34CB50046CE23 /* APUserInfoTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED111FF34CB50046CE23 /* APUserInfoTool.swift */; };
 		745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */; };
 		745BDABA1FE2BE12003A6912 /* APApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */; };
+		7461CB381FF384BB002B3734 /* APAboutUsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */; };
+		7461CB391FF384BB002B3734 /* APCardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB361FF384BB002B3734 /* APCardListRequest.swift */; };
+		7461CB3A1FF384BB002B3734 /* APUserInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */; };
 		746602AB1FEA5B2E00C3AA76 /* APRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */; };
 		746602AC1FEA5E5200C3AA76 /* APLoadingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */; };
 		746602AD1FEA5E6C00C3AA76 /* APRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */; };
@@ -234,6 +242,7 @@
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
 		74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */; };
 		74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */; };
+		74EAD31C1FF232B9003856D7 /* APMineHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EAD31B1FF232B9003856D7 /* APMineHttpTool.swift */; };
 		74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC342C1FDF7BD3003ABF70 /* UIImage+QH.m */; };
 		74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC342E1FDF805E003ABF70 /* APBaseTabBarViewController.swift */; };
 		74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC34311FDF892C003ABF70 /* APMineViewController.swift */; };
@@ -470,7 +479,6 @@
 		234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
 		234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APOCRCameraView.swift; sourceTree = "<group>"; };
 		234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTakePhotoCameraView.swift; sourceTree = "<group>"; };
-		23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
 		235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPhotoPreview.swift; sourceTree = "<group>"; };
 		235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthNaviViewController.swift; sourceTree = "<group>"; };
 		2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
@@ -515,22 +523,22 @@
 		23ADC2A31FECB50300D3EE1E /* APOCRIDCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APOCRIDCard.swift; sourceTree = "<group>"; };
 		23ADC2A71FECD19400D3EE1E /* APOCRImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APOCRImageTool.h; sourceTree = "<group>"; };
 		23ADC2A81FECD19400D3EE1E /* APOCRImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APOCRImageTool.m; sourceTree = "<group>"; };
-		23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardNoFormCell.swift; sourceTree = "<group>"; };
-		23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankNameFormCell.swift; sourceTree = "<group>"; };
-		23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCreditCardFormCell.swift; sourceTree = "<group>"; };
 		23C19FC91FEB59FB006AFE21 /* APCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCameraViewController.swift; sourceTree = "<group>"; };
 		23C19FCA1FEB59FB006AFE21 /* APLandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLandscapeViewController.swift; sourceTree = "<group>"; };
 		23C19FCE1FEB5AA8006AFE21 /* APUserAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APUserAuthorization.swift; sourceTree = "<group>"; };
-		23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
-		23D0AD921FE3BB3500617E63 /* APAuth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APAuth.plist; sourceTree = "<group>"; };
-		23D0AD941FE3BB3500617E63 /* APAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuth.swift; sourceTree = "<group>"; };
-		23D0AD9A1FE3BB3500617E63 /* APAuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthHelper.swift; sourceTree = "<group>"; };
-		23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAuthBaseViewController.swift; sourceTree = "<group>"; };
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74194EEC1FEB4F8300565E4F /* APShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APShareViewController.swift; path = AggregatePay/Business/promote/Controller/APShareViewController.swift; sourceTree = SOURCE_ROOT; };
 		74194EEE1FEB4FA800565E4F /* APShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareListView.swift; sourceTree = "<group>"; };
+		7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEarningsHttpTool.swift; sourceTree = "<group>"; };
+		7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetProfitHomeRequest.swift; sourceTree = "<group>"; };
+		7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetUserListRecommendRequest.swift; sourceTree = "<group>"; };
+		7452ED0F1FF347800046CE23 /* APGetMyProfitRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetMyProfitRequest.swift; sourceTree = "<group>"; };
+		7452ED111FF34CB50046CE23 /* APUserInfoTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APUserInfoTool.swift; sourceTree = "<group>"; };
 		745BDAB21FE24315003A6912 /* APSwipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSwipeTableViewCell.swift; sourceTree = "<group>"; };
 		745BDAB91FE2BE12003A6912 /* APApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APApproveViewController.swift; sourceTree = "<group>"; };
+		7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAboutUsRequest.swift; sourceTree = "<group>"; };
+		7461CB361FF384BB002B3734 /* APCardListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCardListRequest.swift; sourceTree = "<group>"; };
+		7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APUserInfoRequest.swift; sourceTree = "<group>"; };
 		746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshFooter.swift; sourceTree = "<group>"; };
 		746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshHeader.swift; sourceTree = "<group>"; };
 		746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareTemplateBar.swift; sourceTree = "<group>"; };
@@ -600,6 +608,7 @@
 		74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AP_ThemeConfig.swift; sourceTree = "<group>"; };
 		74D5F67E1FD95C660065A5F3 /* VHLNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHLNavigation.h; sourceTree = "<group>"; };
 		74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHLNavigation.m; sourceTree = "<group>"; };
+		74EAD31B1FF232B9003856D7 /* APMineHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineHttpTool.swift; sourceTree = "<group>"; };
 		74EC342B1FDF7BD3003ABF70 /* UIImage+QH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QH.h"; sourceTree = "<group>"; };
 		74EC342C1FDF7BD3003ABF70 /* UIImage+QH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QH.m"; sourceTree = "<group>"; };
 		74EC342E1FDF805E003ABF70 /* APBaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseTabBarViewController.swift; sourceTree = "<group>"; };
@@ -1342,6 +1351,8 @@
 		1AB253DD1FE1436A00193B30 /* Earnings */ = {
 			isa = PBXGroup;
 			children = (
+				7452ED0A1FF345390046CE23 /* Model */,
+				7452ED071FF343FC0046CE23 /* Tool */,
 				745BDABB1FE4CF07003A6912 /* View */,
 				1AB253DE1FE1436A00193B30 /* Controller */,
 			);
@@ -2069,18 +2080,29 @@
 		74288DCF1FE16AAD00519A04 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				23D0AD881FE3BB3500617E63 /* APSettlementCardAuthViewController.swift */,
-				23D0ADA21FE3BB3500617E63 /* APAuthBaseViewController.swift */,
-				23BA29AD1FE79ED50031F58C /* APBankNameFormCell.swift */,
-				23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */,
-				23BA29B41FE7AFFB0031F58C /* APCreditCardFormCell.swift */,
-				23BA29AB1FE79EBF0031F58C /* APBankCardNoFormCell.swift */,
-				23D0AD9A1FE3BB3500617E63 /* APAuthHelper.swift */,
-				23D0AD941FE3BB3500617E63 /* APAuth.swift */,
-				23D0AD921FE3BB3500617E63 /* APAuth.plist */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
+		};
+		7452ED071FF343FC0046CE23 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */,
+			);
+			name = Tool;
+			path = AggregatePay/Business/earnings/Tool;
+			sourceTree = SOURCE_ROOT;
+		};
+		7452ED0A1FF345390046CE23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */,
+				7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */,
+				7452ED0F1FF347800046CE23 /* APGetMyProfitRequest.swift */,
+			);
+			name = Model;
+			path = AggregatePay/Business/earnings/Model;
+			sourceTree = SOURCE_ROOT;
 		};
 		745BDAAD1FE21E10003A6912 /* SwipeCell */ = {
 			isa = PBXGroup;
@@ -2100,6 +2122,16 @@
 			name = View;
 			path = AggregatePay/Business/earnings/View;
 			sourceTree = SOURCE_ROOT;
+		};
+		7461CB341FF384BB002B3734 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */,
+				7461CB361FF384BB002B3734 /* APCardListRequest.swift */,
+				7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
 		};
 		746602A71FEA5B2E00C3AA76 /* Refresh */ = {
 			isa = PBXGroup;
@@ -2361,6 +2393,8 @@
 		74D5F65F1FD921D50065A5F3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				7461CB341FF384BB002B3734 /* Model */,
+				74EAD31A1FF23286003856D7 /* Tool */,
 				74EC34301FDF892C003ABF70 /* Controller */,
 				74EC34331FDF892C003ABF70 /* View */,
 			);
@@ -2374,6 +2408,15 @@
 				74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */,
 			);
 			path = VHLNavigation;
+			sourceTree = "<group>";
+		};
+		74EAD31A1FF23286003856D7 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				74EAD31B1FF232B9003856D7 /* APMineHttpTool.swift */,
+				7452ED111FF34CB50046CE23 /* APUserInfoTool.swift */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		74EC342A1FDF7BD3003ABF70 /* Category */ = {
@@ -2664,12 +2707,14 @@
 				1AFB39421FF32F11006AAD33 /* UIImageViewExtensions.swift in Sources */,
 				040020141FEBC4A10071F839 /* APServiceViewController.swift in Sources */,
 				040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */,
+				7452ED0C1FF347590046CE23 /* APGetProfitHomeRequest.swift in Sources */,
 				746602AD1FEA5E6C00C3AA76 /* APRefreshFooter.swift in Sources */,
 				746602AC1FEA5E5200C3AA76 /* APLoadingUtils.swift in Sources */,
 				2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */,
 				1A55F5251FE295B7001F3196 /* APBankCardManageListView.swift in Sources */,
 				1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */,
 				2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */,
+				7452ED0E1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift in Sources */,
 				1AB253CA1FE109B500193B30 /* APHomeMenuModel.swift in Sources */,
 				1A2E32961FE541D20029AE9A /* APWalletHeaderView.swift in Sources */,
 				1AA3D5421FE7DE45003263E3 /* CPSecurityManager.m in Sources */,
@@ -2690,9 +2735,11 @@
 				1A2E32951FE541D20029AE9A /* APWalletCell.swift in Sources */,
 				1AA80FC31FDFF8180021B046 /* AP_ThemeConfig.swift in Sources */,
 				7476684D1FE9102800715E72 /* APSegmentControl.swift in Sources */,
+				7461CB3A1FF384BB002B3734 /* APUserInfoRequest.swift in Sources */,
 				1AA80FBD1FDFF7D80021B046 /* AppDelegate.swift in Sources */,
 				1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */,
 				2374A9EC1FE8F1590013AB88 /* APRealNameAuthViewController.swift in Sources */,
+				7461CB391FF384BB002B3734 /* APCardListRequest.swift in Sources */,
 				1AA3D5381FE7DD2C003263E3 /* CPCipherAES.m in Sources */,
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
 				1AA7B4B11FF3483A00CF7A58 /* APForgetLastStepViewController.swift in Sources */,
@@ -2703,6 +2750,7 @@
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
 				1A0DEC411FF08EA700DCCAC3 /* APSegmentQueryViewController.swift in Sources */,
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
+				7452ED121FF34CB50046CE23 /* APUserInfoTool.swift in Sources */,
 				1A23CA751FF26AB8005154F4 /* APSendMessageReq.swift in Sources */,
 				747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */,
 				2374A9F31FE8F1590013AB88 /* APSecurityAuthViewController.swift in Sources */,
@@ -2717,6 +2765,7 @@
 				7476684C1FE9102800715E72 /* APCommonProtocol.swift in Sources */,
 				7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */,
 				1AF37EE31FF1E56F006B2326 /* APBaseError.swift in Sources */,
+				7452ED101FF347800046CE23 /* APGetMyProfitRequest.swift in Sources */,
 				1A030D8A1FE76C8D007146C1 /* APPayElementToolBarView.swift in Sources */,
 				1AAD397E1FEA6C6B00A06226 /* APBarButtonItem.swift in Sources */,
 				7487E1871FDFE131000E3EBE /* UIBarButtonItemExtensions.swift in Sources */,
@@ -2812,6 +2861,7 @@
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
+				74EAD31C1FF232B9003856D7 /* APMineHttpTool.swift in Sources */,
 				2374A9EE1FE8F1590013AB88 /* APAuth.swift in Sources */,
 				7487E17C1FDFE131000E3EBE /* UITextFieldExtensions.swift in Sources */,
 				1A1FDA631FE8BF6200E6F808 /* APSmsCodeButton.swift in Sources */,
@@ -2855,6 +2905,7 @@
 				1AD068DA1FEB4C090009E5E9 /* APLocationTools.swift in Sources */,
 				74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */,
 				234CE0F61FF0C78E008F834E /* SCCaptureCameraController.m in Sources */,
+				7461CB381FF384BB002B3734 /* APAboutUsRequest.swift in Sources */,
 				0400200D1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift in Sources */,
 				7487E1881FDFE131000E3EBE /* UITabBarExtensions.swift in Sources */,
 				1AB0FE811FF2260400A868CD /* APGetUserAccountInfoResquest.swift in Sources */,
@@ -2862,6 +2913,7 @@
 				1A030D7D1FE76C85007146C1 /* APQRCodePayElementViewController.swift in Sources */,
 				74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */,
 				1A97EDDB1FE534F3008B5357 /* APSelectCreditCardCell.swift in Sources */,
+				7452ED091FF3441B0046CE23 /* APEarningsHttpTool.swift in Sources */,
 				1AC89A521FE3B3D20045A2AF /* APBillDetailCell.swift in Sources */,
 				2374AA0C1FE8FE9B0013AB88 /* APCreditCardFormCell.swift in Sources */,
 				1AF37EDD1FF1DB47006B2326 /* APBaseRequest.swift in Sources */,
