@@ -35,6 +35,14 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             weakSelf?.authParam.idNumber = value
         }
     }
+    
+    override func commit() {
+        if let _ = processView() {
+            authNavigation()?.pushViewController(APSettlementCardAuthViewController(), animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }
 
 extension APRealNameAuthViewController {

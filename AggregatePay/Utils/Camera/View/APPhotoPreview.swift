@@ -7,47 +7,57 @@
 //
 
 import UIKit
-typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
-class APPhotoPreviewController: APBaseViewController {
 
-    public let imageView: UIImageView = UIImageView()
-    public var photoPreviewHandle: APPhotoPreviewHandle?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        layoutSuvViews()
-    }
-
-    public func show(withController: UIViewController, image: UIImage) {
-        
-//        withController.navigationController?.isNavigationBarHidden = true
-        let leftImage = UIImage.init(cgImage: image.cgImage!, scale: image.scale, orientation: .right)
-        imageView.image = leftImage
-        withController.addChildViewController(self)
-//        UIApplication.shared.windows.first?.addSubview(view)
-        withController.view .addSubview(view)
-        view.frame = CGRect.init(x: 0, y: 0, width: SCREENWIDTH, height: SCREENHEIGHT)
-        didMove(toParentViewController: withController)
-    }
+class APPhotoPreviewManager: NSObject {
     
-    public func dismiss(fromController: UIViewController) {
-        
-//        fromController.navigationController?.isNavigationBarHidden = false
-//         view.removeFromSuperview()
-        for vc in fromController.childViewControllers {
-            vc.willMove(toParentViewController: nil)
-            vc.view.removeFromSuperview()
-            vc.removeFromParentViewController()
+    let photoPreview = APPhotoPreview()
+    public func show(fromController viewController: APBaseViewController, image: UIImage) {
+        photoPreview.photo = image
+        UIApplication.shared.keyWindow?.addSubview(photoPreview)
+        photoPreview.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
         }
     }
 }
 
-extension APPhotoPreviewController {
+typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
+class APPhotoPreview: UIView {
+
+    public var photoPreviewHandle: APPhotoPreviewHandle?
+    public var photo: UIImage? {
+        didSet{
+            let leftImage = UIImage.init(cgImage: (photo?.cgImage!)!, scale: (photo?.scale)!, orientation: .right)
+            imageView.image = leftImage
+        }
+    }
+    fileprivate let imageView: UIImageView = UIImageView()
+    fileprivate var fromViewController: APBaseViewController!
+    fileprivate var isStatusBarHidden: Bool!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layoutSuvViews()
+        isStatusBarHidden = UIApplication.shared.isStatusBarHidden
+        UIApplication.shared.isStatusBarHidden = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        UIApplication.shared.isStatusBarHidden = isStatusBarHidden
+        print( String(describing: self.classForCoder) + "已释放")
+    }
+}
+
+extension APPhotoPreview {
     func layoutSuvViews() {
-        view.backgroundColor = UIColor.darkGray
+        backgroundColor = UIColor.darkGray
         
         let photoView = UIView()
         photoView.backgroundColor = UIColor.init(hex6: 0xEBEBEB)
-        view.addSubview(photoView)
+        addSubview(photoView)
         
         imageView.contentMode = .scaleAspectFit
 //        imageView.transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi/2))
@@ -60,7 +70,7 @@ extension APPhotoPreviewController {
         ensureButton.setTitleColor(UIColor.white, for: .normal)
         ensureButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         ensureButton.addTarget(self, action: #selector(ensure), for: .touchUpInside)
-        view.addSubview(ensureButton)
+        addSubview(ensureButton)
         
         let rephotographButton = UIButton()
         rephotographButton.setTitle("重\n拍", for: .normal)
@@ -69,7 +79,7 @@ extension APPhotoPreviewController {
         rephotographButton.setTitleColor(UIColor.white, for: .normal)
         rephotographButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         rephotographButton.addTarget(self, action: #selector(rephotograph), for: .touchUpInside)
-        view.addSubview(rephotographButton)
+        addSubview(rephotographButton)
         
         photoView.snp.makeConstraints { (make) in
             let edge = UIEdgeInsets.init(top: camera_preview_top, left: camera_Padding, bottom: camera_RightViewWidth, right: camera_Padding)
@@ -91,10 +101,12 @@ extension APPhotoPreviewController {
     }
     
     @objc func ensure() {
+        removeFromSuperview()
         photoPreviewHandle?(true)
     }
     
     @objc func rephotograph() {
+        removeFromSuperview()
         photoPreviewHandle?(false)
     }
 }

@@ -44,7 +44,6 @@
 		1A23CA131FF234F0005154F4 /* APQueryAccountRecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23CA121FF234F0005154F4 /* APQueryAccountRecordRequest.swift */; };
 		1A23CA751FF26AB8005154F4 /* APSendMessageReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23CA731FF26AB8005154F4 /* APSendMessageReq.swift */; };
 		1A23CA7B1FF26B29005154F4 /* APResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23CA7A1FF26B29005154F4 /* APResetPasswordRequest.swift */; };
-		1A23CA831FF26F62005154F4 /* APCheckMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23CA821FF26F62005154F4 /* APCheckMessageRequest.swift */; };
 		1A2E32921FE541D20029AE9A /* APWalletDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E32891FE541D20029AE9A /* APWalletDetailListViewController.swift */; };
 		1A2E32931FE541D20029AE9A /* APWalletDetailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E328B1FE541D20029AE9A /* APWalletDetailListCell.swift */; };
 		1A2E32941FE541D20029AE9A /* APWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E328E1FE541D20029AE9A /* APWalletViewController.swift */; };
@@ -133,12 +132,15 @@
 		1AF37EE31FF1E56F006B2326 /* APBaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF37EE21FF1E56F006B2326 /* APBaseError.swift */; };
 		1AF37EE61FF1F3EC006B2326 /* CPMD5EncrpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF37EE51FF1F3EC006B2326 /* CPMD5EncrpTool.m */; };
 		1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF37EEA1FF1F967006B2326 /* APLoginResponse.swift */; };
+		1AFB39411FF32F11006AAD33 /* APCheckMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A23CA821FF26F62005154F4 /* APCheckMessageRequest.swift */; };
+		1AFB39421FF32F11006AAD33 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1681FDFE12B000E3EBE /* UIImageViewExtensions.swift */; };
 		234CE0F11FF08E2B008F834E /* APBaseCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F01FF08E2B008F834E /* APBaseCameraView.swift */; };
 		234CE0F31FF09158008F834E /* APCameraCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F21FF09158008F834E /* APCameraCommon.swift */; };
 		234CE0F61FF0C78E008F834E /* SCCaptureCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */; };
 		234CE0F91FF0CFE3008F834E /* APOCRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */; };
 		234CE0FA1FF0CFE3008F834E /* APTakePhotoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */; };
-		234CE0FC1FF0D022008F834E /* APPhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */; };
+		235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */; };
+		235E4DE21FF21D2D00B802ED /* APAuthNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */; };
 		2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */; };
 		2374A9E61FE8F1590013AB88 /* APBankSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */; };
 		2374A9E71FE8F1590013AB88 /* APBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9C01FE8F1590013AB88 /* APBank.swift */; };
@@ -464,8 +466,9 @@
 		234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
 		234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APOCRCameraView.swift; sourceTree = "<group>"; };
 		234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTakePhotoCameraView.swift; sourceTree = "<group>"; };
-		234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPhotoPreviewController.swift; sourceTree = "<group>"; };
 		23548BEE1FE8ACD6006ED146 /* APSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSearchBarView.swift; sourceTree = "<group>"; };
+		235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPhotoPreview.swift; sourceTree = "<group>"; };
+		235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthNaviViewController.swift; sourceTree = "<group>"; };
 		2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
 		2374A9BE1FE8F1590013AB88 /* APBankSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBankSearchViewController.swift; sourceTree = "<group>"; };
 		2374A9C01FE8F1590013AB88 /* APBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBank.swift; sourceTree = "<group>"; };
@@ -1758,6 +1761,7 @@
 		234CE0EF1FF08E11008F834E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */,
 				234CE0F01FF08E2B008F834E /* APBaseCameraView.swift */,
 				234CE0F21FF09158008F834E /* APCameraCommon.swift */,
 				234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */,
@@ -1934,6 +1938,7 @@
 			isa = PBXGroup;
 			children = (
 				2374A9DB1FE8F1590013AB88 /* APAuthBaseViewController.swift */,
+				235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2067,7 +2072,6 @@
 			children = (
 				23C19FC91FEB59FB006AFE21 /* APCameraViewController.swift */,
 				23C19FCA1FEB59FB006AFE21 /* APLandscapeViewController.swift */,
-				234CE0FB1FF0D022008F834E /* APPhotoPreviewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2633,6 +2637,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMBase64/GTMBase64.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework",
@@ -2652,6 +2657,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMBase64.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGDatePicker.framework",
@@ -2673,6 +2679,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFB39411FF32F11006AAD33 /* APCheckMessageRequest.swift in Sources */,
+				1AFB39421FF32F11006AAD33 /* UIImageViewExtensions.swift in Sources */,
 				040020141FEBC4A10071F839 /* APServiceViewController.swift in Sources */,
 				040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */,
 				746602AD1FEA5E6C00C3AA76 /* APRefreshFooter.swift in Sources */,
@@ -2705,12 +2713,10 @@
 				1AA80FBD1FDFF7D80021B046 /* AppDelegate.swift in Sources */,
 				1AB253E61FE1436B00193B30 /* APEarningsViewController.swift in Sources */,
 				2374A9EC1FE8F1590013AB88 /* APRealNameAuthViewController.swift in Sources */,
-				1A23CA831FF26F62005154F4 /* APCheckMessageRequest.swift in Sources */,
 				1AA3D5381FE7DD2C003263E3 /* CPCipherAES.m in Sources */,
 				1AA80FBC1FDFF4F50021B046 /* APKeyboardView.swift in Sources */,
 				2374AA0E1FE909420013AB88 /* APRealNameAuthRequest.swift in Sources */,
 				1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */,
-				234CE0FC1FF0D022008F834E /* APPhotoPreviewController.swift in Sources */,
 				1AB6A9011FDE8C8700DC915A /* APTabBarItemContentView.swift in Sources */,
 				1AA3D5371FE7DD2C003263E3 /* CPBase64.m in Sources */,
 				1A0A65DC1FDE3A62004D59C0 /* APDisplayView.swift in Sources */,
@@ -2885,7 +2891,9 @@
 				7487E1891FDFE131000E3EBE /* UITableViewExtensions.swift in Sources */,
 				2374A9E91FE8F1590013AB88 /* APSearchBarView.swift in Sources */,
 				1AE456161FE4BCAD005D9999 /* APVersionUpgradeController.swift in Sources */,
+				235E4DE21FF21D2D00B802ED /* APAuthNaviViewController.swift in Sources */,
 				1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */,
+				235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */,
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
 				1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */,
 			);
