@@ -28,12 +28,6 @@ class APSubmitFormsCell: APBaseFormsCell {
         return view
     }()
 
-    var isLoading: Bool = false {
-        willSet {
-            button.isLoading = newValue
-        }
-    }
-    
     var isEnabled: Bool = false {
         willSet {
             button.isEnabled = newValue
@@ -53,8 +47,8 @@ class APSubmitFormsCell: APBaseFormsCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func loading(isLoad: Bool, isComplete complete:@escaping APLoadingCompleteBlock) {
-        button.loading(isLoad: isLoad, isComplete: complete)
+    public func loading(isLoading: Bool, isComplete complete: APLoadingCompleteBlock? = nil) {
+        button.loading(isLoading: isLoading, isComplete: complete)
     }
     
     

@@ -11,7 +11,9 @@ import UIKit
 /**
  * 忘记密码
  */
-class APForgetFirstStepViewController: APForgetViewController {
+class APForgetFirstStepViewController: APSystemBaseViewController {
+    
+    
     
     let checkMessageRequest = APCheckMessageRequest()
     
@@ -24,12 +26,23 @@ class APForgetFirstStepViewController: APForgetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "找回密码"
         createSubviews()
         registerCallBacks()
         registerObserve()
     }
     
     //MARK: ----- lazy loading
+    
+    lazy var prompt: UILabel = {
+        let view = UILabel()
+        view.theme_textColor = ["#d09326"]
+        view.theme_backgroundColor = ["#fff4d9"]
+        view.font = UIFont.systemFont(ofSize: 10)
+        view.text = "    为了保障您的账户安全，请输入注册手机号码进行验证。"
+        return view
+    }()
+    
     lazy var accountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
         view.inputRegx = .mobile
@@ -62,9 +75,18 @@ extension APForgetFirstStepViewController {
     
     private func createSubviews() {
         
+        view.addSubview(prompt)
         view.addSubview(accountCell)
         view.addSubview(smsCodeCell)
         view.addSubview(submitCell)
+        
+        
+        prompt.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.height.equalTo(25)
+        }
         
         accountCell.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(40)
@@ -141,14 +163,13 @@ extension APForgetFirstStepViewController {
         let sendMessageReq = APSendMessageReq()
         sendMessageReq.mobileNo = checkMessageRequest.mobileNo
         sendMessageReq.businessType = "2"
-        weak var weakSelf = self
         accountCell.sendSmsCodeButton.countingStatus = .wait
         APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq, success: { (baseResp) in
-            weakSelf?.view.makeToast(baseResp.respMsg)
-            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .start
+            self.view.makeToast(baseResp.respMsg)
+            self.accountCell.sendSmsCodeButton.countingStatus = .start
         }) { (errorMsg) in
-            weakSelf?.view.makeToast(errorMsg)
-            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .end
+            self.view.makeToast(errorMsg)
+            self.accountCell.sendSmsCodeButton.countingStatus = .end
         }
     }
     
@@ -156,15 +177,15 @@ extension APForgetFirstStepViewController {
         if !evaluate() {
             return
         }
-        submitCell.isLoading = false
+        submitCell.loading(isLoading: true, isComplete: nil)
         APSystemHttpTool.checkMessage(paramReqeust: checkMessageRequest, success: { (baseResp) in
-            self.submitCell.loading(isLoad: true, isComplete: { () in
+            self.submitCell.loading(isLoading: false, isComplete: { () in
                 let lastStepVC: APForgetLastStepViewController = APForgetLastStepViewController()
                 lastStepVC.resetPasswordRequest.mobileNo = self.checkMessageRequest.mobileNo
                 self.navigationController?.pushViewController(lastStepVC, animated: true)
             })
         }) { (errorMsg) in
-            self.submitCell.isLoading = true
+            self.submitCell.loading(isLoading: false, isComplete: nil)
             self.view.makeToast(errorMsg)
         }
     }
