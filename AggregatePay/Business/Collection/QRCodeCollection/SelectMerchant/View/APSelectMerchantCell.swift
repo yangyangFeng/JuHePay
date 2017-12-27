@@ -26,6 +26,12 @@ class APSelectMerchantCell: UITableViewCell {
         return view
     }()
     
+    lazy var lineImageView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.groupTableViewBackground
+        return view
+    }()
+    
     //MARK: ---- 生命周期
     
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
@@ -47,8 +53,16 @@ class APSelectMerchantCell: UITableViewCell {
         self.backgroundColor = UIColor.white
         self.contentView.backgroundColor = UIColor.white
         
+        self.addSubview(lineImageView)
         self.addSubview(titleLabel)
         self.addSubview(arronImageView)
+        
+        
+        lineImageView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.height.equalTo(1)
+        }
         
         arronImageView.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(self.snp.right).offset(-10)

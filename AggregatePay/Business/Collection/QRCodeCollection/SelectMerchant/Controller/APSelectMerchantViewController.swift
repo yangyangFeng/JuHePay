@@ -10,12 +10,13 @@ import UIKit
 
 typealias APSelectMerchantSuccess = (_ model: APMerchantDetail) -> Void
 
-class APSelectMerchantViewController: APBaseViewController{
+class APSelectMerchantViewController: APQRCodeBaseViewController{
 
-    let defaultModel: APMerchantDetail = APMerchantDetail()
     let merchantCategoryRequest = APMerchantCategoryRequest()
-    
     var selectModel: APMerchantDetail?
+    
+    let defaultModel: APMerchantDetail = APMerchantDetail()
+    
     var datas = [APMerchantDetail]()
     var selectMerchantBlock: APSelectMerchantSuccess?
     
@@ -69,9 +70,9 @@ UITableViewDataSource  {
     }
     
     private func startHttpMerchantCategory() {
-        
+        merchantCategoryRequest.type = self.payType!
         APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
-                         action: APHttpService.trans_httpUrl,
+                         action: APHttpService.merchantCategory,
                          params: merchantCategoryRequest,
                          aClass: APMerchantCategoryResponse.self,
                          success: { (baseResp) in
@@ -80,7 +81,7 @@ UITableViewDataSource  {
                             self.tableView.mj_header.endRefreshing()
                             self.tableView.reloadData()
                             self.view.AP_loadingEnd()
-        }, failure: {(baseError) in
+        }, failure: {(baseError) in            
             self.tableView.mj_header.endRefreshing()
             self.tableView.reloadData()
             self.view.AP_loadingEnd()
@@ -92,7 +93,7 @@ UITableViewDataSource  {
     //MARK: ---- delegate
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return datas.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -112,7 +113,7 @@ UITableViewDataSource  {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         let model: APMerchantDetail = datas[indexPath.row] as APMerchantDetail
-        selectMerchantBlock?(model)
+        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "selectMerchant"), object: model, userInfo: nil))
         navigationController?.popViewController(animated: true)
     }
 }

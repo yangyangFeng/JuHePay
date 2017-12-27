@@ -150,7 +150,6 @@ extension APModifyViewController {
         APSystemHttpTool.updatePassword(paramReqeust: updatePasswordRequest, success: { (baseResp) in
             self.submitCell.loading(isLoading: false, isComplete: {
                 self.modifySuccessShow {
-                    self.navigationController?.popToRootViewController(animated: false)
                     self.ap_selectTabBar(atIndex: 2)
                 }
             })
