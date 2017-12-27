@@ -13,6 +13,9 @@ let K_Height = UIScreen.main.bounds.size.height
 
 class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelegate, APBankCardCellDelegate {
     
+    var dataSource:[Any] = []
+    var isCanDelete : Bool = true
+    
     var rows : Int = 10
     let cellHeight : CGFloat = 110
     
@@ -28,8 +31,52 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         return view
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor.black
+        
+        weak var weakSelf = self
+        
+        segmentView = APSegmentControl.init(["信用卡管理","结算卡管理"], frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 40))
+        segmentView.segmentBlock =  { index in
+            weakSelf?.loadData(index)
+        }
+        
+        addSubview(segmentView)
+        addSubview(tableView)
+        
+        segmentView.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(0)
+            make.height.equalTo(40)
+        }
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(segmentView.snp.bottom).offset(0)
+            make.left.right.bottom.equalTo(0)
+        }
+    }
+    
+    func loadData(_ index : Int){
+        superview?.AP_loadingBegin()
+        let param = APCardListRequest()
+        param.isSettle = String(index)
+        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        
+        APMineHttpTool.getBankList(param, success: { (res) in
+           self.superview?.AP_loadingEnd()
+            guard let data : APCardListResponse = res as? APCardListResponse else{
+                self.tableView.reloadData()
+                return
+            }
+            self.dataSource = data.list!
+            self.tableView.reloadData()
+        }) { (error) in
+            self.superview?.AP_loadingEnd()
+            self.makeToast(error.error)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows
+        return (dataSource.count)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,11 +90,9 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : APBankCardCell = APBankCardCell.cellWithTableView(tableView) as! APBankCardCell
         cell.delegate = self
-//        let swipeCell : BWSwipeRevealCell = cell as! BWSwipeRevealCell
-//        swipeCell.delegate = self as BWSwipeRevealCellDelegate
-//        swipeCell.threshold = 70
+        cell.model = dataSource[indexPath.row] as? APCardListResponse
+
         return cell
-        
     }
     
     func swipeCellDelButtonAction(_ cell: UITableViewCell) {
@@ -74,40 +119,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
 //
 //    }
     var segmentView : APSegmentControl!
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = UIColor.black
-        
-        
-        segmentView = APSegmentControl.init(["信用卡管理","结算卡管理"], frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 40))
-        segmentView.segmentBlock =  { index in
-            if index == 0 {
-                self.rows = 5
-                self.tableView.beginUpdates()
-                self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.left)
-                self.tableView.endUpdates()
-            }
-            else
-            {
-                self.rows = 0
-                self.tableView.beginUpdates()
-                self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.right)
-                self.tableView.endUpdates()
-            }
-        }
-        
-        addSubview(segmentView)
-        addSubview(tableView)
-        
-        segmentView.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(0)
-            make.height.equalTo(40)
-        }
-        tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(segmentView.snp.bottom).offset(0)
-            make.left.right.bottom.equalTo(0)
-        }
-    }
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -125,6 +137,27 @@ protocol APBankCardCellDelegate : NSObjectProtocol{
 }
 //#makr - 
 class APBankCardCell: APSwipeTableViewCell {
+    
+    var model : APCardListResponse?{
+        didSet{
+            if model?.authType == "3" {
+                self.AP_shouldExceedThreshold = true
+                rightMsg.text = "快捷"
+            }
+            else if model?.authType == "2"{
+                self.AP_shouldExceedThreshold = false
+                rightMsg.text = "认证"
+            }
+            else{
+                self.AP_shouldExceedThreshold = false
+                rightMsg.text = "结算"
+            }
+            bankName.text = model?.bankName
+            userName.text = model?.userName ?? "无"
+            bankNumber.text = aesDecryptString(model?.cardNo,AP_AES_Key)
+            
+        }
+    }
     
     weak var delegate : APBankCardCellDelegate?
     
@@ -216,6 +249,7 @@ class APBankCardCell: APSwipeTableViewCell {
         }
         bankNumber.snp.makeConstraints { (make) in
             make.left.equalTo(24)
+            make.right.equalTo(-18)
             make.bottom.equalTo(-18)
         }
         rightMsg.snp.makeConstraints { (make) in

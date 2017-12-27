@@ -80,6 +80,12 @@ extension APNetworking {
         case login       = "/user/login" //登录
         case register    = "/user/register" //注册
         case sendMessage = "/manager/sendMessage" //获取验证码 (注册、修改密码）
+        case userInfo    = "/user/getUserInfo" //用户信息
+        case getCardListByUserId = "/user/getCardListByUserId" //获取银行卡
+        case aboutInfo = "/query/getAboutUsInfo" //关于我们
+        case getProfitHome = "/query/getProfitHome"//收益收益
+        case getUserListRecommend = "/query/getUserListRecommend" //2.获取用户间接/直接推广客户列表
+        case getMyProfit = "/query/getMyProfit"
     }
     
     
@@ -88,6 +94,8 @@ extension APNetworking {
         case trans_httpUrl = "http://172.16.0.101:47700"
         //进件前置
         case manange_httpUrl = "http://172.16.0.101:47800"
+        
+        case test_url = "http://192.168.4.111:47800"
     }
     
     /**

@@ -63,11 +63,13 @@ class APRefreshHeader: MJRefreshStateHeader {
         
         mj_h = AP_RefreshConfig.headerHeight
         
+        let centerX : CGFloat = (stateLabel.requiredWidth + (AP_imageView.image?.size.width)!)/2.0 + 7
+
         lastUpdatedTimeLabel.isHidden = true
         addSubview(AP_imageView)
         AP_imageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(snp.centerY).offset(0)
-//            make.centerX.equalTo(snp.centerX).offset(-stateLabel.requiredWidth/2.0-7-(AP_imageView.image?.size.width)!/2.0)
+            make.centerX.equalTo(snp.centerX).offset(-centerX)
         }
         
         print(stateLabel.requiredWidth)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APRegisterRequest: APBaseRequest {
+class APRegisterRequest: APBaseRequest, NSCopying {
 
     //账号(手机号)
     @objc dynamic var mobileNo: String = ""

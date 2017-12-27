@@ -26,9 +26,15 @@ class APBankCardManageViewController: APBaseViewController {
         bankCardView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
+        
+        loadData()
         // Do any additional setup after loading the view.
     }
 
+    func loadData(){
+        bankCardView.loadData(0)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
