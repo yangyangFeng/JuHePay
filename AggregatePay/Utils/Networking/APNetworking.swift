@@ -24,71 +24,90 @@ class APNetworking: NSObject {
     
     static let sharedInstance = APNetworking()
     
+    static func get(httpUrl: String = APHttpUrl.trans_httpUrl,
+                    action: String,
+                    params: APBaseRequest,
+                    aClass: Swift.AnyClass,
+                    success: @escaping APNetWorkingSuccessBlock,
+                    failure faile: APNetWorkingFaileBlock? = nil) {
+        sharedInstance.packagingRequest(httpUrl: httpUrl,
+                                        action: action,
+                                        method: .get,
+                                        params: params,
+                                        aClass: aClass,
+                                        success: success,
+                                        failure: faile)
+    }
+    
     /**
      * post网络请求
-     * @param    httpUrl:前置地址（默认交易前置）
-     * @param    action:请求接口(CPCommon.Port)
-     * @param    parameters:请求参数
-     * @param    success: 请求成功回调
-     * @param    faile:   请求失败回调
      */
-    static func post(httpUrl: APHttpUrl = .trans_httpUrl,
-                     action: APPort,
+    static func post(httpUrl: String = APHttpUrl.trans_httpUrl,
+                     action: String,
                      params: APBaseRequest,
                      aClass: Swift.AnyClass,
                      success:@escaping APNetWorkingSuccessBlock,
-                     faile:@escaping APNetWorkingFaileBlock) {
+                     failure faile: APNetWorkingFaileBlock? = nil) {
+        sharedInstance.packagingRequest(httpUrl: httpUrl,
+                                        action: action,
+                                        method: .post,
+                                        params: params,
+                                        aClass: aClass,
+                                        success: success,
+                                        failure: faile)
+    }
+}
+
+
+//MARK: ---- 扩展
+
+extension APNetworking {
+
+    
+
+    func packagingRequest(httpUrl: String = APHttpUrl.trans_httpUrl,
+                          action: String,
+
+                          method: HTTPMethod = .post,
+                          params: APBaseRequest,
+                          aClass: Swift.AnyClass,
+                          success:@escaping APNetWorkingSuccessBlock,
+                          failure faile: APNetWorkingFaileBlock? = nil)
+    {
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
         let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
         var requestHeader: HTTPHeaders?
         if cookie != "" {
             requestHeader = ["cookie":cookie]
         }
-        sharedInstance.request(httpUrl: httpUrl,
-                               action: action,
-                               method: .post,
-                               headers: requestHeader,
-                               parameters: parameters,
-                               success:{ (result) in
-                                print("response:\(String(describing: result))")
-            let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
-            if baseResp.success != "0" {
-                success(baseResp)
-            }
-            else {
-                let baseError = APClassRuntimeTool.ap_class(APBaseError.self, result: result) as! APBaseError
-                if baseError.status == nil {
-                    baseError.status = baseResp.respCode
-                    baseError.error = baseResp.respMsg
-                }
-                faile(baseError)
-            }
+        request(httpUrl: httpUrl,
+                action: action,
+                method: method,
+                headers: requestHeader,
+                parameters: parameters,
+                success:{ (result) in
+                    let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
+                    if baseResp.success == nil && baseResp.isSuccess == nil {
+                        faile?(self.error(result: result))
+                    }
+                    else if baseResp.success == "0" || baseResp.isSuccess == "0" {
+                        let baseError = APBaseError()
+                        baseError.status = baseResp.respCode
+                        baseError.message = baseResp.respMsg
+                        faile?(baseError)
+                    }
+                    else {
+                        success(baseResp)
+                    }
         }) { (error) in
             let baseError = APBaseError()
-            baseError.error = error.localizedDescription
-            faile(baseError)
+            baseError.status = error.localizedDescription
+            baseError.message = error.localizedDescription
+            faile?(baseError)
         }
     }
-}
-
-
-
-
-extension APNetworking {
-    
-    enum APPort: String {
-        case login       = "/user/login" //登录
-        case register    = "/user/register" //注册
-        case sendMessage = "/manager/sendMessage" //获取验证码 (注册、修改密码）
-    }
     
     
-    enum APHttpUrl: String {
-        //交易前置
-        case trans_httpUrl = "http://172.16.0.101:47700"
-        //进件前置
-        case manange_httpUrl = "http://172.16.0.101:47800"
-    }
     
     /**
      * 网络请求
@@ -99,8 +118,8 @@ extension APNetworking {
      * @param   faile:请求失败回调
      *
      */
-    func request(httpUrl: APHttpUrl = .trans_httpUrl,
-                 action: APPort,
+    func request(httpUrl: String = APHttpUrl.trans_httpUrl,
+                 action: String,
                  method: HTTPMethod = .get,
                  headers: HTTPHeaders? = nil,
                  timeOut: TimeInterval = 60,
@@ -108,7 +127,7 @@ extension APNetworking {
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
         
-        let httpUrl = httpUrl.rawValue+action.rawValue
+        let httpUrl = httpUrl+action
         print("===============star===============")
         print("method:"+method.rawValue)
         print("url:"+httpUrl)
@@ -120,13 +139,13 @@ extension APNetworking {
                         method:method,
                         parameters: parameters,
                         headers: headers).responseJSON { response in
-                            if (response.result.isSuccess && response.result.error == nil) {
+                            switch response.result.isSuccess {
+                            case true:
                                 self.cacheCookie(response: response)
-                                let result: Dictionary<String, Any>? = try?JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                                print("response-value:\(String(describing: response.value))")
+                                success(response.value! as! Dictionary<String, Any>)
                                 print("===============end================")
-                                success(result!)
-                            }
-                            else{
+                            case false:
                                 print("response:\(String(describing: response.result.error?.localizedDescription))")
                                 faile(response.result.error!)
                                 print("===============end================")
@@ -134,7 +153,18 @@ extension APNetworking {
         }
     }
     
-
+    func error(result: Dictionary<String, Any>) -> APBaseError {
+        let baseError = APClassRuntimeTool.ap_class(APBaseError.self, result: result) as! APBaseError
+        if baseError.status == "404" {
+            baseError.message = "请求服务器失败"
+        }
+        else {
+            baseError.message = "请求服务器失败"
+        }
+        return baseError
+    }
+    
+    
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields

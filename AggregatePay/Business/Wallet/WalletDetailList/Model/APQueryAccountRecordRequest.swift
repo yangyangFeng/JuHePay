@@ -1,0 +1,21 @@
+//
+//  APQueryAccountRecordRequest.swift
+//  AggregatePay
+//
+//  Created by BlackAnt on 2017/12/26.
+//  Copyright © 2017年 bingtianyu. All rights reserved.
+//
+
+import UIKit
+
+class APQueryAccountRecordRequest: APBaseRequest {
+    
+    //用户ID
+    @objc dynamic var userId: String?
+    //当前页数
+    @objc dynamic var pageNo: Int = 1
+    
+    //每页展示的条数
+    @objc dynamic let pageSize: Int = 10
+}
+

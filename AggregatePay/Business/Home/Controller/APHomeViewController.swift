@@ -131,6 +131,7 @@ APKeyboardCompositionViewDelegate {
     
     func selectHomeMenuItemFaile(message: String) {
         view.makeToast(message)
+        presentLoginVC()
     }
     
     //MARK: ---- lazy  loading

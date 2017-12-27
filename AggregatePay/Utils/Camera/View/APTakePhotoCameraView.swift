@@ -27,6 +27,7 @@ class APTakePhotoCameraView: APBaseCameraView {
     /// 管理者对象
     fileprivate var motionManger: CMMotionManager = CMMotionManager()
     
+    
     public var capturePhoto: APCapturePhotoBlock?
 
     override init(frame: CGRect) {
@@ -54,7 +55,7 @@ class APTakePhotoCameraView: APBaseCameraView {
         } catch  {
             return
         }
-        captureDevice?.flashMode = .auto
+//        captureDevice?.flashMode = .auto
         captureDevice?.unlockForConfiguration()
         
         do {

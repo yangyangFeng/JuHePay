@@ -111,7 +111,7 @@ class APPhotoPreview: UIView {
 extension APPhotoPreview {
     
     func layoutSuvViews() {
-        backgroundColor = UIColor.darkGray
+        backgroundColor = UIColor.init(hex6: 0x676767)
         
         layoutPhotoView()
         layoutToolView()

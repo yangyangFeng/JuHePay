@@ -57,6 +57,7 @@ class APOCRCameraView: APBaseCameraView {
             weak var weakSelf = self
             captureManager.configure(withParentLayer: weakSelf, previewRect: frame)
             captureManager.isPortrait = false
+            captureManager.session.startRunning()
         }
     }
     
@@ -68,6 +69,7 @@ class APOCRCameraView: APBaseCameraView {
             drawView.isPortrait = false
             drawView.backgroundColor = UIColor.clear
             drawView.setPreSize(frame.size)
+            drawView.alpha = 1.0
             
             centerLabel = UILabel.init(frame: frame)
             centerLabel.textColor = UIColor.white

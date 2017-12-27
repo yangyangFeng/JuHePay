@@ -170,6 +170,8 @@ class APRegisterViewController: APSystemBaseViewController {
 }
 
 
+//MARK: --------------- Extension
+
 extension APRegisterViewController {
     
     private func registerObserve() {
@@ -209,15 +211,14 @@ extension APRegisterViewController {
         let sendMessageReq = APSendMessageReq()
         sendMessageReq.mobileNo = registerRequest.mobileNo
         sendMessageReq.businessType = "1"
-        weak var weakSelf = self
         accountCell.sendSmsCodeButton.countingStatus = .wait
         APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq,
                                      success: { (baseResp) in
-            weakSelf?.view.makeToast(baseResp.respMsg)
-            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .start
+            self.view.makeToast(baseResp.respMsg)
+            self.accountCell.sendSmsCodeButton.countingStatus = .start
         }) { (errorMsg) in
-            weakSelf?.view.makeToast(errorMsg)
-            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .end
+            self.view.makeToast(errorMsg)
+            self.accountCell.sendSmsCodeButton.countingStatus = .end
         }
     }
     
@@ -237,14 +238,17 @@ extension APRegisterViewController {
             view.makeToast("请输入6至16位密码")
             return
         }
-        weak var weakSelf = self
-        APSystemHttpTool.register(paramReqeust: self.registerRequest,
-                                  success: { (baseResp) in
-            weakSelf?.registerSuccessShow {
-                weakSelf?.navigationController?.popToRootViewController(animated: true)
-            }
+        
+        submitCell.loading(isLoading: true, isComplete: nil)
+        APSystemHttpTool.register(paramReqeust: self.registerRequest, success: { (baseResp) in
+            self.submitCell.loading(isLoading: false, isComplete: {
+                self.registerSuccessShow {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            })
         }) { (errorMsg) in
-            weakSelf?.view.makeToast(errorMsg)
+            self.submitCell.loading(isLoading: false, isComplete: nil)
+            self.view.makeToast(errorMsg)
         }
     }
 }

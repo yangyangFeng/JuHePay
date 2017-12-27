@@ -1,5 +1,5 @@
 //
-//  APBaseError.swift
+//  APGetUserAccountInfo.swift
 //  AggregatePay
 //
 //  Created by BlackAnt on 2017/12/26.
@@ -8,9 +8,6 @@
 
 import UIKit
 
-class APBaseError: NSObject {
-
-    @objc dynamic var status: String?
-    @objc dynamic var message: String?
-
+class APGetUserAccountInfoResponse: APBaseResponse {
+    @objc dynamic var drawAMoney: String?
 }

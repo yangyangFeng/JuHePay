@@ -44,11 +44,9 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
     
     lazy var staticListView: APMineStaticListView = {
         let view = APMineStaticListView()
+        weak var weakSelf = self
         view.tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                view.tableView.mj_header.endRefreshing()
-            })
-            
+            self.loadData()
         })
         view.delegate = self
         return view
@@ -79,7 +77,21 @@ class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
         staticListView.tableView.tableHeaderView = headView
         // Do any additional setup after loading the view.
         
-        
+        loadData()
+    }
+
+    func loadData(){
+        let param = APUserInfoRequest()
+        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        APMineHttpTool.getUserInfo(param, success: { (res) in
+            self.headView.model = res as? APUserInfoResponse
+            self.staticListView.tableView.mj_header.endRefreshing()
+            //MARK: 同步用户信息
+            APUserInfoTool.info = APUserInfoTool.mj_object(withKeyValues: res.mj_keyValues())
+            
+        }) { (error) in
+            self.staticListView.tableView.mj_header.endRefreshing()
+        }
     }
 
     @objc func action()

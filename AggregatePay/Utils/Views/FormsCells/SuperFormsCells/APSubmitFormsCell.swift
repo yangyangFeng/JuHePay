@@ -10,6 +10,8 @@ import UIKit
 
 class APSubmitFormsCell: APBaseFormsCell {
     
+    
+    
     lazy var button: APRequestButton = {
         let view = APRequestButton()
         view.isEnabled = true
@@ -26,18 +28,12 @@ class APSubmitFormsCell: APBaseFormsCell {
         return view
     }()
 
-    var isLoading: Bool = false {
-        willSet {
-            button.isLoading = newValue
-        }
-    }
-    
     var isEnabled: Bool = false {
         willSet {
             button.isEnabled = newValue
         }
     }
-
+    
     override init() {
         super.init()
         bottomLine.backgroundColor = UIColor.clear
@@ -50,6 +46,11 @@ class APSubmitFormsCell: APBaseFormsCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public func loading(isLoading: Bool, isComplete complete: APLoadingCompleteBlock? = nil) {
+        button.loading(isLoading: isLoading, isComplete: complete)
+    }
+    
     
     @objc func clickButton(_ button: UIButton) {
         buttonBlock?(identify, button)

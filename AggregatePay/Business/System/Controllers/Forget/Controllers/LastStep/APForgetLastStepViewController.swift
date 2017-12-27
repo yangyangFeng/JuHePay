@@ -11,34 +11,41 @@ import UIKit
 /**
  * 修改密码
  */
-class APForgetLastStepViewController: APForgetViewController {
+class APForgetLastStepViewController: APSystemBaseViewController {
     
-    //MARK: ------------- 全局属性
-    let passwordCell: APPasswordFormsCell = {
+    
+    let resetPasswordRequest = APResetPasswordRequest()
+
+    //MARK: ----- life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "找回密码"
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
+    }
+
+    //MARK: ---- lazy loading
+    lazy var passwordCell: APPasswordFormsCell = {
         let view = APPasswordFormsCell()
         view.inputRegx = .password
         view.textField.placeholder = "请设置密码(6-16位字母、数字或下划线)"
         return view
     }()
     
-    let submitCell: APSubmitFormsCell = {
+    lazy var submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
         view.button.setTitle("下一步", for: .normal)
         return view
     }()
+}
+
+//MARK: --------------- Extension
+
+extension APForgetLastStepViewController {
     
-    //MARK: ------------- 生命周期
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        APForgetViewController.forgetRequest.password = ""
-        prompt.text = ""
-        createSubviews()
-        registerCallBacks()
-        registerObserve()
-    }
-    
-    //MARK: ------------- 私有方法
+    //MARK: ---- private
     
     private func createSubviews() {
         
@@ -63,33 +70,24 @@ class APForgetLastStepViewController: APForgetViewController {
     private func registerCallBacks() {
         
         weak var weakSelf = self
-        
         passwordCell.textBlock = { (key, value) in
-            APForgetViewController.forgetRequest.password = value
+            weakSelf?.resetPasswordRequest.pwd = value
+            weakSelf?.resetPasswordRequest.pwdConfirm = value
         }
-        
         submitCell.buttonBlock = { (key, value) in
-            let isEvaluate: Bool = (weakSelf?.evaluate())!
-            if isEvaluate {
-                weakSelf?.startForgetHttpRequest()
-            }
+            weakSelf?.forgetPassword()
         }
     }
     
     private func registerObserve() {
-       
-        weak var weakSelf = self
         
-        self.kvoController.observe(APForgetViewController.forgetRequest,
-                                   keyPaths: ["mobile",
-                                              "password",
-                                              "smsCode"],
+        weak var weakSelf = self
+        self.kvoController.observe(resetPasswordRequest,
+                                   keyPaths: ["pwd"],
                                    options: [.new, .initial])
         { (observer, object, change) in
-            let forgetModel = object as! APForgetRequest
-            if  forgetModel.mobile.characters.count >= 11 &&
-                forgetModel.password.characters.count >= 6 &&
-                forgetModel.smsCode.characters.count >= 4 {
+            let resetPasswordModel = object as! APResetPasswordRequest
+            if  resetPasswordModel.pwd.characters.count >= 6{
                 weakSelf?.submitCell.isEnabled = true
             }
             else {
@@ -98,25 +96,26 @@ class APForgetLastStepViewController: APForgetViewController {
         }
     }
     
-    private func evaluate() -> Bool {
-       
-        if !APForgetViewController.forgetRequest.password.evaluate(regx: .password) {
+    private func forgetPassword() {
+        
+        if !resetPasswordRequest.pwd.evaluate(regx: .password) {
             self.view.makeToast("密码格式错误")
-            return false
+            return
         }
-        return true
-    }
-    
-    private func startForgetHttpRequest() {
-       
-        forgetSuccessShow {
-            self.navigationController?.popToRootViewController(animated: true)
+        submitCell.loading(isLoading: true, isComplete: nil)
+        APSystemHttpTool.resetPassword(paramReqeust: resetPasswordRequest, success: { (baseReps) in
+            self.submitCell.loading(isLoading: false, isComplete: {
+                self.forgetSuccessShow {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            })
+        }) { (errorMsg) in
+            self.submitCell.loading(isLoading: false, isComplete: nil)
+            self.view.makeToast(errorMsg)
         }
+        
     }
-   
-
 }
-
 
 
 
