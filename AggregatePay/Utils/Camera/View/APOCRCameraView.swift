@@ -23,20 +23,20 @@ class APOCRCameraView: APBaseCameraView {
     private var alphaTimes: Int = -1
     private var currTouchPoint = CGPoint.zero
     
-    private var captureManager: SCCaptureSessionManager!
+    public var captureManager: SCCaptureSessionManager!
     private var drawView: CameraDrawView!
     private var focusImageView: UIImageView!
     private var centerLabel: UILabel!
     private var slider: SCSlider!
     
     init(frame: CGRect, scanType: TCARD_TYPE) {
-        self.scanCardType = scanType
         super.init(frame: frame)
+        
+        scanCardType = scanType
         setUpSessionManager()
         setUpUI()
         showTextInfo()
         addFocusView()
-        captureManager.session.startRunning()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,8 +44,7 @@ class APOCRCameraView: APBaseCameraView {
     }
     
     deinit {
-        captureManager.session.stopRunning()
-        captureManager = nil
+        print( String(describing: self.classForCoder) + "已释放")
     }
     
     fileprivate func setUpSessionManager() {
@@ -55,8 +54,10 @@ class APOCRCameraView: APBaseCameraView {
             captureManager = SCCaptureSessionManager()
             captureManager.setCardType(scanCardType, mode: true)
             captureManager.delegate = self
-            captureManager.configure(withParentLayer: self, previewRect: self.frame)
+            weak var weakSelf = self
+            captureManager.configure(withParentLayer: weakSelf, previewRect: frame)
             captureManager.isPortrait = false
+            captureManager.session.startRunning()
         }
     }
     
@@ -68,6 +69,7 @@ class APOCRCameraView: APBaseCameraView {
             drawView.isPortrait = false
             drawView.backgroundColor = UIColor.clear
             drawView.setPreSize(frame.size)
+            drawView.alpha = 1.0
             
             centerLabel = UILabel.init(frame: frame)
             centerLabel.textColor = UIColor.white
@@ -107,12 +109,11 @@ class APOCRCameraView: APBaseCameraView {
         slider?.alpha = 0.0
         slider?.minValue = 1
         slider?.maxValue = 3
-        weak var weakSelf = self
-        slider?.buildDidChangeValueBlock({ (value) in
-            weakSelf?.captureManager.pinchCameraView(withScalNum: value)
+        slider?.buildDidChangeValueBlock({[weak self]  (value) in
+            self?.captureManager.pinchCameraView(withScalNum: value)
         })
-        slider?.buildTouchEnd({ (value, isTouchEnd) in
-            weakSelf?.setSliderAlpha(isTouchEnd: isTouchEnd)
+        slider?.buildTouchEnd({[weak self]  (value, isTouchEnd) in
+            self?.setSliderAlpha(isTouchEnd: isTouchEnd)
         })
     }
     
@@ -219,7 +220,7 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 bankCard.cardName = TBANK_GetBankInfoString(T_GET_CARD_NAME)
                 bankCard.cardType = TBANK_GetBankInfoString(T_GET_BANK_CLASS)
                 bankCard.bankCardImage = image
-                bankCardResult?(bankCard, false, "引擎不支持")
+                bankCardResult?(bankCard, false, "识别成功")
             } else {
                 captureManager.isRun1 = false
             }
@@ -248,13 +249,14 @@ extension APOCRCameraView {
         focusImageView.center = currTouchPoint
         focusImageView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
         
+        weak var weakSelf = self
         UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {
-            self.focusImageView.alpha = 1
-            self.focusImageView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+            weakSelf?.focusImageView.alpha = 1
+            weakSelf?.focusImageView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
         }) { (finished) in
             
             UIView.animate(withDuration: 0.5, delay: 0.5, options: .allowUserInteraction, animations: {
-                self.focusImageView.alpha = 0.0
+                weakSelf?.focusImageView.alpha = 0.0
             }, completion: nil)
         }
     }

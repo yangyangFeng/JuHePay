@@ -13,7 +13,7 @@ typealias APCapturePhotoBlock = (UIImage) -> Void
 class APTakePhotoCameraView: APBaseCameraView {
     
     /// 执行输入设备和输出设备之间的数据传递
-   fileprivate var session: AVCaptureSession!
+    public var session: AVCaptureSession!
     
     /// 输入设备
     fileprivate var deviceInput: AVCaptureDeviceInput!
@@ -26,6 +26,7 @@ class APTakePhotoCameraView: APBaseCameraView {
     
     /// 管理者对象
     fileprivate var motionManger: CMMotionManager = CMMotionManager()
+    
     
     public var capturePhoto: APCapturePhotoBlock?
 
@@ -54,7 +55,7 @@ class APTakePhotoCameraView: APBaseCameraView {
         } catch  {
             return
         }
-        captureDevice?.flashMode = .auto
+//        captureDevice?.flashMode = .auto
         captureDevice?.unlockForConfiguration()
         
         do {

@@ -17,6 +17,11 @@ class APBaseCameraView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
+    
 
 }
 
