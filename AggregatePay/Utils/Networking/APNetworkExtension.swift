@@ -24,6 +24,8 @@ class APHttpService {
     static let queryAccountRecord: String = "/query/queryAccountRecord"  //钱包明细
     static let sendMessage: String        = "/manager/sendMessage" //获取验证码 (注册、修改密码）
     static let checkMessage: String       = "/manager/checkMessage" //校验短信验证码接口(进件前置)
+    
 }
+
 
 

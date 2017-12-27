@@ -35,7 +35,9 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.separatorStyle = .none
         tableView.register(APMineStaticListCell.self, forCellReuseIdentifier: "APMineStaticListCell")
 //        tableView.bounces = false
-        
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            
+        })
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
