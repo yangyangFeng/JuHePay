@@ -170,6 +170,8 @@ class APRegisterViewController: APSystemBaseViewController {
 }
 
 
+//MARK: --------------- Extension
+
 extension APRegisterViewController {
     
     private func registerObserve() {
@@ -237,14 +239,16 @@ extension APRegisterViewController {
             view.makeToast("请输入6至16位密码")
             return
         }
-        weak var weakSelf = self
-        APSystemHttpTool.register(paramReqeust: self.registerRequest,
-                                  success: { (baseResp) in
-            weakSelf?.registerSuccessShow {
-                weakSelf?.navigationController?.popToRootViewController(animated: true)
+        
+        submitCell.isLoading = false
+        APSystemHttpTool.register(paramReqeust: self.registerRequest, success: { (baseResp) in
+            self.submitCell.isLoading = true
+            self.registerSuccessShow {
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }) { (errorMsg) in
-            weakSelf?.view.makeToast(errorMsg)
+            self.submitCell.isLoading = true
+            self.view.makeToast(errorMsg)
         }
     }
 }

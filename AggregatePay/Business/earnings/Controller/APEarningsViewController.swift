@@ -27,10 +27,11 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
         let param = APGetProfitHomeRequest()
         param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         param.mobileNo = APUserInfoTool.info.mobileNo
+        
         APEarningsHttpTool.getProfitHome(param, success: { (res) in
-            
+
         }) { (error) in
-            
+
         }
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class APForgetViewController: APSystemBaseViewController {
 
-    static let forgetRequest: APForgetRequest = APForgetRequest()
+    
     var prompt: UILabel = UILabel()
     
     override func viewDidLoad() {

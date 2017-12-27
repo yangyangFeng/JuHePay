@@ -54,6 +54,58 @@ class APLoginViewController: APSystemBaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+   
+    //MARK: ---- lazy loading
+    lazy var toolView: APLoginToolView = {
+        let view = APLoginToolView()
+        return view
+    }()
+    
+    lazy var logoImageView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.red
+        return view
+    }()
+    
+    lazy var accountCell: APTextFormsCell = {
+        let view = APTextFormsCell()
+        view.inputRegx = .mobile
+        view.textField.keyboardType = UIKeyboardType.numberPad
+        view.textField.placeholder = "请输入11位手机号码"
+        return view
+    }()
+    
+    lazy var passwordCell: APPasswordFormsCell = {
+        let view = APPasswordFormsCell()
+        view.inputRegx = .password
+        view.textField.placeholder = "请输入密码"
+        return view
+    }()
+    
+    lazy var memoryCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 记住密码", for: .normal)
+        return view
+    }()
+    
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("登录", for: .normal)
+        return view
+    }()
+    
+    lazy var leftBarButtonItem: UIBarButtonItem = {
+        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
+                                   style: UIBarButtonItemStyle.done,
+                                   target: self,
+                                   action: #selector(dismissGoHome))
+        return view
+    }()
+   
+}
+
+extension APLoginViewController {
+    
     //MARK: ----- private
     private func createSubviews() {
         view.addSubview(logoImageView)
@@ -126,6 +178,7 @@ class APLoginViewController: APSystemBaseViewController {
         }
     }
     
+    
     private func registerObserve() {
         weak var weakSelf = self
         self.kvoController.observe(self.loginRequest,
@@ -144,71 +197,6 @@ class APLoginViewController: APSystemBaseViewController {
         }
     }
     
-   
-    //MARK: ---- lazy loading
-    lazy var toolView: APLoginToolView = {
-        let view = APLoginToolView()
-        return view
-    }()
-    
-    lazy var logoImageView: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = UIColor.red
-        return view
-    }()
-    
-    lazy var accountCell: APTextFormsCell = {
-        let view = APTextFormsCell()
-        view.inputRegx = .mobile
-        view.textField.keyboardType = UIKeyboardType.numberPad
-        view.textField.placeholder = "请输入11位手机号码"
-        return view
-    }()
-    
-    lazy var passwordCell: APPasswordFormsCell = {
-        let view = APPasswordFormsCell()
-        view.inputRegx = .password
-        view.textField.placeholder = "请输入密码"
-        return view
-    }()
-    
-    lazy var memoryCell: APSelectBoxFormsCell = {
-        let view = APSelectBoxFormsCell()
-        view.button.setTitle(_ : " 记住密码", for: .normal)
-        return view
-    }()
-    
-    lazy var submitCell: APSubmitFormsCell = {
-        let view = APSubmitFormsCell()
-        view.button.setTitle("登录", for: .normal)
-        return view
-    }()
-    
-    lazy var leftBarButtonItem: UIBarButtonItem = {
-        let view = UIBarButtonItem(image: AP_navigationLeftItemImage(),
-                                   style: UIBarButtonItemStyle.done,
-                                   target: self,
-                                   action: #selector(dismissGoHome))
-        return view
-    }()
-   
-}
-
-extension APLoginViewController {
-    
-    private func login() {
-        if !self.loginRequest.mobileNo.evaluate(regx: .mobile) {
-            self.view.makeToast("手机号输入格式不正确")
-            return
-        }
-        APSystemHttpTool.login(paramReqeust: loginRequest, success: { (baseResp) in
-            self.startCacheData(loginResponse: baseResp as! APLoginResponse)
-            self.dismiss(animated: true, completion: nil)
-        }) { (errorMsg) in
-            self.view.makeToast(errorMsg)
-        }
-    }
-    
     private func startCacheData(loginResponse: APLoginResponse) {
         APUserDefaultCache.AP_set(value: loginResponse.userId!, key: .userId)
         //判断是否需要记住密码(利用UserDefaultCache进行缓存)
@@ -223,6 +211,24 @@ extension APLoginViewController {
             APUserDefaultCache.AP_set(value: "", key: .password)
         }
     }
+    
+    private func login() {
+        if !self.loginRequest.mobileNo.evaluate(regx: .mobile) {
+            self.view.makeToast("手机号输入格式不正确")
+            return
+        }
+        submitCell.isLoading = false
+        APSystemHttpTool.login(paramReqeust: loginRequest, success: { (baseResp) in
+            self.submitCell.isLoading = true
+            self.startCacheData(loginResponse: baseResp as! APLoginResponse)
+            self.dismiss(animated: true, completion: nil)
+        }) { (errorMsg) in
+            self.submitCell.isLoading = true
+            self.view.makeToast(errorMsg)
+        }
+    }
+    
+   
     
 }
 
