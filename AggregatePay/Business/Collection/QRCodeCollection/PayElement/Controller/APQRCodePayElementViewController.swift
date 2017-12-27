@@ -13,9 +13,9 @@ import UIKit
  */
 class APQRCodePayElementViewController: APBaseViewController {
     
-    var selectMccModel:APMCCModel? {
+    var merchantDetailModel:APMerchantDetail? {
         willSet {
-            selectMerchantCell.titleLabel.text = newValue?.mccName
+            selectMerchantCell.titleLabel.text = newValue?.dictValue
         }
     }
 
@@ -54,9 +54,9 @@ class APQRCodePayElementViewController: APBaseViewController {
         weak var weakSelf = self
         selectMerchantCell.buttonBlock = { (key, value) in
             let selectMerchantVC = APSelectMerchantViewController()
-            selectMerchantVC.selectMccModel = weakSelf?.selectMccModel
-            selectMerchantVC.selectMerchantBlock = {(mccModel) in
-                weakSelf?.selectMccModel = mccModel
+            selectMerchantVC.selectModel = weakSelf?.merchantDetailModel
+            selectMerchantVC.selectMerchantBlock = {(model) in
+                weakSelf?.merchantDetailModel = model
             }
             weakSelf?.navigationController?.pushViewController(selectMerchantVC, animated: true)
         }

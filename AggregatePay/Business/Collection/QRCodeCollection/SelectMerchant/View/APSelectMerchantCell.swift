@@ -63,9 +63,9 @@ class APSelectMerchantCell: UITableViewCell {
         }
     }
     
-    func mccModel(mccModel: APMCCModel, selectMccModel: APMCCModel) {
-        titleLabel.text = mccModel.mccName
-        if selectMccModel.mccId == mccModel.mccId {
+    func merchatDetail(model: APMerchantDetail, selectModel: APMerchantDetail) {
+        titleLabel.text = model.dictValue
+        if selectModel.id == model.id {
             arronImageView.isHidden = false
         }
     }

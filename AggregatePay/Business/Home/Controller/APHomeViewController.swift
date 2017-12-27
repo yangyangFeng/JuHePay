@@ -150,7 +150,6 @@ APKeyboardCompositionViewDelegate {
         let view = APBarButtonItem.ap_barButtonItem(self , title: "账单", action: #selector(pushBillVC))
         return view
     }()
-    
 
 }
 
