@@ -67,8 +67,10 @@ extension APNetworking {
         case login              = "/user/login" //登录
         case register           = "/user/register" //注册
         case getUserAccountInfo = "/user/getUserAccountInfo"  //钱包余额查询接口(进件前置)
+        case resetPassword      = "/user/resetPassword" //重置密码、忘记密码
         case queryAccountRecord = "/query/queryAccountRecord"  //钱包明细
         case sendMessage        = "/manager/sendMessage" //获取验证码 (注册、修改密码）
+        case checkMessage       = "/manager/checkMessage" //校验短信验证码接口(进件前置)
     }
     
     

@@ -71,7 +71,7 @@ class APWalletHeaderView: UIView {
     
     lazy var amountLabel: UILabel = {
         let view = UILabel()
-        view.text = "88880.0"
+        view.text = "0.00"
         view.textAlignment = .center
         view.theme_textColor = ["#7f5e12"]
         if #available(iOS 8.2, *) {

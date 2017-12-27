@@ -8,31 +8,32 @@
 
 import UIKit
 
+typealias APLoadingCompleteBlock = () -> Void
+
 class APRequestButton: UIButton {
     
     deinit {
         print("APRequestButton ------- 已释放")
     }
     
+    var loadingCompleteBlock: APLoadingCompleteBlock?
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     var isLoading = false {
         willSet {
+            let lastView: UIView = (appDelegate.window?.subviews.last!)!
             if isLoading {
-                let lastView: UIView = (appDelegate.window?.subviews.last!)!
-                lastView.isUserInteractionEnabled = true
                 activityIndicator.stopAnimating()
-                activityIndicator.isHidden = true
                 self.setTitle(self.currentTitle, for: .disabled)
             }
             else {
-                let lastView: UIView = (appDelegate.window?.subviews.last!)!
-                lastView.isUserInteractionEnabled = false
                 activityIndicator.startAnimating()
-                activityIndicator.isHidden = false
                 self.setTitle("", for: .disabled)
             }
+            lastView.isUserInteractionEnabled = newValue
             self.isEnabled = newValue
+            self.loadingCompleteBlock?()
         }
     }
     
@@ -52,6 +53,11 @@ class APRequestButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func loading(isLoad: Bool, isComplete complete:@escaping APLoadingCompleteBlock) {
+        loadingCompleteBlock = complete
+        isLoading = isLoad
     }
 
     

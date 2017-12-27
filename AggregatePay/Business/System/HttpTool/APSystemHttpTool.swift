@@ -10,24 +10,7 @@ import UIKit
 
 class APSystemHttpTool: NSObject {
     
-    /**
-     * 注册-获取短信验证码
-     */
-    static func sendMessage(paramReqeust: APSendMessageReq,
-                            success:@escaping (APSendMessageResp)->Void,
-                            faile:@escaping (String)->Void) {
-        APNetworking.post(httpUrl: .manange_httpUrl,
-                          action: .sendMessage,
-                          params: paramReqeust,
-                          aClass: APSendMessageResp.self,
-                          success: { (baseResp) in
-            success(baseResp as! APSendMessageResp)
-        }) { (error) in
-            faile(error.error!)
-        }
-    }
-    
-    
+    //MARK: -- 注册
     /**
      * 注册
      */
@@ -47,6 +30,7 @@ class APSystemHttpTool: NSObject {
         }
     }
     
+    //MARK: -- 登录
     /**
      * 登录
      */
@@ -66,7 +50,66 @@ class APSystemHttpTool: NSObject {
         }
     }
     
-   
+    //MARK: -- 忘记密码
+    /**
+     * 忘记密码
+     */
+    static func forgetPassword(paramReqeust: APResetPasswordRequest,
+                              success:@escaping (APBaseResponse)->Void,
+                              faile:@escaping (String)->Void) {
+        let param: APResetPasswordRequest = paramReqeust.copy() as! APResetPasswordRequest
+        param.pwd = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.pwd)
+        param.pwdConfirm = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.pwdConfirm)
+        APNetworking.post(httpUrl: .manange_httpUrl,
+                          action: .resetPassword,
+                          params: param,
+                          aClass: APBaseResponse.self,
+                          success: { (baseResp) in
+                            success(baseResp)
+        }) { (error) in
+            faile(error.error!)
+        }
+    }
+    
+    
+    //MARK: -- 获取短信验证码
+    /**
+     * 获取短信验证码
+     */
+    static func sendMessage(paramReqeust: APSendMessageReq,
+                            success:@escaping (APBaseResponse)->Void,
+                            faile:@escaping (String)->Void) {
+        APNetworking.post(httpUrl: .manange_httpUrl,
+                          action: .sendMessage,
+                          params: paramReqeust,
+                          aClass: APBaseResponse.self,
+                          success: { (baseResp) in
+                            success(baseResp)
+        }) { (error) in
+            faile(error.error!)
+        }
+    }
+    
+    
+    //MARK: -- 验证短信验证码
+    /**
+     * 验证短信验证码
+     */
+    static func checkMessage(paramReqeust: APCheckMessageRequest,
+                             success:@escaping (APBaseResponse)->Void,
+                             faile:@escaping (String)->Void) {
+        APNetworking.post(httpUrl: .manange_httpUrl,
+                          action: .checkMessage,
+                          params: paramReqeust,
+                          aClass: APBaseResponse.self,
+                          success: { (baseResp) in
+                            success(baseResp)
+        }) { (error) in
+            faile(error.error!)
+        }
+    }
+    
+    
     
 
 }
