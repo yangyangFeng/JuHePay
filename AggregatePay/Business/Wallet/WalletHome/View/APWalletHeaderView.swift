@@ -27,7 +27,7 @@ class APWalletHeaderView: UIView {
         }
         amountLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(contentView.snp.centerY).offset(-10)
-            make.centerX.equalTo(contentView.snp.centerX).offset(20)
+            make.centerX.equalTo(contentView.snp.centerX).offset(15)
         }
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.bottom.equalTo(amountLabel.snp.top).offset(-5)
@@ -71,7 +71,7 @@ class APWalletHeaderView: UIView {
     
     lazy var amountLabel: UILabel = {
         let view = UILabel()
-        view.text = "88880.0"
+        view.text = "0.00"
         view.textAlignment = .center
         view.theme_textColor = ["#7f5e12"]
         if #available(iOS 8.2, *) {

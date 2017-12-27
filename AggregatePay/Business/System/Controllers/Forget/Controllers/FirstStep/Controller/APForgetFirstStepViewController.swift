@@ -13,9 +13,24 @@ import UIKit
  */
 class APForgetFirstStepViewController: APForgetViewController {
     
-    //MARK: ------------- 全局属性
+    let checkMessageRequest = APCheckMessageRequest()
     
-    var accountCell: APSendSMSCodeFormsCell = {
+    //MARK: ------------- 生命周期
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        accountCell.sendSmsCodeButton.countingStatus = .end
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        createSubviews()
+        registerCallBacks()
+        registerObserve()
+    }
+    
+    //MARK: ----- lazy loading
+    lazy var accountCell: APSendSMSCodeFormsCell = {
         let view = APSendSMSCodeFormsCell()
         view.inputRegx = .mobile
         view.sendSmsCodeButton.setTitle(_ : "获取验证码", for: .normal)
@@ -23,7 +38,7 @@ class APForgetFirstStepViewController: APForgetViewController {
         return view
     }()
     
-    var smsCodeCell: APTextFormsCell = {
+    lazy var smsCodeCell: APTextFormsCell = {
         let view = APTextFormsCell()
         view.inputRegx = .smsCode
         view.textField.keyboardType = UIKeyboardType.numberPad
@@ -31,28 +46,19 @@ class APForgetFirstStepViewController: APForgetViewController {
         return view
     }()
     
-    var submitCell: APSubmitFormsCell = {
+    lazy var submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
         view.button.setTitle("提交", for: .normal)
         return view
     }()
 
-    //MARK: ------------- 生命周期
+}
+
+//MARK: --------------- Extension
+
+extension APForgetFirstStepViewController {
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        APForgetViewController.forgetRequest.mobile = ""
-        APForgetViewController.forgetRequest.smsCode = ""
-        createSubviews()
-        registerCallBacks()
-        registerObserve()
-    }
-    
-    //MARK: ------------- 私有方法
+    //MARK: ---- private
     
     private func createSubviews() {
         
@@ -78,42 +84,36 @@ class APForgetFirstStepViewController: APForgetViewController {
             make.height.equalTo(41)
         }
     }
+    
     private func registerCallBacks() {
         weak var weakSelf = self
-        
         accountCell.textBlock = { (key, value) in
-            APForgetViewController.forgetRequest.mobile = value
+            weakSelf?.checkMessageRequest.mobileNo = value
         }
         
         smsCodeCell.textBlock = { (key, value) in
-            APForgetViewController.forgetRequest.smsCode = value
+            weakSelf?.checkMessageRequest.idCode = value
         }
         
         accountCell.sendSmsCodeBlock = { (key, value) in
-            weakSelf?.startSendSmsCodeHttpRequest()
+            weakSelf?.sendMessage()
         }
         
         submitCell.buttonBlock = { (key, value) in
-            let isEvaluate: Bool = (weakSelf?.evaluate())!
-            if isEvaluate {
-                let LastStepVC: APForgetViewController = APForgetLastStepViewController()
-                weakSelf?.navigationController?.pushViewController(LastStepVC, animated: true)
-            }
+            weakSelf?.checkMessage()
         }
     }
     
     private func registerObserve() {
-        
         weak var weakSelf = self
-        
-        self.kvoController.observe(APForgetViewController.forgetRequest,
-                                   keyPaths: ["mobile",
-                                              "smsCode"],
+        self.kvoController.observe(checkMessageRequest,
+                                   keyPaths: ["mobileNo",
+                                              "idCode"],
                                    options: [.new, .initial])
         { (observer, object, change) in
-            let forgetModel = object as! APForgetRequest
-            if  forgetModel.mobile.characters.count >= 11 &&
-                forgetModel.smsCode.characters.count >= 4 {
+            let checkMessageModel = object as! APCheckMessageRequest
+            if  checkMessageModel.mobileNo.characters.count >= 11 &&
+                checkMessageModel.idCode.characters.count >= 4 {
                 weakSelf?.submitCell.isEnabled = true
             }
             else {
@@ -123,18 +123,52 @@ class APForgetFirstStepViewController: APForgetViewController {
     }
     
     private func evaluate() -> Bool {
-        
-        if !APForgetViewController.forgetRequest.mobile.evaluate(regx: .mobile) {
-            self.view.makeToast("手机号输入错误，请重新填写")
+        if  checkMessageRequest.mobileNo.count <= 0 {
+            view.makeToast("请输入手机号")
+            return false
+        }
+        if !checkMessageRequest.mobileNo.evaluate(regx: .mobile) {
+            view.makeToast("手机号输入格式不正确")
             return false
         }
         return true
     }
     
-    private func startSendSmsCodeHttpRequest() {
-       
+    private func sendMessage() {
+        if !evaluate() {
+            return
+        }
+        let sendMessageReq = APSendMessageReq()
+        sendMessageReq.mobileNo = checkMessageRequest.mobileNo
+        sendMessageReq.businessType = "2"
+        weak var weakSelf = self
+        accountCell.sendSmsCodeButton.countingStatus = .wait
+        APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq, success: { (baseResp) in
+            weakSelf?.view.makeToast(baseResp.respMsg)
+            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .start
+        }) { (errorMsg) in
+            weakSelf?.view.makeToast(errorMsg)
+            weakSelf?.accountCell.sendSmsCodeButton.countingStatus = .end
+        }
     }
-
+    
+    private func checkMessage() {
+        if !evaluate() {
+            return
+        }
+        submitCell.isLoading = false
+        APSystemHttpTool.checkMessage(paramReqeust: checkMessageRequest, success: { (baseResp) in
+            self.submitCell.loading(isLoad: true, isComplete: { () in
+                let lastStepVC: APForgetLastStepViewController = APForgetLastStepViewController()
+                lastStepVC.resetPasswordRequest.mobileNo = self.checkMessageRequest.mobileNo
+                self.navigationController?.pushViewController(lastStepVC, animated: true)
+            })
+        }) { (errorMsg) in
+            self.submitCell.isLoading = true
+            self.view.makeToast(errorMsg)
+        }
+    }
+    
 }
 
 
