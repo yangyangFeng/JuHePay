@@ -99,8 +99,8 @@ extension APWalletViewController {
     //网络请求
     private func httpGetUserAccountInfo() {
         getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-        APNetworking.post(httpUrl: .manange_httpUrl,
-                          action: .getUserAccountInfo,
+        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
+                          action: APHttpService.getUserAccountInfo,
                           params: getUserAccountInfoResquest,
                           aClass: APGetUserAccountInfoResponse.self,
                           success: { (baseResp) in
@@ -113,7 +113,7 @@ extension APWalletViewController {
             self.view.AP_loadingEnd()
             self.tableView.mj_header.endRefreshing()
             self.headerView.amountLabel.text = "0.00"
-            self.view.makeToast(baseError.error)
+            self.view.makeToast(baseError.message)
         }
     }
     

@@ -11,6 +11,6 @@ import UIKit
 class APBaseError: NSObject {
 
     @objc dynamic var status: String?
-    @objc dynamic var error: String?
+    @objc dynamic var message: String?
 
 }
