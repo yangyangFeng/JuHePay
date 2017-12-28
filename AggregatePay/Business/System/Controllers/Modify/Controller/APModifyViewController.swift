@@ -150,7 +150,7 @@ extension APModifyViewController {
         APSystemHttpTool.updatePassword(paramReqeust: updatePasswordRequest, success: { (baseResp) in
             self.submitCell.loading(isLoading: false, isComplete: {
                 self.modifySuccessShow {
-                    self.ap_selectTabBar(atIndex: 2)
+                    APOutLoginTool.loginOut()
                 }
             })
         }) { (errorMsg) in

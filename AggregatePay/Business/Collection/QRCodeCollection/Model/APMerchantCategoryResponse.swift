@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * 获取商户大类响应报文模型
+ */
 class APMerchantCategoryResponse: APBaseResponse {
     @objc dynamic var list: [APMerchantDetail]?
 }
@@ -17,4 +20,5 @@ class APMerchantDetail: NSObject {
     @objc dynamic var id: String?
     @objc dynamic var dictKey: String?
     @objc dynamic var dictValue: String?
+    
 }

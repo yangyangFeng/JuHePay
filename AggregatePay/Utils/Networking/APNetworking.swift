@@ -96,7 +96,6 @@ extension APNetworking {
                         let baseError = APBaseError()
                         baseError.status = baseResp.respCode
                         baseError.message = baseResp.respMsg
-                        //是否登录超时
                         if !self.checkoutNeedLogin(status: baseError.status!) {
                             faile?(baseError)
                         }
@@ -160,7 +159,7 @@ extension APNetworking {
     }
     
     func checkoutNeedLogin(status: String) -> Bool {
-        if status == "NEED_LOGIN" || status == "ILLEGAL_ARGUMENT" {
+        if status == "NEED_LOGIN" {
             NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NEED_LOGIN"), object: nil, userInfo: nil))
             return true
         }

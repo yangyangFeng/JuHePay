@@ -12,6 +12,13 @@ class APSegmentQueryViewController: APBaseViewController {
     
     var currentVC: UIViewController?
     
+    var selectChildIndex: Int = 0 {
+        willSet{
+            let childVC: UIViewController = self.childViewControllers[newValue]
+            view.bringSubview(toFront: childVC.view)
+        }
+    }
+    
     lazy var segmentView: APSegmentControl = {
         let segmentRect = CGRect.init(x: 0, y: 0, width: K_Width, height: 40)
         let view = APSegmentControl(["交易查询","分润查询"], frame: segmentRect)
@@ -21,6 +28,8 @@ class APSegmentQueryViewController: APBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "账单"
+        navigationItem.rightBarButtonItem = rightBarButtonItem
         view.addSubview(segmentView)
         segmentView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(0)
@@ -29,7 +38,7 @@ class APSegmentQueryViewController: APBaseViewController {
 
         weak var weakSelf = self
         segmentView.segmentBlock =  { index in
-            weakSelf?.selectChildVC(atIndex: index)
+            weakSelf?.selectChildIndex = index
         }
         
         self.addChildViewController(APTradingQueryViewController())
@@ -42,13 +51,25 @@ class APSegmentQueryViewController: APBaseViewController {
                 make.top.equalTo(segmentView.snp.bottom)
             }
         }
-        
-        selectChildVC(atIndex: 0)
+        selectChildIndex = 0
     }
     
-    func selectChildVC(atIndex: Int) {
-        let childVC: UIViewController = self.childViewControllers[atIndex]
-        view.bringSubview(toFront: childVC.view)
+    
+    //MARK: ---- action
+    @objc func pushBillVC() {
+        if selectChildIndex == 0 {
+            let childVC = self.childViewControllers[selectChildIndex] as! APTradingQueryViewController
+            childVC.queryButAction()
+        }
+        else {
+            let childVC = self.childViewControllers[selectChildIndex] as! APProfitsQueryViewController
+            childVC.queryButAction()
+        }
     }
+
+    lazy var rightBarButtonItem: UIBarButtonItem = {
+        let view = APBarButtonItem.ap_barButtonItem(self ,title: "查询", action: #selector(pushBillVC))
+        return view
+    }()
     
 }

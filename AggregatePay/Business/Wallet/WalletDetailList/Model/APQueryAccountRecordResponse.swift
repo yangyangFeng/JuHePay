@@ -18,7 +18,7 @@ class APQueryAccountRecordResponse: APBaseResponse {
     //下页的页数
     @objc dynamic var bottomPageNo: String?
     //明细列表
-    @objc dynamic var list: [APQueryAccountRecordListDetail]?
+    @objc dynamic var list: NSArray?
 }
 
 

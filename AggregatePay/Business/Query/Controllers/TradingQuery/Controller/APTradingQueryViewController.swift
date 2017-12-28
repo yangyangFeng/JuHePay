@@ -12,7 +12,14 @@ class APTradingQueryViewController: APBillViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
     }
     
+    
+    public func queryButAction() {
+        print("APTradingQueryViewController")
+    }
+    
+    
 }
+
+
