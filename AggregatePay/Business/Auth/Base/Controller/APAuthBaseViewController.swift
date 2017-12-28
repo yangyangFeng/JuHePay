@@ -34,9 +34,10 @@ class APAuthBaseViewController: APBaseViewController {
             setUpNavi()
         }
         
+        ap_setStatusBarStyle(.lightContent)
         registerCallBacks()
   }
-
+    
     func registerCallBacks() {
         
         weak var weakSelf = self

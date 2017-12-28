@@ -16,6 +16,10 @@ class APAuthHomeViewController: APBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "身份认证"
+        ap_setStatusBarStyle(.lightContent)
+        
         layoutViews()
     }
     

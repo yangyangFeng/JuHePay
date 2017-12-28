@@ -23,6 +23,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "安全认证"
         layoutViews()
         userInputCallBacks()
     }

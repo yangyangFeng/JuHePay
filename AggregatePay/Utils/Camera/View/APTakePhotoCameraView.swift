@@ -13,7 +13,7 @@ typealias APCapturePhotoBlock = (UIImage) -> Void
 class APTakePhotoCameraView: APBaseCameraView {
     
     /// 执行输入设备和输出设备之间的数据传递
-    public var session: AVCaptureSession!
+    fileprivate var session: AVCaptureSession!
     
     /// 输入设备
     fileprivate var deviceInput: AVCaptureDeviceInput!
@@ -81,7 +81,7 @@ class APTakePhotoCameraView: APBaseCameraView {
         }
         previewLayerConnection.videoOrientation = .portrait
         previewLayerConnection.videoScaleAndCropFactor = 1
-        session.startRunning()
+//        session.startRunning()
     }
     
     fileprivate func avOrientationForDeviceOrientation(deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
@@ -107,10 +107,10 @@ class APTakePhotoCameraView: APBaseCameraView {
         if stillImageConnection.isVideoStabilizationSupported {
             stillImageConnection.preferredVideoStabilizationMode = .auto
         }
-        weak var weakSelf = self
-        imageOutput.captureStillImageAsynchronously(from: stillImageConnection) {[unowned self] (imageDataSampleBuffer, error) in
+
+        imageOutput.captureStillImageAsynchronously(from: stillImageConnection) {[weak self] (imageDataSampleBuffer, error) in
             if let _error = error {
-                weakSelf?.makeToast(_error.localizedDescription)
+                self?.makeToast(_error.localizedDescription)
                 return
             }
             guard let _ = imageDataSampleBuffer else {
@@ -120,10 +120,22 @@ class APTakePhotoCameraView: APBaseCameraView {
                 if let tempImage = UIImage(data: jpegData, scale: 1) {
                     if let tempCgImage = tempImage.cgImage {
                         let image = UIImage(cgImage: tempCgImage, scale: 0.1, orientation: UIImageOrientation.up)
-                        weakSelf?.capturePhoto?(image)
+                        self?.capturePhoto?(image)
                     }
                 }
             }
+        }
+    }
+    
+   public func startRunning() {
+        if session != nil && !session.isRunning {
+            session.startRunning()
+        }
+    }
+    
+   public func stopRunning() {
+        if session != nil && session.isRunning{
+            session.stopRunning()
         }
     }
 }

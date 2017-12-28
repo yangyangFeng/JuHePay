@@ -13,6 +13,11 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     let realNameCell = APRealNameFormCell()
     let idCardNoCell = APIdCardNoFormCell()
     
+    let idCardFront = APGridViewModel()
+    let idCardResver = APGridViewModel()
+    let holdIdCard = APGridViewModel()
+    let example = APGridViewModel()
+    
     lazy var authParam: APRealNameAuthRequest = {
         let authParam = APRealNameAuthRequest()
         return authParam
@@ -20,19 +25,43 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "实名认证"
 
         layoutViews()
-        userInputCallBacks()
+        registerCallBacks()
     }
     
-    func userInputCallBacks() {
+    override func registerCallBacks() {
+        super.registerCallBacks()
         
-        weak var weakSelf = self
-        realNameCell.textBlock = { (key, value) in
-            weakSelf?.authParam.name = value
+        realNameCell.textBlock = {[weak self] (key, value) in
+            self?.authParam.realName = value
         }
-        idCardNoCell.textBlock = {(key, value) in
-            weakSelf?.authParam.idNumber = value
+        idCardNoCell.textBlock = {[weak self] (key, value) in
+            self?.authParam.idCard = value
+        }
+        
+        idCardFront.tapedHandle = { [weak self] in
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = self
+            cameraVC.scanCardType = TIDCARD2
+            cameraVC.supportCameraMode = .all
+            self?.present(cameraVC, animated: true, completion: nil)
+        }
+        
+        idCardResver.tapedHandle = {[weak self] in
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = self
+            cameraVC.supportCameraMode = .takePhoto
+            self?.present(cameraVC, animated: true, completion: nil)
+        }
+        
+        holdIdCard.tapedHandle = {[weak self] in
+            let cameraVC = APCameraViewController()
+            cameraVC.delegate = self
+            cameraVC.supportCameraMode = .takePhoto
+            self?.present(cameraVC, animated: true, completion: nil)
         }
     }
     
@@ -51,43 +80,20 @@ extension APRealNameAuthViewController {
         
         authHeadMessage.text = "请将身份证放在识别扫描框内，确保证件完整拍摄、无污损、无光斑。"
         
-        weak var weakSelf = self
-        let idCardFront = APGridViewModel()
         idCardFront.bottomMessage = "身份证正面"
         idCardFront.placeHolderImageName = "auth_idCardFront_normal"
-        idCardFront.tapedHandle = {
-            let cameraVC = APCameraViewController()
-            cameraVC.delegate = weakSelf
-            cameraVC.scanCardType = TIDCARD2
-            cameraVC.supportCameraMode = .all
-            weakSelf?.present(cameraVC, animated: true, completion: nil)
-        }
         gridViewModels.append(idCardFront)
         
-        let idCardResver = APGridViewModel()
         idCardResver.bottomMessage = "身份证反面"
         idCardResver.placeHolderImageName = "auth_idCardResver_normal"
-        idCardResver.tapedHandle = {
-            let cameraVC = APCameraViewController()
-            cameraVC.delegate = weakSelf
-            cameraVC.supportCameraMode = .takePhoto
-            weakSelf?.present(cameraVC, animated: true, completion: nil)
-        }
         gridViewModels.append(idCardResver)
         
-        let holdIdCard = APGridViewModel()
+       
         holdIdCard.bottomMessage = "手持身份证半身照片"
         holdIdCard.placeHolderImageName = "auth_holdIdCard_normal"
-        holdIdCard.tapedHandle = {
-            
-            let cameraVC = APCameraViewController()
-            cameraVC.delegate = weakSelf
-            cameraVC.supportCameraMode = .takePhoto
-            weakSelf?.present(cameraVC, animated: true, completion: nil)
-        }
         gridViewModels.append(holdIdCard)
         
-        let example = APGridViewModel()
+        
         example.bottomMessage = "示例"
         example.gridState = .other
         example.placeHolderImageName = "auth_example"
