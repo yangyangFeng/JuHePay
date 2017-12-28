@@ -8,67 +8,26 @@
 
 import UIKit
 
-typealias APSelectMerchantSuccess = (_ mccModel: APMCCModel) -> Void
+typealias APSelectMerchantSuccess = (_ model: APMerchantDetail) -> Void
 
-class APSelectMerchantViewController: APBaseViewController,
-UITableViewDelegate,
-UITableViewDataSource {
+class APSelectMerchantViewController: APQRCodeBaseViewController{
 
-    var selectMccModel: APMCCModel?
-    let defaultMccModel: APMCCModel = APMCCModel()
+    let merchantCategoryRequest = APMerchantCategoryRequest()
+    var selectModel: APMerchantDetail?
+    
+    let defaultModel: APMerchantDetail = APMerchantDetail()
+    
+    var datas = [APMerchantDetail]()
     var selectMerchantBlock: APSelectMerchantSuccess?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "选择商户类型"
         view.theme_backgroundColor = ["#fafafa"]
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp.left)
-            make.right.equalTo(view.snp.right)
-            make.top.equalTo(view.snp.top)
-            make.bottom.equalTo(view.snp.bottom)
-        }
-        
-        view.AP_loadingBegin()
-        weak var weakSelf = self
-        tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            weakSelf?.startHttpRequest()
-        })
+        createSubViews()
+        initHttpRequest()
     }
-    
-    func startHttpRequest() {
-        tableView.mj_header.endRefreshing()
-        tableView.reloadData()
-        view.AP_loadingEnd() 
-    }
-    
-    //MARK: ---- delegate
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let selectMerchantCell: APSelectMerchantCell = APSelectMerchantCell.cellWithTableView(tableView) as! APSelectMerchantCell
-        let mccModel: APMCCModel = arr.object(at: indexPath.row) as! APMCCModel
-        selectMerchantCell.mccModel(mccModel: mccModel,
-                                    selectMccModel: (selectMccModel ?? defaultMccModel)!)
-        return selectMerchantCell
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
-        let mccModel: APMCCModel = arr.object(at: indexPath.row) as! APMCCModel
-        selectMerchantBlock?(mccModel)
-        navigationController?.popViewController(animated: true)
-    }
+   
     
     //MARK: --- lazy loading
     lazy var tableView: UITableView = {
@@ -83,17 +42,84 @@ UITableViewDataSource {
                       forCellReuseIdentifier: "APSelectMerchantCell")
         return view
     }()
-    
-    lazy var arr : NSArray = {
-        let mccModel1: APMCCModel = APMCCModel()
-        mccModel1.mccId = 1
-        mccModel1.mccName = "aaa1"
-        
-        let mccModel2: APMCCModel = APMCCModel()
-        mccModel2.mccId = 2
-        mccModel2.mccName = "aaa2"
-        
-        return NSArray(array: [mccModel1, mccModel2])
-    }()
-
 }
+
+extension APSelectMerchantViewController:
+UITableViewDelegate,
+UITableViewDataSource  {
+    
+    //MARK: ---- private
+    private func createSubViews() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.top.equalTo(view.snp.top)
+            make.bottom.equalTo(view.snp.bottom)
+        }
+    }
+    
+    private func initHttpRequest() {
+        weak var weakSelf = self
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            weakSelf?.datas.removeAll()
+            weakSelf?.startHttpMerchantCategory()
+        })
+        view.AP_loadingBegin()
+        startHttpMerchantCategory()
+    }
+    
+    private func startHttpMerchantCategory() {
+        merchantCategoryRequest.type = self.payType!
+        APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
+                         action: APHttpService.merchantCategory,
+                         params: merchantCategoryRequest,
+                         aClass: APMerchantCategoryResponse.self,
+                         success: { (baseResp) in
+                            let result = baseResp as! APMerchantCategoryResponse
+                            self.datas.append(contentsOf: result.list!)
+                            self.tableView.mj_header.endRefreshing()
+                            self.tableView.reloadData()
+                            self.view.AP_loadingEnd()
+        }, failure: {(baseError) in            
+            self.tableView.mj_header.endRefreshing()
+            self.tableView.reloadData()
+            self.view.AP_loadingEnd()
+            self.view.makeToast(baseError.message)
+        })
+    }
+    
+    
+    //MARK: ---- delegate
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let selectMerchantCell: APSelectMerchantCell = APSelectMerchantCell.cellWithTableView(tableView) as! APSelectMerchantCell
+        let model: APMerchantDetail = datas[indexPath.row] as APMerchantDetail
+        selectMerchantCell.merchatDetail(model: model,
+                                         selectModel: (selectModel ?? defaultModel)!)
+        return selectMerchantCell
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        let model: APMerchantDetail = datas[indexPath.row] as APMerchantDetail
+        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "selectMerchant"), object: model, userInfo: nil))
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+
+
+
+
+

@@ -25,11 +25,20 @@ class APHttpService {
     static let sendMessage: String        = "/manager/sendMessage" //获取验证码 (注册、修改密码）
     static let checkMessage: String       = "/manager/checkMessage" //校验短信验证码接口(进件前置)
     
-    
+
     /// 身份认证
     static let realNameAuth: String       = "/user/userRealNameAuth" //实名认证(进件前置)
     static let securityAuth: String       = "/user/userSecurityAuth" //安全认证(进件前置)
     static let settleCardAuth: String     = "/user/userAccountAuth" //结算卡认证(进件前置)
+    //银联快捷收款
+    static let queryQuickPayCardList: String   = "/pay/queryQuickPayCardList" //获取绑定成功的银联快捷卡列表
+    
+    //二维码收款
+    static let merchantCategory: String   = "/pay/merchantCategory" //获取商户大类
+    static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取微信支付宝交易结果
+    static let aliPay: String   = "/pay/aliPay" //支付宝生成二维码
+    static let wechatPay: String   = "/pay/wechatPay" //微信生成二维码
+
 }
 
 

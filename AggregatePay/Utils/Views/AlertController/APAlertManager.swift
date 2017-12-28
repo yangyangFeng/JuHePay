@@ -12,7 +12,7 @@ class APAlertManager: NSObject {
 
     static func show(param: @escaping (APAlertParam) -> Void,
                      confirm: @escaping (UIAlertAction) -> Void,
-                     cancel: @escaping (UIAlertAction) -> Void) {
+                     cancel: ((UIAlertAction) -> Void)? = nil) {
         
         let alertParam = APAlertParam()
         param(alertParam)
@@ -20,18 +20,21 @@ class APAlertManager: NSObject {
                                                 message: alertParam.apMessage,
                                                 preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: alertParam.apCanceTitle,
-                                         style: .cancel)
-        { (action) in
-            cancel(action)
-        }
         let confirmAction = UIAlertAction(title: alertParam.apConfirmTitle,
                                           style: .default)
         { (action) in
             confirm(action)
         }
-        alertController.addAction(cancelAction)
         alertController.addAction(confirmAction)
+        
+        if cancel != nil {
+            let cancelAction = UIAlertAction(title: alertParam.apCanceTitle,
+                                             style: .cancel)
+            { (action) in
+                cancel?(action)
+            }
+            alertController.addAction(cancelAction)
+        }
         alertController.show()
     }
 

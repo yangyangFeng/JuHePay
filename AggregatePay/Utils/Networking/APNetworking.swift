@@ -30,6 +30,8 @@ class APNetworking: NSObject {
                     aClass: Swift.AnyClass,
                     success: @escaping APNetWorkingSuccessBlock,
                     failure faile: APNetWorkingFaileBlock? = nil) {
+        
+        
         sharedInstance.packagingRequest(httpUrl: httpUrl,
                                         action: action,
                                         method: .get,
@@ -94,7 +96,10 @@ extension APNetworking {
                         let baseError = APBaseError()
                         baseError.status = baseResp.respCode
                         baseError.message = baseResp.respMsg
-                        faile?(baseError)
+                        //是否登录超时
+                        if !self.checkoutNeedLogin(status: baseError.status!) {
+                            faile?(baseError)
+                        }
                     }
                     else {
                         success(baseResp)
@@ -146,11 +151,20 @@ extension APNetworking {
                                 success(response.value! as! Dictionary<String, Any>)
                                 print("===============end================")
                             case false:
+                                
                                 print("response:\(String(describing: response.result.error?.localizedDescription))")
                                 faile(response.result.error!)
                                 print("===============end================")
                             }
         }
+    }
+    
+    func checkoutNeedLogin(status: String) -> Bool {
+        if status == "NEED_LOGIN" || status == "ILLEGAL_ARGUMENT" {
+            NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NEED_LOGIN"), object: nil, userInfo: nil))
+            return true
+        }
+        return false
     }
     
     func error(result: Dictionary<String, Any>) -> APBaseError {

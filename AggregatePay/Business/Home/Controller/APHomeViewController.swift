@@ -58,18 +58,20 @@ APKeyboardCompositionViewDelegate {
     
     //MARK: ---- jump
     //jump collection view controller
-    private func pushCollectionVC(totalAmount: String, model: Any) {
+    private func pushCollectionVC(totalAmount: String, model: APHomeMenuModel) {
         if totalAmount == "" {
             view.makeToast("请输入金额")
             return
         }
-        let didModel: APHomeMenuModel = model as! APHomeMenuModel
-        if didModel.payWay == "0" {
+        
+        if model.payWay == "0" {
             let placeVC = APCollectionPlaceViewController()
             self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {
             let qrCodePayElementVC = APQRCodePayElementViewController()
+            qrCodePayElementVC.amountStr = totalAmount
+            qrCodePayElementVC.payType = model.payType
             self.navigationController?.pushViewController(qrCodePayElementVC, animated: true)
         }
     }
@@ -119,7 +121,8 @@ APKeyboardCompositionViewDelegate {
                 pushAuthVC()
             }
             else if identityStatus == .strongUser {
-                pushCollectionVC(totalAmount: totalAmount, model: model)
+                let menuModel: APHomeMenuModel = model as! APHomeMenuModel
+                pushCollectionVC(totalAmount: totalAmount, model: menuModel)
             }
         }
     }
@@ -150,7 +153,6 @@ APKeyboardCompositionViewDelegate {
         let view = APBarButtonItem.ap_barButtonItem(self , title: "账单", action: #selector(pushBillVC))
         return view
     }()
-    
 
 }
 
