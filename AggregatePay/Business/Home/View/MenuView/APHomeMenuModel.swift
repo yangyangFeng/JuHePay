@@ -15,5 +15,6 @@ class APHomeMenuModel: NSObject {
     var selImage: String = ""
     var wayIconImage: String = ""
     var payWay: String = ""
+    var payType: String = ""
 
 }

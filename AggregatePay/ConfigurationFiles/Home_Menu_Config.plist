@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string>0</string>
 		<key>title</key>
@@ -15,6 +17,8 @@
 		<string>home_yl_way_icon</string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string>wechatPay</string>
 		<key>payWay</key>
 		<string>1</string>
 		<key>title</key>
@@ -27,6 +31,8 @@
 		<string>home_wx_way_icon</string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string>aliPay</string>
 		<key>payWay</key>
 		<string>1</string>
 		<key>title</key>
@@ -39,6 +45,8 @@
 		<string>home_zfb_way_icon</string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string></string>
 		<key>title</key>
@@ -51,6 +59,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string></string>
 		<key>title</key>
@@ -63,6 +73,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string></string>
 		<key>title</key>
@@ -75,6 +87,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string></string>
 		<key>title</key>
@@ -87,6 +101,8 @@
 		<string></string>
 	</dict>
 	<dict>
+		<key>payType</key>
+		<string></string>
 		<key>payWay</key>
 		<string></string>
 		<key>title</key>
