@@ -93,7 +93,7 @@ APKeyboardCompositionViewDelegate {
                 authNavi.finishAuths = {
                     weakSelf?.navigationController?.dismiss(animated: true, completion: nil)
                 }
-                weakSelf?.present(authNavi, animated: true, completion: nil)
+                weakSelf?.navigationController?.present(authNavi, animated: true, completion: nil)
                 
             }
         }) { (cancelAction) in

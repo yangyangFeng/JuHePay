@@ -25,7 +25,10 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "结算卡认证"
+        
         layoutViews()
+        
         userInputCallBacks()
     }
     
@@ -128,12 +131,13 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
     func bankNameFormCellTaped() {
         
         let searchBankVC = APBankSearchViewController()
-        weak var weakSelf = self
-        searchBankVC.selectBankComplete = {(bank) in
-            weakSelf?.bank = bank
-            self.bankNameFormCell.text = bank.bankName
+        searchBankVC.selectBankComplete = {[weak self] (bank) in
+            self?.bank = bank
+            self?.bankNameFormCell.text = bank.bankName
         }
-        navigationController?.pushViewController(searchBankVC)
+        
+        let navi = APBaseNavigationViewController.init(rootViewController: searchBankVC)
+        navigationController?.present(navi, animated: true, completion: nil)
     }
 }
 

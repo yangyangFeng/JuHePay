@@ -39,7 +39,7 @@ class APSearchBarView: UIView, UITextFieldDelegate {
         imageViewBgView.backgroundColor = UIColor.clear
         
         textField.backgroundColor = UIColor.white
-        textField.layer.theme_borderColor = ["efefef"]
+        textField.layer.theme_borderColor = ["#efefef"]
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 10
         textField.leftView = imageViewBgView

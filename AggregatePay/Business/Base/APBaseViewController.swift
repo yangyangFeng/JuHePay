@@ -14,6 +14,8 @@ class APBaseViewController: UIViewController {
     deinit {
         print( String(describing: self.classForCoder) + "已释放")
     }
+    
+    private var isStatusBarHidden: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,5 +119,26 @@ class APBaseViewController: UIViewController {
     func ap_setNavigationBarHidden(_ hidden : Bool){
         self.vhl_setNavBarHidden(hidden)
     }
-
 }
+
+extension APBaseViewController {
+    
+   /// statusBar隐藏有一个过渡动画
+   ///
+   /// - Parameter isHidden: 是否隐藏
+   public func ap_statusBarHidden(isHidden: Bool) {
+        isStatusBarHidden = isHidden
+        UIView.animate(withDuration: 0.28) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+}
+
+

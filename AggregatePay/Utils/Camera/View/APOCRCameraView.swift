@@ -23,7 +23,7 @@ class APOCRCameraView: APBaseCameraView {
     private var alphaTimes: Int = -1
     private var currTouchPoint = CGPoint.zero
     
-    public var captureManager: SCCaptureSessionManager!
+    private var captureManager: SCCaptureSessionManager!
     private var drawView: CameraDrawView!
     private var focusImageView: UIImageView!
     private var centerLabel: UILabel!
@@ -43,8 +43,22 @@ class APOCRCameraView: APBaseCameraView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print( String(describing: self.classForCoder) + "已释放")
+    public func startRunning() {
+        if captureManager != nil && !captureManager.session.isRunning{
+            captureManager.session.startRunning()
+        }
+    }
+    
+    public func stopRunning() {
+        if captureManager != nil && captureManager.session.isRunning {
+            captureManager.session.stopRunning()
+        }
+    }
+    
+    public func setNilCaptureManager() {
+        if captureManager != nil {        
+            captureManager = nil
+        }
     }
     
     fileprivate func setUpSessionManager() {
@@ -57,7 +71,6 @@ class APOCRCameraView: APBaseCameraView {
             weak var weakSelf = self
             captureManager.configure(withParentLayer: weakSelf, previewRect: frame)
             captureManager.isPortrait = false
-            captureManager.session.startRunning()
         }
     }
     
@@ -145,7 +158,7 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
         }
     }
     
-    func didIDCardScanOCR(image: UIImage, rect: CGRect) {
+   private func didIDCardScanOCR(image: UIImage, rect: CGRect) {
         
         if !isSimulator() {
             let support = TREC_SetSupportEngine(TIDCARD2)
@@ -185,12 +198,14 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 
                 idCardResult?(idCard, true, "识别成功")
             } else {
-                captureManager.isRun1 = false
+                if captureManager != nil {
+                    captureManager.isRun1 = false
+                }
             }
         }
     }
     
-    func didBankCardScanOCR(image: UIImage, rect: CGRect) {
+   private func didBankCardScanOCR(image: UIImage, rect: CGRect) {
         
         if !isSimulator() {
             
@@ -222,7 +237,9 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 bankCard.bankCardImage = image
                 bankCardResult?(bankCard, false, "识别成功")
             } else {
-                captureManager.isRun1 = false
+                if captureManager != nil {
+                    captureManager.isRun1 = false
+                }
             }
         }
     }
