@@ -19,6 +19,11 @@ class APBankSearchViewController: APBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "开户行查询"
+        
+        self.ap_setStatusBarStyle(.lightContent)
+        setUpNavi()
         requestData()
         layoutViews()
     }
@@ -35,6 +40,14 @@ class APBankSearchViewController: APBaseViewController {
 }
 
 extension APBankSearchViewController: APSearchBarViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    func setUpNavi() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: AP_navigationLeftItemImage(),
+                                                                style: .done,
+                                                                target: self,
+                                                                action: #selector(backAction))
+    }
+    
     private func layoutViews() {
         let searchBar = APSearchBarView()
         searchBar.delegate = self
@@ -100,7 +113,10 @@ extension APBankSearchViewController {
         tableView .deselectRow(at: indexPath, animated: false)
         let bank = banks[indexPath.row]
         selectBankComplete?(bank)
-        navigationController?.popViewController()
-        
+        backAction()
+    }
+    
+    @objc func backAction() {
+        dismiss(animated: true, completion: nil)
     }
 }

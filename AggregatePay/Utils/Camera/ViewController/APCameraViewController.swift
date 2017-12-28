@@ -23,82 +23,57 @@ enum APCameraMode {
   @objc optional func ocrCameraIDCardResult(IDCard result: APOCRIDCard)
 }
 class APCameraViewController: APBaseViewController {
-
-   public var scanCardType: TCARD_TYPE!
-   public weak var delegate: APCameraViewControllerDelegate?
     
-   private var currentCameraMode: APCameraMode? {
-        didSet {
-            if currentCameraMode == .scan {
-                
-                ensureButton.isHidden = true
-                scanButton.isSelected =  true
-                takePhotoButton.isSelected = false
-            } else {
-                ensureButton.isHidden = false
-                takePhotoButton.isSelected = true
-                scanButton.isSelected = false
-            }
-        }
-    }
+    public var scanCardType: TCARD_TYPE!
+    public weak var delegate: APCameraViewControllerDelegate?
     
-    public var supportCameraMode: APSupportCameraMode = .scan {
-        didSet {
-            switch supportCameraMode {
-            case .scan:
-                currentCameraMode = .scan
-                takePhotoButton.isHidden = true
-                ensureButton.isHidden = true
-                scanButton.isHidden = true
-                
-            case .takePhoto:
-                currentCameraMode = .takePhoto
-                takePhotoButton.isHidden = true
-                scanButton.isHidden = true
-                
-            case .all:
-                currentCameraMode = .scan
-            }
-        }
-    }
+    /// OCR相机 手电筒状态
+    private var torchMode: AVCaptureDevice.TorchMode!
+    /// 相机 闪关灯
+    private var flashMode: AVCaptureDevice.FlashMode!
+   
     
     // ---------------------------------------- LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 设置状态栏
+        ap_setStatusBarStyle(.lightContent)
+        
+        // 申请相机权限
         checkCameraPermission()
+        
+        // 获取闪光灯权限，退出控制器后回复到起始权限
+        checkFlashMode()
+        
+        // 布局子视图
         setUpUI()
-//        flashButtonAction()
+        
+        //注册回调
+        registerCallBacks()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIApplication.shared.isStatusBarHidden = true
         
-//        switch supportCameraMode {
-//        case .takePhoto:
-//            takePhotoCameraView.session.startRunning()
-//        default:
-//            ocrCameraView.captureManager.session.startRunning()
-//        }
+        ap_statusBarHidden(isHidden: true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.isStatusBarHidden = false
-
-        switch supportCameraMode {
-        case .takePhoto:
-            takePhotoCameraView.session.stopRunning()
-        case .scan:
-            ocrCameraView.captureManager.session.stopRunning()
-            ocrCameraView.captureManager = nil
-        default:
-            takePhotoCameraView.session.stopRunning()
-            ocrCameraView.captureManager.session.stopRunning()
-            ocrCameraView.captureManager = nil
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        ap_statusBarHidden(isHidden: false)
+        
+        takePhotoCameraView.stopRunning()
+        if let view = ocrCameraView {
+            view.stopRunning()
+            view.setNilCaptureManager()
         }
+        
+        //初始化闪光灯的状态到进入页面之前的状态
+        let (_, _) = ap_setTorchMode(torchMode: torchMode)
+        let (_, _) = ap_setFlashMode(flashMode: flashMode)
     }
     
     //------------------------------------- 获取相机权限
@@ -110,6 +85,14 @@ class APCameraViewController: APBaseViewController {
         }) {[weak self] (msg) in
             self?.dismiss(animated: true, completion: nil)
             self?.view.makeToast(msg)
+        }
+    }
+    
+    //----------------------------------- 获取闪关灯状态
+    private func checkFlashMode() {
+        if let (torchMode, flashMode) = ap_getTorchMode() {
+            self.torchMode = torchMode
+            self.flashMode = flashMode
         }
     }
     
@@ -135,6 +118,7 @@ class APCameraViewController: APBaseViewController {
         let button = UIButton() // camera_flash_auto
         
         if currentCameraMode == .takePhoto {
+            
             button.setImage(UIImage.init(named: "camera_flash_auto"), for: .normal)
         } else {
             button.setImage(UIImage.init(named: "camera_flash_close"), for: .normal)
@@ -159,7 +143,7 @@ class APCameraViewController: APBaseViewController {
         button.setImage(UIImage.init(named: "camera_scan_noraml"), for: .normal)
         button.setImage(UIImage.init(named: "camera_scan_selected"), for: .selected)
         button.setupButtonStyle()
-        button.addTarget(self, action: #selector(scanAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(checkoutCameraMode(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -170,7 +154,7 @@ class APCameraViewController: APBaseViewController {
         button.setImage(UIImage.init(named: "camera_shoot_noraml"), for: .normal)
         button.setImage(UIImage.init(named: "camera_shoot_selected"), for: .selected)
         button.setupButtonStyle()
-        button.addTarget(self, action: #selector(scanAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(checkoutCameraMode(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -195,18 +179,58 @@ class APCameraViewController: APBaseViewController {
     private lazy var takePhotoCameraView: APTakePhotoCameraView = {
         let view = APTakePhotoCameraView.init(frame: previewRect)
         view.backgroundColor = UIColor.clear
+        print("takePhotoCameraView \(view)")
         return view
     }()
     
     /// OCR扫描view
-    private lazy var ocrCameraView: APOCRCameraView = {
+    private lazy var ocrCameraView: APOCRCameraView? = {
         guard let scanType = scanCardType else {
-            fatalError("scanCardType must set value")
+            return nil
         }
         let view = APOCRCameraView.init(frame: self.view.frame, scanType: scanCardType)
         view.backgroundColor = self.view.backgroundColor
+        print("ocrCameraView  \(view)")
         return view
     }()
+    
+    // --------------------------  SET/GET
+    /// 当前选择的是拍照还是OCR
+    private var currentCameraMode: APCameraMode? {
+        didSet {
+            if currentCameraMode == .scan {
+                ensureButton.isHidden = true
+                scanButton.isSelected =  true
+                takePhotoButton.isSelected = false
+                
+            } else {
+                ensureButton.isHidden = false
+                takePhotoButton.isSelected = true
+                scanButton.isSelected = false
+            }
+        }
+    }
+    
+    /// 想要支持的功能
+    public var supportCameraMode: APSupportCameraMode = .scan {
+        didSet {
+            switch supportCameraMode {
+            case .scan:
+                currentCameraMode = .scan
+                takePhotoButton.isHidden = true
+                ensureButton.isHidden = true
+                scanButton.isHidden = true
+                
+            case .takePhoto:
+                currentCameraMode = .takePhoto
+                takePhotoButton.isHidden = true
+                scanButton.isHidden = true
+                
+            case .all:
+                currentCameraMode = .scan
+            }
+        }
+    }
 }
 
 // MARK: - 布局
@@ -259,12 +283,18 @@ extension APCameraViewController {
         switch supportCameraMode {
         case .scan:
             layoutOCRCameraView()
+            ocrCameraView?.startRunning()
+            
         case .takePhoto:
+            
             layoutTakePhotoCameraView()
+            takePhotoCameraView.startRunning()
+            
         case .all:
+            
             layoutTakePhotoCameraView()
             layoutOCRCameraView()
-            takePhotoCameraView.isHidden = true
+            ocrCameraView?.startRunning()
         }
     }
     
@@ -281,8 +311,8 @@ extension APCameraViewController {
     
     private func layoutOCRCameraView() {
         
-        view.insertSubview(ocrCameraView, belowSubview: leftToolView)
-        ocrCameraView.snp.makeConstraints { (make) in
+        view.insertSubview(ocrCameraView!, belowSubview: leftToolView)
+        ocrCameraView!.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
     }
@@ -314,103 +344,17 @@ extension APCameraViewController {
 }
 
 
-// MARK: - Event
+// MARK: - CallBack
 
 extension APCameraViewController {
-    /// 当前页面退出
-    @objc func backAction() {
-        dismiss(animated: true, completion: nil)
-    }
     
-    /// 确认拍摄照片
-    @objc func ensurePhoto() {
-        takePhotoCameraView.getTakePhoto()
-    }
-    
-    /// 控制闪光灯开关
-    ///
-    /// - Parameter sender: 控制闪光灯开关按钮
-    @objc func flashButtonAction() {
-        if let captureDevice = AVCaptureDevice.default(for: .video) {
-            do {
-                try captureDevice.lockForConfiguration()
-                if (captureDevice.hasFlash) {
-                    
-                    if(currentCameraMode == .scan) {
-                        setOCRCameraFlash(captureDevice: captureDevice)
-                    } else {
-                        setTakePhotoCameraFlash(captureDevice: captureDevice)
-                    }
-                } else {
-                    view.makeToast("设备不支持闪光灯")
-                }
-                
-            } catch (let error) {
-                view.makeToast(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func setOCRCameraFlash(captureDevice: AVCaptureDevice) {
-        captureDevice.torchMode = captureDevice.torchMode == .on ? .off : .on
-        flashButton.isSelected = !flashButton.isSelected
-    }
-    
-    private func setTakePhotoCameraFlash(captureDevice: AVCaptureDevice) {
-        guard captureDevice.isFlashModeSupported(.auto) else {
-            captureDevice.flashMode = captureDevice.flashMode == .on ? .off : .on
-            flashButton.isSelected = !flashButton.isSelected
-            return
-        }
+    func registerCallBacks() {
         
-//        let imageName: String!
-//        switch captureDevice.flashMode {
-//        case .auto:
-//            captureDevice.flashMode = .on
-//            imageName = "camera_flash_open"
-//        case .on:
-//            captureDevice.flashMode = .off
-//            imageName = "camera_flash_close"
-//        case .off:
-//            captureDevice.flashMode = .auto
-//            imageName = "camera_flash_auto"
-//        }
-//       flashButton.setImage(UIImage.init(named: imageName), for: .normal)
+        takePhotoCallBack()
+        OCRCallBack()
     }
     
-    /// 扫描、拍摄切换
-    ///
-    /// - Parameter sender: 模式切换按钮
-    @objc func scanAction(_ sender: UIButton) {
-        if sender == scanButton {
-            if currentCameraMode != .scan {
-                checkoutOCR()
-                bringView(toFront: ocrCameraView, above: takePhotoCameraView)
-                ocrCameraView.captureManager.session.startRunning()
-                takePhotoCameraView.session.stopRunning()
-                currentCameraMode = .scan
-            }
-        } else {
-            if currentCameraMode != .takePhoto {
-                checkoutTakePhoto()
-                bringView(toFront: takePhotoCameraView, above: ocrCameraView)
-                ocrCameraView.captureManager.session.stopRunning()
-                takePhotoCameraView.session.startRunning()
-                currentCameraMode = .takePhoto
-                
-            }
-        }
-    }
-    
-    private func bringView(toFront: UIView, above: UIView) {
-        let frontIndex = view.subviews.index(of: toFront)
-        let aboveIndex = view.subviews.index(of: above)
-        view.exchangeSubview(at: frontIndex!, withSubviewAt: aboveIndex!)
-        toFront.isHidden = false
-        above.isHidden = true
-    }
-    
-    private func checkoutTakePhoto() {
+    private func takePhotoCallBack() {
         
         takePhotoCameraView.capturePhoto = {[weak self] (image) in
             self?.preview(withImage: image){(isUse) in
@@ -422,10 +366,10 @@ extension APCameraViewController {
         }
     }
     
-    private func checkoutOCR() {
+    private func OCRCallBack() {
         
         if scanCardType == TIDCARD2 {
-            ocrCameraView.idCardResult = {[weak self] (idCard, isSuccess, message) in
+            ocrCameraView?.idCardResult = {[weak self] (idCard, isSuccess, message) in
                 if !isSuccess {
                     self?.view.makeToast(message)
                     self?.backAction()
@@ -439,7 +383,7 @@ extension APCameraViewController {
                 }
             }
         } else {
-            ocrCameraView.bankCardResult = {[weak self] (bankCard, isSuccess, message) in
+            ocrCameraView?.bankCardResult = {[weak self] (bankCard, isSuccess, message) in
                 if !isSuccess {
                     self?.view.makeToast(message)
                     self?.backAction()
@@ -467,6 +411,174 @@ extension APCameraViewController {
     }
 }
 
+
+// MARK: - Event
+
+extension APCameraViewController {
+    /// 当前页面退出
+    @objc func backAction() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    /// 确认拍摄照片
+    @objc func ensurePhoto() {
+        takePhotoCameraView.getTakePhoto()
+    }
+    
+    /// 控制闪光灯开关
+    ///
+    /// - Parameter sender: 控制闪光灯开关按钮
+    @objc func flashButtonAction() {
+        
+        if(currentCameraMode == .scan) {
+            setOCRCameraFlash()
+        } else {
+            setTakePhotoCameraFlash()
+        }
+    }
+    
+    private func setOCRCameraFlash() {
+        
+        if let (torchMode, _) = ap_getTorchMode() {
+            
+            let (isSuccess, message) = ap_setTorchMode(torchMode: ((torchMode == .off) ? .on : .off))
+            if isSuccess {
+                flashButton.isSelected = !flashButton.isSelected
+            } else {
+                view.makeToast(message)
+            }
+        }else {
+            view.makeToast("获取闪光灯状态失败")
+        }
+    }
+    
+    private func setTakePhotoCameraFlash() {
+        
+        if let (_, flashMode) = ap_getTorchMode() {
+            
+            var willSetFlashMode: AVCaptureDevice.FlashMode!
+            var imageName: String!
+            
+            switch flashMode {
+            case .auto:
+                willSetFlashMode = .on
+                imageName = "camera_flash_open"
+                
+            case .on:
+                willSetFlashMode = .off
+                imageName = "camera_flash_close"
+                
+            case .off:
+                willSetFlashMode = .auto
+                imageName = "camera_flash_auto"
+            }
+            
+            let (isSuccess, message) = ap_setFlashMode(flashMode: willSetFlashMode)
+            if isSuccess {
+                flashButton.setImage(UIImage.init(named: imageName), for: .normal)
+            }else {
+                view.makeToast(message)
+            }
+            
+        } else {
+            view.makeToast("获取闪光灯状态失败")
+        }
+    }
+    
+    /// 扫描、拍摄切换
+    ///
+    /// - Parameter sender: 模式切换按钮
+    @objc func checkoutCameraMode(_ sender: UIButton) {
+        if sender == scanButton {
+            if currentCameraMode != .scan {
+                
+                bringView(toFront: ocrCameraView!, above: takePhotoCameraView)
+                ocrCameraView!.startRunning()
+                takePhotoCameraView.stopRunning()
+                currentCameraMode = .scan
+                flashButton.setImage(UIImage.init(named: "camera_flash_close"), for: .normal)
+                let (_, _) = ap_setTorchMode(torchMode: .off)
+            }
+        } else {
+            if currentCameraMode != .takePhoto {
+                bringView(toFront: takePhotoCameraView, above: ocrCameraView!)
+                ocrCameraView!.stopRunning()
+                takePhotoCameraView.startRunning()
+                currentCameraMode = .takePhoto
+                flashButton.setImage(UIImage.init(named: "camera_flash_auto"), for: .normal)
+                let (_, _) = ap_setFlashMode(flashMode: .auto)
+            }
+        }
+    }
+    
+    private func bringView(toFront: UIView, above: UIView) {
+        let frontIndex = view.subviews.index(of: toFront)
+        let aboveIndex = view.subviews.index(of: above)
+        view.exchangeSubview(at: frontIndex!, withSubviewAt: aboveIndex!)
+        toFront.isHidden = false
+        above.isHidden = true
+    }
+}
+
+extension APCameraViewController {
+    
+    /// 获取当前闪光灯状态 手电筒状态
+    ///
+    /// - Returns: 闪光灯状态 手电筒状态
+    func ap_getTorchMode() -> (AVCaptureDevice.TorchMode, AVCaptureDevice.FlashMode)?  {
+        
+        if let captureDevice = AVCaptureDevice.default(for: .video) {
+            return (captureDevice.torchMode, captureDevice.flashMode)
+        }
+        return nil
+    }
+    
+    /// 设置手电筒状态
+    ///
+    /// - Parameter torchMode: 状态的枚举
+    /// - Returns: 设置结果
+    func ap_setTorchMode(torchMode: AVCaptureDevice.TorchMode) -> (Bool, String) {
+        
+        let isSuccess = false
+        var message = "设置失败"
+        if let captureDevice = AVCaptureDevice.default(for: .video) {
+            do {
+                try captureDevice.lockForConfiguration()
+                if (captureDevice.hasFlash) {
+                    captureDevice.torchMode = torchMode
+                    return (true, "设置成功")
+                }
+                message = "设备不支持闪光灯"
+            } catch (let error) {
+                return (isSuccess, error.localizedDescription)
+            }
+        }
+        return (isSuccess, message)
+    }
+    
+    /// 设置闪关灯状态
+    ///
+    /// - Parameter flashMode:状态的枚举
+    /// - Returns: 设置结果
+    func ap_setFlashMode(flashMode: AVCaptureDevice.FlashMode) -> (Bool, String) {
+        
+        let isSuccess = false
+        var message = "设置失败"
+        if let captureDevice = AVCaptureDevice.default(for: .video) {
+            do {
+                try captureDevice.lockForConfiguration()
+                if (captureDevice.hasFlash) {
+                    captureDevice.flashMode = flashMode
+                    return (true, "设置成功")
+                }
+                message = "设备不支持闪光灯"
+            }catch (let error) {
+                return (isSuccess, error.localizedDescription)
+            }
+        }
+        return (isSuccess, message)
+    }
+}
 
 // MARK: - button 扩展
 
