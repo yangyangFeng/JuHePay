@@ -10,6 +10,8 @@ import UIKit
 
 import PGDatePicker
 
+
+
 extension APReturnBillSearchBar: PGDatePickerDelegate {
     
     func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
@@ -24,11 +26,15 @@ extension APReturnBillSearchBar: PGDatePickerDelegate {
         if conversionDate(leftHeadView.button.title.text!) > conversionDate(rightHeadView.button.title.text!){
             leftHeadView.button.title.text = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
+        delegate?.AP_Action_Click?()
     }
+    
 }
 
 class APReturnBillSearchBar: UIView {
 
+    weak var delegate : AP_ActionProtocol?
+    
     var interval : Int = 1 //defaule is 1.
     var maxInterval : Int = 6 //defaule is 6.
     
@@ -47,7 +53,22 @@ class APReturnBillSearchBar: UIView {
         return view
     }()
     
+    func AP_statrTimeStr() -> String {
+        return (leftHeadView.button.title.text?.replacingOccurrences(of: "/", with: "-"))!
+    }
+    
+    func AP_endTimeStr() -> String {
+        return (rightHeadView.button.title.text?.replacingOccurrences(of: "/", with: "-"))!
+    }
+    
     var currentPicker : PGDatePicker?
+    
+    var data : APGetMyProfitResponse?{
+        didSet{
+            leftBottomView.title.text = data?.count ?? "0"
+            rightBottomView.title.text = data?.amount ?? "0"
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -243,7 +264,7 @@ class APReturnBillSearchBar: UIView {
         let view = APReturnBillSearchBarSubView()
         view.iconImageView.image = UIImage.init(named: "Earnings_numer_icon")
         view.topTitle.text = "分润笔数"
-        view.title.text = "3"
+        view.title.text = "0"
         return view
     }()
     
@@ -251,7 +272,7 @@ class APReturnBillSearchBar: UIView {
         let view = APReturnBillSearchBarSubView()
         view.iconImageView.image = UIImage.init(named: "Earnings_sum_icon")
         view.topTitle.text = "分润总额"
-        view.title.text = "11100.00"
+        view.title.text = "0.0"
         return view
     }()
     

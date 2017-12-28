@@ -11,7 +11,7 @@ import UIKit
 import SwiftTheme
 import Toast_Swift
 
-class APServiceViewController: APBaseViewController {
+class APServiceViewController: APMineBaseViewController {
 
     
     lazy var btn: UIButton = {

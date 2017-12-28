@@ -19,15 +19,17 @@ class APAgentDetailViewController: APBaseViewController {
 
         initSubviews()
         
-        view.AP_loadingBegin()
+        loadData(0)
         // Do any additional setup after loading the view.
     }
     
     func initSubviews(){
+        
         let segment = APSegmentControl.init(["直接推广", "间接推广"], frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 40))
         segment.theme_backgroundColor = [AP_TableViewBackgroundColor]
+        weak var weakSelf = self
         segment.segmentBlock = { index in
-            self.loadData(index)
+            weakSelf?.loadData(index)
         }
         
         view.addSubview(segment)
@@ -44,19 +46,20 @@ class APAgentDetailViewController: APBaseViewController {
     }
 
     func loadData(_ index : Int){
+        view.AP_loadingBegin()
+        
         let param = APGetUserListRecommendRequest()
         param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         param.type = String(index)
         param.levelId = data?.levelId
 
+
         APEarningsHttpTool.getUserListRecommend(param, success: { (res) in
-            self.listView.tableView.mj_header.endRefreshing()
             self.view.AP_loadingEnd()
             let data :APGetUserListRecommendResponse = res as! APGetUserListRecommendResponse
             self.listView.title = self.title
             self.listView.dataSource = data.list
         }) { (error) in
-            self.listView.tableView.mj_header.endRefreshing()
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)
         }

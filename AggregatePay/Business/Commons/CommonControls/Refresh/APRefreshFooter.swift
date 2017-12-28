@@ -62,7 +62,7 @@ class APRefreshFooter: MJRefreshAutoStateFooter {
     override func prepare() {
         super.prepare()
         mj_h = AP_RefreshConfig.footerHeight
-        
+        isAutomaticallyHidden = true
         addSubview(AP_imageView)
         
         

@@ -139,6 +139,7 @@
 		234CE0F61FF0C78E008F834E /* SCCaptureCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */; };
 		234CE0F91FF0CFE3008F834E /* APOCRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */; };
 		234CE0FA1FF0CFE3008F834E /* APTakePhotoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */; };
+		235549531FF3393400B27FB4 /* APPhotoPreview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235549521FF3393400B27FB4 /* APPhotoPreview+Extension.swift */; };
 		235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */; };
 		235E4DE21FF21D2D00B802ED /* APAuthNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */; };
 		2374A9E41FE8F1590013AB88 /* APSettlementCardAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */; };
@@ -232,6 +233,8 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
+		7488A4391FF4FF2C009BC49F /* APMJArrayTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */; };
+		7488A43B1FF51FCF009BC49F /* APMineBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -475,6 +478,7 @@
 		234CE0F51FF0C78D008F834E /* SCCaptureCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCaptureCameraController.m; sourceTree = "<group>"; };
 		234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APOCRCameraView.swift; sourceTree = "<group>"; };
 		234CE0F81FF0CFE3008F834E /* APTakePhotoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTakePhotoCameraView.swift; sourceTree = "<group>"; };
+		235549521FF3393400B27FB4 /* APPhotoPreview+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APPhotoPreview+Extension.swift"; sourceTree = "<group>"; };
 		235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPhotoPreview.swift; sourceTree = "<group>"; };
 		235E4DE11FF21D2D00B802ED /* APAuthNaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthNaviViewController.swift; sourceTree = "<group>"; };
 		2374A9BA1FE8F1590013AB88 /* APSettlementCardAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettlementCardAuthViewController.swift; sourceTree = "<group>"; };
@@ -583,6 +587,8 @@
 		7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProblemsViewController.swift; sourceTree = "<group>"; };
 		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
 		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
+		7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMJArrayTool.swift; sourceTree = "<group>"; };
+		7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineBaseViewController.swift; sourceTree = "<group>"; };
 		74A30EA31FE7F11F00740C17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1749,6 +1755,7 @@
 			isa = PBXGroup;
 			children = (
 				235D8C881FF25DFC00BFA77C /* APPhotoPreview.swift */,
+				235549521FF3393400B27FB4 /* APPhotoPreview+Extension.swift */,
 				234CE0F01FF08E2B008F834E /* APBaseCameraView.swift */,
 				234CE0F21FF09158008F834E /* APCameraCommon.swift */,
 				234CE0F71FF0CFE3008F834E /* APOCRCameraView.swift */,
@@ -2082,6 +2089,7 @@
 			isa = PBXGroup;
 			children = (
 				7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */,
+				7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */,
 			);
 			name = Tool;
 			path = AggregatePay/Business/earnings/Tool;
@@ -2432,6 +2440,7 @@
 				7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */,
 				7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */,
 				7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */,
+				7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2768,6 +2777,7 @@
 				74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */,
 				1AE4562A1FE4F6E0005D9999 /* APCollectionPlaceCell.swift in Sources */,
 				1AA80FB41FDFDF1C0021B046 /* APPasswordFormsCell.swift in Sources */,
+				235549531FF3393400B27FB4 /* APPhotoPreview+Extension.swift in Sources */,
 				1AA17DFB1FEA28B0006E59F0 /* APQRCodeTool.swift in Sources */,
 				74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */,
 				1A23CA131FF234F0005154F4 /* APQueryAccountRecordRequest.swift in Sources */,
@@ -2810,6 +2820,7 @@
 				2374AA061FE8FE740013AB88 /* APBankNameFormCell.swift in Sources */,
 				2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */,
 				2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */,
+				7488A43B1FF51FCF009BC49F /* APMineBaseViewController.swift in Sources */,
 				746602BB1FEA96A900C3AA76 /* APShareTemplateBar.swift in Sources */,
 				7476684B1FE9102800715E72 /* APArrowButton.swift in Sources */,
 				7487E1811FDFE131000E3EBE /* UIButtonExtensions.swift in Sources */,
@@ -2848,6 +2859,7 @@
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
 				745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */,
+				7488A4391FF4FF2C009BC49F /* APMJArrayTool.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
 				1A3A68C91FE3A53300865340 /* APProfitsDetailViewController.swift in Sources */,
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,

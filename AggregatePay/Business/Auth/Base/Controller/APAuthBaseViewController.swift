@@ -33,6 +33,8 @@ class APAuthBaseViewController: APBaseViewController {
         if let _ = processView() {
             setUpNavi()
         }
+        
+        registerCallBacks()
   }
 
     func registerCallBacks() {
@@ -73,6 +75,9 @@ extension APAuthBaseViewController {
         scrollView.clipsToBounds = false
         scrollView.backgroundColor = UIColor.init(hex6: 0xf5f5f5)
         containerView.backgroundColor = scrollView.backgroundColor
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         
         //    MARK: -- 设置collectionView
         layout = UICollectionViewFlowLayout.init()

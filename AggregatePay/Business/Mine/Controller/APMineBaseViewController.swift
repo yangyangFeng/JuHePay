@@ -1,18 +1,19 @@
 //
-//  APApproveViewController.swift
+//  APMineBaseViewController.swift
 //  AggregatePay
 //
-//  Created by cnepayzx on 2017/12/14.
+//  Created by cnepayzx on 2017/12/28.
 //  Copyright © 2017年 bingtianyu. All rights reserved.
 //
 
 import UIKit
 
-class APApproveViewController: APMineBaseViewController {
+class APMineBaseViewController: APBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ap_setStatusBarStyle(.lightContent)
         // Do any additional setup after loading the view.
     }
 

@@ -9,23 +9,44 @@
 import UIKit
 
 class APReturnBillListView: UIView,UITableViewDataSource,UITableViewDelegate {
-    lazy var tableView : UITableView = {
-        let view = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
-        view.separatorStyle = .none
-        let headview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 10))
-        view.tableHeaderView = headview
-        view.tableFooterView = UIView()
-//        view.AP_setupEmpty()
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
     
     weak var delegate : AP_TableViewDidSelectProtocol?
     
+    var data : APGetMyProfitResponse?{
+        didSet{
+            if page == 1 {
+                dataSorce = data?.list ?? []
+                if data?.bottomPageNo == "1"{
+                    tableView.mj_footer.endRefreshingWithNoMoreData()
+                }
+                else
+                {
+                    tableView.mj_footer.resetNoMoreData()
+                }
+            }
+            else if Int((data?.bottomPageNo ?? "1"))! > page{
+                page += 1
+                dataSorce.append(contentsOf: (data?.list ?? []))
+                tableView.mj_footer.resetNoMoreData()
+            }
+            else{
+                page = Int((data?.bottomPageNo ?? "1"))!
+                dataSorce.append(contentsOf: (data?.list ?? []))
+                tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
+            tableView.reloadData()
+        }
+    }
+    /// 当前页
+    var page : Int = 1
+    /// 最后一页
+    var lastPage = 0
+    
+    var dataSorce : [APGetMyProfitResponse] = []
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-       
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
@@ -33,7 +54,7 @@ class APReturnBillListView: UIView,UITableViewDataSource,UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return dataSorce.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -43,8 +64,12 @@ class APReturnBillListView: UIView,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = APReturnBillListViewCell.cellWithTableView(tableView) as! APReturnBillListViewCell
         cell.selectionStyle = .none
-        cell.dateLabel.text = "11/19"
-        cell.moneyLabel.text = "¥0.01"
+        let cellData : APGetMyProfitResponse = dataSorce[indexPath.row] as APGetMyProfitResponse
+        
+        cell.dateLabel.text = cellData.transDate
+//        "11/19"
+        cell.moneyLabel.text = "¥" + (cellData.profitAmount ?? "0.0")
+//        "¥0.01"
         return cell
     }
     
@@ -53,6 +78,17 @@ class APReturnBillListView: UIView,UITableViewDataSource,UITableViewDelegate {
         delegate?.AP_TableViewDidSelect?(indexPath, obj: "nil")
     }
     
+    lazy var tableView : UITableView = {
+        let view = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
+        view.separatorStyle = .none
+        let headview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 10))
+        view.tableHeaderView = headview
+        view.tableFooterView = UIView()
+        view.AP_setupEmpty()
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -112,7 +148,11 @@ class APReturnBillListViewCell: UITableViewCell {
             make.bottom.equalTo(0)
         }
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+
+
 }

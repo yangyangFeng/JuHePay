@@ -13,7 +13,7 @@ import SnapKit
 
 
 
-class APMineViewController: APBaseViewController, APMineStaticListViewDelegate{
+class APMineViewController: APMineBaseViewController, APMineStaticListViewDelegate{
     func tableViewDidSelectIndex(_ title: String, controller: String) {
         print(controller)
         // -1.动态获取命名空间

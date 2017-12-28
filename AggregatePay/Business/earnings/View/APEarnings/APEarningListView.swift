@@ -98,8 +98,10 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellData = data?.getRecommendByUser?[indexPath.row]
-        delegate?.AP_TableViewDidSelect?(indexPath, obj: cellData!)
+        if indexPath.section != 0 {
+            let cellData = data?.getRecommendByUser?[indexPath.row]
+            delegate?.AP_TableViewDidSelect?(indexPath, obj: cellData!)
+        }
     }
 }
 

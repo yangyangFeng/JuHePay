@@ -27,9 +27,7 @@ class APEarningHeadView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let image = UIImage.init(named: "Earning_head_bg")
-        let bgImageView = UIImageView.init(image: image?.cropped(to: -(1-64/204)))
-        bgImageView.contentMode = .scaleAspectFill
-        
+        let bgImageView = UIImageView.init(image: image?.cropped(to: -(1-64.0/204.0)))
        
         topLabel.text = "累计收益(元)"
         topLabel.font = UIFont.systemFont(ofSize: 12)
