@@ -25,7 +25,7 @@ class APGetMyProfitResponse: APBaseResponse {
     /// 最后一页
     @objc dynamic var bottomPageNo : String?
     
-    
+//    @objc dynamic var getRecommendByUser : [APGetProfitHomeResponse]?
     @objc dynamic var list : [APGetMyProfitResponse]?
     /// 分润id
     @objc dynamic var coProfitDescId : String?
@@ -35,6 +35,13 @@ class APGetMyProfitResponse: APBaseResponse {
     @objc dynamic var profitAmount : String?
     
     override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
-        return ["list" : [APGetMyProfitResponse.self]]
+        return ["list" : self.self]
     }
+    
+    override func mj_objectDidFinishConvertingToKeyValues() {
+        print("转换完毕")
+//        APGetMyProfitResponse.mj_objectArray(withKeyValuesArray: <#T##Any!#>)
+    }
+    
+    
 }

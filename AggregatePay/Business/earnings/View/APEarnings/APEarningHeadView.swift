@@ -10,31 +10,41 @@ import UIKit
 
 class APEarningHeadView: UIView {
 
+    var data : APGetProfitHomeResponse?{
+        didSet{
+            moneyLabel.text = data?.profit
+            yesterdayMoneyLabel.text = data?.yearsDayAmount
+        }
+    }
+    
     weak var delegate : AP_TableViewDidSelectProtocol?
+    
+    let topLabel = UILabel()
+    let moneyLabel = UILabel()
+    let bottomLabel = UILabel()
+    let yesterdayMoneyLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         let image = UIImage.init(named: "Earning_head_bg")
-        let bgImageView = UIImageView.init(image: image?.cropped(to: -(1-64/204)))
-        bgImageView.contentMode = .scaleAspectFill
-        
-        let topLabel = UILabel()
+        let bgImageView = UIImageView.init(image: image?.cropped(to: -(1-64.0/204.0)))
+       
         topLabel.text = "累计收益(元)"
         topLabel.font = UIFont.systemFont(ofSize: 12)
         topLabel.theme_textColor = ["#4c370b"]
         
-        let moneyLabel = UILabel()
+        
         moneyLabel.text = "0.0"
         moneyLabel.font = UIFont.systemFont(ofSize: 42)
         moneyLabel.textAlignment = .left
         moneyLabel.theme_textColor = ["#7f5e12"]
         
-        let bottomLabel = UILabel()
+       
         bottomLabel.text = "昨日收益(元)"
         bottomLabel.theme_textColor = ["#4c370b"]
         bottomLabel.font = UIFont.systemFont(ofSize: 12)
         
-        let yesterdayMoneyLabel = UILabel()
+        
         yesterdayMoneyLabel.font = UIFont.systemFont(ofSize: 12)
         yesterdayMoneyLabel.theme_textColor = ["#4c370b"]
         yesterdayMoneyLabel.text = "+0.00"

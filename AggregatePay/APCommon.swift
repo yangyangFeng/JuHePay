@@ -17,6 +17,7 @@ let AP_TableViewBackgroundColor = "#F5F5F5"
 
 let AP_AES_Key = "q+21NWcZFQLG0WuM"
 
+let AppVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
 /// 获取AppDelegate
 let APPDElEGATE = UIApplication.shared.delegate as! AppDelegate
 

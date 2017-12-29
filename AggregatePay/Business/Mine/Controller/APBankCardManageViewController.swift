@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APBankCardManageViewController: APBaseViewController {
+class APBankCardManageViewController: APMineBaseViewController {
 
     lazy var bankCardView: APBankCardManageListView = {
         let view = APBankCardManageListView()

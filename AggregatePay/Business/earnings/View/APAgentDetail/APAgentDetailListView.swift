@@ -10,24 +10,36 @@ import UIKit
 
 class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate {
     
+    var dataSource : [APGetUserListRecommendResponse]? = []{
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
+    
+    var title : String?
+    
+    let tableView = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return dataSource?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = APAgentDetailListCell.cellWithTableView(tableView)
-        cell?.selectionStyle = .none
-        return cell!
+        let cell : APAgentDetailListCell = APAgentDetailListCell.cellWithTableView(tableView) as! APAgentDetailListCell
+        cell.data = dataSource?[indexPath.row]
+      
+        cell.agentLevel.text = title
+        cell.selectionStyle = .none
+        return cell
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let tableView = UITableView.init(frame: CGRect.zero, style: UITableViewStyle.plain)
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         
@@ -38,27 +50,20 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
-        tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                tableView.mj_footer.resetNoMoreData()
-            })
-        })
-        tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                tableView.mj_header.endRefreshing()
-            })
-        })
+//        tableView.mj_footer = APRefreshFooter(refreshingBlock: {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                self.tableView.mj_footer.resetNoMoreData()
+//            })
+//        })
+//        tableView.mj_header = APRefreshHeader(refreshingBlock: {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                self.tableView.mj_header.endRefreshing()
+//            })
+//        })
         tableView.theme_backgroundColor = ["#fff"]
         theme_backgroundColor = ["#fff"]
     }
 
-    
-    
-    
-    
-    
-    
-    
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,6 +72,24 @@ class APAgentDetailListView: UIView, UITableViewDataSource, UITableViewDelegate 
 }
 
 class APAgentDetailListCell: UITableViewCell {
+    
+    var data : APGetUserListRecommendResponse?{
+        didSet{
+            
+//            registeDate    用户注册时间
+//            realName    用户姓名
+//            mobileNo    用户手机号
+//            levelId    用户等级
+//            authStatus    实名状态
+            agentName.text = (data?.realName ?? "")! + "  " + (data?.mobileNo ?? "")!
+            //"王**  135****8767"
+            registerTime.text = "注册时间: " + (data?.registeDate ?? "")!
+            //"注册时间：2017/11／12  11:21:11"
+//            agentLevel.text = "青铜"
+            checkStatus.text = (data?.authStatus ?? "")!
+        }
+    }
+    
     
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
         let identifier = "APAgentDetailListCell"
@@ -121,10 +144,7 @@ class APAgentDetailListCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        agentName.text = "王**  135****8767"
-        registerTime.text = "注册时间：2017/11／12  11:21:11"
-        agentLevel.text = "青铜"
-        checkStatus.text = "已实名"
+ 
         
         contentView.addSubview(agentName)
         contentView.addSubview(registerTime)
@@ -143,7 +163,7 @@ class APAgentDetailListCell: UITableViewCell {
         agentLevel.snp.makeConstraints { (make) in
             make.top.equalTo(8)
             make.right.equalTo(-20)
-            make.width.equalTo(30)
+            make.width.equalTo(60)
         }
         checkStatus.snp.makeConstraints { (make) in
             make.top.equalTo(agentLevel.snp.bottom).offset(4)

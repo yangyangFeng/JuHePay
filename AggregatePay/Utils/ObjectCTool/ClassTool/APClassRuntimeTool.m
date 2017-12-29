@@ -14,5 +14,7 @@
 + (id)ap_class:(Class)ofClass result:(id)result {
     return [ofClass mj_objectWithKeyValues:result];
 }
-
++(NSMutableArray *)mj_objectArrayWithKeyValuesArray:(id)keyValuesArray context:(NSManagedObjectContext *)context{
+    return [super mj_objectArrayWithKeyValuesArray:keyValuesArray context:context];
+}
 @end

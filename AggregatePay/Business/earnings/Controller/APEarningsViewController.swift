@@ -12,51 +12,73 @@ import UIKit
  */
 class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtocol {
 
+    var data : APGetProfitHomeResponse?
+    
+    let headView = APEarningHeadView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 140.0))
+    
+    
+    let listView = APEarningListView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: K_Height-64))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "收益"
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
+        
         initSubviews()
-        // Do any additional setup after loading the view.
+        
         loadData()
     }
     
     func loadData()
     {
+        view.AP_loadingBegin()
         let param = APGetProfitHomeRequest()
         param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-        param.mobileNo = APUserInfoTool.info.mobileNo
+        param.mobileNo = APUserDefaultCache.AP_get(key: .mobile) as? String
+            //APUserInfoTool.info.mobileNo
         
         APEarningsHttpTool.getProfitHome(param, success: { (res) in
-
+            self.listView.tableView.mj_header.endRefreshing()
+            self.data = res as? APGetProfitHomeResponse
+            self.updateSubviews(res as! APGetProfitHomeResponse)
+            self.view.AP_loadingEnd()
         }) { (error) in
-
+            self.listView.tableView.mj_header.endRefreshing()
+            self.view.AP_loadingEnd()
         }
     }
 
+    func updateSubviews(_ data : APGetProfitHomeResponse){
+        headView.data = data
+        listView.data = data
+    }
+    
     func AP_Action_Click()
     {
+        guard let tempData = data else {
+            self.loadData()
+            return
+        }
         let returnBillC = APReturnBillViewController()
+        returnBillC.data = tempData
         navigationController?.pushViewController(returnBillC)
     }
     
     func AP_TableViewDidSelect(_ indexPath: IndexPath, obj: Any) {
-        let title = obj
+        let cellData : APGetProfitHomeResponse = obj as! APGetProfitHomeResponse
         let agentDetailC = APAgentDetailViewController()
-        agentDetailC.title = title as? String
+        agentDetailC.title = cellData.userLevelName
+        agentDetailC.data = cellData
         navigationController?.pushViewController(agentDetailC)
     }
     
     func initSubviews()
     {
         let image = UIImage.init(named: "Earning_head_bg")
-        self.vhl_setNavBarBackgroundImage(image?.cropped(to: 64/204))
+        self.vhl_setNavBarBackgroundImage(image?.cropped(to: 64.0/204.0))
         
-        let headView = APEarningHeadView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 140))
         headView.delegate = self
-        
-        let listView = APEarningListView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: K_Height-64))
         listView.delegate = self
         listView.tableView.tableHeaderView = headView
         view.addSubview(listView)
@@ -65,6 +87,10 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
             make.edges.equalTo(0)
         }
         
+        weak var weakSelf = self
+        listView.tableView.mj_header = APRefreshHeader(refreshingBlock: {
+            weakSelf?.loadData()
+        })
     }
     
     override func didReceiveMemoryWarning() {

@@ -244,6 +244,8 @@
 		7487E1991FE0DE87000E3EBE /* APAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */; };
 		7487E19B1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */; };
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
+		7488A4391FF4FF2C009BC49F /* APMJArrayTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */; };
+		7488A43B1FF51FCF009BC49F /* APMineBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */; };
 		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
@@ -607,6 +609,8 @@
 		7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCommonProblemsViewController.swift; sourceTree = "<group>"; };
 		7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageViewController.swift; sourceTree = "<group>"; };
 		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
+		7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMJArrayTool.swift; sourceTree = "<group>"; };
+		7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineBaseViewController.swift; sourceTree = "<group>"; };
 		74A30EA31FE7F11F00740C17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2149,6 +2153,7 @@
 			isa = PBXGroup;
 			children = (
 				7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */,
+				7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */,
 			);
 			name = Tool;
 			path = AggregatePay/Business/earnings/Tool;
@@ -2500,6 +2505,7 @@
 				7487E1981FE0DE87000E3EBE /* APAboutUsViewController.swift */,
 				7487E19A1FE0DEC5000E3EBE /* APCommonProblemsViewController.swift */,
 				7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */,
+				7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2885,6 +2891,7 @@
 				2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */,
 				1A67F8151FF4B54800715751 /* APQRCodePayResponse.swift in Sources */,
 				2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */,
+				7488A43B1FF51FCF009BC49F /* APMineBaseViewController.swift in Sources */,
 				746602BB1FEA96A900C3AA76 /* APShareTemplateBar.swift in Sources */,
 				7476684B1FE9102800715E72 /* APArrowButton.swift in Sources */,
 				1A67F8111FF4B54800715751 /* APGetOnlineTransResultResponse.swift in Sources */,
@@ -2922,6 +2929,7 @@
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
 				745BDAB31FE24315003A6912 /* APSwipeTableViewCell.swift in Sources */,
+				7488A4391FF4FF2C009BC49F /* APMJArrayTool.swift in Sources */,
 				1AA80FB71FDFDF1C0021B046 /* APSubmitFormsCell.swift in Sources */,
 				1A3A68C91FE3A53300865340 /* APProfitsDetailViewController.swift in Sources */,
 				1AA80FA01FDFDE660021B046 /* APLoginViewController.swift in Sources */,
