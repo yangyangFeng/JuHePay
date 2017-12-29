@@ -73,3 +73,14 @@ class APBaseNavigationViewController: UINavigationController ,UIGestureRecognize
     */
 
 }
+
+extension APBaseNavigationViewController {
+    
+    open override var childViewControllerForStatusBarStyle: UIViewController? {
+        return viewControllers.last
+    }
+    
+    open override var childViewControllerForStatusBarHidden: UIViewController? {
+        return viewControllers.last
+    }
+}

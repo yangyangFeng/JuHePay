@@ -49,5 +49,5 @@ class APAuthNaviViewController: APBaseNavigationViewController {
         }
         super.pushViewController(viewController, animated: true)
     }
-    
 }
+

@@ -82,11 +82,11 @@ extension APWalletDetailViewController {
                           params: queryAccountRecordRequest,
                           aClass: APQueryAccountRecordResponse.self,
                           success: { (baseResp) in
-                            let queryAccountRecordResponse = baseResp as! APQueryAccountRecordResponse
-                            self.datas.append(contentsOf: queryAccountRecordResponse.list!)
+                            let result = baseResp as! APQueryAccountRecordResponse
+                            self.datas.append(contentsOf: result.list!)
                             self.tableView.mj_header.endRefreshing()
                             self.tableView.mj_footer.endRefreshing()
-                            if queryAccountRecordResponse.list!.count < 10 &&
+                            if result.list!.count < 10 &&
                                self.queryAccountRecordRequest.pageNo != 1 {
                                 self.tableView.mj_footer.endRefreshingWithNoMoreData()
                             }

@@ -54,22 +54,16 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        title = "我的"
+        
+        view.backgroundColor = UIColor.white
+        self.ap_setStatusBarStyle(.lightContent)
+        
         let image = UIImage.init(named: "Mine_head_bg")
         self.vhl_setNavBarBackgroundImage(image?.cropped(to: 64/208))
         
-        self.ap_setStatusBarStyle(.lightContent)
-
-        view.backgroundColor = UIColor.white
-        
-        title = "我的"
-
-//        view.addSubview(headView)
         view.addSubview(staticListView)
-//        headView.snp.makeConstraints { (make) in
-//            make.top.equalTo(0);
-//            make.left.right.equalTo(0)
-//            make.height.equalTo(208-64)
-//        }
         staticListView.snp.makeConstraints { (make) in
             make.top.equalTo(0)
             make.left.right.bottom.equalTo(0)

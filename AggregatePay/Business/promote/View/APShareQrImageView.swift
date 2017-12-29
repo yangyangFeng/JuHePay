@@ -20,7 +20,7 @@ class APShareQrImageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         bgImageView.image = UIImage.init(named: "PromoteTemplate1")
-        bgImageView.contentMode = .scaleAspectFit
+//        bgImageView.contentMode = .bottom
         
         addSubview(bgImageView)
         bgImageView.addSubview(qrCodeImageView)
@@ -46,8 +46,8 @@ class APShareQrImageView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         qrCodeImageView.snp.makeConstraints { (make) in
-            make.width.height.equalTo(77/width*(bgImageView.image?.size.width)!)
-            make.bottom.equalTo(-(30/414*(bgImageView.image?.size.height)!))
+            make.width.height.equalTo((K_Width*0.2))
+            make.bottom.equalToSuperview().offset(-(10/(K_Height*0.62)*(bgImageView.image?.size.height)!))
             make.centerX.equalToSuperview().offset(0)
         }
         

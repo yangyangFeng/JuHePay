@@ -45,7 +45,7 @@ class APUserStatusTool: NSObject {
 
     /** 验证用户身份 */
     static func userIdentityStatusTool(status: APUserIdentityStatusBlock) {
-        status(.weakUser)
+        status(.strongUser)
     }
 
     /** 验证用户权限状态 */
