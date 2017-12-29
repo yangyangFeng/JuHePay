@@ -9,6 +9,14 @@
 import UIKit
 
 class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
+
+    var amountSum: String? {
+        willSet{
+            let amountNum = Double(newValue!)! / 100.00
+            headerView.amountLabel.text = String(format: "%.2f", amountNum)
+
+        }
+    }
     
     //MARK: ---- 生命周期
     

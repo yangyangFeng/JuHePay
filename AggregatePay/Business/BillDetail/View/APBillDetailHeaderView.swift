@@ -31,7 +31,7 @@ class APBillDetailHeaderView: UIView {
     
     lazy var amountLabel: UILabel = {
         let view = UILabel()
-        view.text = "0.0"
+        view.text = "0.00"
         view.textAlignment = .center
         view.theme_textColor = ["#422f02"]
         if #available(iOS 8.2, *) {

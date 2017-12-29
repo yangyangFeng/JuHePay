@@ -11,8 +11,25 @@ import UIKit
 /**
  * 生成收款二维码视图控制器
  */
-class APQRCodeCollectionViewController: APBaseViewController {
+class APQRCPCollectionViewController: APQRCPBaseViewController {
     
+    var qrCodePayResponse: APQRCodePayResponse?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.theme_backgroundColor = ["#3e3e3e"]
+        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        createSubviews()
+        createQrCodeImage()
+    }
+    
+    //MARK: ---- action
+    @objc func dismissGoHome() {
+        self.dismiss(animated: true, completion: nil)
+    }
+   
+    //MARK: ---- lazy loading
     lazy var qrCodeCollectionView: APQRCodeCollectionView = {
         let view = APQRCodeCollectionView()
         return view
@@ -34,44 +51,42 @@ class APQRCodeCollectionViewController: APBaseViewController {
                                    action: #selector(dismissGoHome))
         return view
     }()
+
+}
+
+extension APQRCPCollectionViewController {
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "微信收款"
-        view.theme_backgroundColor = ["#3e3e3e"]
-        edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        
+    private func createSubviews() {
         view.addSubview(qrCodeCollectionView)
         view.addSubview(qrCodeDescribeLabel)
-        
         qrCodeDescribeLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(view.snp.left).offset(40)
             maker.right.equalTo(view.snp.right).offset(-40)
             maker.bottom.equalTo(view.snp.bottom).offset(-80)
         }
-        
         qrCodeCollectionView.snp.makeConstraints { (maker) in
             maker.left.equalTo(view.snp.left).offset(40)
             maker.right.equalTo(view.snp.right).offset(-40)
             maker.top.equalTo(view.snp.top).offset(50)
             maker.bottom.equalTo(qrCodeDescribeLabel.snp.top).offset(-20)
         }
-        APQRCodeTool.AP_QRCode(content: "http:baidu.com", success: { (image) in
+    }
+    
+    private func createQrCodeImage() {
+        APQRCodeTool.AP_QRCode(content: (qrCodePayResponse?.codeUrl!)!, success: { (image) in
             qrCodeCollectionView.qrCodeImageView.image = image
         }) { (error) in
             print(error)
         }
     }
-    
-    @objc func dismissGoHome() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
+extension APQRCPCollectionViewController {
+    
+    private func startHttpCollectionResult() {
+        
+    }
+}
 
 
 

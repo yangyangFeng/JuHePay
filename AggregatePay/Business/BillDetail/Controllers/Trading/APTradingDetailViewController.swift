@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- * 交易查询详情
+ * 交易查询详情（暂未使用）
  */
 class APTradingDetailViewController: APBillDetailViewController {
 
