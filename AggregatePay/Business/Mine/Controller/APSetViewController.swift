@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APSetViewController: APBaseViewController {
+class APSetViewController: APMineBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

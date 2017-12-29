@@ -60,6 +60,7 @@ class APNetworking: NSObject {
     }
 }
 
+//extension
 
 //MARK: ---- 扩展
 

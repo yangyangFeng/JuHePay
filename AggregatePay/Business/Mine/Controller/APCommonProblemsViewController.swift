@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APCommonProblemsViewController: APBaseViewController {
+class APCommonProblemsViewController: APMineBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

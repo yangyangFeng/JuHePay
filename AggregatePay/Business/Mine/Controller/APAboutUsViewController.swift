@@ -8,11 +8,22 @@
 
 import UIKit
 
-class APAboutUsViewController: APBaseViewController {
+class APAboutUsViewController: APMineBaseViewController {
 
+    var data : APAboutUsResponse?
+    var cells : [APAboutMsgCell] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initSubviews()
+        
+        loadData()
+        // Do any additional setup after loading the view.
+    }
+    
+    func initSubviews(){
         let logoIcon = UIImageView()
         logoIcon.theme_backgroundColor = ["#ABC"]
         
@@ -34,11 +45,13 @@ class APAboutUsViewController: APBaseViewController {
             make.height.equalTo(22)
         }
         
+        
         let titles : [String] = ["版本号", "服务热线", "官网"]
-        let msgs : [String] = ["1.0.0", "400-6666-8888", "www.baidu.com"]
+        let msgs : [String] = [AppVersion as! String, "400-6666-8888", "www.baidu.com"]
         for i in 0...2 {
             let cell = APAboutMsgCell.init(titles[i], msgs[i], bgType: (i%2 == 0) ? .APAboutMsgCell_Gray : .APAboutMsgCell_White)
             view.addSubview(cell)
+            cells.append(cell)
             cell.snp.makeConstraints({ (make) in
                 make.top.equalTo(title.snp.bottom).offset(55+i*40)
                 make.left.right.equalTo(0)
@@ -57,10 +70,25 @@ class APAboutUsViewController: APBaseViewController {
             make.left.equalTo(35)
             make.right.equalTo(-35)
         }
-        
-        // Do any additional setup after loading the view.
     }
     
+    func loadData(){
+        view.AP_loadingBegin()
+        let param = APAboutUsRequest()
+        APMineHttpTool.aboutInfo(param, success: { (res) in
+            self.view.AP_loadingEnd()
+            self.data = res as? APAboutUsResponse
+            let cell_1 = self.cells[1]
+            let cell_2 = self.cells[2]
+            
+            cell_1.msgLabel.text = self.data?.serviceHotline
+            cell_2.msgLabel.text = self.data?.officialWebsiteAddress
+        }) { (error) in
+            self.view.AP_loadingEnd()
+            self.view.makeToast(error.message)
+        }
+    }
+
     @objc func checkoutBtnDidAction()
     {
         view.makeToast("已是最新版本")
