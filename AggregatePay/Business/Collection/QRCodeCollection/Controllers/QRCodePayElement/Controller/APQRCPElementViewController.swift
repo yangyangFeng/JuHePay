@@ -117,7 +117,7 @@ extension APQRCPElementViewController {
     }
     
     private func startHttpGetQRCode() {
-        qrCodePayRequest.transAmount = String((Int(amountStr!)! * 100))
+        qrCodePayRequest.transAmount = String((Double(amountStr!)! * 100))
         qrCodePayRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
         view.AP_loadingBegin()
         APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,

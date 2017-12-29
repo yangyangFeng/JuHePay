@@ -8,7 +8,40 @@
 
 import UIKit
 
-class APSettingViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
+class APSettingViewController: APBaseViewController {
+    
+    let loginOutRequest = APLoginOutRequest()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(submitCell)
+        view.addSubview(tableView)
+        
+        submitCell.snp.makeConstraints { (make) in
+            make.bottom.equalTo(view.snp.bottom).offset(-50)
+            make.left.equalTo(view.snp.left).offset(30)
+            make.right.equalTo(view).offset(-30)
+            make.height.equalTo(41)
+        }
+        
+        tableView.snp.makeConstraints { (maker) in
+            maker.left.top.right.equalTo(view)
+            maker.bottom.equalTo(submitCell.snp.top).offset(-50)
+        }
+        
+        weak var weakSelf = self
+        submitCell.buttonBlock = { (key, value) in
+            weakSelf?.alertLoginOut()
+        }
+    }
+    
+    //MARK: ---- lzay loading
+    lazy var submitCell: APSubmitFormsCell = {
+        let view = APSubmitFormsCell()
+        view.button.setTitle("退出登录", for: .normal)
+        return view
+    }()
     
     
     lazy var titles : NSArray = {
@@ -33,15 +66,40 @@ class APSettingViewController: APBaseViewController, UITableViewDelegate, UITabl
         view.register(APSettingCell.self, forCellReuseIdentifier: "APSettingCell")
         return view
     }()
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { (maker) in
-            maker.left.top.right.bottom.equalTo(view)
-        }
+extension APSettingViewController {
+    
+    func alertLoginOut() {
+        APAlertManager.show(param: { (param) in
+            param.apMessage = "是否退出当前登录"
+            param.apConfirmTitle = "退出登录"
+            param.apCanceTitle = "取消"
+        }, confirm: { (confirmAction) in
+            self.httpLoginOut()
+        }, cancel: {(cancel) in
+        })
     }
     
+    func httpLoginOut() {
+        loginOutRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        submitCell.loading(isLoading: true, isComplete: nil)
+        APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,
+                          action: APHttpService.logout,
+                          params: loginOutRequest,
+                          aClass: APBaseResponse.self, success: { (baseResp) in
+                            self.submitCell.loading(isLoading: false, isComplete: nil)
+                            APOutLoginTool.loginOut()
+        }, failure: { (baseError) in
+            self.submitCell.loading(isLoading: false, isComplete: nil)
+            self.view.makeToast(baseError.message)
+        })
+    }
+}
+
+extension APSettingViewController:
+    UITableViewDelegate,
+    UITableViewDataSource {
     //MARK: ---- 代理
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,20 +119,12 @@ class APSettingViewController: APBaseViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            navigationController?.pushViewController(APModifyViewController(),
-                                                     animated: true)
+            navigationController?.pushViewController(APModifyViewController(), animated: true)
         }
         else if indexPath.row == 1 {
-            navigationController?.pushViewController(APForgetFirstStepViewController(),
-                                                     animated: true)
+            navigationController?.pushViewController(APForgetFirstStepViewController(), animated: true)
         }
-        
     }
-    
-    
-    
-    
-
 }
 
 

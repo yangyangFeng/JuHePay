@@ -17,9 +17,8 @@ class APWalletDetailViewController: APBaseViewController{
     
     let queryAccountRecordRequest = APQueryAccountRecordRequest()
     
-    @objc dynamic var datas = NSMutableArray()
+    var datas = [APQueryAccountRecordListDetail]()
     
-    //MARK: ---- life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包明细"
@@ -34,6 +33,7 @@ class APWalletDetailViewController: APBaseViewController{
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
+        view.AP_setupEmpty()
         view.theme_backgroundColor = ["#fafafa"]
         view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
         return view
@@ -57,9 +57,9 @@ extension APWalletDetailViewController {
 
     private func initHttpRequest() {
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.datas.removeAllObjects()
-            self.tableView.mj_footer.resetNoMoreData()
+            self.datas.removeAll()
             self.queryAccountRecordRequest.pageNo = "1"
+            self.tableView.mj_footer.resetNoMoreData()
             self.httpQueryAccountRecord()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
@@ -72,17 +72,12 @@ extension APWalletDetailViewController {
     
     private func httpQueryAccountRecord () {
         queryAccountRecordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
-                          action: APHttpService.queryAccountRecord,
-                          params: queryAccountRecordRequest,
-                          aClass: APQueryAccountRecordResponse.self,
-                          success: { (baseResp) in
-                            let result = baseResp as! APQueryAccountRecordResponse
-                            self.httpMergingResponseData(result: result)
-                            self.tableView.mj_header.endRefreshing()
-                            self.tableView.mj_footer.endRefreshing()
-                            self.tableView.reloadData()
-                            self.view.AP_loadingEnd()
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.queryAccountRecord, params: queryAccountRecordRequest, aClass: APQueryAccountRecordResponse.self, success: { (baseResp) in
+            self.httpDisposeDataResponse(response: baseResp as! APQueryAccountRecordResponse)
+            self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
+            self.tableView.reloadData()
+            self.view.AP_loadingEnd()
         }) { (baseError) in
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -92,20 +87,12 @@ extension APWalletDetailViewController {
         }
     }
     
-    private func httpMergingResponseData(result: APQueryAccountRecordResponse) {
-        //合并元素
-        let details = APQueryAccountRecordListDetail.mj_objectArray(withKeyValuesArray: result.list as! [Any])
-        self.datas.addObjects(from: details as! [Any])
-        //判断是否存在数据
-        if self.datas.count == 0 {
-            self.tableView.AP_setupEmpty()
-        }
-        //获取下一页页码
-        self.queryAccountRecordRequest.pageNo = result.bottomPageNo!
-        //验证本次请求结果是否是最后一次
-        if self.queryAccountRecordRequest.pageNo == result.totalRecords {
+    private func httpDisposeDataResponse(response: APQueryAccountRecordResponse) {
+        if self.queryAccountRecordRequest.pageNo == response.totalRecords {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
         }
+        self.queryAccountRecordRequest.pageNo = response.bottomPageNo!
+        self.datas.append(contentsOf: response.list!)
     }
 }
 
@@ -114,27 +101,13 @@ extension APWalletDetailViewController:
     UITableViewDataSource   {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.datas.count
+        return datas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let walletDetailCell = APWalletDetailListCell.cellWithTableView(tableView) as! APWalletDetailListCell
-        let detail = self.datas[indexPath.row] as! APQueryAccountRecordListDetail
-        let amountNum = Double(detail.endAmount!)! / 100.00
-        if detail.traceType == "提现" {
-            walletDetailCell.amountLabel.text = String(format: "¥-%.2f", amountNum)
-            walletDetailCell.iconImageView.theme_image = ["wallet_withdraw_cell_icon"]
-        }
-        else if detail.traceType == "下级分润"{
-            walletDetailCell.amountLabel.text = String(format: "¥+%.2f", amountNum)
-            walletDetailCell.iconImageView.theme_image = ["wallet_profits_cell_icon"]
-        }
-        else {
-            walletDetailCell.amountLabel.text = String(format: "¥+%.2f", amountNum)
-            walletDetailCell.iconImageView.theme_image = ["wallet_profits_cell_icon"]
-        }
-        walletDetailCell.titleLabel.text = detail.traceType
-        walletDetailCell.dateLabel.text = detail.traceDate?.replacingOccurrences(of: " ", with: "\n")
+        let detail = datas[indexPath.row]
+        walletDetailCell.displayQueryAccountRecordListDetail(detail: detail)
         return walletDetailCell
     }
     
@@ -143,28 +116,30 @@ extension APWalletDetailViewController:
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let detail = self.datas[indexPath.row] as! APQueryAccountRecordListDetail
+        let detail = datas[indexPath.row]
         if detail.traceType == "提现" {
-            let withdrawDetailVC = APWithdrawDetailViewController()
-            withdrawDetailVC.detail = detail
-            withdrawDetailVC.amountSum = amountSum
-            navigationController?.pushViewController(withdrawDetailVC, animated: true)
+            pushWithdrawDetailVC(detail: detail)
         }
         else if detail.traceType == "下级分润" {
-            let profitsDetailVC = APProfitsDetailViewController()
-            profitsDetailVC.detail = detail
-            profitsDetailVC.amountSum = amountSum
-            navigationController?.pushViewController(profitsDetailVC, animated: true)
+            pushProfitsDetailVC(detail: detail)
         }
         else {
-            //给测试数据使用
-            let profitsDetailVC = APProfitsDetailViewController()
-            profitsDetailVC.detail = detail
-            profitsDetailVC.amountSum = amountSum
-            navigationController?.pushViewController(profitsDetailVC, animated: true)
+            pushProfitsDetailVC(detail: detail)
         }
-        
+    }
+    
+    func pushWithdrawDetailVC(detail: APQueryAccountRecordListDetail) {
+        let withdrawDetailVC = APWithdrawDetailViewController()
+        withdrawDetailVC.detail = detail
+        withdrawDetailVC.amountSum = amountSum
+        navigationController?.pushViewController(withdrawDetailVC, animated: true)
+    }
+    
+    func pushProfitsDetailVC(detail: APQueryAccountRecordListDetail) {
+        let profitsDetailVC = APProfitsDetailViewController()
+        profitsDetailVC.detail = detail
+        profitsDetailVC.amountSum = amountSum
+        navigationController?.pushViewController(profitsDetailVC, animated: true)
     }
 }
 
