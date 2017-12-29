@@ -9,12 +9,10 @@
 import UIKit
 
 /**
- * 提现查询详情
+ * 提现查询详情(跟分润一样。目前继承分润详情)
  */
-class APWithdrawDetailViewController: APBillDetailViewController {
-
+class APWithdrawDetailViewController: APProfitsDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }

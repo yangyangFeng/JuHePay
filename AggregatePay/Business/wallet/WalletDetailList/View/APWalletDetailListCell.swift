@@ -36,13 +36,11 @@ class APWalletDetailListCell: UITableViewCell {
     }()
     
     lazy var dateLabel: UILabel = {
-        let text: String = "20170619\n193420"
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 12.0)
         view.theme_textColor = ["#9c9b99"]
         view.textAlignment = .right
         view.numberOfLines = 0
-        view.text = text
         return view
     }()
     

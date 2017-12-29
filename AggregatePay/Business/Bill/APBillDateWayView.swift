@@ -50,8 +50,7 @@ class APBillDateWayView: UIView {
     func initCreatViews(){
         
         let waySelectView = UIView()
-        waySelectView.backgroundColor = UIColor(hex6: 0xdcd1c3)
-        waySelectView.alpha = 0.5
+        waySelectView.layer.contents = UIImage(named: "ReturnBillHead_BG")?.cgImage
         self.addSubview(waySelectView)
         waySelectView.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
@@ -59,7 +58,7 @@ class APBillDateWayView: UIView {
         }
         
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(hex6: 0xcabba5)
+        lineView.layer.contents = UIImage(named: "ReturnSearchLine")?.cgImage
         waySelectView.addSubview(lineView)
         lineView.snp.makeConstraints { (make) in
             make.left.equalTo(20)
@@ -123,6 +122,8 @@ class APBillDateWayView: UIView {
             make.right.equalTo(wayImageView.snp.left)
         }
         
+        
+        
         let settleWayLabel = UILabel()
         settleWayLabel.text = "结算方式:"
         settleWayLabel.textAlignment = NSTextAlignment.left
@@ -182,9 +183,17 @@ class APBillDateWayView: UIView {
             make.height.equalTo(14)
             make.width.equalTo(12)
         }
+        
+        var startDate_font: CGFloat = 12
+        var date_font: CGFloat = 14
+        if K_Width == 320 {
+            startDate_font = 11
+            date_font = 14
+        }
+        
         let dateStartLabel = UILabel()
         dateStartLabel.text = "开始日期"
-        dateStartLabel.font = UIFont.systemFont(ofSize: 12)
+        dateStartLabel.font = UIFont.systemFont(ofSize: startDate_font)
         dateStartLabel.textColor = UIColor(hex6: 0x4c370b)
         waySelectView.addSubview(dateStartLabel)
         dateStartLabel.snp.makeConstraints { (make) in
@@ -201,7 +210,7 @@ class APBillDateWayView: UIView {
         dateStartBtn.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.bottom.equalTo(lineView.snp.top)
-            make.left.equalTo(collectionWayBtn).offset(-5)
+            make.left.equalTo(collectionWayBtn).offset(-15)
             make.right.equalTo(collectionWayBtn)
         }
         let dateStartImageView = UIImageView()
@@ -209,9 +218,9 @@ class APBillDateWayView: UIView {
         dateStartImageView.image = dateStartImage
         dateStartBtn.addSubview(dateStartImageView)
         dateStartImageView.snp.makeConstraints { (make) in
-            make.height.equalTo((dateStartImage?.size.height)!)
-            make.width.equalTo((dateStartImage?.size.width)!)
-            make.right.equalToSuperview()
+            make.width.equalTo(7)
+            make.height.equalTo(12)
+            make.right.equalToSuperview().offset(-4)
             make.centerY.equalToSuperview()
         }
         let factDateStartLabel = UILabel()
@@ -221,7 +230,7 @@ class APBillDateWayView: UIView {
         factDateStartLabel.text = dateformatter.string(from: Date())
         factDateStartLabel.textAlignment = NSTextAlignment.center
         factDateStartLabel.adjustsFontSizeToFitWidth = true
-        factDateStartLabel.font = UIFont.systemFont(ofSize: 14)
+        factDateStartLabel.font = UIFont.systemFont(ofSize: date_font)
         factDateStartLabel.textColor = UIColor(hex6: 0x4c370b)
         dateStartBtn.addSubview(factDateStartLabel)
         factDateStartLabel.snp.makeConstraints { (make) in
@@ -233,8 +242,8 @@ class APBillDateWayView: UIView {
 
         
         let dateEndLabel = UILabel()
-        dateEndLabel.text = "截止日期"
-        dateEndLabel.font = UIFont.systemFont(ofSize: 12)
+        dateEndLabel.text = "截止日期 "
+        dateEndLabel.font = UIFont.systemFont(ofSize: startDate_font)
         dateEndLabel.textColor = UIColor(hex6: 0x4c370b)
         waySelectView.addSubview(dateEndLabel)
         dateEndLabel.snp.makeConstraints { (make) in
@@ -251,7 +260,7 @@ class APBillDateWayView: UIView {
         dateEndBtn.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.bottom.equalTo(lineView.snp.top)
-            make.left.equalTo(settleWayBtn).offset(-5)
+            make.left.equalTo(settleWayBtn).offset(-15)
             make.right.equalTo(lineView)
         }
         let dateEndImageView = UIImageView()
@@ -259,9 +268,9 @@ class APBillDateWayView: UIView {
         dateEndImageView.image = dateEndImage
         dateEndBtn.addSubview(dateEndImageView)
         dateEndImageView.snp.makeConstraints { (make) in
-            make.height.equalTo((dateEndImage?.size.height)!)
-            make.width.equalTo((dateEndImage?.size.width)!)
-            make.right.equalToSuperview()
+            make.width.equalTo(7)
+            make.height.equalTo(12)
+            make.right.equalToSuperview().offset(-4)
             make.centerY.equalToSuperview()
         }
         let factDateEndLabel = UILabel()
@@ -269,7 +278,7 @@ class APBillDateWayView: UIView {
         factDateEndLabel.text = self.startDateLabel.text
         factDateEndLabel.textAlignment = NSTextAlignment.center
         factDateEndLabel.adjustsFontSizeToFitWidth = true
-        factDateEndLabel.font = UIFont.systemFont(ofSize: 14)
+        factDateEndLabel.font = UIFont.systemFont(ofSize: date_font)
         factDateEndLabel.textColor = UIColor(hex6: 0x4c370b)
         dateEndBtn.addSubview(factDateEndLabel)
         factDateEndLabel.snp.makeConstraints { (make) in

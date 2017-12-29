@@ -106,7 +106,7 @@ extension APForgetLastStepViewController {
         APSystemHttpTool.resetPassword(paramReqeust: resetPasswordRequest, success: { (baseReps) in
             self.submitCell.loading(isLoading: false, isComplete: {
                 self.forgetSuccessShow {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    APOutLoginTool.loginOut()
                 }
             })
         }) { (errorMsg) in

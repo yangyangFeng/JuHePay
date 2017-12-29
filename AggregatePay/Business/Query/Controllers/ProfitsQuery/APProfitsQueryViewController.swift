@@ -13,8 +13,10 @@ class APProfitsQueryViewController: APReturnBillViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let leftButton = UIBarButtonItem.init(title: "", style: UIBarButtonItemStyle.done, target: nil, action: nil)
-        navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    public func queryButAction() {
+        print("APProfitsQueryViewController")
     }
 
 }

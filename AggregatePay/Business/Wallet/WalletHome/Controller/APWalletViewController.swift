@@ -11,9 +11,9 @@ import UIKit
 /**
  * 钱包首页
  */
-class APWalletViewController: APBaseViewController,
-UITableViewDelegate,
-UITableViewDataSource {
+class APWalletViewController: APBaseViewController{
+    
+    var amountSum: String?
     
     var getUserAccountInfoResquest: APGetUserAccountInfoResquest = APGetUserAccountInfoResquest()
     
@@ -107,8 +107,10 @@ extension APWalletViewController {
                             self.view.AP_loadingEnd()
                             self.tableView.mj_header.endRefreshing()
                             let getUserAccountInfoResponse = baseResp as! APGetUserAccountInfoResponse
-                            let amountNum: Float = Float(getUserAccountInfoResponse.drawAMoney!)! / 100.0
-                            self.headerView.amountLabel.text = String(amountNum)
+                            self.amountSum = getUserAccountInfoResponse.drawAMoney
+                            let amountNum = Double(self.amountSum!)! / 100.00
+                            self.headerView.amountLabel.text = String(format: "%.2f", amountNum)
+
         }) { (baseError) in
             self.view.AP_loadingEnd()
             self.tableView.mj_header.endRefreshing()
@@ -116,9 +118,14 @@ extension APWalletViewController {
             self.view.makeToast(baseError.message)
         }
     }
-    
-    
-    //MARK: ---- delegate
+}
+
+//MARK: ------------ Delegate
+
+extension APWalletViewController:
+    UITableViewDelegate,
+    UITableViewDataSource  {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -135,7 +142,8 @@ extension APWalletViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(APWalletDetailViewController(), animated: true)
+        let walletDetailList = APWalletDetailViewController()
+        walletDetailList.amountSum = amountSum
+        navigationController?.pushViewController(walletDetailList, animated: true)
     }
-
 }

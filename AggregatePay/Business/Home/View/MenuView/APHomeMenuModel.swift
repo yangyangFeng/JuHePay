@@ -10,11 +10,11 @@ import UIKit
 
 class APHomeMenuModel: NSObject {
     
-    var title: String = ""
-    var norImage: String = ""
-    var selImage: String = ""
-    var wayIconImage: String = ""
-    var payWay: String = ""
-    var payType: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var norImage: String = ""
+    @objc dynamic var selImage: String = ""
+    @objc dynamic var wayIconImage: String = ""
+    @objc dynamic var payWay: String = ""
+    @objc dynamic var payType: String = ""
 
 }

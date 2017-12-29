@@ -29,9 +29,7 @@ class APBaseViewController: UIViewController {
         initNavigationBar()
         
         initNavigationItem()
-        
-        initNotification()
-       
+
     }
     
     func initNavigationItem()
@@ -114,34 +112,6 @@ class APBaseViewController: UIViewController {
     func ap_setNavigationBarHidden(_ hidden : Bool){
         self.vhl_setNavBarHidden(hidden)
     }
-
-    func initNotification() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationNeedLogin(_:)), name: NSNotification.Name(rawValue: "NEED_LOGIN"), object: nil)
-    }
-    
-    @objc func notificationNeedLogin(_ notif: Notification) {
-        APAlertManager.show(param: { (param) in
-            param.apMessage = "登录信息过期。"
-            param.apConfirmTitle = "确定"
-        }, confirm: { (confirmAction) in
-            self.ap_selectTabBar(atIndex: 2)
-        })
-    }
-    
-    func ap_selectTabBar(atIndex: Int) {
-        let app: AppDelegate = APPDElEGATE
-        app.window?.rootViewController = app.createTabBarController()
-        ap_presentLoginVC()
-    }
-    
-    func ap_presentLoginVC() {
-        let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
-        let homeC = tabBarC.selectedViewController
-        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        homeC?.present(loginVC, animated: true)
-    }
-    
 }
 
 extension APBaseViewController {
@@ -163,5 +133,4 @@ extension APBaseViewController {
         return .slide
     }
 }
-
 

@@ -40,12 +40,18 @@ class APLoginViewController: APSystemBaseViewController {
         //获取缓存的数据
         let account = APUserDefaultCache.AP_get(key: .mobile) as! String
         let password = APUserDefaultCache.AP_get(key: .password)  as! String
+        
+        if account != "" {
+            self.accountCell.textField.text = account
+            self.loginRequest.mobileNo = account
+        }
+        if password != "" {
+            self.passwordCell.textField.text = password
+            self.loginRequest.passwd = password
+        }
+        
         if account != "" && password != "" {
             self.memoryCell.button.isSelected = true
-            self.accountCell.textField.text = account
-            self.passwordCell.textField.text = password
-            self.loginRequest.mobileNo = account
-            self.loginRequest.passwd = password
         }
     }
     
