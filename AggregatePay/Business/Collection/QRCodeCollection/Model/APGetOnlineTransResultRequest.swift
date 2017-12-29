@@ -12,5 +12,10 @@ import UIKit
  * 二维码收款结果请求报文模型
  */
 class APGetOnlineTransResultRequest: APBaseRequest {
-
+    
+    @objc dynamic var merchantNo: String?
+    @objc dynamic var orderNo: String?
+    @objc dynamic var innerOrderNo: String?
+    @objc dynamic var terminalNo: String?
+    
 }

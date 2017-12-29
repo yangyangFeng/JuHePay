@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class APProfitsQueryViewController: APReturnBillViewController {
+//APReturnBillViewController
+class APProfitsQueryViewController: APBaseQueryViewController {
 
     override func viewDidLoad() {
         
