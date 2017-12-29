@@ -10,22 +10,59 @@ import UIKit
 
 class APAuthHttpTool: NSObject {
     
-    static func realNameUpload(param: APRealNameAuthRequest,
+    static public func realNameAuth(params: APRealNameAuthRequest,
                                success: @escaping (APBaseResponse) -> Void,
-                               failure: @escaping (APBaseResponse) -> Void)
+                               failure: @escaping (APBaseError) -> Void)
     {
-//        let request = param.copy() as! APRealNameAuthRequest
-//        param.passwd = CPMD5EncrpTool.md5(forLower32Bate: request.idCard)
-//        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
-//                          action: APHttpService.register,
-//                          params: param,
-//                          aClass: APBaseResponse.self,
-//                          success: { (baseResp) in
-//                            success(baseResp)
-//        }, failure: {(baseError) in
-//            faile(baseError.message!)
-//        })
+        let request = params.copy() as! APRealNameAuthRequest
+        let idCardFront = APFormData.init(image: request.idCardFront!, name: "idCardFront")
+        let idCardBack = APFormData.init(image: request.idCardBack!, name: "idCardBack")
+        let handIdCard = APFormData.init(image: request.handIdCard!, name: "handIdCard")
         
+        auth(params: request,
+             formDatas: [idCardFront, idCardBack, handIdCard],
+             action: APHttpService.realNameAuth,
+             success: success,
+             failure: failure)
+    }
+    
+    static public func settleCardAuth(params: APSettleCardAuthRequest,
+                               success: @escaping (APBaseResponse) -> Void,
+                               failure: @escaping (APBaseError) -> Void)
+    {
+        let request = params.copy() as! APSettleCardAuthRequest
+        let card = APFormData.init(image: request.card, name: "card")
+        
+        auth(params: request,
+             formDatas: [card],
+             action: APHttpService.settleCardAuth,
+             success: success,
+             failure: failure)
+    }
+    
+    static public func securityAuth(params: APSecurityAuthRequest,
+                             success: @escaping (APBaseResponse) -> Void,
+                             failure: @escaping (APBaseError) -> Void)
+    {
+        let request = params.copy() as! APSecurityAuthRequest
+        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.securityAuth, params: request, aClass: APBaseResponse.self, success: { (response) in
+            success(response)
+        }) { (error) in
+            failure(error)
+        }
+    }
+    
+    static private func auth(params: APBaseRequest,
+                             formDatas: [APFormData],
+                             action: String,
+                             success: @escaping (APBaseResponse) -> Void,
+                     failure: @escaping (APBaseError) -> Void)
+    {
+        APNetworking.upload(httpUrl: APHttpUrl.manange_httpUrl, action: action, params: params, formDatas: formDatas, aClass: APBaseResponse.self, success: { (response) in
+            success(response)
+        }) { (error) in
+            failure(error)
+        }
     }
 }
 

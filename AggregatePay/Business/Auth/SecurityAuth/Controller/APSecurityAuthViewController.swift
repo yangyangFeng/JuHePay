@@ -31,16 +31,16 @@ class APSecurityAuthViewController: APAuthBaseViewController {
     func userInputCallBacks() {
         weak var weakSelf = self
         nameFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.name = value
+            weakSelf?.authParam.userName = value
         }
         idCardFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.identityCard = value
+            weakSelf?.authParam.idCard = value
         }
         creditCardFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.accountNo = value
+            weakSelf?.authParam.cardNo = value
         }
         phoneNumFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.photoNumber = value
+            weakSelf?.authParam.mobileNo = value
         }
     }
     

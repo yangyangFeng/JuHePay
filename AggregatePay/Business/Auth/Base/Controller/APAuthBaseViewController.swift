@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KVOController
 
 class APAuthBaseViewController: APBaseViewController {
 

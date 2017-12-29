@@ -17,11 +17,11 @@ class APRealNameAuthRequest: APBaseRequest, NSCopying {
     //真实姓名
     @objc dynamic var realName: String = ""
     //身份证正面照片
-    @objc dynamic var idCardFront: UIImage = UIImage.init()
+    @objc dynamic var idCardFront: UIImage?
     //身份证背面照片
-    @objc dynamic var idCardBack: UIImage = UIImage.init()
+    @objc dynamic var idCardBack: UIImage?
     //手持身份证半身照
-    @objc dynamic var handIdCard: UIImage = UIImage.init()
+    @objc dynamic var handIdCard: UIImage?
     
     required override init() {
         

@@ -173,6 +173,7 @@
 		2374AA0E1FE909420013AB88 /* APRealNameAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA0D1FE909420013AB88 /* APRealNameAuthRequest.swift */; };
 		2374AA111FE909FF0013AB88 /* APSettleCardAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */; };
 		2374AA131FE90AB30013AB88 /* APSecurityAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */; };
+		2388BEBF1FF63C8400B27A46 /* APFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388BEBE1FF63C8400B27A46 /* APFormData.swift */; };
 		2394DE391FE3BF4D003BF4AC /* APBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D0E361FE10D690024D23F /* APBaseTableView.swift */; };
 		23ADC29E1FECAD8300D3EE1E /* libIOSOCRLIB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ADC2981FECAD8300D3EE1E /* libIOSOCRLIB.a */; };
 		23ADC2A21FECB42D00D3EE1E /* APOCRBankCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADC2A11FECB42D00D3EE1E /* APOCRBankCard.swift */; };
@@ -514,6 +515,7 @@
 		2374AA0D1FE909420013AB88 /* APRealNameAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRealNameAuthRequest.swift; sourceTree = "<group>"; };
 		2374AA101FE909FF0013AB88 /* APSettleCardAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSettleCardAuthRequest.swift; sourceTree = "<group>"; };
 		2374AA121FE90AB30013AB88 /* APSecurityAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSecurityAuthRequest.swift; sourceTree = "<group>"; };
+		2388BEBE1FF63C8400B27A46 /* APFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APFormData.swift; sourceTree = "<group>"; };
 		238D0E361FE10D690024D23F /* APBaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseTableView.swift; sourceTree = "<group>"; };
 		23ADC28F1FECAD8300D3EE1E /* CameraBankDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraBankDrawView.h; sourceTree = "<group>"; };
 		23ADC2901FECAD8300D3EE1E /* ScranResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScranResultViewController.h; sourceTree = "<group>"; };
@@ -1131,6 +1133,7 @@
 				1AF37EDA1FF1DB47006B2326 /* BaseParam */,
 				1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */,
 				1AA7B4A51FF336D400CF7A58 /* APNetworkExtension.swift */,
+				2388BEBE1FF63C8400B27A46 /* APFormData.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2835,6 +2838,7 @@
 				1AA3D53A1FE7DD2C003263E3 /* CPRSACryptor.m in Sources */,
 				7487E1791FDFE131000E3EBE /* UISwitchExtensions.swift in Sources */,
 				1AA17DF31FEA11CC006E59F0 /* APUpdatePasswordRequest.swift in Sources */,
+				2388BEBF1FF63C8400B27A46 /* APFormData.swift in Sources */,
 				2374A9F91FE8F1590013AB88 /* APPhotoGridViewCell.swift in Sources */,
 				1AB253E71FE1436B00193B30 /* APPromoteViewController.swift in Sources */,
 				74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */,

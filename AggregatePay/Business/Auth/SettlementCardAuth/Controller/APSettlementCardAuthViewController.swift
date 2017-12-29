@@ -37,17 +37,17 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         weak var weakSelf = self
         
         nameFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.name = value
+            weakSelf?.authParam.userName = value
         }
         idCardFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.identityCard = value
+            weakSelf?.authParam.identity = value
         }
         bankCardNoFormCell.textBlock = {(key, value) in
-            weakSelf?.authParam.accountNo = value
+            weakSelf?.authParam.cardNo = value
         }
         bankNameFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.bankName = value
-            weakSelf?.authParam.unionBankNo = (weakSelf?.bank?.bankName)!
+//            weakSelf?.authParam.unionBankNo = (weakSelf?.bank?.bankName)!
         }
     }
     
