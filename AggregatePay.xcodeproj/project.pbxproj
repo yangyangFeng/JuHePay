@@ -193,6 +193,7 @@
 		23C19FCF1FEB5AA8006AFE21 /* APUserAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C19FCE1FEB5AA8006AFE21 /* APUserAuthorization.swift */; };
 		74194EED1FEB4F8300565E4F /* APShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEC1FEB4F8300565E4F /* APShareViewController.swift */; };
 		74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEE1FEB4FA800565E4F /* APShareListView.swift */; };
+		7420A82A1FFB567700A4FC2F /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7420A8291FFB567700A4FC2F /* UserNotifications.framework */; };
 		7452ED091FF3441B0046CE23 /* APEarningsHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */; };
 		7452ED0C1FF347590046CE23 /* APGetProfitHomeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */; };
 		7452ED0E1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */; };
@@ -556,6 +557,7 @@
 		3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AggregatePay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74194EEC1FEB4F8300565E4F /* APShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APShareViewController.swift; path = AggregatePay/Business/promote/Controller/APShareViewController.swift; sourceTree = SOURCE_ROOT; };
 		74194EEE1FEB4FA800565E4F /* APShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareListView.swift; sourceTree = "<group>"; };
+		7420A8291FFB567700A4FC2F /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEarningsHttpTool.swift; sourceTree = "<group>"; };
 		7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetProfitHomeRequest.swift; sourceTree = "<group>"; };
 		7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetUserListRecommendRequest.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7420A82A1FFB567700A4FC2F /* UserNotifications.framework in Frameworks */,
 				23ADC29E1FECAD8300D3EE1E /* libIOSOCRLIB.a in Frameworks */,
 				1AD0692E1FEB8C7C0009E5E9 /* libcrypto.a in Frameworks */,
 				1AD0692F1FEB8C7C0009E5E9 /* libssl.a in Frameworks */,
@@ -2548,6 +2551,7 @@
 		E49EA639919700797AC8BF39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7420A8291FFB567700A4FC2F /* UserNotifications.framework */,
 				3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */,
 			);
 			name = Frameworks;
@@ -2627,6 +2631,9 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -3214,7 +3221,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.Intercommerce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3255,7 +3262,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.AggregatePay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.Intercommerce;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "adafce5c-d01b-40ff-800e-1bda5483d089";
 				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Distribution;

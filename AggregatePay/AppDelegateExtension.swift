@@ -79,7 +79,7 @@ extension AppDelegate {
 extension AppDelegate {
     
 
-    func ap_appDelegateConfig() {
+    func ap_appDelegateConfig(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         
         /**********************键盘管理*************************/
         attributeIQKeyboardManager()
@@ -96,6 +96,9 @@ extension AppDelegate {
         
         /**********************微信分享配置*************************/
         APSharedTools.sharedInstance.register(key: "")
+        
+        /**********************JPush配置*************************/
+        registerJPush(launchOptions: launchOptions)
     }
     
     func attributeIQKeyboardManager() {
@@ -126,4 +129,60 @@ extension AppDelegate {
     }
     
 }
+
+@available(iOS 10.0, *)
+extension AppDelegate:JPUSHRegisterDelegate {
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        let userInfo = notification.request.content.userInfo
+        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler(Int(UNAuthorizationOptions.alert.rawValue))
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        let userInfo = response.notification.request.content.userInfo
+        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler()
+    }
+}
+
+extension AppDelegate {
+    
+    func registerJPush(launchOptions:[UIApplicationLaunchOptionsKey:Any]?) {
+        
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue |
+            JPAuthorizationOptions.badge.rawValue |
+            JPAuthorizationOptions.sound.rawValue)
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate:self as JPUSHRegisterDelegate)
+        
+        JPUSHService.setup(withOption: launchOptions, appKey: AP_JPush_Key, channel: "", apsForProduction: false)
+        //        JPUSHService.setLogOFF() //关闭日志打印
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+    
+    // 前台模式收到推送数据
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any], fetchCompletionHandler completionHandler:@escaping (UIBackgroundFetchResult) ->Void) {
+        
+        JPUSHService.handleRemoteNotification(userInfo)
+        
+        completionHandler(.newData)
+    }
+    
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
+    }
+}
+
+
+
+
+
 
