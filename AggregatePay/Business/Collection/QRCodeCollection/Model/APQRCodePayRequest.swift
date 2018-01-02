@@ -13,7 +13,7 @@ import UIKit
  */
 class APQRCodePayRequest: APBaseRequest {
 
-    @objc dynamic var userId: String = ""
+//    @objc dynamic var userId: String = ""
     @objc dynamic var transAmount: String?
     @objc dynamic var categroyCode: String?
     

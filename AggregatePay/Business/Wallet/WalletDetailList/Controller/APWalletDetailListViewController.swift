@@ -71,7 +71,7 @@ extension APWalletDetailViewController {
     }
     
     private func httpQueryAccountRecord () {
-        queryAccountRecordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        queryAccountRecordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.queryAccountRecord, params: queryAccountRecordRequest, aClass: APQueryAccountRecordResponse.self, success: { (baseResp) in
             self.httpDisposeDataResponse(response: baseResp as! APQueryAccountRecordResponse)
             self.tableView.mj_header.endRefreshing()

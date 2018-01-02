@@ -20,7 +20,7 @@ class APAuthNaviViewController: APBaseNavigationViewController {
         
         edgesForExtendedLayout = []
         
-        let auths = APAuth.allAuths()
+        let auths = APAuthHelper.sharedInstance.auths
         let titles = auths.map({(auth) in
             auth.name
         })

@@ -10,6 +10,6 @@ import UIKit
 
 class APLoginOutRequest: APBaseRequest {
     
-    @objc dynamic var userId: String?
+//    @objc dynamic var userId: String?
 
 }

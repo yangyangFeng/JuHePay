@@ -13,12 +13,14 @@ enum GridState {
 }
 
 typealias APGridViewTapedHandle = () -> Void
+typealias APGridViewImageComplete = (UIImage) -> Void
 class APGridViewModel: NSObject {
     var headMessage: String?
     var bottomMessage: String?
     var placeHolderImageName: String?
     var image: UIImage?
+    var fileName: String?
     var gridState: GridState = .normal
     var tapedHandle: APGridViewTapedHandle?
-    
+    var setImageComplete: ((UIImage) -> Void)?
 }

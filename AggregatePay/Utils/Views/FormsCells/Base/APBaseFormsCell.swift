@@ -21,6 +21,7 @@ class APBaseFormsCell: UIView {
         case inviteCode = "^[A-Za-z0-9-_]{0,6}$"
         case cvn2 = "^[0-9]{0,3}$"
         case bankCard = "^\\d{0,24}$"
+        case idCardNo = "^\\w{0,18}$"
     }
     
    

@@ -9,7 +9,7 @@
 import UIKit
 
 class APUserInfoRequest: APBaseRequest {
-    @objc dynamic var userId : String?
+//    @objc dynamic var userId : String?
 }
 
 class APUserInfoResponse: APBaseResponse {

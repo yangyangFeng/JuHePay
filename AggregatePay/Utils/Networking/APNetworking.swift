@@ -60,6 +60,34 @@ class APNetworking: NSObject {
                                         failure: faile)
     }
     
+    /// 图片上传
+    ///
+    /// - Parameters:
+    ///   - httpUrl: host URL
+    ///   - action: 接口
+    ///   - params: 参数
+    ///   - formDatas: 图片数据
+    ///   - aClass: 响应model
+    ///   - success: 成功回调
+    ///   - failure: 失败回调
+    
+    static func upload(httpUrl: String = APHttpUrl.manange_httpUrl,
+                     action: String,
+                     params: APBaseRequest,
+                     formDatas: [APFormData],
+                     aClass: Swift.AnyClass,
+                     success: @escaping APNetWorkingSuccessBlock,
+                     failure: APNetWorkingFaileBlock? = nil)
+    {
+        sharedInstance.packagingUpload(httpUrl: httpUrl,
+                                       action: action,
+                                       method: .post,
+                                       params: params,
+                                       formDatas: formDatas,
+                                       aClass: aClass,
+                                       success: success,
+                                       failure: failure)
+    }
     /**
      * 取消当前网络请求
      */
@@ -82,6 +110,7 @@ extension APNetworking {
                           success:@escaping APNetWorkingSuccessBlock,
                           failure faile: APNetWorkingFaileBlock? = nil)
     {
+        params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
         let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
         var requestHeader: HTTPHeaders?
@@ -109,6 +138,53 @@ extension APNetworking {
                     else {
                         success(baseResp)
                     }
+        }) { (error) in
+            let baseError = APBaseError()
+            baseError.status = error.localizedDescription
+            baseError.message = error.localizedDescription
+            faile?(baseError)
+        }
+    }
+    
+    func packagingUpload(httpUrl: String = APHttpUrl.manange_httpUrl,
+                          action: String,
+                          method: HTTPMethod = .post,
+                          params: APBaseRequest,
+                          formDatas: [APFormData],
+                          aClass: Swift.AnyClass,
+                          success:@escaping APNetWorkingSuccessBlock,
+                          failure faile: APNetWorkingFaileBlock? = nil)
+    {
+        params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        let parameters = params.mj_keyValues() as! Dictionary<String, Any>
+        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
+        var requestHeader: HTTPHeaders?
+        if cookie != "" {
+            requestHeader = ["cookie":cookie]
+        }
+        
+        uploadFormDatas(action: action,
+                        headers: requestHeader,
+                        parameters: parameters,
+                        formDatas: formDatas,
+               success: { (result) in
+                let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
+                if baseResp.success == nil && baseResp.isSuccess == nil {
+                    faile?(self.error(result: result))
+                }
+                else if baseResp.success == "0" || baseResp.isSuccess == "0" {
+                    let baseError = APBaseError()
+                    baseError.status = baseResp.respCode
+                    baseError.message = baseResp.respMsg
+                    //是否登录超时
+                    if !self.checkoutNeedLogin(status: baseError.status!) {
+                        faile?(baseError)
+                    }
+                }
+                else {
+                    success(baseResp)
+                }
+                
         }) { (error) in
             let baseError = APBaseError()
             baseError.status = error.localizedDescription
@@ -188,6 +264,80 @@ extension APNetworking {
     }
     
     
+    /// 图片上传
+    ///
+    /// - Parameters:
+    ///   - httpUrl: httpUrl
+    ///   - httpUrl: httpUrl
+    ///   - httpUrl: httpUrl
+    ///   - httpUrl: httpUrl
+    ///   - httpUrl: httpUrl
+    ///   - parameters: parameters
+    ///   - formDatas: formDatas
+    ///   - success: success
+    ///   - failure: failure
+    
+    func uploadFormDatas(httpUrl: String = APHttpUrl.manange_httpUrl,
+                action: String,
+                method: HTTPMethod = .post,
+                headers: HTTPHeaders? = nil,
+                timeout: TimeInterval = 90,
+                parameters: Dictionary<String, Any>,
+                formDatas: [APFormData],
+                success: @escaping (Dictionary<String, Any>)->Void,
+                failure: @escaping (Error)->Void)
+    {
+        print("===============star===============")
+        let to = httpUrl + action
+        print("method:"+method.rawValue)
+        print("url:"+to)
+        print("param:"+String(describing: parameters))
+        
+        let config:URLSessionConfiguration = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = timeout
+        manger = SessionManager(configuration: config)
+        
+        manger?.upload(multipartFormData: {
+            (multipartFormData) in
+            
+            for formData in formDatas {
+                multipartFormData.append(formData.data,
+                                         withName: formData.name,
+                                         fileName: formData.fileName,
+                                         mimeType: formData.mimeType)
+            }
+            for (key, value) in parameters {
+                multipartFormData.append(String(describing: value).data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, usingThreshold: UInt64.init(),
+           to: to,
+           method: method,
+           headers: headers,
+           encodingCompletion: { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON(completionHandler: { (response) in
+                    switch response.result.isSuccess {
+                    case true:
+                        self.cacheCookie(response: response)
+                        print("response-value:\(String(describing: response.value))")
+                        success(response.value! as! Dictionary<String, Any>)
+                        print("===============end================")
+                    case false:
+                        print("response:\(String(describing: response.result.error?.localizedDescription))")
+                        failure(response.result.error!)
+                        print("===============end================")
+                    }
+                })
+            case .failure(let error):
+                print("response:\(String(describing: error.localizedDescription))")
+                failure(error)
+                print("===============end================")
+            }
+        })
+    }
+    
+    
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
@@ -195,7 +345,11 @@ extension APNetworking {
             APUserDefaultCache.AP_set(value: cookie as Any, key: .cookie)
         }
     }
-   
+    
+    func securityPolicy() {
+        
+        
+    }
 }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 
 class APGetMyProfitRequest: APBaseRequest {
-    @objc dynamic var userId : String?
+//    @objc dynamic var userId : String?
     @objc dynamic var pageNo : String?
     @objc dynamic var startDate : String?
     @objc dynamic var endDate : String?

@@ -99,7 +99,7 @@ extension APWalletViewController {
     
     //网络请求
     private func httpGetUserAccountInfo() {
-        getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
                           action: APHttpService.getUserAccountInfo,
                           params: getUserAccountInfoResquest,
