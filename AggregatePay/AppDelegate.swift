@@ -206,7 +206,7 @@ extension AppDelegate {
                             JPAuthorizationOptions.sound.rawValue)
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate:self as JPUSHRegisterDelegate)
 
-        JPUSHService.setup(withOption: launchOptions, appKey: "51fcb1d24866e95c8fbea204", channel: "", apsForProduction: false)
+        JPUSHService.setup(withOption: launchOptions, appKey: AP_JPush_Key, channel: "", apsForProduction: false)
         //        JPUSHService.setLogOFF() //关闭日志打印
     }
     
