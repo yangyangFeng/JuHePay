@@ -163,7 +163,7 @@ extension APNetworking {
             requestHeader = ["cookie":cookie]
         }
         
-        uploadFormDatas(action: httpUrl,
+        uploadFormDatas(action: action,
                         headers: requestHeader,
                         parameters: parameters,
                         formDatas: formDatas,
@@ -208,7 +208,7 @@ extension APNetworking {
                  action: String,
                  method: HTTPMethod = .get,
                  headers: HTTPHeaders? = nil,
-                 timeOut: TimeInterval = 60,
+                 timeOut: TimeInterval = 30,
                  parameters:Dictionary<String, Any>,
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
@@ -221,6 +221,7 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
+        
         dataRequest = manger?.request(httpUrl,
                                       method:method,
                                       parameters: parameters,
@@ -284,15 +285,15 @@ extension APNetworking {
                 failure: @escaping (Error)->Void)
     {
         print("===============star===============")
+        let to = httpUrl + action
         print("method:"+method.rawValue)
-        print("url:"+httpUrl)
+        print("url:"+to)
         print("param:"+String(describing: parameters))
         
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeout
         manger = SessionManager(configuration: config)
         
-        let to = httpUrl + action
         manger?.upload(multipartFormData: {
             (multipartFormData) in
             

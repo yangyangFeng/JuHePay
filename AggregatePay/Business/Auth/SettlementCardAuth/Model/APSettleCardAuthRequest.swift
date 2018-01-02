@@ -25,6 +25,8 @@ class APSettleCardAuthRequest: APBaseRequest, NSCopying {
     /// 结算卡发卡行
     @objc dynamic var bankName: String = ""
     
+    @objc dynamic var bankNo: String = ""
+    
     /// 结算卡正面照片
     @objc dynamic var card: UIImage?
     

@@ -14,8 +14,43 @@ enum APAuthType: String {
 
 class APAuthHelper: NSObject {
     
-    var auths: Array<APAuth>?
+    public var auths: Array<APAuth> = Array()
+    public var isFirstAuth: Bool {
+        get {
+            return checkoutFirstAuth()
+        }
+    }
+    public var realNameAuthState: APAuthState = .None
+    public var settleCardAuthState: APAuthState = .None
+    public var securityAuthState: APAuthState = .None
     
     static let sharedInstance = APAuthHelper()
-    private override init(){}
+    private override init(){
+        super.init()
+        auths = allAuths()
+    }
+    
+    private func allAuths() -> [APAuth] {
+        var auths = [APAuth]()
+        if let URL = Bundle.main.url(forResource: "APAuth", withExtension: "plist") {
+            if let authsFromPlist = NSArray(contentsOf: URL) {
+                for dict in authsFromPlist {
+                    let auth = APAuth.init(dictionary: dict as! NSDictionary)
+                    auths.append(auth)
+                }
+            }
+        }
+        return auths
+    }
+    
+    private func checkoutFirstAuth() -> Bool {
+        
+        var isFirst = true
+        for auth in auths {
+            if auth.state != .None && auth.state != .Other {
+                isFirst = false
+            }
+        }
+        return isFirst
+    }
 }

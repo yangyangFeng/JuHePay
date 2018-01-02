@@ -108,10 +108,10 @@ class APBillViewController: APBaseViewController {
     }
     
     //MARK: ---- 子类复用
-    func ap_tableView(tableView: UITableView, section: Int) -> Int {
+    func ap_atableView(tableView: UITableView, section: Int) -> Int {
         return 0
     }
-    func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    func ap_atableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
     
@@ -279,11 +279,11 @@ extension APBillViewController:
     
     //MARK: ---- UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ap_tableView(tableView:tableView, section: section)
+        return ap_atableView(tableView:tableView, section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ap_tableView(tableView: tableView, indexPath: indexPath)
+        return ap_atableView(tableView: tableView, indexPath: indexPath)
     }
 }
 

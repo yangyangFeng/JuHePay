@@ -41,21 +41,12 @@ enum APAuthState: Int {
 
 class APAuth: NSObject {
     
-    class func allAuths() -> [APAuth] {
-        var auths = [APAuth]()
-        if let URL = Bundle.main.url(forResource: "APAuth", withExtension: "plist") {
-            if let authsFromPlist = NSArray(contentsOf: URL) {
-                for dict in authsFromPlist {
-                    let auth = APAuth.init(dictionary: dict as! NSDictionary)
-                    auths.append(auth)
-                }
-            }
-        }
-        return auths
-    }
-    
     var name: String
-    var state: APAuthState
+    var state: APAuthState {
+        didSet {
+            desc = state.toDesc()
+        }
+    }
     var desc: String
     var type: APAuthType
     

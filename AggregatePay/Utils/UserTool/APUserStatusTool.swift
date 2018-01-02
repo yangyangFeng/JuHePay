@@ -43,17 +43,7 @@ class APUserStatusTool: NSObject {
 
     /** 验证用户权限状态 */
     static func userAuthStatusTool(status: APUserAuthStatusBlock) {
-//        APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
-//        
-//            if authInfo.realNameAuthStatus == .Success &&
-//                authInfo.settleCardAuthStatus == .Success &&
-//                authInfo.safeAuthStatus == .Success
-//            {
-//
-//            }
-//        }) { (error) in
-//
-//        }
+
         status(.None)
     }
     

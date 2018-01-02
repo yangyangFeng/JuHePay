@@ -103,13 +103,28 @@ class APRealNameAuthViewController: APAuthBaseViewController {
                 model.handIdCard != nil
                 {
                 self?.authSubmitCell.isEnabled = true
-                self?.inputTipLabel.isHidden = false
+                self?.inputTipView.isHidden = false
             }
             else {
                 self?.authSubmitCell.isEnabled = false
-                self?.inputTipLabel.isHidden = true
+                self?.inputTipView.isHidden = true
             }
         }
+    }
+    
+    /// 回显
+    override func loadAuthInfo() {
+        APAuthHttpTool.realNameAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
+            
+            self?.realNameCell.textField.text = response.realName
+            self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+            self?.idCardFront.fileName = response.idCardFront
+            self?.idCardResver.fileName = response.idCardBack
+            self?.holdIdCard.fileName = response.handIdCard
+            
+        }, failure: { [weak self] (error) in
+            self?.view.makeToast(error.message)
+        })
     }
     
     /// 点击确认按钮
@@ -138,6 +153,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.realNameAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
+                //更新审核状态
+                APAuthHelper.sharedInstance.realNameAuthState = .Checking
                 self?.controllerTransition()
             })
         }) {[weak self] (error) in

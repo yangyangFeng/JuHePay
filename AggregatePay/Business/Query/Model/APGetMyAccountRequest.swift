@@ -13,6 +13,7 @@ class APGetMyAccountRequest: APBaseRequest {
 //    @objc dynamic var userId: String?
     @objc dynamic var startDate: String?
     @objc dynamic var endDate: String?
+    @objc dynamic var payModel: String?
     @objc dynamic var pageNo: String?
 
 }

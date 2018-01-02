@@ -22,6 +22,10 @@ class APAuthBaseViewController: APBaseViewController {
         
         uiConfing()
         registerCallBacks()
+        //如果是第一次提交实名认证，不需要回显
+        if !APAuthHelper.sharedInstance.isFirstAuth {
+            loadAuthInfo()
+        }
   }
     
     func registerCallBacks() {
@@ -33,6 +37,8 @@ class APAuthBaseViewController: APBaseViewController {
     }
     
     func commit() {}
+    
+    func loadAuthInfo() {}
     
     lazy private var headMessageView: UIView = {
         
@@ -69,6 +75,7 @@ class APAuthBaseViewController: APBaseViewController {
     lazy var containerView: UIView = {
        
         let view = UIView()
+        view.backgroundColor = UIColor.init(hex6: 0xf5f5f5)
         return view
     }()
     
@@ -101,6 +108,7 @@ class APAuthBaseViewController: APBaseViewController {
         
         let view = UIView()
         view.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        view.isHidden = true
         return view
     }()
     
@@ -113,14 +121,13 @@ class APAuthBaseViewController: APBaseViewController {
         label.text = "请注意核对您的姓名与身份证号码，若不正确请重新识别或手动输入。"
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.isHidden = true
         return label
     }()
     
     lazy private var commitButtonSuperView: UIView = {
         
         let view = UIView()
-        view.backgroundColor = self.view.backgroundColor
+        view.backgroundColor = UIColor.init(hex6: 0xf5f5f5)
         return view
     }()
 }
@@ -137,10 +144,10 @@ extension APAuthBaseViewController {
         ap_setStatusBarStyle(.lightContent)
         
         layoutHeaderView()
+        layoutCommitButton()
         layoutScrollView()
         layoutCollectionView()
         layoutFormCellViews()
-        layoutCommitButton()
     }
     
     func setUpNavi() {
@@ -178,7 +185,7 @@ extension APAuthBaseViewController {
         scrollView.snp.makeConstraints { (make) in
             make.top.equalTo(headMessageLabel.snp.bottom)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(authSubmitCell.snp.top).offset(-40)
+            make.bottom.equalTo(commitButtonSuperView.snp.top)
         }
         
         containerView.snp.makeConstraints { (make) in

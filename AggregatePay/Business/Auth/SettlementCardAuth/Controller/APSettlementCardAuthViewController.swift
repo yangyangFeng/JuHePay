@@ -48,20 +48,27 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         bankCardNoFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.cardNo = value
         }
+        bankCardNoFormCell.tapHandle = { [weak self] in
+            self?.openOCR()
+        }
         bankNameFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.bankName = value
-//            weakSelf?.authParam.unionBankNo = (weakSelf?.bank?.bankName)!
+            weakSelf?.authParam.bankNo = (weakSelf?.bank?.bankCoupletNum)!
         }
         bankImageModel.tapedHandle = { [weak self] in
-            let cameraVC = APCameraViewController()
-            cameraVC.delegate = self
-            cameraVC.scanCardType = TIDBANK
-            cameraVC.supportCameraMode = .all
-            weakSelf?.present(cameraVC, animated: true, completion: nil)
+            self?.openOCR()
         }
         bankImageModel.setImageComplete = { [weak self] (image) in
             self?.authParam.card = image
         }
+    }
+    
+    private func openOCR() {
+        let cameraVC = APCameraViewController()
+        cameraVC.delegate = self
+        cameraVC.scanCardType = TIDBANK
+        cameraVC.supportCameraMode = .all
+        present(cameraVC, animated: true, completion: nil)
     }
     
     /// KVO
@@ -88,6 +95,23 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         }
     }
     
+    override func loadAuthInfo() {
+        APAuthHttpTool.settleCardAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
+            
+            self?.nameFormCell.textField.text = response.realName
+            self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)//response.idCard
+            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)//response.cardNo
+            if response.bankName.count > 0 {
+                self?.bankNameFormCell.button.setTitle(response.bankName, for: .normal)
+            }
+            self?.authParam.bankNo = response.bankNo
+            self?.bankImageModel.fileName = response.idCardFront
+            
+        }) { [weak self] (error) in
+            self?.view.makeToast(error.message)
+        }
+    }
+    
     override func commit() {
         
         if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.userName) {
@@ -108,6 +132,8 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.settleCardAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
+                
+                APAuthHelper.sharedInstance.settleCardAuthState = .Checking
                 self?.controllerTransition()
             })
         }) { [weak self] (error) in

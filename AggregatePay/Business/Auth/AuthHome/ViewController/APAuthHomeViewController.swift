@@ -10,7 +10,7 @@ import UIKit
 
 class APAuthHomeViewController: APBaseViewController {
     
-    fileprivate var auths = APAuth.allAuths()
+    fileprivate var auths = APAuthHelper.sharedInstance.auths
     
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
@@ -18,12 +18,24 @@ class APAuthHomeViewController: APBaseViewController {
         super.viewDidLoad()
         
         title = "身份认证"
+        
+        loadAuthInfo()
+        
         ap_setStatusBarStyle(.lightContent)
         
         layoutViews()
     }
     
     // MARK: -- Data
+    func loadAuthInfo() {
+        APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
+            
+            self.tableView.reloadData()
+            
+        }) { [weak self] (error) in
+            self?.view.makeToast(error.message)
+        }
+    }
 }
 
 extension APAuthHomeViewController {
@@ -69,14 +81,26 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: false)
-        let auth = auths[indexPath.row]
-        switch auth.type {
-        case .realName:
-            navigationController?.pushViewController(APRealNameAuthViewController(), animated: true)
-        case .settleCard:
-            navigationController?.pushViewController(APSettlementCardAuthViewController(), animated: true)
-        case .Security:
-            navigationController?.pushViewController(APSecurityAuthViewController(), animated: true)
+        
+        if APAuthHelper.sharedInstance.isFirstAuth {
+            
+            let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
+            self.navigationController?.present(authNavi, animated: true, completion: nil)
+            authNavi.finishAuths = {
+                authNavi.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            let auth = auths[indexPath.row]
+            
+            
+            switch auth.type {
+            case .realName:
+                navigationController?.pushViewController(APRealNameAuthViewController(), animated: true)
+            case .settleCard:
+                navigationController?.pushViewController(APSettlementCardAuthViewController(), animated: true)
+            case .Security:
+                navigationController?.pushViewController(APSecurityAuthViewController(), animated: true)
+            }
         }
     }
 }

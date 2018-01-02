@@ -40,10 +40,22 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         creditCardFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.cardNo = value
         }
+        creditCardFormCell.tapHandle = { [weak self] in
+            self?.openOCR()
+        }
         phoneNumFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.mobileNo = value
         }
     }
+    
+    private func openOCR() {
+        let cameraVC = APCameraViewController()
+        cameraVC.delegate = self
+        cameraVC.scanCardType = TIDBANK
+        cameraVC.supportCameraMode = .all
+        present(cameraVC, animated: true, completion: nil)
+    }
+    
     
     func registerObserve() {
         
@@ -66,6 +78,18 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         }
     }
     
+    override func loadAuthInfo() {
+        APAuthHttpTool.securityAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
+            
+            self?.nameFormCell.textField.text = response.realName
+            self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+            self?.creditCardFormCell.textField.text = response.cardNo
+            self?.phoneNumFormCell.textField.text = response.bankMobile
+            
+        }) { [weak self] (error) in
+            self?.view.makeToast(error.message)
+        }
+    }
     override func commit() {
         
         if !CPCheckAuthInputInfoTool.evaluateIsChineseAndEnglishName(withName: authParam.userName) {
@@ -93,6 +117,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.securityAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
+                APAuthHelper.sharedInstance.securityAuthState = .Checking
                 self?.controllerTransition()
             })
         }) {[weak self] (error) in
@@ -151,4 +176,12 @@ extension APSecurityAuthViewController {
             make.bottom.equalTo(formCellView.snp.bottom)
         }
     }
+}
+
+extension APSecurityAuthViewController: APCameraViewControllerDelegate {
+    
+    func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
+        creditCardFormCell.textField.text = result.cardNum
+    }
+    
 }
