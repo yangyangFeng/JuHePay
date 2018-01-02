@@ -18,6 +18,7 @@ class APWalletViewController: APBaseViewController{
     var getUserAccountInfoResquest: APGetUserAccountInfoResquest = APGetUserAccountInfoResquest()
     
     //MARK: ---- life cycle
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "钱包"
