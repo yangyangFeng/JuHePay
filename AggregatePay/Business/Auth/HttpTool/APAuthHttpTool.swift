@@ -23,10 +23,8 @@ class APAuthHttpTool: NSObject {
                          params: params,
                          aClass: APUserAuthInfo.self,
                          success: { (response) in
-            
             let auths = APAuthHelper.sharedInstance.auths
             let authInfo = response as! APUserAuthInfo
-            
             for auth in  auths{
                 switch auth.type {
                 case .realName:
