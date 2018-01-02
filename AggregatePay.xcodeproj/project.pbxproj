@@ -25,7 +25,6 @@
 		1A030D891FE76C8D007146C1 /* APPayElementTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D841FE76C8D007146C1 /* APPayElementTextCell.swift */; };
 		1A030D8A1FE76C8D007146C1 /* APPayElementToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D851FE76C8D007146C1 /* APPayElementToolBarView.swift */; };
 		1A030D961FE787B7007146C1 /* APCollectionCompositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D951FE787B7007146C1 /* APCollectionCompositionView.swift */; };
-		1A05FEC61FF5DAAF0093CC0E /* APQRCPHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */; };
 		1A05FEC91FF5E7A90093CC0E /* APLoginOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FEC81FF5E7A80093CC0E /* APLoginOutRequest.swift */; };
 		1A05FECC1FF5EE240093CC0E /* APGetMyAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FECB1FF5EE240093CC0E /* APGetMyAccountRequest.swift */; };
 		1A05FECE1FF5EE390093CC0E /* APGetMyAccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FECD1FF5EE390093CC0E /* APGetMyAccountResponse.swift */; };
@@ -298,7 +297,6 @@
 		1A030D841FE76C8D007146C1 /* APPayElementTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPayElementTextCell.swift; sourceTree = "<group>"; };
 		1A030D851FE76C8D007146C1 /* APPayElementToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPayElementToolBarView.swift; sourceTree = "<group>"; };
 		1A030D951FE787B7007146C1 /* APCollectionCompositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCollectionCompositionView.swift; sourceTree = "<group>"; };
-		1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APQRCPHttpTool.swift; sourceTree = "<group>"; };
 		1A05FEC81FF5E7A80093CC0E /* APLoginOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginOutRequest.swift; sourceTree = "<group>"; };
 		1A05FECB1FF5EE240093CC0E /* APGetMyAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetMyAccountRequest.swift; sourceTree = "<group>"; };
 		1A05FECD1FF5EE390093CC0E /* APGetMyAccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetMyAccountResponse.swift; sourceTree = "<group>"; };
@@ -1131,7 +1129,6 @@
 			children = (
 				1A67F7F11FF4B54800715751 /* Controller */,
 				1A67F7F31FF4B54800715751 /* View */,
-				1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */,
 			);
 			path = QRCodeCollection;
 			sourceTree = "<group>";
@@ -3024,7 +3021,6 @@
 				1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */,
 				235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */,
 				1A67F8141FF4B54800715751 /* APQRCodePayRequest.swift in Sources */,
-				1A05FEC61FF5DAAF0093CC0E /* APQRCPHttpTool.swift in Sources */,
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
 				1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */,
 				1AA7B4AC1FF347FE00CF7A58 /* APCheckMessageRequest.swift in Sources */,

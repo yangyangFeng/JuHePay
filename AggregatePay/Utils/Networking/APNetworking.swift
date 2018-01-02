@@ -95,10 +95,7 @@ extension APNetworking {
                 parameters: parameters,
                 success:{ (result) in
                     let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
-                    if baseResp.success == nil && baseResp.isSuccess == nil {
-                        faile?(self.error(result: result))
-                    }
-                    else if baseResp.success == "0" || baseResp.isSuccess == "0" {
+                    if baseResp.success == "0" || baseResp.isSuccess == "0" {
                         let baseError = APBaseError()
                         baseError.status = baseResp.respCode
                         baseError.message = baseResp.respMsg
@@ -155,12 +152,19 @@ extension APNetworking {
                                       headers: headers).responseJSON { response in
                             switch response.result.isSuccess {
                             case true:
-                                self.cacheCookie(response: response)
                                 print("response-value:\(String(describing: response.value))")
-                                success(response.value! as! Dictionary<String, Any>)
+                                self.cacheCookie(response: response)
+                                let result = response.value! as! Dictionary<String, Any>
+                                if !result.keys.contains("isSuccess") &&
+                                   !result.keys.contains("success") {
+                                    let baseError = self.error(result: result)
+                                    faile(baseError)
+                                }
+                                else {
+                                    success(result)
+                                }
                                 print("===============end================")
                             case false:
-                                
                                 print("response:\(String(describing: response.result.error?.localizedDescription))")
                                 faile(response.result.error!)
                                 print("===============end================")

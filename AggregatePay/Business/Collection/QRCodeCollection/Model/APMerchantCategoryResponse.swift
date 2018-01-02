@@ -12,7 +12,12 @@ import UIKit
  * 获取商户大类响应报文模型
  */
 class APMerchantCategoryResponse: APBaseResponse {
+    
     @objc dynamic var list: [APMerchantDetail]?
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["list" : APMerchantDetail.self]
+    }
 }
 
 class APMerchantDetail: NSObject {

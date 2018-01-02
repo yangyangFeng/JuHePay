@@ -146,31 +146,25 @@ extension APBaseViewController {
 
     func ap_userIdentityStatus(_ authtStatus: @escaping (APUserAuthStatus) -> Void) {
         if !APUserInfoTool.isLogin() {
-            ap_presentLoginVC()
+            APOutLoginTool.loginOut()
         }
         else {
-            view.AP_loadingBegin()
+            let lastView: UIView = (APPDElEGATE.window?.subviews.last!)!
+            lastView.AP_loadingBegin()
             let userId = APUserDefaultCache.AP_get(key: .userId) as? String
             APMineHttpTool.loginGetUserInfo(userId!, success: { (baseResp) in
-                self.view.AP_loadingEnd()
-                if baseResp.isSuccess == "0" {
+                lastView.AP_loadingEnd()
+                if baseResp.isSuccess != "0" {
                     authtStatus(APUserAuthStatus.success)
                 }
                 else {
                     self.ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
                 }
             }, faile: { (baseError) in
-                self.view.AP_loadingEnd()
-                self.view.makeToast(baseError.message)
+                lastView.AP_loadingEnd()
+                lastView.makeToast(baseError.message)
             })
         }
-    }
-    
-    ///模态跳转登录页面
-    private func ap_presentLoginVC() {
-        let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
-        let loginNav = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        currentVC.present(loginNav, animated: true)
     }
     
     ///导航跳转四审状态
