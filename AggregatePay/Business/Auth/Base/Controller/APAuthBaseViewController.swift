@@ -10,32 +10,17 @@ import UIKit
 import KVOController
 
 class APAuthBaseViewController: APBaseViewController {
-
-    let authHeadMessage: UILabel = UILabel()
-    let scrollView: UIScrollView = UIScrollView()
-//  提交表单的父视图
-    let containerView: UIView = UIView()
-    var collectionView: UICollectionView?
-    let formCellView = UIView()
-    var layout: UICollectionViewFlowLayout?
+    
     var gridViewModels = [APGridViewModel]()
     var currentGridModel: APGridViewModel?
     
     let authSubmitCell: APAuthSubmitCell = APAuthSubmitCell()
-    let inputTipLabel = UILabel()
-    let inputTipView = UIView()
     let cellHeight = 146
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layoutWithContainer()
-        
-        if let _ = processView() {
-            setUpNavi()
-        }
-        
-        ap_setStatusBarStyle(.lightContent)
+        uiConfing()
         registerCallBacks()
   }
     
@@ -48,10 +33,115 @@ class APAuthBaseViewController: APBaseViewController {
     }
     
     func commit() {}
+    
+    lazy private var headMessageView: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        return view
+    }()
+    
+    lazy var headMessageLabel: UILabel = {
+        
+        let label = UILabel()
+        label.textColor = UIColor.init(hex6: 0xd09326)
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        return label
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        
+        let scrollView = UIScrollView()
+        scrollView.bounces = false
+        scrollView.clipsToBounds = false
+        scrollView.backgroundColor = UIColor.init(hex6: 0xf5f5f5)
+        containerView.backgroundColor = scrollView.backgroundColor
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        return scrollView
+    }()
+    
+    lazy var containerView: UIView = {
+       
+        let view = UIView()
+        return view
+    }()
+    
+    lazy private var flowLayout: UICollectionViewFlowLayout = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        return layout
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        
+        let collectionView = UICollectionView.init(frame: CGRect.init(), collectionViewLayout: flowLayout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.white
+        collectionView.register(APPhotoGridViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(APPhotoGridViewCell.self))
+        return collectionView
+    }()
+    
+    lazy var formCellView: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.init(hex6: 0xe8e8e8)
+        return view
+    }()
+    
+    lazy var inputTipView: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        return view
+    }()
+    
+    lazy var inputTipLabel: UILabel = {
+        
+        let label = UILabel()
+        label.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor.init(hex6: 0xd09326)
+        label.text = "请注意核对您的姓名与身份证号码，若不正确请重新识别或手动输入。"
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.isHidden = true
+        return label
+    }()
+    
+    lazy private var commitButtonSuperView: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = self.view.backgroundColor
+        return view
+    }()
 }
 
 // MARK: LayoutView
 extension APAuthBaseViewController {
+    
+    func uiConfing() {
+        
+        if let _ = processView() {
+            setUpNavi()
+        }
+        
+        ap_setStatusBarStyle(.lightContent)
+        
+        layoutHeaderView()
+        layoutScrollView()
+        layoutCollectionView()
+        layoutFormCellViews()
+        layoutCommitButton()
+    }
     
     func setUpNavi() {
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: AP_navigationLeftItemImage(),
@@ -60,63 +150,10 @@ extension APAuthBaseViewController {
                                                                                       action: #selector(backAction))
     }
     
-    private func layoutWithContainer() {
+    private func layoutHeaderView() {
         
-        let headMessageView = UIView()
-        headMessageView.backgroundColor = UIColor.init(hex6: 0xfff4d9)
-        authHeadMessage.textColor = UIColor.init(hex6: 0xd09326)
-        authHeadMessage.font = UIFont.systemFont(ofSize: 10)
-        authHeadMessage.backgroundColor = UIColor.init(hex6: 0xfff4d9)
-        authHeadMessage.textAlignment = .center
-        //    authHeadMessage.adjustsFontSizeToFitWidth = true
-        authHeadMessage.numberOfLines = 0
-        authHeadMessage.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
-        //    MARK: -- 设置scrollView
-        scrollView.bounces = false
-        scrollView.clipsToBounds = false
-        scrollView.backgroundColor = UIColor.init(hex6: 0xf5f5f5)
-        containerView.backgroundColor = scrollView.backgroundColor
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        }
-        
-        //    MARK: -- 设置collectionView
-        layout = UICollectionViewFlowLayout.init()
-        layout?.minimumLineSpacing = 0
-        layout?.minimumInteritemSpacing = 0
-        collectionView = UICollectionView.init(frame: CGRect.init(), collectionViewLayout: layout!)
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.register(APPhotoGridViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(APPhotoGridViewCell.self))
-        
-        //    MARK: -- 设置表单父视图
-        formCellView.backgroundColor = UIColor.init(hex6: 0xe8e8e8)
-        
-        inputTipView.backgroundColor = UIColor.init(hex6: 0xfff4d9)
-        
-        inputTipLabel.backgroundColor = UIColor.init(hex6: 0xfff4d9)
-        inputTipLabel.font = UIFont.systemFont(ofSize: 10)
-        inputTipLabel.textColor = UIColor.init(hex6: 0xd09326)
-        inputTipLabel.text = "请注意核对您的姓名与身份证号码，若不正确请重新识别或手动输入。"
-        inputTipLabel.textAlignment = .center
-        inputTipLabel.adjustsFontSizeToFitWidth = true
-        inputTipLabel.isHidden = true
-        
-        let buttonView = UIButton()
-        buttonView.backgroundColor = view.backgroundColor
-        
-        view.addSubview(scrollView)
         view.addSubview(headMessageView)
-        headMessageView.addSubview(authHeadMessage)
-        buttonView.addSubview(authSubmitCell)
-        view.addSubview(buttonView)
-        scrollView.addSubview(containerView)
-        containerView.addSubview(collectionView!)
-        containerView.addSubview(formCellView)
-        containerView.addSubview(inputTipView)
-        inputTipView.addSubview(inputTipLabel)
+        headMessageView.addSubview(headMessageLabel)
         
         var isProcessView = false
         if let _ = processView() {
@@ -127,26 +164,19 @@ extension APAuthBaseViewController {
             make.left.right.equalToSuperview()
             make.height.equalTo(20)
         }
-        authHeadMessage.snp.makeConstraints { (make) in
+        headMessageLabel.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
             make.top.bottom.equalToSuperview()
         }
-        
-        buttonView.snp.makeConstraints { (make) in
-            make.right.left.bottom.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        // FIXME: 2017年12月14日15:03:42
-        authSubmitCell.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(34)
-            make.right.equalToSuperview().offset(-34)
-            make.height.equalTo(40)
-            make.bottom.equalToSuperview().offset(-38)
-        }
+    }
+    
+    private func layoutScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
         
         // TODO: ScrollView
         scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(authHeadMessage.snp.bottom)
+            make.top.equalTo(headMessageLabel.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(authSubmitCell.snp.top).offset(-40)
         }
@@ -155,14 +185,24 @@ extension APAuthBaseViewController {
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
+    }
+    
+    private func layoutCollectionView() {
         
-        collectionView?.snp.makeConstraints({ (make) in
+        containerView.addSubview(collectionView)
+        collectionView.snp.makeConstraints({ (make) in
             make.right.left.equalToSuperview()
         })
+    }
+    
+    private func layoutFormCellViews() {
+        containerView.addSubview(formCellView)
+        containerView.addSubview(inputTipView)
+        inputTipView.addSubview(inputTipLabel)
         
         formCellView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalTo((collectionView?.snp.bottom)!).offset(9)
+            make.top.equalTo((collectionView.snp.bottom)).offset(9)
             make.height.equalTo(0)
         }
         
@@ -176,7 +216,25 @@ extension APAuthBaseViewController {
             make.left.equalToSuperview().offset(20)
             make.bottom.right.equalToSuperview()
         }
-  }
+    }
+    
+    private func layoutCommitButton() {
+        
+        commitButtonSuperView.addSubview(authSubmitCell)
+        view.addSubview(commitButtonSuperView)
+        
+        commitButtonSuperView.snp.makeConstraints { (make) in
+            make.right.left.bottom.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        // FIXME: 2017年12月14日15:03:42
+        authSubmitCell.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(34)
+            make.right.equalToSuperview().offset(-34)
+            make.height.equalTo(40)
+            make.bottom.equalToSuperview().offset(-38)
+        }
+    }
 }
 
 extension APAuthBaseViewController {

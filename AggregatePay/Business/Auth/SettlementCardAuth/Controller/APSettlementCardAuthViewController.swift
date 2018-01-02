@@ -127,7 +127,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
 extension APSettlementCardAuthViewController {
    private func layoutViews() {
         
-        authHeadMessage.text = "结算银行卡为收款到账的银行卡，必须为储蓄卡。"
+        headMessageLabel.text = "结算银行卡为收款到账的银行卡，必须为储蓄卡。"
     
         bankNameFormCell.delegate = self
         bankCardNoFormCell.inputRegx = .bankCard
@@ -163,7 +163,7 @@ extension APSettlementCardAuthViewController {
         }
         
         formCellView.snp.remakeConstraints { (make) in
-            make.top.equalTo(authHeadMessage.snp.bottom)
+            make.top.equalTo(headMessageLabel.snp.bottom)
             make.right.left.equalToSuperview()
             make.height.equalTo(50 * 4 + 5)
         }
@@ -172,14 +172,14 @@ extension APSettlementCardAuthViewController {
         bankImageModel.placeHolderImageName = "auth_bankCard_normal"
         gridViewModels.append(bankImageModel)
         
-        collectionView?.snp.remakeConstraints({ (make) in
+        collectionView.snp.remakeConstraints({ (make) in
             make.top.equalTo(formCellView.snp.bottom)
             make.left.right.equalToSuperview()
             make.height.equalTo(cellHeight)
         })
         
         containerView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(collectionView!)
+            make.bottom.equalTo(collectionView)
         }
     }
 }
@@ -202,12 +202,12 @@ extension APSettlementCardAuthViewController: APCameraViewControllerDelegate {
     
     func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
         bankImageModel.image = image
-        collectionView?.reloadData()
+        collectionView.reloadData()
     }
     
     func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
         bankCardNoFormCell.textField.text = result.cardNum
         bankImageModel.image = result.bankCardImage
-        collectionView?.reloadData()
+        collectionView.reloadData()
     }
 }

@@ -115,7 +115,7 @@ extension APSecurityAuthViewController {
     // MARK: -- UI
     fileprivate func layoutViews() {
         
-        authHeadMessage.text = "为保障您的支付安全,请进行信用卡认证。"
+        headMessageLabel.text = "为保障您的支付安全,请进行信用卡认证。"
         idCardFormCell.inputRegx = .idCardNo
         creditCardFormCell.inputRegx = .bankCard
         phoneNumFormCell.inputRegx = .mobile
@@ -143,7 +143,7 @@ extension APSecurityAuthViewController {
             make.left.right.height.equalTo(creditCardFormCell)
         }
         formCellView.snp.remakeConstraints { (make) in
-            make.top.equalTo(authHeadMessage.snp.bottom)
+            make.top.equalTo(headMessageLabel.snp.bottom)
             make.left.right.equalToSuperview()
             make.height.equalTo(4 * 50 + 5)
         }

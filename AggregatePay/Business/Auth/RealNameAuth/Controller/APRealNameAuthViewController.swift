@@ -167,9 +167,9 @@ extension APRealNameAuthViewController {
     /// 重新布局子视图
     func layoutViews() {
         
-        authHeadMessage.text = "请将身份证放在识别扫描框内，确保证件完整拍摄、无污损、无光斑。"
+        headMessageLabel.text = "请将身份证放在识别扫描框内，确保证件完整拍摄、无污损、无光斑。"
         
-        collectionView?.snp.remakeConstraints { (make) in
+        collectionView.snp.remakeConstraints { (make) in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(cellHeight * (gridViewModels.count / 2))
         }
@@ -247,9 +247,9 @@ extension APRealNameAuthViewController: APCameraViewControllerDelegate {
     func updateGridImage(image: UIImage?) {
         if let model = currentGridModel {
             model.image = image
-            collectionView?.performBatchUpdates({
+            collectionView.performBatchUpdates({
                 let indexPath = IndexPath.init(item: gridViewModels.index(of: model)!, section: 0)
-                collectionView?.reloadItems(at:[indexPath as IndexPath])
+                collectionView.reloadItems(at:[indexPath as IndexPath])
             }, completion: nil)
         }
     }
