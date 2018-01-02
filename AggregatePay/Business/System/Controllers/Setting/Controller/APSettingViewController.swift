@@ -84,7 +84,7 @@ extension APSettingViewController {
     func httpLoginOut() {
         loginOutRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         submitCell.loading(isLoading: true, isComplete: nil)
-        APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,
+        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
                           action: APHttpService.logout,
                           params: loginOutRequest,
                           aClass: APBaseResponse.self, success: { (baseResp) in
