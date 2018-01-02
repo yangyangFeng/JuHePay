@@ -132,7 +132,7 @@ extension APNetworking {
                  action: String,
                  method: HTTPMethod = .get,
                  headers: HTTPHeaders? = nil,
-                 timeOut: TimeInterval = 60,
+                 timeOut: TimeInterval = 30,
                  parameters:Dictionary<String, Any>,
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
@@ -145,6 +145,7 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
+        
         dataRequest = manger?.request(httpUrl,
                                       method:method,
                                       parameters: parameters,

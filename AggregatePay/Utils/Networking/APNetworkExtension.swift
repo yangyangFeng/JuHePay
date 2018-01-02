@@ -34,7 +34,7 @@ class APHttpService {
     //银联快捷收款
     static let queryQuickPayCardList: String   = "/pay/queryQuickPayCardList" //获取绑定成功的银联快捷卡列表
     
-    static let getMyAccount: String       = "query/getMyAccount" //获取账单交易查询列表
+    static let getMyAccount: String       = "/query/getMyAccount" //获取账单交易查询列表
     static let merchantCategory: String   = "/pay/merchantCategory" //获取商户大类
     static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取微信支付宝交易结果
     static let aliPay: String   = "/pay/aliPay" //支付宝生成二维码

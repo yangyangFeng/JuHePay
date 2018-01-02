@@ -134,3 +134,60 @@ extension APBaseViewController {
     }
 }
 
+//MARK: ------ APBaseViewController - Extension(用户身份验证)
+
+
+
+extension APBaseViewController {
+    
+    //用户权限状态
+    enum APUserAuthStatus: Int {
+        case success    = 1  //审核成
+    }
+    
+    typealias APUserAuthStatusBlock = (_ param: APUserAuthStatus) -> Void
+    
+    func ap_userIdentityStatus(authStatusCallBack: APUserAuthStatusBlock) {
+        if !APUserInfoTool.isLogin {
+            ap_presentLoginVC()
+        }
+        else {
+//            ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
+            authStatusCallBack(APUserAuthStatus.success)
+        }
+    }
+    
+    //模态跳转登录页面
+    private func ap_presentLoginVC() {
+        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
+        self.present(loginVC, animated: true)
+        
+    }
+    
+    //导航跳转四审状态
+    private func ap_pushAuthVC(alertMsg: String) {
+        weak var weakSelf = self
+        APAlertManager.show(param: { (param) in
+            param.apMessage = alertMsg
+            param.apConfirmTitle = "去认证"
+            param.apCanceTitle = "取消"
+        }, confirm: { (confirmAction) in
+            let random = arc4random() % UInt32(10) + UInt32(0)
+            if random % 2 == 0 {
+                let authVC = APAuthHomeViewController()
+                weakSelf?.navigationController?.pushViewController(authVC, animated: true)
+            }
+            else {
+                let authNavi = APAuthNaviViewController(rootViewController: APRealNameAuthViewController())
+                authNavi.finishAuths = {
+                    weakSelf?.navigationController?.dismiss(animated: true, completion: nil)
+                }
+                weakSelf?.navigationController?.present(authNavi, animated: true, completion: nil)
+            }
+        }) { (cancelAction) in
+            
+        }
+    }
+
+}
+
