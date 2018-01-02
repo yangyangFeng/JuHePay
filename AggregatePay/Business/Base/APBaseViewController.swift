@@ -153,7 +153,7 @@ extension APBaseViewController {
         }
         else {
 //            ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
-            authStatusCallBack(successAuth)
+            authStatusCallBack(success)
         }
     }
     
