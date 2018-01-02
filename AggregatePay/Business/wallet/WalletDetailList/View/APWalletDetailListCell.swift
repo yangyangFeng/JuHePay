@@ -9,7 +9,38 @@
 import UIKit
 
 class APWalletDetailListCell: UITableViewCell {
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        self.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = UIColor.white
+        initCreatViews()
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func displayQueryAccountRecordListDetail(detail: APQueryAccountRecordListDetail) {
+        let amountNum = Double(detail.endAmount!)! / 100.00
+        if detail.traceType == "提现" {
+            amountLabel.text = String(format: "¥-%.2f", amountNum)
+            iconImageView.theme_image = ["wallet_withdraw_cell_icon"]
+        }
+        else if detail.traceType == "下级分润"{
+            amountLabel.text = String(format: "¥+%.2f", amountNum)
+            iconImageView.theme_image = ["wallet_profits_cell_icon"]
+        }
+        else {
+            amountLabel.text = String(format: "¥+%.2f", amountNum)
+            iconImageView.theme_image = ["wallet_profits_cell_icon"]
+        }
+        titleLabel.text = detail.traceType
+        dateLabel.text = detail.traceDate?.replacingOccurrences(of: " ", with: "\n")
+    }
+    
+    //MARK: ---- lazy loading
     lazy var iconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "wallet_withdraw_cell_icon")
@@ -50,26 +81,22 @@ class APWalletDetailListCell: UITableViewCell {
         view.contentMode = .scaleAspectFit
         return view
     }()
-    
-    //MARK: ---- 生命周期
+}
+
+extension APWalletDetailListCell {
     
     static func cellWithTableView(_ tableView: UITableView) -> UITableViewCell? {
         let identifier = "APWalletDetailListCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         guard let newCell = cell else {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
+            cell = UITableViewCell(style: UITableViewCellStyle.default,
+                                   reuseIdentifier: identifier)
             return cell
         }
         return newCell
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.selectionStyle = .none
-        self.backgroundColor = UIColor.white
-        self.contentView.backgroundColor = UIColor.white
+    func initCreatViews(){
         
         addSubview(iconImageView)
         addSubview(titleLabel)
@@ -105,8 +132,5 @@ class APWalletDetailListCell: UITableViewCell {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }

@@ -20,7 +20,8 @@ typealias APNetWorkingFaileBlock = (_ error: APBaseError) -> Void
  */
 class APNetworking: NSObject {
     
-    var manger:SessionManager? = nil
+    var manger:SessionManager?
+    var dataRequest:DataRequest?
     
     static let sharedInstance = APNetworking()
     
@@ -58,6 +59,13 @@ class APNetworking: NSObject {
                                         success: success,
                                         failure: faile)
     }
+    
+    /**
+     * 取消当前网络请求
+     */
+    static func cancelCurrentRequest() {
+        sharedInstance.dataRequest?.cancel()
+    }
 }
 
 //extension
@@ -66,11 +74,8 @@ class APNetworking: NSObject {
 
 extension APNetworking {
 
-    
-
     func packagingRequest(httpUrl: String = APHttpUrl.trans_httpUrl,
                           action: String,
-
                           method: HTTPMethod = .post,
                           params: APBaseRequest,
                           aClass: Swift.AnyClass,
@@ -140,10 +145,10 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
-        manger?.request(httpUrl,
-                        method:method,
-                        parameters: parameters,
-                        headers: headers).responseJSON { response in
+        dataRequest = manger?.request(httpUrl,
+                                      method:method,
+                                      parameters: parameters,
+                                      headers: headers).responseJSON { response in
                             switch response.result.isSuccess {
                             case true:
                                 self.cacheCookie(response: response)

@@ -18,6 +18,11 @@ enum APBillDateWayViewBtnType: Int{
 typealias DateOrWayBlock = (_ currentTitle: String,_ index: APBillDateWayViewBtnType) -> Void
 
 class APBillDateWayView: UIView {
+    
+    
+    var interval : Int = 1 //defaule is 1.
+    var maxInterval : Int = 6 //defaule is 6.
+    
 
     var startDateLabel = UILabel()
     var endDateLabel = UILabel()
@@ -225,9 +230,7 @@ class APBillDateWayView: UIView {
         }
         let factDateStartLabel = UILabel()
         self.startDateLabel = factDateStartLabel
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy/MM/dd"
-        factDateStartLabel.text = dateformatter.string(from: Date())
+        factDateStartLabel.text = startStr
         factDateStartLabel.textAlignment = NSTextAlignment.center
         factDateStartLabel.adjustsFontSizeToFitWidth = true
         factDateStartLabel.font = UIFont.systemFont(ofSize: date_font)
@@ -275,7 +278,7 @@ class APBillDateWayView: UIView {
         }
         let factDateEndLabel = UILabel()
         self.endDateLabel = factDateEndLabel
-        factDateEndLabel.text = self.startDateLabel.text
+        factDateEndLabel.text = endStr
         factDateEndLabel.textAlignment = NSTextAlignment.center
         factDateEndLabel.adjustsFontSizeToFitWidth = true
         factDateEndLabel.font = UIFont.systemFont(ofSize: date_font)
@@ -406,5 +409,58 @@ class APBillDateWayView: UIView {
         if (self.btnClickBlock != nil) {
             self.btnClickBlock!(currentTitle!,index!);
         }
+    }
+    
+    
+    
+    //MARK: ===================================================
+    lazy var endStr: String = {
+        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
+        let str : String = APDateTools.stringToDate(date: endDate as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        return str
+    }()
+    
+    lazy var startStr: String = {
+        let str : String = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
+        return str
+    }()
+}
+
+extension APBillDateWayView {
+    
+    func startDate(_ interval : Int) -> Date {
+        let currentDate = APDateTools.stringToDate(date: Date(), dateFormat: .deteFormatB)
+        let nowDate = conversionDate(currentDate)
+        let calendar = NSCalendar.current
+        let dateComponents = calendar.dateComponents([.year,
+                                                      .month,
+                                                      .day,
+                                                      .hour,
+                                                      .minute,
+                                                      .second], from: nowDate as Date)
+        
+        var components = DateComponents()
+        components.year = dateComponents.year
+        components.month = (dateComponents.month! - interval)
+        components.day = dateComponents.day
+        components.timeZone = TimeZone(abbreviation: "GMT")
+        let endDate = calendar.date(from: components)
+        return endDate!
+    }
+    
+    func endDate() -> Date {
+        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
+        return endDate
+    }
+    
+    func conversionDate(_ str : String) -> Date{
+        let calendar = NSCalendar.current
+        let arrs : [String] = str.components(separatedBy: "/")
+        
+        var components = DateComponents()
+        components.year = Int(arrs[0])
+        components.month = Int(arrs[1])
+        components.day = Int(arrs[2])
+        return calendar.date(from: components)!
     }
 }

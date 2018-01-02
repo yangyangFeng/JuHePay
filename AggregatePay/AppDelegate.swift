@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         /**********************微信分享配置*************************/
         APSharedTools.sharedInstance.register(key: "")
         
-        
+        /**********************JPush配置*************************/
+        registerJPush(launchOptions: launchOptions)
         
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -175,11 +176,56 @@ extension AppDelegate {
 
 
 
+@available(iOS 10.0, *)
+extension AppDelegate:JPUSHRegisterDelegate {
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        let userInfo = notification.request.content.userInfo
+        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler(Int(UNAuthorizationOptions.alert.rawValue))
+    }
+    
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        let userInfo = response.notification.request.content.userInfo
+        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler()
+    }
+}
 
+extension AppDelegate {
+    
+    func registerJPush(launchOptions:[UIApplicationLaunchOptionsKey:Any]?) {
 
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue |
+                            JPAuthorizationOptions.badge.rawValue |
+                            JPAuthorizationOptions.sound.rawValue)
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate:self as JPUSHRegisterDelegate)
 
-
-
+        JPUSHService.setup(withOption: launchOptions, appKey: "51fcb1d24866e95c8fbea204", channel: "", apsForProduction: false)
+        //        JPUSHService.setLogOFF() //关闭日志打印
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+    
+    // 前台模式收到推送数据
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any], fetchCompletionHandler completionHandler:@escaping (UIBackgroundFetchResult) ->Void) {
+        
+        JPUSHService.handleRemoteNotification(userInfo)
+        
+        completionHandler(.newData)
+    }
+    
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
+    }
+}
 
 
 
@@ -190,6 +236,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     func applicationWillResignActive(_ application: UIApplication) {
+        
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
@@ -204,6 +251,9 @@ extension AppDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        JPUSHService.resetBadge()
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     

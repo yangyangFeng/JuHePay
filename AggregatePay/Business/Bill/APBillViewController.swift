@@ -9,7 +9,7 @@
 import UIKit
 import PGDatePicker
 
-class APBillViewController: APBaseViewController{
+class APBillViewController: APBaseViewController {
 
     private var datePickerView: PGDatePicker?
     
@@ -105,6 +105,14 @@ class APBillViewController: APBaseViewController{
         datePicker.textColorOfSelectedRow = UIColor.init(hex6: 0x484848)
         datePicker.textColorOfOtherRow = UIColor.init(hex6: 0x999999)
         return datePicker
+    }
+    
+    //MARK: ---- 子类复用
+    func ap_tableView(tableView: UITableView, section: Int) -> Int {
+        return 0
+    }
+    func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
     
     //MARK: ---- lazy loading
@@ -271,11 +279,11 @@ extension APBillViewController:
     
     //MARK: ---- UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return ap_tableView(tableView:tableView, section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        return ap_tableView(tableView: tableView, indexPath: indexPath)
     }
-    
 }
+
