@@ -18,7 +18,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
    private let holdIdCard = APGridViewModel()
    private let example = APGridViewModel()
     
-    lazy var authParam: APRealNameAuthRequest = {
+   lazy var authParam: APRealNameAuthRequest = {
         let authParam = APRealNameAuthRequest()
         return authParam
     }()
@@ -30,6 +30,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
 
         setUpUI()
         registerCallBacks()
+        registerObserve()
     }
     
     
@@ -102,18 +103,19 @@ class APRealNameAuthViewController: APAuthBaseViewController {
                 model.handIdCard != nil
                 {
                 self?.authSubmitCell.isEnabled = true
+                self?.inputTipLabel.isHidden = false
             }
             else {
                 self?.authSubmitCell.isEnabled = false
+                self?.inputTipLabel.isHidden = true
             }
-            
         }
     }
     
     /// 点击确认按钮
     override func commit() {
         
-        if CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
+        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
             view.makeToast("姓名请填写中文")
             return
         }
@@ -134,13 +136,13 @@ class APRealNameAuthViewController: APAuthBaseViewController {
         }
         
         authSubmitCell.loading(isLoading: true)
-        APAuthHttpTool.realNameAuth(params: authParam, success: { (response) in
-            self.authSubmitCell.loading(isLoading: false, isComplete: {
-                self.controllerTransition()
+        APAuthHttpTool.realNameAuth(params: authParam, success: { [weak self] (response) in
+            self?.authSubmitCell.loading(isLoading: false, isComplete: {
+                self?.controllerTransition()
             })
-        }) { (error) in
-            self.authSubmitCell.loading(isLoading: false)
-            self.view.makeToast(error.message)
+        }) {[weak self] (error) in
+            self?.authSubmitCell.loading(isLoading: false)
+            self?.view.makeToast(error.message)
         }
     }
     
@@ -188,6 +190,7 @@ extension APRealNameAuthViewController {
     /// 布局表单内容
     func layoutFormCellView() {
         
+        idCardNoCell.inputRegx = .idCardNo
         formCellView.addSubview(realNameCell)
         formCellView.addSubview(idCardNoCell)
         realNameCell.snp.makeConstraints { (make) in

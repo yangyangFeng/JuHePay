@@ -20,7 +20,8 @@ typealias APNetWorkingFaileBlock = (_ error: APBaseError) -> Void
  */
 class APNetworking: NSObject {
     
-    var manger:SessionManager? = nil
+    var manger:SessionManager?
+    var dataRequest:DataRequest?
     
     static let sharedInstance = APNetworking()
     
@@ -59,7 +60,6 @@ class APNetworking: NSObject {
                                         failure: faile)
     }
     
-    
     /// 图片上传
     ///
     /// - Parameters:
@@ -88,14 +88,19 @@ class APNetworking: NSObject {
                                        success: success,
                                        failure: failure)
     }
+    /**
+     * 取消当前网络请求
+     */
+    static func cancelCurrentRequest() {
+        sharedInstance.dataRequest?.cancel()
+    }
 }
 
+//extension
 
 //MARK: ---- 扩展
 
 extension APNetworking {
-
-    
 
     func packagingRequest(httpUrl: String = APHttpUrl.trans_httpUrl,
                           action: String,
@@ -105,6 +110,7 @@ extension APNetworking {
                           success:@escaping APNetWorkingSuccessBlock,
                           failure faile: APNetWorkingFaileBlock? = nil)
     {
+        params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
         let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
         var requestHeader: HTTPHeaders?
@@ -125,7 +131,6 @@ extension APNetworking {
                         let baseError = APBaseError()
                         baseError.status = baseResp.respCode
                         baseError.message = baseResp.respMsg
-                        //是否登录超时
                         if !self.checkoutNeedLogin(status: baseError.status!) {
                             faile?(baseError)
                         }
@@ -150,7 +155,8 @@ extension APNetworking {
                           success:@escaping APNetWorkingSuccessBlock,
                           failure faile: APNetWorkingFaileBlock? = nil)
     {
-        let parameters = params.mj_keyValues() as! Dictionary<String, String>
+        params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        let parameters = params.mj_keyValues() as! Dictionary<String, Any>
         let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
         var requestHeader: HTTPHeaders?
         if cookie != "" {
@@ -215,10 +221,10 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
-        manger?.request(httpUrl,
-                        method:method,
-                        parameters: parameters,
-                        headers: headers).responseJSON { response in
+        dataRequest = manger?.request(httpUrl,
+                                      method:method,
+                                      parameters: parameters,
+                                      headers: headers).responseJSON { response in
                             switch response.result.isSuccess {
                             case true:
                                 self.cacheCookie(response: response)
@@ -235,7 +241,7 @@ extension APNetworking {
     }
     
     func checkoutNeedLogin(status: String) -> Bool {
-        if status == "NEED_LOGIN" || status == "ILLEGAL_ARGUMENT" {
+        if status == "NEED_LOGIN" {
             NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NEED_LOGIN"), object: nil, userInfo: nil))
             return true
         }
@@ -272,7 +278,7 @@ extension APNetworking {
                 method: HTTPMethod = .post,
                 headers: HTTPHeaders? = nil,
                 timeout: TimeInterval = 90,
-                parameters: Dictionary<String, String>,
+                parameters: Dictionary<String, Any>,
                 formDatas: [APFormData],
                 success: @escaping (Dictionary<String, Any>)->Void,
                 failure: @escaping (Error)->Void)
@@ -297,7 +303,7 @@ extension APNetworking {
                                          mimeType: formData.mimeType)
             }
             for (key, value) in parameters {
-                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                multipartFormData.append(String(describing: value).data(using: String.Encoding.utf8)!, withName: key)
             }
         }, usingThreshold: UInt64.init(),
            to: to,

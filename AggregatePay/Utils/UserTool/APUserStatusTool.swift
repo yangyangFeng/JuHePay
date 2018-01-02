@@ -28,16 +28,39 @@ enum APUserIdentityStatus: Int {
     case strongUser    = 3  //实名认证通过的用户
 }
 
-//用户权限状态
-enum APUserAuthStatus: Int {
-    case notAuth        = 1  //未认证
-    case auditAuth      = 2  //审核中
-    case successAuth    = 3  //审核成功
-    case fauileAuth     = 4  //审核失败
+
+/// 用户审核状态
+///
+/// - None: 未提交
+/// - Success: 审核成功
+/// - Failure: 审核失败
+/// - Checking: 审核中
+/// - Close: 该项审核关闭
+/// - Other: 审核状态未知
+
+enum APAuthState: Int {
+    case None = 0, Success, Failure, Checking, Close, Other
+    
+    func toDesc() -> String {
+        switch self {
+        case .None:
+            return "未提交"
+        case .Success:
+            return "已通过"
+        case .Failure:
+            return "审核未通过"
+        case .Checking:
+            return "审核中"
+        case .Close:
+            return "审核关闭"
+        default:
+            return "审核状态未知"
+        }
+    }
 }
 
 typealias APUserIdentityStatusBlock = (_ param: APUserIdentityStatus) -> Void
-typealias APUserAuthStatusBlock = (_ param: APUserAuthStatus) -> Void
+typealias APUserAuthStatusBlock = (_ param: APAuthState) -> Void
 
 class APUserStatusTool: NSObject {
     
@@ -50,7 +73,7 @@ class APUserStatusTool: NSObject {
 
     /** 验证用户权限状态 */
     static func userAuthStatusTool(status: APUserAuthStatusBlock) {
-        status(.notAuth)
+        status(.None)
     }
     
     

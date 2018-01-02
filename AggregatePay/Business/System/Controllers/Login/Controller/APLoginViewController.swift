@@ -40,12 +40,18 @@ class APLoginViewController: APSystemBaseViewController {
         //获取缓存的数据
         let account = APUserDefaultCache.AP_get(key: .mobile) as! String
         let password = APUserDefaultCache.AP_get(key: .password)  as! String
+        
+        if account != "" {
+            self.accountCell.textField.text = account
+            self.loginRequest.mobileNo = account
+        }
+        if password != "" {
+            self.passwordCell.textField.text = password
+            self.loginRequest.passwd = password
+        }
+        
         if account != "" && password != "" {
             self.memoryCell.button.isSelected = true
-            self.accountCell.textField.text = account
-            self.passwordCell.textField.text = password
-            self.loginRequest.mobileNo = account
-            self.loginRequest.passwd = password
         }
     }
     
@@ -219,16 +225,24 @@ extension APLoginViewController {
         }
         submitCell.loading(isLoading: true, isComplete: nil)
         APSystemHttpTool.login(paramReqeust: loginRequest, success: { (baseResp) in
-            self.submitCell.loading(isLoading: false, isComplete: {
-                self.startCacheData(loginResponse: baseResp as! APLoginResponse)
-                self.dismiss(animated: true, completion: nil)
-            })
+            self.getUserInfo(response: baseResp as! APLoginResponse)
         }) { (errorMsg) in
             self.submitCell.loading(isLoading: false, isComplete: nil)
             self.view.makeToast(errorMsg)
         }
     }
     
+    private func getUserInfo(response: APLoginResponse) {
+        APMineHttpTool.loginGetUserInfo(response.userId!, success: { (baseResp) in
+            self.submitCell.loading(isLoading: false, isComplete: {
+                self.startCacheData(loginResponse: response)
+                self.dismiss(animated: true, completion: nil)
+            })
+        }, faile: {(baseError) in
+            self.submitCell.loading(isLoading: false, isComplete: nil)
+            self.view.makeToast(baseError.message)
+        })
+    }
    
     
 }

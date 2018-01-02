@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * 获取商户大类请求报文模型
+ */
 class APMerchantCategoryRequest: APBaseRequest {
     
     @objc dynamic var type: String = "aliPay"

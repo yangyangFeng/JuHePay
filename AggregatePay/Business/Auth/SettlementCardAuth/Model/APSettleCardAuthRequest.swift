@@ -11,7 +11,7 @@ import UIKit
 class APSettleCardAuthRequest: APBaseRequest, NSCopying {
     
     /// 用户ID
-    @objc dynamic var userId: String = ""
+//    @objc dynamic var userId: String = ""
     
     /// 身份证号，做AES加密
     @objc dynamic var identity: String = ""
@@ -26,7 +26,7 @@ class APSettleCardAuthRequest: APBaseRequest, NSCopying {
     @objc dynamic var bankName: String = ""
     
     /// 结算卡正面照片
-    @objc dynamic var card: UIImage = UIImage()
+    @objc dynamic var card: UIImage?
     
     required override init() {
         
@@ -46,4 +46,7 @@ class APSettleCardAuthRequest: APBaseRequest, NSCopying {
         return model
     }
     
+   override static func mj_ignoredPropertyNames() -> [Any]! {
+        return ["card"]
+    }
 }

@@ -9,30 +9,86 @@
 import UIKit
 import PGDatePicker
 
-class APBillViewController: APBaseViewController,
-APBillSelectViewDelegate,
-UICollectionViewDelegate,
-UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout,
-PGDatePickerDelegate {
+class APBillViewController: APBaseViewController {
 
-    var collectionView: UICollectionView?
-    private var scrollerTypeFlag = false
-    private var dateWayView: APBillDateWayView?
     private var datePickerView: PGDatePicker?
-    
-    func clickSelectBtn(index: Int) {
-        self.scrollerTypeFlag = true
-        self.collectionView?.setContentOffset(CGPoint.init(x: UIScreen.main.bounds.size.width * CGFloat(index), y: 0), animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initCreatViews()
-        self.datePickerView = self.initCreatDateView()
+        self.title = "账单"
+        self.view.backgroundColor = UIColor(hex6: 0xf5f5f5)
+        createSubViews()
+        registerCallBack()
     }
     
+    func createSubViews() {
+        
+        self.datePickerView = self.initCreatDateView()
+        
+        self.view.addSubview(dateWayView)
+        self.view.addSubview(tableView)
+        self.view.addSubview(collectionWayView)
+        self.view.addSubview(settleWayView)
+        
+        dateWayView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.height.equalTo(80+10+60)
+            make.top.equalTo(view.snp.top)
+        }
+        tableView.snp.makeConstraints { (make) in
+            make.left.bottom.right.equalTo(0)
+            make.top.equalTo(dateWayView.snp.bottom).offset(10)
+        }
+        collectionWayView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(dateWayView.snp.bottom).offset(-70)
+        }
+        settleWayView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(dateWayView.snp.bottom).offset(-70)
+        }
+    }
+    
+    func registerCallBack() {
+        
+        weak var weakSelf = self
+        //MARK: ---- 点击 收款方式 结算方式 按钮的点击事件
+        collectionWayView.clickBtnTypeAction { (btnTitle) in
+            if btnTitle.count != 0{
+                weakSelf?.dateWayView.collectionWayLabel.text = btnTitle
+            }
+        }
+        settleWayView.clickBtnTypeAction { (btnTitle) in
+            if btnTitle.count != 0{
+                weakSelf?.dateWayView.settleWayLabel.text = btnTitle
+            }
+        }
+        
+        //MARK: ---- 点击 开始日期、截止日期、收款方式、结算方式  按钮的点击事件
+        dateWayView.whenClickBtnBlock { (currentTitle, currentBtnType) in
+            if ((currentBtnType == APBillDateWayViewBtnType.StartDateBtn) ||
+                (currentBtnType == APBillDateWayViewBtnType.EndDateBtn)){
+                if (currentBtnType == APBillDateWayViewBtnType.StartDateBtn){
+                    self.didStartDateBtn()
+                }
+                else{
+                    self.didEndDateBtn()
+                }
+            }
+            else if (currentBtnType == APBillDateWayViewBtnType.CollectionWayBtn){
+                self.didCollectionWayBtn()
+            }
+            else{
+                self.didSettleWayBtn()
+            }
+        }
+    }
+    
+    
+    //MARK: ----- init loading
+    
     func initCreatDateView() -> PGDatePicker{
+        
         let datePicker = PGDatePicker()
         datePicker.delegate = self
         datePicker.datePickerMode = .date
@@ -51,168 +107,183 @@ PGDatePickerDelegate {
         return datePicker
     }
     
-    func initCreatViews(){
-        self.title = "账单"
-        self.view.backgroundColor = UIColor(hex6: 0xf5f5f5)
-        weak var weakSelf = self
-        
-        //日期 收款方式 结算方式的视图
-        let wayView = APBillDateWayView.init()
-        self.dateWayView = wayView
-        self.view.addSubview(wayView)
-        wayView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(0)
-            make.height.equalTo(80+10+60)
-            make.top.equalTo(view.snp.top)
-        }
-        
-        //数据的 滑动视图
-        let flowLayout = UICollectionViewFlowLayout.init()
-        flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
-        flowLayout.itemSize = CGSize.init(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 264)
-        let collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        self.collectionView = collectionView
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.white
-        collectionView.isPagingEnabled = true
-        collectionView.register(APBillDetailCollectionViewCell.self, forCellWithReuseIdentifier: "APBillDetailCollectionViewCell")
-        self.view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
-            make.left.bottom.right.equalTo(0)
-            make.top.equalTo(wayView.snp.bottom).offset(10)
-        }
-        
-        //收款方式选择的视图
-        let collectionWayView = APBillSettleWayView.init(titleArray: ["全部",
-                                                                      "银联快捷收款",
-                                                                      "微信收款",
-                                                                      "支付宝收款"])
-        collectionWayView.isHidden = true
-        self.view.addSubview(collectionWayView)
-        collectionWayView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(wayView.snp.bottom).offset(-70)
-        }
-        
-        //结算方式的选择的视图
-        let settleWayView = APBillSettleWayView.init(titleArray: ["全部","D+0"])
-        settleWayView.isHidden = true
-        self.view.addSubview(settleWayView)
-        settleWayView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(wayView.snp.bottom).offset(-70)
-        }
-        
-        //MARK: ---- 点击 收款方式 结算方式 按钮的点击事件
-        collectionWayView.clickBtnTypeAction { (btnTitle) in
-            if btnTitle.count != 0{
-                weakSelf?.dateWayView?.collectionWayLabel.text = btnTitle
-            }
-        }
-        settleWayView.clickBtnTypeAction { (btnTitle) in
-            if btnTitle.count != 0{
-                weakSelf?.dateWayView?.settleWayLabel.text = btnTitle
-            }
-        }
-
-        //MARK: ---- 点击 开始日期、截止日期、收款方式、结算方式  按钮的点击事件
-        wayView.whenClickBtnBlock { (currentTitle, currentBtnType) in
-            print(currentTitle,currentBtnType)
-            
-            if ((currentBtnType == APBillDateWayViewBtnType.StartDateBtn) ||
-                (currentBtnType == APBillDateWayViewBtnType.EndDateBtn)){
-                
-                collectionWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(0)
-                })
-                settleWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(0)
-                })
-                UIView.animate(withDuration: 0.25, animations: {
-                    collectionWayView.layoutIfNeeded()
-                    settleWayView.layoutIfNeeded()
-                    collectionWayView.isHidden = true
-                    settleWayView.isHidden = true
-                })
-                
-                let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyy/MM/dd"
-                let calculatedDate = Calendar.current.date(byAdding: Calendar.Component.month, value: -3, to: Date())
-                let maxDate = dateformatter.date(from: (self.dateWayView?.endDateLabel.text)!)
-                let minDate = dateformatter.date(from: (self.dateWayView?.startDateLabel.text)!)
-                
-                if (currentBtnType == APBillDateWayViewBtnType.StartDateBtn){
-                    let datePickerView = self.initCreatDateView()
-                    self.datePickerView = datePickerView
-                    datePickerView.show()
-                    
-                    datePickerView.maximumDate = maxDate
-                    datePickerView.minimumDate = calculatedDate
-                }
-                else{
-                    let datePickerView = self.initCreatDateView()
-                    datePickerView.show()
-                    
-                    datePickerView.maximumDate = Date()
-                    datePickerView.minimumDate = minDate
-                }
-            }
-            else if (currentBtnType == APBillDateWayViewBtnType.CollectionWayBtn){
-                collectionWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(40)
-                })
-                settleWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(0)
-                })
-                UIView.animate(withDuration: 0.25, animations: {
-                    collectionWayView.layoutIfNeeded()
-                    collectionWayView.isHidden = false
-                    settleWayView.isHidden = true
-                })
-            }
-            else{
-                collectionWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(0)
-                })
-                settleWayView.titleBgView.snp.updateConstraints({ (make) in
-                    make.height.equalTo(40)
-                })
-                UIView.animate(withDuration: 0.25, animations: {
-                    settleWayView.layoutIfNeeded()
-                    settleWayView.isHidden = false
-                    collectionWayView.isHidden = true
-                })
-            }
-        }
+    //MARK: ---- 子类复用
+    func ap_tableView(tableView: UITableView, section: Int) -> Int {
+        return 0
+    }
+    func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
     
-    //MARK: ---- PGDatePickerDelegate
-    func datePicker(_ datePicker: PGDatePicker!,
-                    didSelectDate dateComponents: DateComponents!) {
-        let calendar = NSCalendar.current
-        let dateStr = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!,
-                                               dateFormat: .deteFormatB)
-        if datePicker == self.datePickerView {
-            self.dateWayView?.startDateLabel.text = dateStr
-        }
-        else{
-            self.dateWayView?.endDateLabel.text = dateStr
-        }
-    }
-
-    //MARK: ---- UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
-    }
+    //MARK: ---- lazy loading
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withClass: APBillDetailCollectionViewCell.self, for: indexPath)
-        return cell!
-    }
+    //日期 收款方式 结算方式的视图
+    lazy var dateWayView: APBillDateWayView = {
+        let view = APBillDateWayView.init()
+        return view
+    }()
+    
+    //收款方式选择的视图
+    lazy var collectionWayView:APBillSettleWayView = {
+        let view = APBillSettleWayView(titleArray: ["全部", "银联快捷收款", "微信收款", "支付宝收款"])
+        view.isHidden = true
+        return view
+    }()
+    
+    //结算方式的选择的视图
+    lazy var settleWayView:APBillSettleWayView = {
+        let view = APBillSettleWayView(titleArray: ["D+0"])
+        view.isHidden = true
+        return view
+    }()
+    
+    //列表
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        view.delegate = self;
+        view.dataSource = self;
+        view.separatorStyle = .none
+        view.tableFooterView = UIView()
+        view.theme_backgroundColor = ["#fafafa"]
+        view.register(APWalletDetailListCell.self, forCellReuseIdentifier: "APWalletDetailListCell")
+        return view
+    }()
     
 }
+
+//MARK: ------------------------- Private
+
+extension APBillViewController {
+
+    private func dateFormatter(startDate: String,
+                       endDate: String,
+                       result:(_ calculate: Date, _ maxDate: Date, _ minDate: Date) -> Void) {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy/MM/dd"
+        let calculatedDate = Calendar.current.date(byAdding: Calendar.Component.month, value: -3, to: Date())
+        let maxDate = dateformatter.date(from: endDate)
+        let minDate = dateformatter.date(from: startDate)
+        result(calculatedDate!, maxDate!, minDate!)
+    }
+
+    //点击选择开始日期按钮和结束日期按钮
+    private func didSelectDateBtn() {
+        self.collectionWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(0)
+        })
+        self.settleWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(0)
+        })
+        UIView.animate(withDuration: 0.25, animations: {
+            self.collectionWayView.layoutIfNeeded()
+            self.settleWayView.layoutIfNeeded()
+            self.collectionWayView.isHidden = true
+            self.settleWayView.isHidden = true
+        })
+    }
+    
+    //点击选择开始日期按钮
+    private func didStartDateBtn() {
+        didSelectDateBtn()
+        let startDate = self.dateWayView.startDateLabel.text!
+        let endDate = self.dateWayView.endDateLabel.text!
+        dateFormatter(startDate: startDate,
+                      endDate: endDate)
+        { (calculate, maxDate, minDate) in
+            let datePickerView = self.initCreatDateView()
+            datePickerView.show()
+            datePickerView.maximumDate = maxDate
+            datePickerView.minimumDate = calculate
+            self.datePickerView = datePickerView
+        }
+    }
+    
+    //点击选择结束日期按钮
+    private func didEndDateBtn() {
+        didSelectDateBtn()
+        let startDate = self.dateWayView.startDateLabel.text!
+        let endDate = self.dateWayView.endDateLabel.text!
+        dateFormatter(startDate: startDate,
+                      endDate: endDate)
+        { (calculate, maxDate, minDate) in
+            let datePickerView = self.initCreatDateView()
+            datePickerView.show()
+            datePickerView.maximumDate = Date()
+            datePickerView.minimumDate = minDate
+        }
+    }
+    
+    //点击收款方式按钮
+    private func didCollectionWayBtn() {
+        if !self.collectionWayView.isHidden {
+            return
+        }
+        self.collectionWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(40)
+        })
+        self.settleWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(0)
+        })
+        self.collectionWayView.alpha = 0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.collectionWayView.layoutIfNeeded()
+            self.collectionWayView.alpha = 1
+            self.collectionWayView.isHidden = false
+            self.settleWayView.alpha = 0
+            self.settleWayView.isHidden = true
+        })
+    }
+    
+    //点击结算方式按钮
+    private func didSettleWayBtn() {
+        if !self.settleWayView.isHidden {
+            return
+        }
+        self.collectionWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(0)
+        })
+        self.settleWayView.titleBgView.snp.updateConstraints({ (make) in
+            make.height.equalTo(40)
+        })
+        
+        self.settleWayView.alpha = 0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.settleWayView.layoutIfNeeded()
+            self.settleWayView.alpha = 1
+            self.settleWayView.isHidden = false
+            self.collectionWayView.alpha = 0
+            self.collectionWayView.isHidden = true
+        })
+    }
+}
+
+
+//MARK: ------------------------- Delegate
+
+extension APBillViewController:
+    UITableViewDelegate,
+    UITableViewDataSource ,
+    PGDatePickerDelegate  {
+    
+    //MARK: ---- PGDatePickerDelegate
+    func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
+        let calendar = NSCalendar.current
+        let dateStr = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: .deteFormatB)
+        if datePicker == self.datePickerView {
+            self.dateWayView.startDateLabel.text = dateStr
+        }
+        else{
+            self.dateWayView.endDateLabel.text = dateStr
+        }
+    }
+    
+    //MARK: ---- UITableViewDelegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ap_tableView(tableView:tableView, section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return ap_tableView(tableView: tableView, indexPath: indexPath)
+    }
+}
+

@@ -22,5 +22,7 @@
 #import "SCSlider.h"
 #import <WechatOpenSDK/WXApi.h>
 #import <MJExtension/MJExtension.h>
+#import <MJExtension/NSObject+MJKeyValue.h>
+
 #import "CPCipherAES.h"
 #endif /* BridgingHeader_h */

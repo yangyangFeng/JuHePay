@@ -10,9 +10,13 @@ import UIKit
 
 final class APUserInfoTool: NSObject {
     static var info : APUserInfoTool = {
-        var instance = APUserInfoTool()
+        var instance = APUserInfoTool.mj_object(withKeyValues: APUserDefaultCache.AP_get(key: .userInfo)) ?? APUserInfoTool()
         return instance
-    }()
+        }(){
+        didSet{
+            APUserDefaultCache.AP_set(value: info.mj_keyValues(), key: .userInfo)
+        }
+    }
   
     /// 是否实名
     @objc dynamic var isRealName : String?

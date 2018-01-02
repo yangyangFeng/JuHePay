@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APApproveViewController: APBaseViewController {
+class APApproveViewController: APMineBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

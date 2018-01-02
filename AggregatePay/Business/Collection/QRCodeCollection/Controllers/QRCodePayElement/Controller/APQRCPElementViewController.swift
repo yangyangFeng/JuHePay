@@ -11,12 +11,12 @@ import UIKit
 /**
  * 二维码的支付要素
  */
-class APQRCodePayElementViewController: APQRCodeBaseViewController {
-    
+class APQRCPElementViewController: APQRCPBaseViewController {
 
     var merchantDetailModel:APMerchantDetail? {
         willSet {
             selectMerchantCell.titleLabel.text = newValue?.dictValue
+            qrCodePayRequest.categroyCode = newValue?.id
         }
     }
 
@@ -25,8 +25,13 @@ class APQRCodePayElementViewController: APQRCodeBaseViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.groupTableViewBackground
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
+        
         createSubViews()
         resgisterCallBack()
+    }
+    
+    @objc func notificationSelectMerchant(_ notif: Notification) {
+        self.merchantDetailModel = notif.object as? APMerchantDetail
     }
 
     //MARK: ---- lazy loading
@@ -48,7 +53,7 @@ class APQRCodePayElementViewController: APQRCodeBaseViewController {
     
 }
 
-extension APQRCodePayElementViewController {
+extension APQRCPElementViewController {
     
     private func createSubViews() {
         
@@ -79,36 +84,56 @@ extension APQRCodePayElementViewController {
         
         //赋值收款金额进行显示
         traAmountCell.textLabel.text = amountStr!
-        
     }
     
     private func resgisterCallBack() {
         
         weak var weakSelf = self
-        
         selectMerchantCell.buttonBlock = { (key, value) in
-            weakSelf?.pushSelectMerchantVC()
+            weakSelf?.pushQRCPSelectMerchantVC()
         }
-        
         submitCell.buttonBlock = { (key, value) in
-            let qrCodeVC = APBaseNavigationViewController(rootViewController: APQRCodeCollectionViewController())
-            weakSelf?.present(qrCodeVC, animated: true, completion: nil);
+            weakSelf?.startHttpGetQRCode()
         }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(notificationSelectMerchant(_:)), name: NSNotification.Name(rawValue: "selectMerchant"), object: nil)
     }
-    
-    @objc func notificationSelectMerchant(_ notif: Notification) {
-        self.merchantDetailModel = notif.object as? APMerchantDetail
-    }
-    
-    private func pushSelectMerchantVC() {
-        let merchanCV = APSelectMerchantViewController()
-        merchanCV.payType = self.payType!
-        merchanCV.selectModel = self.merchantDetailModel
-        self.navigationController?.pushViewController(merchanCV, animated: true)
-    }
+}
 
+extension APQRCPElementViewController {
+    
+    private func pushQRCPSelectMerchantVC() {
+        let qrcpSeleMerchanCV = APQRCPSeleMerchantViewController()
+        qrcpSeleMerchanCV.payType = self.payType!
+        qrcpSeleMerchanCV.selectModel = self.merchantDetailModel
+        self.navigationController?.pushViewController(qrcpSeleMerchanCV, animated: true)
+    }
+    
+    private func presentQRCPCollectionVC(qrCodePayResponse: APQRCodePayResponse) {
+        let qrcpCollectionCV = APQRCPCollectionViewController()
+        qrcpCollectionCV.qrCodePayResponse = qrCodePayResponse
+        qrcpCollectionCV.title = self.title
+        let navigation = APBaseNavigationViewController(rootViewController: qrcpCollectionCV)
+        self.present(navigation, animated: true, completion: nil);
+    }
+    
+    private func startHttpGetQRCode() {
+        qrCodePayRequest.transAmount = String((Double(amountStr!)! * 100))
+        qrCodePayRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
+        view.AP_loadingBegin()
+        APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,
+                          action: payService!,
+                          params: qrCodePayRequest,
+                          aClass: APQRCodePayResponse.self,
+                          success: { (baseResp) in
+                            self.view.AP_loadingEnd()
+                            let qrCodePayResponse = baseResp as! APQRCodePayResponse
+                            self.presentQRCPCollectionVC(qrCodePayResponse: qrCodePayResponse)
+        }, failure: {(baseError) in
+            self.view.AP_loadingEnd()
+            self.view.makeToast(baseError.message)
+        })
+    }
+    
 }
 
 

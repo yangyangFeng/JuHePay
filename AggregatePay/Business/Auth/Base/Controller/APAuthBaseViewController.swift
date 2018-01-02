@@ -102,6 +102,7 @@ extension APAuthBaseViewController {
         inputTipLabel.text = "请注意核对您的姓名与身份证号码，若不正确请重新识别或手动输入。"
         inputTipLabel.textAlignment = .center
         inputTipLabel.adjustsFontSizeToFitWidth = true
+        inputTipLabel.isHidden = true
         
         let buttonView = UIButton()
         buttonView.backgroundColor = view.backgroundColor

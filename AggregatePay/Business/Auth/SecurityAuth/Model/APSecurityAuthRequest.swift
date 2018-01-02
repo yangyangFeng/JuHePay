@@ -9,7 +9,7 @@
 import UIKit
 
 class APSecurityAuthRequest: APBaseRequest, NSCopying {
-    @objc dynamic var userId: String = ""
+//    @objc dynamic var userId: String = ""
     @objc dynamic var userName: String = ""
     @objc dynamic var idCard: String = ""
     @objc dynamic var cardNo: String = ""

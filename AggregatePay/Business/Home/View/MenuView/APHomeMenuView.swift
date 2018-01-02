@@ -93,12 +93,7 @@ class APHomeMenuView: UIView {
         let dataSource : NSDictionary = listDataSource[index] as! NSDictionary
         
         let itemModel = APHomeMenuModel()
-        itemModel.title = dataSource.object(forKey: "title") as! String
-        itemModel.norImage = dataSource.object(forKey: "norImage") as! String
-        itemModel.selImage = dataSource.object(forKey: "selImage") as! String
-        itemModel.wayIconImage = dataSource.object(forKey: "wayIconImage") as! String
-        itemModel.payWay = dataSource.object(forKey: "payWay") as! String
-        
+        itemModel.mj_setKeyValues(dataSource)
         let item = APHomeMenuButtonView(itemModel: itemModel)
         item.addTarget(self, action: #selector(didItem(_:)))
         item.button.tag = index

@@ -101,9 +101,12 @@ class APShareTemplateItemView: UICollectionViewCell {
         leftLabel.text = "模板"
         righLabel.text = "免费"
         
+        let qrCode = UIImageView.init(image: UIImage.init(named: "Promote_QrCode"))
+        
         contentView.addSubview(imageView)
         contentView.addSubview(leftLabel)
         contentView.addSubview(righLabel)
+        imageView.addSubview(qrCode)
         
         imageView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(0)
@@ -116,6 +119,11 @@ class APShareTemplateItemView: UICollectionViewCell {
         righLabel.snp.makeConstraints { (make) in
             make.right.equalTo(0)
             make.bottom.equalTo(-12)
+        }
+        qrCode.snp.makeConstraints { (make) in
+            make.width.height.equalTo(17)
+            make.centerX.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(-10)
         }
     }
     required init?(coder aDecoder: NSCoder) {

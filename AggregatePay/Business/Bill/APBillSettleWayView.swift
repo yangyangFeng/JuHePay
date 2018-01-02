@@ -29,16 +29,6 @@ class APBillSettleWayView: UIView {
         self.block = block
     }
     
-    func billSettleWayViewAnimate(){
-        
-        UIView.animate(withDuration: 0.25) {
-            self.titleBgView.snp.updateConstraints({ (make) in
-                make.top.equalToSuperview().offset(0)
-            })
-            self.layoutIfNeeded()
-        }
-    }
-    
     func initCreatViews(titleArray: [String]){
         let bgView = UIView()
         self.titleBgView = bgView
@@ -48,7 +38,6 @@ class APBillSettleWayView: UIView {
             make.left.top.right.equalToSuperview()
             make.height.equalTo(0)
         }
-        
         if titleArray.count != 0 {
             for i in 0..<titleArray.count{
                 let btn = UIButton()
@@ -67,19 +56,30 @@ class APBillSettleWayView: UIView {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dismAnimate()
+    }
+    
     @objc func btnAction(_ button: UIButton) {
+        dismAnimate()
+        if (self.block != nil) {
+            self.block!((button.titleLabel?.text)!)
+        }
+    }
+    
+    private func dismAnimate() {
         self.titleBgView.snp.updateConstraints({ (make) in
             make.height.equalTo(0)
         })
+        self.alpha = 1
         UIView.animate(withDuration: 0.25, animations: {
+            self.alpha = 0
             self.layoutIfNeeded()
         }) { (complete) in
             if complete{
                 self.isHidden = true
             }
         }
-        if (self.block != nil) {
-            self.block!((button.titleLabel?.text)!)
-        }
     }
+    
 }

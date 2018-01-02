@@ -13,7 +13,7 @@ class APRealNameAuthRequest: APBaseRequest, NSCopying {
     //身份证号
     @objc dynamic var idCard: String = ""
     //用户ID
-    @objc dynamic var userId: String = ""
+//    @objc dynamic var userId: String = ""
     //真实姓名
     @objc dynamic var realName: String = ""
     //身份证正面照片
@@ -36,5 +36,9 @@ class APRealNameAuthRequest: APBaseRequest, NSCopying {
         model.idCardBack = idCardBack
         model.handIdCard = handIdCard
         return model
+    }
+    
+    override static func mj_ignoredPropertyNames() -> [Any]! {
+        return ["idCardFront", "idCardBack", "handIdCard"]
     }
 }

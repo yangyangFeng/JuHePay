@@ -26,6 +26,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         title = "安全认证"
         layoutViews()
         userInputCallBacks()
+        registerObserve()
     }
     
     func userInputCallBacks() {
@@ -44,7 +45,62 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         }
     }
     
+    func registerObserve() {
+        
+        kvoController.observe(authParam,
+                              keyPaths: ["idCard", "userName","cardNo", "mobileNo"],
+                              options: .new)
+        { [weak self] (_, object, change) in
+            
+            let model = object as! APSecurityAuthRequest
+            if  model.userName.count > 0 &&
+                model.idCard.count > 0 &&
+                model.cardNo.count > 0 &&
+                model.mobileNo.count > 0
+            {
+                self?.authSubmitCell.isEnabled = true
+            }
+            else {
+                self?.authSubmitCell.isEnabled = false
+            }
+        }
+    }
+    
     override func commit() {
+        
+        if !CPCheckAuthInputInfoTool.evaluateIsChineseAndEnglishName(withName: authParam.userName) {
+            view.makeToast("姓名请填写中文")
+            return
+        }
+        if authParam.userName.count > 30 {
+            view.makeToast("姓名长度出错")
+            return
+        }
+        if !CPCheckAuthInputInfoTool.evaluatePhoneNumber(authParam.mobileNo) {
+            view.makeToast("手机号格式不正确")
+            return
+        }
+        
+        if !CPCheckAuthInputInfoTool.checkIsIDCard(withIDCard: authParam.idCard) {
+            view.makeToast("身份证号格式错误，请输入正确的身份证号")
+            return
+        }
+        if !CPCheckAuthInputInfoTool.checkIsMoreThan18(withCardNo: authParam.idCard) {
+            view.makeToast("平台用户必须年满18周岁，请重新输入")
+            return
+        }
+        
+        authSubmitCell.loading(isLoading: true)
+        APAuthHttpTool.securityAuth(params: authParam, success: { [weak self] (response) in
+            self?.authSubmitCell.loading(isLoading: false, isComplete: {
+                self?.controllerTransition()
+            })
+        }) {[weak self] (error) in
+            self?.view.makeToast(error.message)
+        }
+    }
+    
+    func controllerTransition() {
         if let _ = processView() {
             let navi = authNavigation()
             navi?.finishAuths?()
@@ -60,6 +116,9 @@ extension APSecurityAuthViewController {
     fileprivate func layoutViews() {
         
         authHeadMessage.text = "为保障您的支付安全,请进行信用卡认证。"
+        idCardFormCell.inputRegx = .idCardNo
+        creditCardFormCell.inputRegx = .bankCard
+        phoneNumFormCell.inputRegx = .mobile
         
         formCellView.addSubview(nameFormCell)
         formCellView.addSubview(idCardFormCell)

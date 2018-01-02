@@ -59,7 +59,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         superview?.AP_loadingBegin()
         let param = APCardListRequest()
         param.isSettle = String(index)
-        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         
         APMineHttpTool.getBankList(param, success: { (res) in
            self.superview?.AP_loadingEnd()
@@ -146,11 +146,11 @@ class APBankCardCell: APSwipeTableViewCell {
             }
             else if model?.authType == "2"{
                 self.AP_shouldExceedThreshold = false
-                rightMsg.text = "认证"
+                rightMsg.text = "已认证"
             }
             else{
                 self.AP_shouldExceedThreshold = false
-                rightMsg.text = "结算"
+                rightMsg.text = ""
             }
             bankName.text = model?.bankName
             userName.text = model?.userName ?? "无"

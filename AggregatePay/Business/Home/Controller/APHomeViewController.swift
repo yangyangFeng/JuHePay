@@ -69,10 +69,10 @@ APKeyboardCompositionViewDelegate {
             self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {
-            let qrCodePayElementVC = APQRCodePayElementViewController()
-            qrCodePayElementVC.amountStr = totalAmount
-            qrCodePayElementVC.payType = model.payType
-            self.navigationController?.pushViewController(qrCodePayElementVC, animated: true)
+            let qrcpElementVC = APQRCPElementViewController()
+            qrcpElementVC.amountStr = totalAmount
+            qrcpElementVC.payType = model.payType
+            self.navigationController?.pushViewController(qrcpElementVC, animated: true)
         }
     }
     

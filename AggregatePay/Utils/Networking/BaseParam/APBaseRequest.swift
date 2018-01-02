@@ -13,10 +13,12 @@ import UIKit
 class APBaseRequest: NSObject {
     
     //版本号
-    @objc dynamic var appVersion: String = "ios.ZFT.1.0.0"
+    @objc dynamic var appVersion: String = "ios.ZFT." + (AppVersion as! String)
 
     //签名
     @objc dynamic var sign: String = "111"
+    
+    @objc dynamic var userId: String?
     
 }
 

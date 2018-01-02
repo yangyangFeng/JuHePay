@@ -15,5 +15,4 @@ class APBaseResponse: NSObject {
     @objc dynamic var respTime: String?
     @objc dynamic var success: String?
     @objc dynamic var isSuccess: String?
-   
 }

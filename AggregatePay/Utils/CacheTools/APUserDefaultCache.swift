@@ -15,6 +15,7 @@ class APUserDefaultCache: NSObject {
         case password = "password"
         case cookie   = "cookie"
         case userId   = "userId"
+        case userInfo   = "userInfo"
     }
     
     static func AP_set(value: Any, key: APUserDefaultKey) {
@@ -28,7 +29,7 @@ class APUserDefaultCache: NSObject {
         guard let value = userDefault.object(forKey: key.rawValue) else {
             return ""
         }
-        return value as! String
+        return value
     }
     
     static func AP_remove(key: APUserDefaultKey) {
