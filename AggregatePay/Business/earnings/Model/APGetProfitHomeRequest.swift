@@ -9,7 +9,7 @@
 import UIKit
 
 class APGetProfitHomeRequest: APBaseRequest {
-    @objc dynamic var userId : String?
+//    @objc dynamic var userId : String?
     @objc dynamic var mobileNo : String?
 }
 

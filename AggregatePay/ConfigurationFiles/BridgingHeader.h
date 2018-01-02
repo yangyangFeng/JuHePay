@@ -13,6 +13,7 @@
 #import "APClassRuntimeTool.h"
 #import "CPSecurityManager.h"
 #import "CPMD5EncrpTool.h"
+#import "CPRSAEncrpTool.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
 #import "IOSOCRAPI.h"
@@ -23,6 +24,7 @@
 #import <WechatOpenSDK/WXApi.h>
 #import <MJExtension/MJExtension.h>
 #import <MJExtension/NSObject+MJKeyValue.h>
-
+#import "JPUSHService.h"
 #import "CPCipherAES.h"
+#import <UserNotifications/UserNotifications.h>
 #endif /* BridgingHeader_h */

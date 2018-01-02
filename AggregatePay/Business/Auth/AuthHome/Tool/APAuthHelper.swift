@@ -12,31 +12,45 @@ enum APAuthType: String {
     case realName, settleCard, Security
 }
 
-enum APAuthState: Int {
-    case None = 0, Success, Failure, Checking, Close, Other
-    
-    func toDesc() -> String {
-        switch self {
-        case .None:
-            return "未提交"
-        case .Success:
-            return "已通过"
-        case .Failure:
-            return "审核未通过"
-        case .Checking:
-            return "审核中"
-        case .Close:
-            return "审核关闭"
-        default:
-            return "审核状态未知"
-        }
-    }
-}
-
 class APAuthHelper: NSObject {
     
-    var auths: Array<APAuth>?
+    public var auths: Array<APAuth> = Array()
+    public var isFirstAuth: Bool {
+        get {
+            return checkoutFirstAuth()
+        }
+    }
+    public var realNameAuthState: APAuthState = .None
+    public var settleCardAuthState: APAuthState = .None
+    public var securityAuthState: APAuthState = .None
     
     static let sharedInstance = APAuthHelper()
-    private override init(){}
+    private override init(){
+        super.init()
+        auths = allAuths()
+    }
+    
+    private func allAuths() -> [APAuth] {
+        var auths = [APAuth]()
+        if let URL = Bundle.main.url(forResource: "APAuth", withExtension: "plist") {
+            if let authsFromPlist = NSArray(contentsOf: URL) {
+                for dict in authsFromPlist {
+                    let auth = APAuth.init(dictionary: dict as! NSDictionary)
+                    auths.append(auth)
+                }
+            }
+        }
+        return auths
+    }
+    
+    private func checkoutFirstAuth() -> Bool {
+        
+        var isFirst = true
+        for auth in auths {
+            if auth.state != .None && auth.state != .Other {
+                isFirst = false
+            }
+        }
+        return isFirst
+    }
 }

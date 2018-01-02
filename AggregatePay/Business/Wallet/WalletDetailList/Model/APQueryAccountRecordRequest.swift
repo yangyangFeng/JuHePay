@@ -11,7 +11,7 @@ import UIKit
 class APQueryAccountRecordRequest: APBaseRequest {
     
     //用户ID
-    @objc dynamic var userId: String?
+//    @objc dynamic var userId: String?
     //当前页数
     @objc dynamic var pageNo: String = "1"
     

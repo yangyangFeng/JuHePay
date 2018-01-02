@@ -8,13 +8,17 @@
 
 import UIKit
 
+typealias APOCRTapHandle = () -> Void
+
 class APAuthOCRTextFormCell: APAuthBaseTextFormCell {
 
+    public var tapHandle: APOCRTapHandle!
     override init() {
         super.init()
         
         let scanButton = UIButton()
         scanButton.setImage(UIImage.init(named: "auth_scan_button"), for: .normal)
+        scanButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
         addSubview(scanButton)
         scanButton.snp.makeConstraints { (make) in
             make.top.right.bottom.equalToSuperview()
@@ -25,5 +29,8 @@ class APAuthOCRTextFormCell: APAuthBaseTextFormCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    @objc func tap() {
+        tapHandle()
+    }
 }

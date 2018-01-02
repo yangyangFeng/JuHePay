@@ -23,6 +23,7 @@ class APPhotoGridViewCell: UICollectionViewCell {
             if let image = model?.image {
                 gridImageView.image = image
                 model?.gridState = .canPreview
+                model?.setImageComplete?(image)
             }
         }
     }

@@ -14,6 +14,5 @@ import UIKit
 class APMerchantCategoryRequest: APBaseRequest {
     
     @objc dynamic var type: String = "aliPay"
-    @objc dynamic var userId: String?
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class APGetUserListRecommendRequest: APBaseRequest {
-    @objc dynamic var userId : String?
+//    @objc dynamic var userId : String?
     @objc dynamic var type : String?
     @objc dynamic var levelId : String?
     

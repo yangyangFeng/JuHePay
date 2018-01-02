@@ -28,13 +28,13 @@ class APBaseTabBarViewController: ESTabBarController {
     }
     
     func didTabBarCallBack() {
-        
+        weak var weakSelf : APBaseTabBarViewController! = self
         self.shouldHijackHandler = { tabbarController, viewController, index in
-            if (index == 0 && self.isValidationUserIdentityStatus) ||
-               (index == 3 && self.isValidationUserIdentityStatus) ||
-               (index == 2 ||
-                index == 4) {
-                self.isValidationUserIdentityStatus = false
+            if (index == 0 && weakSelf.isValidationUserIdentityStatus) ||
+                (index == 3 && weakSelf.isValidationUserIdentityStatus) ||
+                (index == 2 ||
+                    index == 4) {
+                weakSelf.isValidationUserIdentityStatus = false
                 return false
             }
             return true
@@ -44,15 +44,15 @@ class APBaseTabBarViewController: ESTabBarController {
             let baseNav = viewController as! APBaseNavigationViewController
             let baseVC = baseNav.childViewControllers.first as! APBaseViewController
             if index == 0 || index == 3 {
-                baseVC.ap_userIdentityStatus({ (status) in
-                    self.isValidationUserIdentityStatus = true
-                    tabbarController.selectedIndex = index
-                })
+                baseVC.ap_userIdentityStatus {
+                    weakSelf.isValidationUserIdentityStatus = true
+                    weakSelf.selectedIndex = index
+                }
             }
             
             if index == 1 {
-                tabbarController.selectedIndex = 2
-                let homeController : UINavigationController = tabbarController.viewControllers![2] as! UINavigationController
+                weakSelf.selectedIndex = 2
+                let homeController : UINavigationController = weakSelf.viewControllers![2] as! UINavigationController
                 homeController.pushViewController(APPromoteViewController())
             }
             
@@ -60,3 +60,4 @@ class APBaseTabBarViewController: ESTabBarController {
     }
     
 }
+

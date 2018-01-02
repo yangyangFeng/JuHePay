@@ -15,7 +15,7 @@ class APLoginRequest: APBaseRequest, NSCopying {
     //密码
     @objc dynamic var passwd: String = ""
     //激光推送唯一标识
-    @objc dynamic var registId: String = "4d0729fa2433c8242bb3ce7c"
+    @objc dynamic var registId: String = JPUSHService.registrationID()
     
     required override init() {
         

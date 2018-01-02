@@ -70,7 +70,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
 
     @objc func shareAction(_ btn : UIButton)
     {
-        ap_userIdentityStatus { (status) in
+        ap_userIdentityStatus {
             let shareC : APShareViewController = APShareViewController()
             shareC.shareImage = self.qrImageView.screenshot
             self.navigationController?.pushViewController(shareC)
