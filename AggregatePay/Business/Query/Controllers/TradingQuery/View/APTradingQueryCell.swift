@@ -43,6 +43,12 @@ class APTradingQueryCell: UITableViewCell {
 
     //MARK: ---- lazy loading
     
+    lazy var bottom_line: UIImageView = {
+        let view = UIImageView()
+        view.theme_backgroundColor = [AP_TableViewBackgroundColor]
+        return view
+    }()
+    
     lazy var iconImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "Bill_WeChat")
@@ -105,7 +111,7 @@ extension APTradingQueryCell {
     }
     
     func initCreatViews(){
-        
+        addSubview(bottom_line)
         addSubview(iconImageView)
         addSubview(helpImageView)
         addSubview(amountLabel)
@@ -113,8 +119,15 @@ extension APTradingQueryCell {
         addSubview(typeLabel)
         addSubview(timeLabel)
         
+        bottom_line.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.bottom.equalTo(self)
+            make.height.equalTo(2)
+        }
+        
         iconImageView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(20)
+            make.left.equalTo(bottom_line.snp.left)
             make.centerY.equalToSuperview()
             make.height.equalTo((iconImageView.image?.size.height)!)
             make.width.equalTo((iconImageView.image?.size.width)!)
@@ -123,7 +136,7 @@ extension APTradingQueryCell {
             make.centerY.equalToSuperview()
             make.height.equalTo((helpImageView.image?.size.height)!)
             make.width.equalTo((helpImageView.image?.size.width)!)
-            make.right.equalToSuperview().offset(-20)
+            make.right.equalTo(bottom_line.snp.right)
         }
         amountLabel.snp.makeConstraints { (make) in
             make.height.equalTo(16)

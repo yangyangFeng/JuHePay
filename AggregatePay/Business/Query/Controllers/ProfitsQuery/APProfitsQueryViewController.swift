@@ -8,7 +8,7 @@
 
 import UIKit
 //APReturnBillViewController
-class APProfitsQueryViewController: APBaseQueryViewController {
+class APProfitsQueryViewController: APReturnBillViewController {
 
     override func viewDidLoad() {
         
@@ -16,7 +16,7 @@ class APProfitsQueryViewController: APBaseQueryViewController {
     }
     
     public func queryButAction() {
-        print("APProfitsQueryViewController")
+        loadData()
     }
 
 }

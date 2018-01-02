@@ -11,24 +11,21 @@ import UIKit
 class APOutLoginTool: NSObject {
     
     static func loginOut() {
-        let rootVC = APPDElEGATE.window?.rootViewController
-        self.perform(#selector(APOutLoginTool.pushOutLogin), with: nil, afterDelay: 0.15)
-        rootVC?.childViewControllers.last?.dismiss(animated: false, completion: nil)
-    }
-    
-    @objc static func pushOutLogin() {
+        emptyData()
         let app: AppDelegate = APPDElEGATE
+        let rootVC = app.window?.rootViewController
+        rootVC?.childViewControllers.last?.dismiss(animated: false, completion: nil)
         app.window?.rootViewController = app.createTabBarController()
         let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
         let homeC = tabBarC.selectedViewController
-        emptyData()
         homeC?.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
-        let lastView: UIView = (app.window?.subviews.last!)!
-        lastView.isUserInteractionEnabled = true
     }
-    
+
     static func emptyData() {
+    
+        APUserDefaultCache.AP_remove(key: .userInfo)
         APUserDefaultCache.AP_remove(key: .password)
+        APUserDefaultCache.AP_remove(key: .cookie)
         APUserDefaultCache.AP_remove(key: .userId)
     }
 }

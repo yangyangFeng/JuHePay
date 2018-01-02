@@ -43,8 +43,8 @@ class APDatePickerFormsCell: UIView {
         }
         
         line.snp.makeConstraints { (make) in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
+            make.left.equalTo(0)
+            make.right.equalTo(0)
             make.bottom.equalTo(-2)
             make.height.equalTo(2)
         }
@@ -54,68 +54,38 @@ class APDatePickerFormsCell: UIView {
             make.centerX.equalTo(snp.centerX).offset(0)
             make.width.equalTo(12)
         }
-        var margin : CGFloat = 0.0
-        if K_Width < 375{
-            margin = 10
-        }
-        else {
-            margin = 20
-        }
         
         leftHeadView.snp.makeConstraints { (make) in
-            make.left.equalTo(margin)
-            make.centerY.equalTo(to)
+            make.left.equalTo(0)
+            make.top.equalTo(0)
+            make.bottom.equalTo(0)
             make.right.equalTo(to.snp.left).offset(-8)
         }
         
         rightHeadView.snp.makeConstraints { (make) in
-            make.right.equalTo(-margin)
-            make.centerY.equalTo(to)
+            make.right.equalTo(0)
+            make.top.equalTo(0)
+            make.bottom.equalTo(0)
             make.left.equalTo(to.snp.right).offset(8)
         }
     }
     
-    func datePicker() -> PGDatePicker {
-        let datePicker = PGDatePicker()
-        datePicker.delegate = self
-        //设置线条的颜色
-        datePicker.lineBackgroundColor = UIColor.clear
-        //设置选中行的字体颜色
-        datePicker.textColorOfSelectedRow = UIColor.init(hex6: 0x484848)
-        //设置未选中行的字体颜色
-        datePicker.textColorOfOtherRow = UIColor.init(hex6: 0x999999)
-        
-        //设置取消按钮的字体颜色
-        datePicker.cancelButtonTextColor = UIColor.init(hex6: 0x999999)
-        //设置取消按钮的字
-        datePicker.cancelButtonText = "取消"
-        //设置取消按钮的字体大小
-        datePicker.cancelButtonFont = UIFont.boldSystemFont(ofSize: 14)
-        
-        //设置确定按钮的字体颜色
-        datePicker.confirmButtonTextColor = UIColor.init(hex6: 0xc8a556)
-        //设置确定按钮的字
-        datePicker.confirmButtonText = "确定"
-        //设置确定按钮的字体大小
-        datePicker.confirmButtonFont = UIFont.boldSystemFont(ofSize: 14)
-        datePicker.datePickerMode = .date
-        datePicker.maximumDate = endDate()
-        return datePicker
-    }
+    
+    //MARK: =================== lazy loading
     
     lazy var bg_imageView : UIImageView = {
-        let view = UIImageView.init(image: UIImage.init(named: "ReturnBillHead_BG"))
+        let view = UIImageView()
         return view
     }()
     
     lazy var line : UIImageView = {
-        let view = UIImageView.init(image: UIImage.init(named: "ReturnSearchLine"))
+        let view = UIImageView(image: UIImage.init(named: "ReturnSearchLine"))
         return view
     }()
     
     lazy var leftHeadView : APDateButton = {
         let view = APDateButton()
-        view.button.button.addTarget(self, action: #selector(startAction), for: UIControlEvents.touchUpInside)
+        view.button.button.addTarget(self, action: #selector(didStartAction), for: UIControlEvents.touchUpInside)
         view.title.text = "开始日期"
         view.button.title.text = initStartDateButTitle()
         return view
@@ -123,13 +93,52 @@ class APDatePickerFormsCell: UIView {
     
     lazy var rightHeadView : APDateButton = {
         let view = APDateButton()
-        view.button.button.addTarget(self, action: #selector(endAction), for: UIControlEvents.touchUpInside)
+        view.button.button.addTarget(self, action: #selector(didEndAction), for: UIControlEvents.touchUpInside)
         view.title.text = "截止日期"
         view.button.title.text = initEndDateButTitle()
         return view
     }()
-
 }
+
+//MARK: ===================  APDatePickerFormsCell - Extension(对外提供获取字段接口)
+
+extension APDatePickerFormsCell {
+    
+    public func ap_getStartDate() -> String {
+        return leftHeadView.button.title.text!
+    }
+    
+    public func ap_getEndDate() -> String {
+        return rightHeadView.button.title.text!
+    }
+}
+
+//MARK: ===================  APDatePickerFormsCell - Extension(按钮点击方法方法)
+
+
+extension APDatePickerFormsCell {
+    
+    @objc func didStartAction()
+    {
+        let picker = datePicker()
+        let selectDate = APDateTools.dateToString(string: leftHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        picker.minimumDate = startDate(maxInterval)
+        picker.maximumDate = conversionDate(rightHeadView.button.title.text!)
+        picker.setDate(selectDate, animated: false)
+        picker.show()
+        currentPicker = picker
+    }
+    
+    @objc func didEndAction()
+    {
+        let picker = datePicker()
+        let selectDate = APDateTools.dateToString(string: rightHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        picker.setDate(selectDate, animated: false)
+        picker.show()
+    }
+    
+}
+
 
 //MARK: ===================  APDatePickerFormsCell - Extension(私有工具方法)
 
@@ -184,32 +193,32 @@ extension APDatePickerFormsCell {
         return endDate
     }
     
-}
-
-
-//MARK: ===================  APDatePickerFormsCell - Extension(按钮点击方法方法)
-
-
-extension APDatePickerFormsCell {
-    
-    
-    @objc func startAction()
-    {
-        let picker = datePicker()
-        let selectDate = APDateTools.dateToString(string: leftHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.minimumDate = startDate(maxInterval)
-        picker.maximumDate = conversionDate(rightHeadView.button.title.text!)
-        picker.setDate(selectDate, animated: false)
-        picker.show()
-        currentPicker = picker
-    }
-    
-    @objc func endAction()
-    {
-        let picker = datePicker()
-        let selectDate = APDateTools.dateToString(string: rightHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.setDate(selectDate, animated: false)
-        picker.show()
+    func datePicker() -> PGDatePicker {
+        let datePicker = PGDatePicker()
+        datePicker.delegate = self
+        //设置线条的颜色
+        datePicker.lineBackgroundColor = UIColor.clear
+        //设置选中行的字体颜色
+        datePicker.textColorOfSelectedRow = UIColor.init(hex6: 0x484848)
+        //设置未选中行的字体颜色
+        datePicker.textColorOfOtherRow = UIColor.init(hex6: 0x999999)
+        
+        //设置取消按钮的字体颜色
+        datePicker.cancelButtonTextColor = UIColor.init(hex6: 0x999999)
+        //设置取消按钮的字
+        datePicker.cancelButtonText = "取消"
+        //设置取消按钮的字体大小
+        datePicker.cancelButtonFont = UIFont.boldSystemFont(ofSize: 14)
+        
+        //设置确定按钮的字体颜色
+        datePicker.confirmButtonTextColor = UIColor.init(hex6: 0xc8a556)
+        //设置确定按钮的字
+        datePicker.confirmButtonText = "确定"
+        //设置确定按钮的字体大小
+        datePicker.confirmButtonFont = UIFont.boldSystemFont(ofSize: 14)
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = endDate()
+        return datePicker
     }
     
 }

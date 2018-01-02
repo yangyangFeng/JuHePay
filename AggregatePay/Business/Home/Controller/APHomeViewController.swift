@@ -15,14 +15,7 @@ APKeyboardCompositionViewDelegate {
     //MARK: ---- 声明周期
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        APUserStatusTool.userIdentityStatusTool { (identityStatus) in
-            if identityStatus == .touristsUser {
-                keyboardCompositionView.isLogin = false
-            }
-            else {
-                keyboardCompositionView.isLogin = true
-            }
-        }
+        keyboardCompositionView.isLogin = APUserInfoTool.isLogin
     }
 
     override func viewDidLoad() {
@@ -76,57 +69,16 @@ APKeyboardCompositionViewDelegate {
         }
     }
     
-    //go to auth view controller
-    private func pushAuthVC() {
-        weak var weakSelf = self
-        APAlertManager.show(param: { (param) in
-            param.apMessage = "您还未进行身份证认证，请先进行认证。"
-            param.apConfirmTitle = "去认证"
-            param.apCanceTitle = "取消"
-        }, confirm: { (confirmAction) in
-            
-            let random = arc4random() % UInt32(10) + UInt32(0)
-            if random % 2 == 0 {
-                
-                let authVC = APAuthHomeViewController()
-                weakSelf?.navigationController?.pushViewController(authVC, animated: true)
-            } else {
-                let authNavi = APAuthNaviViewController(rootViewController: APRealNameAuthViewController())
-                authNavi.finishAuths = {
-                    weakSelf?.navigationController?.dismiss(animated: true, completion: nil)
-                }
-                weakSelf?.navigationController?.present(authNavi, animated: true, completion: nil)
-                
-            }
-        }) { (cancelAction) in
-            
-        }
-    }
-    
-    //Go To Login View Controller
-    private func presentLoginVC() {
-        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        self.present(loginVC, animated: true)
-
-    }
-    
     //MARK: ---- delegate
     //MARK: APKeyboardCompositionViewDelegate
     func didKeyboardConfirm(totalAmount: String, model: Any) {
-        APUserStatusTool.userIdentityStatusTool { (identityStatus) in
-            if identityStatus == .touristsUser {
-                presentLoginVC()
-            }
-            else if identityStatus == .weakUser {
-                pushAuthVC()
-            }
-            else if identityStatus == .strongUser {
-                let menuModel: APHomeMenuModel = model as! APHomeMenuModel
-                pushCollectionVC(totalAmount: totalAmount, model: menuModel)
-            }
+        
+        ap_userIdentityStatus { (userAuthStatus) in
+            let menuModel: APHomeMenuModel = model as! APHomeMenuModel
+            pushCollectionVC(totalAmount: totalAmount, model: menuModel)
         }
     }
-    
+
     //MARK: APHomeMenuViewDelegate
     func selectHomeMenuItemSuccess(itemModel: APHomeMenuModel) {
         keyboardCompositionView.menuModel = itemModel
@@ -134,7 +86,6 @@ APKeyboardCompositionViewDelegate {
     
     func selectHomeMenuItemFaile(message: String) {
         view.makeToast(message)
-        presentLoginVC()
     }
     
     //MARK: ---- lazy  loading

@@ -225,26 +225,15 @@ extension APLoginViewController {
         }
         submitCell.loading(isLoading: true, isComplete: nil)
         APSystemHttpTool.login(paramReqeust: loginRequest, success: { (baseResp) in
-            self.getUserInfo(response: baseResp as! APLoginResponse)
+            self.startCacheData(loginResponse: baseResp as! APLoginResponse)
+            self.dismiss(animated: true, completion: nil)
         }) { (errorMsg) in
             self.submitCell.loading(isLoading: false, isComplete: nil)
             self.view.makeToast(errorMsg)
         }
     }
     
-    private func getUserInfo(response: APLoginResponse) {
-        APMineHttpTool.loginGetUserInfo(response.userId!, success: { (baseResp) in
-            self.submitCell.loading(isLoading: false, isComplete: {
-                self.startCacheData(loginResponse: response)
-                self.dismiss(animated: true, completion: nil)
-            })
-        }, faile: {(baseError) in
-            self.submitCell.loading(isLoading: false, isComplete: nil)
-            self.view.makeToast(baseError.message)
-        })
-    }
-   
-    
+
 }
 
 
