@@ -145,7 +145,10 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeOut
         manger = SessionManager(configuration: config)
-        
+        manger?.delegate.sessionDidReceiveChallenge = { session, challenge in
+            return (URLSession.AuthChallengeDisposition.useCredential,
+                    URLCredential(trust:challenge.protectionSpace.serverTrust!))
+        }
         dataRequest = manger?.request(httpUrl,
                                       method:method,
                                       parameters: parameters,

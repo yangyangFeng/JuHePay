@@ -226,6 +226,7 @@ extension APLoginViewController {
         submitCell.loading(isLoading: true, isComplete: nil)
         APSystemHttpTool.login(paramReqeust: loginRequest, success: { (baseResp) in
             self.startCacheData(loginResponse: baseResp as! APLoginResponse)
+            self.submitCell.loading(isLoading: false, isComplete: nil)
             self.dismiss(animated: true, completion: nil)
         }) { (errorMsg) in
             self.submitCell.loading(isLoading: false, isComplete: nil)

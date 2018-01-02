@@ -112,6 +112,8 @@ class APBaseViewController: UIViewController {
     func ap_setNavigationBarHidden(_ hidden : Bool){
         self.vhl_setNavBarHidden(hidden)
     }
+    
+    
 }
 
 extension APBaseViewController {
@@ -135,59 +137,55 @@ extension APBaseViewController {
 }
 
 //MARK: ------ APBaseViewController - Extension(用户身份验证)
-
-
-
 extension APBaseViewController {
     
-    //用户权限状态
+    //用户认证状态
     enum APUserAuthStatus: Int {
         case success    = 1  //审核成
     }
-    
-    typealias APUserAuthStatusBlock = (_ param: APUserAuthStatus) -> Void
-    
-    func ap_userIdentityStatus(authStatusCallBack: APUserAuthStatusBlock) {
-        if !APUserInfoTool.isLogin {
+
+    func ap_userIdentityStatus(_ authtStatus: @escaping (APUserAuthStatus) -> Void) {
+        if !APUserInfoTool.isLogin() {
             ap_presentLoginVC()
         }
         else {
-//            ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
-            authStatusCallBack(APUserAuthStatus.success)
+            view.AP_loadingBegin()
+            let userId = APUserDefaultCache.AP_get(key: .userId) as? String
+            APMineHttpTool.loginGetUserInfo(userId!, success: { (baseResp) in
+                self.view.AP_loadingEnd()
+                if baseResp.isSuccess == "0" {
+                    authtStatus(APUserAuthStatus.success)
+                }
+                else {
+                    self.ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
+                }
+            }, faile: { (baseError) in
+                self.view.AP_loadingEnd()
+                self.view.makeToast(baseError.message)
+            })
         }
     }
     
-    //模态跳转登录页面
+    ///模态跳转登录页面
     private func ap_presentLoginVC() {
-        let loginVC = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        self.present(loginVC, animated: true)
-        
+        let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
+        let loginNav = APBaseNavigationViewController(rootViewController: APLoginViewController())
+        currentVC.present(loginNav, animated: true)
     }
     
-    //导航跳转四审状态
+    ///导航跳转四审状态
     private func ap_pushAuthVC(alertMsg: String) {
-        weak var weakSelf = self
         APAlertManager.show(param: { (param) in
             param.apMessage = alertMsg
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let random = arc4random() % UInt32(10) + UInt32(0)
-            if random % 2 == 0 {
-                let authVC = APAuthHomeViewController()
-                weakSelf?.navigationController?.pushViewController(authVC, animated: true)
-            }
-            else {
-                let authNavi = APAuthNaviViewController(rootViewController: APRealNameAuthViewController())
-                authNavi.finishAuths = {
-                    weakSelf?.navigationController?.dismiss(animated: true, completion: nil)
-                }
-                weakSelf?.navigationController?.present(authNavi, animated: true, completion: nil)
-            }
+            let authVC = APAuthHomeViewController()
+            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
+            currentVC.navigationController?.pushViewController(authVC, animated: true)
         }) { (cancelAction) in
             
         }
     }
-
 }
 
