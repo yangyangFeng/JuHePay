@@ -59,7 +59,7 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         superview?.AP_loadingBegin()
         let param = APCardListRequest()
         param.isSettle = String(index)
-        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         
         APMineHttpTool.getBankList(param, success: { (res) in
            self.superview?.AP_loadingEnd()

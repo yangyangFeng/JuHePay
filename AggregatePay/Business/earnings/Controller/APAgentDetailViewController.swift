@@ -49,7 +49,7 @@ class APAgentDetailViewController: APBaseViewController {
         view.AP_loadingBegin()
         
         let param = APGetUserListRecommendRequest()
-        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         param.type = String(index)
         param.levelId = data?.levelId
 

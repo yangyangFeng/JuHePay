@@ -27,8 +27,7 @@ class APHomeViewController: APBaseViewController {
     
     //MARK: ---- 按钮触发
     @objc func pushBillVC() {
-       
-        ap_userIdentityStatus { (status) in
+        ap_userIdentityStatus {
             let billVC = APSegmentQueryViewController()
             self.navigationController?.pushViewController(billVC, animated: true)
         }
@@ -104,8 +103,8 @@ extension APHomeViewController:
 
     //MARK: APKeyboardCompositionViewDelegate
     func didKeyboardConfirm(totalAmount: String, model: Any) {
-        
-        ap_userIdentityStatus { (status) in
+    
+        ap_userIdentityStatus {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
             self.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
         }

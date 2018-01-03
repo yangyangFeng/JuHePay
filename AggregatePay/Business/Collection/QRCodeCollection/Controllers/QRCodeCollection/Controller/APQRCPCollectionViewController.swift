@@ -7,22 +7,20 @@
 //
 
 import UIKit
+import Alamofire
 
 /**
  * 生成收款二维码视图控制器
  */
 class APQRCPCollectionViewController: APBaseViewController {
     
+    var isCancelRequest: Bool = false
     var qrCodePayResponse: APQRCodePayResponse?
     var getOnlineTransResultRequest = APGetOnlineTransResultRequest()
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        APNetworking.cancelCurrentRequest()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        isCancelRequest = false
         view.theme_backgroundColor = ["#3e3e3e"]
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -33,6 +31,8 @@ class APQRCPCollectionViewController: APBaseViewController {
     
     //MARK: ---- action
     @objc func dismissGoHome() {
+        isCancelRequest = true
+        APNetworking.cancelCurrentRequest()
         self.dismiss(animated: true, completion: nil)
     }
    
@@ -97,13 +97,41 @@ extension APQRCPCollectionViewController {
     }
     
     @objc private func httpGetOnlineTransResult() {
-        APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl, action: APHttpService.getOnlineTransResult, params: getOnlineTransResultRequest, aClass: APGetOnlineTransResultResponse.self, success: { (baseResp) in
-            
-        }, failure: { (baseError) in
+        
+        let parameters = getOnlineTransResultRequest.mj_keyValues() as! Dictionary<String, Any>
+        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
+        var requestHeader: HTTPHeaders?
+        if cookie != "" {
+            requestHeader = ["cookie":cookie]
+        }
+        APNetworking.sharedInstance.request(httpUrl: APHttpUrl.trans_httpUrl,
+                                            action: APHttpService.getOnlineTransResult,
+                                            method: .post,
+                                            headers: requestHeader,
+                                            timeOut: 30,
+                                            parameters: parameters,
+                                            success: { (result) in
+                                               self.httpResponse(result: result)
+        }) { (error) in
+            self.httpError()
+        }
+    }
+    
+    func httpResponse(result: Dictionary<String, Any>) {
+        if !result.keys.contains("isSuccess") {
+            httpError()
+        }
+        else {
+           
+        }
+    }
+    
+    func httpError() {
+        if !self.isCancelRequest {
             self.perform(#selector(self.httpGetOnlineTransResult),
                          with: nil,
                          afterDelay: 3)
-        })
+        }
     }
 }
 

@@ -18,6 +18,8 @@ class APBaseRequest: NSObject {
     //签名
     @objc dynamic var sign: String = "111"
     
+    @objc dynamic var userId: String?
+    
 }
 
 //extension APBaseRequest {

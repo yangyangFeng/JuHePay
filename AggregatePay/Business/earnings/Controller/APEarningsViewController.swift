@@ -34,7 +34,7 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
     {
         view.AP_loadingBegin()
         let param = APGetProfitHomeRequest()
-        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+//        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         param.mobileNo = APUserDefaultCache.AP_get(key: .mobile) as? String
             //APUserInfoTool.info.mobileNo
         

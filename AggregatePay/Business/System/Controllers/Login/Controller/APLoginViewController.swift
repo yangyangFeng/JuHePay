@@ -233,8 +233,6 @@ extension APLoginViewController {
             self.view.makeToast(errorMsg)
         }
     }
-    
-
 }
 
 

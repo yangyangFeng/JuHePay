@@ -9,23 +9,44 @@
 import UIKit
 import ObjectMapper
 
+/// 用户审核状态
+///
+/// - None: 未提交
+/// - Success: 审核成功
+/// - Failure: 审核失败
+/// - Checking: 审核中
+/// - Close: 该项审核关闭
+/// - Other: 审核状态未知
+
+enum APAuthState: Int {
+    case None = 0, Success, Failure, Checking, Close, Other
+    
+    func toDesc() -> String {
+        switch self {
+        case .None:
+            return "未提交"
+        case .Success:
+            return "已通过"
+        case .Failure:
+            return "审核未通过"
+        case .Checking:
+            return "审核中"
+        case .Close:
+            return "审核关闭"
+        default:
+            return "审核状态未知"
+        }
+    }
+}
+
 class APAuth: NSObject {
     
-    class func allAuths() -> [APAuth] {
-        var auths = [APAuth]()
-        if let URL = Bundle.main.url(forResource: "APAuth", withExtension: "plist") {
-            if let authsFromPlist = NSArray(contentsOf: URL) {
-                for dict in authsFromPlist {
-                    let auth = APAuth.init(dictionary: dict as! NSDictionary)
-                    auths.append(auth)
-                }
-            }
-        }
-        return auths
-    }
-    
     var name: String
-    var state: APAuthState
+    var state: APAuthState {
+        didSet {
+            desc = state.toDesc()
+        }
+    }
     var desc: String
     var type: APAuthType
     

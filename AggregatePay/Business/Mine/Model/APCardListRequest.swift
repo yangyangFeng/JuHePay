@@ -9,7 +9,7 @@
 import UIKit
 
 class APCardListRequest: APBaseRequest {
-    @objc dynamic var userId : String?
+//    @objc dynamic var userId : String?
     /// 1：借记卡 2：贷记卡
     @objc dynamic var cardType : String?
     /// 非必须

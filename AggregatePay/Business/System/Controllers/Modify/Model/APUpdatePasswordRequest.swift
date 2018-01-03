@@ -10,7 +10,7 @@ import UIKit
 
 class APUpdatePasswordRequest: APBaseRequest, NSCopying {
     
-    @objc dynamic var userId: String = ""
+//    @objc dynamic var userId: String = ""
     //旧密码
     @objc dynamic var pwdOld: String  = ""
     //新密码
