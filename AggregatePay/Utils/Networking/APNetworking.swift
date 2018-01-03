@@ -25,6 +25,13 @@ class APNetworking: NSObject {
     
     static let sharedInstance = APNetworking()
     
+    let destination: DownloadRequest.DownloadFileDestination = { _, response in
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
+        //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
+        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+    }
+    
     static func get(httpUrl: String = APHttpUrl.trans_httpUrl,
                     action: String,
                     params: APBaseRequest,
@@ -88,6 +95,24 @@ class APNetworking: NSObject {
                                        success: success,
                                        failure: failure)
     }
+    
+    /// 图片下载
+    static func download(httpUrl: String = APHttpUrl.manange_httpUrl,
+                         action: String,
+                         params: APBaseRequest,
+                         success: @escaping (UIImage) -> Void,
+                         failure: APNetWorkingFaileBlock? = nil)
+    {
+        sharedInstance.packagingDownload(httpUrl: httpUrl,
+                                         action: action,
+                                         method: .get,
+                                         params: params,
+                                         success: success,
+                                         failure: failure)
+        
+    }
+    
+    
     /**
      * 取消当前网络请求
      */
@@ -129,7 +154,11 @@ extension APNetworking {
                     }
                     else if baseResp.success == "0" || baseResp.isSuccess == "0" {
                         let baseError = APBaseError()
-                        baseError.status = baseResp.respCode
+                        if baseResp.respCode != nil {
+                            baseError.status = baseResp.respCode
+                        } else {
+                            baseError.status = "0"
+                        }
                         baseError.message = baseResp.respMsg
                         if !self.checkoutNeedLogin(status: baseError.status!) {
                             faile?(baseError)
@@ -191,6 +220,37 @@ extension APNetworking {
             baseError.message = error.localizedDescription
             faile?(baseError)
         }
+    }
+    
+    func packagingDownload(httpUrl: String = APHttpUrl.manange_httpUrl,
+                           action: String,
+                           method: HTTPMethod = .get,
+                           params: APBaseRequest,
+                           success:@escaping (UIImage) -> Void,
+                           failure: APNetWorkingFaileBlock? = nil)
+    {
+        params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        let parameters = params.mj_keyValues() as! Dictionary<String, Any>
+        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
+        var requestHeader: HTTPHeaders?
+        if cookie != "" {
+            requestHeader = ["cookie":cookie]
+        }
+        
+        downloadImage(httpUrl: httpUrl,
+                      action: action,
+                      method: .get,
+                      headers: requestHeader,
+                      params: parameters,
+                      success: { (image) in
+                        success(image)
+                    }) { (error) in
+                        let baseError = APBaseError()
+                        baseError.status = error.localizedDescription
+                        baseError.message = error.localizedDescription
+                        failure?(baseError)
+                    }
+        
     }
     
     
@@ -337,6 +397,39 @@ extension APNetworking {
         })
     }
     
+    func downloadImage(httpUrl: String = APHttpUrl.manange_httpUrl,
+                       action: String = APHttpService.downloadImg,
+                       method: HTTPMethod = .get,
+                       headers: HTTPHeaders? = nil,
+                       timeout: TimeInterval = 90,
+                       params: Dictionary<String, Any>,
+                       success: @escaping (UIImage)->Void,
+                       failure: @escaping (Error)->Void)
+    {
+        print("===============star===============")
+        let to = httpUrl + action
+        print("method:"+method.rawValue)
+        print("url:"+to)
+        print("param:"+String(describing: params))
+        
+        let config:URLSessionConfiguration = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = timeout
+        manger = SessionManager(configuration: config)
+       
+        manger?.download(to,
+                         method: method,
+                         parameters: params,
+                         encoding: JSONEncoding.default,
+                         headers: headers,
+                         to: destination).response(completionHandler: { (response) in
+                            if let path = response.destinationURL?.path {
+//                                self.cacheCookie(response: response)
+                                success(UIImage.init(contentsOfFile: path)!)
+                            } else {
+                                failure(response.error!)
+                            }
+                         })
+    }
     
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response

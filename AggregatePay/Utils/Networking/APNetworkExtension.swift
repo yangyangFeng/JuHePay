@@ -28,7 +28,6 @@ class APHttpService {
     
 
     /// 身份认证
-    
     static let userAuthInfo: String       = "/user/getUserAuthInfo" // 用户认证信息
     //
     static let realNameAuth: String       = "/user/userRealNameAuth" //实名认证(进件前置)
@@ -38,6 +37,9 @@ class APHttpService {
     static let settleCardAuth: String     = "/user/userAccountAuth" //结算卡认证(进件前置)
     static let settleCardAuthInfo: String     = "/user/getUserAccountAuthInfo" //结算卡认证回显(进件前置)
     
+    /// 根据银行名称查询银行列表
+    static let searchBank: String = "/user/queryCnapsListByBankName"
+    
     //银联快捷收款
     static let queryQuickPayCardList: String   = "/pay/queryQuickPayCardList" //获取绑定成功的银联快捷卡列表
     
@@ -46,6 +48,9 @@ class APHttpService {
     static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取微信支付宝交易结果
     static let aliPay: String   = "/pay/aliPay" //支付宝生成二维码
     static let wechatPay: String   = "/pay/wechatPay" //微信生成二维码
+    
+    // 图片下载
+    static let downloadImg: String = "/user/downloadImg"
 
 }
 

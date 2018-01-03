@@ -10,9 +10,11 @@ import UIKit
 
 class APPhotoPreviewManager: NSObject {
     
+    var isPreview: Bool = true
     let photoPreview = APPhotoPreview()
     public func show(fromController viewController: APBaseViewController, image: UIImage) {
         photoPreview.photo = image
+        photoPreview.isPreView = isPreview
         UIApplication.shared.keyWindow?.addSubview(photoPreview)
         photoPreview.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -24,6 +26,16 @@ typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
 
 class APPhotoPreview: UIView {
 
+    public var isPreView: Bool = true {
+        didSet {
+            rephotographButton.isHidden = isPreView
+            if isPreView {
+                ensureButton.setTitle("确定", for: .normal)
+            }else {
+                ensureButton.setTitle("重\n拍", for: .normal)
+            }
+        }
+    }
     public var photoPreviewHandle: APPhotoPreviewHandle?
     public var photo: UIImage? {
         didSet{

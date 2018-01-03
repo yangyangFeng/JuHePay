@@ -9,7 +9,14 @@
 import UIKit
 
 class APBankSearchTool: NSObject {
-//    static func queryCnapsListByBankName(params: APSearchBankRequest, success: ) {
-//        
-//    }
+    static func queryCnapsListByBankName(params: APSearchBankRequest,
+                                         success: @escaping (APSearchBankResponse) -> Void,
+                                         failure: @escaping (APBaseError)-> Void)
+    {
+        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.searchBank, params: params, aClass: APSearchBankResponse.self, success: { (response) in
+            success(response as! APSearchBankResponse)
+        }) { (error) in
+            failure(error)
+        }
+    }
 }

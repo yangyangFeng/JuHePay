@@ -28,7 +28,7 @@ class APSettleCardAuthRequest: APBaseRequest, NSCopying {
     @objc dynamic var bankNo: String = ""
     
     /// 结算卡正面照片
-    @objc dynamic var card: UIImage?
+    @objc dynamic var idCardFront: UIImage?
     
     required override init() {
         
@@ -43,12 +43,13 @@ class APSettleCardAuthRequest: APBaseRequest, NSCopying {
         model.userName = self.userName
         model.cardNo = self.cardNo
         model.bankName = self.bankName
-        model.card = self.card
+        model.idCardFront = self.idCardFront
+        model.bankNo = self.bankNo
         
         return model
     }
     
    override static func mj_ignoredPropertyNames() -> [Any]! {
-        return ["card"]
+        return ["idCardFront"]
     }
 }
