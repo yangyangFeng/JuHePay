@@ -44,11 +44,17 @@ class APProfitsDetailViewController: APBillDetailViewController {
     }
     
     lazy var titles : NSArray = {
-        var arr : NSArray = NSArray(array: ["交易时间", "交易金额", "交易流水号", "交易类型"])
+        var arr : NSArray = NSArray(array: ["交易时间",
+                                            "交易金额",
+                                            "交易流水号",
+                                            "交易类型"])
         return arr
     }()
     lazy var keys : NSArray = {
-        var arr : NSArray = NSArray(array: ["traceDate", "amount", "traceNo", "traceType"])
+        var arr : NSArray = NSArray(array: ["traceDate",
+                                            "amount",
+                                            "traceNo",
+                                            "traceType"])
         return arr
     }()
     /*

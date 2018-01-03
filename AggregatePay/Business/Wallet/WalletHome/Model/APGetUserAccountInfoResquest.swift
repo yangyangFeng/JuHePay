@@ -9,7 +9,5 @@
 import UIKit
 
 class APGetUserAccountInfoResquest: APBaseRequest {
-    
-    //用户ID
-//    @objc dynamic var userId: String?
+
 }

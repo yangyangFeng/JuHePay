@@ -28,7 +28,6 @@ class APTradingQueryViewController: APBaseQueryViewController {
         httpGetAccount()
     }
     
-    
     override func ap_tableView(tableView: UITableView, section: Int) -> Int {
         return datas.count
     }
@@ -41,7 +40,10 @@ class APTradingQueryViewController: APBaseQueryViewController {
     }
     
     override func ap_tableView(tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let detail = datas[indexPath.row]
+        let tradingDetailVC = APTradingDetailViewController()
+        tradingDetailVC.transId = detail.transId
+        self.navigationController?.pushViewController(tradingDetailVC)
     }
 }
 
@@ -83,8 +85,8 @@ extension APTradingQueryViewController {
     
     //处理网络请求响应报文
     func httpDisposeDataResponse(response: APGetMyAccountResponse) {
-        summaryDataView.leftBottomView.title.text = response.amount
-        summaryDataView.rightBottomView.title.text = response.count
+        summaryDataView.leftBottomView.title.text = response.count
+        summaryDataView.rightBottomView.title.text = response.amount
         /**
          * 数据上拉加载时
          * 如果当前是最后一页则控制上拉加载控件为没有更多数据可用状态
