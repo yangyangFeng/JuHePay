@@ -10,7 +10,7 @@
 		040020031FE8C34C0071F839 /* APBillSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020001FE8C34C0071F839 /* APBillSelectView.swift */; };
 		040020041FE8C34C0071F839 /* APBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020011FE8C34C0071F839 /* APBillViewController.swift */; };
 		040020051FE8C34C0071F839 /* APBillDateWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020021FE8C34C0071F839 /* APBillDateWayView.swift */; };
-		0400200A1FE931FE0071F839 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		0400200A1FE931FE0071F839 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		0400200D1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200C1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift */; };
 		0400200F1FEA39090071F839 /* APBillSettleWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200E1FEA39090071F839 /* APBillSettleWayView.swift */; };
 		040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
@@ -25,7 +25,6 @@
 		1A030D891FE76C8D007146C1 /* APPayElementTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D841FE76C8D007146C1 /* APPayElementTextCell.swift */; };
 		1A030D8A1FE76C8D007146C1 /* APPayElementToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D851FE76C8D007146C1 /* APPayElementToolBarView.swift */; };
 		1A030D961FE787B7007146C1 /* APCollectionCompositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A030D951FE787B7007146C1 /* APCollectionCompositionView.swift */; };
-		1A05FEC61FF5DAAF0093CC0E /* APQRCPHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */; };
 		1A05FEC91FF5E7A90093CC0E /* APLoginOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FEC81FF5E7A80093CC0E /* APLoginOutRequest.swift */; };
 		1A05FECC1FF5EE240093CC0E /* APGetMyAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FECB1FF5EE240093CC0E /* APGetMyAccountRequest.swift */; };
 		1A05FECE1FF5EE390093CC0E /* APGetMyAccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A05FECD1FF5EE390093CC0E /* APGetMyAccountResponse.swift */; };
@@ -306,7 +305,6 @@
 		1A030D841FE76C8D007146C1 /* APPayElementTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPayElementTextCell.swift; sourceTree = "<group>"; };
 		1A030D851FE76C8D007146C1 /* APPayElementToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPayElementToolBarView.swift; sourceTree = "<group>"; };
 		1A030D951FE787B7007146C1 /* APCollectionCompositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCollectionCompositionView.swift; sourceTree = "<group>"; };
-		1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APQRCPHttpTool.swift; sourceTree = "<group>"; };
 		1A05FEC81FF5E7A80093CC0E /* APLoginOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoginOutRequest.swift; sourceTree = "<group>"; };
 		1A05FECB1FF5EE240093CC0E /* APGetMyAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetMyAccountRequest.swift; sourceTree = "<group>"; };
 		1A05FECD1FF5EE390093CC0E /* APGetMyAccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetMyAccountResponse.swift; sourceTree = "<group>"; };
@@ -1148,7 +1146,6 @@
 			children = (
 				1A67F7F11FF4B54800715751 /* Controller */,
 				1A67F7F31FF4B54800715751 /* View */,
-				1A05FEC51FF5DAAF0093CC0E /* APQRCPHttpTool.swift */,
 			);
 			path = QRCodeCollection;
 			sourceTree = "<group>";
@@ -2747,7 +2744,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
@@ -2998,7 +2995,7 @@
 				1A1FDA631FE8BF6200E6F808 /* APSmsCodeButton.swift in Sources */,
 				1AB0FE7F1FF225D000A868CD /* APGetUserAccountInfoResponse.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
-				0400200A1FE931FE0071F839 /* (null) in Sources */,
+				0400200A1FE931FE0071F839 /* BuildFile in Sources */,
 				1AA7B4AD1FF347FE00CF7A58 /* APResetPasswordRequest.swift in Sources */,
 				1A05FEC91FF5E7A90093CC0E /* APLoginOutRequest.swift in Sources */,
 				2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */,
@@ -3067,7 +3064,6 @@
 				1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */,
 				235D8C891FF25DFC00BFA77C /* APPhotoPreview.swift in Sources */,
 				1A67F8141FF4B54800715751 /* APQRCodePayRequest.swift in Sources */,
-				1A05FEC61FF5DAAF0093CC0E /* APQRCPHttpTool.swift in Sources */,
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
 				1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */,
 				1AA7B4AC1FF347FE00CF7A58 /* APCheckMessageRequest.swift in Sources */,

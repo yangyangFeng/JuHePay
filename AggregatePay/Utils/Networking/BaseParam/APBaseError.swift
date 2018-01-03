@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APBaseError: NSObject {
+class APBaseError: NSObject, Error {
 
     @objc dynamic var status: String?
     @objc dynamic var message: String?

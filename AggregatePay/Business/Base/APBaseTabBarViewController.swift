@@ -44,10 +44,10 @@ class APBaseTabBarViewController: ESTabBarController {
             let baseNav = viewController as! APBaseNavigationViewController
             let baseVC = baseNav.childViewControllers.first as! APBaseViewController
             if index == 0 || index == 3 {
-                baseVC.ap_userIdentityStatus({ (status) in
+                baseVC.ap_userIdentityStatus {
                     weakSelf.isValidationUserIdentityStatus = true
                     weakSelf.selectedIndex = index
-                })
+                }
             }
             
             if index == 1 {

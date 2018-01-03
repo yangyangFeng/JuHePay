@@ -16,7 +16,7 @@ class APOutLoginTool: NSObject {
         let rootVC = app.window?.rootViewController
         rootVC?.childViewControllers.last?.dismiss(animated: false, completion: nil)
         app.window?.rootViewController = app.createTabBarController()
-        let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+        let tabBarC = app.window?.rootViewController as! APBaseTabBarViewController
         let homeC = tabBarC.selectedViewController
         homeC?.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
     }
