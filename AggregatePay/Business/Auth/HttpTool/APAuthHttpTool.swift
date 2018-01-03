@@ -13,10 +13,12 @@ class APAuthHttpTool: NSObject {
     // ------------------------------------------------- 获取用户认证信息
     
     /// 获取用户的实名、账户、安全认证信息
-    static public func getUserAuthInfo(params: APBaseRequest,
+    static public func getUserAuthInfo(httpUrl: String = APHttpUrl.manange_httpUrl,
+                                       params: APBaseRequest,
                                        success: @escaping (APUserAuthInfo) -> Void,
                                        failure: @escaping (APBaseError) -> Void)
     {
+<<<<<<< HEAD
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.userAuthInfo, params: params, aClass: APUserAuthInfo.self, success: { (response) in
             
             let authInfo = response as! APUserAuthInfo
@@ -24,6 +26,26 @@ class APAuthHttpTool: NSObject {
             APAuthHelper.sharedInstance.settleCardAuthState = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
             APAuthHelper.sharedInstance.securityAuthState = APAuthState(rawValue: authInfo.safeAuthStatus)!
             
+=======
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
+                         action: APHttpService.userAuthInfo,
+                         params: params,
+                         aClass: APUserAuthInfo.self,
+                         success: { (response) in
+            let auths = APAuthHelper.sharedInstance.auths
+            let authInfo = response as! APUserAuthInfo
+            for auth in  auths{
+                switch auth.type {
+                case .realName:
+                    auth.state = APAuthState(rawValue: authInfo.realNameAuthStatus)!
+                case .settleCard:
+                    auth.state = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
+                case .Security:
+                    auth.state = APAuthState(rawValue: authInfo.safeAuthStatus)!
+                }
+            }
+            APAuthHelper.sharedInstance.auths = auths
+>>>>>>> 5ea586a5d19c90b5d25ca937eb4502b36714d6f0
             success(authInfo)
             
         }) { (error) in

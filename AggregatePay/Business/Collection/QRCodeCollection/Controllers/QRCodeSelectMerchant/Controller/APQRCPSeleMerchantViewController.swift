@@ -70,6 +70,7 @@ extension APQRCPSeleMerchantViewController {
     }
     
     private func startHttpMerchantCategory() {
+        merchantCategoryRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
         merchantCategoryRequest.type = self.payType!
         APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
                          action: APHttpService.merchantCategory,

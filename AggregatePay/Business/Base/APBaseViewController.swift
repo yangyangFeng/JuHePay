@@ -139,45 +139,92 @@ extension APBaseViewController {
 //MARK: ------ APBaseViewController - Extension(用户身份验证)
 extension APBaseViewController {
     
-    //用户认证状态
-    enum APUserAuthStatus: Int {
-        case success    = 1  //审核成
-    }
-
-    func ap_userIdentityStatus(_ authtStatus: @escaping (APUserAuthStatus) -> Void) {
+    func ap_userIdentityStatus(closure: @escaping () -> Void) {
         if !APUserInfoTool.isLogin() {
-            ap_presentLoginVC()
+            APOutLoginTool.loginOut()
         }
         else {
-            view.AP_loadingBegin()
-            let userId = APUserDefaultCache.AP_get(key: .userId) as? String
-            APMineHttpTool.loginGetUserInfo(userId!, success: { (baseResp) in
-                self.view.AP_loadingEnd()
-                if baseResp.isSuccess == "0" {
-                    authtStatus(APUserAuthStatus.success)
+            let lastView: UIView = (APPDElEGATE.window?.subviews.last!)!
+            lastView.AP_loadingBegin()
+            let baseRequest = APBaseRequest()
+            baseRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+            APAuthHttpTool.getUserAuthInfo(httpUrl: APHttpUrl.trans_httpUrl, params: baseRequest, success: { (info) in
+                lastView.AP_loadingEnd()
+                if self.ap_userAuthStatus(info: info) {
+                    closure()
                 }
-                else {
-                    self.ap_pushAuthVC(alertMsg: "您还未进行身份证认证，请先进行认证。")
-                }
-            }, faile: { (baseError) in
-                self.view.AP_loadingEnd()
-                self.view.makeToast(baseError.message)
+            }, failure: {(baseError) in
+                lastView.AP_loadingEnd()
+                lastView.makeToast(baseError.message)
             })
         }
     }
     
-    ///模态跳转登录页面
-    private func ap_presentLoginVC() {
-        let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
-        let loginNav = APBaseNavigationViewController(rootViewController: APLoginViewController())
-        currentVC.present(loginNav, animated: true)
+    private func ap_userAuthStatus(info: APUserAuthInfo) -> Bool {
+        let auths = APAuthHelper.sharedInstance.auths
+        let authRealName: APAuth = auths[0]
+        let authSettleCard: APAuth = auths[1]
+        let authSecurity: APAuth = auths[2]
+        
+        if authRealName.state == APAuthState.Success &&
+            authSettleCard.state == APAuthState.Success &&
+            authSecurity.state == APAuthState.Success  {
+            return true
+        }
+        else if authRealName.state == APAuthState.None ||
+            authSettleCard.state == APAuthState.None ||
+            authSecurity.state == APAuthState.None  {
+            ap_pushAuthVC_None()
+            return false
+        }
+        else if authRealName.state == APAuthState.Checking ||
+            authSettleCard.state == APAuthState.Checking ||
+            authSecurity.state == APAuthState.Checking {
+            ap_pushAuthVC_Checking()
+            return false
+        }
+        else if authRealName.state == APAuthState.Failure ||
+            authSettleCard.state == APAuthState.Failure ||
+            authSecurity.state == APAuthState.Failure {
+            ap_pushAuthVC_Failure()
+            return false
+        }
+        else {
+            return false
+        }
     }
     
-    ///导航跳转四审状态
-    private func ap_pushAuthVC(alertMsg: String) {
+    //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
+    private func ap_pushAuthVC_None() {
         APAlertManager.show(param: { (param) in
-            param.apMessage = alertMsg
+            param.apMessage = "您还未进行身份证认证，请先进行认证"
             param.apConfirmTitle = "去认证"
+            param.apCanceTitle = "取消"
+        }, confirm: { (confirmAction) in
+            let authVC = APAuthHomeViewController()
+            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
+            currentVC.navigationController?.pushViewController(authVC, animated: true)
+        }) { (cancelAction) in
+            
+        }
+    }
+    
+    //MARK: 导航跳转四审状态 (您的资质在审核中，请耐心等待)
+    private func ap_pushAuthVC_Checking() {
+        
+        APAlertManager.show(param: { (param) in
+            param.apMessage = "您的资质在审核中，请耐心等待"
+            param.apConfirmTitle = "确认"
+        }, confirm: {(confirmAction) in
+            
+        })
+    }
+    
+    //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
+    private func ap_pushAuthVC_Failure() {
+        APAlertManager.show(param: { (param) in
+            param.apMessage = "您的身份证认证未通过，请重新填写"
+            param.apConfirmTitle = "去填写"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
             let authVC = APAuthHomeViewController()
