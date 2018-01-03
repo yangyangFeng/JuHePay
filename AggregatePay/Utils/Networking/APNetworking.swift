@@ -25,13 +25,6 @@ class APNetworking: NSObject {
     
     static let sharedInstance = APNetworking()
     
-    let destination: DownloadRequest.DownloadFileDestination = { _, response in
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
-        //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
-        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-    }
-    
     static func get(httpUrl: String = APHttpUrl.trans_httpUrl,
                     action: String,
                     params: APBaseRequest,
@@ -405,7 +398,7 @@ extension APNetworking {
                        action: String = APHttpService.downloadImg,
                        method: HTTPMethod = .get,
                        headers: HTTPHeaders? = nil,
-                       timeout: TimeInterval = 90,
+                       timeout: TimeInterval = 30,
                        params: Dictionary<String, Any>,
                        success: @escaping (UIImage)->Void,
                        failure: @escaping (Error)->Void)
@@ -420,19 +413,39 @@ extension APNetworking {
         config.timeoutIntervalForRequest = timeout
         manger = SessionManager(configuration: config)
        
-        manger?.download(to,
-                         method: method,
-                         parameters: params,
-                         encoding: JSONEncoding.default,
-                         headers: headers,
-                         to: destination).response(completionHandler: { (response) in
-                            if let path = response.destinationURL?.path {
-//                                self.cacheCookie(response: response)
-                                success(UIImage.init(contentsOfFile: path)!)
-                            } else {
-                                failure(response.error!)
-                            }
-                         })
+//        manger?.download(to, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers, to: { (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
+//
+//            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//            let fileURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
+//            //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
+//            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+//
+//        }).response(completionHandler: { (response) in
+//            if let path = response.destinationURL?.path {
+//                //                                self.cacheCookie(response: response)
+//                success(UIImage.init(contentsOfFile: path)!)
+//            } else {
+//                failure(response.error!)
+//            }
+//        })
+        
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+        manger?.download(
+            httpUrl,
+            method: method,
+            parameters: params,
+            encoding: JSONEncoding.default,
+            headers: headers,
+            to: destination).downloadProgress(closure: { (progress) in
+                //progress closure
+            }).response(completionHandler: { (DefaultDownloadResponse) in
+                if let path = DefaultDownloadResponse.destinationURL?.path {
+                    //                                self.cacheCookie(response: response)
+                    success(UIImage.init(contentsOfFile: path)!)
+                } else {
+                    failure(DefaultDownloadResponse.error!)
+                }
+            })
     }
     
     func cacheCookie(response: DataResponse<Any>) {
