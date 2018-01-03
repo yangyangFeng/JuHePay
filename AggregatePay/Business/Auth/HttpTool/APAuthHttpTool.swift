@@ -18,6 +18,15 @@ class APAuthHttpTool: NSObject {
                                        success: @escaping (APUserAuthInfo) -> Void,
                                        failure: @escaping (APBaseError) -> Void)
     {
+<<<<<<< HEAD
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.userAuthInfo, params: params, aClass: APUserAuthInfo.self, success: { (response) in
+            
+            let authInfo = response as! APUserAuthInfo
+            APAuthHelper.sharedInstance.realNameAuthState = APAuthState(rawValue: authInfo.realNameAuthStatus)!
+            APAuthHelper.sharedInstance.settleCardAuthState = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
+            APAuthHelper.sharedInstance.securityAuthState = APAuthState(rawValue: authInfo.safeAuthStatus)!
+            
+=======
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
                          action: APHttpService.userAuthInfo,
                          params: params,
@@ -36,7 +45,9 @@ class APAuthHttpTool: NSObject {
                 }
             }
             APAuthHelper.sharedInstance.auths = auths
+>>>>>>> 5ea586a5d19c90b5d25ca937eb4502b36714d6f0
             success(authInfo)
+            
         }) { (error) in
             failure(error)
         }
@@ -86,10 +97,10 @@ class APAuthHttpTool: NSObject {
         let request = params.copy() as! APSettleCardAuthRequest
         request.identity = aesEncryptString(request.identity, AP_AES_Key)
         request.cardNo = aesEncryptString(request.cardNo, AP_AES_Key)
-        let card = APFormData.init(image: request.card!, name: "card")
+        let idCardFront = APFormData.init(image: request.idCardFront!, name: "idCardFront")
         
         auth(params: request,
-             formDatas: [card],
+             formDatas: [idCardFront],
              action: APHttpService.settleCardAuth,
              success: success,
              failure: failure)
@@ -117,7 +128,11 @@ class APAuthHttpTool: NSObject {
                              success: @escaping (APBaseResponse) -> Void,
                              failure: @escaping (APBaseError) -> Void)
     {
-        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.securityAuth, params: params, aClass: APBaseResponse.self, success: { (response) in
+        let request = params.copy() as! APSecurityAuthRequest
+        request.idCard = aesEncryptString(request.idCard, AP_AES_Key)
+        request.cardNo = aesEncryptString(request.cardNo, AP_AES_Key)
+
+        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.securityAuth, params: request, aClass: APBaseResponse.self, success: { (response) in
             success(response)
         }) { (error) in
             failure(error)

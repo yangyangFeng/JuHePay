@@ -10,12 +10,9 @@ import UIKit
 
 class APBank: NSObject {
 //  银行名字
-    var bankName: String? = ""
+  @objc dynamic var bankName: String = ""
 //    联行号
-    var bankCoupletNum: String? = ""
+  @objc dynamic var cnapsNo: String = ""
     
-//    override init() {
-//        super.init()
-//    }
     
 }

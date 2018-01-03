@@ -21,6 +21,7 @@ class APGridViewModel: NSObject {
     var image: UIImage?
     var fileName: String?
     var gridState: GridState = .normal
+    var editState: Bool = true
     var tapedHandle: APGridViewTapedHandle?
     var setImageComplete: ((UIImage) -> Void)?
 }

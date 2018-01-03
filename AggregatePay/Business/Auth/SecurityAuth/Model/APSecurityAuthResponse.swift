@@ -9,11 +9,11 @@
 import UIKit
 
 class APSecurityAuthResponse: APBaseResponse {
-    @objc dynamic var authDate: String?
-    @objc dynamic var authDesc: String?
+    @objc dynamic var authDate: String = ""
+    @objc dynamic var authDesc: String = ""
     @objc dynamic var authStatus: Int = 0
-    @objc dynamic var bankMobile: String?
-    @objc dynamic var cardNo: String?
-    @objc dynamic var idCard: String?
-    @objc dynamic var realName: String?
+    @objc dynamic var bankMobile: String = ""
+    @objc dynamic var cardNo: String = ""
+    @objc dynamic var idCard: String = ""
+    @objc dynamic var realName: String = ""
 }

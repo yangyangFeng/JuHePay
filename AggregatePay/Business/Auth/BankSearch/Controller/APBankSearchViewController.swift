@@ -13,9 +13,8 @@ typealias APSelectBankComplete = (_ bank: APBank) -> Void
 class APBankSearchViewController: APBaseViewController {
 
     var banks: [APBank] = []
-    var selectBankComplete: APSelectBankComplete?
-    var tableView = UITableView.init(frame: CGRect.init(), style: .plain)
     
+    var selectBankComplete: APSelectBankComplete?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +23,57 @@ class APBankSearchViewController: APBaseViewController {
         
         self.ap_setStatusBarStyle(.lightContent)
         setUpNavi()
-        requestData()
         layoutViews()
     }
     
     func requestData() {
-        for _ in 0...100 {
-            let bank = APBank()
-            bank.bankName = "中国农业银行马甸东路支行"
-            bank.bankCoupletNum = "12345"
-            banks.append(bank)
+        APBankSearchTool.queryCnapsListByBankName(params: request, success: { (response) in
+            self.banks = response.coCnapsRespList!
+            if self.banks.count < 1 {
+                self.view.makeToast("请输入详细的关键字")
+            } else {
+                self.tableView.reloadData()
+            }
+        }) { (error) in
+            self.view.makeToast(error.message)
         }
-        tableView.reloadData()
     }
+    
+    lazy var request: APSearchBankRequest = {
+        let request = APSearchBankRequest()
+        return request
+    }()
+    
+    lazy private var headView: UIView = {
+        let headView = UIView()
+        headView.backgroundColor = UIColor.clear
+        return headView
+    }()
+    
+    lazy private var label: UILabel = {
+        let label = UILabel()
+        label.text = "请选择银行"
+        label.backgroundColor = headView.backgroundColor
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.init(hex6: 0x484848)
+        return label
+    }()
+    
+    lazy private var tableView: UITableView = {
+        
+        let tableView = UITableView.init(frame: CGRect.init(), style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.tableHeaderView = headView
+        tableView.tableHeaderView?.height = 30
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = UIColor.init(hex6: 0xeeeeee)
+        tableView.separatorInset = UIEdgeInsets.init()
+        tableView.register(APSingleLabelCell.self, forCellReuseIdentifier: NSStringFromClass(APSingleLabelCell.self))
+        tableView.rowHeight = 40
+        return tableView
+    }()
 }
 
 extension APBankSearchViewController: APSearchBarViewDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -51,26 +88,7 @@ extension APBankSearchViewController: APSearchBarViewDelegate, UITableViewDelega
     private func layoutViews() {
         let searchBar = APSearchBarView()
         searchBar.delegate = self
-        searchBar.textField.placeholder = "中国农业银行 北京 朝阳区"
-        
-        let headView = UIView()
-        headView.backgroundColor = UIColor.clear
-        let label = UILabel()
-        label.text = "请选择银行"
-        label.backgroundColor = headView.backgroundColor
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.init(hex6: 0x484848)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView()
-        tableView.tableHeaderView = headView
-        tableView.tableHeaderView?.height = 30
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = UIColor.init(hex6: 0xeeeeee)
-        tableView.separatorInset = UIEdgeInsets.init()
-        tableView.register(APSingleLabelCell.self, forCellReuseIdentifier: NSStringFromClass(APSingleLabelCell.self))
-        tableView.rowHeight = 40
+        searchBar.textField.placeholder = "北京海淀"
         
         view.addSubview(searchBar)
         headView.addSubview(label)
@@ -94,8 +112,15 @@ extension APBankSearchViewController: APSearchBarViewDelegate, UITableViewDelega
 
 extension APBankSearchViewController {
     
-    func searchButtonDidTap() {
-       requestData()
+    func searchButtonDidTap(keyword: String) {
+        
+        if keyword.count == 0 {
+            view.makeToast("请输入关键字")
+            return
+        }
+        request.bankName = keyword
+        banks.removeAll()
+        requestData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

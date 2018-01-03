@@ -116,11 +116,21 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     override func loadAuthInfo() {
         APAuthHttpTool.realNameAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
             
+            if .Failure == APAuthState(rawValue: response.authStatus) && response.authDesc.count > 0 {
+                self?.showAuthFailureBanner(failureReason: response.authDesc)
+            }
+            
             self?.realNameCell.textField.text = response.realName
+            self?.authParam.realName = response.realName
+            
             self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+            self?.authParam.idCard = aesDecryptString(response.idCard, AP_AES_Key)
+            
             self?.idCardFront.fileName = response.idCardFront
             self?.idCardResver.fileName = response.idCardBack
             self?.holdIdCard.fileName = response.handIdCard
+            
+            self?.collectionView.reloadData()
             
         }, failure: { [weak self] (error) in
             self?.view.makeToast(error.message)
@@ -208,6 +218,10 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
+        
+        realNameCell.enable = canEdit
+        idCardNoCell.enable = canEdit
+        
         formCellView.addSubview(realNameCell)
         formCellView.addSubview(idCardNoCell)
         realNameCell.snp.makeConstraints { (make) in
@@ -226,14 +240,17 @@ extension APRealNameAuthViewController {
         
         idCardFront.bottomMessage = "身份证正面"
         idCardFront.placeHolderImageName = "auth_idCardFront_normal"
+        idCardFront.editState = canEdit
         gridViewModels.append(idCardFront)
         
         idCardResver.bottomMessage = "身份证反面"
         idCardResver.placeHolderImageName = "auth_idCardResver_normal"
+        idCardResver.editState = canEdit
         gridViewModels.append(idCardResver)
         
         holdIdCard.bottomMessage = "手持身份证半身照片"
         holdIdCard.placeHolderImageName = "auth_holdIdCard_normal"
+        holdIdCard.editState = canEdit
         gridViewModels.append(holdIdCard)
         
         example.bottomMessage = "示例"
