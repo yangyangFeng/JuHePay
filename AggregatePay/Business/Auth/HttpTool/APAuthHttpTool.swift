@@ -18,34 +18,17 @@ class APAuthHttpTool: NSObject {
                                        success: @escaping (APUserAuthInfo) -> Void,
                                        failure: @escaping (APBaseError) -> Void)
     {
-<<<<<<< HEAD
-        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.userAuthInfo, params: params, aClass: APUserAuthInfo.self, success: { (response) in
-            
-            let authInfo = response as! APUserAuthInfo
-            APAuthHelper.sharedInstance.realNameAuthState = APAuthState(rawValue: authInfo.realNameAuthStatus)!
-            APAuthHelper.sharedInstance.settleCardAuthState = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
-            APAuthHelper.sharedInstance.securityAuthState = APAuthState(rawValue: authInfo.safeAuthStatus)!
-            
-=======
+        
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
                          action: APHttpService.userAuthInfo,
                          params: params,
                          aClass: APUserAuthInfo.self,
                          success: { (response) in
-            let auths = APAuthHelper.sharedInstance.auths
+            
             let authInfo = response as! APUserAuthInfo
-            for auth in  auths{
-                switch auth.type {
-                case .realName:
-                    auth.state = APAuthState(rawValue: authInfo.realNameAuthStatus)!
-                case .settleCard:
-                    auth.state = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
-                case .Security:
-                    auth.state = APAuthState(rawValue: authInfo.safeAuthStatus)!
-                }
-            }
-            APAuthHelper.sharedInstance.auths = auths
->>>>>>> 5ea586a5d19c90b5d25ca937eb4502b36714d6f0
+            APAuthHelper.sharedInstance.realNameAuthState = APAuthState(rawValue: authInfo.realNameAuthStatus)!
+            APAuthHelper.sharedInstance.settleCardAuthState = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
+            APAuthHelper.sharedInstance.securityAuthState = APAuthState(rawValue: authInfo.safeAuthStatus)!
             success(authInfo)
             
         }) { (error) in
