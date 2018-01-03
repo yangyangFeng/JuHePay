@@ -14,8 +14,11 @@ import SnapKit
 
 
 class APMineViewController: APMineBaseViewController, APMineStaticListViewDelegate{
-    func tableViewDidSelectIndex(_ title: String, controller: String) {
+    func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
         print(controller)
+        guard APAccessControler.checkAccessControl(level) else {
+            return
+        }
         // -1.动态获取命名空间
         let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
         let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)

@@ -23,6 +23,8 @@
 		<string>Mine_static_身份认证</string>
 	</dict>
 	<dict>
+		<key>level</key>
+		<integer>0</integer>
 		<key>title</key>
 		<string>常见问题</string>
 		<key>controller</key>
@@ -31,6 +33,8 @@
 		<string>Mine_static_常见问题</string>
 	</dict>
 	<dict>
+		<key>level</key>
+		<integer>0</integer>
 		<key>title</key>
 		<string>关于我们</string>
 		<key>controller</key>
@@ -39,6 +43,8 @@
 		<string>Mine_static_关于我们</string>
 	</dict>
 	<dict>
+		<key>level</key>
+		<integer>1</integer>
 		<key>title</key>
 		<string>设置</string>
 		<key>icon</key>
@@ -47,6 +53,8 @@
 		<string>APSettingViewController</string>
 	</dict>
 	<dict>
+		<key>level</key>
+		<integer>0</integer>
 		<key>title</key>
 		<string>客服</string>
 		<key>controller</key>
