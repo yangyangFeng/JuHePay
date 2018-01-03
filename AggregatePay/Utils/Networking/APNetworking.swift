@@ -71,37 +71,43 @@ class APNetworking: NSObject {
     ///   - success: 成功回调
     ///   - failure: 失败回调
     
-    static func upload(httpUrl: String = APHttpUrl.manange_httpUrl,
-                     action: String,
-                     params: APBaseRequest,
-                     formDatas: [APFormData],
-                     aClass: Swift.AnyClass,
-                     success: @escaping APNetWorkingSuccessBlock,
-                     failure: APNetWorkingFaileBlock? = nil)
+    static func upload(
+        httpUrl: String = APHttpUrl.manange_httpUrl,
+        action: String,
+        params: APBaseRequest,
+        formDatas: [APFormData],
+        aClass: Swift.AnyClass,
+        success: @escaping APNetWorkingSuccessBlock,
+        failure: APNetWorkingFaileBlock? = nil)
     {
-        sharedInstance.packagingUpload(httpUrl: httpUrl,
-                                       action: action,
-                                       method: .post,
-                                       params: params,
-                                       formDatas: formDatas,
-                                       aClass: aClass,
-                                       success: success,
-                                       failure: failure)
+        sharedInstance.packagingUpload(
+            httpUrl: httpUrl,
+            action: action,
+            method: .post,
+            params: params,
+            formDatas: formDatas,
+            aClass: aClass,
+            success: success,
+            failure: failure)
     }
     
     /// 图片下载
-    static func download(httpUrl: String = APHttpUrl.manange_httpUrl,
-                         action: String,
-                         params: APBaseRequest,
-                         success: @escaping (UIImage) -> Void,
-                         failure: APNetWorkingFaileBlock? = nil)
+    static func download(
+        httpUrl: String = APHttpUrl.manange_httpUrl,
+        action: String,
+        fileName: String,
+        params: APBaseRequest,
+        success: @escaping (UIImage) -> Void,
+        failure: APNetWorkingFaileBlock? = nil)
     {
-        sharedInstance.packagingDownload(httpUrl: httpUrl,
-                                         action: action,
-                                         method: .get,
-                                         params: params,
-                                         success: success,
-                                         failure: failure)
+        sharedInstance.packagingDownload(
+            httpUrl: httpUrl,
+            action: action,
+            fileName: fileName,
+            method: .get,
+            params: params,
+            success: success,
+            failure: failure)
         
     }
     
@@ -182,11 +188,12 @@ extension APNetworking {
             requestHeader = ["cookie":cookie]
         }
         
-        uploadFormDatas(action: action,
-                        headers: requestHeader,
-                        parameters: parameters,
-                        formDatas: formDatas,
-               success: { (result) in
+        uploadFormDatas(
+            action: action,
+            headers: requestHeader,
+            parameters: parameters,
+            formDatas: formDatas,
+            success: { (result) in
                 let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
                 if baseResp.success == nil && baseResp.isSuccess == nil {
                     faile?(self.error(result: result))
@@ -214,6 +221,7 @@ extension APNetworking {
     
     func packagingDownload(httpUrl: String = APHttpUrl.manange_httpUrl,
                            action: String,
+                           fileName: String,
                            method: HTTPMethod = .get,
                            params: APBaseRequest,
                            success:@escaping (UIImage) -> Void,
@@ -229,6 +237,7 @@ extension APNetworking {
         
         downloadImage(httpUrl: httpUrl,
                       action: action,
+                      fileName: fileName,
                       method: .get,
                       headers: requestHeader,
                       params: parameters,
@@ -394,14 +403,16 @@ extension APNetworking {
         })
     }
     
-    func downloadImage(httpUrl: String = APHttpUrl.manange_httpUrl,
-                       action: String = APHttpService.downloadImg,
-                       method: HTTPMethod = .get,
-                       headers: HTTPHeaders? = nil,
-                       timeout: TimeInterval = 30,
-                       params: Dictionary<String, Any>,
-                       success: @escaping (UIImage)->Void,
-                       failure: @escaping (Error)->Void)
+    func downloadImage(
+        httpUrl: String = APHttpUrl.manange_httpUrl,
+        action: String = APHttpService.downloadImg,
+        fileName: String,
+        method: HTTPMethod = .get,
+        headers: HTTPHeaders? = nil,
+        timeout: TimeInterval = 30,
+        params: Dictionary<String, Any>,
+        success: @escaping (UIImage)->Void,
+        failure: @escaping (Error)->Void)
     {
         print("===============star===============")
         let to = httpUrl + action
@@ -412,40 +423,31 @@ extension APNetworking {
         let config:URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = timeout
         manger = SessionManager(configuration: config)
-       
-//        manger?.download(to, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers, to: { (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
-//
-//            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//            let fileURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
-//            //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
-//            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-//
-//        }).response(completionHandler: { (response) in
-//            if let path = response.destinationURL?.path {
-//                //                                self.cacheCookie(response: response)
-//                success(UIImage.init(contentsOfFile: path)!)
-//            } else {
-//                failure(response.error!)
-//            }
-//        })
         
-        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         manger?.download(
-            httpUrl,
+            to,
             method: method,
             parameters: params,
-            encoding: JSONEncoding.default,
+            encoding: URLEncoding.default,
             headers: headers,
-            to: destination).downloadProgress(closure: { (progress) in
-                //progress closure
-            }).response(completionHandler: { (DefaultDownloadResponse) in
-                if let path = DefaultDownloadResponse.destinationURL?.path {
-                    //                                self.cacheCookie(response: response)
-                    success(UIImage.init(contentsOfFile: path)!)
-                } else {
-                    failure(DefaultDownloadResponse.error!)
-                }
-            })
+            to:{
+                (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
+                
+                let subPath = "auth/" + fileName + ".png"
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let fileURL = documentsURL.appendingPathComponent(subPath)
+                //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
+                debugPrint(fileURL)
+                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        
+        }).response(completionHandler: {(DefaultDownloadResponse) in
+            
+            if let path = DefaultDownloadResponse.destinationURL?.path {
+                success(UIImage.init(contentsOfFile: path)!)
+            } else {
+                failure(DefaultDownloadResponse.error!)
+            }
+        })
     }
     
     func cacheCookie(response: DataResponse<Any>) {

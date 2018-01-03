@@ -1,4 +1,4 @@
-//
+ //
 //  APPhotoGridView.swift
 //  AggregatePay
 //
@@ -51,7 +51,12 @@ class APPhotoGridViewCell: UICollectionViewCell {
         let request = APDownloadImageRequest()
         request.fileId = withFilename
         
-        APNetworking.download(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.downloadImg, params: request, success: { (image) in
+        APNetworking.download(
+            httpUrl: APHttpUrl.manange_httpUrl,
+            action: APHttpService.downloadImg,
+            fileName: request.fileId,
+            params: request,
+            success: { (image) in
 
             self.setImage(image: image)
 
