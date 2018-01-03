@@ -14,10 +14,13 @@ import UIKit
  */
 class APQRCodePayResponse: APBaseResponse {
     
-    @objc dynamic var cerateDate: String?
     @objc dynamic var codeUrl: String?
+    @objc dynamic var cerateDate: String?
+    @objc dynamic var innerOrderNo: String?
     @objc dynamic var merchantName: String?
     @objc dynamic var merchantNo: String?
+    @objc dynamic var orderNo: String?
+    @objc dynamic var terminalNo: String?
     @objc dynamic var transAmount: String?
     @objc dynamic var userId: String?
     @objc dynamic var validTime: String?

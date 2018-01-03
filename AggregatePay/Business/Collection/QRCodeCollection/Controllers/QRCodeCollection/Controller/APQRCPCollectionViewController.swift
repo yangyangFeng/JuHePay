@@ -16,7 +16,7 @@ class APQRCPCollectionViewController: APBaseViewController {
     
     var isCancelRequest: Bool = false
     var qrCodePayResponse: APQRCodePayResponse?
-    var getOnlineTransResultRequest = APGetOnlineTransResultRequest()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,12 @@ class APQRCPCollectionViewController: APBaseViewController {
     @objc func dismissGoHome() {
         isCancelRequest = true
         APNetworking.cancelCurrentRequest()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+            let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
+            let lastVC = selectVC.childViewControllers.last as! APBaseViewController
+            lastVC.navigationController?.popToRootViewController(animated: true)
+        }
     }
    
     //MARK: ---- lazy loading
@@ -91,46 +96,72 @@ extension APQRCPCollectionViewController {
 extension APQRCPCollectionViewController {
     
     private func startHttpCollectionResult() {
-        self.perform(#selector(self.httpGetOnlineTransResult),
-                     with: nil,
-                     afterDelay: 3)
-    }
-    
-    @objc private func httpGetOnlineTransResult() {
-        
-        let parameters = getOnlineTransResultRequest.mj_keyValues() as! Dictionary<String, Any>
-        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
-        var requestHeader: HTTPHeaders?
-        if cookie != "" {
-            requestHeader = ["cookie":cookie]
-        }
-        APNetworking.sharedInstance.request(httpUrl: APHttpUrl.trans_httpUrl,
-                                            action: APHttpService.getOnlineTransResult,
-                                            method: .post,
-                                            headers: requestHeader,
-                                            timeOut: 30,
-                                            parameters: parameters,
-                                            success: { (result) in
-                                               self.httpResponse(result: result)
-        }) { (error) in
-            self.httpError()
-        }
-    }
-    
-    func httpResponse(result: Dictionary<String, Any>) {
-        if !result.keys.contains("isSuccess") {
-            httpError()
-        }
-        else {
-           
-        }
-    }
-    
-    func httpError() {
         if !self.isCancelRequest {
             self.perform(#selector(self.httpGetOnlineTransResult),
                          with: nil,
                          afterDelay: 3)
+        }
+    }
+    
+    @objc private func httpGetOnlineTransResult() {
+        
+        let getOnlineTransResultRequest = APGetOnlineTransResultRequest()
+        getOnlineTransResultRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
+        getOnlineTransResultRequest.innerOrderNo = qrCodePayResponse?.innerOrderNo
+        getOnlineTransResultRequest.terminalNo = qrCodePayResponse?.terminalNo
+        getOnlineTransResultRequest.orderNo = qrCodePayResponse?.orderNo
+        getOnlineTransResultRequest.merchantNo = qrCodePayResponse?.merchantNo
+        /**
+         
+         TRANS_UNKNOWN("交易未知", "0"),
+         TRANS_PROCESS("交易处理中", "1"),
+         TRANS_SUCESS("交易成功", "2"),
+         TRANS_FIAL("交易失败", "3"),
+         TRANS_CLOSED("交易关闭", "4"),
+         TRANS_CANEL("交易撤销", "5"),
+         TRANS_REFUND("交易退款", "6");
+         */
+        APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
+                         action: APHttpService.getOnlineTransResult,
+                         params: getOnlineTransResultRequest,
+                         aClass: APGetOnlineTransResultResponse.self,
+                         success:
+            { (baseResp) in
+            let result = baseResp as! APGetOnlineTransResultResponse
+            if result.status == "2" {
+                self.onSuccess(result: result)
+            }
+            else if result.status == "3" {
+                self.onFaiure(result: result)
+            }
+            else {
+                self.startHttpCollectionResult()
+            }
+        }, failure: {(baseError) in
+            self.startHttpCollectionResult()
+        })
+    }
+   
+    func onSuccess(result: APGetOnlineTransResultResponse) {
+        self.dismiss(animated: false) {
+            let successVC = APCollectionSuccessViewController()
+            successVC.resultDic = ["orderNo":result.orderNo!,
+                                   "transDateTime":result.transDateTime!,
+                                   "transAmount":result.transAmount!,
+                                   "payServiceCode":result.payServiceCode!]
+            let navigation = APBaseNavigationViewController(rootViewController: successVC)
+            let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
+            lastVC?.present(navigation, animated: true, completion: nil);
+        }
+    }
+    
+    func onFaiure(result: APGetOnlineTransResultResponse) {
+        self.dismiss(animated: false) {
+            let failureVC = APCollectionFailureViewController()
+            failureVC.resultDic = ["respDesc":result.respDesc!]
+            let navigation = APBaseNavigationViewController(rootViewController: failureVC)
+            let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
+            lastVC?.present(navigation, animated: true, completion: nil);
         }
     }
 }

@@ -63,7 +63,7 @@ class APCollectionPlaceCell: UITableViewCell {
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.snp.left).offset(20)
             make.centerY.equalTo(self.snp.centerY)
-            make.width.equalTo(100)
+            make.width.equalTo(130)
         }
         
         arronImageView.snp.makeConstraints { (make) -> Void in

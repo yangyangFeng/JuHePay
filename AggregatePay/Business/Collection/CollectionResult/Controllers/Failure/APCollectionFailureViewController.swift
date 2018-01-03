@@ -17,15 +17,15 @@ class APCollectionFailureViewController: APCollectionResultViewController {
     //MARK: ---- 子类重载
     
     override func numberRow(tableView: UITableView) -> Int {
-        return 0
+        return titles.count
     }
     
     override func cellAttribute(collectionResultCell: APCollectionResultCell,
                                 indexPath: IndexPath) {
         let title: String = titles.object(at: indexPath.row) as! String
-        let data: String = datas.object(at: indexPath.row) as! String
+        let key: String = keys.object(at: indexPath.row) as! String
         collectionResultCell.titleLabel.text = title
-        collectionResultCell.contentLabel.text = data
+        collectionResultCell.contentLabel.text = resultDic?[key]
     }
     
     var titles : NSArray = {
@@ -33,8 +33,8 @@ class APCollectionFailureViewController: APCollectionResultViewController {
         return arr
     }()
     
-    var datas : NSArray = {
-        var arr : NSArray = NSArray(array: ["余额不足"])
+    var keys : NSArray = {
+        var arr : NSArray = NSArray(array: ["respDesc"])
         return arr
     }()
 
