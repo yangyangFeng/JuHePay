@@ -24,6 +24,9 @@ class APTextFormsCell: APBaseFormsCell, UITextFieldDelegate {
 
     override init() {
         super.init()
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil);
+        
         bottomLine.theme_backgroundColor = ["#f4f4f4"]
         addSubview(textField)
         textField.snp.makeConstraints { (maker) in

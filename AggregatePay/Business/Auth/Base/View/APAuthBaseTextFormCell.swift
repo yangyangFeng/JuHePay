@@ -11,6 +11,11 @@ import UIKit
 class APAuthBaseTextFormCell: APTextFormsCell {
 
     let titleLabel = UILabel()
+    var enable: Bool = true {
+        didSet{
+            textField.isUserInteractionEnabled = enable
+        }
+    }
     
     override init() {
         super.init()

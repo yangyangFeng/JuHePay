@@ -20,7 +20,7 @@ class APSingleLabelCell: UITableViewCell {
         label.adjustsFontSizeToFitWidth = true
         contentView.addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
+            make.centerY.right.equalToSuperview()
             make.left.equalToSuperview().offset(20)
         }
     }

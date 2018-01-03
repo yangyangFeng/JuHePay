@@ -15,7 +15,7 @@
 		<key>name</key>
 		<string>实名认证</string>
 		<key>state</key>
-		<integer>0</integer>
+		<integer>5</integer>
 		<key>type</key>
 		<string>realName</string>
 		<key>themeColor</key>
@@ -41,7 +41,7 @@
 		<key>name</key>
 		<string>结算卡认证</string>
 		<key>state</key>
-		<integer>0</integer>
+		<integer>5</integer>
 		<key>type</key>
 		<string>settleCard</string>
 		<key>themeColor</key>
@@ -67,7 +67,7 @@
 		<key>name</key>
 		<string>安全认证</string>
 		<key>state</key>
-		<integer>0</integer>
+		<integer>5</integer>
 		<key>type</key>
 		<string>Security</string>
 		<key>themeColor</key>

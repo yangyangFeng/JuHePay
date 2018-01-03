@@ -10,7 +10,7 @@ import UIKit
 
 public protocol APSearchBarViewDelegate: NSObjectProtocol {
     
-    func searchButtonDidTap()
+    func searchButtonDidTap(keyword: String)
 }
 
 class APSearchBarView: UIView, UITextFieldDelegate {
@@ -76,7 +76,8 @@ class APSearchBarView: UIView, UITextFieldDelegate {
     }
     
     @objc func search() {
-        delegate?.searchButtonDidTap()
+        endEditing(true)
+        delegate?.searchButtonDidTap(keyword: textField.text!)
     }
     @objc func textDidChange() {
         

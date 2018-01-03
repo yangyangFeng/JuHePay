@@ -42,7 +42,7 @@ enum APAuthState: Int {
 class APAuth: NSObject {
     
     var name: String
-    var state: APAuthState {
+    var state: APAuthState = .None {
         didSet {
             desc = state.toDesc()
         }

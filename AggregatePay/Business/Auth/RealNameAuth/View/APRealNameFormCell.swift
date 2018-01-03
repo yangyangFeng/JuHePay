@@ -9,7 +9,7 @@
 import UIKit
 
 class APRealNameFormCell: APAuthBaseTextFormCell {
-
+    
     override init() {
         super.init()
         

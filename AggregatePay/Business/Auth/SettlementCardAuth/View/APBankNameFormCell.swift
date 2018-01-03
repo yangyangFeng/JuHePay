@@ -15,13 +15,20 @@ public protocol APBankNameFormCellDelegate: NSObjectProtocol {
 class APBankNameFormCell: APAuthBaseTextFormCell {
     
     public weak var delegate: APBankNameFormCellDelegate?
-    let button = UIButton()
+    let label = UILabel()
+    
     
     var text: String? {
         didSet {
-            button.setTitleColor(UIColor.init(hex6: 0x484848), for: .normal)
-            button.setTitle(text, for: .normal)
+            label.textColor = UIColor.init(hex6: 0x484848)
+            label.text = text
             textBlock?(identify, text!)
+        }
+    }
+    
+    override var enable: Bool {
+        didSet {
+            label.isUserInteractionEnabled = enable
         }
     }
     
@@ -30,16 +37,19 @@ class APBankNameFormCell: APAuthBaseTextFormCell {
         titleLabel.text = "开户行"
         textField.isEnabled = false
 
-        button.setTitle("请选择开户银行", for: .normal)
-        button.setTitleColor(UIColor.init(hex6: 0x999999), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
-//        button.titleLabel?.textAlignment = .left
-        button.addTarget(self, action: #selector(taped), for: UIControlEvents.touchUpInside)
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -170, 0, 0)
-        addSubview(button)
-        button.snp.makeConstraints { (make) in
-            make.edges.equalTo(textField)
+        label.text = "请选择开户银行"
+        label.textColor = UIColor.init(hex6: 0x999999)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(taped))
+        label.addGestureRecognizer(tap)
+        addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(100)
+            make.right.top.bottom.equalToSuperview()
         }
     }
     
