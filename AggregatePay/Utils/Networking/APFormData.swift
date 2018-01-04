@@ -22,3 +22,4 @@ class APFormData: NSObject {
         self.data = UIImageJPEGRepresentation(image, 0.1)!
     }
 }
+

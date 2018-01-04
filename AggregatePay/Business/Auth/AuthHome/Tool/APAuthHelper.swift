@@ -20,11 +20,38 @@ class APAuthHelper: NSObject {
             return checkoutFirstAuth()
         }
     }
-    public var realNameAuthState: APAuthState = .None
-    public var settleCardAuthState: APAuthState = .None
-    public var securityAuthState: APAuthState = .None
     
-    static let sharedInstance = APAuthHelper()
+    public var realNameAuthState: APAuthState = .Other {
+        didSet {
+            for auth in auths {
+                if auth.type == .realName {
+                    auth.state = realNameAuthState
+                }
+            }
+        }
+    }
+    
+    public var settleCardAuthState: APAuthState = .Other{
+        didSet {
+            for auth in auths {
+                if auth.type == .settleCard {
+                    auth.state = settleCardAuthState
+                }
+            }
+        }
+    }
+    
+    public var securityAuthState: APAuthState = .Other{
+        didSet {
+            for auth in auths {
+                if auth.type == .Security {
+                    auth.state = securityAuthState
+                }
+            }
+        }
+    }
+    
+    static var sharedInstance = APAuthHelper()
     private override init(){
         super.init()
         auths = allAuths()
@@ -52,5 +79,11 @@ class APAuthHelper: NSObject {
             }
         }
         return isFirst
+    }
+    
+    static func clearAuthInfo() {
+        sharedInstance.realNameAuthState = .Other
+        sharedInstance.securityAuthState = .Other
+        sharedInstance.settleCardAuthState = .Other
     }
 }

@@ -26,7 +26,10 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         title = "安全认证"
         layoutViews()
         userInputCallBacks()
-        registerObserve()
+        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     func userInputCallBacks() {
@@ -81,10 +84,21 @@ class APSecurityAuthViewController: APAuthBaseViewController {
     override func loadAuthInfo() {
         APAuthHttpTool.securityAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
             
+            if .Failure == APAuthState(rawValue: response.authStatus) && response.authDesc.count > 0 {
+                self?.showAuthFailureBanner(failureReason: response.authDesc)
+            }
+            
             self?.nameFormCell.textField.text = response.realName
+            self?.authParam.userName = response.realName
+            
             self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
-            self?.creditCardFormCell.textField.text = response.cardNo
+            self?.authParam.idCard = aesDecryptString(response.idCard, AP_AES_Key)
+            
+            self?.creditCardFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)
+            self?.authParam.cardNo = aesDecryptString(response.cardNo, AP_AES_Key)
+            
             self?.phoneNumFormCell.textField.text = response.bankMobile
+            self?.authParam.mobileNo = response.bankMobile
             
         }) { [weak self] (error) in
             self?.view.makeToast(error.message)
@@ -121,6 +135,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
                 self?.controllerTransition()
             })
         }) {[weak self] (error) in
+             self?.authSubmitCell.loading(isLoading: false)
             self?.view.makeToast(error.message)
         }
     }
@@ -144,6 +159,13 @@ extension APSecurityAuthViewController {
         idCardFormCell.inputRegx = .idCardNo
         creditCardFormCell.inputRegx = .bankCard
         phoneNumFormCell.inputRegx = .mobile
+        
+        // 永远都不能修改
+        nameFormCell.enable = false
+        idCardFormCell.enable = false
+        
+        creditCardFormCell.enable = canEdit
+        phoneNumFormCell.enable = canEdit
         
         formCellView.addSubview(nameFormCell)
         formCellView.addSubview(idCardFormCell)

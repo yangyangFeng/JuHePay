@@ -137,15 +137,24 @@ extension APBaseViewController {
 }
 
 //MARK: ------ APBaseViewController - Extension(用户身份验证)
+
+
+
 extension APBaseViewController {
     
     func ap_userIdentityStatus(closure: @escaping () -> Void) {
-        closure()
-        return 
+//        closure()
+//        return
         if !APUserInfoTool.isLogin() {
             APOutLoginTool.loginOut()
         }
         else {
+            let isNotAuthInfo = true
+            if isNotAuthInfo {
+                //13621223933
+                closure()
+                return
+            }
             let lastView: UIView = (APPDElEGATE.window?.subviews.last!)!
             lastView.AP_loadingBegin()
             let baseRequest = APBaseRequest()
@@ -173,6 +182,12 @@ extension APBaseViewController {
             authSecurity.state == APAuthState.Success  {
             return true
         }
+        else if authRealName.state == APAuthState.None &&
+            authSettleCard.state == APAuthState.None &&
+            authSecurity.state == APAuthState.None  {
+            ap_pushAuthVC_frist_None()
+            return false
+        }
         else if authRealName.state == APAuthState.None ||
             authSettleCard.state == APAuthState.None ||
             authSecurity.state == APAuthState.None  {
@@ -193,6 +208,21 @@ extension APBaseViewController {
         }
         else {
             return false
+        }
+    }
+    
+    //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证----一次都未提交过)
+    private func ap_pushAuthVC_frist_None() {
+        APAlertManager.show(param: { (param) in
+            param.apMessage = "您还未进行身份证认证，请先进行认证"
+            param.apConfirmTitle = "去认证"
+            param.apCanceTitle = "取消"
+        }, confirm: { (confirmAction) in
+            let authVC = APRealNameAuthViewController()
+            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
+            currentVC.navigationController?.pushViewController(authVC, animated: true)
+        }) { (cancelAction) in
+            
         }
     }
     

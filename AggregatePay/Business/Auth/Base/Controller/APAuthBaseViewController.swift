@@ -13,6 +13,8 @@ class APAuthBaseViewController: APBaseViewController {
     
     var gridViewModels = [APGridViewModel]()
     var currentGridModel: APGridViewModel?
+    var auth: APAuth?
+    var canEdit: Bool = false
     
     let authSubmitCell: APAuthSubmitCell = APAuthSubmitCell()
     let cellHeight = 146
@@ -21,10 +23,18 @@ class APAuthBaseViewController: APBaseViewController {
         super.viewDidLoad()
         
         uiConfing()
+        
         registerCallBacks()
+        
         //如果是第一次提交实名认证，不需要回显
-        if !APAuthHelper.sharedInstance.isFirstAuth {
+        if !(APAuthHelper.sharedInstance.realNameAuthState == .None) {
             loadAuthInfo()
+        }
+        
+        if let authInfo = auth {
+            canEdit = (authInfo.state == .Failure) || (authInfo.state == .None)
+        } else {
+            canEdit = true
         }
   }
     
@@ -39,6 +49,12 @@ class APAuthBaseViewController: APBaseViewController {
     func commit() {}
     
     func loadAuthInfo() {}
+    
+    func showAuthFailureBanner(failureReason: String) {
+        inputTipLabel.text = failureReason
+        inputTipView.backgroundColor = UIColor.init(hex6: 0xffe3e3)
+        inputTipLabel.textColor = UIColor.init(hex6: 0xe4544c)
+    }
     
     lazy private var headMessageView: UIView = {
         
@@ -115,7 +131,7 @@ class APAuthBaseViewController: APBaseViewController {
     lazy var inputTipLabel: UILabel = {
         
         let label = UILabel()
-        label.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        label.backgroundColor = UIColor.clear
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = UIColor.init(hex6: 0xd09326)
         label.text = "请注意核对您的姓名与身份证号码，若不正确请重新识别或手动输入。"
@@ -227,6 +243,7 @@ extension APAuthBaseViewController {
     
     private func layoutCommitButton() {
         
+        authSubmitCell.isEnabled = false
         commitButtonSuperView.addSubview(authSubmitCell)
         view.addSubview(commitButtonSuperView)
         
@@ -301,19 +318,19 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
         let gridModel = gridViewModels[indexPath.row]
         currentGridModel = gridModel
         
-        switch gridModel.gridState {
-        case .canPreview:
-            let previewManager = APPhotoPreviewManager()
-            previewManager.show(fromController: self, image: gridModel.image!)
-            previewManager.photoPreview.photoPreviewHandle = {(isUse) in
-                if !isUse {
-                    gridModel.tapedHandle?()
-                }
+        if gridModel.editState {
+            switch gridModel.gridState {
+            case .canPreview:
+                toPreview(gridModel: gridModel)
+            case .normal:
+                gridModel.tapedHandle?()
+            default:
+                break
             }
-        case .normal:
-            gridModel.tapedHandle?()
-        default:
-            break
+        } else {
+            if .canPreview == gridModel.gridState {
+                toPreview(gridModel: gridModel)
+            }
         }
     }
     
@@ -331,5 +348,14 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
         return CGSize.init(width: width, height: height)
     }
     
-
+    func toPreview(gridModel: APGridViewModel) {
+        let previewManager = APPhotoPreviewManager()
+        previewManager.isOnlyPreView = !gridModel.editState
+        previewManager.show(fromController: self, image: gridModel.image!)
+        previewManager.photoPreview.photoPreviewHandle = {(isUse) in
+            if !isUse {
+                gridModel.tapedHandle?()
+            }
+        }
+    }
 }

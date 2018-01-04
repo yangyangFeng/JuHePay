@@ -25,10 +25,8 @@ class APHttpService {
     static let queryAccountRecord: String = "/query/queryAccountRecord"  //钱包明细
     static let sendMessage: String        = "/manager/sendMessage" //获取验证码 (注册、修改密码）
     static let checkMessage: String       = "/manager/checkMessage" //校验短信验证码接口(进件前置)
-    
 
     /// 身份认证
-    
     static let userAuthInfo: String       = "/user/getUserAuthInfo" // 用户认证信息
     //
     static let realNameAuth: String       = "/user/userRealNameAuth" //实名认证(进件前置)
@@ -38,14 +36,31 @@ class APHttpService {
     static let settleCardAuth: String     = "/user/userAccountAuth" //结算卡认证(进件前置)
     static let settleCardAuthInfo: String     = "/user/getUserAccountAuthInfo" //结算卡认证回显(进件前置)
     
-    //银联快捷收款
-    static let queryQuickPayCardList: String   = "/pay/queryQuickPayCardList" //获取绑定成功的银联快捷卡列表
+    /// 根据银行名称查询银行列表
+    static let searchBank: String = "/user/queryCnapsListByBankName"
     
-    static let getMyAccount: String       = "/query/getMyAccount" //获取账单交易查询列表
+    //银联快捷收款
+    static let queryChannelFees: String        = "/pay/queryChannelFees" //查询银联快捷通道费率
+    static let queryQuickPayCardList: String   = "/pay/queryQuickPayCardList" //获取绑定成功的银联快捷卡列表
+    static let queryQuickPayResult: String     = "/pay/queryQuickPayResult" //查询银联快捷交易结果
+    static let quickPay: String                = "/pay/quickPay" //银联快捷支付
+    static let registQuickPay: String          = "/pay/registQuickPay" //银联快捷开通验证码（未开通时候）
+    static let registerMsg: String             = "/pay/registerMsg" //银联快捷开通验证码（开通过时候）
+    static let transMsg: String             = "/pay/transMsg" //银联快捷开通验证码（交易）
+    
+    
+    
+    
+    
+    static let getMyAccount: String        = "/query/getMyAccount" //获取账单交易查询列表
+    static let getMyAccountDetails: String = "/query/getMyAccountDetails" //交易详情
     static let merchantCategory: String   = "/pay/merchantCategory" //获取商户大类
     static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取微信支付宝交易结果
     static let aliPay: String   = "/pay/aliPay" //支付宝生成二维码
     static let wechatPay: String   = "/pay/wechatPay" //微信生成二维码
+    
+    // 图片下载
+    static let downloadImg: String = "/downLoad/downloadImg"
 
 }
 

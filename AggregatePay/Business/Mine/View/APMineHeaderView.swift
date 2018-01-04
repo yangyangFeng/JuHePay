@@ -47,7 +47,7 @@ class APMineHeaderView: UIView {
         label.textColor = UIColor(hex6: 0x4c370b)
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .left
-        label.text = ""
+        label.text = "请点击登录"
         return label
     }()
     
@@ -66,7 +66,7 @@ class APMineHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 10)
         view.textColor = UIColor(hex6 : 0x4c370b)
         view.textAlignment = .left
-        view.text = "手机号: "
+        view.text = "--"
         return view
     }()
     
@@ -76,7 +76,7 @@ class APMineHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 10)
         view.textColor = UIColor(hex6 : 0x4c370b)
         view.textAlignment = .left
-        view.text = "推荐人: "
+        view.text = ""
         return view
     }()
     

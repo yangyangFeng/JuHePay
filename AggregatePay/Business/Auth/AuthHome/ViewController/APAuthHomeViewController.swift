@@ -18,13 +18,24 @@ class APAuthHomeViewController: APBaseViewController {
         super.viewDidLoad()
         
         title = "身份认证"
-        
-        loadAuthInfo()
-        
+    
         ap_setStatusBarStyle(.lightContent)
         
         layoutViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+          loadAuthInfo()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        APAuthHelper.clearAuthInfo()
+    }
+    
     
     // MARK: -- Data
     func loadAuthInfo() {
@@ -82,25 +93,33 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: false)
         
-        if APAuthHelper.sharedInstance.isFirstAuth {
+        switch APAuthHelper.sharedInstance.realNameAuthState {
             
+        case .None, .Failure:
             let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
             self.navigationController?.present(authNavi, animated: true, completion: nil)
             authNavi.finishAuths = {
                 authNavi.dismiss(animated: true, completion: nil)
             }
-        } else {
-            let auth = auths[indexPath.row]
             
+        case .Other:
+            view.makeToast("暂时无法获取审核信息")
+            
+        default:
+            let auth = auths[indexPath.row]
+            var baseAuthVC = APAuthBaseViewController()
             
             switch auth.type {
             case .realName:
-                navigationController?.pushViewController(APRealNameAuthViewController(), animated: true)
+                baseAuthVC = APRealNameAuthViewController()
             case .settleCard:
-                navigationController?.pushViewController(APSettlementCardAuthViewController(), animated: true)
+                baseAuthVC = APSettlementCardAuthViewController()
             case .Security:
-                navigationController?.pushViewController(APSecurityAuthViewController(), animated: true)
+                baseAuthVC = APSecurityAuthViewController()
             }
+            
+            baseAuthVC.auth = auth
+            navigationController?.pushViewController(baseAuthVC, animated: true)
         }
     }
 }

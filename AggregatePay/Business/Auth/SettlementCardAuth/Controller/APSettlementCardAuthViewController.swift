@@ -30,9 +30,9 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         layoutViews()
         
         userInputCallBacks()
-        
-        registerObserve()
-        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     func userInputCallBacks() {
@@ -53,13 +53,13 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         }
         bankNameFormCell.textBlock = {(key, value) in
             weakSelf?.authParam.bankName = value
-            weakSelf?.authParam.bankNo = (weakSelf?.bank?.bankCoupletNum)!
+            weakSelf?.authParam.bankNo = (weakSelf?.bank?.cnapsNo)!
         }
         bankImageModel.tapedHandle = { [weak self] in
             self?.openOCR()
         }
         bankImageModel.setImageComplete = { [weak self] (image) in
-            self?.authParam.card = image
+            self?.authParam.idCardFront = image
         }
     }
     
@@ -76,7 +76,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
     func registerObserve() {
         
         kvoController.observe(authParam,
-                              keyPaths: ["identity", "userName","cardNo", "bankName", "card"],
+                              keyPaths: ["identity", "userName","cardNo", "bankName", "idCardFront"],
                               options: .new)
         { [weak self] (_, object, change) in
             
@@ -85,7 +85,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
                 model.identity.count > 0 &&
                 model.cardNo.count > 0 &&
                 model.bankName.count > 0 &&
-                model.card != nil
+                model.idCardFront != nil
             {
                 self?.authSubmitCell.isEnabled = true
             }
@@ -98,14 +98,30 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
     override func loadAuthInfo() {
         APAuthHttpTool.settleCardAuthInfo(params: APBaseRequest(), success: { [weak self] (response) in
             
-            self?.nameFormCell.textField.text = response.realName
-            self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)//response.idCard
-            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)//response.cardNo
+            if .Failure == APAuthState(rawValue: response.authStatus) && response.authDesc.count > 0 {
+                self?.showAuthFailureBanner(failureReason: response.authDesc)
+            }
+            
+           self?.nameFormCell.textField.text = response.realName
+           self?.authParam.userName = response.realName
+            
+           self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+           self?.authParam.identity = aesDecryptString(response.idCard, AP_AES_Key)
+            
+            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)
+            self?.authParam.cardNo = aesDecryptString(response.cardNo, AP_AES_Key)
+            
             if response.bankName.count > 0 {
-                self?.bankNameFormCell.button.setTitle(response.bankName, for: .normal)
+                self?.bankNameFormCell.label.text = response.bankName
+                self?.authParam.bankName = response.bankName
             }
             self?.authParam.bankNo = response.bankNo
-            self?.bankImageModel.fileName = response.idCardFront
+            
+            if response.idCardFront.count > 0 {
+                self?.bankImageModel.fileName = response.idCardFront
+            }
+            
+            self?.collectionView.reloadData()
             
         }) { [weak self] (error) in
             self?.view.makeToast(error.message)
@@ -137,6 +153,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
                 self?.controllerTransition()
             })
         }) { [weak self] (error) in
+            self?.authSubmitCell.loading(isLoading: false)
             self?.view.makeToast(error.message)
         }
     }
@@ -158,6 +175,12 @@ extension APSettlementCardAuthViewController {
         bankNameFormCell.delegate = self
         bankCardNoFormCell.inputRegx = .bankCard
         idCardFormCell.inputRegx = .idCardNo
+    
+        nameFormCell.enable = false
+        idCardFormCell.enable = false
+    
+        bankCardNoFormCell.enable = canEdit
+        bankNameFormCell.enable = canEdit
     
         formCellView.addSubview(nameFormCell)
         formCellView.addSubview(idCardFormCell)
@@ -196,6 +219,7 @@ extension APSettlementCardAuthViewController {
     
         bankImageModel.bottomMessage = "上传银行卡照片"
         bankImageModel.placeHolderImageName = "auth_bankCard_normal"
+        bankImageModel.editState = canEdit
         gridViewModels.append(bankImageModel)
         
         collectionView.snp.remakeConstraints({ (make) in
@@ -213,6 +237,9 @@ extension APSettlementCardAuthViewController {
 extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
     func bankNameFormCellTaped() {
         
+        // MARK 模态视图与键盘冲突
+        view.endEditing(true)
+
         let searchBankVC = APBankSearchViewController()
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank

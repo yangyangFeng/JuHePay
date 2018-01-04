@@ -10,6 +10,8 @@ import UIKit
 
 class APCollectionResultViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var resultDic: Dictionary<String, String>?
+    
     lazy var headerImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
@@ -80,7 +82,12 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
     }
     
     @objc func dismissGoHome() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+            let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
+            let lastVC = selectVC.childViewControllers.last as! APBaseViewController
+            lastVC.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     //MARK: ---- 子类重载

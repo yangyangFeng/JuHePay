@@ -1,4 +1,4 @@
-//
+ //
 //  APPhotoGridView.swift
 //  AggregatePay
 //
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class APPhotoGridViewCell: UICollectionViewCell {
 
@@ -14,16 +15,20 @@ class APPhotoGridViewCell: UICollectionViewCell {
    fileprivate let gridBottomLabel: UILabel = UILabel()
    fileprivate let gridImageView: UIImageView = UIImageView()
     
-    var model: APGridViewModel? {
+    var model: APGridViewModel = APGridViewModel() {
         didSet {
-            gridHeadLabel.text = model?.headMessage
-            gridBottomLabel.text = model?.bottomMessage
-            gridImageView.image = UIImage.init(named: (model?.placeHolderImageName)!)
-            gridImageView.contentMode = .scaleAspectFit
-            if let image = model?.image {
-                gridImageView.image = image
-                model?.gridState = .canPreview
-                model?.setImageComplete?(image)
+            gridHeadLabel.text = model.headMessage
+            gridBottomLabel.text = model.bottomMessage
+            gridImageView.image = UIImage.init(named: (model.placeHolderImageName)!)
+            
+            if let image = model.image {
+                setImage(image: image)
+            }
+            
+            if let filename = model.fileName {
+                if filename.count > 0 {
+                    downloadImage(withFilename: filename)
+                }
             }
         }
     }
@@ -32,16 +37,45 @@ class APPhotoGridViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         layoutViews()
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+
+    func downloadImage(withFilename: String) {
+        
+        let request = APDownloadImageRequest()
+        request.fileId = withFilename
+        
+        APNetworking.download(
+            fileName: request.fileId,
+            params: request,
+            success: { (image) in
+            self.model.image = image
+            self.setImage(image: image)
+
+        }) { (error) in
+            self.gridImageView.image = UIImage.init(named: "auth_image_load_failure")
+            self.model.gridState = .failure
+        }
+    }
+    
+    func setImage(image: UIImage) {
+        
+        gridImageView.image = image
+        model.gridState = .canPreview
+        model.setImageComplete?(image)
+    }
+    
     // MARK: -- UI
     func layoutViews() {
         
         backgroundColor = UIColor.white
+        gridImageView.contentMode = .scaleAspectFit
         gridHeadLabel.textColor = UIColor.init(hex6: 0x7a7a7a)
         gridHeadLabel.font = UIFont.systemFont(ofSize: 13)
         gridBottomLabel.textColor = UIColor.init(hex6: 0x7a7a7a)

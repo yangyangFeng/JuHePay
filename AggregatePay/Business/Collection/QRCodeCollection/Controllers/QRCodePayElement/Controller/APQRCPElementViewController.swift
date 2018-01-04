@@ -120,15 +120,19 @@ extension APQRCPElementViewController {
         qrCodePayRequest.transAmount = String((Double(amountStr!)! * 100))
         qrCodePayRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
         view.AP_loadingBegin()
+        submitCell.loading(isLoading: true, isComplete: nil)
         APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,
                           action: payService!,
                           params: qrCodePayRequest,
                           aClass: APQRCodePayResponse.self,
                           success: { (baseResp) in
                             self.view.AP_loadingEnd()
-                            let qrCodePayResponse = baseResp as! APQRCodePayResponse
-                            self.presentQRCPCollectionVC(qrCodePayResponse: qrCodePayResponse)
+                            self.submitCell.loading(isLoading: false, isComplete: {
+                                let qrCodePayResponse = baseResp as! APQRCodePayResponse
+                                self.presentQRCPCollectionVC(qrCodePayResponse: qrCodePayResponse)
+                            })
         }, failure: {(baseError) in
+            self.submitCell.loading(isLoading: false, isComplete: nil)
             self.view.AP_loadingEnd()
             self.view.makeToast(baseError.message)
         })
