@@ -143,16 +143,18 @@ extension APBaseViewController {
 extension APBaseViewController {
     
     func ap_userIdentityStatus(closure: @escaping () -> Void) {
+//        closure()
+//        return
         if !APUserInfoTool.isLogin() {
             APOutLoginTool.loginOut()
         }
         else {
-            let isNotAuthInfo = true
-            if isNotAuthInfo {
-                //13621223933
-                closure()
-                return
-            }
+//            let isNotAuthInfo = true
+//            if isNotAuthInfo {
+//                //13621223933
+////                closure()
+//                return
+//            }
             let lastView: UIView = (APPDElEGATE.window?.subviews.last!)!
             lastView.AP_loadingBegin()
             let baseRequest = APBaseRequest()

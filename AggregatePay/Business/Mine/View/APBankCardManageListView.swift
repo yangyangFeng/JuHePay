@@ -154,8 +154,26 @@ class APBankCardCell: APSwipeTableViewCell {
             }
             bankName.text = model?.bankName
             userName.text = model?.userName ?? "无"
-            bankNumber.text = aesDecryptString(model?.cardNo,AP_AES_Key)
+            let cardNo : String = aesDecryptString(model?.cardNo,AP_AES_Key)
+            var i = 0
+            var newCardNo : String = ""
             
+            for a in cardNo
+            {
+                if i < 6{
+                    newCardNo.append(a)
+                }
+                else if i >= cardNo.count - 4{
+                    newCardNo.append(a)
+                }
+                else
+                {
+                    newCardNo.append("*")
+                }
+                i+=1
+            }
+            
+            bankNumber.text = newCardNo
         }
     }
     
@@ -241,6 +259,7 @@ class APBankCardCell: APSwipeTableViewCell {
             make.top.equalTo(14)
             make.left.equalTo(24)
             make.height.equalTo(18)
+            make.right.equalTo(rightMsg.snp.left).offset(-2)
         }
         userName.snp.makeConstraints { (make) in
             make.top.equalTo(self.bankName.snp.bottom).offset(4)
@@ -256,6 +275,7 @@ class APBankCardCell: APSwipeTableViewCell {
             make.top.equalTo(15)
             make.right.equalTo(-24)
         }
+        
     }
   
     @objc func buttonDidAction()

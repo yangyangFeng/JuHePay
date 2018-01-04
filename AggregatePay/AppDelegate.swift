@@ -17,12 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         ap_appDelegateConfig(launchOptions)
         
         let tabBarController = createTabBarController()
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+        
+        APGuideView.showGuideView()
         return true
     }
 }

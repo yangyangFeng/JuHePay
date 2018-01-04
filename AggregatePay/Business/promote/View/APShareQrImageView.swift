@@ -50,7 +50,5 @@ class APShareQrImageView: UIView {
             make.bottom.equalToSuperview().offset(-(10/(K_Height*0.62)*(bgImageView.image?.size.height)!))
             make.centerX.equalToSuperview().offset(0)
         }
-        
- 
     }
 }

@@ -67,6 +67,10 @@ extension AppDelegate {
         return selectVC
     }
     
+    public func tabBarSelectController() -> APBaseViewController {
+        let rootVC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+        return rootVC.selectedViewController!.childViewControllers.first as! APBaseViewController
+    }
     public func registerNeedLoginNotification() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationNeedLogin(_:)), name: NSNotification.Name(rawValue: "NEED_LOGIN"), object: nil)
