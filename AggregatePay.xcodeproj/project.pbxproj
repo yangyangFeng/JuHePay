@@ -218,6 +218,7 @@
 		74674AED1FE7B282004AA1B5 /* APReturnBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */; };
 		747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */; };
 		747130AA1FFDC3A100A170EF /* APGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130A91FFDC3A100A170EF /* APGuideView.swift */; };
+		747130B71FFE2CD700A170EF /* APPromoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130B61FFE2CD700A170EF /* APPromoteRequest.swift */; };
 		747668401FE8F66C00715E72 /* APAgentDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */; };
 		747668411FE8F66C00715E72 /* APEarningHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683C1FE8F66C00715E72 /* APEarningHeadView.swift */; };
 		747668421FE8F66C00715E72 /* APEarningListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683D1FE8F66C00715E72 /* APEarningListView.swift */; };
@@ -589,6 +590,7 @@
 		74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APReturnBillViewController.swift; path = AggregatePay/Business/earnings/Controller/APReturnBillViewController.swift; sourceTree = SOURCE_ROOT; };
 		747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APAgentDetailViewController.swift; path = AggregatePay/Business/earnings/Controller/APAgentDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		747130A91FFDC3A100A170EF /* APGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGuideView.swift; sourceTree = "<group>"; };
+		747130B61FFE2CD700A170EF /* APPromoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPromoteRequest.swift; sourceTree = "<group>"; };
 		7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAgentDetailListView.swift; sourceTree = "<group>"; };
 		7476683C1FE8F66C00715E72 /* APEarningHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEarningHeadView.swift; sourceTree = "<group>"; };
 		7476683D1FE8F66C00715E72 /* APEarningListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEarningListView.swift; sourceTree = "<group>"; };
@@ -1496,6 +1498,8 @@
 		1AB253E01FE1436A00193B30 /* Promote */ = {
 			isa = PBXGroup;
 			children = (
+				747130B11FFE2C4700A170EF /* Model */,
+				747130B21FFE2C4800A170EF /* Tool */,
 				746602B91FEA968300C3AA76 /* View */,
 				1AB253E11FE1436A00193B30 /* Controller */,
 			);
@@ -2273,6 +2277,23 @@
 			);
 			path = Guide;
 			sourceTree = "<group>";
+		};
+		747130B11FFE2C4700A170EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				747130B61FFE2CD700A170EF /* APPromoteRequest.swift */,
+			);
+			name = Model;
+			path = AggregatePay/Business/promote/Model;
+			sourceTree = SOURCE_ROOT;
+		};
+		747130B21FFE2C4800A170EF /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tool;
+			path = AggregatePay/Business/promote/Tool;
+			sourceTree = SOURCE_ROOT;
 		};
 		747668391FE8F66C00715E72 /* APAgentDetail */ = {
 			isa = PBXGroup;
@@ -3083,6 +3104,7 @@
 				7487E17A1FDFE131000E3EBE /* UIFontExtensions.swift in Sources */,
 				1AF37EEB1FF1F967006B2326 /* APLoginResponse.swift in Sources */,
 				1AA7B4AC1FF347FE00CF7A58 /* APCheckMessageRequest.swift in Sources */,
+				747130B71FFE2CD700A170EF /* APPromoteRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
