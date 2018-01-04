@@ -30,6 +30,13 @@ class APAuthHomeViewController: APBaseViewController {
           loadAuthInfo()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        APAuthHelper.clearAuthInfo()
+    }
+    
+    
     // MARK: -- Data
     func loadAuthInfo() {
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in

@@ -51,7 +51,7 @@ class APAuthHelper: NSObject {
         }
     }
     
-    static let sharedInstance = APAuthHelper()
+    static var sharedInstance = APAuthHelper()
     private override init(){
         super.init()
         auths = allAuths()
@@ -79,5 +79,11 @@ class APAuthHelper: NSObject {
             }
         }
         return isFirst
+    }
+    
+    static func clearAuthInfo() {
+        sharedInstance.realNameAuthState = .Other
+        sharedInstance.securityAuthState = .Other
+        sharedInstance.settleCardAuthState = .Other
     }
 }
