@@ -27,6 +27,4 @@
 #import "JPUSHService.h"
 #import "CPCipherAES.h"
 #import <UserNotifications/UserNotifications.h>
-#import <SDWebImage/SDWebImageManager.h>
-#import <SDWebImage/SDWebImageDownloader.h>
 #endif /* BridgingHeader_h */

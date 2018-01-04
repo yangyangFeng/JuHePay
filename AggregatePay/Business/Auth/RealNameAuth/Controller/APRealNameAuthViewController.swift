@@ -30,7 +30,10 @@ class APRealNameAuthViewController: APAuthBaseViewController {
 
         setUpUI()
         registerCallBacks()
-        registerObserve()
+        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     

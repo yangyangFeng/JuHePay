@@ -55,6 +55,11 @@ class APLoginViewController: APSystemBaseViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
+    
     //MARK: ----- action
     @objc func dismissGoHome() {
         self.dismiss(animated: true, completion: nil)

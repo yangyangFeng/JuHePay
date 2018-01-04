@@ -243,6 +243,7 @@ extension APAuthBaseViewController {
     
     private func layoutCommitButton() {
         
+        authSubmitCell.isEnabled = false
         commitButtonSuperView.addSubview(authSubmitCell)
         view.addSubview(commitButtonSuperView)
         
@@ -349,7 +350,7 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
     
     func toPreview(gridModel: APGridViewModel) {
         let previewManager = APPhotoPreviewManager()
-        previewManager.isPreview = !gridModel.editState
+        previewManager.isOnlyPreView = !gridModel.editState
         previewManager.show(fromController: self, image: gridModel.image!)
         previewManager.photoPreview.photoPreviewHandle = {(isUse) in
             if !isUse {
