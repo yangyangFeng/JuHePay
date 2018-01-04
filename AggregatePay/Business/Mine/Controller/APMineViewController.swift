@@ -16,22 +16,18 @@ import Alamofire
 class APMineViewController: APMineBaseViewController, APMineStaticListViewDelegate, AP_ActionProtocol{
     func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
         print(controller)
-        guard APAccessControler.checkAccessControl(level) else {
-            ap_userIdentityStatus(closure: {
-                
-            })
-            return
+        APAccessControler.checkAccessControl(level) {
+            // -1.动态获取命名空间
+            let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+            let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
+            guard let controllerType = controllerClass as? UIViewController.Type else {
+                print("类型转换失败")
+                return
+            }
+            let nextC = controllerType.init()
+            nextC.title = title
+            self.navigationController?.pushViewController(nextC)
         }
-        // -1.动态获取命名空间
-        let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
-        let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
-        guard let controllerType = controllerClass as? UIViewController.Type else {
-            print("类型转换失败")
-            return
-        }
-        let nextC = controllerType.init()
-        nextC.title = title
-        navigationController?.pushViewController(nextC)
     }
 
     lazy var headView: APMineHeaderView = {
@@ -77,6 +73,11 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
         loadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     func loadData(){
         guard APUserInfoTool.isLogin() else {
             self.staticListView.tableView.mj_header.endRefreshing()
@@ -96,14 +97,11 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
     }
     
     @objc func headDidAction(){
-        guard APAccessControler.checkAccessControl(1) else {
-            ap_userIdentityStatus(closure: {
-                
-            })
-            return
+        APAccessControler.checkAccessControl(1) {
+            let authHomeController = APAuthHomeViewController()
+            self.navigationController?.pushViewController(authHomeController)
         }
-        let authHomeController = APAuthHomeViewController()
-        navigationController?.pushViewController(authHomeController)
+        
     }
     
     

@@ -14,7 +14,24 @@ class APMineHeaderView: UIView {
     var model : APUserInfoResponse?{
         didSet{
             userTitleLabel.text = model?.realName
-            userTelLabel.text = "手机号: " + (model?.mobileNo)!
+            var i = 0
+            var newtel : String = ""
+            var tel : String = (model?.mobileNo ?? "")!
+            for a in tel
+            {
+                if i < 3{
+                    newtel.append(a)
+                }
+                else if i >= tel.count - 4{
+                    newtel.append(a)
+                }
+                else
+                {
+                    newtel.append("*")
+                }
+                i+=1
+            }
+            userTelLabel.text = "手机号: " + newtel
             recommendLabel.text = "推荐人: " + (model?.recommendUserName ?? "")!
             if model?.isRealName == "1" {
                 checkStatusLabel.text = "已认证"
