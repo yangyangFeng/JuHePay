@@ -35,13 +35,15 @@ class APHomeViewController: APBaseViewController {
 
     //跳转收款页面
     private func pushCollectionVC(totalAmount: String, model: APHomeMenuModel) {
-        if totalAmount == "" {
+        if totalAmount == "" ||
+            Float(totalAmount)! <= 0.0 {
             view.makeToast("请输入金额")
             return
         }
         
         if model.payWay == "0" {
             let placeVC = APCollectionPlaceViewController()
+            placeVC.totalAmount = totalAmount
             self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {
@@ -103,7 +105,6 @@ extension APHomeViewController:
 
     //MARK: APKeyboardCompositionViewDelegate
     func didKeyboardConfirm(totalAmount: String, model: Any) {
-    
         ap_userIdentityStatus {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
             self.pushCollectionVC(totalAmount: totalAmount, model: menuModel)

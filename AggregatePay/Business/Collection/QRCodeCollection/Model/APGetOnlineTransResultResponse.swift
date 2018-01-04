@@ -19,5 +19,6 @@ class APGetOnlineTransResultResponse: APBaseResponse {
     @objc dynamic var status: String?
     @objc dynamic var transAmount: String?
     @objc dynamic var transDateTime: String?
+    @objc dynamic var respDesc: String?
 
 }
