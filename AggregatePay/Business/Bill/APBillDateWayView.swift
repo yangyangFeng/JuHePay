@@ -441,8 +441,8 @@ extension APBillDateWayView {
         
         var components = DateComponents()
         components.year = dateComponents.year
-        components.month = (dateComponents.month! - interval)
-        components.day = dateComponents.day
+        components.month = dateComponents.month
+        components.day = (dateComponents.day! - interval)
         components.timeZone = TimeZone(abbreviation: "GMT")
         let endDate = calendar.date(from: components)
         return endDate!

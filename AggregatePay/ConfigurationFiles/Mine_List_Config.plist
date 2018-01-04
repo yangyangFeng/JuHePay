@@ -58,7 +58,7 @@
 		<key>title</key>
 		<string>客服</string>
 		<key>controller</key>
-		<string>APServiceViewController</string>
+		<string></string>
 		<key>icon</key>
 		<string>Mine_static_客服</string>
 	</dict>

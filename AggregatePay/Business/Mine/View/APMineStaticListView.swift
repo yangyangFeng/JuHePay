@@ -118,6 +118,6 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         let item : NSDictionary = listDataSource[indexPath.row] as! NSDictionary
         let controller = item.object(forKey: "controller")
         let title = item.object(forKey: "title")
-        _delegate.tableViewDidSelectIndex(title as! String, controller: controller as! String , level: Int(item.object(forKey: "level") ?? "0")!)
+        _delegate.tableViewDidSelectIndex(title as! String, controller: controller as! String , level: Int(truncating: item.object(forKey: "level") as! NSNumber))
     }
 }

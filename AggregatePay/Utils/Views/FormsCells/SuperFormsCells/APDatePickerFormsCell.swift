@@ -12,7 +12,7 @@ import PGDatePicker
 
 class APDatePickerFormsCell: UIView {
     
-    var interval : Int = 1 //defaule is 1.
+    var interval : Int = 0 //defaule is 1.
     var maxInterval : Int = 6 //defaule is 6.
     
     var currentPicker : PGDatePicker?
@@ -181,8 +181,8 @@ extension APDatePickerFormsCell {
         
         var components = DateComponents()
         components.year = dateComponents.year
-        components.month = (dateComponents.month! - interval)
-        components.day = dateComponents.day
+        components.month = dateComponents.month
+        components.day = (dateComponents.day! - interval)
         components.timeZone = TimeZone(abbreviation: "GMT")
         let endDate = calendar.date(from: components)
         return endDate!

@@ -22,7 +22,7 @@ class APAccessControler: NSObject {
         {
             currentLevel = 2
         }
-        if level == currentLevel {
+        if currentLevel >= level {
             return true
         }
         else

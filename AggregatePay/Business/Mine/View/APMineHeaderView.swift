@@ -11,7 +11,6 @@ import UIKit
 class APMineHeaderView: UIView {
 
     
-    
     var model : APUserInfoResponse?{
         didSet{
             userTitleLabel.text = model?.realName
@@ -24,6 +23,18 @@ class APMineHeaderView: UIView {
             {
                 checkStatusLabel.text = "未认证"
             }
+            if model?.levelId == nil
+            {
+                user_level_icon_imageView.image =  UIImage()
+                user_level_title_imageView.image = UIImage()
+                levelName.text = ""
+            }
+            else {
+                user_level_icon_imageView.image =  UIImage.init(named: "Mine_head_user_level_" + (model?.levelId)!)
+                user_level_title_imageView.image = UIImage.init(named: "Mine_head_user_level_title_" + (model?.levelId)!)
+                levelName.text = model?.levelName ?? ""
+            }
+            
         }
     }
     
@@ -69,15 +80,26 @@ class APMineHeaderView: UIView {
         return view
     }()
     
+    let levelName : UILabel = {
+       let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 10)
+        view.textColor = UIColor.init(hex6: 0xffffff)
+        view.textAlignment = .center
+        return view
+    }()
+    
+    
     //黑色背景
     let bgImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_bg")?.cropped(to: -(208-64)/208))
     //用户背景
     let userBgImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_user_bg"))
     
     
-    let user_level_icon_imageView = UIImageView.init(image: UIImage.init(named: "Mine_head_user_level_2"))
+    var user_level_title_imageView = UIImageView()
+//    init(image: UIImage.init(named: "Mine_head_user_level_title_2"))
     
-    let user_level_title_imageView = UIImageView.init(image: UIImage.init(named: "Mine_head_user_level_title_2"))
+    let user_level_icon_imageView = UIImageView()
+//        .init(image: UIImage.init(named: "Mine_head_user_level_2"))
     
     
     let arrowImageView = UIImageView.init(image: UIImage.init(named: "Mine_head_arrow"))
@@ -110,7 +132,10 @@ class APMineHeaderView: UIView {
      
         //---------------------------------------------------
         userBgImageView.addSubview(checkStatusLabel)
-       
+        
+        user_level_title_imageView.addSubview(levelName)
+        
+    
     }
     
     override func layoutSubviews() {
@@ -134,12 +159,12 @@ class APMineHeaderView: UIView {
             make.left.equalTo(userIconImageView.snp.right).offset(13)
             make.height.equalTo(18)
         }
-        user_level_title_imageView.snp.makeConstraints { (make) in
+        user_level_icon_imageView.snp.makeConstraints { (make) in
             make.width.height.equalTo(22)
             make.top.equalTo(59)
             make.left.equalTo(64)
         }
-        user_level_icon_imageView.snp.makeConstraints { (make) in
+        user_level_title_imageView.snp.makeConstraints { (make) in
             make.width.equalTo(64)
             make.height.equalTo(17)
             make.centerY.equalTo(userTitleLabel.snp.centerY).offset(0)
@@ -164,6 +189,9 @@ class APMineHeaderView: UIView {
         checkStatusLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(arrowImageView.snp.centerY).offset(0)
             make.right.equalTo(arrowImageView.snp.left).offset(-4)
+        }
+        levelName.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview().offset(0)
         }
     }
     

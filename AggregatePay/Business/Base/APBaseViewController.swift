@@ -140,6 +140,8 @@ extension APBaseViewController {
 extension APBaseViewController {
     
     func ap_userIdentityStatus(closure: @escaping () -> Void) {
+        closure()
+        return 
         if !APUserInfoTool.isLogin() {
             APOutLoginTool.loginOut()
         }
