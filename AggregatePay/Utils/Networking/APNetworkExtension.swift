@@ -50,7 +50,7 @@ class APHttpService {
     static let wechatPay: String   = "/pay/wechatPay" //微信生成二维码
     
     // 图片下载
-    static let downloadImg: String = "/user/downloadImg"
+    static let downloadImg: String = "/downLoad/downloadImg"
 
 }
 

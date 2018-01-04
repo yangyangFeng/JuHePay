@@ -10,11 +10,11 @@ import UIKit
 
 class APPhotoPreviewManager: NSObject {
     
-    var isPreview: Bool = true
+    var isOnlyPreView: Bool = false
     let photoPreview = APPhotoPreview()
     public func show(fromController viewController: APBaseViewController, image: UIImage) {
         photoPreview.photo = image
-        photoPreview.isPreView = isPreview
+        photoPreview.isOnlyPreView = isOnlyPreView
         UIApplication.shared.keyWindow?.addSubview(photoPreview)
         photoPreview.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -26,13 +26,13 @@ typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
 
 class APPhotoPreview: UIView {
 
-    public var isPreView: Bool = true {
+    public var isOnlyPreView: Bool? {
         didSet {
-            rephotographButton.isHidden = isPreView
-            if isPreView {
-                ensureButton.setTitle("确定", for: .normal)
+            rephotographButton.isHidden = isOnlyPreView!
+            if isOnlyPreView! {
+                ensureButton.setTitle("确\n定", for: .normal)
             }else {
-                ensureButton.setTitle("重\n拍", for: .normal)
+                ensureButton.setTitle("使\n用\n照\n片", for: .normal)
             }
         }
     }
@@ -113,8 +113,9 @@ class APPhotoPreview: UIView {
     }()
     
     private lazy var doubleTapGesture: UITapGestureRecognizer = {
-        let tap = UITapGestureRecognizer.init(target: self,
-                                              action: #selector(doubleTapAction(gesture:)))
+        let tap = UITapGestureRecognizer.init(
+            target: self,
+            action: #selector(doubleTapAction(gesture:)))
         tap.numberOfTapsRequired = 2
         return tap
     }()

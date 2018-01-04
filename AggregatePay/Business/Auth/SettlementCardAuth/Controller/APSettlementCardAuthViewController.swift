@@ -30,9 +30,9 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         layoutViews()
         
         userInputCallBacks()
-        
-        registerObserve()
-        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     func userInputCallBacks() {
@@ -237,6 +237,9 @@ extension APSettlementCardAuthViewController {
 extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
     func bankNameFormCellTaped() {
         
+        // MARK 模态视图与键盘冲突
+        view.endEditing(true)
+
         let searchBankVC = APBankSearchViewController()
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank

@@ -14,6 +14,13 @@ class APAlertManager: NSObject {
                      confirm: @escaping (UIAlertAction) -> Void,
                      cancel: ((UIAlertAction) -> Void)? = nil) {
         
+        alertController(param: param, confirm: confirm, cancel: cancel).show()
+    }
+    
+    static func alertController(param: @escaping (APAlertParam) -> Void,
+                     confirm: @escaping (UIAlertAction) -> Void,
+                     cancel: ((UIAlertAction) -> Void)? = nil) -> APAlertController{
+        
         let alertParam = APAlertParam()
         param(alertParam)
         let alertController = APAlertController(title: "提示",
@@ -35,9 +42,8 @@ class APAlertManager: NSObject {
             }
             alertController.addAction(cancelAction)
         }
-        alertController.show()
+        return alertController
     }
-
 }
 
 

@@ -104,7 +104,8 @@ extension APQRCPCollectionViewController {
         if cookie != "" {
             requestHeader = ["cookie":cookie]
         }
-        APNetworking.sharedInstance.request(httpUrl: APHttpUrl.trans_httpUrl,
+        
+         APNetworking.sharedInstance.request(httpUrl: APHttpUrl.trans_httpUrl,
                                             action: APHttpService.getOnlineTransResult,
                                             method: .post,
                                             headers: requestHeader,

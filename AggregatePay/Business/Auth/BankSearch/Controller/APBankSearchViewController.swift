@@ -15,6 +15,8 @@ class APBankSearchViewController: APBaseViewController {
     var banks: [APBank] = []
     
     var selectBankComplete: APSelectBankComplete?
+    
+    private let searchBar = APSearchBarView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,17 @@ class APBankSearchViewController: APBaseViewController {
         self.ap_setStatusBarStyle(.lightContent)
         setUpNavi()
         layoutViews()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchBar.editing(isEditing: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchBar.editing(isEditing: false)
     }
     
     func requestData() {
@@ -86,9 +99,9 @@ extension APBankSearchViewController: APSearchBarViewDelegate, UITableViewDelega
     }
     
     private func layoutViews() {
-        let searchBar = APSearchBarView()
+      
         searchBar.delegate = self
-        searchBar.textField.placeholder = "北京海淀"
+        searchBar.placeholder = "北京海淀"
         
         view.addSubview(searchBar)
         headView.addSubview(label)

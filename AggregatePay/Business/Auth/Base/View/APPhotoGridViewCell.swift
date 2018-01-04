@@ -52,12 +52,10 @@ class APPhotoGridViewCell: UICollectionViewCell {
         request.fileId = withFilename
         
         APNetworking.download(
-            httpUrl: APHttpUrl.manange_httpUrl,
-            action: APHttpService.downloadImg,
             fileName: request.fileId,
             params: request,
             success: { (image) in
-
+            self.model.image = image
             self.setImage(image: image)
 
         }) { (error) in
