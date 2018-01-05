@@ -203,7 +203,11 @@ extension APSecurityAuthViewController {
 extension APSecurityAuthViewController: APCameraViewControllerDelegate {
     
     func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
-        creditCardFormCell.textField.text = result.cardNum
+        
+        if let text = result.cardNum {
+            creditCardFormCell.textField.text = text
+            authParam.cardNo = text
+        }
     }
     
 }
