@@ -44,6 +44,7 @@ class APHomeViewController: APBaseViewController {
         }
         
         if model.payWay == "0" {
+
             guard let realName = APUserInfoTool.info.realName else {
                 self.view.AP_loadingBegin()
                 APMineHttpTool.loginGetUserInfo(success: { (baseResp) in
@@ -59,6 +60,7 @@ class APHomeViewController: APBaseViewController {
             }
             pushUnionPayVC(totalAmount: totalAmount,
                            realName: realName)
+
         }
         else {
             let qrcpElementVC = APQRCPElementViewController()
