@@ -126,7 +126,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             self?.realNameCell.textField.text = response.realName
             self?.authParam.realName = response.realName
             
-            self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+            self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key).cp_stringIDCardByReplacing()
             self?.authParam.idCard = aesDecryptString(response.idCard, AP_AES_Key)
             
             self?.idCardFront.fileName = response.idCardFront
@@ -267,17 +267,22 @@ extension APRealNameAuthViewController: APCameraViewControllerDelegate {
     
     func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
         updateGridImage(image: image)
+
     }
     
     func ocrCameraIDCardResult(IDCard result: APOCRIDCard) {
         
-        updateGridImage(image: result.image)
+        if result.image != nil {
+            updateGridImage(image: result.image)
+        }
         
         if let text = result.name {
             realNameCell.textField.text = text
+            authParam.realName = text
         }
         if let text = result.number {
             idCardNoCell.textField.text = text
+            authParam.idCard = text
         }
     }
     

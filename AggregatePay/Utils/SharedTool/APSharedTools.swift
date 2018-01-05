@@ -54,7 +54,7 @@ class APSharedTools: NSObject, WXApiDelegate {
     }
 
     func register(key: String) {
-        WXApi.registerApp("wxe8e1cc1454887984")
+        WXApi.registerApp(key)
     }
     
     func openURl(url: URL) -> Bool {

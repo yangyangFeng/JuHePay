@@ -105,10 +105,10 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
            self?.nameFormCell.textField.text = response.realName
            self?.authParam.userName = response.realName
             
-           self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+           self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key).cp_stringIDCardByReplacing()
            self?.authParam.identity = aesDecryptString(response.idCard, AP_AES_Key)
             
-            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)
+            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key).cp_stringBankCardByReplacing()
             self?.authParam.cardNo = aesDecryptString(response.cardNo, AP_AES_Key)
             
             if response.bankName.count > 0 {
@@ -244,6 +244,7 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank
             self?.bankNameFormCell.text = bank.bankName
+            self?.authParam.bankNo = bank.bankName
         }
         
         let navi = APBaseNavigationViewController.init(rootViewController: searchBankVC)
@@ -259,8 +260,15 @@ extension APSettlementCardAuthViewController: APCameraViewControllerDelegate {
     }
     
     func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
-        bankCardNoFormCell.textField.text = result.cardNum
-        bankImageModel.image = result.bankCardImage
+        
+        if let text = result.cardNum {
+            bankCardNoFormCell.textField.text = text
+            authParam.cardNo = text
+        }
+        
+        if let image = result.bankCardImage {
+            bankImageModel.image = image
+        }
         collectionView.reloadData()
     }
 }

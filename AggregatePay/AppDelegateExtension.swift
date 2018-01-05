@@ -99,7 +99,7 @@ extension AppDelegate {
         ToastManager.shared.position = .center
         
         /**********************微信分享配置*************************/
-        APSharedTools.sharedInstance.register(key: "")
+        APSharedTools.sharedInstance.register(key: AP_WECHAT_KEY)
         
         /**********************JPush配置*************************/
         registerJPush(launchOptions: launchOptions)
