@@ -36,7 +36,15 @@ class APTradingDetailViewController: APBillDetailViewController {
             value = tradingDetail?.merchantName
         }
         else if key == "payModeL" {
-            value = tradingDetail?.payModeL
+            if tradingDetail?.payModeL == "1" {
+                value = "微信"
+            }
+            else if tradingDetail?.payModeL == "2" {
+                value = "支付宝"
+            }
+            else {
+                value = "银联快捷"
+            }
         }
         else if key == "orderNo" {
             value = tradingDetail?.orderNo

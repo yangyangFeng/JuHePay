@@ -14,6 +14,7 @@ class APHomeViewController: APBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardCompositionView.isLogin = APUserInfoTool.isLogin()
+        keyboardCompositionView.ap_remove()
     }
 
     override func viewDidLoad() {
@@ -42,9 +43,10 @@ class APHomeViewController: APBaseViewController {
         }
         
         if model.payWay == "0" {
+            
             let placeVC = APCollectionPlaceViewController()
             placeVC.totalAmount = totalAmount
-            placeVC.realName = "徐艺达"
+            placeVC.realName = APUserInfoTool.info.realName
             self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {
