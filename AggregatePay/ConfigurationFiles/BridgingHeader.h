@@ -27,4 +27,5 @@
 #import "JPUSHService.h"
 #import "CPCipherAES.h"
 #import <UserNotifications/UserNotifications.h>
+#import "NSString+CPShield.h"
 #endif /* BridgingHeader_h */
