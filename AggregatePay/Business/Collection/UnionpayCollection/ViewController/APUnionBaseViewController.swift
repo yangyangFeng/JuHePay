@@ -1,30 +1,26 @@
 //
-//  APUPEBaseViewController.swift
+//  APUnionBaseViewController.swift
 //  AggregatePay
 //
-//  Created by BlackAnt on 2018/1/3.
+//  Created by BlackAnt on 2018/1/4.
 //  Copyright © 2018年 bingtianyu. All rights reserved.
 //
 
 import UIKit
 
-class APUPEBaseViewController: APUnionPayBaseViewController {
-
-    var payPlaceTitle: String?
+class APUnionBaseViewController: APUnionPayBaseViewController {
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        endSendSmsCode()
-    }
+    var payPlaceTitle: String?  // 显示渠道标题
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "输入支付要素"
-        headerView.amountLabel.text = totalAmount
-        headerView.payEssentialTextLabel.text = payPlaceTitle
         ap_initCreateSubviews()
         ap_payEssentialTargetCallBacks()
         ap_payEssentialRegisterObserve()
+        
+        headerView.amountLabel.text = totalAmount
+        headerView.payEssentialTextLabel.text = payPlaceTitle
     }
     
     //MARK: - public
@@ -35,15 +31,13 @@ class APUPEBaseViewController: APUnionPayBaseViewController {
             make.left.right.top.equalTo(view)
             make.height.equalTo(120)
         }
-        
         toolBarView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(view)
             make.top.equalTo(headerView.snp.bottom)
             make.height.equalTo(43)
         }
     }
-    func ap_httpSendSmsCode() {}
-    func ap_httpSubmit() {}
+    
     func ap_payEssentialTargetCallBacks() {
         weak var weakSelf = self
         smsCodeCell.smsCodeCell.sendSmsCodeBlock = { (key, value) in
@@ -57,41 +51,15 @@ class APUPEBaseViewController: APUnionPayBaseViewController {
             weakSelf?.navigationController?.pushViewController(creditCardVC, animated: true)
         }
     }
-    func ap_payEssentialRegisterObserve() {}
-
     
+    func ap_payEssentialRegisterObserve() {
+        
+    }
+    func ap_httpSendSmsCode() {}
     
+    func ap_httpSubmit() {}
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //MARK: - lazy loading
+    //MARK: - Lazy Loading
     lazy var headerView: APPayElementHeaderView = {
         let view = APPayElementHeaderView()
         return view
@@ -108,9 +76,8 @@ class APUPEBaseViewController: APUnionPayBaseViewController {
         let view = APPayElementTextCell()
         view.titleLabel.text = "持卡人姓名"
         view.textCell.textField.placeholder = "持卡人姓名"
+        view.textCell.textField.isUserInteractionEnabled = false
         view.textCell.textField.keyboardType = UIKeyboardType.default
-        view.textCell.textField.text = "徐艺达"
-        view.textCell.textField.isUserInteractionEnabled = true
         return view
     }()
     
@@ -136,7 +103,8 @@ class APUPEBaseViewController: APUnionPayBaseViewController {
     //有效期
     lazy var validityDateCell: APPayElementTextCell = {
         let view = APPayElementTextCell()
-        view.titleLabel.text = "有效期"
+        view.titleLabel.text = "有效期"        
+        view.textCell.inputRegx = .smsCode
         view.textCell.textField.placeholder = "请输入有效期，格式：02/12"
         return view
     }()
@@ -167,23 +135,5 @@ class APUPEBaseViewController: APUnionPayBaseViewController {
         return view
     }()
 
+    
 }
-
-//MARK: ---------  APUPEBaseViewController --- Extension (网络相关方法)
-
-extension APUPEBaseViewController {
-    
-    func waitSendSmsCode() {
-        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .wait
-    }
-    
-    func startSendSmsCode() {
-        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .start
-    }
-    
-    func endSendSmsCode() {
-        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
-    }
-}
-
-

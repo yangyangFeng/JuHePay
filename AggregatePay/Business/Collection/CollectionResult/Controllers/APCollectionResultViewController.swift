@@ -95,9 +95,9 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
     func numberRow(tableView: UITableView) -> Int {
         return 0
     }
-    
-    func cellAttribute(collectionResultCell: APCollectionResultCell, indexPath: IndexPath) {
-        
+
+    func ap_tableView(tableView: UITableView, cellForRowAtIndexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
     
     //MARK: ---- 代理
@@ -107,17 +107,16 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let collectionResultCell: APCollectionResultCell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
+        let cell = ap_tableView(tableView: tableView, cellForRowAtIndexPath: indexPath)
         if  indexPath.row%2 == 0 {
-            collectionResultCell.backgroundColor = UIColor.white
-            collectionResultCell.contentView.backgroundColor = UIColor.white
+            cell.backgroundColor = UIColor.white
+            cell.contentView.backgroundColor = UIColor.white
         }
         else {
-            collectionResultCell.theme_backgroundColor = ["#fafafa"]
-            collectionResultCell.contentView.theme_backgroundColor = ["#fafafa"]
+            cell.theme_backgroundColor = ["#fafafa"]
+            cell.contentView.theme_backgroundColor = ["#fafafa"]
         }
-        cellAttribute(collectionResultCell: collectionResultCell, indexPath: indexPath)
-        return collectionResultCell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

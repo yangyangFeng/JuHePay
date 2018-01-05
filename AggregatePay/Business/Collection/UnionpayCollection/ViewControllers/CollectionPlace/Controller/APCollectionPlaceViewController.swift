@@ -13,7 +13,6 @@ import UIKit
  */
 class APCollectionPlaceViewController: APUnionPayBaseViewController {
     var datas = [APPlaceModel]()
-    let upeTranVC = APUPETranViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,8 @@ class APCollectionPlaceViewController: APUnionPayBaseViewController {
         view.separatorStyle = .none
         view.tableFooterView = UIView()
         view.theme_backgroundColor = ["#fafafa"]
-        view.register(APCollectionPlaceCell.self, forCellReuseIdentifier: "APCollectionPlaceCell")
+        view.register(APCollectionPlaceCell.self,
+                      forCellReuseIdentifier: "APCollectionPlaceCell")
         return view
     }()
 }
@@ -57,7 +57,7 @@ extension APCollectionPlaceViewController {
     }
     
     //获取卡列表（验证是否开通过银联快哦节）
-    func startQueryQuickPayCardList() {
+    func startQueryQuickPayCardList(placeModel: APPlaceModel) {
         let queryQuickPayCardListRequest = APQueryQuickPayCardListRequest()
         view.AP_loadingBegin()
         APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
@@ -65,7 +65,7 @@ extension APCollectionPlaceViewController {
                          params: queryQuickPayCardListRequest,
                          aClass: APQueryQuickPayCardListResponse.self,
                          success: { (baseResp) in
-                            self.httpDisposequeryQuickPayCardList(response: baseResp)
+                            self.httpDisposequeryQuickPayCardList(response: baseResp, placeModel: placeModel)
                             self.view.AP_loadingEnd()
         }, failure: {(baseError) in
             self.view.AP_loadingEnd()
@@ -73,13 +73,38 @@ extension APCollectionPlaceViewController {
         })
     }
     
-    private func httpDisposequeryQuickPayCardList(response: APBaseResponse) {
+    private func httpDisposequeryQuickPayCardList(response: APBaseResponse,
+                                                  placeModel: APPlaceModel) {
         let result = response as! APQueryQuickPayCardListResponse
         let count : Int = (result.list?.count)!
         if count > 0 {
-            upeTranVC.quickCardDetail = result.list?[0]
+            let cardDetail = result.list?[0]
+            gotoSecondPayVC(placeModel: placeModel,
+                            cardDetail: cardDetail!)
         }
-        self.navigationController?.pushViewController(upeTranVC, animated: true)
+        else {
+            gotoFirstPayVC(placeModel: placeModel)
+        }
+    }
+    
+    private func gotoFirstPayVC(placeModel: APPlaceModel) {
+        let firstTranVC = APUnionFirstViewController()
+        firstTranVC.totalAmount = totalAmount
+        firstTranVC.payPlaceTitle = placeModel.title
+        firstTranVC.integraFlag = placeModel.integraFlag
+        firstTranVC.realName = realName
+        self.navigationController?.pushViewController(firstTranVC, animated: true)
+    }
+    
+    private func gotoSecondPayVC(placeModel: APPlaceModel,
+                                 cardDetail: APQueryQuickPayCardDetail) {
+        let secondTranVC = APUnionSecondViewController()
+        secondTranVC.setQuickPayCardDetail(cardDetail: cardDetail)
+        secondTranVC.realName = realName
+        secondTranVC.totalAmount = totalAmount
+        secondTranVC.payPlaceTitle = placeModel.title
+        secondTranVC.integraFlag = placeModel.integraFlag
+        self.navigationController?.pushViewController(secondTranVC, animated: true)
     }
     
     private func httpDisposeQueryChannelFess(response: APBaseResponse) {
@@ -140,10 +165,7 @@ extension APCollectionPlaceViewController:
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let placeModel = datas[indexPath.row]
-        upeTranVC.totalAmount = totalAmount
-        upeTranVC.payPlaceTitle = placeModel.title
-        upeTranVC.integraFlag = placeModel.integraFlag
-        startQueryQuickPayCardList()
+        startQueryQuickPayCardList(placeModel: placeModel)
     }
 }
 

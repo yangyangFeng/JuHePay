@@ -44,6 +44,7 @@ class APHomeViewController: APBaseViewController {
         if model.payWay == "0" {
             let placeVC = APCollectionPlaceViewController()
             placeVC.totalAmount = totalAmount
+            placeVC.realName = "徐艺达"
             self.navigationController?.pushViewController(placeVC,  animated: true)
         }
         else {

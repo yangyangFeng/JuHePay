@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APTransMsgRequest: APBaseRequest {
+class APTransMsgRequest: APBaseRequest, NSCopying {
     //持卡人姓名
     @objc dynamic var realName: String?
     //卡号
@@ -19,4 +19,20 @@ class APTransMsgRequest: APBaseRequest {
     @objc dynamic var integraFlag: String?
     //交易金额-单位分
     @objc dynamic var amount: String?
+    
+    required override init() {
+        
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let model = type(of: self).init()
+        model.realName = self.realName
+        model.cardNo = self.cardNo
+        model.reserveMobileNo = self.reserveMobileNo
+        model.integraFlag = self.integraFlag
+        model.amount = self.amount
+        return model
+    }
+    
+    
 }

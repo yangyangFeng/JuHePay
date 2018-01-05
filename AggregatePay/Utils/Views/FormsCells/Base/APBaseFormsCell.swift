@@ -18,6 +18,7 @@ class APBaseFormsCell: UIView {
         case mobile = "^1[0-9]{0,10}$"
         case password = "^[A-Za-z0-9-_]{0,16}$"
         case smsCode = "^[0-9]{0,4}$"
+        case quickSmsCode = "^[0-9]{0,6}$"
         case inviteCode = "^[A-Za-z0-9-_]{0,6}$"
         case cvn2 = "^[0-9]{0,3}$"
         case bankCard = "^\\d{0,24}$"
