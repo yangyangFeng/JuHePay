@@ -20,12 +20,13 @@ class APCollectionFailureViewController: APCollectionResultViewController {
         return titles.count
     }
     
-    override func cellAttribute(collectionResultCell: APCollectionResultCell,
-                                indexPath: IndexPath) {
-        let title: String = titles.object(at: indexPath.row) as! String
-        let key: String = keys.object(at: indexPath.row) as! String
-        collectionResultCell.titleLabel.text = title
-        collectionResultCell.contentLabel.text = resultDic?[key]
+    override func ap_tableView(tableView: UITableView, cellForRowAtIndexPath: IndexPath) -> UITableViewCell {
+        let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
+        let title: String = titles.object(at: cellForRowAtIndexPath.row) as! String
+        let key: String = keys.object(at: cellForRowAtIndexPath.row) as! String
+        cell.titleLabel.text = title
+        cell.contentLabel.text = resultDic?[key]
+        return cell
     }
     
     var titles : NSArray = {

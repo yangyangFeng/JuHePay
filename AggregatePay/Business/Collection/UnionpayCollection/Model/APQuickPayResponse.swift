@@ -16,4 +16,5 @@ class APQuickPayResponse: APBaseResponse {
     @objc dynamic var merchantNo: String?
     @objc dynamic var transAmount: String?
     @objc dynamic var transTime: String?
+    @objc dynamic var transStatus: String?
 }

@@ -22,31 +22,36 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
         return titles.count
     }
     
-    override func cellAttribute(collectionResultCell: APCollectionResultCell,
-                                indexPath: IndexPath) {
-        let title: String = titles.object(at: indexPath.row) as! String
-        let key: String = keys.object(at: indexPath.row) as! String
-        collectionResultCell.titleLabel.text = title
+    
+    override func ap_tableView(tableView: UITableView, cellForRowAtIndexPath: IndexPath) -> UITableViewCell {
+        let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
+        let title: String = titles.object(at: cellForRowAtIndexPath.row) as! String
+        let key: String = keys.object(at: cellForRowAtIndexPath.row) as! String
+        cell.titleLabel.text = title
         let value = resultDic![key] as! String
         if key == "payServiceCode" {
             switch value {
             case "WECHAT_PAY":
-                collectionResultCell.contentLabel.text = "微信收款"
+                cell.contentLabel.text = "微信收款"
             case "ALI_PAY":
-                collectionResultCell.contentLabel.text = "支付宝收款"
+                cell.contentLabel.text = "支付宝收款"
+            case "UnioppayQuick":
+                cell.contentLabel.text = "银联快捷收款"
             default:
-                collectionResultCell.contentLabel.text = "二维码收款"
+                cell.contentLabel.text = "二维码收款"
             }
         }
         else if key == "transAmount" {
             let amountNum = Double(value)! / 100.00
-            collectionResultCell.contentLabel.text = String(format: "%.2f", amountNum)
+            cell.contentLabel.text = String(format: "%.2f", amountNum)
         }
         else {
-            collectionResultCell.contentLabel.text = value
+            cell.contentLabel.text = value
         }
+        
+        return cell
     }
-    
+   
     var titles : NSArray = {
         var arr : NSArray = NSArray(array: ["订单号",
                                             "交易时间",

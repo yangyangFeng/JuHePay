@@ -142,6 +142,7 @@ extension APNetworking {
                 parameters: parameters,
                 success:{ (result) in
                     let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
+                    print("respMsg"+baseResp.respMsg!)
                     if baseResp.success == "0" || baseResp.isSuccess == "0" {
                         let baseError = APBaseError()
                         if baseResp.respCode != nil {
@@ -281,6 +282,7 @@ extension APNetworking {
                                       headers: headers).responseJSON { response in
                             switch response.result.isSuccess {
                             case true:
+                                
                                 print("response-value:\(String(describing: response.value))")
                                 self.cacheCookie(response: response)
                                 let result = response.value! as! Dictionary<String, Any>
