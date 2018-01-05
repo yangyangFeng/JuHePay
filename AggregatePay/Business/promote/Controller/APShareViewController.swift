@@ -16,8 +16,9 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "推广"
+        
+        ap_setStatusBarStyle(.lightContent)
         
         let shareView = APShareListView()
         shareView.delegate = self

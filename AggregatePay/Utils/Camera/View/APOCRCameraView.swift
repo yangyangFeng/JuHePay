@@ -230,12 +230,13 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 
                 let bankCard = APOCRBankCard()
                 bankCard.bankName = TBANK_GetBankInfoString(T_GET_BANK_NAME)
-                bankCard.cardNum = TBANK_GetBankInfoString(T_GET_BANK_NUM)
+                bankCard.cardNum = TBANK_GetBankInfoString(T_GET_BANK_NUM).replacingOccurrences(of: " ", with: "")
                 bankCard.bankOrgcode = TBANK_GetBankInfoString(T_GET_BANK_ORGCODE)
                 bankCard.cardName = TBANK_GetBankInfoString(T_GET_CARD_NAME)
                 bankCard.cardType = TBANK_GetBankInfoString(T_GET_BANK_CLASS)
                 bankCard.bankCardImage = image
-                bankCardResult?(bankCard, false, "识别成功")
+               
+                bankCardResult?(bankCard, true, "识别成功")
             } else {
                 if captureManager != nil {
                     captureManager.isRun1 = false

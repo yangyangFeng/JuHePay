@@ -13,10 +13,11 @@ class APMineHeaderView: UIView {
     
     var model : APUserInfoResponse?{
         didSet{
+            arrowImageView.isHidden = false
             userTitleLabel.text = model?.realName
             var i = 0
             var newtel : String = ""
-            var tel : String = (model?.mobileNo ?? "")!
+            let tel : String = (model?.mobileNo ?? "")!
             for a in tel
             {
                 if i < 3{
@@ -73,7 +74,7 @@ class APMineHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 12)
         view.textColor = UIColor(hex6: 0x4c370b)
         view.textAlignment = .right
-        view.text = "未认证"
+        view.text = ""
         return view
     }()
     
@@ -124,7 +125,7 @@ class APMineHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = true
-
+        arrowImageView.isHidden = true
         addSubview(bgImageView)
         bgImageView.addSubview(userBgImageView)
         userBgImageView.addSubview(userIconImageView)
