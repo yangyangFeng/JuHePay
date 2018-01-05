@@ -19,6 +19,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ap_setStatusBarStyle(.lightContent)
         self.vhl_setNavBackgroundColor(UIColor.init(hex6: 0x373737))
         view.theme_backgroundColor = ["#2b2b2b"]
         title = "推广"

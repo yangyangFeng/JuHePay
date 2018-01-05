@@ -24,6 +24,7 @@ class APWalletDetailViewController: APBaseViewController{
         title = "钱包明细"
         createSubViews()
         initHttpRequest()
+        ap_setStatusBarStyle(.lightContent)
     }
    
     //MARK: ---- lazy loading
