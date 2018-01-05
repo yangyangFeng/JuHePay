@@ -82,6 +82,8 @@ class APAuthHelper: NSObject {
     }
     
     static func clearAuthInfo() {
+        
+         print("认证信息已清空")
         sharedInstance.realNameAuthState = .Other
         sharedInstance.securityAuthState = .Other
         sharedInstance.settleCardAuthState = .Other

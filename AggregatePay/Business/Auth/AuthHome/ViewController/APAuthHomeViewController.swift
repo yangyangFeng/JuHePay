@@ -30,10 +30,15 @@ class APAuthHomeViewController: APBaseViewController {
           loadAuthInfo()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        APAuthHelper.clearAuthInfo()
+//    }
+    
+    deinit {
         APAuthHelper.clearAuthInfo()
+        print( String(describing: self.classForCoder) + "已释放")
     }
     
     
