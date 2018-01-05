@@ -44,16 +44,21 @@ class APHomeViewController: APBaseViewController {
         }
         
         if model.payWay == "0" {
-            
-            let placeVC = APCollectionPlaceViewController()
-            placeVC.totalAmount = totalAmount
-<<<<<<< HEAD
-            placeVC.realName = "徐艺达"
-            navigationController?.pushViewController(placeVC,  animated: true)
-=======
-            placeVC.realName = APUserInfoTool.info.realName
-            self.navigationController?.pushViewController(placeVC,  animated: true)
->>>>>>> b59147c062e957ba9737c0e83f597763b40a912e
+            guard let realName = APUserInfoTool.info.realName else {
+                self.view.AP_loadingBegin()
+                APMineHttpTool.loginGetUserInfo(success: { (baseResp) in
+                    self.view.AP_loadingEnd()
+                    let newRealName = APUserInfoTool.info.realName
+                    self.pushUnionPayVC(totalAmount: totalAmount,
+                                   realName: newRealName!)
+                }, faile: { (baseError) in
+                    self.view.AP_loadingEnd()
+                    self.view.makeToast(baseError.message)
+                })
+                return
+            }
+            pushUnionPayVC(totalAmount: totalAmount,
+                           realName: realName)
         }
         else {
             let qrcpElementVC = APQRCPElementViewController()
@@ -61,6 +66,13 @@ class APHomeViewController: APBaseViewController {
             qrcpElementVC.payType = model.payType
             navigationController?.pushViewController(qrcpElementVC, animated: true)
         }
+    }
+    
+    func pushUnionPayVC(totalAmount: String, realName: String){
+        let placeVC = APCollectionPlaceViewController()
+        placeVC.totalAmount = totalAmount
+        placeVC.realName = realName
+        self.navigationController?.pushViewController(placeVC,  animated: true)
     }
     
     //MARK: ---- lazy  loading

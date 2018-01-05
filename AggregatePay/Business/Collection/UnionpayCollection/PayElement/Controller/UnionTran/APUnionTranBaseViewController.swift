@@ -22,18 +22,27 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         tool.ap_TranDelegate = self
         return tool
     }()
+    lazy var unionTimeToos: APUnionTimeTools = {
+        let tool = APUnionTimeTools(target: self)
+        tool.ap_TimeDelegate = self
+        return tool
+    }()
     
+    override func goBackAction() {
+        unionTimeToos.ap_endTime()
+        super.goBackAction()
+    }
 
     deinit {
         print( String(describing: self.classForCoder) + "已释放")
         NotificationCenter.default.removeObserver(self, name: TRAN_NOTIF_KEY, object: nil)
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
-        NotificationCenter.default.removeObserver(self, name: TRAN_DISPOSE_NOTIF_KEY, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unionHttpTool.ap_remove()
+        unionTimeToos.ap_endTime()
     }
     
     override func viewDidLoad() {
@@ -77,12 +86,14 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationCardDetail(_:)), name: TRAN_CARD_NOTIF_KEY, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(notificationQuickPayRequest(_:)), name: TRAN_NOTIF_KEY, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationQueryResult(_:)), name: TRAN_DISPOSE_NOTIF_KEY, object: nil)
     }
 }
 
-extension APUnionTranBaseViewController: APUnionHttpTranDelegate {
+extension APUnionTranBaseViewController:
+    APUnionHttpTranDelegate,
+    APUnionTimeToolsDelegate {
     
+    //MARK: --  APUnionHttpTranDelegate
     func ap_unionHttpTranSmsCodeSuccess(result: APTransMsgResponse) {
         quickPayRequest.preSerial = result.preSerial!
     }
@@ -99,29 +110,29 @@ extension APUnionTranBaseViewController: APUnionHttpTranDelegate {
             pushOpenUnionPayVC(result: result)
         }
         else {
-            gotoTranDispose(result: result)
+            unionHttpTool.loadSubmitBegan()
+            unionTimeToos.ap_startTime(orderNo: result.orderNo)
         }
+    }
+    
+    //MARK: -- APUnionTimeToolsDelegate
+    func ap_unionTimeToolsSuccess(quickPayResp: APQuickPayResponse) {
+        unionHttpTool.loadSubmitEnd()
+        if quickPayResp.transStatus == "0" {
+            gotoTranFaiure(result: quickPayResp)
+        }
+        else if quickPayResp.transStatus == "2" {
+            gotoTranSuccess(result: quickPayResp)
+        }
+    }
+    
+    func ap_unionTimeToolsFailure() {
+        unionHttpTool.loadSubmitEnd()
+        gotoTranDispose()
     }
 }
 
 extension APUnionTranBaseViewController {
-    
-    @objc func notificationQueryResult(_ notif: Notification) {
-        let response = notif.object as! APQueryQuickPayResultResponse
-        let result = APQuickPayResponse()
-        result.orderNo = response.orderNo
-        result.merchantName = response.merchantName
-        result.merchantNo = response.merchantNo
-        result.transAmount = response.transAmount
-        result.transTime = response.transTime
-        result.transStatus = response.transStatus
-        if result.transStatus == "0" {
-            gotoTranFaiure(result: response)
-        }
-        else if result.transStatus == "2" {
-            gotoTranSuccess(result: response)
-        }
-    }
     
     @objc func notificationCardDetail(_ notif: Notification) {
         
@@ -183,36 +194,31 @@ extension APUnionTranBaseViewController {
     }
     
     func gotoTranSuccess(result: APQuickPayResponse) {
-        
         let successVC = APCollectionSuccessViewController()
         successVC.resultDic = ["orderNo":result.orderNo,
                                "transDateTime":result.transTime,
                                "transAmount":result.transAmount,
                                "payServiceCode":"UnioppayQuick"]
         let navigation = APBaseNavigationViewController(rootViewController: successVC)
-        navigationController?.popToRootViewController(animated: true)
-
-        let lastVC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
-        let homeVC = lastVC.selectedViewController
-        homeVC?.present(navigation, animated: true, completion: nil);
+        self.present(navigation, animated: true, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        });
     }
     
-    func gotoTranDispose(result: APQuickPayResponse) {
+    func gotoTranDispose() {
         let disposeVC = APCollectionDisposeViewController()
-        disposeVC.innerOrderNo = result.orderNo
         let navigation = APBaseNavigationViewController(rootViewController: disposeVC)
-        self.present(navigation, animated: true, completion: nil);
-
+        self.present(navigation, animated: true, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        });
     }
     
     func gotoTranFaiure(result: APQuickPayResponse) {
-        
         let failureVC = APCollectionFailureViewController()
         failureVC.resultDic = ["respDesc":result.respMsg!]
         let navigation = APBaseNavigationViewController(rootViewController: failureVC)
-        self.navigationController?.popToRootViewController(animated: true)
-        let lastVC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
-        let homeVC = lastVC.selectedViewController
-        homeVC?.present(navigation, animated: true, completion: nil);
+        self.present(navigation, animated: true, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        });
     }
 }
