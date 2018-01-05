@@ -13,6 +13,7 @@ extension APHttpService{
     static let getCardListByUserId: String = "/user/getCardListByUserId" //获取银行卡
     static let aboutInfo: String = "/user/getAboutUsInfo" //关于我们
     static let promoteUrl: String = "/h5/gencodeUrl" //获取推广url
+    static let updateApp: String = "/user/queryVersionInfo" //更新APP
 }
 
 extension APHttpUrl{
@@ -49,6 +50,13 @@ class APMineHttpTool: NSObject {
                           success : @escaping APNetWorkingSuccessBlock,
                           faile : @escaping APNetWorkingFaileBlock){
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.promoteUrl, params: param, aClass: APPromoteResponse.self.self, success: success, failure: faile)
+    }
+    /// 获取APP版本信息
+    ///
+    static func updateApp(_ param : APBaseRequest,
+                           success : @escaping APNetWorkingSuccessBlock,
+                           faile : @escaping APNetWorkingFaileBlock){
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.updateApp, params: param, aClass: APCheckAppVerisonResponse.self.self, success: success, failure: faile)
     }
     /// 获取用户信息
     ///

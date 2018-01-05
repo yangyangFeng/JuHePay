@@ -91,7 +91,18 @@ class APAboutUsViewController: APMineBaseViewController {
 
     @objc func checkoutBtnDidAction()
     {
-        view.makeToast("已是最新版本")
+        let param = APCheckAppVerisonRequest()
+        param.systemType = "1"
+        APMineHttpTool.updateApp(param, success: { (res) in
+            
+        }) { (error) in
+            
+        }
+        view.makeToast("已是最新版本")//1129065593
+        let app_url : URL = URL.init(string: "itms-apps://itunes.apple.com/app/id" + "1129065593")!
+        if UIApplication.shared.canOpenURL(app_url) {
+            UIApplication.shared.openURL(app_url)
+        }
     }
 
     override func didReceiveMemoryWarning() {

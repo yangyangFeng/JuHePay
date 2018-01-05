@@ -13,12 +13,12 @@ class APOutLoginTool: NSObject {
     static func loginOut() {
         emptyData()
         let app: AppDelegate = APPDElEGATE
-        let rootVC = app.window?.rootViewController
-        rootVC?.childViewControllers.last?.dismiss(animated: false, completion: nil)
+//        let rootVC = app.window?.rootViewController
+//        rootVC?.childViewControllers.last?.dismiss(animated: false, completion: nil)
         app.window?.rootViewController = app.createTabBarController()
         let tabBarC = app.window?.rootViewController as! APBaseTabBarViewController
-        let homeC = tabBarC.selectedViewController
-        homeC?.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
+//        let homeC = tabBarC.selectedViewController
+        tabBarC.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
     }
 
     static func login() {

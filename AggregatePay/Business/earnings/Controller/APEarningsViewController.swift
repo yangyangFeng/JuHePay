@@ -32,20 +32,15 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
     
     func loadData()
     {
-//        view.AP_loadingBegin()
         let param = APGetProfitHomeRequest()
-//        param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         param.mobileNo = APUserDefaultCache.AP_get(key: .mobile) as? String
-            //APUserInfoTool.info.mobileNo
         
         APEarningsHttpTool.getProfitHome(param, success: { (res) in
             self.listView.tableView.mj_header.endRefreshing()
             self.data = res as? APGetProfitHomeResponse
             self.updateSubviews(res as! APGetProfitHomeResponse)
-//            self.view.AP_loadingEnd()
         }) { (error) in
             self.listView.tableView.mj_header.endRefreshing()
-//            self.view.AP_loadingEnd()
         }
     }
 

@@ -105,10 +105,10 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
            self?.nameFormCell.textField.text = response.realName
            self?.authParam.userName = response.realName
             
-           self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+           self?.idCardFormCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key).cp_stringIDCardByReplacing()
            self?.authParam.identity = aesDecryptString(response.idCard, AP_AES_Key)
             
-            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key)
+            self?.bankCardNoFormCell.textField.text = aesDecryptString(response.cardNo, AP_AES_Key).cp_stringBankCardByReplacing()
             self?.authParam.cardNo = aesDecryptString(response.cardNo, AP_AES_Key)
             
             if response.bankName.count > 0 {

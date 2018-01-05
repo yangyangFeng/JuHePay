@@ -126,7 +126,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             self?.realNameCell.textField.text = response.realName
             self?.authParam.realName = response.realName
             
-            self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
+            self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key).cp_stringIDCardByReplacing()
             self?.authParam.idCard = aesDecryptString(response.idCard, AP_AES_Key)
             
             self?.idCardFront.fileName = response.idCardFront
