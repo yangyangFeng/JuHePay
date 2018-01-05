@@ -73,11 +73,10 @@ extension APWalletDetailViewController {
     private func httpQueryAccountRecord () {
 //        queryAccountRecordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.queryAccountRecord, params: queryAccountRecordRequest, aClass: APQueryAccountRecordResponse.self, success: { (baseResp) in
-            self.httpDisposeDataResponse(response: baseResp as! APQueryAccountRecordResponse)
+            self.view.AP_loadingEnd()
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
-            self.tableView.reloadData()
-            self.view.AP_loadingEnd()
+            self.httpDisposeDataResponse(response: baseResp as! APQueryAccountRecordResponse)
         }) { (baseError) in
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -88,11 +87,12 @@ extension APWalletDetailViewController {
     }
     
     private func httpDisposeDataResponse(response: APQueryAccountRecordResponse) {
-        if self.queryAccountRecordRequest.pageNo == response.totalRecords {
-            self.tableView.mj_footer.endRefreshingWithNoMoreData()
+        if queryAccountRecordRequest.pageNo == response.bottomPageNo {
+            tableView.mj_footer.endRefreshingWithNoMoreData()
         }
-        self.queryAccountRecordRequest.pageNo = response.bottomPageNo!
-        self.datas.append(contentsOf: response.list!)
+        queryAccountRecordRequest.pageNo = response.bottomPageNo!
+        datas.append(contentsOf: response.list!)
+        tableView.reloadData()
     }
 }
 

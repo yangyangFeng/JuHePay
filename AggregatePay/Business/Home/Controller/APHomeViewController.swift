@@ -14,6 +14,7 @@ class APHomeViewController: APBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardCompositionView.isLogin = APUserInfoTool.isLogin()
+        keyboardCompositionView.ap_remove()
     }
 
     override func viewDidLoad() {

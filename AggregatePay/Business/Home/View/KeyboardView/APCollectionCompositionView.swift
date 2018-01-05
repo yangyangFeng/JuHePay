@@ -36,7 +36,13 @@ class APCollectionCompositionView: APKeyboardCompositionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+   
+    
     //MARK: ---- 重载父类方法
+    
+    override func ap_remove() {
+        displayView?.ap_remove()
+    }
     
     override func getKeyboardView() -> APKeyboardView {
         return APCollectionKeyboardView()

@@ -93,7 +93,13 @@ class APCollectionDisplayView: APDisplayView {
         }
     }
     
+    
     //MARK: ---- 重写父类方法
+    
+    override func ap_remove() {
+        displayNum.text = ""
+    }
+    
     
     override  func inputDisplayNumValue (num: String) {
         displayNum.text = num
