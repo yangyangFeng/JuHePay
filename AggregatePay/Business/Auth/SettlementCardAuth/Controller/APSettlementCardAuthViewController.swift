@@ -244,6 +244,7 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank
             self?.bankNameFormCell.text = bank.bankName
+            self?.authParam.bankNo = bank.bankName
         }
         
         let navi = APBaseNavigationViewController.init(rootViewController: searchBankVC)
@@ -259,8 +260,15 @@ extension APSettlementCardAuthViewController: APCameraViewControllerDelegate {
     }
     
     func ocrCameraBankCardResult(bankCard result: APOCRBankCard) {
-        bankCardNoFormCell.textField.text = result.cardNum
-        bankImageModel.image = result.bankCardImage
+        
+        if let text = result.cardNum {
+            bankCardNoFormCell.textField.text = text
+            authParam.cardNo = text
+        }
+        
+        if let image = result.bankCardImage {
+            bankImageModel.image = image
+        }
         collectionView.reloadData()
     }
 }
