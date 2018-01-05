@@ -34,13 +34,16 @@ class APEarningsViewController: APBaseViewController,AP_TableViewDidSelectProtoc
     {
         let param = APGetProfitHomeRequest()
         param.mobileNo = APUserDefaultCache.AP_get(key: .mobile) as? String
-        
+        view.AP_loadingBegin()
         APEarningsHttpTool.getProfitHome(param, success: { (res) in
             self.listView.tableView.mj_header.endRefreshing()
             self.data = res as? APGetProfitHomeResponse
             self.updateSubviews(res as! APGetProfitHomeResponse)
+            self.view.AP_loadingEnd()
         }) { (error) in
             self.listView.tableView.mj_header.endRefreshing()
+            self.view.AP_loadingEnd()
+            self.view.makeToast(error.message)
         }
     }
 

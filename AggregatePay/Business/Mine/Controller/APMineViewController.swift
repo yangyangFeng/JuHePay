@@ -37,6 +37,7 @@ class APMineViewController: APMineBaseViewController{
         title = "我的"
         
         initSubviews()
+        loadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +66,7 @@ class APMineViewController: APMineBaseViewController{
             self.staticListView.tableView.mj_header.endRefreshing()
             return
         }
+        self.headView.model = APUserInfoResponse.mj_object(withKeyValues: APUserInfoTool.info.mj_keyValues())
         let param = APUserInfoRequest()
         param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APMineHttpTool.getUserInfo(param, success: { (res) in

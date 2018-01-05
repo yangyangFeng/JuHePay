@@ -30,6 +30,8 @@ final class APUserInfoTool: NSObject {
         }
     }
     
+    static var mobileNo : String?
+    
     /// 是否实名
     @objc dynamic var isRealName : String?
     /// 用户名称 ps:当用户已实名才返回

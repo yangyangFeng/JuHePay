@@ -211,7 +211,7 @@ extension APBaseViewController {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APRealNameAuthViewController()
+            let authVC = APAuthHomeViewController()
             let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
             currentVC.navigationController?.pushViewController(authVC, animated: true)
         }) { (cancelAction) in

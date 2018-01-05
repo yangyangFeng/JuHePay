@@ -47,13 +47,9 @@ class APHomeViewController: APBaseViewController {
             
             let placeVC = APCollectionPlaceViewController()
             placeVC.totalAmount = totalAmount
-<<<<<<< HEAD
-            placeVC.realName = "徐艺达"
-            navigationController?.pushViewController(placeVC,  animated: true)
-=======
-            placeVC.realName = APUserInfoTool.info.realName
+            placeVC.realName = APUserInfoTool.info.realName ?? ""
             self.navigationController?.pushViewController(placeVC,  animated: true)
->>>>>>> b59147c062e957ba9737c0e83f597763b40a912e
+
         }
         else {
             let qrcpElementVC = APQRCPElementViewController()
