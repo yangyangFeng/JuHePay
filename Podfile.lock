@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.6.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
@@ -19,9 +21,6 @@ PODS:
   - PGDatePicker (1.5.9):
     - PGPickerView
   - PGPickerView (1.2.1)
-  - SDWebImage (4.2.2):
-    - SDWebImage/Core (= 4.2.2)
-  - SDWebImage/Core (4.2.2)
   - SnapKit (4.0.0)
   - SwiftTheme (0.4.1)
   - Toast-Swift (3.0.1)
@@ -30,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - AlamofireImage (~> 3.3)
   - AlamofireObjectMapper (~> 5.0)
   - Bugly
   - EFQRCode (~> 1.2.7)
@@ -42,7 +42,6 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - PGDatePicker (>= 1.5.4)
-  - SDWebImage
   - SnapKit (~> 4.0.0)
   - SwiftTheme (~> 0.4.1)
   - Toast-Swift (~> 3.0.1)
@@ -51,6 +50,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   Bugly: 00c8701f2bebab4887771ba43afbf51334009742
   EFQRCode: f283d7ce75a7780756a5e2a9c39077292d6e7596
@@ -66,13 +66,12 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   PGDatePicker: 00505c5180a92adf1e0465805b0cb49baf42a367
   PGPickerView: cb49c6b3e2a39148bef9f666fa58bb349e0c3b85
-  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: fd21d1667c2e2550b370547e09392a90a22e4a2d
+PODFILE CHECKSUM: fd4829767114192bf0369585f5196a35a7462ee6
 
 COCOAPODS: 1.2.1

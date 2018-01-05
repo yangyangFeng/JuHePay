@@ -16,7 +16,13 @@ public protocol APSearchBarViewDelegate: NSObjectProtocol {
 class APSearchBarView: UIView, UITextFieldDelegate {
 
     public weak var delegate: APSearchBarViewDelegate?
-    let textField = UITextField()
+    public var placeholder: String? {
+        didSet {
+            textField.placeholder = placeholder!
+        }
+    }
+    private let textField = UITextField()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +80,15 @@ class APSearchBarView: UIView, UITextFieldDelegate {
         searchButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
+    
+   public func editing(isEditing: Bool) {
+        if isEditing {
+            textField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+    }
+
     
     @objc func search() {
         endEditing(true)

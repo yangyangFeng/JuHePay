@@ -9,7 +9,7 @@
 import UIKit
 
 protocol APMineStaticListViewDelegate : NSObjectProtocol {
-    func tableViewDidSelectIndex(_ title : String, controller : String)
+    func tableViewDidSelectIndex(_ title : String, controller : String , level : Int)
 }
 
 class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
@@ -118,6 +118,6 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
         let item : NSDictionary = listDataSource[indexPath.row] as! NSDictionary
         let controller = item.object(forKey: "controller")
         let title = item.object(forKey: "title")
-        _delegate.tableViewDidSelectIndex(title as! String, controller: controller as! String)
+        _delegate.tableViewDidSelectIndex(title as! String, controller: controller as! String , level: Int(truncating: item.object(forKey: "level") as! NSNumber))
     }
 }

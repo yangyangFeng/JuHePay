@@ -26,7 +26,10 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         title = "安全认证"
         layoutViews()
         userInputCallBacks()
-        registerObserve()
+        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     func userInputCallBacks() {

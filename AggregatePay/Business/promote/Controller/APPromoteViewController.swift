@@ -44,8 +44,15 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
             make.centerX.equalToSuperview().offset(0)
             
         }
-//        qrImageView.bgImageView.image = shareTemplateView.templateImageIndex
-        qrImageView.changeQrCode("www.baidu.com")
+
+        APMineHttpTool.promoteUrl(APBaseRequest(), success: { (res) in
+            let data : APPromoteResponse = res as! APPromoteResponse
+            self.qrImageView.changeQrCode(data.genCodeUrl!)
+        }) { (error) in
+            
+        }
+        
+        
         
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.init(hex6: 0xc8a556), for: .normal)

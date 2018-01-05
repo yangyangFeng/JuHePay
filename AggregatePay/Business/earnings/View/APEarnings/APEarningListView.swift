@@ -88,7 +88,7 @@ class APEarningListView: UIView,UITableViewDataSource,UITableViewDelegate {
             let cell : APEarningListViewCell = APEarningListViewCell.cellWithTableView(tableView) as! APEarningListViewCell
             let cellData = data?.getRecommendByUser?[indexPath.row]
             
-            cell.leftIcon.image = UIImage.init(named: "Mine_head_user_level_title_0" )
+            cell.leftIcon.image = UIImage.init(named: "Mine_head_user_level_" + (cellData?.levelId ?? "0")!)
             cell.levelName.text = cellData?.userLevelName
             cell.subAgents.text = "共有" + (cellData?.userRecommendCount ?? "0")! + "位服务商"
             cell.selectionStyle = .none

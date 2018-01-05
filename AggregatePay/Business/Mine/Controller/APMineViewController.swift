@@ -9,36 +9,35 @@
 import UIKit
 import SnapKit
 //SnapKit
+import Alamofire
 
 
 
-
-class APMineViewController: APMineBaseViewController, APMineStaticListViewDelegate{
-    func tableViewDidSelectIndex(_ title: String, controller: String) {
+class APMineViewController: APMineBaseViewController, APMineStaticListViewDelegate, AP_ActionProtocol{
+    func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
         print(controller)
-        // -1.动态获取命名空间
-        let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
-        let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
-        guard let controllerType = controllerClass as? UIViewController.Type else {
-            print("类型转换失败")
-            return
+        APAccessControler.checkAccessControl(level) {
+            // -1.动态获取命名空间
+            let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+            let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
+            guard let controllerType = controllerClass as? UIViewController.Type else {
+                print("类型转换失败")
+                return
+            }
+            let nextC = controllerType.init()
+            nextC.title = title
+            self.navigationController?.pushViewController(nextC)
         }
-        let nextC = controllerType.init()
-        nextC.title = title
-        navigationController?.pushViewController(nextC)
     }
-    
 
-    lazy var btn: UIButton = {
-        let temp = UIButton(type: UIButtonType.system)
-        temp.setTitle("点击", for: UIControlState.normal)
-        temp.addTarget(self, action: #selector(action), for: UIControlEvents.touchUpInside)
-        temp.frame = CGRect(x: 130, y: 100, width: 100, height: 100)
-        return temp
-    }()
-    
     lazy var headView: APMineHeaderView = {
         let view = APMineHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 208-64))
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(headDidAction), for: UIControlEvents.touchUpInside)
+        view.addSubview(button)
+        button.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview().offset(0)
+        }
         return view
     }()
     
@@ -46,7 +45,7 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
         let view = APMineStaticListView()
         weak var weakSelf = self
         view.tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.loadData()
+            weakSelf?.loadData()
         })
         view.delegate = self
         return view
@@ -74,7 +73,16 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
         loadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     func loadData(){
+        guard APUserInfoTool.isLogin() else {
+            self.staticListView.tableView.mj_header.endRefreshing()
+            return
+        }
         let param = APUserInfoRequest()
         param.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APMineHttpTool.getUserInfo(param, success: { (res) in
@@ -87,11 +95,15 @@ class APMineViewController: APMineBaseViewController, APMineStaticListViewDelega
             self.staticListView.tableView.mj_header.endRefreshing()
         }
     }
-
-    @objc func action()
-    {        
-        self.navigationController?.pushViewController(APServiceViewController(), animated: true)
+    
+    @objc func headDidAction(){
+        APAccessControler.checkAccessControl(1) {
+            let authHomeController = APAuthHomeViewController()
+            self.navigationController?.pushViewController(authHomeController)
+        }
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -30,7 +30,10 @@ class APRealNameAuthViewController: APAuthBaseViewController {
 
         setUpUI()
         registerCallBacks()
-        registerObserve()
+        
+        if canEdit {
+            registerObserve()
+        }
     }
     
     
@@ -126,8 +129,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             self?.idCardNoCell.textField.text = aesDecryptString(response.idCard, AP_AES_Key)
             self?.authParam.idCard = aesDecryptString(response.idCard, AP_AES_Key)
             
-//            self?.idCardFront.fileName = response.idCardFront
-//            self?.idCardResver.fileName = response.idCardBack
+            self?.idCardFront.fileName = response.idCardFront
+            self?.idCardResver.fileName = response.idCardBack
             self?.holdIdCard.fileName = response.handIdCard
             
             self?.collectionView.reloadData()

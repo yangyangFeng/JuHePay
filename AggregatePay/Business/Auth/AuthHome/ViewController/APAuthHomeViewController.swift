@@ -30,14 +30,30 @@ class APAuthHomeViewController: APBaseViewController {
           loadAuthInfo()
     }
     
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        APAuthHelper.clearAuthInfo()
+//    }
+    
+    deinit {
+        APAuthHelper.clearAuthInfo()
+        print( String(describing: self.classForCoder) + "已释放")
+    }
+    
+    
     // MARK: -- Data
     func loadAuthInfo() {
+        
+        view.AP_loadingBegin()
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
             
+            self.view.AP_loadingEnd()
             self.tableView.reloadData()
             
-        }) { [weak self] (error) in
-            self?.view.makeToast(error.message)
+        }) {(error) in
+            self.view.AP_loadingEnd()
+            self.view.makeToast(error.message)
         }
     }
 }
@@ -59,6 +75,9 @@ extension APAuthHomeViewController {
         tableView.layer.borderWidth = 1
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = 56
+        tableView.mj_header = APRefreshHeader(refreshingBlock: {[weak self] in
+             self?.loadAuthInfo()
+        })
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in

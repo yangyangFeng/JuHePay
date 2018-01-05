@@ -21,6 +21,8 @@ class APUserInfoResponse: APBaseResponse {
     @objc dynamic var mobileNo : String?
     /// 级别名称
     @objc dynamic var levelName : String?
+    /// 代理商等级ID
+    @objc dynamic var levelId : String?
     /// 推荐人名称
     @objc dynamic var recommendUserName : String?
     /// 推荐人手机号
