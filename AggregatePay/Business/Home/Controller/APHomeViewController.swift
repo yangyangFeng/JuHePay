@@ -28,9 +28,10 @@ class APHomeViewController: APBaseViewController {
     
     //MARK: ---- 按钮触发
     @objc func pushBillVC() {
+        weak var weakSelf = self
         ap_userIdentityStatus {
             let billVC = APSegmentQueryViewController()
-            self.navigationController?.pushViewController(billVC, animated: true)
+            weakSelf?.navigationController?.pushViewController(billVC, animated: true)
         }
     }
 
@@ -46,14 +47,19 @@ class APHomeViewController: APBaseViewController {
             
             let placeVC = APCollectionPlaceViewController()
             placeVC.totalAmount = totalAmount
+<<<<<<< HEAD
+            placeVC.realName = "徐艺达"
+            navigationController?.pushViewController(placeVC,  animated: true)
+=======
             placeVC.realName = APUserInfoTool.info.realName
             self.navigationController?.pushViewController(placeVC,  animated: true)
+>>>>>>> b59147c062e957ba9737c0e83f597763b40a912e
         }
         else {
             let qrcpElementVC = APQRCPElementViewController()
             qrcpElementVC.amountStr = totalAmount
             qrcpElementVC.payType = model.payType
-            self.navigationController?.pushViewController(qrcpElementVC, animated: true)
+            navigationController?.pushViewController(qrcpElementVC, animated: true)
         }
     }
     
@@ -108,9 +114,10 @@ extension APHomeViewController:
 
     //MARK: APKeyboardCompositionViewDelegate
     func didKeyboardConfirm(totalAmount: String, model: Any) {
+        weak var weakSelf = self
         ap_userIdentityStatus {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
-            self.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
+            weakSelf?.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
         }
     }
     

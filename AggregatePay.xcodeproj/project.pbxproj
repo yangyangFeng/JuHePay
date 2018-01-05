@@ -226,6 +226,7 @@
 		74194EEF1FEB4FA800565E4F /* APShareListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194EEE1FEB4FA800565E4F /* APShareListView.swift */; };
 		7420A82A1FFB567700A4FC2F /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7420A8291FFB567700A4FC2F /* UserNotifications.framework */; };
 		7420A82C1FFB9BBA00A4FC2F /* APAccessControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420A82B1FFB9BBA00A4FC2F /* APAccessControler.swift */; };
+		7432C5A71FFF737900ADCBE6 /* APBaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7432C5A61FFF737900ADCBE6 /* APBaseWebViewController.swift */; };
 		7452ED091FF3441B0046CE23 /* APEarningsHttpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */; };
 		7452ED0C1FF347590046CE23 /* APGetProfitHomeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */; };
 		7452ED0E1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */; };
@@ -244,6 +245,7 @@
 		747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */; };
 		747130AA1FFDC3A100A170EF /* APGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130A91FFDC3A100A170EF /* APGuideView.swift */; };
 		747130B71FFE2CD700A170EF /* APPromoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130B61FFE2CD700A170EF /* APPromoteRequest.swift */; };
+		747130B91FFF632E00A170EF /* APCheckAppVerisonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130B81FFF632E00A170EF /* APCheckAppVerisonRequest.swift */; };
 		747668401FE8F66C00715E72 /* APAgentDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */; };
 		747668411FE8F66C00715E72 /* APEarningHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683C1FE8F66C00715E72 /* APEarningHeadView.swift */; };
 		747668421FE8F66C00715E72 /* APEarningListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476683D1FE8F66C00715E72 /* APEarningListView.swift */; };
@@ -624,6 +626,7 @@
 		74194EEE1FEB4FA800565E4F /* APShareListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareListView.swift; sourceTree = "<group>"; };
 		7420A8291FFB567700A4FC2F /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7420A82B1FFB9BBA00A4FC2F /* APAccessControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAccessControler.swift; sourceTree = "<group>"; };
+		7432C5A61FFF737900ADCBE6 /* APBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseWebViewController.swift; sourceTree = "<group>"; };
 		7452ED081FF3441B0046CE23 /* APEarningsHttpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEarningsHttpTool.swift; sourceTree = "<group>"; };
 		7452ED0B1FF347590046CE23 /* APGetProfitHomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetProfitHomeRequest.swift; sourceTree = "<group>"; };
 		7452ED0D1FF3476A0046CE23 /* APGetUserListRecommendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGetUserListRecommendRequest.swift; sourceTree = "<group>"; };
@@ -641,6 +644,7 @@
 		747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APAgentDetailViewController.swift; path = AggregatePay/Business/earnings/Controller/APAgentDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		747130A91FFDC3A100A170EF /* APGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGuideView.swift; sourceTree = "<group>"; };
 		747130B61FFE2CD700A170EF /* APPromoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPromoteRequest.swift; sourceTree = "<group>"; };
+		747130B81FFF632E00A170EF /* APCheckAppVerisonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APCheckAppVerisonRequest.swift; sourceTree = "<group>"; };
 		7476683A1FE8F66C00715E72 /* APAgentDetailListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAgentDetailListView.swift; sourceTree = "<group>"; };
 		7476683C1FE8F66C00715E72 /* APEarningHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEarningHeadView.swift; sourceTree = "<group>"; };
 		7476683D1FE8F66C00715E72 /* APEarningListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APEarningListView.swift; sourceTree = "<group>"; };
@@ -2401,6 +2405,7 @@
 				7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */,
 				7461CB361FF384BB002B3734 /* APCardListRequest.swift */,
 				7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */,
+				747130B81FFF632E00A170EF /* APCheckAppVerisonRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2638,6 +2643,7 @@
 				74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */,
 				74EC342E1FDF805E003ABF70 /* APBaseTabBarViewController.swift */,
 				238D0E361FE10D690024D23F /* APBaseTableView.swift */,
+				7432C5A61FFF737900ADCBE6 /* APBaseWebViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -3077,6 +3083,11 @@
 				1AA80FA51FDFDE660021B046 /* APLoginToolView.swift in Sources */,
 				1AEC82901FFF2A5B00585A03 /* APQRCodeSelectMerchantCell.swift in Sources */,
 				1A23CA751FF26AB8005154F4 /* APSendMessageReq.swift in Sources */,
+
+				7432C5A71FFF737900ADCBE6 /* APBaseWebViewController.swift in Sources */,
+				1AA95EC91FFCAF55009BFEA5 /* APPayElementHeaderView.swift in Sources */,
+
+
 				747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */,
 				2374A9F31FE8F1590013AB88 /* APSecurityAuthViewController.swift in Sources */,
 				1AF37EDE1FF1DB47006B2326 /* APBaseResponse.swift in Sources */,
@@ -3249,6 +3260,11 @@
 				74EC34371FDF8948003ABF70 /* APMineHeaderView.swift in Sources */,
 				7487E18E1FDFE131000E3EBE /* UILabelExtensions.swift in Sources */,
 				1AD068DA1FEB4C090009E5E9 /* APLocationTools.swift in Sources */,
+
+				747130B91FFF632E00A170EF /* APCheckAppVerisonRequest.swift in Sources */,
+				1AA95ECB1FFCAF55009BFEA5 /* APPayElementTextCell.swift in Sources */,
+
+
 				74EC342D1FDF7BD3003ABF70 /* UIImage+QH.m in Sources */,
 				234CE0F61FF0C78E008F834E /* SCCaptureCameraController.m in Sources */,
 				7461CB381FF384BB002B3734 /* APAboutUsRequest.swift in Sources */,
@@ -3447,9 +3463,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3471,7 +3488,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.Intercommerce;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3488,9 +3505,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BYXKWL5C3R;
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3512,10 +3530,10 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnepay.Intercommerce;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "adafce5c-d01b-40ff-800e-1bda5483d089";
-				PROVISIONING_PROFILE_SPECIFIER = AggregatePay_Distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
