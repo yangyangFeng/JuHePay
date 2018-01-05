@@ -52,11 +52,9 @@ class APMineHttpTool: NSObject {
     }
     /// 获取用户信息
     ///
-    static func loginGetUserInfo(_ userId : String,
-                            success : @escaping APNetWorkingSuccessBlock,
-                            faile : @escaping APNetWorkingFaileBlock){
+    static func loginGetUserInfo(success : @escaping APNetWorkingSuccessBlock,
+                                 faile : @escaping APNetWorkingFaileBlock){
         let param = APUserInfoRequest()
-        param.userId = userId
         APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.userInfo, params: param, aClass: APUserInfoResponse.self.self, success: {(res) in
             //MARK: 同步用户信息
             APUserInfoTool.info = APUserInfoTool.mj_object(withKeyValues: res.mj_keyValues())
