@@ -52,6 +52,7 @@
 		1A55F5261FE295B7001F3196 /* CPCheckAuthInputInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDA9551FDE80E200FE6097 /* CPCheckAuthInputInfoTool.m */; };
 		1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA851FD8D7AD00E7D692 /* APDateTools.swift */; };
 		1A6DBA8B1FD8D7B600E7D692 /* APCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */; };
+		1A94FE841FFF8519003C4A9E /* APUnionTimeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94FE831FFF8519003C4A9E /* APUnionTimeTools.swift */; };
 		1AA17DF31FEA11CC006E59F0 /* APUpdatePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DF21FEA11CC006E59F0 /* APUpdatePasswordRequest.swift */; };
 		1AA17DF81FEA26B5006E59F0 /* APEvaluateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DF71FEA26B5006E59F0 /* APEvaluateExtensions.swift */; };
 		1AA17DFB1FEA28B0006E59F0 /* APQRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA17DFA1FEA28B0006E59F0 /* APQRCodeTool.swift */; };
@@ -366,6 +367,7 @@
 		1A6DBA871FD8D7AD00E7D692 /* APNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNetworking.swift; sourceTree = "<group>"; };
 		1A6DBA8A1FD8D7B600E7D692 /* APCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCommon.swift; sourceTree = "<group>"; };
 		1A6DBAAD1FD8E35F00E7D692 /* APHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APHomeViewController.swift; sourceTree = "<group>"; };
+		1A94FE831FFF8519003C4A9E /* APUnionTimeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APUnionTimeTools.swift; sourceTree = "<group>"; };
 		1AA17DF21FEA11CC006E59F0 /* APUpdatePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APUpdatePasswordRequest.swift; sourceTree = "<group>"; };
 		1AA17DF71FEA26B5006E59F0 /* APEvaluateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APEvaluateExtensions.swift; sourceTree = "<group>"; };
 		1AA17DFA1FEA28B0006E59F0 /* APQRCodeTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APQRCodeTool.swift; sourceTree = "<group>"; };
@@ -1784,6 +1786,7 @@
 			isa = PBXGroup;
 			children = (
 				1AEC823F1FFF29D100585A03 /* APUnionHttpTools.swift */,
+				1A94FE831FFF8519003C4A9E /* APUnionTimeTools.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -3223,6 +3226,7 @@
 				1AEC82881FFF2A5B00585A03 /* APSelectMerchantCell.swift in Sources */,
 				1AA80FB81FDFDF1C0021B046 /* APTextFormsCell.swift in Sources */,
 				7487E18D1FDFE131000E3EBE /* UIViewControllerExtensions.swift in Sources */,
+				1A94FE841FFF8519003C4A9E /* APUnionTimeTools.swift in Sources */,
 				1AEC82581FFF29D200585A03 /* APQueryQuickPayResultResponse.swift in Sources */,
 				74EAD31C1FF232B9003856D7 /* APMineHttpTool.swift in Sources */,
 				2374A9EE1FE8F1590013AB88 /* APAuth.swift in Sources */,
