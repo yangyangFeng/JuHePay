@@ -25,7 +25,7 @@ class APBillDetailHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 14)
         view.theme_textColor = ["#999999"]
         view.textAlignment = .left
-        view.text = "钱包余额(元)"
+        view.text = "余额(元)"
         return view
     }()
     

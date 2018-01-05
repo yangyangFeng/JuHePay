@@ -18,6 +18,7 @@ class APTradingDetailViewController: APBillDetailViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.titleLabel.text = "交易金额(元)"
         startHttpGetTradingDetail()
     }
     
@@ -67,6 +68,7 @@ extension APTradingDetailViewController {
                          aClass: APTradingDetailResponse.self,
                          success: { (baseResp) in
                             self.tradingDetail = baseResp as? APTradingDetailResponse
+                            self.headerView.amountLabel.text = self.tradingDetail?.transAmount
                             self.tableView.reloadData()
                             self.view.AP_loadingEnd()
         }, failure: {(baseError) in

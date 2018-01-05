@@ -22,6 +22,7 @@ class APQueryQuickPayCardListResponse: APBaseResponse {
 }
 
 class APQueryQuickPayCardDetail: NSObject {
+    
     @objc dynamic var bankName: String?
     @objc dynamic var cardNo: String?
     @objc dynamic var realName: String?

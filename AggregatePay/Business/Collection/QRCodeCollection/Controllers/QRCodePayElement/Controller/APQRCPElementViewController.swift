@@ -12,6 +12,10 @@ import UIKit
  * 二维码的支付要素
  */
 class APQRCPElementViewController: APQRCPBaseViewController {
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "selectMerchant"), object: nil)
+    }
 
     var merchantDetailModel:APMerchantDetail? {
         willSet {
