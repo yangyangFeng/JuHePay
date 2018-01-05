@@ -14,7 +14,7 @@ class APSettingViewController: APBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ap_setStatusBarStyle(.lightContent)
         view.addSubview(submitCell)
         view.addSubview(tableView)
         
