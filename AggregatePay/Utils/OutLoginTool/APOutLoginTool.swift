@@ -21,6 +21,13 @@ class APOutLoginTool: NSObject {
         homeC?.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
     }
 
+    static func login() {
+        emptyData()
+        let app: AppDelegate = APPDElEGATE
+        let rootVC = app.window?.rootViewController
+        rootVC?.present(APBaseNavigationViewController(rootViewController: APLoginViewController()), animated: true)
+    }
+    
     static func emptyData() {
     
         APUserDefaultCache.AP_remove(key: .userInfo)

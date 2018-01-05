@@ -31,11 +31,13 @@ extension APReturnBillSearchBar: PGDatePickerDelegate {
     
 }
 
+
+
 class APReturnBillSearchBar: UIView {
 
     weak var delegate : AP_ActionProtocol?
     
-    var interval : Int = 1 //defaule is 1.
+    var interval : Int = 0 //defaule is 1.
     var maxInterval : Int = 6 //defaule is 6.
     
     let bg_imageView : UIImageView = {
@@ -69,6 +71,17 @@ class APReturnBillSearchBar: UIView {
             rightBottomView.title.text = data?.amount ?? "0"
         }
     }
+    
+    lazy var endStr: String = {
+        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
+        let str : String = APDateTools.stringToDate(date: endDate as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        return str
+    }()
+    
+    lazy var startStr: String = {
+        let str : String = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
+        return str
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -143,43 +156,7 @@ class APReturnBillSearchBar: UIView {
         }
     }
 
-    func conversionDate(_ str : String) -> Date{
-        let calendar = NSCalendar.current
-        let arrs : [String] = str.components(separatedBy: "/")
-        
-        var components = DateComponents()
-        components.year = Int(arrs[0])
-        components.month = Int(arrs[1])
-        components.day = Int(arrs[2])
-        return calendar.date(from: components)!
-    }
-    func conversionString(_ date : Date) -> String
-    {
-        let str : String = APDateTools.stringToDate(date: date as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }
-    
-    func startDate(_ interval : Int) -> Date {
-        let nowDate = conversionDate(rightHeadView.button.title.text!)
-        //Date.init(timeIntervalSinceNow: 0)
-        let calendar = NSCalendar.current
-        
-        let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
-        
-        var components = DateComponents()
-        components.year = dateComponents.year
-        components.month = (dateComponents.month! - interval)
-        components.day = dateComponents.day
-        components.timeZone = TimeZone(abbreviation: "GMT")
-        let endDate = calendar.date(from: components)
-        return endDate!
-    }
-    
-    func endDate() -> Date {
-        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
-        return endDate
-    }
-    
+
     func datePicker() -> PGDatePicker {
         let datePicker = PGDatePicker()
         datePicker.delegate = self
@@ -229,18 +206,6 @@ class APReturnBillSearchBar: UIView {
         return view
     }()
     
-    lazy var endStr: String = {
-        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
-        let str : String = APDateTools.stringToDate(date: endDate as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }()
-    
-    lazy var startStr: String = {
-        let str : String = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
-        return str
-    }()
-    
-    
     @objc func startAction()
     {
         let picker = datePicker()
@@ -281,6 +246,47 @@ class APReturnBillSearchBar: UIView {
     }
 }
 
+
+extension APReturnBillSearchBar {
+    func conversionDate(_ str : String) -> Date{
+        let calendar = NSCalendar.current
+        let arrs : [String] = str.components(separatedBy: "/")
+        
+        var components = DateComponents()
+        components.year = Int(arrs[0])
+        components.month = Int(arrs[1])
+        components.day = Int(arrs[2])
+        return calendar.date(from: components)!
+    }
+    
+    func conversionString(_ date : Date) -> String
+    {
+        let str : String = APDateTools.stringToDate(date: date as Date, dateFormat: APDateTools.APDateFormat.deteFormatB)
+        return str
+    }
+    
+    func startDate(_ interval : Int) -> Date {
+        let nowDate = conversionDate(rightHeadView.button.title.text!)
+        //Date.init(timeIntervalSinceNow: 0)
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
+        
+        var components = DateComponents()
+        components.year = dateComponents.year
+        components.month = dateComponents.month
+        components.day = (dateComponents.day! - interval)
+        components.timeZone = TimeZone(abbreviation: "GMT")
+        let endDate = calendar.date(from: components)
+        return endDate!
+    }
+    
+    func endDate() -> Date {
+        let endDate : Date = Date.init(timeIntervalSinceNow: 0)
+        return endDate
+    }
+    
+}
 
 class APReturnBillSearchHeadView: UIView {
     let title : UILabel = {
