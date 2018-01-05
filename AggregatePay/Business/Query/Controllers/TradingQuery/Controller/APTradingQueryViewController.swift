@@ -71,10 +71,10 @@ extension APTradingQueryViewController {
         getMyAccountRequest.endDate = ap_getEndDate()
         getMyAccountRequest.payModel = ap_getPaymentWay()
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.getMyAccount, params: getMyAccountRequest, aClass: APGetMyAccountResponse.self, success: { (baseResp) in
-            self.httpDisposeDataResponse(response: baseResp as! APGetMyAccountResponse)
+            self.view.AP_loadingEnd()
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
-            self.view.AP_loadingEnd()
+            self.httpDisposeDataResponse(response: baseResp as! APGetMyAccountResponse)
         }, failure: {(baseError) in
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -91,12 +91,13 @@ extension APTradingQueryViewController {
          * 数据上拉加载时
          * 如果当前是最后一页则控制上拉加载控件为没有更多数据可用状态
          */
-        if getMyAccountRequest.pageNo == response.totalRecords {
+        if getMyAccountRequest.pageNo == response.bottomPageNo {
             tableView.mj_footer.endRefreshingWithNoMoreData()
         }
         getMyAccountRequest.pageNo = response.bottomPageNo
         datas.append(contentsOf: response.list!)
         tableView.reloadData()
+        
     }
 
 }

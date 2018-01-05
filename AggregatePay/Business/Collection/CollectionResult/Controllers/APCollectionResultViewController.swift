@@ -8,7 +8,9 @@
 
 import UIKit
 
-class APCollectionResultViewController: APBaseViewController, UITableViewDelegate, UITableViewDataSource {
+class APCollectionResultViewController: APUnionPayBaseViewController,
+UITableViewDelegate,
+UITableViewDataSource {
     
     var resultDic: Dictionary<String, String>?
     
@@ -33,7 +35,6 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
         view.separatorStyle = .none
         view.tableFooterView = UIView()
         view.theme_backgroundColor = ["#fafafa"]
-        view.register(APCollectionResultCell.self, forCellReuseIdentifier: "APCollectionResultCell")
         return view
     }()
 
@@ -82,6 +83,10 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
     }
     
     @objc func dismissGoHome() {
+        ap_dismiss()
+    }
+    
+    func ap_dismiss() {
         self.dismiss(animated: true) {
             let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
             let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
@@ -96,7 +101,7 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
         return 0
     }
 
-    func ap_tableView(tableView: UITableView, cellForRowAtIndexPath: IndexPath) -> UITableViewCell {
+    func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
     
@@ -107,7 +112,7 @@ class APCollectionResultViewController: APBaseViewController, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ap_tableView(tableView: tableView, cellForRowAtIndexPath: indexPath)
+        let cell = ap_tableView(tableView: tableView, indexPath: indexPath)
         if  indexPath.row%2 == 0 {
             cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.white

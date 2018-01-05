@@ -14,8 +14,8 @@ class APCollectionDisposeCell: UITableViewCell {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14.0)
         view.numberOfLines = 0
-        view.theme_textColor = ["#999999"]
-        view.textAlignment = .left
+        view.theme_textColor = ["#484848"]
+        view.textAlignment = .center
         return view
     }()
 

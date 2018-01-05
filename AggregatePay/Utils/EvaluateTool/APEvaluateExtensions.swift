@@ -14,6 +14,7 @@ public extension String {
         case defalut  = ""
         case mobile   = "^1[3-9]\\d{9}$"
         case password = "^[a-zA-Z0-9-_]{6,16}$"
+        case bankCard = "^\\d{12,24}$" 
     }
 
     func evaluate(regx: APEvaluateRegx) -> Bool {

@@ -79,7 +79,12 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
         return ""
     }
     
+    func ap_remove() {
+        
+    }
+    
     //MARK: ---- APKeyboardViewDelegate(键盘代理方法)
+    
     
     /** 键盘点击数字按钮 */
     func didKeyboardNumItem(num: String) {

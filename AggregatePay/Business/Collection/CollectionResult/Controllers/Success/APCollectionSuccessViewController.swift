@@ -12,6 +12,7 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(APCollectionResultCell.self, forCellReuseIdentifier: "APCollectionResultCell")
         headerImageView.theme_image = ["collection_success_icon"]
         headerTitleLabel.text = "收款成功"
     }
@@ -23,10 +24,10 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
     }
     
     
-    override func ap_tableView(tableView: UITableView, cellForRowAtIndexPath: IndexPath) -> UITableViewCell {
+    override func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
-        let title: String = titles.object(at: cellForRowAtIndexPath.row) as! String
-        let key: String = keys.object(at: cellForRowAtIndexPath.row) as! String
+        let title: String = titles.object(at: indexPath.row) as! String
+        let key: String = keys.object(at: indexPath.row) as! String
         cell.titleLabel.text = title
         let value = resultDic![key] as! String
         if key == "payServiceCode" {
