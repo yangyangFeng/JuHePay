@@ -13,7 +13,7 @@ import UIKit
  */
 class APPayElementHeaderView: UIView {
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14)
         view.theme_textColor = ["#999999"]
@@ -22,7 +22,7 @@ class APPayElementHeaderView: UIView {
         return view
     }()
     
-    private lazy var payEssentialLabel: UILabel = {
+    lazy var payEssentialLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14)
         view.theme_textColor = ["#999999"]

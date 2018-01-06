@@ -1415,7 +1415,6 @@
 			isa = PBXGroup;
 			children = (
 				747130B11FFE2C4700A170EF /* Model */,
-				747130B21FFE2C4800A170EF /* Tool */,
 				746602B91FEA968300C3AA76 /* View */,
 				1AB253E11FE1436A00193B30 /* Controller */,
 			);
@@ -2460,14 +2459,6 @@
 			);
 			name = Model;
 			path = AggregatePay/Business/promote/Model;
-			sourceTree = SOURCE_ROOT;
-		};
-		747130B21FFE2C4800A170EF /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tool;
-			path = AggregatePay/Business/promote/Tool;
 			sourceTree = SOURCE_ROOT;
 		};
 		747668391FE8F66C00715E72 /* APAgentDetail */ = {

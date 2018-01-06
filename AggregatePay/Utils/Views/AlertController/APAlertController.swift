@@ -28,6 +28,11 @@ class APAlertController: UIAlertController {
                                        range:NSMakeRange(0, (self.message?.characters.count)!))
         self.setValue(messageAttribute, forKey: "attributedMessage")
     }
+    
+    @objc func goBackAction()
+    {
+        navigationController?.popViewController()
+    }
 
     override func addAction(_ action: UIAlertAction) {
         super.addAction(action)

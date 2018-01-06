@@ -10,9 +10,9 @@
 		<key>title</key>
 		<string>银联快捷</string>
 		<key>norImage</key>
-		<string>home_yl_nor_icon</string>
-		<key>selImage</key>
 		<string>home_yl_sel_icon</string>
+		<key>selImage</key>
+		<string>home_yl_hei_icon</string>
 		<key>wayIconImage</key>
 		<string>home_yl_way_icon</string>
 	</dict>
@@ -24,9 +24,9 @@
 		<key>title</key>
 		<string>微信扫码</string>
 		<key>norImage</key>
-		<string>home_wx_nor_icon</string>
-		<key>selImage</key>
 		<string>home_wx_sel_icon</string>
+		<key>selImage</key>
+		<string>home_wx_hei_icon</string>
 		<key>wayIconImage</key>
 		<string>home_wx_way_icon</string>
 	</dict>
@@ -38,9 +38,9 @@
 		<key>title</key>
 		<string>支付宝扫码</string>
 		<key>norImage</key>
-		<string>home_zfb_nor_icon</string>
-		<key>selImage</key>
 		<string>home_zfb_sel_icon</string>
+		<key>selImage</key>
+		<string>home_zfb_hei_icon</string>
 		<key>wayIconImage</key>
 		<string>home_zfb_way_icon</string>
 	</dict>

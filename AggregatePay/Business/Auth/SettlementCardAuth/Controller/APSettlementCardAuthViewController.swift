@@ -244,7 +244,7 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank
             self?.bankNameFormCell.text = bank.bankName
-            self?.authParam.bankNo = bank.bankName
+            self?.authParam.bankNo = bank.cnapsNo
         }
         
         let navi = APBaseNavigationViewController.init(rootViewController: searchBankVC)
