@@ -10,15 +10,15 @@ import Foundation
 
 class APHttpUrl {
     
-//    #if DEBUG
-//    static let trans_httpUrl: String = "http://172.16.0.101:47700" //交易前置
-//    static let manange_httpUrl: String = "http://172.16.0.101:47800"  //进件前置
-//
-//    #elseif TEST
+    #if DEBUG
+    static let trans_httpUrl: String = "http://172.16.0.101:47700" //交易前置
+    static let manange_httpUrl: String = "http://172.16.0.101:47800"  //进件前置
+
+    #elseif TEST
     static let trans_httpUrl: String = "http://192.168.2.72:47700" //交易前置
     static let manange_httpUrl: String = "http://192.168.2.72:47800"  //进件前置
-//    #endif
- 
+    #endif
+
 }
 
 

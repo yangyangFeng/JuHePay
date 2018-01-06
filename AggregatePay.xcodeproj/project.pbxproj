@@ -723,6 +723,7 @@
 		74EC34321FDF892C003ABF70 /* APServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APServiceViewController.swift; sourceTree = "<group>"; };
 		74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineHeaderView.swift; sourceTree = "<group>"; };
 		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.test.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.test.xcconfig"; sourceTree = "<group>"; };
 		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
 		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2773,6 +2774,7 @@
 			children = (
 				FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */,
 				FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */,
+				9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3403,14 +3405,14 @@
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D TEST";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Test;
 		};
 		7432C5A91FFF852B00ADCBE6 /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
+			baseConfigurationReference = 9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
