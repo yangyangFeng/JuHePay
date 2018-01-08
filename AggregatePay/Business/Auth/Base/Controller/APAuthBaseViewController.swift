@@ -263,17 +263,20 @@ extension APAuthBaseViewController {
 
 extension APAuthBaseViewController {
     @objc func backAction() {
-//        weak var weakSelf = self
-//        APAlertManager.show(param: { (param) in
-//            param.apMessage = "是否退出资质认证?"
-//            param.apConfirmTitle = "继续认证"
-//            param.apCanceTitle = "确定"
-//        }, confirm: { (confirmAction) in
-//            let navi = weakSelf?.authNavigation()
-//            navi?.finishAuths?()
-//
-//        }, cancel: {(cancelAction) in})
-        authNavigation()?.finishAuths?()
+
+       let alert = APAlertManager.alertController(param: { (param) in
+            param.apMessage = "是否退出身份认证?"
+            param.apConfirmTitle = "继续认证"
+            param.apCanceTitle = "确定"
+        }, confirm: {(confirmAction) in
+        
+
+        }, cancel: { [weak self] (cancelAction) in
+            let navi = self?.authNavigation()
+            navi?.finishAuths?()
+       })
+        present(alert, animated: true, completion: nil)
+//        authNavigation()?.finishAuths?()
     }
 }
 

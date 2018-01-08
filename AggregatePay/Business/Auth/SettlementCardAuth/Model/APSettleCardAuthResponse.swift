@@ -17,4 +17,8 @@ class APSettleCardAuthResponse: APBaseResponse {
     @objc dynamic var realName: String = ""
     @objc dynamic var idCardFront: String = ""
     @objc dynamic var bankNo: String = ""
+    
+    static override func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["bankNo" : "cnapsNo"]
+    }
 }

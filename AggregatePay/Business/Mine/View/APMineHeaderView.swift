@@ -10,30 +10,38 @@ import UIKit
 
 class APMineHeaderView: UIView {
 
+    static func securityFiltering(_ str:String?, pre : Int, suf : Int) -> String {
+        var i = 0
+        var newStr : String = ""
+        guard let tempStr : String = str else {
+            return ""
+        }
+//        let count : Int = tempStr.characters.count - suf
+//        return str?.replacingCharacters(in: pre..<count, with: "*")
+        for a in tempStr
+        {
+            if i < pre{
+                newStr.append(a)
+            }
+            else if i >= tempStr.count - suf{
+                newStr.append(a)
+            }
+            else
+            {
+                newStr.append("*")
+            }
+            i+=1
+        }
+        return newStr
+    }
     
     var model : APUserInfoResponse?{
         didSet{
             arrowImageView.isHidden = false
-            userTitleLabel.text = model?.realName
-            var i = 0
-            var newtel : String = ""
-            let tel : String = (model?.mobileNo ?? "")!
-            for a in tel
-            {
-                if i < 3{
-                    newtel.append(a)
-                }
-                else if i >= tel.count - 4{
-                    newtel.append(a)
-                }
-                else
-                {
-                    newtel.append("*")
-                }
-                i+=1
-            }
-            userTelLabel.text = "手机号: " + newtel
-            recommendLabel.text = "推荐人: " + (model?.recommendUserName ?? "")!
+            userTitleLabel.text = APMineHeaderView.securityFiltering((model?.realName), pre: 1, suf: 0)
+   
+            userTelLabel.text = "手机号: " + APMineHeaderView.securityFiltering((model?.mobileNo), pre: 3, suf: 4)
+            recommendLabel.text = "推荐人: " + (model?.recommendUserMobileNo ?? "")!
             if model?.isRealName == "1" {
                 checkStatusLabel.text = "已认证"
             }
