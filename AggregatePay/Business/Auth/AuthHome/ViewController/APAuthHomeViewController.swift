@@ -108,7 +108,7 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch APAuthHelper.sharedInstance.realNameAuthState {
             
-        case .None, .Failure:
+        case .None:
             let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
             self.navigationController?.present(authNavi, animated: true, completion: nil)
             authNavi.finishAuths = {

@@ -16,8 +16,6 @@ class APMineHeaderView: UIView {
         guard let tempStr : String = str else {
             return ""
         }
-//        let count : Int = tempStr.characters.count - suf
-//        return str?.replacingCharacters(in: pre..<count, with: "*")
         for a in tempStr
         {
             if i < pre{
@@ -41,7 +39,15 @@ class APMineHeaderView: UIView {
             userTitleLabel.text = APMineHeaderView.securityFiltering((model?.realName), pre: 1, suf: 0)
    
             userTelLabel.text = "手机号: " + APMineHeaderView.securityFiltering((model?.mobileNo), pre: 3, suf: 4)
-            recommendLabel.text = "推荐人: " + (model?.recommendUserMobileNo ?? "")!
+            let recommendInfo = (model?.recommendUserMobileNo ?? "")! + " " + (model?.recommendUserName ?? "")!
+            
+            if recommendInfo.count > 1{
+                recommendLabel.text = "推荐人: " + recommendInfo
+            }
+            else
+            {
+                recommendLabel.text = ""
+            }
             if model?.isRealName == "1" {
                 checkStatusLabel.text = "已认证"
             }
