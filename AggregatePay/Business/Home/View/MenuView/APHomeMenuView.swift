@@ -38,7 +38,7 @@ class APHomeMenuView: UIView {
     
     private let contentView: UIView = UIView()
     
-    var mDelegate: APHomeMenuViewDelegate?
+    weak var mDelegate: APHomeMenuViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

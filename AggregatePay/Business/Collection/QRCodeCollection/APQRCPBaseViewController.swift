@@ -18,6 +18,8 @@ class APQRCPBaseViewController: APBaseViewController {
     var payType: String?
     var amountStr: String?
     var payService: String?
+    var qrCodeNavTitle: String?
+    var payServiceCode: String?
     var qrCodePayRequest = APQRCodePayRequest()
 
     override func viewDidLoad() {
@@ -25,12 +27,18 @@ class APQRCPBaseViewController: APBaseViewController {
         switch payType! {
         case "wechatPay":
             self.title = "微信收款"
+            qrCodeNavTitle = "微信二维码收款"
+            payServiceCode = "WECHATPAY"
             payService = APHttpService.wechatPay
         case "aliPay":
             self.title = "支付宝收款"
+            qrCodeNavTitle = "支付宝二维码收款"
+            payServiceCode = "ALIPAY"
             payService = APHttpService.aliPay
         default:
             self.title = "二维码收款"
+            qrCodeNavTitle = "二维码收款"
+            payServiceCode = "QRCODE"
             payService = ""
         }
     }

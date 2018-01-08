@@ -33,7 +33,7 @@ class APQRCodeCollectionView: UIView {
         view.text = "商家:xxxxxxxxxx向您发起收款"
         view.textAlignment = .center
         view.theme_textColor = ["#c8a556"]
-        view.font = UIFont.systemFont(ofSize: 16.0)
+        view.font = UIFont.systemFont(ofSize: 14.0)
         return view
     }()
     

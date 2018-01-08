@@ -24,18 +24,19 @@ let APDecimalPoint: String = "."
 
 class APKeyboardView: UIView {
     
+    var confirmButton: APKeyboardButton?
     let backgroundView: UIView = UIView()
-    var keyboardDelegate: APKeyboardViewDelegate?
+    weak var keyboardDelegate: APKeyboardViewDelegate?
     
     init() {
         super.init(frame: CGRect.zero)
         self.layer.contents = UIImage(named: "keyboard_bg")?.cgImage
         self.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.snp.left).offset(5)
-            make.right.equalTo(self.snp.right).offset(-5)
-            make.top.equalTo(self.snp.top).offset(5)
-            make.bottom.equalTo(self.snp.bottom).offset(-5)
+            make.left.equalTo(snp.left).offset(5)
+            make.right.equalTo(snp.right).offset(-5)
+            make.top.equalTo(snp.top).offset(5)
+            make.bottom.equalTo(snp.bottom).offset(-5)
         }
         //定义键盘键名称（？号是占位符, !表示确定, -表示删除）
         let keys = ["1" ,"2" ,"3" ,"-",
@@ -47,7 +48,6 @@ class APKeyboardView: UIView {
             for j in 0..<4 {
                 let indexOfKeys = i * 4 + j
                 let key = keys[indexOfKeys]
-                //键盘样式
                 let button = buttonAttribute(title: key)
                 button.transform = .init(scaleX: 0.95, y: 0.95)
                 backgroundView.addSubview(button)
@@ -96,28 +96,31 @@ class APKeyboardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func buttonAttribute(title: String) ->APKeyboardButton {
+    public func buttonAttribute(title: String) -> APKeyboardButton {
         //？号是占位符, !表示确定, -表示删除
+        weak var weakSelf = self
         let button = APKeyboardButton()
         if (title == "!") {
             button.titleText = ""
-            confirmButtonAttribute(button: button)
+            notLoginConfirmButtonAttribute(button: button)
+            confirmButton = button
             button.actionBlock =  { (value) in
-                self.didKeyboardConfirmItem()
+                weakSelf?.didKeyboardConfirmItem()
             }
+            
         }
         else if (title == "-") {
             button.titleText = ""
             deleteButtonAttribute(button: button)
             button.actionBlock =  { (value) in
-                self.didKeyboardDeleteItem()
+                weakSelf?.didKeyboardDeleteItem()
             }
         }
         else {
             button.titleText = title
             numButtonAttribute(button: button)
             button.actionBlock =  { (value) in
-                self.didKeyboardNumItem(num: value)
+                weakSelf?.didKeyboardNumItem(num: value)
             }
         }
         return button
@@ -134,11 +137,15 @@ class APKeyboardView: UIView {
     func deleteButtonAttribute(button: APKeyboardButton) {
         
     }
-    
-    /** 设置确认按键的属性(子类提供) */
-    func confirmButtonAttribute(button: APKeyboardButton) {
+
+    func notLoginConfirmButtonAttribute(button: APKeyboardButton) {
 
     }
+    
+    func loginConfirmButtonAttribute(button: APKeyboardButton) {
+        
+    }
+    
     
     //MARK: ----- action
     
@@ -164,7 +171,6 @@ class APKeyboardButton: UIView {
     
     var backgroundNorImage: String = ""
     var backgroundSelImage: String = ""
-    
     var actionBlock: APKeyboardItemBlock?
     
     lazy var backgroundImage: UIImageView = {
@@ -206,11 +212,11 @@ class APKeyboardButton: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.backgroundImage.theme_image = [backgroundSelImage]
+        backgroundImage.theme_image = [backgroundSelImage]
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.backgroundImage.theme_image = [backgroundNorImage]
+        backgroundImage.theme_image = [backgroundNorImage]
         let value: String = titleLabel.text!
         actionBlock!(value)
     }

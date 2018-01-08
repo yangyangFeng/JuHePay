@@ -17,12 +17,9 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
         headerTitleLabel.text = "收款成功"
     }
 
-    //MARK: ---- 子类重载
-    
     override func numberRow(tableView: UITableView) -> Int {
         return titles.count
     }
-    
     
     override func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
@@ -32,12 +29,14 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
         let value = resultDic![key] as! String
         if key == "payServiceCode" {
             switch value {
-            case "WECHAT_PAY":
+            case "WECHATPAY":
                 cell.contentLabel.text = "微信收款"
-            case "ALI_PAY":
+            case "ALIPAY":
                 cell.contentLabel.text = "支付宝收款"
-            case "UnioppayQuick":
+            case "UNIONPAYPAY":
                 cell.contentLabel.text = "银联快捷收款"
+            case "UNIONPAYGIFTPAY":
+                cell.contentLabel.text = "银联快捷收款·积分"
             default:
                 cell.contentLabel.text = "二维码收款"
             }

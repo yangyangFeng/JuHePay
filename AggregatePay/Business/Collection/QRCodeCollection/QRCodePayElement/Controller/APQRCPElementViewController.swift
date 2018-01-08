@@ -108,15 +108,17 @@ extension APQRCPElementViewController {
     
     private func pushQRCPSelectMerchantVC() {
         let qrcpSeleMerchanCV = APQRCPSeleMerchantViewController()
-        qrcpSeleMerchanCV.payType = self.payType!
-        qrcpSeleMerchanCV.selectModel = self.merchantDetailModel
+        qrcpSeleMerchanCV.payType = payType!
+        qrcpSeleMerchanCV.selectModel = merchantDetailModel
         self.navigationController?.pushViewController(qrcpSeleMerchanCV, animated: true)
     }
     
     private func presentQRCPCollectionVC(qrCodePayResponse: APQRCodePayResponse) {
         let qrcpCollectionCV = APQRCPCollectionViewController()
         qrcpCollectionCV.qrCodePayResponse = qrCodePayResponse
-        qrcpCollectionCV.title = self.title
+        qrcpCollectionCV.title = title
+        qrcpCollectionCV.payType = payType
+        qrcpCollectionCV.amountStr = amountStr
         let navigation = APBaseNavigationViewController(rootViewController: qrcpCollectionCV)
         self.present(navigation, animated: true, completion: nil);
     }

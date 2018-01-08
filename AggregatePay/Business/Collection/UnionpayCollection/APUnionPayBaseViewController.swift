@@ -16,13 +16,15 @@ class APUnionPayBaseViewController: APBaseViewController {
     let TRAN_DISPOSE_NOTIF_KEY = NSNotification.Name(rawValue: "TRAN_DISPOSE_NOTIF_KEY")
     
 
-    var realName: String?     //持卡人姓名
-    var totalAmount: String?  // 金额
-    var integraFlag: String?  //是否是积分费率
-
-    
+    var realName: String?        //持卡人姓名
+    var totalAmount: String?     // 金额
+    var integraFlag: String?     //是否是积分费率
+    var payServiceCode: String = "UNIONPAYPAY"
     override func viewDidLoad() {
         super.viewDidLoad()
+        if integraFlag == "1" {
+            payServiceCode = "UNIONPAYGIFTPAY"
+        }
     }
 
 }

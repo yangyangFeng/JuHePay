@@ -12,7 +12,16 @@ import UIKit
  * 二维码收款结果响应报文模型
  */
 class APGetOnlineTransResultResponse: APBaseResponse {
-    
+    /**
+     
+     TRANS_UNKNOWN("交易未知", "0"),
+     TRANS_PROCESS("交易处理中", "1"),
+     TRANS_SUCESS("交易成功", "2"),
+     TRANS_FIAL("交易失败", "3"),
+     TRANS_CLOSED("交易关闭", "4"),
+     TRANS_CANEL("交易撤销", "5"),
+     TRANS_REFUND("交易退款", "6");
+     */
     
     @objc dynamic var orderNo: String?
     @objc dynamic var payServiceCode: String?
