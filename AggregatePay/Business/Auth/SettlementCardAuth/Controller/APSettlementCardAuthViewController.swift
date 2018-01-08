@@ -151,7 +151,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
                 if APAuthHelper.sharedInstance.settleCardAuthState == .Failure{
                     //更新审核状态
                     APAuthHelper.sharedInstance.settleCardAuthState = .Checking
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.navigationController?.popViewController(animated: true)
                 }
                 else{
                     //更新审核状态
