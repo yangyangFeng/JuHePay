@@ -114,7 +114,8 @@ class APRegisterViewController: APSystemBaseViewController {
         }
         
         agreedCell.extButtonBlock = { (key, value) in
-            print("点击协议按钮")
+            let protocolVC = APRegisterProtocolViewController()
+            weakSelf?.navigationController?.pushViewController(protocolVC, animated: true)
         }
         
         accountCell.sendSmsCodeBlock = { (key, value) in
@@ -162,7 +163,7 @@ class APRegisterViewController: APSystemBaseViewController {
     lazy var agreedCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
         view.button.setTitle(_ : " 我已阅读并接受", for: .normal)
-        view.extButton.setTitle(_ : "《XXX用户协议》", for: .normal)
+        view.extButton.setTitle(_ : "《钱包用户协议》", for: .normal)
         return view
     }()
     

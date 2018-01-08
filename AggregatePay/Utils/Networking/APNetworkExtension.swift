@@ -11,12 +11,17 @@ import Foundation
 class APHttpUrl {
     
     #if DEBUG
-    static let trans_httpUrl: String = "http://172.16.0.101:47700" //交易前置
+    static let trans_httpUrl: String   = "http://172.16.0.101:47700" //交易前置
     static let manange_httpUrl: String = "http://172.16.0.101:47800"  //进件前置
-
+    
     #elseif TEST
-    static let trans_httpUrl: String = "http://192.168.2.72:47700" //交易前置
+    static let trans_httpUrl: String   = "http://192.168.2.72:47700" //交易前置
     static let manange_httpUrl: String = "http://192.168.2.72:47800"  //进件前置
+
+    #else
+    static let trans_httpUrl: String   = "" //交易前置
+    static let manange_httpUrl: String = ""  //进件前置
+
     #endif
 
 }
@@ -69,6 +74,15 @@ class APHttpService {
     
     // 图片下载
     static let downloadImg: String = "/downLoad/downloadImg"
+    
+    
+    
+    
+    
+
+    static let agreement: String = "/h5/agreement" //注册协议
+    static let commonQuestion:String = "/h5/commonQuestion" //常見問題
+    static let unionPayAgreement: String  = "/h5/unionPayAgreement" //银联快捷协议
 
 }
 

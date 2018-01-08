@@ -135,6 +135,14 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
         return view
     }()
     
+    //用户协议
+    lazy var agreedCell: APSelectBoxFormsCell = {
+        let view = APSelectBoxFormsCell()
+        view.button.setTitle(_ : " 我已阅读并接受", for: .normal)
+        view.extButton.setTitle(_ : "《XXX用户协议》", for: .normal)
+        return view
+    }()
+    
     //提交
     lazy var submitCell: APSubmitFormsCell = {
         let view = APSubmitFormsCell()
