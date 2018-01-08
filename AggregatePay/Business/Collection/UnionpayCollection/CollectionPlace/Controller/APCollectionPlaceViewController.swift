@@ -89,7 +89,7 @@ extension APCollectionPlaceViewController {
     }
     
     private func gotoFirstPayVC(placeModel: APPlaceModel) {
-        let firstTranVC = APUnionSecondViewController()
+        let firstTranVC = APUnionFirstViewController()
         firstTranVC.totalAmount = totalAmount
         firstTranVC.payPlaceTitle = placeModel.title
         firstTranVC.integraFlag = placeModel.integraFlag
