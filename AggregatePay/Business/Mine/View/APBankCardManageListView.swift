@@ -176,10 +176,10 @@ class APBankCardCell: APSwipeTableViewCell {
                 rightMsg.text = ""
             }
             
-            if model?.cardType == "1"{//信用卡
+            if model?.cardType == "2"{//信用卡
                 bankName.text = bankName.text! + " 信用卡"
             }
-            else if model?.cardType == "2"{//借记卡
+            else if model?.cardType == "1"{//借记卡
                 bankName.text = bankName.text! + " 借记卡"
             }
         }
