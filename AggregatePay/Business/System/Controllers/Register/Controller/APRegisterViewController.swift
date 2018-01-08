@@ -113,6 +113,10 @@ class APRegisterViewController: APSystemBaseViewController {
             weakSelf?.registerRequest.isAgreed = button.isSelected
         }
         
+        agreedCell.extButtonBlock = { (key, value) in
+            print("点击协议按钮")
+        }
+        
         accountCell.sendSmsCodeBlock = { (key, value) in
             weakSelf?.sendMessage()
         }
@@ -157,7 +161,8 @@ class APRegisterViewController: APSystemBaseViewController {
     
     lazy var agreedCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
-        view.button.setTitle(_ : " 我已阅读并接受《XXX用户协议》", for: .normal)
+        view.button.setTitle(_ : " 我已阅读并接受", for: .normal)
+        view.extButton.setTitle(_ : "《XXX用户协议》", for: .normal)
         return view
     }()
     
@@ -166,7 +171,6 @@ class APRegisterViewController: APSystemBaseViewController {
         view.button.setTitle("下一步", for: .normal)
         return view
     }()
-  
 }
 
 

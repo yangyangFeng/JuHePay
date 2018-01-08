@@ -13,12 +13,12 @@ class APHttpUrl {
     #if DEBUG
     static let trans_httpUrl: String = "http://172.16.0.101:47700" //交易前置
     static let manange_httpUrl: String = "http://172.16.0.101:47800"  //进件前置
-    
+
     #elseif TEST
     static let trans_httpUrl: String = "http://192.168.2.72:47700" //交易前置
     static let manange_httpUrl: String = "http://192.168.2.72:47800"  //进件前置
     #endif
- 
+
 }
 
 
@@ -63,7 +63,7 @@ class APHttpService {
     static let getMyAccount: String        = "/query/getMyAccount" //获取账单交易查询列表
     static let getMyAccountDetails: String = "/query/getMyAccountDetails" //交易详情
     static let merchantCategory: String   = "/pay/merchantCategory" //获取商户大类
-    static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取微信支付宝交易结果
+    static let getOnlineTransResult: String   = "/pay/getOnlineTransResult" //获取交易结果
     static let aliPay: String   = "/pay/aliPay" //支付宝生成二维码
     static let wechatPay: String   = "/pay/wechatPay" //微信生成二维码
     

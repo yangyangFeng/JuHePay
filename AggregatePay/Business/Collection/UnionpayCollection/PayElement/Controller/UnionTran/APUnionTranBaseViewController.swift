@@ -16,37 +16,37 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     //交易-银联快捷
     let quickPayRequest = APQuickPayRequest()
     
-    //网络工具
-    lazy var unionHttpTool: APUnionHttpTools = {
-        let tool = APUnionHttpTools(target: self, submitCell: submitCell, smsCodeCell: smsCodeCell)
-        tool.ap_TranDelegate = self
-        return tool
-    }()
-    lazy var unionTimeToos: APUnionTimeTools = {
-        let tool = APUnionTimeTools(target: self)
-        tool.ap_TimeDelegate = self
-        return tool
-    }()
+    var unionHttpTool: APUnionHttpTools?
+    var unionTimeToos: APUnionTimeTools?
+    
     
     override func goBackAction() {
-        unionTimeToos.ap_endTime()
+        unionTimeToos?.ap_endTime()
         super.goBackAction()
     }
 
     deinit {
-        print( String(describing: self.classForCoder) + "已释放")
+        print("APUnionTranBaseViewController------已释放")
         NotificationCenter.default.removeObserver(self, name: TRAN_NOTIF_KEY, object: nil)
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unionHttpTool.ap_remove()
-        unionTimeToos.ap_endTime()
+        unionHttpTool?.ap_remove()
+        unionTimeToos?.ap_endTime()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        unionHttpTool = APUnionHttpTools(target: self,
+                                         submitCell: submitCell,
+                                         smsCodeCell: smsCodeCell)
+        unionHttpTool?.ap_TranDelegate = self
+        
+        unionTimeToos = APUnionTimeTools(target: self)
+        unionTimeToos?.ap_TimeDelegate = self
+        
         transMsgRequest.realName = realName
         transMsgRequest.amount = totalAmount
         transMsgRequest.integraFlag = integraFlag
@@ -75,11 +75,11 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
             view.makeToast("信用卡输入格式不正确")
             return
         }
-        unionHttpTool.ap_tranSmsCodeHttp(request: transMsgRequest)
+        unionHttpTool?.ap_tranSmsCodeHttp(request: transMsgRequest)
     }
     
     override func ap_httpSubmit() {
-        unionHttpTool.ap_tranHttp(request: quickPayRequest)
+        unionHttpTool?.ap_tranHttp(request: quickPayRequest)
     }
     
     override func ap_payEssentialRegisterObserve() {
@@ -110,14 +110,14 @@ extension APUnionTranBaseViewController:
             pushOpenUnionPayVC(result: result)
         }
         else {
-            unionHttpTool.loadSubmitBegan()
-            unionTimeToos.ap_startTime(orderNo: result.orderNo)
+            submitCell.button.isEnabled = false
+            unionTimeToos?.ap_startTime(orderNo: result.orderNo)
         }
     }
     
     //MARK: -- APUnionTimeToolsDelegate
     func ap_unionTimeToolsSuccess(quickPayResp: APQuickPayResponse) {
-        unionHttpTool.loadSubmitEnd()
+        submitCell.button.isEnabled = true
         if quickPayResp.transStatus == "0" {
             gotoTranFaiure(result: quickPayResp)
         }
@@ -127,7 +127,7 @@ extension APUnionTranBaseViewController:
     }
     
     func ap_unionTimeToolsFailure() {
-        unionHttpTool.loadSubmitEnd()
+        submitCell.button.isEnabled = true
         gotoTranDispose()
     }
 }

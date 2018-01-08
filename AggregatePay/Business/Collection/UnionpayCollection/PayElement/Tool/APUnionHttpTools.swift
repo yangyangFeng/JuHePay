@@ -14,11 +14,11 @@ class APUnionHttpTools: NSObject {
     
     private var m_SmsCodeCell: APPayElementSmsCodeCell?
     private var m_SubmitCell: APSubmitFormsCell?
-    private var m_Target: UIViewController?
+    private weak var m_Target: UIViewController?
     
-    public var ap_TranDelegate: APUnionHttpTranDelegate?
-    public var ap_OpenDelegate: APUnionHttpOpenDelegate?
-    public var ap_ResultDelegate: APUnionHttpResultDelegate?
+    public weak var ap_TranDelegate: APUnionHttpTranDelegate?
+    public weak var ap_OpenDelegate: APUnionHttpOpenDelegate?
+    public weak var ap_ResultDelegate: APUnionHttpResultDelegate?
     
     init(target: UIViewController,
          submitCell: APSubmitFormsCell? = nil,

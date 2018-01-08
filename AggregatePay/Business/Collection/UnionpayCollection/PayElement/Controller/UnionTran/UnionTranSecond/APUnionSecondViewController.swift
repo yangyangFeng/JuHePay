@@ -10,10 +10,14 @@ import UIKit
 
 class APUnionSecondViewController: APUnionTranBaseViewController {
     
-    var quickpayCardDetail: APQueryQuickPayCardDetail?
-    
     func setQuickPayCardDetail(cardDetail: APQueryQuickPayCardDetail) {
-        quickpayCardDetail = cardDetail
+        
+        transMsgRequest.realName = cardDetail.realName
+        transMsgRequest.cardNo = cardDetail.cardNo
+        
+        quickPayRequest.realName = cardDetail.realName!
+        quickPayRequest.cardNo = cardDetail.cardNo!
+        
         realNameCell.textCell.textField.text = cardDetail.realName
         bankCardNoCell.textCell.textField.text = cardDetail.cardNo
     }
@@ -27,6 +31,7 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
         super.ap_initCreateSubviews()
         view.addSubview(realNameCell)
         view.addSubview(bankCardNoCell)
+        view.addSubview(validityDateCell)
         view.addSubview(phoneNoCell)
         view.addSubview(smsCodeCell)
         view.addSubview(submitCell)
@@ -43,8 +48,14 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
             make.height.equalTo(toolBarView)
         }
         
-        phoneNoCell.snp.makeConstraints { (make) -> Void in
+        validityDateCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(bankCardNoCell.snp.bottom)
+            make.left.right.equalTo(view)
+            make.height.equalTo(toolBarView)
+        }
+        
+        phoneNoCell.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(validityDateCell.snp.bottom)
             make.left.right.equalTo(view)
             make.height.equalTo(toolBarView)
         }
@@ -71,6 +82,10 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
             weakSelf?.transMsgRequest.cardNo = value
             weakSelf?.quickPayRequest.cardNo = value
         }
+        //获取用户输入的有效期
+        validityDateCell.textCell.textBlock = { (key, value) in
+            weakSelf?.quickPayRequest.expireDate = value
+        }
         //获取用户输入的预留手机号
         phoneNoCell.textCell.textBlock = { (key, value) in
             weakSelf?.transMsgRequest.reserveMobileNo = value
@@ -85,13 +100,14 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
     override func ap_payEssentialRegisterObserve() {
         super.ap_payEssentialRegisterObserve()
         weak var weakSelf = self
-        let keyPaths = ["cardNo", "reserveMobileNo", "smsCode"]
+        let keyPaths = ["cardNo", "expireDate", "reserveMobileNo", "smsCode"]
         self.kvoController.observe(quickPayRequest,
                                    keyPaths: keyPaths,
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APQuickPayRequest
-            if (quickPayModel.cardNo.characters.count >= 18 &&
+            if (quickPayModel.cardNo.characters.count >= 12 &&
+                quickPayModel.expireDate.characters.count >= 4 &&
                 quickPayModel.reserveMobileNo.characters.count >= 11 &&
                 quickPayModel.smsCode.characters.count >= 6) {
                 weakSelf?.submitCell.isEnabled = true
@@ -103,6 +119,3 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
     }
 }
 
-extension APUnionSecondViewController {
-    
-}

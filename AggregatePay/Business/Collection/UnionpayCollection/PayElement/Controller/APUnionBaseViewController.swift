@@ -12,6 +12,15 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
     
     var payPlaceTitle: String?  // 显示渠道标题
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "输入支付要素"
@@ -104,7 +113,7 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
         let view = APPayElementTextCell()
         view.titleLabel.text = "有效期"        
         view.textCell.inputRegx = .smsCode
-        view.textCell.textField.placeholder = "请输入有效期，格式：02/12"
+        view.textCell.textField.placeholder = "请输入有效期,格式：MMYY"
         return view
     }()
     

@@ -23,7 +23,7 @@ class APPayElementSmsCodeCell: APBaseFormsCell {
         return view
     }()
     
-    var smsCodeCell: APSendSMSCodeFormsCell = APSendSMSCodeFormsCell()
+    let smsCodeCell: APSendSMSCodeFormsCell = APSendSMSCodeFormsCell()
     
     override init() {
         super.init()

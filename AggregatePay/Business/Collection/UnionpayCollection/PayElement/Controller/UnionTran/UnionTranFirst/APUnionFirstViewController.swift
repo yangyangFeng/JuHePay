@@ -97,7 +97,7 @@ class APUnionFirstViewController: APUnionTranBaseViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APQuickPayRequest
-            if (quickPayModel.cardNo.characters.count >= 18 &&
+            if (quickPayModel.cardNo.characters.count >= 12 &&
                 quickPayModel.cvn.characters.count >= 3 &&
                 quickPayModel.expireDate.characters.count >= 4 &&
                 quickPayModel.reserveMobileNo.characters.count >= 11 &&

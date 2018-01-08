@@ -24,6 +24,8 @@ class APQRCPCollectionViewController: APBaseViewController {
         view.theme_backgroundColor = ["#3e3e3e"]
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        qrCodeCollectionView.merchantTitleLabel.text = "商家:" + (qrCodePayResponse?.merchantName)! + "向您发起收款"
         let createDate = qrCodePayResponse?.createDate
         let validTime = qrCodePayResponse?.validTime
         let limitDate: String = "生成于" + createDate! + "，有效期" + validTime! + "分钟"
@@ -37,12 +39,7 @@ class APQRCPCollectionViewController: APBaseViewController {
     @objc func dismissGoHome() {
         isCancelRequest = true
         APNetworking.cancelCurrentRequest()
-        self.dismiss(animated: true) {
-            let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
-            let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
-            let lastVC = selectVC.childViewControllers.last as! APBaseViewController
-            lastVC.navigationController?.popToRootViewController(animated: true)
-        }
+        self.dismiss(animated: true, completion: nil)
     }
    
     //MARK: ---- lazy loading
@@ -147,26 +144,24 @@ extension APQRCPCollectionViewController {
     }
    
     func onSuccess(result: APGetOnlineTransResultResponse) {
-        self.dismiss(animated: false) {
-            let successVC = APCollectionSuccessViewController()
-            successVC.resultDic = ["orderNo":result.orderNo!,
-                                   "transDateTime":result.transDateTime!,
-                                   "transAmount":result.transAmount!,
-                                   "payServiceCode":result.payServiceCode!]
-            let navigation = APBaseNavigationViewController(rootViewController: successVC)
-            let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
-            lastVC?.present(navigation, animated: true, completion: nil);
-        }
+        self.dismiss(animated: true, completion: nil)
+        let successVC = APCollectionSuccessViewController()
+        successVC.resultDic = ["orderNo":result.orderNo!,
+                               "transDateTime":result.transDateTime!,
+                               "transAmount":result.transAmount!,
+                               "payServiceCode":result.payServiceCode!]
+        let navigation = APBaseNavigationViewController(rootViewController: successVC)
+        let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
+        lastVC?.present(navigation, animated: true, completion: nil);
     }
     
     func onFaiure(result: APGetOnlineTransResultResponse) {
-        self.dismiss(animated: false) {
-            let failureVC = APCollectionFailureViewController()
-            failureVC.resultDic = ["respDesc":result.respDesc!]
-            let navigation = APBaseNavigationViewController(rootViewController: failureVC)
-            let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
-            lastVC?.present(navigation, animated: true, completion: nil);
-        }
+        self.dismiss(animated: true, completion: nil)
+        let failureVC = APCollectionFailureViewController()
+        failureVC.resultDic = ["respDesc":result.respDesc!]
+        let navigation = APBaseNavigationViewController(rootViewController: failureVC)
+        let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
+        lastVC?.present(navigation, animated: true, completion: nil);
     }
 }
 
