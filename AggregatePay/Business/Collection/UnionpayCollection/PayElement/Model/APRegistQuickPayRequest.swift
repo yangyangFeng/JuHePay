@@ -28,6 +28,8 @@ class APRegistQuickPayRequest: APBaseRequest, NSCopying {
     @objc dynamic var preSerial: String?
     //是否积分交易 0：非积分 1：积分
     @objc dynamic var integraFlag: String?
+    //是否阅读协议
+    @objc dynamic var isAgreed: Bool = false
     
     required override init() {
         

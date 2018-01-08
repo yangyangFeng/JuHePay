@@ -59,7 +59,9 @@ class APUnionOpenViewController: APUnionBaseViewController {
         view.addSubview(validityDateCell)
         view.addSubview(phoneNoCell)
         view.addSubview(smsCodeCell)
+        view.addSubview(agreedCell)
         view.addSubview(submitCell)
+        
         bankCardNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(toolBarView.snp.bottom)
             make.left.right.equalTo(view)
@@ -90,8 +92,15 @@ class APUnionOpenViewController: APUnionBaseViewController {
             make.height.equalTo(toolBarView)
         }
         
+        agreedCell.snp.makeConstraints { (make) in
+            make.top.equalTo(smsCodeCell.snp.bottom)
+            make.left.equalTo(view).offset(20)
+            make.right.equalTo(view).offset(-20)
+            make.height.equalTo(toolBarView)
+        }
+        
         submitCell.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(smsCodeCell.snp.bottom).offset(20)
+            make.top.equalTo(agreedCell.snp.bottom).offset(20)
             make.left.equalTo(view.snp.left).offset(30)
             make.right.equalTo(view.snp.right).offset(-30)
             make.height.equalTo(44)
@@ -128,14 +137,30 @@ class APUnionOpenViewController: APUnionBaseViewController {
         smsCodeCell.smsCodeCell.textBlock = { (key, value) in
             weakSelf?.registQuickPayRequest?.smsCode = value
         }
+        //是否阅读协议
+        agreedCell.buttonBlock = { (key, value) in
+            let button: UIButton = value as! UIButton
+            weakSelf?.registQuickPayRequest?.isAgreed = button.isSelected
+        }
+        //点击阅读协议
+        agreedCell.extButtonBlock = { (key, value) in
+            let protocolVC = APBaseWebViewController()
+            protocolVC.title = "银联快捷开通协议"
+            protocolVC.urlService = APHttpService.unionPayAgreement
+            weakSelf?.navigationController?.pushViewController(protocolVC, animated: true)
+        }
     }
     
     override func ap_payEssentialRegisterObserve() {
-        
+        super.ap_payEssentialRegisterObserve()
         weak var weakSelf = self
-        let keyPaths = ["cardNo", "cvn", "expireDate", "reserveMobileNo", "smsCode"]
         self.kvoController.observe(registQuickPayRequest,
-                                   keyPaths: keyPaths,
+                                   keyPaths: ["cardNo",
+                                              "cvn",
+                                              "expireDate",
+                                              "reserveMobileNo",
+                                              "smsCode",
+                                              "isAgreed"],
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APRegistQuickPayRequest
@@ -143,7 +168,8 @@ class APUnionOpenViewController: APUnionBaseViewController {
                 quickPayModel.cvn.characters.count >= 3 &&
                 quickPayModel.expireDate.characters.count >= 4 &&
                 quickPayModel.reserveMobileNo.characters.count >= 11 &&
-                quickPayModel.smsCode.characters.count >= 6) {
+                quickPayModel.smsCode.characters.count >= 6 &&
+                quickPayModel.isAgreed) {
                 weakSelf?.submitCell.isEnabled = true
             }
             else {

@@ -14,7 +14,7 @@ class APCollectionDisposeViewController: APCollectionResultViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerImageView.theme_image = ["collection_failure_icon"]
+        headerImageView.theme_image = ["collection_waiting_icon"]
         headerTitleLabel.text = "未查询到交易结果"
         tableView.register(APCollectionDisposeCell.self, forCellReuseIdentifier: "APCollectionDisposeCell")
         
