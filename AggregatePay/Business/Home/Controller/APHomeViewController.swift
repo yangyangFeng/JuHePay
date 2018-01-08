@@ -141,7 +141,7 @@ extension APHomeViewController:
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        view.makeToast(message)
+//        view.makeToast(message)
     }
 }
 

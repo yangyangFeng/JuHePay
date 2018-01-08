@@ -10,7 +10,7 @@ import UIKit
 
 class APUnionTimeTools: NSObject {
     
-    public var ap_TimeDelegate: APUnionTimeToolsDelegate?
+    public weak var ap_TimeDelegate: APUnionTimeToolsDelegate?
     var unionHttpTool: APUnionHttpTools?
     
     let request = APQueryQuickPayResultRequest()

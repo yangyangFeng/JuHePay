@@ -15,22 +15,16 @@ class APUnionOpenViewController: APUnionBaseViewController {
     
     //开通
     var registQuickPayRequest: APRegistQuickPayRequest?
-    
-    //网络工具
-    lazy var unionHttpTool: APUnionHttpTools = {
-        let tool = APUnionHttpTools(target: self, submitCell: submitCell, smsCodeCell: smsCodeCell)
-        tool.ap_OpenDelegate = self
-        return tool
-    }()
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        unionHttpTool.ap_remove()
-    }
+
+    var unionHttpTool: APUnionHttpTools?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         submitCell.button.setTitle("确认开通", for: .normal)
+        unionHttpTool = APUnionHttpTools(target: self,
+                                         submitCell: submitCell,
+                                         smsCodeCell: smsCodeCell)
+        unionHttpTool?.ap_OpenDelegate = self
     }
     
     override func ap_httpSendSmsCode() {
@@ -50,11 +44,11 @@ class APUnionOpenViewController: APUnionBaseViewController {
             view.makeToast("信用卡输入格式不正确")
             return
         }
-        unionHttpTool.ap_openSmsCodeHttp(request: registerMsgRequest)
+        unionHttpTool?.ap_openSmsCodeHttp(request: registerMsgRequest)
     }
     
     override func ap_httpSubmit() {
-        unionHttpTool.ap_openHttp(request: registQuickPayRequest!)
+        unionHttpTool?.ap_openHttp(request: registQuickPayRequest!)
     }
     
     override func ap_initCreateSubviews() {
@@ -145,7 +139,7 @@ class APUnionOpenViewController: APUnionBaseViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APRegistQuickPayRequest
-            if (quickPayModel.cardNo.characters.count >= 18 &&
+            if (quickPayModel.cardNo.characters.count >= 12 &&
                 quickPayModel.cvn.characters.count >= 3 &&
                 quickPayModel.expireDate.characters.count >= 4 &&
                 quickPayModel.reserveMobileNo.characters.count >= 11 &&

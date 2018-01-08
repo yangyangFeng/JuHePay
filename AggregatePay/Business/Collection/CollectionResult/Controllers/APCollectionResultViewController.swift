@@ -87,12 +87,11 @@ UITableViewDataSource {
     }
     
     func ap_dismiss() {
-        self.dismiss(animated: true) {
-            let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
-            let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
-            let lastVC = selectVC.childViewControllers.last as! APBaseViewController
-            lastVC.navigationController?.popToRootViewController(animated: true)
-        }
+        self.dismiss(animated: true, completion: nil)
+        let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+        let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
+        let lastVC = selectVC.childViewControllers.last as! APBaseViewController
+        lastVC.navigationController?.popToRootViewController(animated: true)
     }
     
     //MARK: ---- 子类重载
