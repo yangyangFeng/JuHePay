@@ -18,31 +18,31 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
     }
 
     override func numberRow(tableView: UITableView) -> Int {
-        return titles.count
+        return titles().count
     }
     
     override func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
-        let title: String = titles.object(at: indexPath.row) as! String
-        let key: String = keys.object(at: indexPath.row) as! String
+        let title: String = titles()[indexPath.row]
+        let key: String = keys()[indexPath.row]
         cell.titleLabel.text = title
-        let value = resultDic![key] as! String
+        let value = resultDic![key]
         if key == "payServiceCode" {
             switch value {
-            case "WECHATPAY":
+            case "WECHATPAY"?:
                 cell.contentLabel.text = "微信收款"
-            case "ALIPAY":
+            case "ALIPAY"?:
                 cell.contentLabel.text = "支付宝收款"
-            case "UNIONPAYPAY":
+            case "UNIONPAYPAY"?://无积分
                 cell.contentLabel.text = "银联快捷收款"
-            case "UNIONPAYGIFTPAY":
-                cell.contentLabel.text = "银联快捷收款·积分"
+            case "UNIONPAYGIFTPAY"?:  //积分
+                cell.contentLabel.text = "银联快捷收款"
             default:
                 cell.contentLabel.text = "二维码收款"
             }
         }
         else if key == "transAmount" {
-            let amountNum = Double(value)! / 100.00
+            let amountNum = Double(value!)! / 100.00
             cell.contentLabel.text = String(format: "%.2f", amountNum)
         }
         else {
@@ -51,21 +51,19 @@ class APCollectionSuccessViewController: APCollectionResultViewController {
         
         return cell
     }
-   
-    var titles : NSArray = {
-        var arr : NSArray = NSArray(array: ["订单号",
-                                            "交易时间",
-                                            "交易金额",
-                                            "交易类型"])
-        return arr
-    }()
-    var keys : NSArray = {
-        var arr : NSArray = NSArray(array: ["orderNo",
-                                            "transDateTime",
-                                            "transAmount",
-                                            "payServiceCode"])
-        return arr
-    }()
+
+    func titles() -> [ String] {
+        return ["订单号",
+                "交易时间",
+                "交易金额",
+                "交易类型"]
+    }
+    func keys() -> [ String] {
+        return ["orderNo",
+                "transDateTime",
+                "transAmount",
+                "payServiceCode"]
+    }
 
 }
 
