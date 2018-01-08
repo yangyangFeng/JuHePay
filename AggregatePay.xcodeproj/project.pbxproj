@@ -43,6 +43,7 @@
 		1A2E32951FE541D20029AE9A /* APWalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E32901FE541D20029AE9A /* APWalletCell.swift */; };
 		1A2E32961FE541D20029AE9A /* APWalletHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E32911FE541D20029AE9A /* APWalletHeaderView.swift */; };
 		1A354ACF1FE25722006061AE /* APRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A354ACE1FE25722006061AE /* APRegisterRequest.swift */; };
+		1A37292F20031D2A007E74F8 /* APRegisterProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37292E20031D2A007E74F8 /* APRegisterProtocolViewController.swift */; };
 		1A3A68C21FE3A47B00865340 /* APBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A68C01FE3A47B00865340 /* APBillDetailViewController.swift */; };
 		1A3A68C71FE3A51E00865340 /* APTradingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A68C61FE3A51E00865340 /* APTradingDetailViewController.swift */; };
 		1A3A68C91FE3A53300865340 /* APProfitsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A68C81FE3A53300865340 /* APProfitsDetailViewController.swift */; };
@@ -358,6 +359,7 @@
 		1A2E32901FE541D20029AE9A /* APWalletCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APWalletCell.swift; sourceTree = "<group>"; };
 		1A2E32911FE541D20029AE9A /* APWalletHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APWalletHeaderView.swift; sourceTree = "<group>"; };
 		1A354ACE1FE25722006061AE /* APRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APRegisterRequest.swift; sourceTree = "<group>"; };
+		1A37292E20031D2A007E74F8 /* APRegisterProtocolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRegisterProtocolViewController.swift; sourceTree = "<group>"; };
 		1A3A68C01FE3A47B00865340 /* APBillDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APBillDetailViewController.swift; sourceTree = "<group>"; };
 		1A3A68C61FE3A51E00865340 /* APTradingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTradingDetailViewController.swift; sourceTree = "<group>"; };
 		1A3A68C81FE3A53300865340 /* APProfitsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APProfitsDetailViewController.swift; sourceTree = "<group>"; };
@@ -887,6 +889,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA80F8B1FDFDE650021B046 /* APSystemBaseViewController.swift */,
+				1A37292D20031D2A007E74F8 /* Protocol */,
 				1AD7C4FD1FE9F32D00686C01 /* Setting */,
 				1A1FDA641FE8C60000E6F808 /* Result */,
 				1A1FDA5C1FE8B7D800E6F808 /* Modify */,
@@ -1073,6 +1076,14 @@
 				1A354ACE1FE25722006061AE /* APRegisterRequest.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1A37292D20031D2A007E74F8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1A37292E20031D2A007E74F8 /* APRegisterProtocolViewController.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		1A3A68BF1FE3A47B00865340 /* BillDetail */ = {
@@ -3262,6 +3273,7 @@
 				1A2E32921FE541D20029AE9A /* APWalletDetailListViewController.swift in Sources */,
 				747668431FE8F66C00715E72 /* APReturnBillSearchBar.swift in Sources */,
 				1A1FF09B1FE0F3AA0092471F /* APHomeMenuView.swift in Sources */,
+				1A37292F20031D2A007E74F8 /* APRegisterProtocolViewController.swift in Sources */,
 				1AEC82631FFF29D200585A03 /* APPayElementSmsCodeCell.swift in Sources */,
 				7487E1851FDFE131000E3EBE /* UINavigationBarExtensions.swift in Sources */,
 				74EC34371FDF8948003ABF70 /* APMineHeaderView.swift in Sources */,
