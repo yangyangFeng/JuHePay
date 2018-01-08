@@ -35,11 +35,11 @@ class APBaseWebViewController: APBaseViewController{
             progressView.alpha = 1.0
             progressView.setProgress(Float(webView.estimatedProgress), animated: true)
             if webView.estimatedProgress >= 1.0 {
-                UIView.animate(withDuration: 0.2,
+                UIView.animate(withDuration: 0.25,
                                delay: 0.1,
                                options: .curveEaseOut,
                                animations: {
-                                self.progressView.alpha = 0
+                                
                 }, completion: { (finish) in
                     self.progressView.setProgress(0.0, animated: false)
                 })
@@ -71,7 +71,7 @@ class APBaseWebViewController: APBaseViewController{
     
     lazy private var progressView: UIProgressView = {
         self.progressView = UIProgressView(frame: CGRect.zero)
-        self.progressView.tintColor = UIColor.red
+        self.progressView.tintColor = UIColor(hex6: 0xc8a556)
         self.progressView.trackTintColor = UIColor.groupTableViewBackground
         return self.progressView
     }()
