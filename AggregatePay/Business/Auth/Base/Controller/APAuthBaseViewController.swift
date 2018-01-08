@@ -268,11 +268,13 @@ extension APAuthBaseViewController {
             param.apMessage = "是否退出身份认证?"
             param.apConfirmTitle = "继续认证"
             param.apCanceTitle = "确定"
-        }, confirm: { [weak self] (confirmAction) in
+        }, confirm: {(confirmAction) in
+        
+
+        }, cancel: { [weak self] (cancelAction) in
             let navi = self?.authNavigation()
             navi?.finishAuths?()
-
-        }, cancel: {(cancelAction) in})
+       })
         present(alert, animated: true, completion: nil)
 //        authNavigation()?.finishAuths?()
     }
