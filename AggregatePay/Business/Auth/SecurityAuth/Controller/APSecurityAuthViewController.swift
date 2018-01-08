@@ -134,7 +134,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
                 if APAuthHelper.sharedInstance.securityAuthState == .Failure{
                     //更新审核状态
                     APAuthHelper.sharedInstance.securityAuthState = .Checking
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.navigationController?.popViewController(animated: true)
                 }
                 else{
                     //更新审核状态

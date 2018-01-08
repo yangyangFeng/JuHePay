@@ -169,7 +169,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
                 if APAuthHelper.sharedInstance.realNameAuthState == .Failure{
                     //更新审核状态
                     APAuthHelper.sharedInstance.realNameAuthState = .Checking
-                    self?.dismiss(animated: false, completion: nil)
+                    self?.navigationController?.popViewController(animated: true)
                 }
                 else{
                     //更新审核状态
