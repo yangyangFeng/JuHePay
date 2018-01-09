@@ -16,11 +16,6 @@
 #import "CPRSAEncrpTool.h"
 #import "VHLNavigation.h"
 #import "UIImage+QH.h"
-#import "IOSOCRAPI.h"
-#import "SCCaptureSessionManager.h"
-#import "CameraBankDrawView.h"
-#import "APOCRImageTool.h"
-#import "SCSlider.h"
 #import <WechatOpenSDK/WXApi.h>
 #import <MJExtension/MJExtension.h>
 #import <MJExtension/NSObject+MJKeyValue.h>

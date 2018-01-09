@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OCRSDK
 
 enum APSupportCameraMode {
     case scan, takePhoto, all
@@ -14,6 +15,10 @@ enum APSupportCameraMode {
 
 enum APCameraMode {
     case scan, takePhoto
+}
+
+enum APOCRScanType {
+    case bank, IDCard, IDCardBack
 }
 
  @objc protocol APCameraViewControllerDelegate {
@@ -24,7 +29,19 @@ enum APCameraMode {
 }
 class APCameraViewController: APBaseViewController {
     
-    public var scanCardType: TCARD_TYPE!
+    public var  scanType: APOCRScanType = .bank
+    
+    private var scanCardType: TCARD_TYPE! {
+        switch scanType {
+        case .bank:
+             return TIDBANK
+        case .IDCard:
+             return TIDCARD2
+        case .IDCardBack:
+             return TIDCARDBACK
+        }
+    }
+        
     public weak var delegate: APCameraViewControllerDelegate?
     
     /// OCR相机 手电筒状态
