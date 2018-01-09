@@ -134,8 +134,8 @@ extension APForgetFirstStepViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let checkMessageModel = object as! APCheckMessageRequest
-            if  checkMessageModel.mobileNo.characters.count >= 11 &&
-                checkMessageModel.idCode.characters.count >= 4 {
+            if  checkMessageModel.mobileNo.count >= 11 &&
+                checkMessageModel.idCode.count >= 4 {
                 weakSelf?.submitCell.isEnabled = true
             }
             else {

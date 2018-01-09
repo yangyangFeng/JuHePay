@@ -87,7 +87,7 @@ extension APForgetLastStepViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let resetPasswordModel = object as! APResetPasswordRequest
-            if  resetPasswordModel.pwd.characters.count >= 6{
+            if  resetPasswordModel.pwd.count >= 6{
                 weakSelf?.submitCell.isEnabled = true
             }
             else {

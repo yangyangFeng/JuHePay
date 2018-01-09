@@ -17,7 +17,7 @@ class APAlertController: UIAlertController {
         let titleAttribute = NSMutableAttributedString.init(string: self.title!)
         titleAttribute.addAttributes([NSAttributedStringKey.font:titleFont,
                                       NSAttributedStringKey.foregroundColor:UIColor(hex6: 0x7f5e12)],
-                                     range:NSMakeRange(0, (self.title?.characters.count)!))
+                                     range:NSMakeRange(0, (self.title?.count)!))
         self.setValue(titleAttribute, forKey: "attributedTitle")
         
         //消息内容样式
@@ -25,7 +25,7 @@ class APAlertController: UIAlertController {
         let messageAttribute = NSMutableAttributedString.init(string: self.message!)
         messageAttribute.addAttributes([NSAttributedStringKey.font:messageFont,
                                         NSAttributedStringKey.foregroundColor:UIColor(hex6: 0x4c370b)],
-                                       range:NSMakeRange(0, (self.message?.characters.count)!))
+                                       range:NSMakeRange(0, (self.message?.count)!))
         self.setValue(messageAttribute, forKey: "attributedMessage")
     }
     

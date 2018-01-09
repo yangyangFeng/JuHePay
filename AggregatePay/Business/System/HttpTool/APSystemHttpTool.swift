@@ -19,6 +19,7 @@ class APSystemHttpTool: NSObject {
                          faile:@escaping (String)->Void) {
         let param: APRegisterRequest = paramReqeust.copy() as! APRegisterRequest
         param.passwd = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.passwd)
+        param.recommendCode = paramReqeust.recommendCode.uppercased()
         APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
                           action: APHttpService.register,
                           params: param,
