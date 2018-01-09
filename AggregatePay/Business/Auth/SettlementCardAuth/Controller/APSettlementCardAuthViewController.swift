@@ -66,7 +66,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
     private func openOCR() {
         let cameraVC = APCameraViewController()
         cameraVC.delegate = self
-        cameraVC.scanCardType = TIDBANK
+        cameraVC.scanType = .bank
         cameraVC.supportCameraMode = .all
         present(cameraVC, animated: true, completion: nil)
     }

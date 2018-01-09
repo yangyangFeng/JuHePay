@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OCRSDK
 
 class APRealNameAuthViewController: APAuthBaseViewController {
     
@@ -55,7 +56,7 @@ class APRealNameAuthViewController: APAuthBaseViewController {
         idCardFront.tapedHandle = { [weak self] in
             let cameraVC = APCameraViewController()
             cameraVC.delegate = self
-            cameraVC.scanCardType = TIDCARD2
+            cameraVC.scanType = .IDCard
             cameraVC.supportCameraMode = .all
             self?.present(cameraVC, animated: true, completion: nil)
         }
