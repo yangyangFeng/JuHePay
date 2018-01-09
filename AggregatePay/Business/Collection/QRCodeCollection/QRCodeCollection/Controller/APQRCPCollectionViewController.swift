@@ -12,7 +12,7 @@ import Alamofire
 /**
  * 生成收款二维码视图控制器
  */
-class APQRCPCollectionViewController: APBaseViewController {
+class APQRCPCollectionViewController: APQRCPBaseViewController {
     
     var isCancelRequest: Bool = false
     var qrCodePayResponse: APQRCodePayResponse?
@@ -24,11 +24,11 @@ class APQRCPCollectionViewController: APBaseViewController {
         view.theme_backgroundColor = ["#3e3e3e"]
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        
+        qrCodeCollectionView.navBarTitleLabel.text = qrCodeNavTitle
         qrCodeCollectionView.merchantTitleLabel.text = "商家:" + (qrCodePayResponse?.merchantName)! + "向您发起收款"
         let createDate = qrCodePayResponse?.createDate
         let validTime = qrCodePayResponse?.validTime
-        let limitDate: String = "生成于" + createDate! + "，有效期" + validTime! + "分钟"
+        let limitDate: String = "生成于" + createDate! + ",有效期" + validTime! + "分钟"
         qrCodeCollectionView.dateLimitLabel.text = limitDate
         createSubviews()
         createQrCodeImage()
@@ -112,16 +112,6 @@ extension APQRCPCollectionViewController {
         getOnlineTransResultRequest.terminalNo = qrCodePayResponse?.terminalNo
         getOnlineTransResultRequest.orderNo = qrCodePayResponse?.orderNo
         getOnlineTransResultRequest.merchantNo = qrCodePayResponse?.merchantNo
-        /**
-         
-         TRANS_UNKNOWN("交易未知", "0"),
-         TRANS_PROCESS("交易处理中", "1"),
-         TRANS_SUCESS("交易成功", "2"),
-         TRANS_FIAL("交易失败", "3"),
-         TRANS_CLOSED("交易关闭", "4"),
-         TRANS_CANEL("交易撤销", "5"),
-         TRANS_REFUND("交易退款", "6");
-         */
         APNetworking.get(httpUrl: APHttpUrl.trans_httpUrl,
                          action: APHttpService.getOnlineTransResult,
                          params: getOnlineTransResultRequest,
@@ -149,7 +139,7 @@ extension APQRCPCollectionViewController {
         successVC.resultDic = ["orderNo":result.orderNo!,
                                "transDateTime":result.transDateTime!,
                                "transAmount":result.transAmount!,
-                               "payServiceCode":result.payServiceCode!]
+                               "payServiceCode":payServiceCode!]
         let navigation = APBaseNavigationViewController(rootViewController: successVC)
         let lastVC = APPDElEGATE.window?.rootViewController?.childViewControllers.last
         lastVC?.present(navigation, animated: true, completion: nil);
