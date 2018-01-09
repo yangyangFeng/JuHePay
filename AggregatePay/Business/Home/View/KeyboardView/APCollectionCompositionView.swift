@@ -12,13 +12,7 @@ class APCollectionCompositionView: APKeyboardCompositionView {
     
     public var isLogin = false {
         willSet {
-            let collectionkeyboardView: APCollectionKeyboardView = keyboardView as! APCollectionKeyboardView
-            if newValue {
-                 collectionkeyboardView.loginYesConfirmButtonAttribute()
-            }
-            else {
-                collectionkeyboardView.loginNoConfirmButtonAttribute()
-            }
+            (keyboardView as! APCollectionKeyboardView).isLogin(newValue)
         }
     }
     
@@ -36,12 +30,14 @@ class APCollectionCompositionView: APKeyboardCompositionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
-    
     //MARK: ---- 重载父类方法
     
     override func ap_remove() {
         displayView?.ap_remove()
+    }
+    
+    override func confirmParam() -> Any {
+        return menuModel as Any
     }
     
     override func getKeyboardView() -> APKeyboardView {
@@ -52,9 +48,7 @@ class APCollectionCompositionView: APKeyboardCompositionView {
         return APCollectionDisplayView()
     }
 
-    override func confirmParam() -> Any {
-        return menuModel as Any
-    }
+   
 }
 
 

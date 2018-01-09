@@ -194,11 +194,12 @@ extension APUnionTranBaseViewController {
     }
     
     func gotoTranSuccess(result: APQuickPayResponse) {
+        
         let successVC = APCollectionSuccessViewController()
         successVC.resultDic = ["orderNo":result.orderNo,
                                "transDateTime":result.transTime,
                                "transAmount":result.transAmount,
-                               "payServiceCode":"UnioppayQuick"]
+                               "payServiceCode":payServiceCode]
         let navigation = APBaseNavigationViewController(rootViewController: successVC)
         self.present(navigation, animated: true, completion: {
             self.navigationController?.popToRootViewController(animated: true)

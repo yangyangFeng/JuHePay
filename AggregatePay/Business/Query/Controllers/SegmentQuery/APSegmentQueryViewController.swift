@@ -68,7 +68,10 @@ class APSegmentQueryViewController: APBaseViewController {
     }
 
     lazy var rightBarButtonItem: UIBarButtonItem = {
-        let view = APBarButtonItem.ap_barButtonItem(self ,title: "查询", action: #selector(pushBillVC))
+        let view = APBarButtonItem.ap_barButtonItem(self,
+                                                    title: "查询",
+                                                    action: #selector(pushBillVC),
+                                                    titleColor: "#c8a556")
         return view
     }()
     
