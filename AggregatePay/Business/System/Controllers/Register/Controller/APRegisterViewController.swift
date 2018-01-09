@@ -190,10 +190,10 @@ extension APRegisterViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let registerModel = object as! APRegisterRequest
-            if (registerModel.mobileNo.characters.count >= 11 &&
-                registerModel.passwd.characters.count >= 6 &&
-                registerModel.recommendCode.characters.count >= 6 &&
-                registerModel.idCode.characters.count >= 4 &&
+            if (registerModel.mobileNo.count >= 11 &&
+                registerModel.passwd.count >= 6 &&
+                registerModel.recommendCode.count >= 6 &&
+                registerModel.idCode.count >= 4 &&
                 registerModel.isAgreed) {
                 weakSelf?.submitCell.isEnabled = true
             }

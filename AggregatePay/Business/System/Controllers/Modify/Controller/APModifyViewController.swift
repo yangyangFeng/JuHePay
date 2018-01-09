@@ -121,9 +121,9 @@ extension APModifyViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let updatePasswordModel = object as! APUpdatePasswordRequest
-            if  updatePasswordModel.pwdOld.characters.count >= 6 &&
-                updatePasswordModel.pwd.characters.count >= 6 &&
-                updatePasswordModel.pwdConfirm.characters.count >= 6 {
+            if  updatePasswordModel.pwdOld.count >= 6 &&
+                updatePasswordModel.pwd.count >= 6 &&
+                updatePasswordModel.pwdConfirm.count >= 6 {
                 weakSelf?.submitCell.isEnabled = true
             }
             else {

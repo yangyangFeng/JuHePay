@@ -207,8 +207,8 @@ extension APLoginViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let loginModel = object as! APLoginRequest
-            if  loginModel.mobileNo.characters.count >= 11 &&
-                loginModel.passwd.characters.count >= 6{
+            if  loginModel.mobileNo.count >= 11 &&
+                loginModel.passwd.count >= 6{
                 weakSelf?.submitCell.isEnabled = true
             }
             else {

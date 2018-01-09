@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OCRSDK
 
 typealias APOCRBankCardResult = (_ bankCard: APOCRBankCard, _ isSuccess: Bool, _ message: String) -> Void
 typealias APOCRIDCardResult = (_ idCard: APOCRIDCard, _ isSuccess: Bool, _ message: String) -> Void
@@ -64,7 +65,8 @@ class APOCRCameraView: APBaseCameraView {
     fileprivate func setUpSessionManager() {
         if !isSimulator() {
             
-            TREC_StartUP(TREC_GetEngineTimeKEY());
+//            TREC_StartUP(TREC_GetEngineTimeKEY());
+            APOCRImageTool.startUP(nil);
             captureManager = SCCaptureSessionManager()
             captureManager.setCardType(scanCardType, mode: true)
             captureManager.delegate = self
@@ -161,7 +163,7 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
    private func didIDCardScanOCR(image: UIImage, rect: CGRect) {
         
         if !isSimulator() {
-            let support = TREC_SetSupportEngine(TIDCARD2)
+            let support = APOCRImageTool.trec_SetSupportEngine(TIDCARD2)//TREC_SetSupportEngine(TIDCARD2)
             if support != 1 {
                 idCardResult?(APOCRIDCard(), false, "引擎不支持")
                 return
@@ -180,20 +182,20 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 
                 let idCard = APOCRIDCard()
                 
-                if TIDCARD2 == TREC_GetCardType() {
+                if TIDCARD2 == APOCRImageTool.trec_GetCardType() {
                     
                     idCard.image = targetImage
-                    idCard.name = TREC_GetFieldString(NAME)
-                    idCard.gender = TREC_GetFieldString(SEX)
-                    idCard.birthday = TREC_GetFieldString(BIRTHDAY)
-                    idCard.adress = TREC_GetFieldString(ADDRESS)
-                    idCard.number = TREC_GetFieldString(NUM)
+                    idCard.name = APOCRImageTool.trec_GetFieldString(NAME)//TREC_GetFieldString(NAME)
+                    idCard.gender = APOCRImageTool.trec_GetFieldString(SEX)//TREC_GetFieldString(SEX)
+                    idCard.birthday = APOCRImageTool.trec_GetFieldString(BIRTHDAY)//TREC_GetFieldString(BIRTHDAY)
+                    idCard.adress = APOCRImageTool.trec_GetFieldString(ADDRESS)//TREC_GetFieldString(ADDRESS)
+                    idCard.number = APOCRImageTool.trec_GetFieldString(NUM)//TREC_GetFieldString(NUM)
                     idCard.isBack = false
                     
-                } else if TIDCARDBACK == TREC_GetCardType() {
+                } else if TIDCARDBACK == APOCRImageTool.trec_GetCardType() {
                     
                     idCard.backImage = targetImage
-                    idCard.validDate = TREC_GetFieldString(PERIOD)
+                    idCard.validDate = APOCRImageTool.trec_GetFieldString(PERIOD)//TREC_GetFieldString(PERIOD)
                 }
                 
                 idCardResult?(idCard, true, "识别成功")
@@ -209,7 +211,7 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
         
         if !isSimulator() {
             
-            let supportEngine = TREC_SetSupportEngine(TIDBANK)
+            let supportEngine = APOCRImageTool.trec_SetSupportEngine(TIDBANK)//TREC_SetSupportEngine(TIDBANK)
             if supportEngine != 1 {
                 bankCardResult?(APOCRBankCard(), false, "引擎不支持")
                 return
@@ -229,11 +231,11 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
             if isReturnOk != 0 && isClose == false {
                 
                 let bankCard = APOCRBankCard()
-                bankCard.bankName = TBANK_GetBankInfoString(T_GET_BANK_NAME)
-                bankCard.cardNum = TBANK_GetBankInfoString(T_GET_BANK_NUM).replacingOccurrences(of: " ", with: "")
-                bankCard.bankOrgcode = TBANK_GetBankInfoString(T_GET_BANK_ORGCODE)
-                bankCard.cardName = TBANK_GetBankInfoString(T_GET_CARD_NAME)
-                bankCard.cardType = TBANK_GetBankInfoString(T_GET_BANK_CLASS)
+                bankCard.bankName = APOCRImageTool.tbank_GetBankInfoString(T_GET_BANK_NAME)//TBANK_GetBankInfoString(T_GET_BANK_NAME)
+                bankCard.cardNum = APOCRImageTool.tbank_GetBankInfoString(T_GET_BANK_NUM).replacingOccurrences(of: " ", with: "")//TBANK_GetBankInfoString(T_GET_BANK_NUM).replacingOccurrences(of: " ", with: "")
+                bankCard.bankOrgcode = APOCRImageTool.tbank_GetBankInfoString(T_GET_BANK_ORGCODE)//TBANK_GetBankInfoString(T_GET_BANK_ORGCODE)
+                bankCard.cardName = APOCRImageTool.tbank_GetBankInfoString(T_GET_CARD_NAME)//TBANK_GetBankInfoString(T_GET_CARD_NAME)
+                bankCard.cardType = APOCRImageTool.tbank_GetBankInfoString(T_GET_BANK_CLASS)//TBANK_GetBankInfoString(T_GET_BANK_CLASS)
                 bankCard.bankCardImage = image
                
                 bankCardResult?(bankCard, true, "识别成功")
