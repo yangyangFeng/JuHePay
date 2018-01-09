@@ -164,11 +164,11 @@ class APUnionOpenViewController: APUnionBaseViewController {
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APRegistQuickPayRequest
-            if (quickPayModel.cardNo.characters.count >= 12 &&
-                quickPayModel.cvn.characters.count >= 3 &&
-                quickPayModel.expireDate.characters.count >= 4 &&
-                quickPayModel.reserveMobileNo.characters.count >= 11 &&
-                quickPayModel.smsCode.characters.count >= 6 &&
+            if (quickPayModel.cardNo.count >= 12 &&
+                quickPayModel.cvn.count >= 3 &&
+                quickPayModel.expireDate.count >= 4 &&
+                quickPayModel.reserveMobileNo.count >= 11 &&
+                quickPayModel.smsCode.count >= 6 &&
                 quickPayModel.isAgreed) {
                 weakSelf?.submitCell.isEnabled = true
             }
