@@ -18,7 +18,6 @@
 #import "UIImage+QH.h"
 #import <WechatOpenSDK/WXApi.h>
 #import <MJExtension/MJExtension.h>
-#import <MJExtension/NSObject+MJKeyValue.h>
 #import "JPUSHService.h"
 #import "CPCipherAES.h"
 #import <UserNotifications/UserNotifications.h>

@@ -25,6 +25,7 @@ class APDisplayView: UIView {
     }
     
     //MARK: ---- 接口扩展
+    func ap_remove() {}
     
     /** 设置扩展参数 */
     func setDisplayExtParam(param: Any) {}

@@ -25,7 +25,7 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     private let inputRules: APKeyboardInputRules = APKeyboardInputRules()
     
     //代理
-    var delegate: APKeyboardCompositionViewDelegate?
+    weak var delegate: APKeyboardCompositionViewDelegate?
     
     //键盘区域
     var keyboardView: APKeyboardView?
@@ -36,13 +36,13 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
     init() {
         super.init(frame: CGRect.zero)
         
-        keyboardView = getKeyboardView()
         displayView = getDisplayView()
         
+        keyboardView = getKeyboardView()
         keyboardView!.keyboardDelegate = self
         
-        addSubview(keyboardView!)
         addSubview(displayView!)
+        addSubview(keyboardView!)
         
         displayView?.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.snp.left)
@@ -79,7 +79,12 @@ class APKeyboardCompositionView: UIView, APKeyboardViewDelegate{
         return ""
     }
     
+    func ap_remove() {
+        
+    }
+    
     //MARK: ---- APKeyboardViewDelegate(键盘代理方法)
+    
     
     /** 键盘点击数字按钮 */
     func didKeyboardNumItem(num: String) {

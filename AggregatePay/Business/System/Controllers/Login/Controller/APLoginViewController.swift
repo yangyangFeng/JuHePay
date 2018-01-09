@@ -36,22 +36,31 @@ class APLoginViewController: APSystemBaseViewController {
         createSubviews()
         registerCallBacks()
         registerObserve()
-        
-        //获取缓存的数据
+        /*
+        if (APUserDefaultCache.AP_get(key: .isRemember) as? String) == "1" {
+            //获取缓存的数据
+            let account = APUserDefaultCache.AP_get(key: .mobile) as! String
+            let password = APUserDefaultCache.AP_get(key: .password)  as! String
+            
+            if account != "" {
+                self.accountCell.textField.text = account
+                self.loginRequest.mobileNo = account
+            }
+            if password != "" {
+                self.passwordCell.textField.text = password
+                self.loginRequest.passwd = password
+            }
+//            self.memoryCell.button.isSelected = true
+        }
+        else
+        {
+//            self.memoryCell.button.isSelected = false
+        }
+        */
         let account = APUserDefaultCache.AP_get(key: .mobile) as! String
-        let password = APUserDefaultCache.AP_get(key: .password)  as! String
-        
         if account != "" {
             self.accountCell.textField.text = account
             self.loginRequest.mobileNo = account
-        }
-        if password != "" {
-            self.passwordCell.textField.text = password
-            self.loginRequest.passwd = password
-        }
-        
-        if account != "" && password != "" {
-            self.memoryCell.button.isSelected = true
         }
     }
     
@@ -212,15 +221,15 @@ extension APLoginViewController {
         APUserDefaultCache.AP_set(value: loginResponse.userId!, key: .userId)
         //判断是否需要记住密码(利用UserDefaultCache进行缓存)
         if  memoryCell.button.isSelected {
-            let mobile = loginRequest.mobileNo
-            let password = loginRequest.passwd
-            APUserDefaultCache.AP_set(value: mobile, key: .mobile)
-            APUserDefaultCache.AP_set(value: password, key: .password)
+            APUserDefaultCache.AP_set(value: "1", key: .isRemember)
         }
         else {
-            APUserDefaultCache.AP_set(value: "", key: .mobile)
-            APUserDefaultCache.AP_set(value: "", key: .password)
+            APUserDefaultCache.AP_set(value: "0", key: .isRemember)
         }
+        let mobile = loginRequest.mobileNo
+        let password = loginRequest.passwd
+        APUserDefaultCache.AP_set(value: mobile, key: .mobile)
+        APUserDefaultCache.AP_set(value: password, key: .password)
     }
     
     private func login() {

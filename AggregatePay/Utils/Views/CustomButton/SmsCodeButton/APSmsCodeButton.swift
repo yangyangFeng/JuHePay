@@ -30,6 +30,8 @@ class APSmsCodeButton: UIButton {
         }
     }
     
+    var oldCountingStatus: APCountingStatus = .end
+    
     var countingStatus: APCountingStatus = .end {
         willSet {
             if newValue == .wait {
@@ -37,8 +39,13 @@ class APSmsCodeButton: UIButton {
                 countDownTimer = nil
                 self.setTitle("正在发送", for: .normal)
                 self.isEnabled = false
+                oldCountingStatus = newValue
             }
             else if newValue == .start {
+                if oldCountingStatus != .wait {
+                    print("开始倒计时之前状态必须处于wait")
+                    return
+                }
                 countDownTimer = Timer.scheduledTimer(timeInterval: 1,
                                                       target: self,
                                                       selector: #selector(updateTime(_:)),
@@ -46,13 +53,15 @@ class APSmsCodeButton: UIButton {
                                                       repeats: true)
                 RunLoop.main.add(countDownTimer!, forMode:RunLoopMode.commonModes)
                 remainingSeconds = 60
-                self.isEnabled = false
+                isEnabled = false
+                oldCountingStatus = newValue
             }
             else {
                 countDownTimer?.invalidate()
                 countDownTimer = nil
                 self.setTitle("重新获取验证码", for: .normal)
                 self.isEnabled = true
+                oldCountingStatus = newValue
             }
         }
     }

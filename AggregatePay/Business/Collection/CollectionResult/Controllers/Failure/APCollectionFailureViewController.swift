@@ -12,6 +12,9 @@ class APCollectionFailureViewController: APCollectionResultViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerImageView.theme_image = ["collection_failure_icon"]
+        headerTitleLabel.text = "收款失败"
+        tableView.register(APCollectionResultCell.self, forCellReuseIdentifier: "APCollectionResultCell")
     }
 
     //MARK: ---- 子类重载
@@ -20,12 +23,13 @@ class APCollectionFailureViewController: APCollectionResultViewController {
         return titles.count
     }
     
-    override func cellAttribute(collectionResultCell: APCollectionResultCell,
-                                indexPath: IndexPath) {
+    override func ap_tableView(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = APCollectionResultCell.cellWithTableView(tableView) as! APCollectionResultCell
         let title: String = titles.object(at: indexPath.row) as! String
         let key: String = keys.object(at: indexPath.row) as! String
-        collectionResultCell.titleLabel.text = title
-        collectionResultCell.contentLabel.text = resultDic?[key]
+        cell.titleLabel.text = title
+        cell.contentLabel.text = resultDic?[key]
+        return cell
     }
     
     var titles : NSArray = {

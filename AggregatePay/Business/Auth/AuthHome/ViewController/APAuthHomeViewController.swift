@@ -50,10 +50,11 @@ class APAuthHomeViewController: APBaseViewController {
             
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
-            
+            self.tableView.mj_header.endRefreshing()
         }) {(error) in
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)
+            self.tableView.mj_header.endRefreshing()
         }
     }
 }
@@ -107,7 +108,7 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch APAuthHelper.sharedInstance.realNameAuthState {
             
-        case .None, .Failure:
+        case .None:
             let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
             self.navigationController?.present(authNavi, animated: true, completion: nil)
             authNavi.finishAuths = {

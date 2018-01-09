@@ -96,7 +96,7 @@ class APAccessControler: NSObject {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APRealNameAuthViewController()
+            let authVC = APAuthHomeViewController()
             let currentVC = APPDElEGATE.tabBarSelectController()
             currentVC.navigationController?.pushViewController(authVC, animated: true)
         }) { (cancelAction) in

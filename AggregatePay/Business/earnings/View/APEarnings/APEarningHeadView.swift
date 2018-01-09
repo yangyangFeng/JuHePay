@@ -12,7 +12,12 @@ class APEarningHeadView: UIView {
 
     var data : APGetProfitHomeResponse?{
         didSet{
-            moneyLabel.text = data?.profit
+            if Int((data?.profit)!) == 0 {
+                moneyLabel.text = "0.00"
+            }
+            else{
+                moneyLabel.text = data?.profit
+            }
             yesterdayMoneyLabel.text = data?.yearsDayAmount
         }
     }
@@ -34,7 +39,7 @@ class APEarningHeadView: UIView {
         topLabel.theme_textColor = ["#4c370b"]
         
         
-        moneyLabel.text = "0.0"
+        moneyLabel.text = "0.00"
         moneyLabel.font = UIFont.systemFont(ofSize: 42)
         moneyLabel.textAlignment = .left
         moneyLabel.theme_textColor = ["#7f5e12"]

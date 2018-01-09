@@ -29,8 +29,10 @@ class APWalletViewController: APBaseViewController{
 
     //MARK: ---- action
     @objc func pushBillVC() {
-        let billVC = APBillViewController()
-        navigationController?.pushViewController(billVC, animated: true)
+        ap_userIdentityStatus {
+            let billVC = APSegmentQueryViewController()
+            self.navigationController?.pushViewController(billVC, animated: true)
+        }
     }
     
     
@@ -99,7 +101,6 @@ extension APWalletViewController {
     
     //网络请求
     private func httpGetUserAccountInfo() {
-//        getUserAccountInfoResquest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
                           action: APHttpService.getUserAccountInfo,
                           params: getUserAccountInfoResquest,

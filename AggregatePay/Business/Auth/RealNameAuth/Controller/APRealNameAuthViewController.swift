@@ -167,9 +167,16 @@ class APRealNameAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.realNameAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
-                //更新审核状态
-                APAuthHelper.sharedInstance.realNameAuthState = .Checking
-                self?.controllerTransition()
+                if APAuthHelper.sharedInstance.realNameAuthState == .Failure{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.realNameAuthState = .Checking
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                else{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.realNameAuthState = .Checking
+                    self?.controllerTransition()
+                }
             })
         }) {[weak self] (error) in
             self?.authSubmitCell.loading(isLoading: false)

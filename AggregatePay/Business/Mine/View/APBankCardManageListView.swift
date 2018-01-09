@@ -140,19 +140,8 @@ class APBankCardCell: APSwipeTableViewCell {
     
     var model : APCardListResponse?{
         didSet{
-            if model?.authType == "3" {
-                self.AP_shouldExceedThreshold = true
-                rightMsg.text = "快捷"
-            }
-            else if model?.authType == "2"{
-                self.AP_shouldExceedThreshold = false
-                rightMsg.text = "已认证"
-            }
-            else{
-                self.AP_shouldExceedThreshold = false
-                rightMsg.text = ""
-            }
-            bankName.text = model?.bankName
+      
+            bankName.text = model?.bankName ?? ""
             userName.text = model?.userName ?? "无"
             let cardNo : String = aesDecryptString(model?.cardNo,AP_AES_Key)
             var i = 0
@@ -174,6 +163,25 @@ class APBankCardCell: APSwipeTableViewCell {
             }
             
             bankNumber.text = newCardNo
+            if model?.authType == "3" {
+                self.AP_shouldExceedThreshold = true
+                rightMsg.text = "快捷"
+            }
+            else if model?.authType == "2"{
+                self.AP_shouldExceedThreshold = false
+                rightMsg.text = "已认证"
+            }
+            else{
+                self.AP_shouldExceedThreshold = false
+                rightMsg.text = ""
+            }
+            
+            if model?.cardType == "2"{//信用卡
+                bankName.text = bankName.text! + " 信用卡"
+            }
+            else if model?.cardType == "1"{//借记卡
+                bankName.text = bankName.text! + " 借记卡"
+            }
         }
     }
     

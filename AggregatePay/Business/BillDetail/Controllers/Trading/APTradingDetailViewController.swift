@@ -18,6 +18,7 @@ class APTradingDetailViewController: APBillDetailViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.titleLabel.text = "交易金额(元)"
         startHttpGetTradingDetail()
     }
     
@@ -35,7 +36,15 @@ class APTradingDetailViewController: APBillDetailViewController {
             value = tradingDetail?.merchantName
         }
         else if key == "payModeL" {
-            value = tradingDetail?.payModeL
+            if tradingDetail?.payModeL == "1" {
+                value = "微信"
+            }
+            else if tradingDetail?.payModeL == "2" {
+                value = "支付宝"
+            }
+            else {
+                value = "银联快捷"
+            }
         }
         else if key == "orderNo" {
             value = tradingDetail?.orderNo
@@ -67,6 +76,7 @@ extension APTradingDetailViewController {
                          aClass: APTradingDetailResponse.self,
                          success: { (baseResp) in
                             self.tradingDetail = baseResp as? APTradingDetailResponse
+                            self.headerView.amountLabel.text = self.tradingDetail?.transAmount
                             self.tableView.reloadData()
                             self.view.AP_loadingEnd()
         }, failure: {(baseError) in

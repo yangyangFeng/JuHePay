@@ -17,6 +17,8 @@ class APAgentDetailViewController: APBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ap_setStatusBarStyle(.lightContent)
+        
         initSubviews()
         
         loadData(0)

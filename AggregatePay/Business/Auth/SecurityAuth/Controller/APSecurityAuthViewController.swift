@@ -132,8 +132,16 @@ class APSecurityAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.securityAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
-                APAuthHelper.sharedInstance.securityAuthState = .Checking
-                self?.controllerTransition()
+                if APAuthHelper.sharedInstance.securityAuthState == .Failure{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.securityAuthState = .Checking
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                else{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.securityAuthState = .Checking
+                    self?.controllerTransition()
+                }
             })
         }) {[weak self] (error) in
              self?.authSubmitCell.loading(isLoading: false)

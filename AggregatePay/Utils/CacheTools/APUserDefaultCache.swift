@@ -11,6 +11,8 @@ import UIKit
 class APUserDefaultCache: NSObject {
     
     enum APUserDefaultKey: String {
+        case isRemember   = "isRemember"
+        case account   = "account"
         case mobile   = "mobile"
         case password = "password"
         case cookie   = "cookie"

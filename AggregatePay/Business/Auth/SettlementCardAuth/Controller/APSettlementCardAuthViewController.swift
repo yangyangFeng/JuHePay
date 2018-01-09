@@ -148,9 +148,16 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.settleCardAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
-                
-                APAuthHelper.sharedInstance.settleCardAuthState = .Checking
-                self?.controllerTransition()
+                if APAuthHelper.sharedInstance.settleCardAuthState == .Failure{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.settleCardAuthState = .Checking
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                else{
+                    //更新审核状态
+                    APAuthHelper.sharedInstance.settleCardAuthState = .Checking
+                    self?.controllerTransition()
+                }
             })
         }) { [weak self] (error) in
             self?.authSubmitCell.loading(isLoading: false)
@@ -244,7 +251,7 @@ extension APSettlementCardAuthViewController: APBankNameFormCellDelegate {
         searchBankVC.selectBankComplete = {[weak self] (bank) in
             self?.bank = bank
             self?.bankNameFormCell.text = bank.bankName
-            self?.authParam.bankNo = bank.bankName
+            self?.authParam.bankNo = bank.cnapsNo
         }
         
         let navi = APBaseNavigationViewController.init(rootViewController: searchBankVC)

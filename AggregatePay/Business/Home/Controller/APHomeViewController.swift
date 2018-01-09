@@ -14,6 +14,7 @@ class APHomeViewController: APBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardCompositionView.isLogin = APUserInfoTool.isLogin()
+        keyboardCompositionView.ap_remove()
     }
 
     override func viewDidLoad() {
@@ -23,35 +24,6 @@ class APHomeViewController: APBaseViewController {
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
         vhl_setNavBarBackgroundImage(UIImage.init(named: "home_nav_bg"))
         initCreateSubViews()
-    }
-    
-    //MARK: ---- 按钮触发
-    @objc func pushBillVC() {
-        ap_userIdentityStatus {
-            let billVC = APSegmentQueryViewController()
-            self.navigationController?.pushViewController(billVC, animated: true)
-        }
-    }
-
-    //跳转收款页面
-    private func pushCollectionVC(totalAmount: String, model: APHomeMenuModel) {
-        if totalAmount == "" ||
-            Float(totalAmount)! <= 0.0 {
-            view.makeToast("请输入金额")
-            return
-        }
-        
-        if model.payWay == "0" {
-            let placeVC = APCollectionPlaceViewController()
-            placeVC.totalAmount = totalAmount
-            self.navigationController?.pushViewController(placeVC,  animated: true)
-        }
-        else {
-            let qrcpElementVC = APQRCPElementViewController()
-            qrcpElementVC.amountStr = totalAmount
-            qrcpElementVC.payType = model.payType
-            self.navigationController?.pushViewController(qrcpElementVC, animated: true)
-        }
     }
     
     //MARK: ---- lazy  loading
@@ -80,7 +52,7 @@ extension APHomeViewController {
     func initCreateSubViews() {
         view.addSubview(homeMenuView)
         view.addSubview(keyboardCompositionView)
-        
+
         homeMenuView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
@@ -95,6 +67,54 @@ extension APHomeViewController {
         }
     }
     
+    func pushUnionPayVC(totalAmount: String, realName: String){
+        let placeVC = APCollectionPlaceViewController()
+        placeVC.totalAmount = totalAmount
+        placeVC.realName = realName
+        navigationController?.pushViewController(placeVC,  animated: true)
+    }
+    
+    //跳转收款页面
+    func pushCollectionVC(totalAmount: String, model: APHomeMenuModel) {
+        if totalAmount == "" ||
+            Float(totalAmount)! <= 0.0 {
+            view.makeToast("请输入金额")
+            return
+        }
+        
+        if model.payWay == "0" {
+            weak var weakSelf = self
+            guard let realName = APUserInfoTool.info.realName else {
+                weakSelf?.view.AP_loadingBegin()
+                APMineHttpTool.loginGetUserInfo(success: { (baseResp) in
+                    weakSelf?.view.AP_loadingEnd()
+                    let newRealName = APUserInfoTool.info.realName
+                    weakSelf?.pushUnionPayVC(totalAmount: totalAmount, realName: newRealName!)
+                }, faile: { (baseError) in
+                    weakSelf?.view.AP_loadingEnd()
+                    weakSelf?.view.makeToast(baseError.message)
+                })
+                return
+            }
+            pushUnionPayVC(totalAmount: totalAmount, realName: realName)
+        }
+        else {
+            let qrcpElementVC = APQRCPElementViewController()
+            qrcpElementVC.amountStr = totalAmount
+            qrcpElementVC.payType = model.payType
+            navigationController?.pushViewController(qrcpElementVC, animated: true)
+        }
+    }
+    
+    //MARK: ---- 按钮触发
+    @objc func pushBillVC() {
+        weak var weakSelf = self
+        ap_userIdentityStatus {
+            let billVC = APSegmentQueryViewController()
+            weakSelf?.navigationController?.pushViewController(billVC, animated: true)
+        }
+    }
+    
 }
 
 //MARK: ---- APHomeViewController -Extension(代理方法)
@@ -104,20 +124,22 @@ extension APHomeViewController:
     APKeyboardCompositionViewDelegate  {
 
     //MARK: APKeyboardCompositionViewDelegate
+    
     func didKeyboardConfirm(totalAmount: String, model: Any) {
+        weak var weakSelf = self
         ap_userIdentityStatus {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
-            self.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
+            weakSelf?.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
         }
     }
     
     //MARK: APHomeMenuViewDelegate
+    
     func selectHomeMenuItemSuccess(itemModel: APHomeMenuModel) {
         keyboardCompositionView.menuModel = itemModel
     }
     
     func selectHomeMenuItemFaile(message: String) {
-        view.makeToast(message)
     }
 }
 

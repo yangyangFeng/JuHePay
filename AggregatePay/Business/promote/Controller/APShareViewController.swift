@@ -16,8 +16,9 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "推广"
+        
+        ap_setStatusBarStyle(.lightContent)
         
         let shareView = APShareListView()
         shareView.delegate = self
@@ -41,12 +42,14 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
                 self.view.makeToast("已保存")
                 return
             }
+            view.AP_loadingBegin("正在保存，请稍后")
             let action: Selector = #selector(image(image:didFinishSavingWithError:contextInfo:))
             UIImageWriteToSavedPhotosAlbum(shareImage!, self, action, nil)
         }    
     }
     
     @objc func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
+        view.AP_loadingEnd()
         if didFinishSavingWithError != nil {
             self.view.makeToast("保存失败")
         }

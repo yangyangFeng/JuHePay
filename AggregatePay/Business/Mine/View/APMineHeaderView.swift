@@ -10,29 +10,44 @@ import UIKit
 
 class APMineHeaderView: UIView {
 
+    static func securityFiltering(_ str:String?, pre : Int, suf : Int) -> String {
+        var i = 0
+        var newStr : String = ""
+        guard let tempStr : String = str else {
+            return ""
+        }
+        for a in tempStr
+        {
+            if i < pre{
+                newStr.append(a)
+            }
+            else if i >= tempStr.count - suf{
+                newStr.append(a)
+            }
+            else
+            {
+                newStr.append("*")
+            }
+            i+=1
+        }
+        return newStr
+    }
     
     var model : APUserInfoResponse?{
         didSet{
-            userTitleLabel.text = model?.realName
-            var i = 0
-            var newtel : String = ""
-            var tel : String = (model?.mobileNo ?? "")!
-            for a in tel
-            {
-                if i < 3{
-                    newtel.append(a)
-                }
-                else if i >= tel.count - 4{
-                    newtel.append(a)
-                }
-                else
-                {
-                    newtel.append("*")
-                }
-                i+=1
+            arrowImageView.isHidden = false
+            userTitleLabel.text = APMineHeaderView.securityFiltering((model?.realName), pre: 1, suf: 0)
+   
+            userTelLabel.text = "手机号: " + APMineHeaderView.securityFiltering((model?.mobileNo), pre: 3, suf: 4)
+            let recommendInfo = (model?.recommendUserMobileNo ?? "")! + " " + (model?.recommendUserName ?? "")!
+            
+            if recommendInfo.count > 1{
+                recommendLabel.text = "推荐人: " + recommendInfo
             }
-            userTelLabel.text = "手机号: " + newtel
-            recommendLabel.text = "推荐人: " + (model?.recommendUserName ?? "")!
+            else
+            {
+                recommendLabel.text = ""
+            }
             if model?.isRealName == "1" {
                 checkStatusLabel.text = "已认证"
             }
@@ -73,7 +88,7 @@ class APMineHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 12)
         view.textColor = UIColor(hex6: 0x4c370b)
         view.textAlignment = .right
-        view.text = "未认证"
+        view.text = ""
         return view
     }()
     
@@ -124,7 +139,7 @@ class APMineHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = true
-
+        arrowImageView.isHidden = true
         addSubview(bgImageView)
         bgImageView.addSubview(userBgImageView)
         userBgImageView.addSubview(userIconImageView)

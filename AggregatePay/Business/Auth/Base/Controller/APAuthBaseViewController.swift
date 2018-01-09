@@ -51,9 +51,9 @@ class APAuthBaseViewController: APBaseViewController {
     func loadAuthInfo() {}
     
     func showAuthFailureBanner(failureReason: String) {
-        inputTipLabel.text = failureReason
-        inputTipView.backgroundColor = UIColor.init(hex6: 0xffe3e3)
-        inputTipLabel.textColor = UIColor.init(hex6: 0xe4544c)
+        headMessageLabel.text = failureReason
+        headMessageView.backgroundColor = UIColor.init(hex6: 0xffe3e3)
+        headMessageLabel.textColor = UIColor.init(hex6: 0xe4544c)
     }
     
     lazy private var headMessageView: UIView = {
@@ -68,7 +68,7 @@ class APAuthBaseViewController: APBaseViewController {
         let label = UILabel()
         label.textColor = UIColor.init(hex6: 0xd09326)
         label.font = UIFont.systemFont(ofSize: 10)
-        label.backgroundColor = UIColor.init(hex6: 0xfff4d9)
+        label.backgroundColor = UIColor.clear
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -268,11 +268,13 @@ extension APAuthBaseViewController {
             param.apMessage = "是否退出身份认证?"
             param.apConfirmTitle = "继续认证"
             param.apCanceTitle = "确定"
-        }, confirm: { [weak self] (confirmAction) in
+        }, confirm: {(confirmAction) in
+        
+
+        }, cancel: { [weak self] (cancelAction) in
             let navi = self?.authNavigation()
             navi?.finishAuths?()
-
-        }, cancel: {(cancelAction) in})
+       })
         present(alert, animated: true, completion: nil)
 //        authNavigation()?.finishAuths?()
     }

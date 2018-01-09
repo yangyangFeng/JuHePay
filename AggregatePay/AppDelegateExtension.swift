@@ -53,7 +53,7 @@ extension AppDelegate {
                                             selectedImage: UIImage(named: "Home_TbaBar_我的_H"))
         
         tabBarController.tabBar.shadowImage = nil
-        tabBarController.tabBarController?.selectedIndex = 2
+//        tabBarController.tabBarController?.selectedIndex = 2
         tabBarController.viewControllers = [wallet,promote,home,earnings,mine]
         tabBarController.selectedIndex = 2
         return tabBarController
@@ -99,7 +99,7 @@ extension AppDelegate {
         ToastManager.shared.position = .center
         
         /**********************微信分享配置*************************/
-        APSharedTools.sharedInstance.register(key: "")
+        APSharedTools.sharedInstance.register(key: AP_WECHAT_KEY)
         
         /**********************JPush配置*************************/
         registerJPush(launchOptions: launchOptions)

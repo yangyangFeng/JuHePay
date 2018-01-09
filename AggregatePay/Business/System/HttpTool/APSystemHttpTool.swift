@@ -79,6 +79,7 @@ class APSystemHttpTool: NSObject {
                               success:@escaping (APBaseResponse)->Void,
                               faile:@escaping (String)->Void) {
         let param: APUpdatePasswordRequest = paramReqeust.copy() as! APUpdatePasswordRequest
+        param.pwdOld = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.pwdOld)
         param.pwd = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.pwd)
         param.pwdConfirm = CPMD5EncrpTool.md5(forLower32Bate: paramReqeust.pwdConfirm)
         APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl,
