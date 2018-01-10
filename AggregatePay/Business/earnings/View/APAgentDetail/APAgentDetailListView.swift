@@ -75,17 +75,17 @@ class APAgentDetailListCell: UITableViewCell {
     
     var data : APGetUserListRecommendResponse?{
         didSet{
+
+            var name : String = ""
             
-//            registeDate    用户注册时间
-//            realName    用户姓名
-//            mobileNo    用户手机号
-//            levelId    用户等级
-//            authStatus    实名状态
-            agentName.text = (data?.realName ?? "")! + "  " + (data?.mobileNo ?? "")!
-            //"王**  135****8767"
+            if (data?.realName?.count != 0) {//&& (data?.mobileNo?.count != 0)
+                name = APMineHeaderView.securityFiltering(data?.realName, pre: 1, suf: 0) + "  ";
+            }
+            if (data?.mobileNo?.count != 0) {
+                name = name.appending(APMineHeaderView.securityFiltering(data?.mobileNo, pre: 3, suf: 4));
+            }
+            agentName.text = name;
             registerTime.text = "注册时间: " + (data?.registeDate ?? "")!
-            //"注册时间：2017/11／12  11:21:11"
-//            agentLevel.text = "青铜"
             checkStatus.text = (data?.authStatus ?? "")!
         }
     }
