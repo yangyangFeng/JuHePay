@@ -31,6 +31,11 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        quickPayRequest.preSerial = ""
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unionHttpTool?.ap_remove()
