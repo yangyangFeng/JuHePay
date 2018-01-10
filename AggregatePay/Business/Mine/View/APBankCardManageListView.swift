@@ -141,7 +141,7 @@ class APBankCardCell: APSwipeTableViewCell {
     var model : APCardListResponse?{
         didSet{
       
-            bankName.text = model?.bankName ?? ""
+            bankName.text = model?.bankTotalName ?? ""
             userName.text = model?.userName ?? "无"
             let cardNo : String = aesDecryptString(model?.cardNo,AP_AES_Key)
             var i = 0
