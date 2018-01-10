@@ -58,7 +58,7 @@ class APBankSearchViewController: APBaseViewController {
     }()
     
     lazy private var headView: UIView = {
-        let headView = UIView()
+        let headView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 30))
         headView.backgroundColor = UIColor.clear
         return headView
     }()
@@ -79,7 +79,6 @@ class APBankSearchViewController: APBaseViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView = headView
-        tableView.tableHeaderView?.height = 30
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.init(hex6: 0xeeeeee)
         tableView.separatorInset = UIEdgeInsets.init()
