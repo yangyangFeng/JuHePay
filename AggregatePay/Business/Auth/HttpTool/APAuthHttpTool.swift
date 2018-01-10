@@ -19,7 +19,7 @@ class APAuthHttpTool: NSObject {
                                        failure: @escaping (APBaseError) -> Void)
     {
         
-        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl,
+        APNetworking.get(httpUrl: httpUrl,
                          action: APHttpService.userAuthInfo,
                          params: params,
                          aClass: APUserAuthInfo.self,

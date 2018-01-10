@@ -142,7 +142,8 @@ extension APBaseViewController {
 
 extension APBaseViewController {
     
-    func ap_userIdentityStatus(closure: @escaping () -> Void) {
+    func ap_userIdentityStatus(httpUrl: String = APHttpUrl.manange_httpUrl,
+                               closure: @escaping () -> Void) {
 
         if !APUserInfoTool.isLogin() {
             APOutLoginTool.loginOut()
@@ -152,7 +153,9 @@ extension APBaseViewController {
             lastView.AP_loadingBegin()
             let baseRequest = APBaseRequest()
             baseRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-            APAuthHttpTool.getUserAuthInfo(httpUrl: APHttpUrl.trans_httpUrl, params: baseRequest, success: { (info) in
+            APAuthHttpTool.getUserAuthInfo(httpUrl: httpUrl,
+                                           params: baseRequest,
+                                           success: { (info) in
                 lastView.AP_loadingEnd()
                 if self.ap_userAuthStatus(info: info) {
                     closure()

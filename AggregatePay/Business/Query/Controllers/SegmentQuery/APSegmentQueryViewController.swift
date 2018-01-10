@@ -11,11 +11,18 @@ import UIKit
 class APSegmentQueryViewController: APBaseViewController {
     
     var currentVC: UIViewController?
-    
+    var indexs = [Bool]()
+
     var selectChildIndex: Int = 0 {
         willSet{
-            let childVC: UIViewController = self.childViewControllers[newValue]
+            print(self.childViewControllers.count)
+            let childVC = self.childViewControllers[newValue]
+            if indexs[newValue] {
+                addChildVC(vc: childVC)
+                indexs[newValue] = false
+            }
             view.bringSubview(toFront: childVC.view)
+            currentVC = childVC
         }
     }
     
@@ -30,33 +37,34 @@ class APSegmentQueryViewController: APBaseViewController {
         super.viewDidLoad()
         title = "账单"
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        weak var weakSelf = self
         view.addSubview(segmentView)
         segmentView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(0)
             make.height.equalTo(40)
         }
-
-        weak var weakSelf = self
         segmentView.segmentBlock =  { index in
             weakSelf?.selectChildIndex = index
         }
-        
+       
         self.addChildViewController(APTradingQueryViewController())
         self.addChildViewController(APProfitsQueryViewController())
-    
-        for vc in self.childViewControllers{
-            view.addSubview(vc.view)
-            vc.view.snp.makeConstraints { (make) in
-                make.left.right.bottom.equalTo(view)
-                make.top.equalTo(segmentView.snp.bottom)
-            }
-        }
+        indexs.removeAll()
+        indexs.append(true)
+        indexs.append(true)
         selectChildIndex = 0
     }
     
+    func addChildVC(vc: UIViewController) {
+        view.addSubview(vc.view)
+        vc.view.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(view)
+            make.top.equalTo(segmentView.snp.bottom)
+        }
+    }
     
     //MARK: ---- action
-    @objc func pushBillVC() {
+    @objc func barButtonItemAction() {
         if selectChildIndex == 0 {
             let childVC = self.childViewControllers[selectChildIndex] as! APTradingQueryViewController
             childVC.queryButAction()
@@ -70,7 +78,7 @@ class APSegmentQueryViewController: APBaseViewController {
     lazy var rightBarButtonItem: UIBarButtonItem = {
         let view = APBarButtonItem.ap_barButtonItem(self,
                                                     title: "查询",
-                                                    action: #selector(pushBillVC),
+                                                    action: #selector(barButtonItemAction),
                                                     titleColor: "#c8a556")
         return view
     }()

@@ -31,7 +31,7 @@ class APAccessControler: NSObject {
                 lastView.AP_loadingBegin()
                 let baseRequest = APBaseRequest()
                 baseRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
-                APAuthHttpTool.getUserAuthInfo(httpUrl: APHttpUrl.trans_httpUrl, params: baseRequest, success: { (info) in
+                APAuthHttpTool.getUserAuthInfo(httpUrl: APHttpUrl.manange_httpUrl, params: baseRequest, success: { (info) in
                     lastView.AP_loadingEnd()
                     if self.ap_userAuthStatus(info: info) {
                         //                    closure()
