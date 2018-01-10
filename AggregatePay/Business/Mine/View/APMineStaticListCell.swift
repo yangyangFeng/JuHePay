@@ -35,6 +35,8 @@ class APMineStaticListCell: UITableViewCell {
         let bottomLine = UIView()
         bottomLine.theme_backgroundColor = ["#e8e8e8"]
         
+        leftIcon.contentMode = .scaleAspectFit;
+        
         title.font = UIFont.systemFont(ofSize: 14)
         title.theme_textColor = ["#484848"]
         title.textAlignment = .left
@@ -76,7 +78,7 @@ class APMineStaticListCell: UITableViewCell {
         }
         bottomLine.snp.makeConstraints { (make) in
             make.bottom.equalTo(0)
-            make.height.equalTo(2.5)
+            make.height.equalTo(0.5)
             make.left.equalTo(20)
             make.right.equalTo(-20)
         }

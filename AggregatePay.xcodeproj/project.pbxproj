@@ -10,7 +10,7 @@
 		040020031FE8C34C0071F839 /* APBillSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020001FE8C34C0071F839 /* APBillSelectView.swift */; };
 		040020041FE8C34C0071F839 /* APBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020011FE8C34C0071F839 /* APBillViewController.swift */; };
 		040020051FE8C34C0071F839 /* APBillDateWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040020021FE8C34C0071F839 /* APBillDateWayView.swift */; };
-		0400200A1FE931FE0071F839 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		0400200A1FE931FE0071F839 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		0400200D1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200C1FE9F5010071F839 /* APBillDetailCollectionViewCell.swift */; };
 		0400200F1FEA39090071F839 /* APBillSettleWayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400200E1FEA39090071F839 /* APBillSettleWayView.swift */; };
 		040020131FEBC46D0071F839 /* APMineStaticListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E0F81FDFBBDC000E3EBE /* APMineStaticListCell.swift */; };
@@ -236,6 +236,7 @@
 		7461CB381FF384BB002B3734 /* APAboutUsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */; };
 		7461CB391FF384BB002B3734 /* APCardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB361FF384BB002B3734 /* APCardListRequest.swift */; };
 		7461CB3A1FF384BB002B3734 /* APUserInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */; };
+		7465CB802005E716006DEC49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7465CB7F2005E715006DEC49 /* Assets.xcassets */; };
 		746602AB1FEA5B2E00C3AA76 /* APRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */; };
 		746602AC1FEA5E5200C3AA76 /* APLoadingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7476686B1FE9F78E00715E72 /* APLoadingUtils.swift */; };
 		746602AD1FEA5E6C00C3AA76 /* APRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */; };
@@ -298,7 +299,6 @@
 		74EC342F1FDF805E003ABF70 /* APBaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC342E1FDF805E003ABF70 /* APBaseTabBarViewController.swift */; };
 		74EC34341FDF892C003ABF70 /* APMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC34311FDF892C003ABF70 /* APMineViewController.swift */; };
 		74EC34371FDF8948003ABF70 /* APMineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */; };
-		74F6723C1FD529D60074090D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F6723A1FD529D50074090D /* Assets.xcassets */; };
 		772EB8CE5DE0E8F33EAD3FA6 /* Pods_AggregatePay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D78BCD695BA71F75F951337 /* Pods_AggregatePay.framework */; };
 /* End PBXBuildFile section */
 
@@ -626,6 +626,7 @@
 		7461CB351FF384BB002B3734 /* APAboutUsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APAboutUsRequest.swift; sourceTree = "<group>"; };
 		7461CB361FF384BB002B3734 /* APCardListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCardListRequest.swift; sourceTree = "<group>"; };
 		7461CB371FF384BB002B3734 /* APUserInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APUserInfoRequest.swift; sourceTree = "<group>"; };
+		7465CB7F2005E715006DEC49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		746602A81FEA5B2E00C3AA76 /* APRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshFooter.swift; sourceTree = "<group>"; };
 		746602A91FEA5B2E00C3AA76 /* APRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRefreshHeader.swift; sourceTree = "<group>"; };
 		746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareTemplateBar.swift; sourceTree = "<group>"; };
@@ -707,7 +708,6 @@
 		74EC34311FDF892C003ABF70 /* APMineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APMineViewController.swift; sourceTree = "<group>"; };
 		74EC34321FDF892C003ABF70 /* APServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APServiceViewController.swift; sourceTree = "<group>"; };
 		74EC34361FDF8948003ABF70 /* APMineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineHeaderView.swift; sourceTree = "<group>"; };
-		74F6723A1FD529D50074090D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.test.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.test.xcconfig"; sourceTree = "<group>"; };
 		FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.debug.xcconfig"; sourceTree = "<group>"; };
 		FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AggregatePay.release.xcconfig"; path = "Pods/Target Support Files/Pods-AggregatePay/Pods-AggregatePay.release.xcconfig"; sourceTree = "<group>"; };
@@ -2554,8 +2554,8 @@
 		74D5F6431FD7DF070065A5F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7465CB7F2005E715006DEC49 /* Assets.xcassets */,
 				74D5F6521FD7F2EF0065A5F3 /* Temp */,
-				74F6723A1FD529D50074090D /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2859,8 +2859,8 @@
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
 				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
 				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
+				7465CB802005E716006DEC49 /* Assets.xcassets in Resources */,
 				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
-				74F6723C1FD529D60074090D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3178,7 +3178,7 @@
 				1AB0FE7F1FF225D000A868CD /* APGetUserAccountInfoResponse.swift in Sources */,
 				1AEC82551FFF29D200585A03 /* APUnionFirstViewController.swift in Sources */,
 				7487E18C1FDFE131000E3EBE /* UINavigationItemExtensions.swift in Sources */,
-				0400200A1FE931FE0071F839 /* BuildFile in Sources */,
+				0400200A1FE931FE0071F839 /* (null) in Sources */,
 				1AA7B4AD1FF347FE00CF7A58 /* APResetPasswordRequest.swift in Sources */,
 				1A05FEC91FF5E7A90093CC0E /* APLoginOutRequest.swift in Sources */,
 				2374A9F11FE8F1590013AB88 /* APAuthHelper.swift in Sources */,
