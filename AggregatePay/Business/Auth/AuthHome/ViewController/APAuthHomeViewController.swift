@@ -28,6 +28,7 @@ class APAuthHomeViewController: APBaseViewController {
         super.viewWillAppear(animated)
         
           loadAuthInfo()
+//          loadAuthInfo()
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {

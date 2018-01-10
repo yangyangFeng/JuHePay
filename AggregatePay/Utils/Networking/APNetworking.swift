@@ -13,6 +13,9 @@ import AlamofireImage
 typealias APNetWorkingSuccessBlock = (_ result: APBaseResponse) -> Void
 typealias APNetWorkingFaileBlock = (_ error: APBaseError) -> Void
 
+class APNetworkingTool: NSObject {
+    
+}
 /**
  * 网络工具类(常用)
  * 二次封装Alamofire
