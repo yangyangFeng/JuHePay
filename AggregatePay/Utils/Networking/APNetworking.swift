@@ -250,38 +250,49 @@ extension APNetworking {
                  success:@escaping (Dictionary<String, Any>)->Void,
                  faile:@escaping (Error)->Void) {
         
-        let httpUrl = httpUrl+action
-        print("===============star===============")
-        print("method:"+method.rawValue)
-        print("url:"+httpUrl)
-        print("param:"+String(describing: parameters))
-   
-        manager = ap_alamofireManager(timeOut)
-        dataRequest = manager.request(httpUrl,
-                                      method:method,
-                                      parameters: parameters,
-                                      headers: headers).responseJSON { response in
-                            switch response.result.isSuccess {
-                            case true:
-                                
-                                print("response-value:\(String(describing: response.value))")
-                                self.cacheCookie(response: response)
-                                let result = response.value! as! Dictionary<String, Any>
-                                if !result.keys.contains("isSuccess") &&
-                                   !result.keys.contains("success") {
-                                    let baseError = self.error(result: result)
-                                    faile(baseError)
-                                }
-                                else {
-                                    success(result)
-                                }
-                                print("===============end================")
-                            case false:
-                                print("response:\(String(describing: response.result.error?.localizedDescription))")
-                                faile(response.result.error!)
-                                print("===============end================")
-                            }
+        dataRequest = APNetworkUtil.shared.ap_request(httpUrl: (httpUrl+action), method: method, parameters: parameters, headers: headers, success: { (response) in
+            self.cacheCookie(response: response)
+            let result = try? JSONSerialization.jsonObject(with: response.data!, options: .mutableContainers) as! Dictionary<String, Any>
+            if !(result?.keys.contains("isSuccess"))! &&
+                !(result?.keys.contains("success"))! {
+                let baseError = self.error(result: result!)
+                faile(baseError)
+            }
+            else {
+                print("Success: \(String(describing:result))")
+                success(result!)
+            }
+        }) { (error) in
+            faile(error)
         }
+   
+//        return
+//        manager = ap_alamofireManager(timeOut)
+//        dataRequest = manager.request(httpUrl,
+//                                      method:method,
+//                                      parameters: parameters,
+//                                      headers: headers).responseJSON { response in
+//                            switch response.result.isSuccess {
+//                            case true:
+//
+//                                print("response-value:\(String(describing: response.value))")
+//                                self.cacheCookie(response: response)
+//                                let result = response.value! as! Dictionary<String, Any>
+//                                if !result.keys.contains("isSuccess") &&
+//                                   !result.keys.contains("success") {
+//                                    let baseError = self.error(result: result)
+//                                    faile(baseError)
+//                                }
+//                                else {
+//                                    success(result)
+//                                }
+//                                print("===============end================")
+//                            case false:
+//                                print("response:\(String(describing: response.result.error?.localizedDescription))")
+//                                faile(response.result.error!)
+//                                print("===============end================")
+//                            }
+//        }
     }
     
     func checkoutNeedLogin(status: String) -> Bool {
@@ -435,6 +446,7 @@ extension APNetworking {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
         if let cookie = headerFields!["Set-Cookie"] {
+            print("Set-Cookie: \(cookie)")
             APUserDefaultCache.AP_set(value: cookie as Any, key: .cookie)
         }
     }
