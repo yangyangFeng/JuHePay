@@ -25,7 +25,7 @@ class APReturnBillViewController: APBaseViewController,AP_TableViewDidSelectProt
         
         initSubviews()
         
-        loadData()
+        queryDidAction()
         // Do any additional setup after loading the view.
     }
     

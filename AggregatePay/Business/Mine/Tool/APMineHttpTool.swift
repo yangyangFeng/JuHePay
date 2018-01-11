@@ -60,10 +60,15 @@ class APMineHttpTool: NSObject {
     }
     /// 获取用户信息
     ///
-    static func loginGetUserInfo(success : @escaping APNetWorkingSuccessBlock,
+    static func loginGetUserInfo(httpUrl: String = APHttpUrl.manange_httpUrl,
+                                 success : @escaping APNetWorkingSuccessBlock,
                                  faile : @escaping APNetWorkingFaileBlock){
         let param = APUserInfoRequest()
-        APNetworking.post(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.userInfo, params: param, aClass: APUserInfoResponse.self.self, success: {(res) in
+        APNetworking.post(httpUrl: httpUrl,
+                          action: APHttpService.userInfo,
+                          params: param,
+                          aClass: APUserInfoResponse.self.self,
+                          success: {(res) in
             //MARK: 同步用户信息
             APUserInfoTool.info = APUserInfoTool.mj_object(withKeyValues: res.mj_keyValues())
             success(res)

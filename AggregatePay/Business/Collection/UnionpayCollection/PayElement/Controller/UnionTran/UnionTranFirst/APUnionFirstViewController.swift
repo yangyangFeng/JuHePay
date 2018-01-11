@@ -91,9 +91,12 @@ class APUnionFirstViewController: APUnionTranBaseViewController {
     override func ap_payEssentialRegisterObserve() {
         super.ap_payEssentialRegisterObserve()
         weak var weakSelf = self
-        let keyPaths = ["cvn", "expireDate", "cardNo", "reserveMobileNo", "smsCode"]
         self.kvoController.observe(quickPayRequest,
-                                   keyPaths: keyPaths,
+                                   keyPaths: ["cvn",
+                                              "expireDate",
+                                              "cardNo",
+                                              "reserveMobileNo",
+                                              "smsCode"],
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APQuickPayRequest

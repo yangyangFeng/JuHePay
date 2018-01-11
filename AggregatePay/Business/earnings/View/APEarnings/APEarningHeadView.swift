@@ -40,9 +40,15 @@ class APEarningHeadView: UIView {
         
         
         moneyLabel.text = "0.00"
-        moneyLabel.font = UIFont.systemFont(ofSize: 42)
         moneyLabel.textAlignment = .left
         moneyLabel.theme_textColor = ["#7f5e12"]
+        if #available(iOS 8.2, *) {
+            moneyLabel.font = UIFont.systemFont(ofSize: 42.0,
+                                                weight: UIFont.Weight(rawValue: -0.8))
+        }
+        else {
+            moneyLabel.font = UIFont.systemFont(ofSize: 42.0)
+        }
         
        
         bottomLabel.text = "昨日收益(元)"

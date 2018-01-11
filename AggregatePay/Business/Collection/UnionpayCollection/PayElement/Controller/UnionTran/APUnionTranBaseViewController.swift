@@ -31,6 +31,11 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        quickPayRequest.preSerial = ""
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unionHttpTool?.ap_remove()
@@ -59,6 +64,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSendSmsCode() {
+        
         if transMsgRequest.reserveMobileNo.count <= 0 {
             view.makeToast("请输入预留手机号")
             return
@@ -79,11 +85,16 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSubmit() {
+       
+        if quickPayRequest.preSerial == "" {
+            view.makeToast("请先获取验证码")
+            return
+        }
         unionHttpTool?.ap_tranHttp(request: quickPayRequest)
     }
     
     override func ap_payEssentialRegisterObserve() {
-        
+        super.ap_payEssentialRegisterObserve()
         NotificationCenter.default.addObserver(self, selector: #selector(notificationCardDetail(_:)), name: TRAN_CARD_NOTIF_KEY, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(notificationQuickPayRequest(_:)), name: TRAN_NOTIF_KEY, object: nil)
     }
