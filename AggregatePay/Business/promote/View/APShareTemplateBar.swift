@@ -53,6 +53,13 @@ class APShareTemplateBar: UIView,UICollectionViewDelegate,UICollectionViewDataSo
         let itemData = dataSource[indexPath.row];
         cell.imageView.image = UIImage.init(named: itemData.imageName!)
         cell.select = itemData.isSelected!
+        if indexPath.row != 0 {
+            cell.leftLabel.text = "模板"+String(indexPath.row)
+        }
+        else
+        {
+            cell.leftLabel.text = "默认"
+        }
         return cell
     }
     
@@ -123,7 +130,7 @@ class APShareTemplateItemView: UICollectionViewCell {
         super.init(frame: frame)
         
 //        imageView.image = UIImage.init(named: "推广广告模版1")
-        leftLabel.text = "模板"
+        leftLabel.text = "默认"
         righLabel.text = "免费"
         
         let qrCode = UIImageView.init(image: UIImage.init(named: "Promote_QrCode"))
