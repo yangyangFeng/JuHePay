@@ -127,7 +127,7 @@ extension APHomeViewController:
     
     func didKeyboardConfirm(totalAmount: String, model: Any) {
         weak var weakSelf = self
-        ap_userIdentityStatus {
+        ap_userIdentityStatus(httpUrl: APHttpUrl.trans_httpUrl) {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
             weakSelf?.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
         }

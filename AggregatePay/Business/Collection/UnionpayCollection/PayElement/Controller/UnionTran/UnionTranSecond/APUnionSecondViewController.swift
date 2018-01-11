@@ -31,6 +31,7 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
         super.ap_initCreateSubviews()
         view.addSubview(realNameCell)
         view.addSubview(bankCardNoCell)
+        view.addSubview(validityDateCell)
         view.addSubview(phoneNoCell)
         view.addSubview(smsCodeCell)
         view.addSubview(submitCell)
@@ -47,8 +48,14 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
             make.height.equalTo(toolBarView)
         }
         
-        phoneNoCell.snp.makeConstraints { (make) -> Void in
+        validityDateCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(bankCardNoCell.snp.bottom)
+            make.left.right.equalTo(view)
+            make.height.equalTo(toolBarView)
+        }
+        
+        phoneNoCell.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(validityDateCell.snp.bottom)
             make.left.right.equalTo(view)
             make.height.equalTo(toolBarView)
         }
@@ -80,6 +87,10 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
             weakSelf?.transMsgRequest.reserveMobileNo = value
             weakSelf?.quickPayRequest.reserveMobileNo = value
         }
+        //获取用户输入的有效期
+        validityDateCell.textCell.textBlock = { (key, value) in
+            weakSelf?.quickPayRequest.expireDate = value
+        }
         //获取用户输入的短信验证码
         smsCodeCell.smsCodeCell.textBlock = { (key, value) in
             weakSelf?.quickPayRequest.smsCode = value
@@ -89,14 +100,17 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
     override func ap_payEssentialRegisterObserve() {
         super.ap_payEssentialRegisterObserve()
         weak var weakSelf = self
-        let keyPaths = ["cardNo", "reserveMobileNo", "smsCode"]
         self.kvoController.observe(quickPayRequest,
-                                   keyPaths: keyPaths,
+                                   keyPaths: ["cardNo",
+                                              "reserveMobileNo",
+                                              "expireDate",
+                                              "smsCode"],
                                    options: [.new, .initial])
         { (observer, object, change) in
             let quickPayModel = object as! APQuickPayRequest
             if (quickPayModel.cardNo.count >= 12 &&
                 quickPayModel.reserveMobileNo.count >= 11 &&
+                quickPayModel.expireDate.count >= 4 &&
                 quickPayModel.smsCode.count >= 6) {
                 weakSelf?.submitCell.isEnabled = true
             }

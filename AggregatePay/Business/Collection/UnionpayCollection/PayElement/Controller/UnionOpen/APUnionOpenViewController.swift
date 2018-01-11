@@ -18,6 +18,16 @@ class APUnionOpenViewController: APUnionBaseViewController {
 
     var unionHttpTool: APUnionHttpTools?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registQuickPayRequest?.preSerial = ""
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unionHttpTool?.ap_remove()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         submitCell.button.setTitle("确认开通", for: .normal)
@@ -48,6 +58,10 @@ class APUnionOpenViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSubmit() {
+        if registQuickPayRequest?.preSerial == "" {
+            view.makeToast("请先获取验证码")
+            return
+        }
         unionHttpTool?.ap_openHttp(request: registQuickPayRequest!)
     }
     

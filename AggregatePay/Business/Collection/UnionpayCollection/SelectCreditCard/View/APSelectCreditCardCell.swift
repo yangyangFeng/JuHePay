@@ -12,7 +12,7 @@ class APSelectCreditCardCell: UITableViewCell {
 
     lazy var iconImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "wallet_withdraw_cell_icon")
+        view.image = UIImage(named: "union_cbank_icon_Logo")
         view.contentMode = .scaleAspectFit
         return view
     }()
