@@ -304,19 +304,7 @@ extension APNetworking {
     }
     
     
-    /// 图片上传
-    ///
-    /// - Parameters:
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - parameters: parameters
-    ///   - formDatas: formDatas
-    ///   - success: success
-    ///   - failure: failure
-    
+    /// 图片上传    
     func uploadFormDatas(httpUrl: String = APHttpUrl.manange_httpUrl,
                 action: String,
                 method: HTTPMethod = .post,
@@ -374,63 +362,7 @@ extension APNetworking {
             }
         })
     }
-    
-//    func downloadImage(
-//        httpUrl: String = APHttpUrl.manange_httpUrl,
-//        action: String = APHttpService.downloadImg,
-//        fileName: String,
-//        method: HTTPMethod = .get,
-//        headers: HTTPHeaders? = nil,
-//        timeout: TimeInterval = 30,
-//        params: Dictionary<String, Any>,
-//        success: @escaping (UIImage)->Void,
-//        failure: @escaping (Error)->Void)
-//    {
-//        print("===============star===============")
-//        let to = httpUrl + action
-//        print("method:"+method.rawValue)
-//        print("url:"+to)
-//        print("param:"+String(describing: params))
-//
-//        let config:URLSessionConfiguration = URLSessionConfiguration.default
-//        config.timeoutIntervalForRequest = timeout
-//        manger = SessionManager(configuration: config)
-//
-//        manger?.download(
-//            to,
-//            method: method,
-//            parameters: params,
-//            encoding: URLEncoding.default,
-//            headers: headers,
-//            to:{
-//                (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
-//
-//                let subPath = "auth/" + fileName + ".png"
-//                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//                let fileURL = documentsURL.appendingPathComponent(subPath)
-//                //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
-//                debugPrint(fileURL)
-//                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-//
-//        }).response(completionHandler: {(response) in
-//            debugPrint(response)
-//            if response.response?.statusCode == 200 {
-//                if let path = response.destinationURL?.path {
-//                    success(UIImage.init(contentsOfFile: path)!)
-//                }
-//            }else {
-//                if response.error != nil {
-//                    failure(response.error!)
-//                } else {
-//                    let baseError = APBaseError()
-//                    baseError.status = "\(String(describing: response.response?.statusCode))"
-//                    baseError.message = "请求错误"
-//                    failure(baseError)
-//                }
-//            }
-//        })
-//    }
-    
+
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
@@ -512,25 +444,6 @@ extension APNetworking {
                 
                 debugPrint(response)
                 
-//                switch response.result.isSuccess {
-//                case true:
-//                    print("response-value:\(String(describing: response.value))")
-//                    let result = response.value! as! Dictionary<String, Any>
-//                    if !result.keys.contains("isSuccess") &&
-//                        !result.keys.contains("success") {
-//                        let baseError = self.error(result: result)
-//                        failure(baseError)
-//                    }
-//                    else {
-//                        success(result)
-//                    }
-//                    print("===============end================")
-//                case false:
-//                    print("response:\(String(describing: response.result.error?.localizedDescription))")
-//                    faile(response.result.error!)
-//                    print("===============end================")
-//                }
-                
                 guard let image = response.result.value else {
                     failure(response.result.error!)
                     return
@@ -549,6 +462,7 @@ extension APNetworking {
         
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeoutIntervalForRequest
+        configuration.httpMaximumConnectionsPerHost = 10
         
         let manager = SessionManager(configuration: configuration)
         
