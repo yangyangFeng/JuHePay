@@ -110,6 +110,7 @@ extension APCollectionPlaceViewController {
     
     private func httpDisposeQueryChannelFess(response: APBaseResponse) {
         let result = response as! APQueryChannelFessResponse
+        realName = result.realName
         datas.removeAll()
         let placeModel = APPlaceModel()
         placeModel.integraFlag = "0"

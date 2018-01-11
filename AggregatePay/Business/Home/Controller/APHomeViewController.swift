@@ -67,10 +67,9 @@ extension APHomeViewController {
         }
     }
     
-    func pushUnionPayVC(totalAmount: String, realName: String){
+    func pushUnionPayVC(totalAmount: String){
         let placeVC = APCollectionPlaceViewController()
         placeVC.totalAmount = totalAmount
-        placeVC.realName = realName
         navigationController?.pushViewController(placeVC,  animated: true)
     }
     
@@ -83,20 +82,7 @@ extension APHomeViewController {
         }
         
         if model.payWay == "0" {
-            weak var weakSelf = self
-            guard let realName = APUserInfoTool.info.realName else {
-                weakSelf?.view.AP_loadingBegin()
-                APMineHttpTool.loginGetUserInfo(success: { (baseResp) in
-                    weakSelf?.view.AP_loadingEnd()
-                    let newRealName = APUserInfoTool.info.realName
-                    weakSelf?.pushUnionPayVC(totalAmount: totalAmount, realName: newRealName!)
-                }, faile: { (baseError) in
-                    weakSelf?.view.AP_loadingEnd()
-                    weakSelf?.view.makeToast(baseError.message)
-                })
-                return
-            }
-            pushUnionPayVC(totalAmount: totalAmount, realName: realName)
+            pushUnionPayVC(totalAmount: totalAmount)
         }
         else {
             let qrcpElementVC = APQRCPElementViewController()

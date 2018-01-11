@@ -17,5 +17,6 @@ class APQueryChannelFessResponse: APBaseResponse {
     @objc dynamic var unionpayGiftAddD0: String?
     @objc dynamic var unionpayBaseFee: String?
     @objc dynamic var unionpayAddD0: String?
+    @objc dynamic var realName: String?
 }
 
