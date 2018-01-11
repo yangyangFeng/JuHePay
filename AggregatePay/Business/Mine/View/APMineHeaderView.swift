@@ -39,22 +39,24 @@ class APMineHeaderView: UIView {
             userTitleLabel.text = APMineHeaderView.securityFiltering((model?.realName), pre: 1, suf: 0)
    
             userTelLabel.text = "手机号: " + APMineHeaderView.securityFiltering((model?.mobileNo), pre: 3, suf: 4)
-            let recommendInfo = (model?.recommendUserMobileNo ?? "")! + " " + (model?.recommendUserName ?? "")!
-            
-            if recommendInfo.count > 1{
+
+            if (model?.recommendUserName?.count != 0 ) && (model?.recommendUserMobileNo?.count != 0){
+                let recommendInfo = (model?.recommendUserName ?? "")! + " " + (model?.recommendUserMobileNo ?? "")!
                 recommendLabel.text = "推荐人: " + recommendInfo
             }
             else
             {
                 recommendLabel.text = ""
             }
+            
             if model?.isRealName == "1" {
-                checkStatusLabel.text = "已认证"
+                checkStatusLabel.text = "已实名"
             }
             else
             {
-                checkStatusLabel.text = "未认证"
+                checkStatusLabel.text = "未实名"
             }
+            
             if model?.levelId == nil
             {
                 user_level_icon_imageView.image =  UIImage()

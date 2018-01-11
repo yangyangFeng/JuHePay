@@ -23,10 +23,11 @@ class APCardListResponse: APBaseResponse {
     
     /// 认证卡id
     @objc dynamic var authCardId : String?
+    @objc dynamic var bankTotalName : String?
     @objc dynamic var bankName : String?
     @objc dynamic var cardNo : String?
     @objc dynamic var userId : String?
-    @objc dynamic var userName : String?
+    @objc dynamic var userName : String?//
     @objc dynamic var identity : String?
     @objc dynamic var cardType : String?
     /// 认证类型

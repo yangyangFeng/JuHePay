@@ -32,6 +32,10 @@ class APSearchBarView: UIView, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil);
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("can load nib")
     }
