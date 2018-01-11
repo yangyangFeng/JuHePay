@@ -287,11 +287,9 @@
 		7487E19D1FE0DEF6000E3EBE /* APBankCardManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487E19C1FE0DEF6000E3EBE /* APBankCardManageViewController.swift */; };
 		7488A4391FF4FF2C009BC49F /* APMJArrayTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */; };
 		7488A43B1FF51FCF009BC49F /* APMineBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */; };
-		74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */; };
 		74C49E831FD4FE0200F0501B /* AggregatePayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */; };
 		74C49E8E1FD4FE0200F0501B /* AggregatePayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C49E8D1FD4FE0200F0501B /* AggregatePayUITests.swift */; };
 		74D5F64E1FD7F1AF0065A5F3 /* APBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */; };
-		74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */; };
 		74D5F6561FD7F43E0065A5F3 /* APBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */; };
 		74D5F6631FD927270065A5F3 /* APTheme_Normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */; };
 		74D5F6801FD95C670065A5F3 /* VHLNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D5F67F1FD95C660065A5F3 /* VHLNavigation.m */; };
@@ -682,10 +680,8 @@
 		7487E1F51FE1249C000E3EBE /* APBankCardManageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBankCardManageListView.swift; sourceTree = "<group>"; };
 		7488A4381FF4FF2C009BC49F /* APMJArrayTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMJArrayTool.swift; sourceTree = "<group>"; };
 		7488A43A1FF51FCF009BC49F /* APMineBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APMineBaseViewController.swift; sourceTree = "<group>"; };
-		74A30EA31FE7F11F00740C17 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		74C49E6A1FD4FE0100F0501B /* AggregatePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AggregatePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E6D1FD4FE0100F0501B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74C49E771FD4FE0100F0501B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74C49E7E1FD4FE0200F0501B /* AggregatePayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AggregatePayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C49E821FD4FE0200F0501B /* AggregatePayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatePayTests.swift; sourceTree = "<group>"; };
 		74C49E841FD4FE0200F0501B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -695,7 +691,6 @@
 		74D5F63E1FD7DE700065A5F3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		74D5F6441FD7DF470065A5F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74D5F64D1FD7F1AF0065A5F3 /* APBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseViewController.swift; sourceTree = "<group>"; };
-		74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TempAssets.xcassets; sourceTree = "<group>"; };
 		74D5F6551FD7F43E0065A5F3 /* APBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		74D5F6591FD7FD1C0065A5F3 /* APTabBarItemContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APTabBarItemContentView.swift; sourceTree = "<group>"; };
 		74D5F65D1FD91DFF0065A5F3 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -2495,7 +2490,6 @@
 				74D5F6461FD7E0D00065A5F3 /* Lib */,
 				74D5F6431FD7DF070065A5F3 /* Resources */,
 				74D5F63D1FD7DE700065A5F3 /* ConfigurationFiles */,
-				74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */,
 				74D5F6441FD7DF470065A5F3 /* Info.plist */,
 			);
 			path = AggregatePay;
@@ -2618,7 +2612,6 @@
 		74D5F6521FD7F2EF0065A5F3 /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				74D5F6531FD7F3940065A5F3 /* TempAssets.xcassets */,
 			);
 			path = Temp;
 			sourceTree = "<group>";
@@ -2860,10 +2853,8 @@
 				2374A9ED1FE8F1590013AB88 /* APAuth.plist in Resources */,
 				1AD0692D1FEB8C7C0009E5E9 /* LICENSE in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
-				74C49E781FD4FE0100F0501B /* LaunchScreen.storyboard in Resources */,
 				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
 				7465CB802005E716006DEC49 /* Assets.xcassets in Resources */,
-				74D5F6541FD7F3970065A5F3 /* TempAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3290,18 +3281,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		74C49E761FD4FE0100F0501B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				74C49E771FD4FE0100F0501B /* Base */,
-				74A30EA31FE7F11F00740C17 /* zh-Hans */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		7432C5A81FFF852B00ADCBE6 /* Test */ = {
 			isa = XCBuildConfiguration;
@@ -3367,6 +3346,7 @@
 			baseConfigurationReference = 9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3552,6 +3532,7 @@
 			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3594,6 +3575,7 @@
 			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
