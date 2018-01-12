@@ -3381,8 +3381,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Lib/Encrypt/OpenSSL/lib",
-					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
@@ -3567,8 +3565,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Lib/Encrypt/OpenSSL/lib",
-					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
@@ -3610,8 +3606,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/AggregatePay/Lib/Encrypt/OpenSSL/lib",
-					"$(PROJECT_DIR)/AggregatePay/Lib/OCRSDK/SDK",
 					"$(PROJECT_DIR)/AggregatePay/Lib/BBRSACryptor/OpenSSL/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
