@@ -70,8 +70,7 @@ class APAuthBaseViewController: APBaseViewController {
         label.font = UIFont.systemFont(ofSize: 10)
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -189,17 +188,18 @@ extension APAuthBaseViewController {
         }
         headMessageLabel.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-5)
             make.top.bottom.equalToSuperview()
         }
     }
     
     private func layoutScrollView() {
-        view.addSubview(scrollView)
+        view.insertSubview(scrollView, belowSubview: headMessageView)
         scrollView.addSubview(containerView)
         
         // TODO: ScrollView
         scrollView.snp.makeConstraints { (make) in
-            make.top.equalTo(headMessageLabel.snp.bottom)
+            make.top.equalTo(headMessageView.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(commitButtonSuperView.snp.top)
         }
@@ -237,6 +237,7 @@ extension APAuthBaseViewController {
         inputTipLabel.snp.makeConstraints { (make) in
             make.top.equalTo(formCellView.snp.bottom)
             make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-5)
             make.bottom.right.equalToSuperview()
         }
     }
