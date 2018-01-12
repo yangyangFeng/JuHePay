@@ -27,7 +27,7 @@ class APSwipeTableViewCell: UITableViewCell {
     
     var AP_gestureState : AP_SwipeCellState = .normal
     
-    open var AP_shouldExceedThreshold: Bool = true
+    open var AP_shouldExceedThreshold: Bool = false
     
     var AP_swipeWidth : CGFloat = 70
     
