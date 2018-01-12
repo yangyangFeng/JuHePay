@@ -13,6 +13,9 @@ import AlamofireImage
 typealias APNetWorkingSuccessBlock = (_ result: APBaseResponse) -> Void
 typealias APNetWorkingFaileBlock = (_ error: APBaseError) -> Void
 
+class APNetworkingTool: NSObject {
+    
+}
 /**
  * 网络工具类(常用)
  * 二次封装Alamofire
@@ -247,19 +250,7 @@ extension APNetworking {
     }
     
     
-    /// 图片上传
-    ///
-    /// - Parameters:
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - httpUrl: httpUrl
-    ///   - parameters: parameters
-    ///   - formDatas: formDatas
-    ///   - success: success
-    ///   - failure: failure
-    
+    /// 图片上传    
     func uploadFormDatas(httpUrl: String = APHttpUrl.manange_httpUrl,
                 action: String,
                 method: HTTPMethod = .post,
@@ -317,7 +308,7 @@ extension APNetworking {
             }
         })
     }
-    
+
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
@@ -359,9 +350,6 @@ extension APNetworking {
             failure?(baseError)
         }
     }
-    
-    
-    
 }
 
 extension APNetworking {
@@ -371,6 +359,7 @@ extension APNetworking {
         
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeoutIntervalForRequest
+        configuration.httpMaximumConnectionsPerHost = 10
         
         let manager = SessionManager(configuration: configuration)
         

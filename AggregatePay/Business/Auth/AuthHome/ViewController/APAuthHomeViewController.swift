@@ -26,15 +26,8 @@ class APAuthHomeViewController: APBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-          loadAuthInfo()
+        loadAuthInfo()
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        APAuthHelper.clearAuthInfo()
-//    }
     
     deinit {
         APAuthHelper.clearAuthInfo()

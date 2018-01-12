@@ -26,6 +26,14 @@
 				<string>wxe8e1cc1454887984</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>prefs</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>10</string>
@@ -45,9 +53,9 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>聚合支付需要获取您的地理位置信息来确保交易正常进行。</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>是否允许聚合支付使用你的相册？</string>
+	<string>聚合支付需要您的相册进行图片保存</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许聚合支付使用你的相册？</string>
+	<string>聚合支付需要您的相册进行图片保存</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
