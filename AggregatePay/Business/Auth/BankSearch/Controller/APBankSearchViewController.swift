@@ -148,9 +148,11 @@ extension APBankSearchViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: false)
-        let bank = banks[indexPath.row]
-        selectBankComplete?(bank)
-        backAction()
+        if banks.count > 0 {
+            let bank = banks[indexPath.row]
+            selectBankComplete?(bank)
+            backAction()
+        }
     }
     
     @objc func backAction() {

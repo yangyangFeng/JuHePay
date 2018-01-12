@@ -88,6 +88,7 @@ class APRegisterViewController: APSystemBaseViewController {
             make.left.right.equalTo(agreedCell)
             make.height.equalTo(41)
         }
+        self.registerRequest.isAgreed = true
     }
     
     private func registerCallBacks() {
@@ -163,6 +164,7 @@ class APRegisterViewController: APSystemBaseViewController {
     lazy var agreedCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
         view.button.setTitle(_ : " 我已阅读并接受", for: .normal)
+        view.button.isSelected = true
         view.extButton.setTitle(_ : "《钱包用户协议》", for: .normal)
         return view
     }()
