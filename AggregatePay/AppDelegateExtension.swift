@@ -73,7 +73,9 @@ extension AppDelegate {
     }
     public func registerNeedLoginNotification() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationNeedLogin(_:)), name: NSNotification.Name(rawValue: "NEED_LOGIN"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationNeedLogin(_:)),
+                                               name: NEED_LOGIN_NOTIF_KEY,
+                                               object: nil)
     }
     
 }

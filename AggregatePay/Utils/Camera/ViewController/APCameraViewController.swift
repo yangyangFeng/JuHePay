@@ -100,30 +100,29 @@ class APCameraViewController: APBaseViewController {
         APUserAuthorization.checkCameraPermission(authorizedBlock: { (msg) in
            
         }) {[weak self] (msg) in
-            DispatchQueue.main.async(execute: {
-        
-              let alertController = APAlertManager.alertController(param: { (param) in
-
-                    param.apMessage = "开启相机才能扫描或者拍摄照片"
-                    param.apConfirmTitle = "去开启"
-                    param.apCanceTitle = "取消"
-
-                }, confirm: { (action) in
-
-                    let settingUrl = URL(string: UIApplicationOpenSettingsURLString)!
-                    if UIApplication.shared.canOpenURL(settingUrl)
-                    {
-                        UIApplication.shared.openURL(settingUrl)
-                    }
-
-                }, cancel: { (action) in
-
-                    self?.dismiss(animated: true, completion: nil)
-                    self?.view.makeToast(msg)
-                })
+            let alertController = APAlertManager.alertController(param: { (param) in
                 
-               self?.present(alertController, animated: true, completion: nil)
+                param.apMessage = "开启相机才能扫描或者拍摄照片"
+                param.apConfirmTitle = "去开启"
+                param.apCanceTitle = "取消"
+                
+            }, confirm: { (action) in
+                
+                let settingUrl = URL(string: UIApplicationOpenSettingsURLString)!
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
+                    
+                } else {
+                    UIApplication.shared.openURL(settingUrl)
+                }
+                
+            }, cancel: { (action) in
+                
+                self?.dismiss(animated: true, completion: nil)
+                self?.view.makeToast(msg)
             })
+            
+            self?.present(alertController, animated: true, completion: nil)
         }
     }
     

@@ -9,106 +9,47 @@
 import UIKit
 import Alamofire
 
+let NEED_LOGIN_NOTIF_KEY = NSNotification.Name(rawValue: "NEED_LOGIN")
+
 class APNetworkUtil: NSObject {
     
     var ap_activeRequestCount: Int = 0
-    var ap_maximumActiveRequest: Int = 0
+    var ap_maximumActiveRequest: Int = 4
+    var ap_timeoutIntervalForRequest: TimeInterval = 30
     var ap_queuedRequests: [Request] = []
-    var ap_sessionManager: SessionManager
+    var ap_sessionManager: SessionManager?
    
-    private let ap_synchronizationQueue: DispatchQueue = {
+    let ap_synchronizationQueue: DispatchQueue = {
         let name = String(format: "org.bjzhzf.aggregatepay.apSynchronQueue-%08x%08x",
                           arc4random(),
                           arc4random())
         return DispatchQueue(label: name)
     }()
     
-    private let ap_responseQueue: DispatchQueue = {
+    let ap_responseQueue: DispatchQueue = {
         let name = String(format: "org.bjzhzf.aggregatepay.apResponseQueue-%08x%08x",
                           arc4random(),
                           arc4random())
         return DispatchQueue(label: name)
     }()
     
-    public static let shared: APNetworkUtil = {
-        let sessionManager = APNetworkUtil.ap_sessionManager()
-        return APNetworkUtil(sessionManager: sessionManager)
-    }()
-    
-    init(sessionManager: SessionManager, maximumActiveRequest: Int = 4) {
-        
-        self.ap_sessionManager = sessionManager
-        self.ap_maximumActiveRequest = maximumActiveRequest
+    override init() {
+        super.init()
     }
     
-    func ap_request(httpUrl: String,
-                    method: HTTPMethod = .get,
-                    parameters: Parameters? = nil,
-                    encoding: ParameterEncoding = URLEncoding.default,
-                    headers: HTTPHeaders? = nil,
-                    success: @escaping (DataResponse<Any>) -> Void,
-                    failure: @escaping (Error)->Void ) -> DataRequest! {
-        
-        var request: DataRequest!
-        ap_synchronizationQueue.sync {
-            print("===============star===============")
-            print("method:"+method.rawValue)
-            print("url:"+httpUrl)
-            print("param:"+String(describing: parameters))
-            request = self.ap_sessionManager.request(httpUrl,
-                                                     method: method,
-                                                     parameters: parameters,
-                                                     headers: headers)
-            request.responseJSON(queue: self.ap_responseQueue,
-                                 options: .mutableContainers,
-                                 completionHandler: {
-                                    [weak self] response in
-                                    guard let strongSelf = self, let request = response.request else { return }
-                                    defer {
-                                        strongSelf.ap_safelyDecrementActiveRequestCount()
-                                        strongSelf.ap_safelyStartNextRequestIfNecessary()
-                                    }
-                                    switch response.result {
-                                    case .success:
-                                        DispatchQueue.main.async {
-                                            success(response)
-                                            print("===============end===============")
-                                        }
-                                    case .failure:
-                                        DispatchQueue.main.async {
-                                            print("Failure: "+(response.result.error?.localizedDescription)! as Any)
-                                            failure(response.result.error!)
-                                            print("===============end===============")
-                                        }
-                                    }
-
-            })
-
-            if self.ap_isActiveRequestCountBelowMaximumLimit() {
-                self.ap_start(request)
-            }
-            else {
-                self.ap_enqueue(request)
-            }
+    func ap_careatesessionManager(timeoutIntervalForRequest: TimeInterval = 30) {
+        ap_timeoutIntervalForRequest = timeoutIntervalForRequest
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = ap_timeoutIntervalForRequest
+        ap_sessionManager = SessionManager(configuration: configuration)
+        ap_sessionManager?.delegate.sessionDidReceiveChallenge = { session, challenge in
+            return (URLSession.AuthChallengeDisposition.useCredential,
+                    URLCredential(trust:challenge.protectionSpace.serverTrust!))
         }
-        return request
     }
 }
 
 extension APNetworkUtil {
-    
-    static func ap_sessionManager(_ timeoutIntervalForRequest: TimeInterval = 30) -> SessionManager {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = timeoutIntervalForRequest
-        
-        let manager = SessionManager(configuration: configuration)
-        
-        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
-            return (URLSession.AuthChallengeDisposition.useCredential,
-                    URLCredential(trust:challenge.protectionSpace.serverTrust!))
-        }
-        return manager
-    }
     
     func ap_safelyStartNextRequestIfNecessary() {
         ap_synchronizationQueue.sync {
@@ -127,6 +68,39 @@ extension APNetworkUtil {
             if self.ap_activeRequestCount > 0 {
                 self.ap_activeRequestCount -= 1
             }
+        }
+    }
+    
+    func ap_error(result: Dictionary<String, Any>) -> APBaseError? {
+        if !result.keys.contains("isSuccess") &&
+            !result.keys.contains("success") {
+            let baseError = APBaseError()
+            if result.keys.contains("status") {
+                baseError.status = result["status"] as? String
+                baseError.message = "请求失败"
+            }
+            return baseError
+        }
+        else {
+            return nil
+        }
+    }
+    
+    func ap_checkoutNeedLogin(status: String) -> Bool {
+        if status == "NEED_LOGIN" {
+            let notification = Notification(name: NEED_LOGIN_NOTIF_KEY,
+                                            object: nil,
+                                            userInfo: nil)
+            NotificationCenter.default.post(notification)
+            return true
+        }
+        return false
+    }
+    
+    func ap_cacheHttpCookie(headerFields: [AnyHashable : Any]) {
+        if let cookie = headerFields["Set-Cookie"] {
+            print("Set-Cookie: \(cookie)")
+            APUserDefaultCache.AP_set(value: cookie as Any, key: .cookie)
         }
     }
 }
@@ -154,16 +128,5 @@ extension APNetworkUtil {
         return ap_activeRequestCount < ap_maximumActiveRequest
     }
 }
-
-class APRequestReceipt {
-    let ap_request: Request
-    let ap_receiptID: String
-    
-    init(request: Request, receiptID: String) {
-        self.ap_request = request
-        self.ap_receiptID = receiptID
-    }
-}
-
 
 
