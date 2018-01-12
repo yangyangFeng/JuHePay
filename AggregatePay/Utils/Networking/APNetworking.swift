@@ -153,34 +153,29 @@ extension APNetworking {
         if cookie != "" {
             requestHeader = ["cookie":cookie]
         }
-        request(httpUrl: httpUrl,
-                action: action,
-                method: method,
-                headers: requestHeader,
-                parameters: parameters,
-                success:{ (result) in
-                    let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
-                    print("respMsg"+baseResp.respMsg!)
-                    if baseResp.success == "0" || baseResp.isSuccess == "0" {
-                        let baseError = APBaseError()
-                        if baseResp.respCode != nil {
-                            baseError.status = baseResp.respCode
-                        } else {
-                            baseError.status = "0"
-                        }
-                        baseError.message = baseResp.respMsg
-                        if !self.checkoutNeedLogin(status: baseError.status!) {
-                            faile?(baseError)
-                        }
-                    }
-                    else {
-                        success(baseResp)
-                    }
+        dataRequest = APNetworkRequest.sharedInstance.ap_request(httpUrl: (httpUrl+action),
+                                                                 method: method,
+                                                                 parameters: parameters,
+                                                                 headers: requestHeader,
+                                                                 success: { (result) in
+            let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
+            if baseResp.success == "0" || baseResp.isSuccess == "0" {
+                let baseError = APBaseError()
+                if baseResp.respCode != nil {
+                    baseError.status = baseResp.respCode
+                } else {
+                    baseError.status = "0"
+                }
+                baseError.message = baseResp.respMsg
+                if !self.checkoutNeedLogin(status: baseError.status!) {
+                    faile?(baseError)
+                }
+            }
+            else {
+                success(baseResp)
+            }
         }) { (error) in
-            let baseError = APBaseError()
-            baseError.status = error.localizedDescription
-            baseError.message = error.localizedDescription
-            faile?(baseError)
+            faile?(error as! APBaseError)
         }
     }
     
@@ -200,7 +195,7 @@ extension APNetworking {
         if cookie != "" {
             requestHeader = ["cookie":cookie]
         }
-        
+
         uploadFormDatas(
             action: action,
             headers: requestHeader,
@@ -230,69 +225,6 @@ extension APNetworking {
             baseError.message = error.localizedDescription
             faile?(baseError)
         }
-    }
-    
-    /**
-     * 网络请求
-     * @param   action:请求接口(APCommon.Port)
-     * @param   method:请求方式
-     * @param   parameters:请求参数
-     * @param   success:请求成功回调
-     * @param   faile:请求失败回调
-     *
-     */
-    func request(httpUrl: String = APHttpUrl.trans_httpUrl,
-                 action: String,
-                 method: HTTPMethod = .get,
-                 headers: HTTPHeaders? = nil,
-                 timeOut: TimeInterval = 30,
-                 parameters:Dictionary<String, Any>,
-                 success:@escaping (Dictionary<String, Any>)->Void,
-                 faile:@escaping (Error)->Void) {
-        
-        dataRequest = APNetworkUtil.shared.ap_request(httpUrl: (httpUrl+action), method: method, parameters: parameters, headers: headers, success: { (response) in
-            self.cacheCookie(response: response)
-            let result = try? JSONSerialization.jsonObject(with: response.data!, options: .mutableContainers) as! Dictionary<String, Any>
-            if !(result?.keys.contains("isSuccess"))! &&
-                !(result?.keys.contains("success"))! {
-                let baseError = self.error(result: result!)
-                faile(baseError)
-            }
-            else {
-                print("Success: \(String(describing:result))")
-                success(result!)
-            }
-        }) { (error) in
-            faile(error)
-        }
-   
-//        return
-//        manager = ap_alamofireManager(timeOut)
-//        dataRequest = manager.request(httpUrl,
-//                                      method:method,
-//                                      parameters: parameters,
-//                                      headers: headers).responseJSON { response in
-//                            switch response.result.isSuccess {
-//                            case true:
-//
-//                                print("response-value:\(String(describing: response.value))")
-//                                self.cacheCookie(response: response)
-//                                let result = response.value! as! Dictionary<String, Any>
-//                                if !result.keys.contains("isSuccess") &&
-//                                   !result.keys.contains("success") {
-//                                    let baseError = self.error(result: result)
-//                                    faile(baseError)
-//                                }
-//                                else {
-//                                    success(result)
-//                                }
-//                                print("===============end================")
-//                            case false:
-//                                print("response:\(String(describing: response.result.error?.localizedDescription))")
-//                                faile(response.result.error!)
-//                                print("===============end================")
-//                            }
-//        }
     }
     
     func checkoutNeedLogin(status: String) -> Bool {
@@ -386,62 +318,6 @@ extension APNetworking {
         })
     }
     
-//    func downloadImage(
-//        httpUrl: String = APHttpUrl.manange_httpUrl,
-//        action: String = APHttpService.downloadImg,
-//        fileName: String,
-//        method: HTTPMethod = .get,
-//        headers: HTTPHeaders? = nil,
-//        timeout: TimeInterval = 30,
-//        params: Dictionary<String, Any>,
-//        success: @escaping (UIImage)->Void,
-//        failure: @escaping (Error)->Void)
-//    {
-//        print("===============star===============")
-//        let to = httpUrl + action
-//        print("method:"+method.rawValue)
-//        print("url:"+to)
-//        print("param:"+String(describing: params))
-//
-//        let config:URLSessionConfiguration = URLSessionConfiguration.default
-//        config.timeoutIntervalForRequest = timeout
-//        manger = SessionManager(configuration: config)
-//
-//        manger?.download(
-//            to,
-//            method: method,
-//            parameters: params,
-//            encoding: URLEncoding.default,
-//            headers: headers,
-//            to:{
-//                (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
-//
-//                let subPath = "auth/" + fileName + ".png"
-//                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//                let fileURL = documentsURL.appendingPathComponent(subPath)
-//                //两个参数表示如果有同名文件则会覆盖，如果路径中文件夹不存在则会自动创建
-//                debugPrint(fileURL)
-//                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-//
-//        }).response(completionHandler: {(response) in
-//            debugPrint(response)
-//            if response.response?.statusCode == 200 {
-//                if let path = response.destinationURL?.path {
-//                    success(UIImage.init(contentsOfFile: path)!)
-//                }
-//            }else {
-//                if response.error != nil {
-//                    failure(response.error!)
-//                } else {
-//                    let baseError = APBaseError()
-//                    baseError.status = "\(String(describing: response.response?.statusCode))"
-//                    baseError.message = "请求错误"
-//                    failure(baseError)
-//                }
-//            }
-//        })
-//    }
-    
     func cacheCookie(response: DataResponse<Any>) {
         let httpUrlResponse = response.response
         let headerFields = httpUrlResponse?.allHeaderFields
@@ -469,88 +345,22 @@ extension APNetworking {
     {
         params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
-        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
-        var requestHeader: HTTPHeaders?
-        if cookie != "" {
-            requestHeader = ["cookie":cookie]
-        }
-        
-        downloadImage(httpUrl: httpUrl,
-                      action: action,
-                      fileName: fileName,
-                      method: .get,
-                      headers: requestHeader,
-                      params: parameters,
-                      success: { (image) in
-                        success(image)
+        APNetworkDowdload.sharedInstance.ap_download(httpUrl: httpUrl,
+                                                     action: action,
+                                                     fileName: fileName,
+                                                     method: .get,
+                                                     params: parameters,
+                                                     success: { (image) in
+            success(image)
         }) { (error) in
             let baseError = APBaseError()
             baseError.status = error.localizedDescription
             baseError.message = error.localizedDescription
             failure?(baseError)
         }
-        
     }
     
-    func downloadImage(
-        httpUrl: String = APHttpUrl.manange_httpUrl,
-        action: String = APHttpService.downloadImg,
-        fileName: String,
-        method: HTTPMethod = .get,
-        headers: HTTPHeaders? = nil,
-        timeout: TimeInterval = 60,
-        params: Dictionary<String, Any>,
-        success: @escaping (UIImage)->Void,
-        failure: @escaping (Error)->Void)
-    {
-        print("===============DownloadImage star===============")
-        let to = httpUrl + action
-        print("method:"+method.rawValue)
-        print("url:"+to)
-        print("param:"+String(describing: params))
-        
-        // 从缓存中取出图片
-        if let image = imageFromCached(for: (to + fileName)) {
-            success(image)
-            return
-        }
-        
-        // 缓存中没有图片，从url加载图片
-        Alamofire.request(
-            to,
-            method: method,
-            parameters: params,
-            headers: headers).responseImage(completionHandler: { [weak self] (response) in
-                
-                debugPrint(response)
-                
-//                switch response.result.isSuccess {
-//                case true:
-//                    print("response-value:\(String(describing: response.value))")
-//                    let result = response.value! as! Dictionary<String, Any>
-//                    if !result.keys.contains("isSuccess") &&
-//                        !result.keys.contains("success") {
-//                        let baseError = self.error(result: result)
-//                        failure(baseError)
-//                    }
-//                    else {
-//                        success(result)
-//                    }
-//                    print("===============end================")
-//                case false:
-//                    print("response:\(String(describing: response.result.error?.localizedDescription))")
-//                    faile(response.result.error!)
-//                    print("===============end================")
-//                }
-                
-                guard let image = response.result.value else {
-                    failure(response.result.error!)
-                    return
-                }
-                success(image)
-                self?.cacheImage(image, for: (to + fileName))
-            })
-    }
+    
     
 }
 
