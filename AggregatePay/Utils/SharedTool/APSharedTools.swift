@@ -44,6 +44,10 @@ class APSharedTools: NSObject, WXApiDelegate {
     
     func sendShared(image: UIImage, scene: APSharedScene) {
         
+        if !WXApi.isWXAppInstalled() {
+            failedCallBack?("您未安装微信")
+            return
+        }
         imageObject.imageData = UIImagePNGRepresentation(image)
         message.setThumbImage(image)
         message.mediaObject = imageObject

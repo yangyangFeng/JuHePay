@@ -19,8 +19,8 @@ class APQRCPElementViewController: APQRCPBaseViewController {
 
     var merchantDetailModel:APMerchantDetail? {
         willSet {
-            selectMerchantCell.titleLabel.text = newValue?.dictValue
-            qrCodePayRequest.categroyCode = newValue?.id
+            selectMerchantCell.titleLabel.text = newValue?.dictKey
+            qrCodePayRequest.categroyCode = newValue?.dictValue
         }
     }
 

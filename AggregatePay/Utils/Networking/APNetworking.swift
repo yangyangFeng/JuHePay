@@ -148,15 +148,9 @@ extension APNetworking {
     {
         params.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         let parameters = params.mj_keyValues() as! Dictionary<String, Any>
-        let cookie = APUserDefaultCache.AP_get(key: .cookie) as! String
-        var requestHeader: HTTPHeaders?
-        if cookie != "" {
-            requestHeader = ["cookie":cookie]
-        }
         dataRequest = APNetworkRequest.sharedInstance.ap_request(httpUrl: (httpUrl+action),
                                                                  method: method,
                                                                  parameters: parameters,
-                                                                 headers: requestHeader,
                                                                  success: { (result) in
             let baseResp = APClassRuntimeTool.ap_class(aClass, result: result) as! APBaseResponse
             if baseResp.success == "0" || baseResp.isSuccess == "0" {

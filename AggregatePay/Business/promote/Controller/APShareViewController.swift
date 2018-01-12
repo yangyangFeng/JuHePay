@@ -63,7 +63,7 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
         APSharedTools.shared(image: shareImage!, scene: scene, success: {
             self.view.makeToast("分享成功")
         }) { (errorMsg) in
-            print(errorMsg)
+            self.view.makeToast(errorMsg)
         }
     }
     

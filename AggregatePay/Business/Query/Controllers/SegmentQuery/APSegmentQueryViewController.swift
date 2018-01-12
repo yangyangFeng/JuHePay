@@ -11,16 +11,11 @@ import UIKit
 class APSegmentQueryViewController: APBaseViewController {
     
     var currentVC: UIViewController?
-    var indexs = [Bool]()
 
     var selectChildIndex: Int = 0 {
         willSet{
             print(self.childViewControllers.count)
             let childVC = self.childViewControllers[newValue]
-            if indexs[newValue] {
-                addChildVC(vc: childVC)
-                indexs[newValue] = false
-            }
             view.bringSubview(toFront: childVC.view)
             currentVC = childVC
         }
@@ -49,9 +44,10 @@ class APSegmentQueryViewController: APBaseViewController {
        
         self.addChildViewController(APTradingQueryViewController())
         self.addChildViewController(APProfitsQueryViewController())
-        indexs.removeAll()
-        indexs.append(true)
-        indexs.append(true)
+        
+        addChildVC(vc: self.childViewControllers[0])
+        addChildVC(vc: self.childViewControllers[1])
+        
         selectChildIndex = 0
     }
     
@@ -66,11 +62,11 @@ class APSegmentQueryViewController: APBaseViewController {
     //MARK: ---- action
     @objc func barButtonItemAction() {
         if selectChildIndex == 0 {
-            let childVC = self.childViewControllers[selectChildIndex] as! APTradingQueryViewController
+            let childVC = self.childViewControllers[0] as! APTradingQueryViewController
             childVC.queryButAction()
         }
         else {
-            let childVC = self.childViewControllers[selectChildIndex] as! APProfitsQueryViewController
+            let childVC = self.childViewControllers[1] as! APProfitsQueryViewController
             childVC.queryButAction()
         }
     }
