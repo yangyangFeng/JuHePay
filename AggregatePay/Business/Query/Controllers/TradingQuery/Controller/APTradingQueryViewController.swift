@@ -94,9 +94,6 @@ extension APTradingQueryViewController {
         if getMyAccountRequest.pageNo == response.bottomPageNo {
             tableView.mj_footer.endRefreshingWithNoMoreData()
         }
-        if getMyAccountRequest.pageNo == "1" {
-            tableView.setContentOffset(CGPoint.zero, animated: true)
-        }
         getMyAccountRequest.pageNo = response.bottomPageNo
         datas.append(contentsOf: response.list!)
         tableView.reloadData()

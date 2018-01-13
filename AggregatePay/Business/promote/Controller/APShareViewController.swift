@@ -26,15 +26,14 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
         shareView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
         }
-
     }
     
     func AP_TableViewDidSelect(_ indexPath: IndexPath, obj: Any) {
         if indexPath.row == 0 {
-            shared(scene: .friend)
+            shared(scene: 0)
         }
         else if indexPath.row == 1 {
-            shared(scene: .circle)
+            shared(scene: 1)
         }
         else if indexPath.row == 2 {
             saveImage(image: shareImage!)
@@ -52,12 +51,10 @@ class APShareViewController: APBaseViewController,AP_TableViewDidSelectProtocol 
         }
     }
     
-    func shared(scene: APSharedScene) {
-        APSharedTools.shared(image: shareImage!, scene: scene, success: {
-            self.view.makeToast("分享成功")
-        }) { (errorMsg) in
-            self.view.makeToast(errorMsg)
-        }
+    func shared(scene: Int) {
+        APSharedUtil.ap_shared(with: shareImage!, atScens: Int32(scene), resultBlock: { (message) in
+            self.view.makeToast(message)
+        })
     }
     
    private func saveImage(image: UIImage) {

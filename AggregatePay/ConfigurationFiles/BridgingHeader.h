@@ -19,6 +19,7 @@
 #import <WechatOpenSDK/WXApi.h>
 #import <MJExtension/MJExtension.h>
 #import "JPUSHService.h"
+#import "APSharedUtil.h"
 #import "CPCipherAES.h"
 #import <UserNotifications/UserNotifications.h>
 #import "NSString+CPShield.h"
