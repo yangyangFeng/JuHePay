@@ -14,6 +14,8 @@ class APAuthHomeViewController: APBaseViewController {
     
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
+    var isFirstIn : Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +46,24 @@ class APAuthHomeViewController: APBaseViewController {
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
+            
+            switch APAuthHelper.sharedInstance.realNameAuthState {
+                
+            case .None:
+                guard self.isFirstIn else
+                {
+                    return
+                }
+                let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
+                self.navigationController?.present(authNavi, animated: true, completion: nil)
+                authNavi.finishAuths = {
+                    authNavi.dismiss(animated: true, completion: nil)
+                    self.isFirstIn = false
+                }
+                break
+            default:
+                break
+            }
         }) {(error) in
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)
