@@ -217,7 +217,7 @@ extension APRegisterViewController {
         
         let sendMessageReq = APSendMessageReq()
         sendMessageReq.mobileNo = registerRequest.mobileNo
-        sendMessageReq.businessType = "1"
+        sendMessageReq.businessType = "7"
         accountCell.sendSmsCodeButton.countingStatus = .wait
         APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq,
                                      success: { (baseResp) in

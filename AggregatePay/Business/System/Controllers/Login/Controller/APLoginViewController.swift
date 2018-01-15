@@ -33,6 +33,7 @@ class APLoginViewController: APSystemBaseViewController {
         super.viewDidLoad()
         self.title = "商户登录"
         navigationItem.leftBarButtonItem = leftBarButtonItem
+        loginRequest.isRemember = "0"
         createSubviews()
         registerCallBacks()
         registerObserve()
@@ -181,6 +182,16 @@ extension APLoginViewController {
         
         passwordCell.textBlock = { (key, value) in
             weakSelf?.loginRequest.passwd = value
+        }
+        
+        memoryCell.buttonBlock = { (key, value) in
+            let button: UIButton = value as! UIButton
+            if button.isSelected {
+                weakSelf?.loginRequest.isRemember = "1"
+            }
+            else {
+                weakSelf?.loginRequest.isRemember = "0"
+            }
         }
         
         submitCell.buttonBlock = { (key, value) in
