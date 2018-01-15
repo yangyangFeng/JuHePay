@@ -50,7 +50,7 @@ DEPENDENCIES:
   - SwiftTheme (~> 0.4.1)
   - Toast-Swift (~> 3.0.1)
   - UMengAnalytics-NO-IDFA (~> 4.2.5)
-  - WechatOpenSDK (~> 1.8.0)
+  - WechatOpenSDK (~> 1.8.1)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -77,6 +77,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WechatOpenSDK: 491d965d79335070328571d3e79f714549e79a5e
 
-PODFILE CHECKSUM: 35e1f483464e9d3115818ea2e217cf7aa32e4438
+PODFILE CHECKSUM: c9aecf8796614692b75373c9df41c2ce630681b6
 
 COCOAPODS: 1.2.1

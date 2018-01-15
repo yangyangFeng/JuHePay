@@ -35,7 +35,7 @@ pod 'PGDatePicker', '= 1.5.9'
 pod 'GTMBase64', '~> 1.0.0'
 pod 'EmptyKit', '~> 4.0.0'
 pod 'JPush', '~> 3.0.7'
-pod 'WechatOpenSDK', '~> 1.8.0'
+pod 'WechatOpenSDK', '~> 1.8.1'
 
 end
 

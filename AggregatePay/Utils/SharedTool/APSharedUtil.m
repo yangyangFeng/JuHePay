@@ -30,7 +30,7 @@
                    atScens:(int)scene
                resultBlock:(CPSharedResultBlock)block {
     [[APSharedUtil sharedInstance] setResultBlock:block];
-    [[APSharedUtil sharedInstance] ap_shared:image scene:WXSceneSession];
+    [[APSharedUtil sharedInstance] ap_shared:image scene:scene];
 }
 
 + (BOOL)ap_openUrl:(NSURL *)url {
@@ -47,11 +47,19 @@
         self.resultBlock(@"您未安装微信");
         return;
     }
+    if (![WXApi isWXAppSupportApi]) {
+        self.resultBlock(@"您的微信版本过低");
+        return;
+    }
+    
+    UIImage *thumbImage = [self imageWithImage:image scaledToSize:CGSizeMake(50, 50)];
+    NSData *sharedImage = UIImageJPEGRepresentation(image, 0.5);
+    
     SendMessageToWXReq* sendmessageReq = [[SendMessageToWXReq alloc] init];
     WXMediaMessage *message = [WXMediaMessage message];
     WXImageObject *imageObject = [WXImageObject object];
-    [imageObject setImageData:UIImageJPEGRepresentation(image, 1)];
-    [message setThumbImage:[UIImage imageWithData:UIImageJPEGRepresentation(image, 0.3)]];
+    [imageObject setImageData:sharedImage];
+    [message setThumbImage:thumbImage];
     [message setMediaObject:imageObject];
     [sendmessageReq setBText:NO];
     [sendmessageReq setMessage:message];
@@ -61,6 +69,37 @@
 
 -(void) onResp:(BaseResp*)resp {
     self.resultBlock(resp.errStr);
+}
+
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultImage;
+}
+
+- (UIImage *)compressImageQuality:(UIImage *)image toByte:(NSInteger)maxLength {
+    CGFloat compression = 1;
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    if (data.length < maxLength) return image;
+    CGFloat max = 1;
+    CGFloat min = 0;
+    for (int i = 0; i < 6; ++i) {
+        compression = (max + min) / 2;
+        data = UIImageJPEGRepresentation(image, compression);
+        if (data.length < maxLength * 0.9) {
+            min = compression;
+        } else if (data.length > maxLength) {
+            max = compression;
+        } else {
+            break;
+        }
+    }
+    UIImage *resultImage = [UIImage imageWithData:data];
+    return resultImage;
 }
 
 @end
