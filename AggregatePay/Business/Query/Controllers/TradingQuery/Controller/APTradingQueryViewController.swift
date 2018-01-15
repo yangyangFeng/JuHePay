@@ -97,7 +97,6 @@ extension APTradingQueryViewController {
         getMyAccountRequest.pageNo = response.bottomPageNo
         datas.append(contentsOf: response.list!)
         tableView.reloadData()
-        
     }
 
 }

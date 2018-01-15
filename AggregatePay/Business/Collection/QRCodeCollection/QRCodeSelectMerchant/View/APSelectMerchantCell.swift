@@ -78,10 +78,11 @@ class APSelectMerchantCell: UITableViewCell {
     }
     
     func merchatDetail(model: APMerchantDetail, selectModel: APMerchantDetail) {
-        titleLabel.text = model.dictValue
-        if selectModel.id == model.id {
-            arronImageView.isHidden = false
-        }
+        titleLabel.text = model.dictKey
+        arronImageView.isHidden = true
+//        if selectModel.id == model.id {
+//
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {

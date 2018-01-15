@@ -35,15 +35,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
 extension AppDelegate {
     
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        return APSharedTools.sharedInstance.openURl(url: url)
+    func application(_ application: UIApplication,
+                     handleOpen url: URL) -> Bool {
+        return APSharedUtil.ap_open(url)
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return APSharedTools.sharedInstance.openURl(url: url)
+    func application(_ application: UIApplication,
+                     open url: URL,
+                     sourceApplication: String?,
+                     annotation: Any) -> Bool {
+        return APSharedUtil.ap_open(url)
     }
     
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    func application(_ application: UIApplication,
+                     supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if isLandscape {
             return .all
         }
@@ -52,7 +57,9 @@ extension AppDelegate {
         }
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if let url = URL.init(string: "com.cnepay.zhonghuizhifu://") {
             if UIApplication.shared.canOpenURL(url) {
