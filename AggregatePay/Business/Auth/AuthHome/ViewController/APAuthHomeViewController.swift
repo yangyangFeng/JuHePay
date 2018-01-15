@@ -41,6 +41,7 @@ class APAuthHomeViewController: APBaseViewController {
     func loadAuthInfo() {
         
         view.AP_loadingBegin()
+        weak var weakSelf = self
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
             
             self.view.AP_loadingEnd()
@@ -58,7 +59,7 @@ class APAuthHomeViewController: APBaseViewController {
                 self.navigationController?.present(authNavi, animated: true, completion: nil)
                 authNavi.finishAuths = {
                     authNavi.dismiss(animated: true, completion: nil)
-                    self.isFirstIn = false
+                    weakSelf!.isFirstIn = false
                 }
                 break
             default:
