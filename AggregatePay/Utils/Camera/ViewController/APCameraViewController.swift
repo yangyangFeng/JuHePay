@@ -413,10 +413,8 @@ extension APCameraViewController {
                     self?.backAction()
                 } else {
                     self?.preview(withImage: idCard.image){ (isUse) in
-                        if isUse {
-                            self?.delegate?.ocrCameraIDCardResult?(IDCard: idCard)
-                            self?.backAction()
-                        }
+                        self?.delegate?.ocrCameraIDCardResult?(IDCard: idCard)
+                        self?.backAction()
                     }
                 }
             }
