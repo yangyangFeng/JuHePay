@@ -199,10 +199,14 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 }
                 
                 idCardResult?(idCard, true, "识别成功")
-            } else {
-                if captureManager != nil {
-                    captureManager.isRun1 = false
-                }
+            }
+//            else {
+//                if captureManager != nil {
+//                    captureManager.isRun1 = false
+//                }
+//            }
+            if captureManager != nil {
+                captureManager.isRun1 = false
             }
         }
     }
@@ -239,10 +243,16 @@ extension APOCRCameraView: SCCaptureSessionManagerProtocol {
                 bankCard.bankCardImage = image
                
                 bankCardResult?(bankCard, true, "识别成功")
-            } else {
-                if captureManager != nil {
-                    captureManager.isRun1 = false
-                }
+                
+//                print(captureManager.isRun1)
+            }
+//            else {
+//                if captureManager != nil {
+//                    captureManager.isRun1 = false
+//                }
+//            }
+            if captureManager != nil {
+                captureManager.isRun1 = false
             }
         }
     }
