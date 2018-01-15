@@ -92,7 +92,7 @@ class APAccessControler: NSObject {
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证----一次都未提交过)
     private static func ap_pushAuthVC_frist_None() {
         APAlertManager.show(param: { (param) in
-            param.apMessage = "您还未进行身份证认证，请先进行认证"
+            param.apMessage = "您还未进行身份认证，请先进行认证"
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
@@ -107,7 +107,7 @@ class APAccessControler: NSObject {
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
     private static func ap_pushAuthVC_None() {
         APAlertManager.show(param: { (param) in
-            param.apMessage = "您还未进行身份证认证，请先进行认证"
+            param.apMessage = "您还未进行身份认证，请先进行认证"
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
@@ -133,7 +133,7 @@ class APAccessControler: NSObject {
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
     private static func ap_pushAuthVC_Failure() {
         APAlertManager.show(param: { (param) in
-            param.apMessage = "您的身份证认证未通过，请重新填写"
+            param.apMessage = "您的身份认证未通过，请重新填写"
             param.apConfirmTitle = "去填写"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in

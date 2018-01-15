@@ -49,5 +49,9 @@ class APAuthNaviViewController: APBaseNavigationViewController {
         }
         super.pushViewController(viewController, animated: true)
     }
+    
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
 }
 
