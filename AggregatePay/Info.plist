@@ -21,6 +21,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wxe8e1cc1454887984</string>
@@ -36,9 +38,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>12</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>weixin</string>
+		<string>wechat</string>
 		<string>com.cnepay.zhonghuizhifu</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
