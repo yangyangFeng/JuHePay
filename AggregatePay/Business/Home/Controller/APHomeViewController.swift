@@ -67,10 +67,18 @@ extension APHomeViewController {
         }
     }
     
+    
     func pushUnionPayVC(totalAmount: String){
         let placeVC = APCollectionPlaceViewController()
         placeVC.totalAmount = totalAmount
         navigationController?.pushViewController(placeVC,  animated: true)
+    }
+    
+    func pushQRCodeElementVC(totalAmount: String, payType: String) {
+        let qrcpElementVC = APQRCPElementViewController()
+        qrcpElementVC.amountStr = totalAmount
+        qrcpElementVC.payType = payType
+        navigationController?.pushViewController(qrcpElementVC, animated: true)
     }
     
     //跳转收款页面
@@ -85,10 +93,7 @@ extension APHomeViewController {
             pushUnionPayVC(totalAmount: totalAmount)
         }
         else {
-            let qrcpElementVC = APQRCPElementViewController()
-            qrcpElementVC.amountStr = totalAmount
-            qrcpElementVC.payType = model.payType
-            navigationController?.pushViewController(qrcpElementVC, animated: true)
+            pushQRCodeElementVC(totalAmount: totalAmount, payType: model.payType)
         }
     }
     

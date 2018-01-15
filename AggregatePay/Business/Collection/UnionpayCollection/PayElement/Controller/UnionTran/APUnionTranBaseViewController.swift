@@ -19,7 +19,6 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     var unionHttpTool: APUnionHttpTools?
     var unionTimeToos: APUnionTimeTools?
     
-    
     override func goBackAction() {
         unionTimeToos?.ap_endTime()
         super.goBackAction()
@@ -29,6 +28,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         print("APUnionTranBaseViewController------已释放")
         NotificationCenter.default.removeObserver(self, name: TRAN_NOTIF_KEY, object: nil)
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
+        removeEnterBackgroundNotister()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +98,15 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(notificationCardDetail(_:)), name: TRAN_CARD_NOTIF_KEY, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(notificationQuickPayRequest(_:)), name: TRAN_NOTIF_KEY, object: nil)
     }
+    
+    func registerEnterBackgroundNotister() {
+        NotificationCenter.default.addObserver(self, selector: #selector(notificEnterBackground(_:)), name: NOTIFICA_ENTER_BACKGROUND_KEY, object: nil)
+    }
+    
+    func removeEnterBackgroundNotister () {
+        NotificationCenter.default.removeObserver(self, name: NOTIFICA_ENTER_BACKGROUND_KEY, object: nil)
+    }
+    
 }
 
 extension APUnionTranBaseViewController:
@@ -121,6 +130,8 @@ extension APUnionTranBaseViewController:
             pushOpenUnionPayVC(result: result)
         }
         else {
+            removeEnterBackgroundNotister()
+            registerEnterBackgroundNotister()
             submitCell.button.isEnabled = false
             unionTimeToos?.ap_startTime(orderNo: result.orderNo)
         }
@@ -144,6 +155,12 @@ extension APUnionTranBaseViewController:
 }
 
 extension APUnionTranBaseViewController {
+    
+    @objc func notificEnterBackground(_ notif: Notification) {
+        submitCell.button.isEnabled = true
+        unionTimeToos?.ap_endTime()
+        gotoTranDispose()
+    }
     
     @objc func notificationCardDetail(_ notif: Notification) {
         

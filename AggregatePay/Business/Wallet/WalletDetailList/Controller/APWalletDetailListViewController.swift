@@ -132,14 +132,16 @@ extension APWalletDetailViewController:
     func pushWithdrawDetailVC(detail: APQueryAccountRecordListDetail) {
         let withdrawDetailVC = APWithdrawDetailViewController()
         withdrawDetailVC.detail = detail
-        withdrawDetailVC.amountSum = amountSum
+        withdrawDetailVC.amountSum = detail.endAmount
+        withdrawDetailVC.titleLabelStr = "账户余额(元)"
         navigationController?.pushViewController(withdrawDetailVC, animated: true)
     }
     
     func pushProfitsDetailVC(detail: APQueryAccountRecordListDetail) {
         let profitsDetailVC = APProfitsDetailViewController()
         profitsDetailVC.detail = detail
-        profitsDetailVC.amountSum = amountSum
+        profitsDetailVC.amountSum = detail.endAmount
+        profitsDetailVC.titleLabelStr = "账户余额(元)"
         navigationController?.pushViewController(profitsDetailVC, animated: true)
     }
 }
