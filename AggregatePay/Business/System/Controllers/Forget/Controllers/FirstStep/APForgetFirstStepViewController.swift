@@ -162,7 +162,7 @@ extension APForgetFirstStepViewController {
         }
         let sendMessageReq = APSendMessageReq()
         sendMessageReq.mobileNo = checkMessageRequest.mobileNo
-        sendMessageReq.businessType = "2"
+        sendMessageReq.businessType = "6"
         accountCell.sendSmsCodeButton.countingStatus = .wait
         APSystemHttpTool.sendMessage(paramReqeust: sendMessageReq, success: { (baseResp) in
             self.view.makeToast(baseResp.respMsg)

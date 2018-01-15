@@ -14,6 +14,8 @@ class APLoginRequest: APBaseRequest, NSCopying {
     @objc dynamic var mobileNo: String = ""
     //密码
     @objc dynamic var passwd: String = ""
+    //是否记住密码
+    @objc dynamic var isRemember: String = "0"
     //激光推送唯一标识
     @objc dynamic var registId: String = JPUSHService.registrationID()
     
