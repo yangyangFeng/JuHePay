@@ -29,8 +29,8 @@ class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "交易详情"
-        
-        view.theme_backgroundColor = ["#fafafa"]
+        ap_setStatusBarStyle(.lightContent)
+        view.theme_backgroundColor = ["#f5f5f5"]
         
         view.addSubview(headerView)
         view.addSubview(tableView)
@@ -91,7 +91,7 @@ class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UIT
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
-        view.theme_backgroundColor = ["#fafafa"]
+        view.theme_backgroundColor = ["#F5F5F5"]
         view.register(APBillDetailCell.self, forCellReuseIdentifier: "APBillDetailCell")
         return view
     }()

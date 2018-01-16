@@ -46,7 +46,7 @@ class APBillDetailHeaderView: UIView {
     init() {
         super.init(frame: CGRect.zero)
 
-        backgroundColor = UIColor.white
+        theme_backgroundColor = ["#F9F9F9"]
         
         addSubview(status)
         addSubview(titleLabel)

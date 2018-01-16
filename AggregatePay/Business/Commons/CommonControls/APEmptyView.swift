@@ -44,14 +44,23 @@ extension UITableView : EmptyDataSource, EmptyDelegate{
         APEmptyConfig.image = config.image
         APEmptyConfig.verticalSpace = config.verticalSpace
         APEmptyConfig.verticalOffset = config.verticalOffset
-        self.ept.dataSource = self
-        self.ept.delegate = self
+        if self.ept.dataSource == nil {
+            self.ept.dataSource = self
+        }
+        if self.ept.delegate == nil {
+            self.ept.delegate = self
+        }
     }
     
     func AP_setupEmpty(){
         APEmptyConfig.clear()
-        self.ept.dataSource = self
-        self.ept.delegate = self
+        if self.ept.dataSource == nil {
+            self.ept.dataSource = self
+        }
+        if self.ept.delegate == nil {
+            self.ept.delegate = self
+        }
+        
     }
     
     public func imageForEmpty(in view: UIView) -> UIImage? {

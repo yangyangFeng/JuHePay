@@ -79,7 +79,7 @@ class APSettingCell: UITableViewCell {
         }
         lineImageView.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(self)
-            make.bottom.equalTo(self.snp.bottom).offset(-1)
+            make.bottom.equalTo(self.snp.bottom).offset(0)
             make.height.equalTo(1)
         }
     }
