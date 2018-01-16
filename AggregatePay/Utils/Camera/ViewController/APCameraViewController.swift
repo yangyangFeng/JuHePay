@@ -290,7 +290,9 @@ extension APCameraViewController {
         view.addSubview(rightToolView)
         
         leftToolView.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
+            
+            make.top.equalToSuperview().offset(20)
+            make.left.right.equalToSuperview()
             make.height.equalTo(camera_LeftViewWidth)
         }
         rightToolView.snp.makeConstraints { (make) in
@@ -630,5 +632,15 @@ extension UIButton {
         isExclusiveTouch = true
         titleEdgeInsets = UIEdgeInsetsMake(((imageView?.image?.size.height)! + 15.0), -((imageView?.image?.size.width)!), 0.0, 0.0)
         imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, -((titleLabel?.requiredWidth)!))
+    }
+}
+
+extension UIDevice {
+    public func isX() -> Bool {
+        if UIScreen.main.bounds.height == 812 {
+            return true
+        }
+        
+        return false
     }
 }
