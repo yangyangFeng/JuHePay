@@ -55,16 +55,16 @@
     UIImage *thumbImage = [self imageWithImage:image scaledToSize:CGSizeMake(50, 50)];
     NSData *sharedImage = UIImageJPEGRepresentation(image, 0.5);
     
-    SendMessageToWXReq* sendmessageReq = [[SendMessageToWXReq alloc] init];
+    SendMessageToWXReq* sendMessageReq = [[SendMessageToWXReq alloc] init];
     WXMediaMessage *message = [WXMediaMessage message];
     WXImageObject *imageObject = [WXImageObject object];
     [imageObject setImageData:sharedImage];
     [message setThumbImage:thumbImage];
     [message setMediaObject:imageObject];
-    [sendmessageReq setBText:NO];
-    [sendmessageReq setMessage:message];
-    [sendmessageReq setScene:scene];
-    [WXApi sendReq:sendmessageReq];
+    [sendMessageReq setBText:NO];
+    [sendMessageReq setMessage:message];
+    [sendMessageReq setScene:scene];
+    [WXApi sendReq:sendMessageReq];
 }
 
 -(void) onResp:(BaseResp*)resp {
@@ -74,9 +74,10 @@
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size
 {
+    UIImage *resultImage = image;
     UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    resultImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return resultImage;
 }

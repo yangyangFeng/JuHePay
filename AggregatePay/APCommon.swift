@@ -11,8 +11,10 @@ let SCREENWIDTH = UIScreen.main.bounds.size.width
 let SCREENHEIGHT = UIScreen.main.bounds.size.height
 
 
-
-
+//程序退出后台通知
+let NOTIFICA_ENTER_BACKGROUND_KEY = NSNotification.Name(rawValue: "NOTIFICA_ENTER_BACKGROUND")
+//选择商户大类通知
+let NOTIFICA_SELECT_MERCHANT_KEY  = NSNotification.Name(rawValue: "NOTIFICA_SELECT_MERCHANT_KEY")
 
 
 

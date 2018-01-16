@@ -32,6 +32,7 @@ class APCollectionPlaceViewController: APUnionPayBaseViewController {
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
+        view.AP_setupEmpty()
         view.theme_backgroundColor = ["#fafafa"]
         view.register(APCollectionPlaceCell.self,
                       forCellReuseIdentifier: "APCollectionPlaceCell")

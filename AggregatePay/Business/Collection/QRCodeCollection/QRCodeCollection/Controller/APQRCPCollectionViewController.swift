@@ -14,34 +14,58 @@ import Alamofire
  */
 class APQRCPCollectionViewController: APQRCPBaseViewController {
     
+    deinit {
+        print("---------页面释放")
+        NotificationCenter.default.removeObserver(self, name: NOTIFICA_ENTER_BACKGROUND_KEY,                                                  object: nil)
+    }
+    
     var isCancelRequest: Bool = false
     var qrCodePayResponse: APQRCodePayResponse?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        isCancelRequest = false
         view.theme_backgroundColor = ["#3e3e3e"]
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        displayViewAtData()
+        createSubviews()
+        createQrCodeImage()
+        startHttpCollectionResult()
+        registerNotification()
+    }
+    
+    func displayViewAtData() {
         qrCodeCollectionView.navBarTitleLabel.text = qrCodeNavTitle
         qrCodeCollectionView.merchantTitleLabel.text = "商家:" + (qrCodePayResponse?.merchantName)! + "向您发起收款"
         let createDate = qrCodePayResponse?.createDate
         let validTime = qrCodePayResponse?.validTime
         let limitDate: String = "生成于" + createDate! + ",有效期" + validTime! + "分钟"
         qrCodeCollectionView.dateLimitLabel.text = limitDate
-        createSubviews()
-        createQrCodeImage()
-        startHttpCollectionResult()
+    }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(notificEnterBackground(_:)), name: NOTIFICA_ENTER_BACKGROUND_KEY, object: nil)
+    }
+    
+    @objc func notificEnterBackground(_ notif: Notification) {
+        dismissGoHome()
     }
     
     //MARK: ---- action
     @objc func dismissGoHome() {
-        isCancelRequest = true
-        APNetworking.cancelCurrentRequest()
+        self.removeActivityData()
+        let tabBarC = APPDElEGATE.window?.rootViewController as! APBaseTabBarViewController
+        let selectVC = tabBarC.selectedViewController as! APBaseNavigationViewController
+        let lastVC = selectVC.childViewControllers.last as! APBaseViewController
+        lastVC.navigationController?.popToRootViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
    
+    func removeActivityData() {
+        isCancelRequest = true
+        APNetworking.cancelCurrentRequest()
+    }
+    
     //MARK: ---- lazy loading
     lazy var qrCodeCollectionView: APQRCodeCollectionView = {
         let view = APQRCodeCollectionView()
@@ -95,6 +119,7 @@ extension APQRCPCollectionViewController {
 }
 
 extension APQRCPCollectionViewController {
+
     
     private func startHttpCollectionResult() {
         if !self.isCancelRequest {

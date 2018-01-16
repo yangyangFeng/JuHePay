@@ -69,7 +69,7 @@ class APBaseWebViewController: APBaseViewController{
         return self.webView
     }()
     
-    lazy private var progressView: UIProgressView = {
+    lazy var progressView: UIProgressView = {
         self.progressView = UIProgressView(frame: CGRect.zero)
         self.progressView.tintColor = UIColor(hex6: 0xc8a556)
         self.progressView.trackTintColor = UIColor.groupTableViewBackground

@@ -65,9 +65,13 @@ class APNetworkRequest: APNetworkUtil {
                                         }
                                     case .failure:
                                         DispatchQueue.main.async {
+                                            let tempError = response.result.error! as NSError
                                             let baseError = APBaseError()
-                                            baseError.status = String(describing: response.response?.statusCode)
-                                            baseError.message = response.result.error?.localizedDescription
+                                            baseError.status = String(describing: tempError.code)
+                                            baseError.message = tempError.domain
+                                            if baseError.status == "-1009" {
+                                                baseError.message = "似乎已断开了与互联网的连接"
+                                            }
                                             print("error: \(String(describing: baseError.message))")
                                             failure(baseError)
                                         }
