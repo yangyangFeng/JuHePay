@@ -15,6 +15,7 @@ class APSettingViewController: APBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ap_setStatusBarStyle(.lightContent)
+        view.theme_backgroundColor = ["#F5F5F5"]
         view.addSubview(submitCell)
         view.addSubview(tableView)
         
@@ -62,7 +63,7 @@ class APSettingViewController: APBaseViewController {
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
-        view.theme_backgroundColor = ["#fafafa"]
+        view.theme_backgroundColor = ["#F5F5F5"]
         view.register(APSettingCell.self, forCellReuseIdentifier: "APSettingCell")
         return view
     }()

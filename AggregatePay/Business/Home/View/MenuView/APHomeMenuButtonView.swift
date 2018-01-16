@@ -26,7 +26,12 @@ class APHomeMenuButtonView: UIView {
         iconImageView.contentMode = .scaleAspectFit
         
         titleLabel.font = UIFont(name:"Arial-BoldItalicMT", size:12)
-        titleLabel.theme_textColor = ["#8a8067"]
+        if itemModel.wayIconImage == "" {
+            titleLabel.theme_textColor = ["#D9CDB2"]
+        }
+        else {
+            titleLabel.theme_textColor = ["#8a8067"]
+        }
         titleLabel.textAlignment = .center
         titleLabel.text = itemModel.title
         

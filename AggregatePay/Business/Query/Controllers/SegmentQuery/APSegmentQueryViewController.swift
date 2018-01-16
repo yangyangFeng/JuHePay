@@ -24,13 +24,14 @@ class APSegmentQueryViewController: APBaseViewController {
     lazy var segmentView: APSegmentControl = {
         let segmentRect = CGRect.init(x: 0, y: 0, width: K_Width, height: 40)
         let view = APSegmentControl(["交易查询","分润查询"], frame: segmentRect)
-        view.backGroundColor = "#f5f5f5"
+        view.backGroundColor = "#F5F5F5"
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "账单"
+        ap_setStatusBarStyle(.lightContent)
         navigationItem.rightBarButtonItem = rightBarButtonItem
         weak var weakSelf = self
         view.addSubview(segmentView)

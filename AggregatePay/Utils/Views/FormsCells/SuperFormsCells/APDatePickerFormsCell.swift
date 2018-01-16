@@ -46,26 +46,26 @@ class APDatePickerFormsCell: UIView {
             make.left.equalTo(0)
             make.right.equalTo(0)
             make.bottom.equalTo(-2)
-            make.height.equalTo(2)
+            make.height.equalTo(2.5)
         }
         
         to.snp.makeConstraints { (make) in
-            make.centerY.equalTo(snp.centerY).offset(0)
+            make.centerY.equalTo(snp.centerY).offset(-2)
             make.centerX.equalTo(snp.centerX).offset(0)
             make.width.equalTo(12)
         }
         
         leftHeadView.snp.makeConstraints { (make) in
             make.left.equalTo(0)
-            make.top.equalTo(0)
-            make.bottom.equalTo(0)
+            make.centerY.equalTo(to.snp.centerY)
+            make.height.equalTo(40)
             make.right.equalTo(to.snp.left).offset(-8)
         }
         
         rightHeadView.snp.makeConstraints { (make) in
             make.right.equalTo(0)
-            make.top.equalTo(0)
-            make.bottom.equalTo(0)
+            make.centerY.equalTo(to.snp.centerY)
+            make.height.equalTo(40)
             make.left.equalTo(to.snp.right).offset(8)
         }
     }

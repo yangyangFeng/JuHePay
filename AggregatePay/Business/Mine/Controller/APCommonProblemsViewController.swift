@@ -13,6 +13,7 @@ class APCommonProblemsViewController: APBaseWebViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "常见问题"
+        ap_setStatusBarStyle(.lightContent)
     }
 
     override func ap_url() -> String {

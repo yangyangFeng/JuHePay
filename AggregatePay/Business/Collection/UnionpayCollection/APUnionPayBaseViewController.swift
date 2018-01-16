@@ -20,6 +20,7 @@ class APUnionPayBaseViewController: APBaseViewController {
     var payServiceCode: String = "UNIONPAYPAY"
     override func viewDidLoad() {
         super.viewDidLoad()
+        ap_setStatusBarStyle(.lightContent)
         if integraFlag == "1" {
             payServiceCode = "UNIONPAYGIFTPAY"
         }
