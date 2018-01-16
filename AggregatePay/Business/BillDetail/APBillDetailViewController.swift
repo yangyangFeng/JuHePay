@@ -18,11 +18,18 @@ class APBillDetailViewController: APBaseViewController, UITableViewDelegate, UIT
         }
     }
     
+    var titleLabelStr: String? {
+        willSet {
+            headerView.titleLabel.text = newValue
+        }
+    }
+    
     //MARK: ---- 生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "交易详情"
+        
         view.theme_backgroundColor = ["#fafafa"]
         
         view.addSubview(headerView)

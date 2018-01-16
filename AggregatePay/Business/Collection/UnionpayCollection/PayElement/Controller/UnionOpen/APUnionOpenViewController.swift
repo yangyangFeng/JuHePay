@@ -26,6 +26,7 @@ class APUnionOpenViewController: APUnionBaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unionHttpTool?.ap_remove()
+        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
     }
     
     override func viewDidLoad() {
@@ -159,7 +160,7 @@ class APUnionOpenViewController: APUnionBaseViewController {
         //点击阅读协议
         agreedCell.extButtonBlock = { (key, value) in
             let protocolVC = APBaseWebViewController()
-            protocolVC.title = "银联快捷开通协议"
+            protocolVC.title = "银联用户服务协议"
             protocolVC.urlService = APHttpService.unionPayAgreement
             weakSelf?.navigationController?.pushViewController(protocolVC, animated: true)
         }

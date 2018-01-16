@@ -28,6 +28,7 @@ class APLoginRequest: APBaseRequest, NSCopying {
         model.mobileNo = self.mobileNo
         model.passwd = self.passwd
         model.registId = self.registId
+        model.isRemember = self.isRemember
         return model
     }
 }

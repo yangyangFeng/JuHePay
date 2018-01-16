@@ -8,13 +8,14 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
     public var isLandscape = false
-    
+    let manager = NetworkReachabilityManager(host: "www.baidu.com")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -26,6 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.makeKeyAndVisible()
         
         APGuideView.showGuideView()
+        
+        manager!.listener = { status in
+            switch status {
+            case .notReachable:
+                print("notReachable")
+            case .unknown:
+                print("unknown")
+            case .reachable(.ethernetOrWiFi):
+                print("ethernetOrWiFi")
+            case .reachable(.wwan):
+                print("wwan")
+            }
+        }
+        manager!.startListening()
         return true
     }
 }
@@ -79,8 +94,8 @@ extension AppDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        let notification = Notification(name: NOTIFICA_ENTER_BACKGROUND_KEY, object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {

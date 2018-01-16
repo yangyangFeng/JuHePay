@@ -14,7 +14,7 @@ import UIKit
 class APQRCPElementViewController: APQRCPBaseViewController {
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "selectMerchant"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NOTIFICA_SELECT_MERCHANT_KEY, object: nil)
     }
 
     var merchantDetailModel:APMerchantDetail? {
@@ -99,8 +99,10 @@ extension APQRCPElementViewController {
         submitCell.buttonBlock = { (key, value) in
             weakSelf?.startHttpGetQRCode()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationSelectMerchant(_:)),
-                                               name: NSNotification.Name(rawValue: "selectMerchant"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(notificationSelectMerchant(_:)),
+                                               name: NOTIFICA_SELECT_MERCHANT_KEY,
+                                               object: nil)
     }
 }
 
@@ -125,7 +127,7 @@ extension APQRCPElementViewController {
     
     private func startHttpGetQRCode() {
         qrCodePayRequest.transAmount = String((Double(amountStr!)! * 100))
-        qrCodePayRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String
+        qrCodePayRequest.userId = APUserDefaultCache.AP_get(key: .userId) as? String
         view.AP_loadingBegin()
         submitCell.loading(isLoading: true, isComplete: nil)
         APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl,

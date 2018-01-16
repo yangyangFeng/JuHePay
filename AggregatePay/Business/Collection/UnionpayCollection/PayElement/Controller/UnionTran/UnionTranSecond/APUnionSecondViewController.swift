@@ -25,10 +25,13 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolBarView.selectCreditCardButton.isHidden = false
+        bankCardNoCell.textCell.textField.rightViewMode = .always
+        
     }
     
     override func ap_initCreateSubviews() {
         super.ap_initCreateSubviews()
+        
         view.addSubview(realNameCell)
         view.addSubview(bankCardNoCell)
         view.addSubview(validityDateCell)
@@ -82,6 +85,12 @@ class APUnionSecondViewController: APUnionTranBaseViewController {
             weakSelf?.transMsgRequest.cardNo = value
             weakSelf?.quickPayRequest.cardNo = value
         }
+        
+        bankCardNoCell.payEssentialRightViewBlock = { param in
+            weakSelf?.transMsgRequest.cardNo = ""
+            weakSelf?.quickPayRequest.cardNo = ""
+        }
+        
         //获取用户输入的预留手机号
         phoneNoCell.textCell.textBlock = { (key, value) in
             weakSelf?.transMsgRequest.reserveMobileNo = value

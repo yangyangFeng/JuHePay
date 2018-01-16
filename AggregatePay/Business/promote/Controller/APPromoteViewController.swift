@@ -35,12 +35,8 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
         
         view.addSubview(qrImageView)
         qrImageView.snp.makeConstraints { (make) in
-//            make.top.equalTo(9)
             make.width.equalTo(K_Width*0.6)
             make.top.equalTo(9)
-//            equalToSuperview().offset(9)
-//            make.height.equalTo(K_Width*0.6*1.8)
-            //(((414)*(qrImageView.bgImageView.image?.size.width)!/(qrImageView.bgImageView.image?.size.height)!))
             make.bottom.equalTo(shareTemplateView.snp.top).offset(-12)
             make.centerX.equalToSuperview().offset(0)
             
@@ -68,10 +64,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
 
     func AP_Action_Click(_ obj: Any) {
         qrImageView.bgImageView.image = obj as? UIImage
-//        qrImageView.snp.updateConstraints { (make) in
-//            make.width.equalTo(qrImageView.size.height / 1.8)
-////                ((414)*(qrImageView.bgImageView.image?.size.width)!/(qrImageView.bgImageView.image?.size.height)!))
-//        }
+
     }
     
 

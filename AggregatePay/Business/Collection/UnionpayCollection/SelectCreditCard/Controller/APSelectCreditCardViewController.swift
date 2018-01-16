@@ -114,12 +114,14 @@ extension APSelectCreditCardViewController:
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = datas[indexPath.row]
-        detail.cardNo = aesDecryptString(detail.cardNo,UNION_AES_CARD_KEY)
-        NotificationCenter.default.post(Notification.init(name: TRAN_CARD_NOTIF_KEY,
-                                                          object: detail,
-                                                          userInfo: nil))
-        navigationController?.popViewController(animated: true)
+        if datas.count > 0 {
+            let detail = datas[indexPath.row]
+            detail.cardNo = aesDecryptString(detail.cardNo,UNION_AES_CARD_KEY)
+            NotificationCenter.default.post(Notification.init(name: TRAN_CARD_NOTIF_KEY,
+                                                              object: detail,
+                                                              userInfo: nil))
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 
