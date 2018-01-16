@@ -214,9 +214,7 @@ extension APBaseViewController {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            APAccessControler.joinAuthModule()
         }) { (cancelAction) in
             
         }
@@ -229,9 +227,7 @@ extension APBaseViewController {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            APAccessControler.joinAuthModule()
         }) { (cancelAction) in
             
         }
@@ -255,9 +251,7 @@ extension APBaseViewController {
             param.apConfirmTitle = "去填写"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.selectTabBarIndex(atIndex: 2)
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            APAccessControler.joinAuthModule()
         }) { (cancelAction) in
             
         }

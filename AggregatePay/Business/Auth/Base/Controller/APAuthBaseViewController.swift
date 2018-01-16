@@ -156,7 +156,7 @@ class APAuthBaseViewController: APBaseViewController {
 extension APAuthBaseViewController {
     
     func uiConfing() {
-        
+        navigationController?.navigationBar.barTintColor = UIColor.init(hex6: 0x373737)
         if let _ = processView() {
             setUpNavi()
         }

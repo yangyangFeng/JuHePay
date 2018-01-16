@@ -33,6 +33,13 @@ class APAuthNaviViewController: APBaseNavigationViewController {
             make.left.right.equalToSuperview()
             make.height.equalTo(40)
         }
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.vhl_setBackgroundColor(UIColor.init(hex6: 0x373737))
+        
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

@@ -89,3 +89,4 @@ class APAuthHelper: NSObject {
         sharedInstance.settleCardAuthState = .Other
     }
 }
+

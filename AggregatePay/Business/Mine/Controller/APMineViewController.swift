@@ -82,12 +82,12 @@ class APMineViewController: APMineBaseViewController{
     
     lazy var headView: APMineHeaderView = {
         let view = APMineHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: K_Width, height: 208-64))
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(headDidAction), for: UIControlEvents.touchUpInside)
-        view.addSubview(button)
-        button.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().offset(0)
-        }
+//        let button = UIButton(type: .system)
+//        button.addTarget(self, action: #selector(headDidAction), for: UIControlEvents.touchUpInside)
+//        view.addSubview(button)
+//        button.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview().offset(0)
+//        }
         return view
     }()
     
