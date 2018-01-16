@@ -291,8 +291,8 @@ extension APCameraViewController {
         
         leftToolView.snp.makeConstraints { (make) in
             
-            make.top.equalToSuperview().offset(20)
-            make.left.right.equalToSuperview()
+//            make.top.equalToSuperview().offset(20)
+            make.top.left.right.equalToSuperview()
             make.height.equalTo(camera_LeftViewWidth)
         }
         rightToolView.snp.makeConstraints { (make) in
@@ -307,13 +307,14 @@ extension APCameraViewController {
         leftToolView.addSubview(flashButton)
         
         backButton.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
+//            make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-camera_Padding)
+            make.bottom.equalToSuperview()
             make.height.width.equalTo(camera_LeftViewWidth)
         }
         flashButton.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview().offset(10)
-            make.centerY.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.size.equalTo(backButton)
         })
     }
