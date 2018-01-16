@@ -23,12 +23,12 @@ class APWalletDetailListCell: UITableViewCell {
     }
     
     public func displayQueryAccountRecordListDetail(detail: APQueryAccountRecordListDetail) {
-        let amountNum = Double(detail.endAmount!)! / 100.00
+        let amountNum = Double(detail.amount!)! / 100.00
         if detail.traceType == "提现" {
             amountLabel.text = String(format: "¥-%.2f", amountNum)
             iconImageView.theme_image = ["wallet_withdraw_cell_icon"]
         }
-        else if detail.traceType == "下级分润"{
+        else if detail.traceType == "分润"{
             amountLabel.text = String(format: "¥+%.2f", amountNum)
             iconImageView.theme_image = ["wallet_profits_cell_icon"]
         }

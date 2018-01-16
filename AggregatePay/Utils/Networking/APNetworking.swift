@@ -237,6 +237,9 @@ extension APNetworking {
         if baseError.status == "404" {
             baseError.message = "请求服务器失败"
         }
+        if baseError.status  == "-1009" {
+            baseError.message = "您似乎断开互联网"
+        }
         else {
             baseError.message = "请求服务器失败"
         }

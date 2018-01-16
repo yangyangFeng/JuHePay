@@ -11,16 +11,7 @@ import UIKit
 class APUnionBaseViewController: APUnionPayBaseViewController {
     
     var payPlaceTitle: String?  // 显示渠道标题
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "输入支付要素"
@@ -90,7 +81,7 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
         return view
     }()
     
-    //信用卡卡号//6230 5820 0002 6379 795
+    //信用卡卡号
     lazy var bankCardNoCell: APPayElementTextCell = {
         let view = APPayElementTextCell()
         view.titleLabel.text = "信用卡卡号"
@@ -139,7 +130,7 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
     lazy var agreedCell: APSelectBoxFormsCell = {
         let view = APSelectBoxFormsCell()
         view.button.setTitle(_ : " 我已阅读并接受", for: .normal)
-        view.extButton.setTitle(_ : "《XXX用户协议》", for: .normal)
+        view.extButton.setTitle(_ : "《银联用户服务协议》", for: .normal)
         return view
     }()
     

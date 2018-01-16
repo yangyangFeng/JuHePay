@@ -113,11 +113,13 @@ extension APQRCPSeleMerchantViewController:
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model: APMerchantDetail = datas[indexPath.row] as APMerchantDetail
-        NotificationCenter.default.post(Notification.init(name: NOTIFICA_SELECT_MERCHANT_KEY,
-                                                          object: model,
-                                                          userInfo: nil))
-        navigationController?.popViewController(animated: true)
+        if datas.count > 0 {
+            let model: APMerchantDetail = datas[indexPath.row] as APMerchantDetail
+            NotificationCenter.default.post(Notification.init(name: NOTIFICA_SELECT_MERCHANT_KEY,
+                                                              object: model,
+                                                              userInfo: nil))
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }

@@ -16,6 +16,7 @@ class APRegisterProtocolViewController: APBaseWebViewController {
         view.backgroundColor = UIColor.white
         vhl_setNavBackgroundColor(UIColor.white)
         vhl_setNavBarTitleColor(UIColor(hex6: 0x7F5E12))
+        progressView.trackTintColor = UIColor.white
     }
     
     override func AP_navigationLeftItemImage() -> UIImage {

@@ -20,6 +20,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     var unionTimeToos: APUnionTimeTools?
     
     override func goBackAction() {
+        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
         unionTimeToos?.ap_endTime()
         super.goBackAction()
     }
@@ -30,7 +31,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
         NotificationCenter.default.removeObserver(self, name: TRAN_CARD_NOTIF_KEY, object: nil)
         removeEnterBackgroundNotister()
     }
-    
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         quickPayRequest.preSerial = ""
@@ -157,13 +158,13 @@ extension APUnionTranBaseViewController:
 extension APUnionTranBaseViewController {
     
     @objc func notificEnterBackground(_ notif: Notification) {
+        smsCodeCell.smsCodeCell.sendSmsCodeButton.countingStatus = .end
         submitCell.button.isEnabled = true
         unionTimeToos?.ap_endTime()
         gotoTranDispose()
     }
     
     @objc func notificationCardDetail(_ notif: Notification) {
-        
         toolBarView.selectCreditCardButton.isHidden = false
         let cardDetail = notif.object as! APQueryQuickPayCardDetail
         
@@ -222,7 +223,6 @@ extension APUnionTranBaseViewController {
     }
     
     func gotoTranSuccess(result: APQuickPayResponse) {
-        
         let successVC = APCollectionSuccessViewController()
         successVC.resultDic = ["orderNo":result.orderNo,
                                "transDateTime":result.transTime,

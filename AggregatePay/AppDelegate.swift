@@ -8,13 +8,14 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
     public var isLandscape = false
-    
+    let manager = NetworkReachabilityManager(host: "www.baidu.com")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -26,6 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.makeKeyAndVisible()
         
         APGuideView.showGuideView()
+        
+        manager!.listener = { status in
+            switch status {
+            case .notReachable:
+                print("notReachable")
+            case .unknown:
+                print("unknown")
+            case .reachable(.ethernetOrWiFi):
+                print("ethernetOrWiFi")
+            case .reachable(.wwan):
+                print("wwan")
+            }
+        }
+        manager!.startListening()
         return true
     }
 }
