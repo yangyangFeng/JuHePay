@@ -12,6 +12,7 @@ class APAuthSubmitCell: APSubmitFormsCell {
 
     override init() {
         super.init()
+        
         button.setTitle("上传资料", for: .normal)
     }
     

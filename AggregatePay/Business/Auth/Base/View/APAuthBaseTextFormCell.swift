@@ -21,6 +21,9 @@ class APAuthBaseTextFormCell: APTextFormsCell {
         super.init()
         backgroundColor = UIColor.white
         
+        topLine.isHidden = true
+        bottomLine.isHidden = true
+        
         titleLabel.textColor = UIColor.init(hex6: 0x484848)
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.backgroundColor = UIColor.white

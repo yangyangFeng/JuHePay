@@ -24,7 +24,7 @@ class APAuthOCRTextFormCell: APAuthBaseTextFormCell {
     
     override init() {
         super.init()
-        
+       topLine.isHidden = true
        
         scanButton.setImage(UIImage.init(named: "auth_scan_button"), for: .normal)
         scanButton.addTarget(self, action: #selector(tap), for: .touchUpInside)

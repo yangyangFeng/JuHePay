@@ -12,6 +12,7 @@ class APAuthPhoneNumFormCell: APAuthBaseTextFormCell {
 
     override init() {
         super.init()
+        topLine.isHidden = true
 //        predicateInputRegx(inputRegx: "^1[0-9]{0,10}$")
         titleLabel.text = "预留手机号"
         textField.keyboardType = UIKeyboardType.numberPad

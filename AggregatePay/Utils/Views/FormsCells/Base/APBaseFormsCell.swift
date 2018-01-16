@@ -61,14 +61,14 @@ class APBaseFormsCell: UIView {
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
             maker.top.equalTo(self.snp.top)
-            maker.height.equalTo(1)
+            maker.height.equalTo(0.5)
         }
         
         bottomLine.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
             maker.bottom.equalTo(self.snp.bottom)
-            maker.height.equalTo(1)
+            maker.height.equalTo(0.5)
         }
     }
     

@@ -213,7 +213,7 @@ extension APRealNameAuthViewController {
         }
         
         formCellView.snp.updateConstraints({ (make) in
-            make.height.equalTo(103)
+            make.height.equalTo(102)
         })
         
         inputTipView.snp.updateConstraints { (make) in
@@ -236,12 +236,12 @@ extension APRealNameAuthViewController {
         formCellView.addSubview(realNameCell)
         formCellView.addSubview(idCardNoCell)
         realNameCell.snp.makeConstraints { (make) in
-            make.left.top.equalToSuperview().offset(1)
+            make.left.top.equalToSuperview().offset(0.5)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
         }
         idCardNoCell.snp.makeConstraints { (make) in
-            make.top.equalTo(realNameCell.snp.bottom).offset(1)
+            make.top.equalTo(realNameCell.snp.bottom).offset(0.5)
             make.right.left.height.equalTo(realNameCell)
         }
     }
