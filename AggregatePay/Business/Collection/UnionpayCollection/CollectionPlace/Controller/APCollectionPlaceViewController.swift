@@ -32,7 +32,6 @@ class APCollectionPlaceViewController: APUnionPayBaseViewController {
         view.dataSource = self;
         view.separatorStyle = .none
         view.tableFooterView = UIView()
-        view.AP_setupEmpty()
         view.theme_backgroundColor = ["#fafafa"]
         view.register(APCollectionPlaceCell.self,
                       forCellReuseIdentifier: "APCollectionPlaceCell")
@@ -49,11 +48,24 @@ extension APCollectionPlaceViewController {
         view.AP_loadingBegin()
         APNetworking.post(httpUrl: APHttpUrl.trans_httpUrl, action: APHttpService.queryChannelFees, params: queryChannelFessRequest, aClass: APQueryChannelFessResponse.self, success: { (baseResp) in
             self.httpDisposeQueryChannelFess(response: baseResp)
-            self.tableView.reloadData()
             self.view.AP_loadingEnd()
         }, failure: {(baseError) in
             self.view.AP_loadingEnd()
-            self.view.makeToast(baseError.message)
+            if baseError.status == "03" {
+                var emptyConfig = APEmptyConfig()
+                emptyConfig.titleFont = 14
+                emptyConfig.titleColor = 0x484848
+                emptyConfig.title = baseError.message!
+                emptyConfig.image = "Table_Empty_Image"
+                emptyConfig.verticalSpace = 22
+                emptyConfig.verticalOffset = 0
+                self.tableView.AP_setupEmpty(customConfig: emptyConfig)
+            }
+            else {
+                self.view.makeToast(baseError.message)
+                self.tableView.AP_setupEmpty()
+            }
+            self.tableView.reloadData()
         })
     }
     
@@ -125,6 +137,10 @@ extension APCollectionPlaceViewController {
                                            addD0: result.unionpayGiftAddD0!)
         datas.append(placeModel)
         datas.append(placeGitfModel)
+        if datas.count <= 0 {
+            tableView.AP_setupEmpty()
+        }
+        tableView.reloadData()
     }
 }
 

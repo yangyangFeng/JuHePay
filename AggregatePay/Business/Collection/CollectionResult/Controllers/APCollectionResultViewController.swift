@@ -52,6 +52,7 @@ UITableViewDataSource {
         super.viewDidLoad()
         
         title = "订单详情"
+        ap_setStatusBarStyle(.lightContent)
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         view.theme_backgroundColor = ["#fafafa"]
         navigationItem.rightBarButtonItem = rightBarButtonItem

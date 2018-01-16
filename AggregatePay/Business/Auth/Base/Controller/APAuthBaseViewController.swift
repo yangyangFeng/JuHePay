@@ -56,6 +56,11 @@ class APAuthBaseViewController: APBaseViewController {
         headMessageLabel.textColor = UIColor.init(hex6: 0xe4544c)
     }
     
+    lazy private var previewManager: APPhotoPreviewManager = {
+        let manager = APPhotoPreviewManager()
+        return manager
+    }()
+    
     lazy private var headMessageView: UIView = {
         
         let view = UIView()
@@ -353,7 +358,6 @@ extension APAuthBaseViewController: UICollectionViewDelegate,UICollectionViewDat
     }
     
     func toPreview(gridModel: APGridViewModel) {
-        let previewManager = APPhotoPreviewManager()
         previewManager.isOnlyPreView = !gridModel.editState
         previewManager.show(fromController: self, image: gridModel.image!)
         previewManager.photoPreview.photoPreviewHandle = {(isUse) in

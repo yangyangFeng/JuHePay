@@ -62,7 +62,7 @@ class APModifySuccessViewController: APBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ap_setStatusBarStyle(.lightContent)
         view.addSubview(contentView)
         view.addSubview(imageView)
         view.addSubview(confirmButton)

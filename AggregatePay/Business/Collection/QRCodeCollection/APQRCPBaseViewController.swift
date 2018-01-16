@@ -24,6 +24,7 @@ class APQRCPBaseViewController: APBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ap_setStatusBarStyle(.lightContent)
         switch payType! {
         case "wechatPay":
             self.title = "微信收款"

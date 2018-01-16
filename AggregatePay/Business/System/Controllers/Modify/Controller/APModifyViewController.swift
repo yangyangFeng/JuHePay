@@ -15,6 +15,7 @@ class APModifyViewController: APBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ap_setStatusBarStyle(.lightContent)
         title = "修改密码"
         view.backgroundColor = UIColor.white
         createSubviews()
@@ -84,7 +85,7 @@ extension APModifyViewController {
         }
         
         submitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(repeatPasswordCell.snp.bottom).offset(20)
+            make.top.equalTo(repeatPasswordCell.snp.bottom).offset(30.5)
             make.left.right.equalTo(oldPasswordCell)
             make.height.equalTo(41)
         }
@@ -141,8 +142,14 @@ extension APModifyViewController {
             view.makeToast("密码格式不正确")
             return
         }
+        
+        if updatePasswordRequest.pwd == updatePasswordRequest.pwdOld{
+            view.makeToast("新密码不能与原密码一致")
+            return
+        }
+        
         if updatePasswordRequest.pwd != updatePasswordRequest.pwdConfirm{
-            view.makeToast("再次输入密码不正确")
+            view.makeToast("新密码与确认密码输入不一致")
             return
         }
         updatePasswordRequest.userId = APUserDefaultCache.AP_get(key: .userId) as! String

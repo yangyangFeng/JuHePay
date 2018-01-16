@@ -20,14 +20,14 @@ class APQRCPElementViewController: APQRCPBaseViewController {
     var merchantDetailModel:APMerchantDetail? {
         willSet {
             selectMerchantCell.titleLabel.text = newValue?.dictKey
-            qrCodePayRequest.categroyCode = newValue?.dictValue
+            qrCodePayRequest.categroyCode = newValue?.dictKey
         }
     }
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.backgroundColor = UIColor.groupTableViewBackground
+        view.theme_backgroundColor = ["#F5F5F5"]
         edgesForExtendedLayout =  UIRectEdge(rawValue: 0)
         
         createSubViews()
@@ -80,7 +80,7 @@ extension APQRCPElementViewController {
         }
         
         submitCell.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(selectMerchantCell.snp.bottom).offset(20)
+            make.top.equalTo(selectMerchantCell.snp.bottom).offset(30.5)
             make.left.equalTo(view.snp.left).offset(30)
             make.right.equalTo(view.snp.right).offset(-30)
             make.height.equalTo(44)

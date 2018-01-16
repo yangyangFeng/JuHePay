@@ -55,6 +55,7 @@ class APBaseQueryViewController: APBaseViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        ap_setStatusBarStyle(.lightContent)
         view.addSubview(bg_imageView)
         view.addSubview(datePickerFormsCell)
         view.addSubview(tableView)
@@ -79,7 +80,7 @@ class APBaseQueryViewController: APBaseViewController {
             make.left.equalTo(view).offset(margin)
             make.right.equalTo(view).offset(-margin)
             make.top.equalTo(view)
-            make.height.equalTo(42)
+            make.height.equalTo(44)
         }
         
         pulldownController.snp.makeConstraints { (make) in
