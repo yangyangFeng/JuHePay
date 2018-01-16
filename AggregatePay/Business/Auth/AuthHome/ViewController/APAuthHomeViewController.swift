@@ -30,7 +30,7 @@ class APAuthHomeViewController: APBaseViewController {
         super.viewWillAppear(animated)
         loadAuthInfo()
     }
-    
+
     deinit {
         APAuthHelper.clearAuthInfo()
         print( String(describing: self.classForCoder) + "已释放")
@@ -47,24 +47,7 @@ class APAuthHomeViewController: APBaseViewController {
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
-            
-            switch APAuthHelper.sharedInstance.realNameAuthState {
-                
-            case .None:
-                guard self.isFirstIn else
-                {
-                    return
-                }
-                let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
-                self.navigationController?.present(authNavi, animated: false, completion: nil)
-                authNavi.finishAuths = {
-                    authNavi.dismiss(animated: true, completion: nil)
-                    weakSelf!.isFirstIn = false
-                }
-                break
-            default:
-                break
-            }
+
         }) {(error) in
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)

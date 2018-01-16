@@ -96,9 +96,7 @@ class APAccessControler: NSObject {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.tabBarSelectController()
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            joinAuthModule()
         }) { (cancelAction) in
             
         }
@@ -111,9 +109,7 @@ class APAccessControler: NSObject {
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.tabBarSelectController()
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            joinAuthModule()
         }) { (cancelAction) in
             
         }
@@ -137,11 +133,34 @@ class APAccessControler: NSObject {
             param.apConfirmTitle = "去填写"
             param.apCanceTitle = "取消"
         }, confirm: { (confirmAction) in
-            let authVC = APAuthHomeViewController()
-            let currentVC = APPDElEGATE.tabBarSelectController()
-            currentVC.navigationController?.pushViewController(authVC, animated: true)
+            joinAuthModule()
         }) { (cancelAction) in
             
         }
+    }
+    
+    static func joinAuthModule(){
+        let lastView: UIView = (APPDElEGATE.window?.subviews.last!)!
+        lastView.AP_loadingBegin()
+        APAuthLogicManager.AP_joinAuthModule({ (VC, error) in
+            lastView.AP_loadingEnd()
+            guard let authVC = VC else {
+                lastView.makeToast(error?.message)
+                return
+            }
+            if authVC.isKind(of: UINavigationController.self) {
+                let currentVC = APPDElEGATE.tabBarSelectController()
+                currentVC.navigationController?.present(authVC, animated: true, completion: nil)
+                let authHomeNav : APAuthNaviViewController = authVC as! APAuthNaviViewController
+                weak var weakAuthHomeNav = authHomeNav
+                authHomeNav.finishAuths = {
+                    weakAuthHomeNav?.dismiss(animated: true, completion: nil)
+                }
+            }else{
+                let currentVC = APPDElEGATE.tabBarSelectController()
+                currentVC.navigationController?.pushViewController(authVC, animated: true)
+            }
+            
+        })
     }
 }
