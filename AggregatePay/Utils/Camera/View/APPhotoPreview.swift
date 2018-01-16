@@ -20,6 +20,10 @@ class APPhotoPreviewManager: NSObject {
             make.edges.equalToSuperview()
         }
     }
+    
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
 }
 
 typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void

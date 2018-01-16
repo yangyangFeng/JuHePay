@@ -232,6 +232,11 @@ class APCameraViewController: APBaseViewController {
         return view
     }()
     
+    private lazy var previewManager: APPhotoPreviewManager = {
+        let  manager = APPhotoPreviewManager()
+        return manager
+    }()
+    
     // --------------------------  SET/GET
     /// 当前选择的是拍照还是OCR
     private var currentCameraMode: APCameraMode? {
@@ -439,7 +444,6 @@ extension APCameraViewController {
     private func preview(withImage: UIImage?, handle: ((_ isEnsure: Bool) -> Void)?) {
         if let image = withImage {
             
-            let previewManager = APPhotoPreviewManager()
             previewManager.show(fromController: self, image: image)
             previewManager.photoPreview.photoPreviewHandle = {(isUse) in
                 if isUse {
