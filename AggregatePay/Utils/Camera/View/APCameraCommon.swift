@@ -11,10 +11,10 @@ import UIKit
 let camera_scale: CGFloat = (SCREENHEIGHT / 667)
 let camera_LeftViewWidth: CGFloat = 52.0 * camera_scale
 let camera_RightViewWidth: CGFloat = 107.0 * camera_scale
-let camera_Padding: CGFloat = 20.0 * camera_scale
+let camera_Padding: CGFloat = 20.0
 let camera_EnsureSize: CGFloat = 80.0 * camera_scale
 
 let camera_preview_top: CGFloat = 72 * camera_scale
-let camera_preview_Padding: CGFloat = 45 * camera_scale
+let camera_preview_Padding: CGFloat = 45
 
 
