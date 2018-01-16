@@ -195,24 +195,25 @@ extension APSettlementCardAuthViewController {
         formCellView.addSubview(bankNameFormCell)
     
         nameFormCell.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(1)
+            make.top.equalToSuperview().offset(0)
+            make.left.equalToSuperview().offset(1)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
         }
         idCardFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(nameFormCell.snp.bottom).offset(1)
+            make.top.equalTo(nameFormCell.snp.bottom).offset(0.5)
             make.left.equalToSuperview().offset(1)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
         }
         bankCardNoFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(idCardFormCell.snp.bottom).offset(1)
+            make.top.equalTo(idCardFormCell.snp.bottom).offset(0.5)
             make.left.equalToSuperview().offset(1)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
         }
         bankNameFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(bankCardNoFormCell.snp.bottom).offset(1)
+            make.top.equalTo(bankCardNoFormCell.snp.bottom).offset(0.5)
             make.left.equalToSuperview().offset(1)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
@@ -221,7 +222,7 @@ extension APSettlementCardAuthViewController {
         formCellView.snp.remakeConstraints { (make) in
             make.top.equalTo(headMessageLabel.snp.bottom)
             make.right.left.equalToSuperview()
-            make.height.equalTo(50 * 4 + 5)
+            make.height.equalTo(50.5 * 4)
         }
     
         bankImageModel.bottomMessage = "上传银行卡照片"
@@ -230,7 +231,7 @@ extension APSettlementCardAuthViewController {
         gridViewModels.append(bankImageModel)
         
         collectionView.snp.remakeConstraints({ (make) in
-            make.top.equalTo(formCellView.snp.bottom)
+            make.top.equalTo(formCellView.snp.bottom).offset(0.5)
             make.left.right.equalToSuperview()
             make.height.equalTo(cellHeight)
         })

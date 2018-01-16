@@ -56,7 +56,7 @@ class APAuthHomeViewController: APBaseViewController {
                     return
                 }
                 let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
-                self.navigationController?.present(authNavi, animated: true, completion: nil)
+                self.navigationController?.present(authNavi, animated: false, completion: nil)
                 authNavi.finishAuths = {
                     authNavi.dismiss(animated: true, completion: nil)
                     weakSelf!.isFirstIn = false
