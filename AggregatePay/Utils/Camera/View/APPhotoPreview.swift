@@ -11,13 +11,17 @@ import UIKit
 class APPhotoPreviewManager: NSObject {
     
     var isOnlyPreView: Bool = false
-    let photoPreview = APPhotoPreview()
+    
+    lazy var photoPreview = APPhotoPreview()
     public func show(fromController viewController: APBaseViewController, image: UIImage) {
-        photoPreview.photo = image
-        photoPreview.isOnlyPreView = isOnlyPreView
-        UIApplication.shared.keyWindow?.addSubview(photoPreview)
-        photoPreview.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+        if !photoPreview.isShowing {
+            photoPreview.photo = image
+            photoPreview.isOnlyPreView = isOnlyPreView
+            UIApplication.shared.keyWindow?.addSubview(photoPreview)
+            photoPreview.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+            photoPreview.isShowing = true
         }
     }
     
@@ -30,6 +34,7 @@ typealias APPhotoPreviewHandle = (_ isEnsure: Bool) -> Void
 
 class APPhotoPreview: UIView {
 
+    public var isShowing = false
     public var isOnlyPreView: Bool? {
         didSet {
             rephotographButton.isHidden = isOnlyPreView!
@@ -174,11 +179,13 @@ extension APPhotoPreview {
 extension APPhotoPreview {
     
     @objc func ensure() {
+        isShowing = false
         removeFromSuperview()
         photoPreviewHandle?(true)
     }
     
     @objc func rephotograph() {
+        isShowing = false
         removeFromSuperview()
         photoPreviewHandle?(false)
     }

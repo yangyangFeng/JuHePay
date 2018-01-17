@@ -148,16 +148,9 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
         authSubmitCell.loading(isLoading: true)
         APAuthHttpTool.settleCardAuth(params: authParam, success: { [weak self] (response) in
             self?.authSubmitCell.loading(isLoading: false, isComplete: {
-                if APAuthHelper.sharedInstance.settleCardAuthState == .Failure{
-                    //更新审核状态
-                    APAuthHelper.sharedInstance.settleCardAuthState = .Checking
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                else{
-                    //更新审核状态
-                    APAuthHelper.sharedInstance.settleCardAuthState = .Checking
-                    self?.controllerTransition()
-                }
+                //更新审核状态
+                AuthH.realName = .Success
+                self?.controllerTransition()
             })
         }) { [weak self] (error) in
             self?.authSubmitCell.loading(isLoading: false)

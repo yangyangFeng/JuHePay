@@ -26,9 +26,9 @@ class APAuthHttpTool: NSObject {
                          success: { (response) in
             
             let authInfo = response as! APUserAuthInfo
-            APAuthHelper.sharedInstance.realNameAuthState = APAuthState(rawValue: authInfo.realNameAuthStatus)!
-            APAuthHelper.sharedInstance.settleCardAuthState = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
-            APAuthHelper.sharedInstance.securityAuthState = APAuthState(rawValue: authInfo.safeAuthStatus)!
+            AuthH.realName = APAuthState(rawValue: authInfo.realNameAuthStatus)!
+            AuthH.settleCard = APAuthState(rawValue: authInfo.settleCardAuthStatus)!
+            AuthH.security = APAuthState(rawValue: authInfo.safeAuthStatus)!
             success(authInfo)
             
         }) { (error) in
