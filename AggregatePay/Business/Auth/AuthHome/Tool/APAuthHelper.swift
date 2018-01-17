@@ -103,7 +103,7 @@ extension APAuthHelper {
         
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
             
-            AuthH.fromViewController.view.AP_loadingEnd()
+             AuthH.fromViewController.view.AP_loadingEnd()
             
             var message = "您还未进行身份认证，请先进行认证"
             if AuthH.realName == .Success &&
@@ -151,6 +151,7 @@ extension APAuthHelper {
                 AuthH.fromViewController.view.makeToast(message)
                 failure(message)
             }
+            
         }) {(error) in
             AuthH.fromViewController.view.AP_loadingEnd()
             AuthH.fromViewController.view.makeToast(error.message)
@@ -166,6 +167,7 @@ extension APAuthHelper {
                 param.apConfirmTitle = "去认证"
                 param.apCanceTitle = "取消"
             }, confirm: { (confirmAction) in
+            
                 toRealName()
                 
             }) { (cancelAction) in
