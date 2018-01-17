@@ -144,13 +144,14 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     /// 点击确认按钮
     override func commit() {
         
-        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
-            view.makeToast("姓名请填写中文")
+        if (authParam.realName.count > 16) ||
+            (authParam.realName.count < 2){
+            view.makeToast("姓名长度出错")
             return
         }
         
-        if authParam.realName.count > 30 {
-            view.makeToast("姓名长度出错")
+        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
+            view.makeToast("姓名请填写中文")
             return
         }
         
