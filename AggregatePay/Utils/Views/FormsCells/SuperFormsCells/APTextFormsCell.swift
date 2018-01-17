@@ -48,6 +48,8 @@ class APTextFormsCell: APBaseFormsCell, UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         let text = textField.text! as NSString
+        
+        
         return limitTextCount(text: text, range: range, string: string)
     }
 
