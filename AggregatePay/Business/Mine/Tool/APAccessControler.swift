@@ -20,7 +20,11 @@ class APAccessControler: NSObject {
             }
             else
             {
-                result()
+                AuthH.openAuth(viewController: viewController, success: {
+                    result()
+                }, failure: { (msg) in
+                    
+                })
             }
         case 2:
             if !APUserInfoTool.isLogin() {
