@@ -9,7 +9,7 @@
 import UIKit
 
 class APAccessControler: NSObject {
-    static func checkAccessControl(_ level : Int, result : @escaping ()->Void) {
+    static func checkAccessControl(_ viewController : UIViewController,level : Int, result : @escaping ()->Void) {
         switch level {
         case 0:
             result()
@@ -20,14 +20,22 @@ class APAccessControler: NSObject {
             }
             else
             {
-                result()
+                AuthH.openAuth(viewController: viewController, success: {
+                    result()
+                }, failure: { (msg) in
+                    
+                })
             }
         case 2:
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
             }
             else{
-                result()
+                AuthH.openAuth(viewController: viewController, success: {
+                    result()
+                }, failure: { (msg) in
+                    
+                })
             }
             break
         default:
