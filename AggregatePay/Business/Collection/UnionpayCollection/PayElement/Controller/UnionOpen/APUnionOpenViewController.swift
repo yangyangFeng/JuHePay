@@ -220,9 +220,8 @@ extension APUnionOpenViewController {
         model.cvn = (registQuickPayRequest?.cvn)!
         model.integraFlag = (registQuickPayRequest?.integraFlag)!
         model.expireDate = (registQuickPayRequest?.expireDate)!
-        NotificationCenter.default.post(Notification.init(name: TRAN_NOTIF_KEY,
-                                                          object: model,
-                                                          userInfo: nil))
+        model.amount = self.totalAmount!
+        NotificationCenter.default.post(Notification.init(name: TRAN_NOTIF_KEY, object: model, userInfo: nil))
         navigationController?.popViewController(animated: true)
     }
     
