@@ -144,13 +144,14 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     /// 点击确认按钮
     override func commit() {
         
-        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
-            view.makeToast("姓名请填写中文")
+        if (authParam.realName.count > 16) ||
+            (authParam.realName.count < 2){
+            view.makeToast("姓名长度出错")
             return
         }
         
-        if authParam.realName.count > 30 {
-            view.makeToast("姓名长度出错")
+        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.realName) {
+            view.makeToast("姓名请填写中文")
             return
         }
         
@@ -206,7 +207,7 @@ extension APRealNameAuthViewController {
         }
         
         formCellView.snp.updateConstraints({ (make) in
-            make.height.equalTo(103)
+            make.height.equalTo(102)
         })
         
         inputTipView.snp.updateConstraints { (make) in
@@ -222,6 +223,7 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
+        realNameCell.inputRegx = .name
         
         realNameCell.enable = canEdit
         idCardNoCell.enable = canEdit
@@ -229,12 +231,12 @@ extension APRealNameAuthViewController {
         formCellView.addSubview(realNameCell)
         formCellView.addSubview(idCardNoCell)
         realNameCell.snp.makeConstraints { (make) in
-            make.left.top.equalToSuperview().offset(1)
+            make.left.top.equalToSuperview().offset(0.5)
             make.right.equalToSuperview().offset(-1)
             make.height.equalTo(50)
         }
         idCardNoCell.snp.makeConstraints { (make) in
-            make.top.equalTo(realNameCell.snp.bottom).offset(1)
+            make.top.equalTo(realNameCell.snp.bottom).offset(0.5)
             make.right.left.height.equalTo(realNameCell)
         }
     }
@@ -268,7 +270,7 @@ extension APRealNameAuthViewController: APCameraViewControllerDelegate {
     
     func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
         updateGridImage(image: image)
-
+        print("OCR扫描回调")
     }
     
     func ocrCameraIDCardResult(IDCard result: APOCRIDCard) {

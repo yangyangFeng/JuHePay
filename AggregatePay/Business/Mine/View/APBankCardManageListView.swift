@@ -27,7 +27,8 @@ class APBankCardManageListView: UIView, UITableViewDataSource, UITableViewDelega
         view.backgroundColor = UIColor.black
         view.register(APBankCardCell.self, forCellReuseIdentifier: "APBankCardCell")
         view.separatorStyle = .none
-        view.AP_setupEmpty()
+        let config = APEmptyConfig.init(titleFont: 14, titleColor: 0x5e4f2d, title: "无查询数据记录", image: "无绑定卡.png", verticalSpace: 20, verticalOffset: 0)
+        view.AP_setupEmpty(customConfig: config)
         return view
     }()
     

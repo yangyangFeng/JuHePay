@@ -174,26 +174,27 @@ extension APSecurityAuthViewController {
         formCellView.addSubview(phoneNumFormCell)
         
         nameFormCell.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(1)
+            make.top.left.equalToSuperview().offset(0)
+            make.left.equalToSuperview().offset(0)
             make.right.equalToSuperview().offset(-2)
             make.height.equalTo(50)
         }
         idCardFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(nameFormCell.snp.bottom).offset(1)
+            make.top.equalTo(nameFormCell.snp.bottom).offset(0.5)
             make.left.right.height.equalTo(nameFormCell)
         }
         creditCardFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(idCardFormCell.snp.bottom).offset(1)
+            make.top.equalTo(idCardFormCell.snp.bottom).offset(0.5)
             make.left.right.height.equalTo(idCardFormCell)
         }
         phoneNumFormCell.snp.makeConstraints { (make) in
-            make.top.equalTo(creditCardFormCell.snp.bottom)
+            make.top.equalTo(creditCardFormCell.snp.bottom).offset(0.5)
             make.left.right.height.equalTo(creditCardFormCell)
         }
         formCellView.snp.remakeConstraints { (make) in
-            make.top.equalTo(headMessageLabel.snp.bottom)
+            make.top.equalTo(headMessageLabel.snp.bottom).offset(0.5)
             make.left.right.equalToSuperview()
-            make.height.equalTo(4 * 50 + 5)
+            make.height.equalTo(4 * 50.5)
         }
         containerView.snp.makeConstraints { (make) in
             make.bottom.equalTo(formCellView.snp.bottom)

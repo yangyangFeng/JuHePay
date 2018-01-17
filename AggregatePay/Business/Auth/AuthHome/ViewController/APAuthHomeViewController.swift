@@ -26,7 +26,7 @@ class APAuthHomeViewController: APBaseViewController {
         layoutViews()
         loadAuthInfo()
     }
-    
+
     deinit {
         APAuthHelper.clearAuthInfo()
         print( String(describing: self.classForCoder) + "已释放")
@@ -42,7 +42,7 @@ class APAuthHomeViewController: APBaseViewController {
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
-            
+
         }) {(error) in
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)

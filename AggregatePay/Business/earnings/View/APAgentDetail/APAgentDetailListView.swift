@@ -172,7 +172,7 @@ class APAgentDetailListCell: UITableViewCell {
         bottomLine.snp.makeConstraints { (make) in
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.height.equalTo(2)
+            make.height.equalTo(0.5)
             make.bottom.equalTo(0)
         }
     }

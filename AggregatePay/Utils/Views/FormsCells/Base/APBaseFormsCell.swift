@@ -21,8 +21,9 @@ class APBaseFormsCell: UIView {
         case quickSmsCode = "^[0-9]{0,6}$"
         case inviteCode = "^[A-Za-z0-9-_]{0,6}$"
         case cvn2 = "^[0-9]{0,3}$"
-        case bankCard = "^\\d{0,24}$"
+        case bankCard = "^\\d{0,21}$"
         case idCardNo = "^\\w{0,18}$"
+        case name = "[\u{4e00}-\u{9fa5}]{0,15}$"
     }
     
    
@@ -61,14 +62,14 @@ class APBaseFormsCell: UIView {
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
             maker.top.equalTo(self.snp.top)
-            maker.height.equalTo(1)
+            maker.height.equalTo(0.5)
         }
         
         bottomLine.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left)
             maker.right.equalTo(self.snp.right)
             maker.bottom.equalTo(self.snp.bottom)
-            maker.height.equalTo(1)
+            maker.height.equalTo(0.5)
         }
     }
     

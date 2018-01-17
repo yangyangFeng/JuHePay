@@ -64,7 +64,7 @@ class APAuthHomeCell: UITableViewCell {
         }
         authStatusLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-34)
+            make.right.equalToSuperview().offset(-8)
         }
     }
 }

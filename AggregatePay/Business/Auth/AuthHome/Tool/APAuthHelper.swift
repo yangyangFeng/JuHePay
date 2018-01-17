@@ -83,8 +83,10 @@ class APAuthHelper: NSObject {
 extension APAuthHelper {
     
     
-    class func openAuth(viewController: UIViewController) {
-        openAuth(viewController: viewController, success: {
+    class func openAuth(
+        viewController: UIViewController,
+        isAlert: Bool = true) {
+        openAuth(viewController: viewController, isAlert: isAlert, success: {
             
         }) { (message) in
         }
@@ -92,6 +94,7 @@ extension APAuthHelper {
     
     class func openAuth(
         viewController: UIViewController,
+        isAlert: Bool = true,
         success: @escaping ()-> Void,
         failure: @escaping (_ message: String) -> Void)
     {
@@ -114,7 +117,7 @@ extension APAuthHelper {
                 AuthH.security == .None  {
                 
                 failure(message)
-                AuthH.ap_pushAuthVC_frist_None(message: message)
+                AuthH.ap_pushAuthVC_frist_None(message: message, isAlert: isAlert)
                 
             }
             else if AuthH.realName == .None ||
@@ -122,7 +125,7 @@ extension APAuthHelper {
                 AuthH.security == .None  {
                 
                 message = "您还未进行身份认证，请先进行认证"
-                AuthH.ap_pushAuthVC_None(message: message)
+                AuthH.ap_pushAuthVC_None(message: message, isAlert: isAlert)
                 failure(message)
                 
             }
@@ -131,7 +134,7 @@ extension APAuthHelper {
                 AuthH.security == .Checking {
                 
                 message = "您的资质在审核中，请耐心等待"
-                AuthH.ap_pushAuthVC_Checking(message: message)
+                AuthH.ap_pushAuthVC_Checking(message: message, isAlert: isAlert)
                 failure(message)
                 
             }
@@ -140,7 +143,7 @@ extension APAuthHelper {
                 AuthH.security == .Failure {
                 
                 message = "您还未进行身份认证，请先进行认证"
-                AuthH.ap_pushAuthVC_Failure(message: message)
+                AuthH.ap_pushAuthVC_Failure(message: message, isAlert: isAlert)
                 failure(message)
             }
             else {
@@ -155,32 +158,31 @@ extension APAuthHelper {
     }
     
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证----一次都未提交过)
-    class private func ap_pushAuthVC_frist_None(message: String) {
-        APAlertManager.show(param: { (param) in
-            param.apMessage = message
-            param.apConfirmTitle = "去认证"
-            param.apCanceTitle = "取消"
-        }, confirm: { (confirmAction) in
-            
-            let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
-            
-            self.fromViewController.navigationController?.present(
-                authNavi,
-                animated: true,
-                completion: nil)
-            
-            authNavi.finishAuths = {
-                authNavi.dismiss(animated: true, completion: nil)
+    class private func ap_pushAuthVC_frist_None(message: String, isAlert: Bool) {
+        
+        if isAlert {
+            APAlertManager.show(param: { (param) in
+                param.apMessage = message
+                param.apConfirmTitle = "去认证"
+                param.apCanceTitle = "取消"
+            }, confirm: { (confirmAction) in
+                toRealName()
+                
+            }) { (cancelAction) in
+                
             }
-        }) { (cancelAction) in
-            
+        } else {
+            toRealName()
         }
     }
+
+    
+    
     
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
-    class private func ap_pushAuthVC_None(message: String) {
+    class private func ap_pushAuthVC_None(message: String, isAlert: Bool) {
         
-        AuthH.toAuthHome { (param) in
+        AuthH.toAuthHome(isAlert: isAlert) { (param) in
             param.apMessage = message
             param.apConfirmTitle = "去认证"
             param.apCanceTitle = "取消"
@@ -188,38 +190,58 @@ extension APAuthHelper {
     }
     
     //MARK: 导航跳转四审状态 (您的资质在审核中，请耐心等待)
-    class private func ap_pushAuthVC_Checking(message: String) {
+    class private func ap_pushAuthVC_Checking(message: String, isAlert: Bool) {
         
-        APAlertManager.show(param: { (param) in
+        AuthH.toAuthHome(isAlert: isAlert) { (param) in
             param.apMessage = message
-            param.apConfirmTitle = "确认"
-        }, confirm: {(confirmAction) in
-            
-        })
+            param.apConfirmTitle = "去查看"
+            param.apCanceTitle = "取消"
+        }
     }
     
     //MARK: 导航跳转四审状态 (您还未进行身份证认证，请先进行认证)
-    class private func ap_pushAuthVC_Failure(message: String) {
-        AuthH.toAuthHome { (param) in
+    class private func ap_pushAuthVC_Failure(message: String, isAlert: Bool) {
+        AuthH.toAuthHome(isAlert: isAlert) { (param) in
             param.apMessage = message
             param.apConfirmTitle = "去填写"
             param.apCanceTitle = "取消"
         }
     }
     
-    class func toAuthHome(param: @escaping (APAlertParam) -> Void) {
+    class func toRealName() {
+        let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
         
-        let alert = APAlertManager.alertController(param: param, confirm: { (confirmAction) in
+        self.fromViewController.navigationController?.present(
+            authNavi,
+            animated: true,
+            completion: nil)
+        
+        authNavi.finishAuths = {
+            authNavi.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    class func toAuthHome(isAlert: Bool ,param: @escaping (APAlertParam) -> Void) {
+        
+        if isAlert {
+            let alert = APAlertManager.alertController(param: param, confirm: { (confirmAction) in
+                let authHomeVC = APAuthHomeViewController()
+                AuthH.fromViewController.navigationController?.pushViewController(
+                    authHomeVC,
+                    animated: true)
+                
+            }, cancel: nil)
+            AuthH.fromViewController.present(
+                alert,
+                animated: true,
+                completion: nil)
+        }
+        else {
             let authHomeVC = APAuthHomeViewController()
             AuthH.fromViewController.navigationController?.pushViewController(
                 authHomeVC,
                 animated: true)
-            
-        }, cancel: nil)
-        AuthH.fromViewController.present(
-            alert,
-            animated: true,
-            completion: nil)
+        }
     }
 }
 
@@ -245,3 +267,4 @@ class APAuthData {
         return auths
     }
 }
+
