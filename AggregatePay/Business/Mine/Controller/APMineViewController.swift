@@ -13,13 +13,7 @@ import Alamofire
 
 extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol {
     func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
-        for view in (UIApplication.shared.keyWindow?.subviews)!
-        {
-            print("-________________---------------")
-            print(view)
-            print("---------------------------------")
-        }
-        print(controller)
+
         APAccessControler.checkAccessControl(self,level: level){
             
             // -1.动态获取命名空间
@@ -33,7 +27,11 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
             nextC.title = title
             
             if nextC.isKind(of: APAuthHomeViewController.self) {
-                AuthH.openAuth(viewController: self, isAlert: false)
+                AuthH.openAuth(viewController: self, success: {
+                    self.navigationController?.pushViewController(nextC)
+                }, failure: { (msg) in
+                    
+                })
             } else {
                 self.navigationController?.pushViewController(nextC)
             }
