@@ -36,6 +36,8 @@ class APUnionOpenViewController: APUnionBaseViewController {
                                          submitCell: submitCell,
                                          smsCodeCell: smsCodeCell)
         unionHttpTool?.ap_OpenDelegate = self
+        agreedCell.button.isSelected = true
+        registQuickPayRequest?.isAgreed = true
     }
     
     override func ap_httpSendSmsCode() {
