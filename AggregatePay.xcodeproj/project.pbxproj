@@ -247,7 +247,6 @@
 		746602BB1FEA96A900C3AA76 /* APShareTemplateBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */; };
 		746602BD1FEA9B5E00C3AA76 /* APShareQrImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746602BC1FEA9B5D00C3AA76 /* APShareQrImageView.swift */; };
 		74674AED1FE7B282004AA1B5 /* APReturnBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */; };
-		746929DC200E17BE00768A65 /* APAuthLogicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746929DB200E17BE00768A65 /* APAuthLogicManager.swift */; };
 		747008261FE78EAC00D6A923 /* APAgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */; };
 		747130AA1FFDC3A100A170EF /* APGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130A91FFDC3A100A170EF /* APGuideView.swift */; };
 		747130B71FFE2CD700A170EF /* APPromoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747130B61FFE2CD700A170EF /* APPromoteRequest.swift */; };
@@ -640,7 +639,6 @@
 		746602BA1FEA96A900C3AA76 /* APShareTemplateBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareTemplateBar.swift; sourceTree = "<group>"; };
 		746602BC1FEA9B5D00C3AA76 /* APShareQrImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APShareQrImageView.swift; sourceTree = "<group>"; };
 		74674AEC1FE7B282004AA1B5 /* APReturnBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APReturnBillViewController.swift; path = AggregatePay/Business/earnings/Controller/APReturnBillViewController.swift; sourceTree = SOURCE_ROOT; };
-		746929DB200E17BE00768A65 /* APAuthLogicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APAuthLogicManager.swift; sourceTree = "<group>"; };
 		747008251FE78EAC00D6A923 /* APAgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APAgentDetailViewController.swift; path = AggregatePay/Business/earnings/Controller/APAgentDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		747130A91FFDC3A100A170EF /* APGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APGuideView.swift; sourceTree = "<group>"; };
 		747130B61FFE2CD700A170EF /* APPromoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPromoteRequest.swift; sourceTree = "<group>"; };
@@ -2167,7 +2165,6 @@
 			isa = PBXGroup;
 			children = (
 				2374A9D31FE8F1590013AB88 /* APAuthHelper.swift */,
-				746929DB200E17BE00768A65 /* APAuthLogicManager.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2906,7 +2903,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
@@ -3170,7 +3167,6 @@
 				1AA3D5061FE7D3B5003263E3 /* BBRSACryptor..mm in Sources */,
 				1A6DBA881FD8D7AD00E7D692 /* APDateTools.swift in Sources */,
 				1AA80FA61FDFDE660021B046 /* APSystemBaseViewController.swift in Sources */,
-				746929DC200E17BE00768A65 /* APAuthLogicManager.swift in Sources */,
 				1A0A65D41FDE3A56004D59C0 /* APCollectionDisplayView.swift in Sources */,
 				7487E1971FE0DE6A000E3EBE /* APSetViewController.swift in Sources */,
 				1AA80FB51FDFDF1C0021B046 /* APSelectBoxFormsCell.swift in Sources */,
