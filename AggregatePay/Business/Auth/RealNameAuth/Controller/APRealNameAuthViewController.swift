@@ -229,6 +229,7 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
+        realNameCell.inputRegx = .name
         
         realNameCell.enable = canEdit
         idCardNoCell.enable = canEdit
@@ -275,7 +276,7 @@ extension APRealNameAuthViewController: APCameraViewControllerDelegate {
     
     func cameraViewController(_ : APCameraViewController, didFinishPickingImage image: UIImage) {
         updateGridImage(image: image)
-
+        print("OCR扫描回调")
     }
     
     func ocrCameraIDCardResult(IDCard result: APOCRIDCard) {

@@ -72,8 +72,8 @@ class APAccessControler: NSObject {
             ap_pushAuthVC_None()
             return false
         }
-        else if authRealName.state == APAuthState.Checking ||
-            authSettleCard.state == APAuthState.Checking ||
+        else if authRealName.state == APAuthState.Checking &&
+            authSettleCard.state == APAuthState.Checking &&
             authSecurity.state == APAuthState.Checking {
             ap_pushAuthVC_Checking()
             return false
