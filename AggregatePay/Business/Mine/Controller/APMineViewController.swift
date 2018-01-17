@@ -33,7 +33,12 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
                     
                 })
             } else {
-                self.navigationController?.pushViewController(nextC)
+                
+                AuthH.openAuth(viewController: self, success: {
+                    self.navigationController?.pushViewController(nextC)
+                }, failure: { (message) in
+                    
+                })
             }
         }
     }
