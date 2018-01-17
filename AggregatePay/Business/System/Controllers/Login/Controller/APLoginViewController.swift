@@ -37,27 +37,6 @@ class APLoginViewController: APSystemBaseViewController {
         createSubviews()
         registerCallBacks()
         registerObserve()
-        /*
-        if (APUserDefaultCache.AP_get(key: .isRemember) as? String) == "1" {
-            //获取缓存的数据
-            let account = APUserDefaultCache.AP_get(key: .mobile) as! String
-            let password = APUserDefaultCache.AP_get(key: .password)  as! String
-            
-            if account != "" {
-                self.accountCell.textField.text = account
-                self.loginRequest.mobileNo = account
-            }
-            if password != "" {
-                self.passwordCell.textField.text = password
-                self.loginRequest.passwd = password
-            }
-//            self.memoryCell.button.isSelected = true
-        }
-        else
-        {
-//            self.memoryCell.button.isSelected = false
-        }
-        */
         let account = APUserDefaultCache.AP_get(key: .mobile) as! String
         if account != "" {
             self.accountCell.textField.text = account
@@ -84,7 +63,9 @@ class APLoginViewController: APSystemBaseViewController {
     
     lazy var logoImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor.red
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage.init(named: "AppIcon")
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
