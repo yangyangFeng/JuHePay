@@ -10,7 +10,7 @@ import UIKit
 
 class APAuthHomeViewController: APBaseViewController {
     
-    fileprivate var auths = APAuthHelper.sharedInstance.auths
+    fileprivate var auths = APAuthHelper.auths
     
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
     
@@ -24,10 +24,6 @@ class APAuthHomeViewController: APBaseViewController {
         ap_setStatusBarStyle(.lightContent)
         
         layoutViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         loadAuthInfo()
     }
     
@@ -41,30 +37,12 @@ class APAuthHomeViewController: APBaseViewController {
     func loadAuthInfo() {
         
         view.AP_loadingBegin()
-        weak var weakSelf = self
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
             
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
             
-            switch APAuthHelper.sharedInstance.realNameAuthState {
-                
-            case .None:
-                guard self.isFirstIn else
-                {
-                    return
-                }
-                let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
-                self.navigationController?.present(authNavi, animated: true, completion: nil)
-                authNavi.finishAuths = {
-                    authNavi.dismiss(animated: true, completion: nil)
-                    weakSelf!.isFirstIn = false
-                }
-                break
-            default:
-                break
-            }
         }) {(error) in
             self.view.AP_loadingEnd()
             self.view.makeToast(error.message)
@@ -93,7 +71,7 @@ extension APAuthHomeViewController {
         tableView.mj_header = APRefreshHeader(refreshingBlock: {[weak self] in
              self?.loadAuthInfo()
         })
-        
+    
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(20)
@@ -120,22 +98,22 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: false)
         
-        switch APAuthHelper.sharedInstance.realNameAuthState {
-            
+        switch AuthH.realName {
+
         case .None:
             let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
             self.navigationController?.present(authNavi, animated: true, completion: nil)
             authNavi.finishAuths = {
                 authNavi.dismiss(animated: true, completion: nil)
             }
-            
+
         case .Other:
             view.makeToast("暂时无法获取审核信息")
-            
+
         default:
             let auth = auths[indexPath.row]
             var baseAuthVC = APAuthBaseViewController()
-            
+
             switch auth.type {
             case .realName:
                 baseAuthVC = APRealNameAuthViewController()
@@ -144,7 +122,7 @@ extension APAuthHomeViewController: UITableViewDelegate, UITableViewDataSource {
             case .Security:
                 baseAuthVC = APSecurityAuthViewController()
             }
-            
+
             baseAuthVC.auth = auth
             navigationController?.pushViewController(baseAuthVC, animated: true)
         }

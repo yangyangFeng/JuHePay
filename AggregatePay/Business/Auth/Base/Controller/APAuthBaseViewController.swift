@@ -27,7 +27,7 @@ class APAuthBaseViewController: APBaseViewController {
         registerCallBacks()
         
         //如果是第一次提交实名认证，不需要回显
-        if !(APAuthHelper.sharedInstance.realNameAuthState == .None) {
+        if !(AuthH.realName == .None) {
             loadAuthInfo()
         }
         
@@ -243,7 +243,7 @@ extension APAuthBaseViewController {
             make.top.equalTo(formCellView.snp.bottom)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-5)
-            make.bottom.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     

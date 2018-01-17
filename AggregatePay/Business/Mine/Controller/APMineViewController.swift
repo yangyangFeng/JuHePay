@@ -14,7 +14,8 @@ import Alamofire
 extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol {
     func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
         print(controller)
-        APAccessControler.checkAccessControl(level) {
+        APAccessControler.checkAccessControl(level){
+            
             // -1.动态获取命名空间
             let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
             let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
@@ -24,7 +25,12 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
             }
             let nextC = controllerType.init()
             nextC.title = title
-            self.navigationController?.pushViewController(nextC)
+            
+            if nextC.isKind(of: APHomeViewController.self) {
+                  AuthH.openAuth(viewController: self)
+            } else {
+                self.navigationController?.pushViewController(nextC)
+            }
         }
     }
 }
@@ -103,8 +109,7 @@ class APMineViewController: APMineBaseViewController{
     
     @objc func headDidAction(){
         APAccessControler.checkAccessControl(1) {
-            let authHomeController = APAuthHomeViewController()
-            self.navigationController?.pushViewController(authHomeController)
+            AuthH.openAuth(viewController: self)
         }
         
     }
