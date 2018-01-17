@@ -64,7 +64,7 @@ class APLoginViewController: APSystemBaseViewController {
     lazy var logoImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
-        view.image = UIImage.init(named: "AppIcon")
+        view.image = UIImage.init(named: "system_logo_icon")
         view.backgroundColor = UIColor.clear
         return view
     }()
