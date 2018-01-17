@@ -65,7 +65,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSendSmsCode() {
-        
+        view.endEditing(true)
         if transMsgRequest.reserveMobileNo.count <= 0 {
             view.makeToast("请输入预留手机号")
             return
@@ -86,7 +86,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSubmit() {
-       
+        view.endEditing(true)
         if quickPayRequest.preSerial == "" {
             view.makeToast("请先获取验证码")
             return

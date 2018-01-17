@@ -110,23 +110,24 @@ extension APLoginViewController {
     
     //MARK: ----- private
     private func createSubviews() {
-        view.addSubview(logoImageView)
-        view.addSubview(accountCell)
-        view.addSubview(passwordCell)
-        view.addSubview(memoryCell)
-        view.addSubview(submitCell)
-        view.addSubview(toolView)
+        createContainerView()
+        containerView.addSubview(logoImageView)
+        containerView.addSubview(accountCell)
+        containerView.addSubview(passwordCell)
+        containerView.addSubview(memoryCell)
+        containerView.addSubview(submitCell)
+        containerView.addSubview(toolView)
         
         logoImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top).offset(20)
-            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(containerView.snp.top).offset(20)
+            make.centerX.equalTo(containerView.snp.centerX)
             make.size.equalTo(CGSize(width: 76, height: 76))
         }
         
         accountCell.snp.makeConstraints { (make) in
             make.top.equalTo(logoImageView.snp.bottom).offset(40)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+            make.left.equalTo(containerView.snp.left).offset(30)
+            make.right.equalTo(containerView.snp.right).offset(-30)
             make.height.equalTo(44)
         }
         
@@ -225,6 +226,7 @@ extension APLoginViewController {
     }
     
     private func login() {
+        view.endEditing(true)
         if !self.loginRequest.mobileNo.evaluate(regx: .mobile) {
             self.view.makeToast("手机号输入格式不正确")
             return

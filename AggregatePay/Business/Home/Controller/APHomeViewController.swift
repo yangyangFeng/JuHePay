@@ -89,11 +89,14 @@ extension APHomeViewController {
             return
         }
         
+        let amountNum = Double(totalAmount)
+        let amount = String(format: "%.2f", amountNum!)
+        
         if model.payWay == "0" {
-            pushUnionPayVC(totalAmount: totalAmount)
+            pushUnionPayVC(totalAmount: amount)
         }
         else {
-            pushQRCodeElementVC(totalAmount: totalAmount, payType: model.payType)
+            pushQRCodeElementVC(totalAmount: amount, payType: model.payType)
         }
     }
     
