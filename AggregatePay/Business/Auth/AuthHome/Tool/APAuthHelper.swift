@@ -12,6 +12,10 @@ enum APAuthType: String {
     case realName, settleCard, Security
 }
 
+enum APAuthServlet: String {
+    case manager, trans, other
+}
+
 typealias AuthH = APAuthHelper
 
 
@@ -58,8 +62,6 @@ class APAuthHelper: NSObject {
         }
     }
     
-    static private var fromViewController: UIViewController!
-    
     private func checkoutFirstAuth() -> Bool {
         
         var isFirst = true
@@ -84,26 +86,28 @@ extension APAuthHelper {
     
     
     class func openAuth(
-        viewController: UIViewController,
-        isAlert: Bool = true) {
-        openAuth(viewController: viewController, isAlert: isAlert, success: {
+        isAlert: Bool = true)
+    {
+        openAuth(isAlert: isAlert, success: {
             
         }) { (message) in
         }
     }
     
     class func openAuth(
-        viewController: UIViewController,
+        authServlet: APAuthServlet = .manager,
         isAlert: Bool = true,
         success: @escaping ()-> Void,
         failure: @escaping (_ message: String) -> Void)
     {
-        AuthH.fromViewController = viewController
-        AuthH.fromViewController.view.AP_loadingBegin()
+        currentViewController().view.AP_loadingBegin()
         
-        APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
+        APAuthHttpTool.getUserAuthInfo(
+            authServlet: authServlet,
+            params: APBaseRequest(),
+            success: { (authInfo) in
             
-             AuthH.fromViewController.view.AP_loadingEnd()
+             currentViewController().view.AP_loadingEnd()
             
             var message = "您还未进行身份认证，请先进行认证"
             if AuthH.realName == .Success &&
@@ -148,13 +152,13 @@ extension APAuthHelper {
             }
             else {
                 message = "审核状态未知"
-                AuthH.fromViewController.view.makeToast(message)
+                currentViewController().view.makeToast(message)
                 failure(message)
             }
             
         }) {(error) in
-            AuthH.fromViewController.view.AP_loadingEnd()
-            AuthH.fromViewController.view.makeToast(error.message)
+            currentViewController().view.AP_loadingEnd()
+            currentViewController().view.makeToast(error.message)
         }
     }
     
@@ -213,7 +217,7 @@ extension APAuthHelper {
     class func toRealName() {
         let authNavi = APAuthNaviViewController.init(rootViewController: APRealNameAuthViewController())
         
-        self.fromViewController.navigationController?.present(
+        currentViewController().navigationController?.present(
             authNavi,
             animated: true,
             completion: nil)
@@ -228,19 +232,20 @@ extension APAuthHelper {
         if isAlert {
             let alert = APAlertManager.alertController(param: param, confirm: { (confirmAction) in
                 let authHomeVC = APAuthHomeViewController()
-                AuthH.fromViewController.navigationController!.pushViewController(
+
+                currentViewController().navigationController?.pushViewController(
                     authHomeVC,
                     animated: true)
                 
             }, cancel: nil)
-            AuthH.fromViewController.present(
+            currentViewController().present(
                 alert,
                 animated: true,
                 completion: nil)
         }
         else {
             let authHomeVC = APAuthHomeViewController()
-            AuthH.fromViewController.navigationController?.pushViewController(
+            currentViewController().navigationController?.pushViewController(
                 authHomeVC,
                 animated: true)
         }

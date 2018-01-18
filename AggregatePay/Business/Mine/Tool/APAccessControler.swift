@@ -20,7 +20,7 @@ class APAccessControler: NSObject {
             }
             else
             {
-                AuthH.openAuth(viewController: viewController, success: {
+                AuthH.openAuth(success: {
                     result()
                 }, failure: { (msg) in
                     
@@ -31,7 +31,7 @@ class APAccessControler: NSObject {
                 APOutLoginTool.login()
             }
             else{
-                AuthH.openAuth(viewController: viewController, success: {
+                AuthH.openAuth(success: {
                     result()
                 }, failure: { (msg) in
                     

@@ -63,8 +63,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
     }
 
     func AP_Action_Click(_ obj: Any) {
-        qrImageView.bgImageView.image = obj as? UIImage
-
+        qrImageView.updateImage((obj as? UIImage)!)
     }
     
 

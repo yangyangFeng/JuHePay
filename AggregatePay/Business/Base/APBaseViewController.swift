@@ -150,7 +150,7 @@ extension APBaseViewController {
         }
         else {
             
-            AuthH.openAuth(viewController: self, success: {
+            AuthH.openAuth(success: {
                 closure()
             }, failure: { (message) in
                 
@@ -170,6 +170,43 @@ extension UIViewController {
         }
         let nextC = controllerType.init()
         return nextC
+    }
+}
+
+extension NSObject {
+    
+    class func currentViewController() -> UIViewController {
+        let vc = UIApplication.shared.keyWindow?.rootViewController
+        return UIViewController.findBestViewController(vc: vc!)
+    }
+    private class func findBestViewController(vc : UIViewController) -> UIViewController {
+        
+        if vc.presentedViewController != nil {
+            return UIViewController.findBestViewController(vc: vc.presentedViewController!)
+        } else if vc.isKind(of:UISplitViewController.self) {
+            let svc = vc as! UISplitViewController
+            if svc.viewControllers.count > 0 {
+                return UIViewController.findBestViewController(vc: svc.viewControllers.last!)
+            } else {
+                return vc
+            }
+        } else if vc.isKind(of: UINavigationController.self) {
+            let nvc = vc as! UINavigationController
+            if nvc.viewControllers.count > 0 {
+                return UIViewController.findBestViewController(vc: nvc.topViewController!)
+            } else {
+                return vc
+            }
+        } else if vc.isKind(of: UITabBarController.self) {
+            let tvc = vc as! UITabBarController
+            if (tvc.viewControllers?.count)! > 0 {
+                return UIViewController.findBestViewController(vc: tvc.selectedViewController!)
+            } else {
+                return vc
+            }
+        } else {
+            return vc
+        }
     }
 }
 
