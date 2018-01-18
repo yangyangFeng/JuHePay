@@ -49,8 +49,6 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
             
         }
         
-        
-        
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.init(hex6: 0xc8a556), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
