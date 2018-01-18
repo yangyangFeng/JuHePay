@@ -8,14 +8,12 @@
 
 import UIKit
 import SnapKit
-import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     public var window: UIWindow?
     public var isLandscape = false
-    let manager = NetworkReachabilityManager(host: "www.baidu.com")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -27,24 +25,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.makeKeyAndVisible()
         
         APGuideView.showGuideView()
-        
-        manager!.listener = { status in
-            switch status {
-            case .notReachable:
-                print("notReachable")
-            case .unknown:
-                print("unknown")
-            case .reachable(.ethernetOrWiFi):
-                print("ethernetOrWiFi")
-            case .reachable(.wwan):
-                print("wwan")
-            }
-        }
-        manager!.startListening()
+        self.perform(#selector(versionUpdate),
+                     with: nil,
+                     afterDelay: 3)
         return true
     }
 }
 
+//MARK: ----- AppDelegate---Extension(版本升级)
+
+extension AppDelegate {
+    
+    @objc func versionUpdate() {
+        AppDelegate.ap_versionUpdate(window: window!)
+    }
+    
+    static func ap_versionUpdate(window: UIWindow) {
+        let request = APCheckAppVerisonRequest()
+        request.systemType = AppVersion as? String
+        APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.updateApp, params: request, aClass: APCheckAppVerisonResponse.self, success: { baseResp in
+            let resp = baseResp as! APCheckAppVerisonResponse
+            APVersionUpgradeController.show(version: resp.lastVersionNo!,
+                                            text: resp.lastVersionContent!,
+                                            storeUrl:resp.lastVersionDownloadUrl!)
+        }, failure: { baseError in
+        })
+    }
+}
 
 //MARK: ----- AppDelegate---Extension(代理方法)
 

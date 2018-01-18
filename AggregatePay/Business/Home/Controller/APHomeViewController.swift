@@ -89,11 +89,14 @@ extension APHomeViewController {
             return
         }
         
+        let amountNum = Double(totalAmount)
+        let amount = String(format: "%.2f", amountNum!)
+        
         if model.payWay == "0" {
-            pushUnionPayVC(totalAmount: totalAmount)
+            pushUnionPayVC(totalAmount: amount)
         }
         else {
-            pushQRCodeElementVC(totalAmount: totalAmount, payType: model.payType)
+            pushQRCodeElementVC(totalAmount: amount, payType: model.payType)
         }
     }
     
@@ -118,10 +121,10 @@ extension APHomeViewController:
     
     func didKeyboardConfirm(totalAmount: String, model: Any) {
         weak var weakSelf = self
-        ap_userIdentityStatus(httpUrl: APHttpUrl.trans_httpUrl) {
+        ap_userIdentityStatus(authServlet: .trans, closure: {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
             weakSelf?.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
-        }
+        })
     }
     
     //MARK: APHomeMenuViewDelegate

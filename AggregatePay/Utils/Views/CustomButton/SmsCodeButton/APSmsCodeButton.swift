@@ -57,11 +57,14 @@ class APSmsCodeButton: UIButton {
                 oldCountingStatus = newValue
             }
             else {
-                countDownTimer?.invalidate()
-                countDownTimer = nil
-                self.setTitle("重新获取验证码", for: .normal)
-                self.isEnabled = true
-                oldCountingStatus = newValue
+                if oldCountingStatus == .wait ||
+                   oldCountingStatus == .start {
+                    countDownTimer?.invalidate()
+                    countDownTimer = nil
+                    self.setTitle("重新获取验证码", for: .normal)
+                    self.isEnabled = true
+                    oldCountingStatus = newValue
+                }
             }
         }
     }

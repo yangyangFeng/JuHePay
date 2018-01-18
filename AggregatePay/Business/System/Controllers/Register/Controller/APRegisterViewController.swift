@@ -48,18 +48,18 @@ class APRegisterViewController: APSystemBaseViewController {
     
     //MARK: ---- private
     private func createSubviews() {
-        
-        view.addSubview(accountCell)
-        view.addSubview(smsCodeCell)
-        view.addSubview(passwordCell)
-        view.addSubview(inviteCodeCell)
-        view.addSubview(agreedCell)
-        view.addSubview(submitCell)
+        createContainerView()
+        containerView.addSubview(accountCell)
+        containerView.addSubview(smsCodeCell)
+        containerView.addSubview(passwordCell)
+        containerView.addSubview(inviteCodeCell)
+        containerView.addSubview(agreedCell)
+        containerView.addSubview(submitCell)
         
         accountCell.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top).offset(20)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+            make.top.equalTo(containerView.snp.top).offset(20)
+            make.left.equalTo(containerView.snp.left).offset(30)
+            make.right.equalTo(containerView.snp.right).offset(-30)
             make.height.equalTo(44)
         }
         
@@ -84,7 +84,7 @@ class APRegisterViewController: APSystemBaseViewController {
         }
         
         submitCell.snp.makeConstraints { (make) in
-            make.top.equalTo(agreedCell.snp.bottom).offset(20)
+            make.top.equalTo(agreedCell.snp.bottom).offset(30)
             make.left.right.equalTo(agreedCell)
             make.height.equalTo(41)
         }
@@ -206,6 +206,7 @@ extension APRegisterViewController {
     }
     
     func sendMessage() {
+        view.endEditing(true)
         if  registerRequest.mobileNo.count <= 0 {
             view.makeToast("请输入手机号")
             return
@@ -230,7 +231,7 @@ extension APRegisterViewController {
     }
     
     private func register() {
-        
+        view.endEditing(true)
         if registerRequest.mobileNo.count <= 0 {
             view.makeToast("请输入手机号")
             return

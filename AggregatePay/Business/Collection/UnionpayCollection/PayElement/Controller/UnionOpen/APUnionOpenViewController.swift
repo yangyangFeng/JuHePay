@@ -36,9 +36,12 @@ class APUnionOpenViewController: APUnionBaseViewController {
                                          submitCell: submitCell,
                                          smsCodeCell: smsCodeCell)
         unionHttpTool?.ap_OpenDelegate = self
+        agreedCell.button.isSelected = true
+        registQuickPayRequest?.isAgreed = true
     }
     
     override func ap_httpSendSmsCode() {
+        view.endEditing(true)
         if registerMsgRequest.reserveMobileNo.count <= 0 {
             view.makeToast("请输入预留手机号")
             return
@@ -59,6 +62,7 @@ class APUnionOpenViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSubmit() {
+        view.endEditing(true)
         if registQuickPayRequest?.preSerial == "" {
             view.makeToast("请先获取验证码")
             return
@@ -69,55 +73,55 @@ class APUnionOpenViewController: APUnionBaseViewController {
     override func ap_initCreateSubviews() {
         super.ap_initCreateSubviews()
         
-        view.addSubview(bankCardNoCell)
-        view.addSubview(cvnNoCell)
-        view.addSubview(validityDateCell)
-        view.addSubview(phoneNoCell)
-        view.addSubview(smsCodeCell)
-        view.addSubview(agreedCell)
-        view.addSubview(submitCell)
+        containerView.addSubview(bankCardNoCell)
+        containerView.addSubview(cvnNoCell)
+        containerView.addSubview(validityDateCell)
+        containerView.addSubview(phoneNoCell)
+        containerView.addSubview(smsCodeCell)
+        containerView.addSubview(agreedCell)
+        containerView.addSubview(submitCell)
         
         bankCardNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(toolBarView.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         cvnNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(bankCardNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         validityDateCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(cvnNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         phoneNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(validityDateCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         smsCodeCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(phoneNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         agreedCell.snp.makeConstraints { (make) in
             make.top.equalTo(smsCodeCell.snp.bottom)
-            make.left.equalTo(view).offset(20)
-            make.right.equalTo(view).offset(-20)
+            make.left.equalTo(containerView).offset(20)
+            make.right.equalTo(containerView).offset(-20)
             make.height.equalTo(toolBarView)
         }
         
         submitCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(agreedCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+            make.left.equalTo(containerView.snp.left).offset(30)
+            make.right.equalTo(containerView.snp.right).offset(-30)
             make.height.equalTo(44)
         }
     }
@@ -220,9 +224,8 @@ extension APUnionOpenViewController {
         model.cvn = (registQuickPayRequest?.cvn)!
         model.integraFlag = (registQuickPayRequest?.integraFlag)!
         model.expireDate = (registQuickPayRequest?.expireDate)!
-        NotificationCenter.default.post(Notification.init(name: TRAN_NOTIF_KEY,
-                                                          object: model,
-                                                          userInfo: nil))
+        model.amount = self.totalAmount!
+        NotificationCenter.default.post(Notification.init(name: TRAN_NOTIF_KEY, object: model, userInfo: nil))
         navigationController?.popViewController(animated: true)
     }
     

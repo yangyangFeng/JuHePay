@@ -157,6 +157,7 @@ extension APForgetFirstStepViewController {
     }
     
     private func sendMessage() {
+        view.endEditing(true)
         if !evaluate() {
             return
         }
@@ -174,6 +175,7 @@ extension APForgetFirstStepViewController {
     }
     
     private func checkMessage() {
+        view.endEditing(true)
         if !evaluate() {
             return
         }
