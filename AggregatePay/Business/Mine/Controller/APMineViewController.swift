@@ -27,8 +27,13 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
             }
+            
             if vc.isKind(of: APAuthHomeViewController.self) {
-                AuthH.openAuth(viewController: self, isAlert: false)
+                AuthH.openAuth(viewController: self, isAlert: false, success: {
+                    self.navigationController?.pushViewController(vc)
+                }, failure: { (message) in
+                    
+                })
             } else {
                 self.navigationController?.pushViewController(vc)
             }
