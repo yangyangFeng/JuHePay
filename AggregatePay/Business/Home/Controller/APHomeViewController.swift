@@ -121,10 +121,10 @@ extension APHomeViewController:
     
     func didKeyboardConfirm(totalAmount: String, model: Any) {
         weak var weakSelf = self
-        ap_userIdentityStatus(httpUrl: APHttpUrl.trans_httpUrl) {
+        ap_userIdentityStatus(authServlet: .trans, closure: {
             let menuModel: APHomeMenuModel = model as! APHomeMenuModel
             weakSelf?.pushCollectionVC(totalAmount: totalAmount, model: menuModel)
-        }
+        })
     }
     
     //MARK: APHomeMenuViewDelegate
