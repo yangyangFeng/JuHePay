@@ -9,7 +9,11 @@
 import UIKit
 
 class APAccessControler: NSObject {
-    static func checkAccessControl(_ level : Int, result : @escaping ()->Void) {
+    static func checkAccessControl(
+        _ level : Int,
+        result: @escaping () -> Void,
+        verifyAuths: () -> Void)
+    {
         switch level {
         case 0:
             result()
@@ -27,7 +31,7 @@ class APAccessControler: NSObject {
                 APOutLoginTool.login()
             }
             else{
-                result()
+                verifyAuths()
             }
             break
         default:

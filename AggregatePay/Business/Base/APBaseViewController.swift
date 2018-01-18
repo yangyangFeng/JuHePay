@@ -159,3 +159,17 @@ extension APBaseViewController {
     }
 }
 
+extension UIViewController {
+    func classFromString(classString :String) -> UIViewController? {
+        // -1.动态获取命名空间
+        let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
+        let controllerClass : AnyClass? = NSClassFromString(ns + "." + classString)
+        guard let controllerType = controllerClass as? UIViewController.Type else {
+            print("类型转换失败")
+            return nil
+        }
+        let nextC = controllerType.init()
+        return nextC
+    }
+}
+
