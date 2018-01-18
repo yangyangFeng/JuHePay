@@ -183,12 +183,13 @@ class APVersionUpgradeView: UIView {
         view.backgroundColor = UIColor.clear
         return view
     }()
+    
     lazy var text: UITextView = {
         let view = UITextView()
+        view.isEditable = false
         view.textAlignment = .left
         view.theme_textColor = ["#fff0ce"]
         view.font = UIFont.systemFont(ofSize: 13)
-        view.isUserInteractionEnabled = false
         view.backgroundColor = UIColor.clear
         return view
     }()
