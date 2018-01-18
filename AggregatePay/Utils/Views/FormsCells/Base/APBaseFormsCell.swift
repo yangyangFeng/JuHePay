@@ -23,7 +23,7 @@ class APBaseFormsCell: UIView {
         case cvn2 = "^[0-9]{0,3}$"
         case bankCard = "^\\d{0,21}$"
         case idCardNo = "^\\w{0,18}$"
-        case name = "[•·\u{4e00}-\u{9fa5}]{0,15}$"
+        case name = " "
     }
 
 
