@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         APGuideView.showGuideView()
         self.perform(#selector(versionUpdate),
                      with: nil,
-                     afterDelay: 3)
+                     afterDelay: 1)
         return true
     }
 }
@@ -42,13 +42,15 @@ extension AppDelegate {
     
     static func ap_versionUpdate(window: UIWindow) {
         let request = APCheckAppVerisonRequest()
-        request.systemType = AppVersion as? String
+        request.systemType = "1"
         APNetworking.get(httpUrl: APHttpUrl.manange_httpUrl, action: APHttpService.updateApp, params: request, aClass: APCheckAppVerisonResponse.self, success: { baseResp in
             let resp = baseResp as! APCheckAppVerisonResponse
-            APVersionUpgradeController.show(version: resp.lastVersionNo!,
-                                            text: resp.lastVersionContent!,
-                                            storeUrl:resp.lastVersionDownloadUrl!)
+            APVersionUpgradeController.show(minVersion: resp.minVersionNo,
+                                            maxVersion: resp.lastVersionNo,
+                                            content: resp.lastVersionContent,
+                                            storeUrl: resp.lastVersionDownloadUrl)
         }, failure: { baseError in
+            print(baseError.message as Any)
         })
     }
 }

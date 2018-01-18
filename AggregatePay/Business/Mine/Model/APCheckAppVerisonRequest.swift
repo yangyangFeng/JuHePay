@@ -13,11 +13,11 @@ class APCheckAppVerisonRequest: APBaseRequest {
 }
 
 class APCheckAppVerisonResponse: APBaseResponse {
-    @objc dynamic var lastVersionContent : String?
-    @objc dynamic var lastVersionCreateDate : String?
-    @objc dynamic var lastVersionDownloadUrl : String?
-    @objc dynamic var systemType : String?
-    @objc dynamic var lastVersionNo : String?
-//    @objc dynamic var systemType : String?
-
+    
+    @objc dynamic var lastVersionContent : String = ""
+    @objc dynamic var lastVersionCreateDate : String = ""
+    @objc dynamic var lastVersionDownloadUrl : String = ""
+    @objc dynamic var systemType : String = ""
+    @objc dynamic var minVersionNo: String = ""
+    @objc dynamic var lastVersionNo : String = ""
 }

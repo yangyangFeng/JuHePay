@@ -25,7 +25,8 @@ class APAboutUsViewController: APMineBaseViewController {
     
     func initSubviews(){
         let logoIcon = UIImageView()
-        logoIcon.theme_backgroundColor = ["#ABC"]
+        logoIcon.theme_image = ["system_logo_icon"]
+        logoIcon.backgroundColor = UIColor.clear
         
         let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 18)
@@ -94,15 +95,14 @@ class APAboutUsViewController: APMineBaseViewController {
     {
         let param = APCheckAppVerisonRequest()
         param.systemType = "1"
-        APMineHttpTool.updateApp(param, success: { (res) in
-            
-        }) { (error) in
-            
-        }
-        view.makeToast("已是最新版本")//1129065593
-        let app_url : URL = URL.init(string: "itms-apps://itunes.apple.com/app/id" + "1129065593")!
-        if UIApplication.shared.canOpenURL(app_url) {
-            UIApplication.shared.openURL(app_url)
+        APMineHttpTool.updateApp(param, success: { (baseResp) in
+            let resp = baseResp as! APCheckAppVerisonResponse
+            APVersionUpgradeController.show(minVersion: resp.minVersionNo,
+                                            maxVersion: resp.lastVersionNo,
+                                            content: resp.lastVersionContent,
+                                            storeUrl: resp.lastVersionDownloadUrl)
+        }) { (baseError) in
+            self.view.makeToast(baseError.message)
         }
     }
 
