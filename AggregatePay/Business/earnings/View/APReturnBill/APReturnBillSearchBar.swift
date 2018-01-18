@@ -18,13 +18,15 @@ extension APReturnBillSearchBar: PGDatePickerDelegate {
         let calendar = NSCalendar.current
         if datePicker == currentPicker {
             leftHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
+            
+            rightHeadView.button.title.text = APDateTools.stringToDate(date: (endDate(maxInterval) > endDate() ? endDate() : endDate(maxInterval)), dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
         else
         {
             rightHeadView.button.title.text = APDateTools.stringToDate(date: calendar.date(from: dateComponents)!, dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
         if conversionDate(leftHeadView.button.title.text!) > conversionDate(rightHeadView.button.title.text!){
-            leftHeadView.button.title.text = APDateTools.stringToDate(date: startDate(interval), dateFormat: APDateTools.APDateFormat.deteFormatB)
+            rightHeadView.button.title.text = APDateTools.stringToDate(date: conversionDate(leftHeadView.button.title.text!), dateFormat: APDateTools.APDateFormat.deteFormatB)
         }
         delegate?.AP_Action_Click?()
     }
@@ -210,8 +212,7 @@ class APReturnBillSearchBar: UIView {
     {
         let picker = datePicker()
         let selectDate = APDateTools.dateToString(string: leftHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.minimumDate = startDate(maxInterval)
-        picker.maximumDate = conversionDate(rightHeadView.button.title.text!)
+        picker.maximumDate = endDate()
         picker.setDate(selectDate, animated: false)
         picker.show()
         currentPicker = picker
@@ -220,8 +221,9 @@ class APReturnBillSearchBar: UIView {
     @objc func endAction()
     {
         let picker = datePicker()
-        let selectDate = APDateTools.dateToString(string: rightHeadView.button.title.text!, dateFormat: APDateTools.APDateFormat.deteFormatB)
-        picker.setDate(selectDate, animated: false)
+        picker.minimumDate = conversionDate(leftHeadView.button.title.text!)
+        picker.maximumDate = endDate(maxInterval) > endDate() ? endDate() : endDate(maxInterval)
+        picker.setDate(picker.minimumDate, animated: false)
         picker.show()
     }
     
@@ -286,6 +288,21 @@ extension APReturnBillSearchBar {
         return endDate
     }
     
+    func endDate(_ interval : Int) -> Date {
+        let nowDate = conversionDate(leftHeadView.button.title.text!)
+        //Date.init(timeIntervalSinceNow: 0)
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
+        
+        var components = DateComponents()
+        components.year = dateComponents.year
+        components.month = dateComponents.month
+        components.day = (dateComponents.day! + interval)
+        components.timeZone = TimeZone(abbreviation: "GMT")
+        let endDate = calendar.date(from: components)
+        return endDate!
+    }
 }
 
 class APReturnBillSearchHeadView: UIView {

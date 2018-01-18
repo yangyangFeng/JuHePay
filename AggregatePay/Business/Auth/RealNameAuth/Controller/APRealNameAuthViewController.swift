@@ -144,9 +144,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     /// 点击确认按钮
     override func commit() {
         
-        if (authParam.realName.count > 16) ||
-            (authParam.realName.count < 2){
-            view.makeToast("姓名长度出错")
+        if (authParam.realName.count > 16){
+            view.makeToast("姓名长度超限")
             return
         }
         
@@ -223,7 +222,7 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
-        realNameCell.inputRegx = .name
+//        realNameCell.inputRegx = .name
         
         realNameCell.enable = canEdit
         idCardNoCell.enable = canEdit

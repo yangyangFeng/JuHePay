@@ -206,6 +206,7 @@ class APMineHeaderView: UIView {
         }
         recommendLabel.snp.makeConstraints { (make) in
             make.left.equalTo(userTitleLabel.snp.left).offset(0)
+            make.right.equalToSuperview().offset(-10)
             make.bottom.equalTo(-14)
         }
         userTelLabel.snp.makeConstraints { (make) in

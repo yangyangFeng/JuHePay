@@ -232,6 +232,7 @@ extension APAuthHelper {
         if isAlert {
             let alert = APAlertManager.alertController(param: param, confirm: { (confirmAction) in
                 let authHomeVC = APAuthHomeViewController()
+
                 currentViewController().navigationController?.pushViewController(
                     authHomeVC,
                     animated: true)

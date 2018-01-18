@@ -135,7 +135,7 @@ class APSettlementCardAuthViewController: APAuthBaseViewController {
             return
         }
         
-        if authParam.userName.count > 30 {
+        if authParam.userName.count > 16 {
             view.makeToast("姓名长度出错")
             return
         }
