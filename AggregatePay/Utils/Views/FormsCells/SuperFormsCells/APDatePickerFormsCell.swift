@@ -177,7 +177,7 @@ extension APDatePickerFormsCell {
         //Date.init(timeIntervalSinceNow: 0)
         let calendar = NSCalendar.current
         
-        let dateComponents = calendar.dateComponents([.year,.month, .day, .hour,.minute,.second], from: nowDate as Date)
+        let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: nowDate as Date)
         
         var components = DateComponents()
         components.year = dateComponents.year

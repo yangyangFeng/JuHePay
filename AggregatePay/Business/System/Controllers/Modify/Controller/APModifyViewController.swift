@@ -134,6 +134,7 @@ extension APModifyViewController {
     }
    
     private func updatePassword() {
+        view.endEditing(true)
         if !updatePasswordRequest.pwdOld.evaluate(regx: .password) {
             view.makeToast("旧密码输入错误")
             return

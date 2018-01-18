@@ -16,15 +16,16 @@ class APTradingQueryViewController: APBaseQueryViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(APTradingQueryCell.self, forCellReuseIdentifier: "APTradingQueryCell")
+        tableView.register(APTradingQueryCell.self,
+                           forCellReuseIdentifier: "APTradingQueryCell")
         startHttpGetAccount()
     }
     
     public func queryButAction() {
         view.AP_loadingBegin()
-        self.datas.removeAll()
-        self.getMyAccountRequest.pageNo = "1"
-        self.tableView.mj_footer.resetNoMoreData()
+        datas.removeAll()
+        getMyAccountRequest.pageNo = "1"
+        tableView.mj_footer.resetNoMoreData()
         httpGetAccount()
     }
     
@@ -43,7 +44,7 @@ class APTradingQueryViewController: APBaseQueryViewController {
         let detail = datas[indexPath.row]
         let tradingDetailVC = APTradingDetailViewController()
         tradingDetailVC.transId = detail.transId
-        self.navigationController?.pushViewController(tradingDetailVC)
+        navigationController?.pushViewController(tradingDetailVC)
     }
 }
 
@@ -51,15 +52,16 @@ extension APTradingQueryViewController {
     
     //初始化下拉刷新下拉加载控件和初始请求数据
     func startHttpGetAccount() {
+        weak var weakSelf = self
         getMyAccountRequest.pageNo = "1"
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.datas.removeAll()
-            self.getMyAccountRequest.pageNo = "1"
-            self.tableView.mj_footer.resetNoMoreData()
-            self.httpGetAccount()
+            weakSelf?.datas.removeAll()
+            weakSelf?.getMyAccountRequest.pageNo = "1"
+            weakSelf?.tableView.mj_footer.resetNoMoreData()
+            weakSelf?.httpGetAccount()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            self.httpGetAccount()
+            weakSelf?.httpGetAccount()
         })
     }
     

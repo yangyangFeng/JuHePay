@@ -14,7 +14,7 @@ class APPulldownController: UIView {
     
     let RIGHT_PULLBOX_ID = "RIGHT_PULLBOX_ID"
     
-    var m_targetVC: UIViewController?
+    weak var m_targetVC: UIViewController?
 
     init(targetVC: UIViewController) {
         super.init(frame: CGRect.zero)
