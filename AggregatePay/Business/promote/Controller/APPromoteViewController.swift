@@ -41,14 +41,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
             make.centerX.equalToSuperview().offset(0)
             
         }
-
-        APMineHttpTool.promoteUrl(APBaseRequest(), success: { (res) in
-            let data : APPromoteResponse = res as! APPromoteResponse
-            self.qrImageView.changeQrCode(data.genCodeUrl!)
-        }) { (error) in
-            
-        }
-        
+     
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.init(hex6: 0xc8a556), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -58,6 +51,17 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
         button.addTarget(self, action: #selector(shareAction(_:)), for: UIControlEvents.touchUpInside)
         let shareButtonItem = UIBarButtonItem.init(customView: button)
         navigationItem.rightBarButtonItem = shareButtonItem
+        
+        if  AuthH.realName       == .Success ||
+            AuthH.settleCard     == .Success ||
+            AuthH.security       == .Success {
+            APMineHttpTool.promoteUrl(APBaseRequest(), success: { (res) in
+                let data : APPromoteResponse = res as! APPromoteResponse
+                self.qrImageView.changeQrCode(data.genCodeUrl!)
+            }) { (error) in
+                
+            }
+        }
     }
 
     func AP_Action_Click(_ obj: Any) {

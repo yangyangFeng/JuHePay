@@ -23,6 +23,7 @@ class APPhotoGridViewCell: UICollectionViewCell {
             
             if let image = model.image {
                 setImage(image: image)
+                model.fileName = nil
             }
             
             if let filename = model.fileName {
