@@ -23,7 +23,6 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
         switch level {
         case 0:
             self.navigationController?.pushViewController(vc)
-            
         case 1:
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
