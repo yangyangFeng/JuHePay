@@ -31,7 +31,6 @@ class APBaseTabBarViewController: ESTabBarController {
         weak var weakSelf : APBaseTabBarViewController! = self
         self.shouldHijackHandler = { tabbarController, viewController, index in
             if (index == 0 && weakSelf.isValidationUserIdentityStatus) ||
-                (index == 1 && weakSelf.isValidationUserIdentityStatus) ||
                 (index == 3 && weakSelf.isValidationUserIdentityStatus) ||
                 (index == 2 || index == 4) {
                 weakSelf.isValidationUserIdentityStatus = false
@@ -43,7 +42,7 @@ class APBaseTabBarViewController: ESTabBarController {
         self.didHijackHandler = { tabbarController, viewController, index in
             let baseNav = viewController as! APBaseNavigationViewController
             let baseVC = baseNav.childViewControllers.first as! APBaseViewController
-            if index == 0 || index == 1 || index == 3{
+            if index == 0 || index == 3{
                 baseVC.ap_userIdentityStatus {
                     weakSelf.isValidationUserIdentityStatus = true
                     weakSelf.selectedIndex = index

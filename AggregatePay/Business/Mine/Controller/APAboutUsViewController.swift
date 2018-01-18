@@ -31,7 +31,7 @@ class APAboutUsViewController: APMineBaseViewController {
         let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 18)
         title.textColor = UIColor.init(hex6: 0xc8a556)
-        title.text = "聚合支付"
+        title.text = "聚合财富"
         
         view.addSubview(logoIcon)
         view.addSubview(title)
