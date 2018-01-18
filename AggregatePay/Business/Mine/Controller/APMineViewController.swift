@@ -13,33 +13,37 @@ import Alamofire
 
 extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol {
     func tableViewDidSelectIndex(_ title: String, controller: String, level: Int) {
-
-        APAccessControler.checkAccessControl(self,level: level){
-            
-            // -1.动态获取命名空间
-            let ns = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
-            let controllerClass : AnyClass? = NSClassFromString(ns + "." + controller)
-            guard let controllerType = controllerClass as? UIViewController.Type else {
-                print("类型转换失败")
-                return
+        print(controller)
+        
+        guard let vc = classFromString(classString: controller) else {
+            return
+        }
+        vc.title = title
+        
+        switch level {
+        case 0:
+            self.navigationController?.pushViewController(vc)
+        case 1:
+            if !APUserInfoTool.isLogin() {
+                APOutLoginTool.login()
             }
-            let nextC = controllerType.init()
-            nextC.title = title
-            
-            if nextC.isKind(of: APAuthHomeViewController.self) {
-                AuthH.openAuth(viewController: self, success: {
-                    self.navigationController?.pushViewController(nextC)
-                }, failure: { (msg) in
-                    
-                })
+            if vc.isKind(of: APAuthHomeViewController.self) {
+                AuthH.openAuth(viewController: self, isAlert: false)
             } else {
-                
-                AuthH.openAuth(viewController: self, success: {
-                    self.navigationController?.pushViewController(nextC)
-                }, failure: { (message) in
-                    
-                })
+                self.navigationController?.pushViewController(vc)
             }
+            
+        case 2:
+            if !APUserInfoTool.isLogin() {
+                APOutLoginTool.login()
+            }
+            AuthH.openAuth(viewController: self, success: {
+                self.navigationController?.pushViewController(vc)
+            }, failure: { (message) in
+                
+            })
+        default:
+            break
         }
     }
 }
