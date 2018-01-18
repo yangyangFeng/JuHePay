@@ -29,7 +29,7 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
             }
             
             if vc.isKind(of: APAuthHomeViewController.self) {
-                AuthH.openAuth(viewController: self, isAlert: false, success: {
+                AuthH.openAuth(isAlert: false, success: {
                     self.navigationController?.pushViewController(vc)
                 }, failure: { (message) in
                     
@@ -42,7 +42,7 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
             }
-            AuthH.openAuth(viewController: self, success: {
+            AuthH.openAuth(success: {
                 self.navigationController?.pushViewController(vc)
             }, failure: { (message) in
                 

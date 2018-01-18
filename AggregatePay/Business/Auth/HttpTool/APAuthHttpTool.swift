@@ -13,12 +13,21 @@ class APAuthHttpTool: NSObject {
     // ------------------------------------------------- 获取用户认证信息
     
     /// 获取用户的实名、账户、安全认证信息
-    static public func getUserAuthInfo(httpUrl: String = APHttpUrl.manange_httpUrl,
+    static public func getUserAuthInfo(authServlet: APAuthServlet = .manager,
                                        params: APBaseRequest,
                                        success: @escaping (APUserAuthInfo) -> Void,
                                        failure: @escaping (APBaseError) -> Void)
     {
-        
+        var httpUrl = APHttpUrl.manange_httpUrl
+        switch authServlet {
+        case .trans:
+            httpUrl = APHttpUrl.trans_httpUrl
+        case .manager:
+            break
+        case .other:
+            break
+            
+        }
         APNetworking.get(httpUrl: httpUrl,
                          action: APHttpService.userAuthInfo,
                          params: params,
