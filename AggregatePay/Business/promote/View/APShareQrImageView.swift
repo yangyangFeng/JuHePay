@@ -45,7 +45,10 @@ class APShareQrImageView: UIView {
     }
     
     func updateImage(_ bgImage : UIImage){
-        guard let image = qrCodeImage else { return  }
+        guard let image = qrCodeImage else {
+            bgImageView.image = bgImage
+            return
+        }
         bgImageView.image = createQrCodeImage(bgImage, qrCodeImage: image)
     }
     
