@@ -122,6 +122,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             
             if .Failure == APAuthState(rawValue: response.authStatus) && response.authDesc.count > 0 {
                 self?.showAuthFailureBanner(failureReason: response.authDesc)
+                self?.realNameCell.enable = false
+                self?.idCardNoCell.enable = false
             }
             
             self?.realNameCell.textField.text = response.realName
@@ -222,7 +224,7 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
-//        realNameCell.inputRegx = .name
+        realNameCell.inputRegx = .name
         
         realNameCell.enable = canEdit
         idCardNoCell.enable = canEdit
