@@ -23,9 +23,13 @@ class APBaseFormsCell: UIView {
         case cvn2 = "^[0-9]{0,3}$"
         case bankCard = "^\\d{0,21}$"
         case idCardNo = "^\\w{0,18}$"
-        case name = "[\u{4e00}-\u{9fa5}]{0,15}$"
+        case name = "[•·\u{4e00}-\u{9fa5}]{0,15}$"
     }
+
+
     
+    
+
    
     lazy var topLine: UIImageView = {
         let view = UIImageView()
@@ -88,6 +92,35 @@ class APBaseFormsCell: UIView {
             return shouldReturn
         }
         let returnText = text.replacingCharacters(in: range, with: string)
+        if inputRegx == .name{
+            if string == "，"{
+                return true
+            }
+            if string == "➋"{
+                return true
+            }
+            if string == "➌"{
+                return true
+            }
+            if string == "➍"{
+                return true
+            }
+            if string == "➎"{
+                return true
+            }
+            if string == "➏"{
+                return true
+            }
+            if string == "➐"{
+                return true
+            }
+            if string == "➑"{
+                return true
+            }
+            if string == "➒"{
+                return true
+            }
+        }
         if string.count > 0 && string != "\n" {
             shouldReturn = (self.predicate?.evaluate(with: returnText))!
         }
