@@ -62,7 +62,8 @@ class APAboutUsViewController: APMineBaseViewController {
         let checkVersionBtn = APSubmitFormsCell()
         checkVersionBtn.button.setTitle("检查更新", for: UIControlState.normal)
         checkVersionBtn.button.addTarget(self, action: #selector(checkoutBtnDidAction), for: UIControlEvents.touchUpInside)
-        
+
+
         view.addSubview(checkVersionBtn)
         checkVersionBtn.snp.makeConstraints { (make) in
             make.top.equalTo(title.snp.bottom).offset(250)
