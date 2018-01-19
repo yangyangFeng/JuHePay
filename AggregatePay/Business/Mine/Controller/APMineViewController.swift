@@ -26,6 +26,7 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
         case 1:
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
+                return
             }
             
             if vc.isKind(of: APAuthHomeViewController.self) {
@@ -41,6 +42,7 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
         case 2:
             if !APUserInfoTool.isLogin() {
                 APOutLoginTool.login()
+                return
             }
             AuthH.openAuth(success: {
                 self.navigationController?.pushViewController(vc)

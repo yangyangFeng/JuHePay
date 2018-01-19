@@ -24,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
-        APGuideView.showGuideView()
-        self.perform(#selector(versionUpdate),
-                     with: nil,
-                     afterDelay: 1)
+        APGuideView.showGuideView(dismiss: {
+            self.perform(#selector(self.versionUpdate),
+                         with: nil,
+                         afterDelay: 1)
+        })
+
         return true
     }
 }

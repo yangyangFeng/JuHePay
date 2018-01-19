@@ -8,23 +8,30 @@
 
 import UIKit
 
+typealias APGuideViewDismissBlock = () -> Void
+
 class APGuideView: UIView,UICollectionViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate {
 
     static let app_version =  Bundle.main.infoDictionary!["CFBundleShortVersionString"]
     static var userDefault = UserDefaults.standard
     
-    static func showGuideView(){
+    static func showGuideView(dismiss: @escaping APGuideViewDismissBlock) {
         if userDefault.object(forKey: app_version as! String) == nil {
             let window = UIApplication.shared.keyWindow
-            
-            let guideView : APGuideView = APGuideView.init(frame: (window?.bounds)!, title: ["APGuideView0", "APGuideView1", "APGuideView2"])
+            let guideView : APGuideView = APGuideView.init(frame: (window?.bounds)!,
+                                                           title: ["APGuideView0",
+                                                                   "APGuideView1",
+                                                                   "APGuideView2"])
+            guideView.guideViewDismissBlock = dismiss
             window?.addSubview(guideView)
         }
         else
         {
-            
+            dismiss()
         }
     }
+    
+    var guideViewDismissBlock: APGuideViewDismissBlock?
     
     lazy var collectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
@@ -100,7 +107,6 @@ class APGuideView: UIView,UICollectionViewDataSource,UIScrollViewDelegate,UIColl
     
     override func layoutSubviews() {
         super.layoutSubviews()
-  
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -161,7 +167,6 @@ class APGuideView: UIView,UICollectionViewDataSource,UIScrollViewDelegate,UIColl
         UIView.animate(withDuration: 0.15, animations: {
             self.pageControl.alpha = 0
             self.skitBtn.snp.updateConstraints { (make) in
-                
                 make.bottom.equalToSuperview().offset(self.skitBtn.height)
             }
             self.collectionView.snp.updateConstraints { (make) in
@@ -172,6 +177,7 @@ class APGuideView: UIView,UICollectionViewDataSource,UIScrollViewDelegate,UIColl
         }) { (state) in
             self.removeSubviews()
             self.removeFromSuperview()
+            self.guideViewDismissBlock?()
         }
     }
 }
