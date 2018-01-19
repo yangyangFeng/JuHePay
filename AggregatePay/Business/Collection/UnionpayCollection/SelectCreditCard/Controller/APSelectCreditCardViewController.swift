@@ -32,13 +32,14 @@ class APSelectCreditCardViewController: APUnionPayBaseViewController  {
             make.bottom.equalTo(view.snp.bottom)
         }
         
+        weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.datas.removeAll()
-            self.queryQuickPayCardListRequest.pageNo = "1"
-            self.startQueryQuickPayCardList()
+            weakSelf?.datas.removeAll()
+            weakSelf?.queryQuickPayCardListRequest.pageNo = "1"
+            weakSelf?.startQueryQuickPayCardList()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            self.startQueryQuickPayCardList()
+            weakSelf?.startQueryQuickPayCardList()
         })
         datas.removeAll()
         queryQuickPayCardListRequest.pageNo = "1"

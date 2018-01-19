@@ -12,8 +12,12 @@ import UIKit
 
 extension APVersionUpgradeController {
     
-    static func show(version: String, text: String) {
-        APVersionUpgradeController().show(version: version, text: text)
+    static func show(version: String,
+                     text: String,
+                     storeUrl: String) {
+        APVersionUpgradeController().show(version: version,
+                                          text: text,
+                                          storeUrl: storeUrl)
     }
 }
 
@@ -42,6 +46,8 @@ class APVersionUpgradeController: UIViewController {
         view.addTarget(self, action: #selector(closeButton(_:)), for: UIControlEvents.touchUpInside)
         return view
     }()
+    
+    var updateStoreUrl: String?
     
     var strongSelf:APVersionUpgradeController?
     
@@ -86,23 +92,28 @@ class APVersionUpgradeController: UIViewController {
         }
     }
     
-    func show(version: String, text: String) {
+    func show(version: String, text: String, storeUrl: String) {
         let window: UIWindow = UIApplication.shared.keyWindow!
         view.frame = window.bounds
         window.addSubview(view)
         window.bringSubview(toFront: view)
         versionUpgradeView.version.text = version
         versionUpgradeView.text.text = text
+        updateStoreUrl = storeUrl
     }
     
     func diss() {
         view.removeFromSuperview()
         versionUpgradeView.removeFromSuperview()
         strongSelf = nil
+        updateStoreUrl = nil
     }
     
     @objc func updateButton(_ button: UIButton) {
-        
+        let app_url : URL = URL.init(string: updateStoreUrl!)!
+        if UIApplication.shared.canOpenURL(app_url) {
+            UIApplication.shared.openURL(app_url)
+        }
     }
     
     @objc func closeButton(_ button: UIButton) {

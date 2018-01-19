@@ -97,7 +97,7 @@ extension APForgetLastStepViewController {
     }
     
     private func forgetPassword() {
-        
+        view.endEditing(true)
         if !resetPasswordRequest.pwd.evaluate(regx: .password) {
             self.view.makeToast("密码格式错误")
             return

@@ -65,7 +65,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSendSmsCode() {
-        
+        view.endEditing(true)
         if transMsgRequest.reserveMobileNo.count <= 0 {
             view.makeToast("请输入预留手机号")
             return
@@ -86,7 +86,7 @@ class APUnionTranBaseViewController: APUnionBaseViewController {
     }
     
     override func ap_httpSubmit() {
-       
+        view.endEditing(true)
         if quickPayRequest.preSerial == "" {
             view.makeToast("请先获取验证码")
             return
@@ -195,6 +195,7 @@ extension APUnionTranBaseViewController {
         transMsgRequest.integraFlag = quickPay.integraFlag
         transMsgRequest.reserveMobileNo = quickPay.reserveMobileNo
         
+        
         cvnNoCell.textCell.textField.text = quickPay.cvn
         bankCardNoCell.textCell.textField.text = quickPay.cardNo
         phoneNoCell.textCell.textField.text = quickPay.reserveMobileNo
@@ -202,22 +203,25 @@ extension APUnionTranBaseViewController {
     }
     
     func pushOpenUnionPayVC(result: APQuickPayResponse) {
+        weak var weakSelf = self
         APAlertManager.show(param: { (param) in
             param.apMessage = "该银行卡未开通银联快捷支付，请重新获取验证码进行开通。"
             param.apConfirmTitle = "确定"
         }, confirm: { (action) in
             let unionOpenVC = APUnionOpenViewController()
             let quickPay = APRegistQuickPayRequest()
-            quickPay.reserveMobileNo = self.quickPayRequest.reserveMobileNo
-            quickPay.expireDate = self.quickPayRequest.expireDate
-            quickPay.realName = self.quickPayRequest.realName
-            quickPay.cardNo = self.quickPayRequest.cardNo
-            quickPay.integraFlag = self.integraFlag
-            quickPay.cvn = self.quickPayRequest.cvn
-            unionOpenVC.totalAmount = self.totalAmount
-            unionOpenVC.payPlaceTitle = self.payPlaceTitle
-            unionOpenVC.integraFlag = self.integraFlag
+            quickPay.reserveMobileNo = (weakSelf?.quickPayRequest.reserveMobileNo)!
+            quickPay.expireDate = (weakSelf?.quickPayRequest.expireDate)!
+            quickPay.realName = (weakSelf?.quickPayRequest.realName)!
+            quickPay.cardNo = (weakSelf?.quickPayRequest.cardNo)!
+            quickPay.cvn = (weakSelf?.quickPayRequest.cvn)!
+            quickPay.integraFlag = (weakSelf?.quickPayRequest.integraFlag)!
+            unionOpenVC.totalAmount = weakSelf?.totalAmount
+            unionOpenVC.payPlaceTitle = weakSelf?.payPlaceTitle
+            unionOpenVC.integraFlag = weakSelf?.integraFlag
             unionOpenVC.setRegistQuickPayRequest(request: quickPay)
+            weakSelf?.quickPayRequest.smsCode = ""
+            weakSelf?.smsCodeCell.smsCodeCell.textField.text = ""
             self.navigationController?.pushViewController(unionOpenVC, animated: true)
         })
     }

@@ -25,14 +25,27 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
     
     //MARK: - public
     func ap_initCreateSubviews() {
-        view.addSubview(headerView)
-        view.addSubview(toolBarView)
+        
+        view.insertSubview(scrollView, at: 0)
+        scrollView.addSubview(containerView)
+        scrollView.snp.makeConstraints { (make) in
+            make.top.bottom.left.right.equalToSuperview()
+        }
+        containerView.snp.makeConstraints { (make) in
+            make.top.bottom.left.right.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+        }
+
+        containerView.addSubview(headerView)
+        containerView.addSubview(toolBarView)
+        
         headerView.snp.makeConstraints { (make) -> Void in
-            make.left.right.top.equalTo(view)
+            make.left.right.top.equalToSuperview()
             make.height.equalTo(120)
         }
         toolBarView.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.top.equalTo(headerView.snp.bottom)
             make.height.equalTo(43)
         }
@@ -60,6 +73,24 @@ class APUnionBaseViewController: APUnionPayBaseViewController {
     func ap_httpSubmit() {}
     
     //MARK: - Lazy Loading
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.bounces = false
+        scrollView.clipsToBounds = false
+        scrollView.backgroundColor = UIColor.clear
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        return scrollView
+    }()
+    
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
+    }()
+    
     lazy var headerView: APPayElementHeaderView = {
         let view = APPayElementHeaderView()
         return view

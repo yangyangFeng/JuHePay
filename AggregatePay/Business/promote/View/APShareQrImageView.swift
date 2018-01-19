@@ -10,6 +10,10 @@ import UIKit
 
 class APShareQrImageView: UIView {
 
+    var qrCodeImage : UIImage?
+    var bgImage = UIImage.init(named: "PromoteTemplate1")
+    
+    
     lazy var bgImageView = UIImageView()
     
     lazy var qrCodeImageView: UIImageView = {
@@ -20,7 +24,7 @@ class APShareQrImageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         bgImageView.image = UIImage.init(named: "PromoteTemplate1")
-        bgImageView.contentMode = .bottom
+//        bgImageView.contentMode = .bottom
         
         addSubview(bgImageView)
         bgImageView.addSubview(qrCodeImageView)
@@ -33,11 +37,19 @@ class APShareQrImageView: UIView {
     
     func changeQrCode(_ url : String){
         APQRCodeTool.AP_QRCode(content: url, success: { [weak self] (image) in
-            qrCodeImageView.image = image
-//            self?.bgImageView.image = createQrCodeImage((self?.bgImageView.image)!, qrCodeImage: image)
+            self?.qrCodeImage = image
+            self?.updateImage((self?.bgImage)!)
         }) { (error) in
             
         }
+    }
+    
+    func updateImage(_ bgImage : UIImage){
+        guard let image = qrCodeImage else {
+            bgImageView.image = bgImage
+            return
+        }
+        bgImageView.image = createQrCodeImage(bgImage, qrCodeImage: image)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,17 +66,16 @@ class APShareQrImageView: UIView {
     }
     
     func createQrCodeImage(_ bgImage : UIImage, qrCodeImage : UIImage) -> UIImage {
-        var sourceImage = bgImage
+        let sourceImage = bgImage
         let imageSize = sourceImage.size
-        
-        UIGraphicsBeginImageContext(imageSize)
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
         sourceImage.draw(at: CGPoint.init(x: 0, y: 0))
         //获得上下文
         let context = UIGraphicsGetCurrentContext()
         context?.drawPath(using: .fill)
-        
-        let rect = CGRect.init(x: imageSize.width/2.0 - K_Width*0.2/2.0, y: imageSize.height-20-K_Width*0.2, width: K_Width*0.2, height: K_Width*0.2)
-//        context?.addEllipse(in: rect)
+        let sizeScale : CGFloat = 0.3
+        let rect = CGRect.init(x: imageSize.width/2.0 - imageSize.width*sizeScale/2.0, y: imageSize.height-imageSize.width*sizeScale - imageSize.height * 0.04, width: imageSize.width*sizeScale, height: imageSize.width*sizeScale)
+
         context?.clip()
         
         qrCodeImage.draw(in: rect)

@@ -122,6 +122,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
             
             if .Failure == APAuthState(rawValue: response.authStatus) && response.authDesc.count > 0 {
                 self?.showAuthFailureBanner(failureReason: response.authDesc)
+                self?.realNameCell.enable = false
+                self?.idCardNoCell.enable = false
             }
             
             self?.realNameCell.textField.text = response.realName
@@ -144,9 +146,8 @@ class APRealNameAuthViewController: APAuthBaseViewController {
     /// 点击确认按钮
     override func commit() {
         
-        if (authParam.realName.count > 16) ||
-            (authParam.realName.count < 2){
-            view.makeToast("姓名长度出错")
+        if (authParam.realName.count > 16){
+            view.makeToast("姓名长度超限")
             return
         }
         

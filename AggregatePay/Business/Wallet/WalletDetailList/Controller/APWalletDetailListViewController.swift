@@ -57,14 +57,15 @@ extension APWalletDetailViewController {
     }
 
     private func initHttpRequest() {
+        weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
-            self.datas.removeAll()
-            self.queryAccountRecordRequest.pageNo = "1"
-            self.tableView.mj_footer.resetNoMoreData()
-            self.httpQueryAccountRecord()
+            weakSelf?.datas.removeAll()
+            weakSelf?.queryAccountRecordRequest.pageNo = "1"
+            weakSelf?.tableView.mj_footer.resetNoMoreData()
+            weakSelf?.httpQueryAccountRecord()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
-            self.httpQueryAccountRecord()
+            weakSelf?.httpQueryAccountRecord()
         })
         view.AP_loadingBegin()
         queryAccountRecordRequest.pageNo = "1"

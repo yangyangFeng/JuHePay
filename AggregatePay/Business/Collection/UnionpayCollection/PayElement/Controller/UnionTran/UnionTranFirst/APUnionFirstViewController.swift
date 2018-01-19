@@ -16,46 +16,46 @@ class APUnionFirstViewController: APUnionTranBaseViewController {
     
     override func ap_initCreateSubviews() {
         super.ap_initCreateSubviews()
-        view.addSubview(bankCardNoCell)
-        view.addSubview(cvnNoCell)
-        view.addSubview(validityDateCell)
-        view.addSubview(phoneNoCell)
-        view.addSubview(smsCodeCell)
-        view.addSubview(submitCell)
+        containerView.addSubview(bankCardNoCell)
+        containerView.addSubview(cvnNoCell)
+        containerView.addSubview(validityDateCell)
+        containerView.addSubview(phoneNoCell)
+        containerView.addSubview(smsCodeCell)
+        containerView.addSubview(submitCell)
         bankCardNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(toolBarView.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         cvnNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(bankCardNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         validityDateCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(cvnNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         phoneNoCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(validityDateCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         smsCodeCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(phoneNoCell.snp.bottom)
-            make.left.right.equalTo(view)
+            make.left.right.equalToSuperview()
             make.height.equalTo(toolBarView)
         }
         
         submitCell.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(smsCodeCell.snp.bottom).offset(20)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+            make.left.equalTo(containerView.snp.left).offset(30)
+            make.right.equalTo(containerView.snp.right).offset(-30)
             make.height.equalTo(44)
         }
     }

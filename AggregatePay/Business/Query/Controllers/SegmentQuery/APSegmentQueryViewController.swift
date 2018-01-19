@@ -33,12 +33,14 @@ class APSegmentQueryViewController: APBaseViewController {
         title = "账单"
         ap_setStatusBarStyle(.lightContent)
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        weak var weakSelf = self
+        
         view.addSubview(segmentView)
         segmentView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(0)
             make.height.equalTo(40)
         }
+        
+        weak var weakSelf = self
         segmentView.segmentBlock =  { index in
             weakSelf?.selectChildIndex = index
         }

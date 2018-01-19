@@ -142,16 +142,16 @@ extension APBaseViewController {
 
 extension APBaseViewController {
     
-    func ap_userIdentityStatus(httpUrl: String = APHttpUrl.manange_httpUrl,
+    func ap_userIdentityStatus(authServlet: APAuthServlet = .manager,
                                closure: @escaping () -> Void) {
 
         if !APUserInfoTool.isLogin() {
             APOutLoginTool.loginOut()
         }
         else {
-            
-            AuthH.openAuth(success: {
-                closure()
+            AuthH.openAuth(authServlet: authServlet,
+                           success: {
+                     closure()
             }, failure: { (message) in
                 
             })
