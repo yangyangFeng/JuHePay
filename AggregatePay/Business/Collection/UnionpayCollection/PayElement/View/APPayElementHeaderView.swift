@@ -27,7 +27,7 @@ class APPayElementHeaderView: UIView {
         view.font = UIFont.systemFont(ofSize: 14)
         view.theme_textColor = ["#999999"]
         view.textAlignment = .left
-        view.text = "收款渠道"
+        view.text = "收款通道"
         return view
     }()
     

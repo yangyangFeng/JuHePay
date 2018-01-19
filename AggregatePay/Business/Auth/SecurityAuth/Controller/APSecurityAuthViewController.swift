@@ -107,7 +107,7 @@ class APSecurityAuthViewController: APAuthBaseViewController {
     }
     override func commit() {
         
-        if !CPCheckAuthInputInfoTool.evaluateIsChineseAndEnglishName(withName: authParam.userName) {
+        if !CPCheckAuthInputInfoTool.evaluateIsLegalName(withName: authParam.userName) {
             view.makeToast("姓名请填写中文")
             return
         }

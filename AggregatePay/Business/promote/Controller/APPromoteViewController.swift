@@ -51,15 +51,29 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
         button.addTarget(self, action: #selector(shareAction(_:)), for: UIControlEvents.touchUpInside)
         let shareButtonItem = UIBarButtonItem.init(customView: button)
         navigationItem.rightBarButtonItem = shareButtonItem
-        
-        if  AuthH.realName       == .Success ||
-            AuthH.settleCard     == .Success ||
+        reloadUserAuthInfoData()
+    }
+    
+    func reloadUserAuthInfoData() {
+        view.AP_loadingBegin()
+        APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(),  success: { (authInfo) in
+            self.reloadPromoteUrlData()
+        }) { (baseError) in
+            self.view.AP_loadingEnd()
+        }
+    }
+    
+    func reloadPromoteUrlData() {
+        if  AuthH.realName       == .Success &&
+            AuthH.settleCard     == .Success &&
             AuthH.security       == .Success {
             APMineHttpTool.promoteUrl(APBaseRequest(), success: { (res) in
                 let data : APPromoteResponse = res as! APPromoteResponse
                 self.qrImageView.changeQrCode(data.genCodeUrl!)
+                self.view.AP_loadingEnd()
             }) { (error) in
-                
+                self.view.AP_loadingEnd()
+                self.view.makeToast(error.message)
             }
         }
     }
