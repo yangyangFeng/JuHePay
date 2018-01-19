@@ -13,6 +13,6 @@ class APGetMyAccountRequest: APBaseRequest {
     @objc dynamic var startDate: String?
     @objc dynamic var endDate: String?
     @objc dynamic var payModel: String?
-    @objc dynamic var pageNo: String?
+    @objc dynamic var pageNo: Int = 1
 
 }

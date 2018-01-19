@@ -14,6 +14,8 @@ protocol APMineStaticListViewDelegate : NSObjectProtocol {
 
 class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
 
+    var phoneNo: String = "400-091-9866"
+    
     weak var delegate : APMineStaticListViewDelegate?
     
     let tableView : UITableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -97,7 +99,7 @@ class APMineStaticListView: UIView, UITableViewDataSource, UITableViewDelegate {
             if cell.title.text == "客服"
             {
                 cell.telButton.isHidden = false
-                cell.telButton.setTitle("400-666-888", for: UIControlState.normal)
+                cell.telButton.setTitle(phoneNo, for: UIControlState.normal)
             }
             else
             {

@@ -57,20 +57,22 @@ extension APMineViewController : APMineStaticListViewDelegate, AP_ActionProtocol
 
 
 class APMineViewController: APMineBaseViewController{
+    
+    var aboutUsResponse: APAboutUsResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         title = "我的"
-        
+        view.AP_loadingBegin()
         initSubviews()
-        loadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
+        loadDataPhoneNo()
     }
-    
+  
     
     func initSubviews(){
         view.backgroundColor = UIColor.white
@@ -87,7 +89,16 @@ class APMineViewController: APMineBaseViewController{
         staticListView.tableView.tableHeaderView = headView
     }
     
+    func loadDataPhoneNo() {
+        APMineHttpTool.aboutInfo(APAboutUsRequest(), success: { (res) in
+            self.aboutUsResponse = res as? APAboutUsResponse
+            self.staticListView.phoneNo = (self.aboutUsResponse?.serviceHotline)!
+            self.staticListView.tableView.reloadData()
+        }) { (error) in}
+    }
+    
     func loadData(){
+
         guard APUserInfoTool.isLogin() else {
             self.staticListView.tableView.mj_header.endRefreshing()
             return

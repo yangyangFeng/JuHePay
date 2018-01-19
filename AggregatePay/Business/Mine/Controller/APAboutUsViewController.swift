@@ -22,7 +22,7 @@ class APAboutUsViewController: APMineBaseViewController {
         loadData()
         // Do any additional setup after loading the view.
     }
-    
+
     func initSubviews(){
         let logoIcon = UIImageView()
         logoIcon.theme_image = ["system_logo_icon"]
@@ -45,10 +45,12 @@ class APAboutUsViewController: APMineBaseViewController {
             make.centerX.equalTo(view.snp.centerX).offset(0)
             make.height.equalTo(22)
         }
-        
+        //getAboutUsInfo
         
         let titles : [String] = ["版本号", "服务热线", "官网"]
-        let msgs : [String] = [AppVersion as! String, "400-6666-8888", "www.baidu.com"]
+        let msgs : [String] = [AppVersion as! String,
+                               "400-091-9866",
+                               "www.cnepay.com"]
         for i in 0...2 {
             let cell = APAboutMsgCell.init(titles[i], msgs[i], bgType: (i%2 == 0) ? .APAboutMsgCell_Gray : .APAboutMsgCell_White)
             view.addSubview(cell)

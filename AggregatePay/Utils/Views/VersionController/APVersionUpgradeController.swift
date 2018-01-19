@@ -28,6 +28,10 @@ extension APVersionUpgradeController {
 
 class APVersionUpgradeController: UIViewController {
     
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
+    
     lazy var versionUpgradeView: APVersionUpgradeView = {
         let view = APVersionUpgradeView()
         return view
@@ -142,10 +146,10 @@ class APVersionUpgradeController: UIViewController {
     }
     
     func diss() {
-        view.removeFromSuperview()
-        versionUpgradeView.removeFromSuperview()
         strongSelf = nil
         updateStoreUrl = nil
+        versionUpgradeView.removeFromSuperview()
+        view.removeFromSuperview()
     }
     
     @objc func updateButton(_ button: UIButton) {

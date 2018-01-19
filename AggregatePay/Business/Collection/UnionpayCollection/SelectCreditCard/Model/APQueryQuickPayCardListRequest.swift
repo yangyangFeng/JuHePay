@@ -14,7 +14,7 @@ import UIKit
 class APQueryQuickPayCardListRequest: APBaseRequest {
 
     //当前页数
-    @objc dynamic var pageNo: String = "1"
+    @objc dynamic var pageNo: Int = 1
     
     //每页展示的条数
     @objc dynamic let pageSize: Int = 10
