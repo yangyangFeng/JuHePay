@@ -3370,7 +3370,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3394,8 +3394,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0bf49bfc-fbe9-484f-be98-c41f7ea3e79e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -3555,7 +3555,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3579,8 +3579,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0bf49bfc-fbe9-484f-be98-c41f7ea3e79e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -3597,7 +3597,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P2BWAW94QL;
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3621,8 +3621,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5a3dc2a-bbdb-4bd1-9768-507ff4d794cd";
-				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.copay.aggregatepay.enterprise";
+				PROVISIONING_PROFILE = "0e33ac4e-0013-4e88-a276-9b0e421c2897";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

@@ -61,15 +61,20 @@ end
     desc "sync profile of appstore,adhoc,dev when admin has update certs and profiles"
     lane :sync do
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+      	    git_branch: "AggregatePay",
             type: "appstore",
             readonly: true)
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+      	    git_branch: "AggregatePay",
             type: "development",
             readonly: true)
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+      	    git_branch: "AggregatePay",
             type: "adhoc",
             readonly: true)
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+      	    git_branch: "AggregatePay",
+            app_identifier: "com.copay.aggregatepay.enterprise",
             type: "enterprise",
             readonly: true)
 
