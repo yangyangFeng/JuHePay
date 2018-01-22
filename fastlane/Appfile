@@ -1,5 +1,11 @@
-app_identifier "com.copay.aggregatepay.enterprise" # The bundle identifier of your app
-apple_id "vcpos_app@cnepay.com" # Your Apple email address
+app_identifier "com.copay.aggregatepay" # The bundle identifier of your app
+apple_id "vcpos_beijing@126.com" # Your Apple email address
+team_id "JWKP693535"
+
+for_lane :Enterprise do
+	app_identifier "com.copay.aggregatepay.enterprise" # The bundle identifier of your app
+	apple_id "vcpos_app@cnepay.com" # Your Apple email address
+end
 
 
 # For more information about the Appfile, see:

@@ -12,6 +12,67 @@
 default_platform(:ios)
 
 platform :ios do
+
+  desc "close xcode fix"
+  lane :xcode do
+  install_xcode_plugin(github: 'https://github.com/FixIssue/FixCode')
+end
+  
+  desc "update profile of appstore,adhoc,dev when udid added or renew dev account"
+  lane :matchSet do
+
+  	# 生成开发证书
+    match(
+    	git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+    	git_branch: "AggregatePay",
+    	username: "vcpos_beijing@126.com",
+    	app_identifier: "com.copay.aggregatepay", 
+    	type: "development",
+    	)
+
+    # 生成adhoc证书
+    match(
+    	git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+    	git_branch: "AggregatePay",
+    	username: "vcpos_beijing@126.com",
+    	app_identifier: "com.copay.aggregatepay", 
+    	type: "adhoc",
+    	)
+
+    # 生成appstroe证书
+    match(
+    	git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+    	git_branch: "AggregatePay",
+    	username: "vcpos_beijing@126.com",
+    	app_identifier: "com.copay.aggregatepay", 
+    	type: "appstore",
+    	)
+
+    # 生成企业证书
+    match(
+    	git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+    	git_branch: "AggregatePay",
+    	username: "vcpos_app@cnepay.com",
+    	app_identifier: "com.copay.aggregatepay.enterprise", 
+        type: "enterprise",)
+
+end
+
+    desc "sync profile of appstore,adhoc,dev when admin has update certs and profiles"
+    lane :matchGet do
+      match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+            type: "appstore",
+            readonly: true)
+      match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+            type: "development",
+            readonly: true)
+      match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+            type: "adhoc",
+            readonly: true)
+
+
+    end
+
   desc "Description of what the lane does"
   lane :custom_lane do
     # add actions here: https://docs.fastlane.tools/actions
