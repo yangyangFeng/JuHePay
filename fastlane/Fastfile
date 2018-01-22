@@ -19,7 +19,7 @@ platform :ios do
 end
   
   desc "update profile of appstore,adhoc,dev when udid added or renew dev account"
-  lane :matchSet do
+  lane :update do
 
   	# 生成开发证书
     match(
@@ -59,7 +59,7 @@ end
 end
 
     desc "sync profile of appstore,adhoc,dev when admin has update certs and profiles"
-    lane :matchGet do
+    lane :sync do
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
             type: "appstore",
             readonly: true)
@@ -68,6 +68,9 @@ end
             readonly: true)
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
             type: "adhoc",
+            readonly: true)
+      match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
+            type: "enterprise",
             readonly: true)
 
 
