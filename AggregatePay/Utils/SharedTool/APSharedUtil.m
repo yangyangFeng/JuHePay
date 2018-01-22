@@ -68,7 +68,12 @@
 }
 
 -(void) onResp:(BaseResp*)resp {
-    self.resultBlock(resp.errStr);
+    if (resp.errCode == WXSuccess) {
+        self.resultBlock(@"分享成功");
+    }
+    else {
+        self.resultBlock(@"分享失败");
+    }
 }
 
 

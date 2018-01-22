@@ -82,18 +82,7 @@ extension AppDelegate {
             return .portrait
         }
     }
-    
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        if let url = URL.init(string: "com.cnepay.zhonghuizhifu://") {
-            if UIApplication.shared.canOpenURL(url) {
-              return UIApplication.shared.openURL(url)
-            }
-        }
-        return false
-    }
+
 }
 
 extension AppDelegate {
