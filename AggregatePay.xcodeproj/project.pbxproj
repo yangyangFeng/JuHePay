@@ -3389,7 +3389,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3575,7 +3575,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3618,7 +3618,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d5a3dc2a-bbdb-4bd1-9768-507ff4d794cd";
 				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.copay.aggregatepay.enterprise";
