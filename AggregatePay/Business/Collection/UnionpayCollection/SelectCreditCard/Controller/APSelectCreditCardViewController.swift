@@ -35,14 +35,14 @@ class APSelectCreditCardViewController: APUnionPayBaseViewController  {
         weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
             weakSelf?.datas.removeAll()
-            weakSelf?.queryQuickPayCardListRequest.pageNo = "1"
+            weakSelf?.queryQuickPayCardListRequest.pageNo = 1
             weakSelf?.startQueryQuickPayCardList()
         })
         tableView.mj_footer = APRefreshFooter(refreshingBlock: {
             weakSelf?.startQueryQuickPayCardList()
         })
         datas.removeAll()
-        queryQuickPayCardListRequest.pageNo = "1"
+        queryQuickPayCardListRequest.pageNo = 1
         view.AP_loadingBegin()
         startQueryQuickPayCardList()
     }
@@ -67,10 +67,10 @@ class APSelectCreditCardViewController: APUnionPayBaseViewController  {
     
     private func httpDisposequeryQuickPayCardList(response: APQueryQuickPayCardListResponse) {
 
-        if queryQuickPayCardListRequest.pageNo == response.bottomPageNo {
+        if queryQuickPayCardListRequest.pageNo >= Int(response.bottomPageNo!)! {
             tableView.mj_footer.endRefreshingWithNoMoreData()
         }
-        queryQuickPayCardListRequest.pageNo = response.bottomPageNo!
+        queryQuickPayCardListRequest.pageNo = queryQuickPayCardListRequest.pageNo+1
         datas.append(contentsOf: response.list!)
         tableView.reloadData()
     }

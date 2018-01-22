@@ -60,7 +60,7 @@ extension APWalletDetailViewController {
         weak var weakSelf = self
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
             weakSelf?.datas.removeAll()
-            weakSelf?.queryAccountRecordRequest.pageNo = "1"
+            weakSelf?.queryAccountRecordRequest.pageNo = 1
             weakSelf?.tableView.mj_footer.resetNoMoreData()
             weakSelf?.httpQueryAccountRecord()
         })
@@ -68,7 +68,7 @@ extension APWalletDetailViewController {
             weakSelf?.httpQueryAccountRecord()
         })
         view.AP_loadingBegin()
-        queryAccountRecordRequest.pageNo = "1"
+        queryAccountRecordRequest.pageNo = 1
         httpQueryAccountRecord()
     }
     
@@ -89,10 +89,10 @@ extension APWalletDetailViewController {
     }
     
     private func httpDisposeDataResponse(response: APQueryAccountRecordResponse) {
-        if queryAccountRecordRequest.pageNo == response.bottomPageNo {
+        if queryAccountRecordRequest.pageNo >= Int(response.bottomPageNo!)! {
             tableView.mj_footer.endRefreshingWithNoMoreData()
         }
-        queryAccountRecordRequest.pageNo = response.bottomPageNo!
+        queryAccountRecordRequest.pageNo = queryAccountRecordRequest.pageNo+1
         datas.append(contentsOf: response.list!)
         tableView.reloadData()
     }

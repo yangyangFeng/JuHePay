@@ -14,6 +14,7 @@ class APCreditCardFormCell: APAuthOCRTextFormCell {
         super.init()
         titleLabel.text = "信用卡卡号"
         textField.placeholder = "请输入信用卡卡号"
+        textField.keyboardType = UIKeyboardType.numberPad
     }
     
     required init?(coder aDecoder: NSCoder) {

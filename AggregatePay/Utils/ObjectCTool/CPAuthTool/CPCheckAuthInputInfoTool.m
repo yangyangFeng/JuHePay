@@ -39,7 +39,7 @@
  *  @return 是否校验成功
  */
 + (BOOL) evaluateIsLegalNameWithName:(NSString *)name {
-    NSString *regex = @"^[\u4e00-\u9fa5]+[·•]?[\u4e00-\u9fa5]+$";//支持中文
+    NSString *regex = @"[\u4e00-\u9fa5·•]+";//支持中文
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:name];
 }

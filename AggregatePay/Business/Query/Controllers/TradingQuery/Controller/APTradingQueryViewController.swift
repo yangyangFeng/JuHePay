@@ -24,7 +24,7 @@ class APTradingQueryViewController: APBaseQueryViewController {
     public func queryButAction() {
         view.AP_loadingBegin()
         datas.removeAll()
-        getMyAccountRequest.pageNo = "1"
+        getMyAccountRequest.pageNo = 1
         tableView.mj_footer.resetNoMoreData()
         httpGetAccount()
     }
@@ -53,10 +53,10 @@ extension APTradingQueryViewController {
     //初始化下拉刷新下拉加载控件和初始请求数据
     func startHttpGetAccount() {
         weak var weakSelf = self
-        getMyAccountRequest.pageNo = "1"
+        getMyAccountRequest.pageNo = 1
         tableView.mj_header = APRefreshHeader(refreshingBlock: {
             weakSelf?.datas.removeAll()
-            weakSelf?.getMyAccountRequest.pageNo = "1"
+            weakSelf?.getMyAccountRequest.pageNo = 1
             weakSelf?.tableView.mj_footer.resetNoMoreData()
             weakSelf?.httpGetAccount()
         })
@@ -93,10 +93,10 @@ extension APTradingQueryViewController {
          * 数据上拉加载时
          * 如果当前是最后一页则控制上拉加载控件为没有更多数据可用状态
          */
-        if getMyAccountRequest.pageNo == response.bottomPageNo {
+        if getMyAccountRequest.pageNo >= Int(response.bottomPageNo!)! {
             tableView.mj_footer.endRefreshingWithNoMoreData()
         }
-        getMyAccountRequest.pageNo = response.bottomPageNo
+        getMyAccountRequest.pageNo = getMyAccountRequest.pageNo+1
         datas.append(contentsOf: response.list!)
         tableView.reloadData()
     }

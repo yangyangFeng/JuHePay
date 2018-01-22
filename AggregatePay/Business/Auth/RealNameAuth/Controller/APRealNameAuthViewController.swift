@@ -224,7 +224,6 @@ extension APRealNameAuthViewController {
     func layoutFormCellView() {
         
         idCardNoCell.inputRegx = .idCardNo
-        realNameCell.inputRegx = .name
         
         realNameCell.enable = canEdit
         idCardNoCell.enable = canEdit

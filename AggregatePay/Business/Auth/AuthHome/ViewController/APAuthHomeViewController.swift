@@ -16,15 +16,16 @@ class APAuthHomeViewController: APBaseViewController {
     
     var isFirstIn : Bool = true
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadAuthInfo()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "身份认证"
-    
         ap_setStatusBarStyle(.lightContent)
-        
         layoutViews()
-        loadAuthInfo()
     }
 
     deinit {
@@ -38,7 +39,6 @@ class APAuthHomeViewController: APBaseViewController {
         
         view.AP_loadingBegin()
         APAuthHttpTool.getUserAuthInfo(params: APBaseRequest(), success: { (authInfo) in
-            
             self.view.AP_loadingEnd()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()

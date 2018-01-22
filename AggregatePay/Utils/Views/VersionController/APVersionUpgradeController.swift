@@ -12,16 +12,25 @@ import UIKit
 
 extension APVersionUpgradeController {
     
-    static func show(version: String,
-                     text: String,
+    static func show(minVersion: String,
+                     maxVersion: String,
+                     content:String,
                      storeUrl: String) {
-        APVersionUpgradeController().show(version: version,
-                                          text: text,
+        if minVersion == "" || maxVersion == "" || content == "" || storeUrl == "" {
+            return
+        }
+        APVersionUpgradeController().show(minVersion: minVersion,
+                                          maxVersion: maxVersion,
+                                          content: content,
                                           storeUrl: storeUrl)
     }
 }
 
 class APVersionUpgradeController: UIViewController {
+    
+    deinit {
+        print( String(describing: self.classForCoder) + "已释放")
+    }
     
     lazy var versionUpgradeView: APVersionUpgradeView = {
         let view = APVersionUpgradeView()
@@ -92,21 +101,55 @@ class APVersionUpgradeController: UIViewController {
         }
     }
     
-    func show(version: String, text: String, storeUrl: String) {
-        let window: UIWindow = UIApplication.shared.keyWindow!
-        view.frame = window.bounds
-        window.addSubview(view)
-        window.bringSubview(toFront: view)
-        versionUpgradeView.version.text = version
-        versionUpgradeView.text.text = text
-        updateStoreUrl = storeUrl
+    func show(minVersion: String,
+              maxVersion: String,
+              content:String,
+              storeUrl: String)  {
+        if isUpdate(minVersion: minVersion, maxVersion: maxVersion) {
+            let window: UIWindow = UIApplication.shared.keyWindow!
+            view.frame = window.bounds
+            window.addSubview(view)
+            window.bringSubview(toFront: view)
+            updateStoreUrl = storeUrl
+            versionUpgradeView.version.text = maxVersion
+            versionUpgradeView.text.text = content
+        }
+    }
+    
+    func isUpdate(minVersion: String, maxVersion: String) -> Bool {
+        let currentVersion_Int = replacing(versionNo: AppVersion as! String)
+        let minVersion_Int = replacing(versionNo: minVersion)
+        let maxVersion_Int = replacing(versionNo: maxVersion)
+        
+        if currentVersion_Int < minVersion_Int {
+            //如果当前版本小于最小版本则强制升级
+            closeButton.isHidden = true
+            return true
+        }
+        else if currentVersion_Int >= minVersion_Int &&
+                currentVersion_Int < maxVersion_Int {
+            //如果当前版本大于等于最小版本并且小于最大版本则非强制升级
+            closeButton.isHidden = false
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func replacing(versionNo: String) -> Int {
+        var versionStr = versionNo
+        if versionStr.contains(".") {
+            versionStr = versionStr.replacingOccurrences(of: ".", with: "")
+        }
+        return Int(versionStr)!
     }
     
     func diss() {
-        view.removeFromSuperview()
-        versionUpgradeView.removeFromSuperview()
         strongSelf = nil
         updateStoreUrl = nil
+        versionUpgradeView.removeFromSuperview()
+        view.removeFromSuperview()
     }
     
     @objc func updateButton(_ button: UIButton) {
@@ -144,12 +187,13 @@ class APVersionUpgradeView: UIView {
         view.backgroundColor = UIColor.clear
         return view
     }()
+    
     lazy var text: UITextView = {
         let view = UITextView()
+        view.isEditable = false
         view.textAlignment = .left
         view.theme_textColor = ["#fff0ce"]
         view.font = UIFont.systemFont(ofSize: 13)
-        view.isUserInteractionEnabled = false
         view.backgroundColor = UIColor.clear
         return view
     }()

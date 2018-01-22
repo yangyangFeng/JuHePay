@@ -22,15 +22,16 @@ class APAboutUsViewController: APMineBaseViewController {
         loadData()
         // Do any additional setup after loading the view.
     }
-    
+
     func initSubviews(){
         let logoIcon = UIImageView()
-        logoIcon.theme_backgroundColor = ["#ABC"]
+        logoIcon.theme_image = ["system_logo_icon"]
+        logoIcon.backgroundColor = UIColor.clear
         
         let title = UILabel()
         title.font = UIFont.systemFont(ofSize: 18)
         title.textColor = UIColor.init(hex6: 0xc8a556)
-        title.text = "聚合支付"
+        title.text = "聚合财富"
         
         view.addSubview(logoIcon)
         view.addSubview(title)
@@ -44,10 +45,12 @@ class APAboutUsViewController: APMineBaseViewController {
             make.centerX.equalTo(view.snp.centerX).offset(0)
             make.height.equalTo(22)
         }
-        
+        //getAboutUsInfo
         
         let titles : [String] = ["版本号", "服务热线", "官网"]
-        let msgs : [String] = [AppVersion as! String, "400-6666-8888", "www.baidu.com"]
+        let msgs : [String] = [AppVersion as! String,
+                               "400-091-9866",
+                               "www.cnepay.com"]
         for i in 0...2 {
             let cell = APAboutMsgCell.init(titles[i], msgs[i], bgType: (i%2 == 0) ? .APAboutMsgCell_Gray : .APAboutMsgCell_White)
             view.addSubview(cell)
@@ -94,15 +97,14 @@ class APAboutUsViewController: APMineBaseViewController {
     {
         let param = APCheckAppVerisonRequest()
         param.systemType = "1"
-        APMineHttpTool.updateApp(param, success: { (res) in
-            
-        }) { (error) in
-            
-        }
-        view.makeToast("已是最新版本")//1129065593
-        let app_url : URL = URL.init(string: "itms-apps://itunes.apple.com/app/id" + "1129065593")!
-        if UIApplication.shared.canOpenURL(app_url) {
-            UIApplication.shared.openURL(app_url)
+        APMineHttpTool.updateApp(param, success: { (baseResp) in
+            let resp = baseResp as! APCheckAppVerisonResponse
+            APVersionUpgradeController.show(minVersion: resp.minVersionNo,
+                                            maxVersion: resp.lastVersionNo,
+                                            content: resp.lastVersionContent,
+                                            storeUrl: resp.lastVersionDownloadUrl)
+        }) { (baseError) in
+            self.view.makeToast(baseError.message)
         }
     }
 
