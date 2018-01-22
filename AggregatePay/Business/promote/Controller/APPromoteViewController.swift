@@ -76,6 +76,9 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
                 self.view.makeToast(error.message)
             }
         }
+        else {
+            self.view.AP_loadingEnd()
+        }
     }
 
     func AP_Action_Click(_ obj: Any) {
