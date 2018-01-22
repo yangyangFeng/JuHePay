@@ -74,6 +74,7 @@ end
             readonly: true)
       match(git_url: "ssh://git@git.cnepay.net:8999/ios/certificates.git",
       	    git_branch: "AggregatePay",
+            app_identifier: "com.copay.aggregatepay.enterprise",
             type: "enterprise",
             readonly: true)
 

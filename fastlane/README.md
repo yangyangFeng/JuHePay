@@ -21,14 +21,14 @@ or alternatively using `brew cask install fastlane`
 fastlane ios xcode
 ```
 close xcode fix
-### ios matchSet
+### ios update
 ```
-fastlane ios matchSet
+fastlane ios update
 ```
 update profile of appstore,adhoc,dev when udid added or renew dev account
-### ios matchGet
+### ios sync
 ```
-fastlane ios matchGet
+fastlane ios sync
 ```
 sync profile of appstore,adhoc,dev when admin has update certs and profiles
 ### ios custom_lane

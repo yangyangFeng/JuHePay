@@ -30,6 +30,7 @@
 		1A0DEC431FF08F4000DCCAC3 /* APBaseQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0DEC421FF08F4000DCCAC3 /* APBaseQueryViewController.swift */; };
 		1A0DEC451FF08F5600DCCAC3 /* APProfitsQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0DEC441FF08F5600DCCAC3 /* APProfitsQueryViewController.swift */; };
 		1A184DCA1FFB33610080AE28 /* APSummaryDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184DC91FFB33600080AE28 /* APSummaryDataView.swift */; };
+		1A1DB0DE2015CBFB00352DD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A1DB0DD2015CBFB00352DD0 /* LaunchScreen.storyboard */; };
 		1A1FDA601FE8B7F300E6F808 /* APModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FDA5F1FE8B7F300E6F808 /* APModifyViewController.swift */; };
 		1A1FDA631FE8BF6200E6F808 /* APSmsCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FDA621FE8BF6200E6F808 /* APSmsCodeButton.swift */; };
 		1A1FDA681FE8C61800E6F808 /* APSystemSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FDA671FE8C61800E6F808 /* APSystemSuccessViewController.swift */; };
@@ -345,6 +346,7 @@
 		1A0DEC421FF08F4000DCCAC3 /* APBaseQueryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APBaseQueryViewController.swift; sourceTree = "<group>"; };
 		1A0DEC441FF08F5600DCCAC3 /* APProfitsQueryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APProfitsQueryViewController.swift; sourceTree = "<group>"; };
 		1A184DC91FFB33600080AE28 /* APSummaryDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSummaryDataView.swift; sourceTree = "<group>"; };
+		1A1DB0DD2015CBFB00352DD0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A1FDA5F1FE8B7F300E6F808 /* APModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APModifyViewController.swift; sourceTree = "<group>"; };
 		1A1FDA621FE8BF6200E6F808 /* APSmsCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSmsCodeButton.swift; sourceTree = "<group>"; };
 		1A1FDA671FE8C61800E6F808 /* APSystemSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSystemSuccessViewController.swift; sourceTree = "<group>"; };
@@ -2532,6 +2534,7 @@
 				74D5F6621FD927270065A5F3 /* APTheme_Normal.plist */,
 				74D5F6661FD94C100065A5F3 /* AP_ThemeConfig.swift */,
 				7487E1941FE0C778000E3EBE /* Mine_List_Config.plist */,
+				1A1DB0DD2015CBFB00352DD0 /* LaunchScreen.storyboard */,
 			);
 			path = ConfigurationFiles;
 			sourceTree = "<group>";
@@ -2866,6 +2869,7 @@
 				2374A9ED1FE8F1590013AB88 /* APAuth.plist in Resources */,
 				1AD0692D1FEB8C7C0009E5E9 /* LICENSE in Resources */,
 				7487E1951FE0C778000E3EBE /* Mine_List_Config.plist in Resources */,
+				1A1DB0DE2015CBFB00352DD0 /* LaunchScreen.storyboard in Resources */,
 				1AF205511FE213FD00C7BD1E /* Home_Menu_Config.plist in Resources */,
 				7465CB802005E716006DEC49 /* Assets.xcassets in Resources */,
 			);
@@ -3362,12 +3366,11 @@
 			baseConfigurationReference = 9E4F3E021454D6086F60D5FD /* Pods-AggregatePay.test.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3391,8 +3394,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0bf49bfc-fbe9-484f-be98-c41f7ea3e79e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -3548,12 +3551,11 @@
 			baseConfigurationReference = FA3405A1D8BD181E1F05967B /* Pods-AggregatePay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3577,8 +3579,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0bf49bfc-fbe9-484f-be98-c41f7ea3e79e";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -3591,12 +3593,11 @@
 			baseConfigurationReference = FC28497AF7C0E09BE22891BE /* Pods-AggregatePay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P2BWAW94QL;
+				DEVELOPMENT_TEAM = 3FJ77C8NWW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3620,8 +3621,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5a3dc2a-bbdb-4bd1-9768-507ff4d794cd";
-				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.copay.aggregatepay.enterprise";
+				PROVISIONING_PROFILE = "0e33ac4e-0013-4e88-a276-9b0e421c2897";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.copay.aggregatepay";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
