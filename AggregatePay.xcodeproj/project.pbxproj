@@ -2814,7 +2814,7 @@
 				TargetAttributes = {
 					74C49E691FD4FE0100F0501B = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2903,7 +2903,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A21F43275081907B4B6FA334 /* [CP] Copy Pods Resources */ = {
@@ -3366,8 +3366,8 @@
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3FJ77C8NWW;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3389,7 +3389,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3552,8 +3552,8 @@
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3FJ77C8NWW;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3575,7 +3575,7 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3594,9 +3594,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = AggregatePay/AggregatePay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3FJ77C8NWW;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = P2BWAW94QL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
@@ -3618,10 +3618,10 @@
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/UMSocial",
 					"$(PROJECT_DIR)/AggregatePay/Lib/Shared/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.copay.aggregatepay.enterprise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d5a3dc2a-bbdb-4bd1-9768-507ff4d794cd";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.copay.aggregatepay.enterprise";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AggregatePay/ConfigurationFiles/BridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
