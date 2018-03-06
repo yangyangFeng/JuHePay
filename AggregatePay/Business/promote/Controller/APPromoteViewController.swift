@@ -91,7 +91,7 @@ class APPromoteViewController: APBaseViewController,AP_ActionProtocol {
     {
         ap_userIdentityStatus {
             let shareC : APShareViewController = APShareViewController()
-            shareC.shareImage = self.qrImageView.screenshot
+            shareC.shareImage = self.qrImageView.bgImageView.image
             self.navigationController?.pushViewController(shareC)
         }
     }
